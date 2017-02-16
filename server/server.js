@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser'
 import mongodb from 'mongodb'
 import path from 'path';
+import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 
 import webpack from 'webpack';
 import config from '../webpack/webpack.config.dev.js';
@@ -12,7 +13,7 @@ const app = express();
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(config);
-  app.use(webpackDevMiddleware(compiler, { noInfo: true, config.output.publicPath }))
+  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
   app.use(webpackHotMiddleware(compiler))
 }
 
@@ -51,7 +52,7 @@ app.use(compression());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist')));
-app.use('/api', posts);
+app.use('/api');
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
@@ -99,7 +100,7 @@ const renderError = err => {
  * Revisit this for React-router v4~
  * Component based routes will likely be different
  */
- 
+
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
