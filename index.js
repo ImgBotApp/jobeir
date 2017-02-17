@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
         "babel-plugin-webpack-loaders",
         {
           "config": "./webpack/webpack.config.babel.js",
-          "verbose": false
+          "verbose": true
         }
       ]
     ]
