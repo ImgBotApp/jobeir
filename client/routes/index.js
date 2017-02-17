@@ -1,15 +1,19 @@
-/* eslint-disable global-require */
-import React from 'react';
-import { Route, IndexRoute } from 'react-router';
 import Core from '../modules/core/containers/Core';
 
-// require.ensure polyfill for node
-if (typeof require.ensure !== 'function') {
-  require.ensure = function requireModule(deps, callback) {
-    callback(require);
-  };
+// // require.ensure polyfill for node
+// if (typeof require.ensure !== 'function') {
+//   require.ensure = function requireModule(deps, callback) {
+//     callback(require);
+//   };
+// }
+
+export function errorLoading(err) {
+  throw new Error('Dynamic page loading failed: ' + err);
 }
 
+export function loadRoute(cb) {
+  return module => cb(null, module.default);
+}
 /* Workaround for async react routes to work with react-hot-reloader till
   https://github.com/reactjs/react-router/issues/2182 and
   https://github.com/gaearon/react-hot-loader/issues/288 is fixed.
@@ -20,23 +24,16 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // react-router setup with code-splitting
-// More info: http://blog.mxstbr.com/2016/01/react-apps-with-pages/
-export default (
-  <Route path="/" component={Core}>
-    <IndexRoute
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('../modules/home/containers/Home.js').default);
-        });
-      }}
-    />
-    <Route
-      path="/posts/:slug-:cuid"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('../modules/home/containers/Home.js').default);
-        });
-      }}
-    />
-  </Route>
-);
+export default {
+  component: Core,
+  childRoutes: [
+    {
+      path: '/',
+      getComponent(location, cb) {
+        System.import('../modules/home/containers/Home')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      },
+    },
+  ]
+};

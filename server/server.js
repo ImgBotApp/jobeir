@@ -1,15 +1,16 @@
-import express from 'express';
-import bodyParser from 'body-parser'
-import mongodb from 'mongodb'
+import Express from 'express';
+import bodyParser from 'body-parser';
+import compression from 'compression';
+import mongoose from 'mongoose';
 import path from 'path';
 import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 
 import webpack from 'webpack';
 import config from '../webpack/webpack.config.dev.js';
 import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpacHotMiddleware from 'webpack-hot-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 
-const app = express();
+const app = new Express();
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(config);
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 
 
 // React And Redux Setup
-import { configureStore } from '../client/store';
+import { configureStore } from '../client/redux/store';
 import { Provider } from 'react-redux';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -29,7 +30,7 @@ import Helmet from 'react-helmet';
 // Import required modules
 import routes from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
-// import posts from './routes/post.routes';
+import posts from './routes/post.routes';
 // import dummyData from './dummyData';
 import serverConfig from './config';
 
@@ -52,7 +53,7 @@ app.use(compression());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist')));
-app.use('/api');
+app.use('/api', posts);
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {

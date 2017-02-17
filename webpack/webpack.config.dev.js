@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var cssnext = require('postcss-cssnext');
 var postcssFocus = require('postcss-focus');
 var postcssReporter = require('postcss-reporter');
+var path = require('path');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -12,7 +13,7 @@ module.exports = {
       'webpack-hot-middleware/client',
       'webpack/hot/only-dev-server',
       'react-hot-loader/patch',
-      '../client/index.js',
+      path.join(__dirname, '../client/index.js')
     ],
     vendor: [
       'react',
@@ -21,18 +22,17 @@ module.exports = {
   },
 
   output: {
-    path: __dirname,
-    filename: 'app.js',
+    filename: path.join(__dirname, '../app.js'),
     publicPath: 'http://0.0.0.0:8000/',
   },
 
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-    modules: [
-      'client',
-      'node_modules',
-    ],
-  },
+  // resolve: {
+  //   extensions: ['', '.js', '.jsx'],
+  //   modules: [
+  //     'client',
+  //     'node_modules',
+  //   ],
+  // },
 
   module: {
     loaders: [
@@ -47,7 +47,7 @@ module.exports = {
       }, {
         test: /\.jsx*$/,
         exclude: [/node_modules/, /.+\.config.js/],
-        loader: 'babel',
+        loader: 'babel-loader',
       }, {
         test: /\.(jpe?g|gif|png|svg)$/i,
         loader: 'url-loader?limit=10000',
@@ -73,13 +73,13 @@ module.exports = {
     }),
   ],
 
-  postcss: () => [
-    postcssFocus(),
-    cssnext({
-      browsers: ['last 2 versions', 'IE > 10'],
-    }),
-    postcssReporter({
-      clearMessages: true,
-    }),
-  ],
+  // postcss: () => [
+  //   postcssFocus(),
+  //   cssnext({
+  //     browsers: ['last 2 versions', 'IE > 10'],
+  //   }),
+  //   postcssReporter({
+  //     clearMessages: true,
+  //   }),
+  // ],
 };

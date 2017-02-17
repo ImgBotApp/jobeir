@@ -7,7 +7,7 @@ import rootReducer from '../reducer';
 const logger = createLogger();
 const enhancer = compose(
   applyMiddleware(apiMiddleware, logger),
-  persistState(window.location.href.match(/[?&]debug_session=([^&#]+)\b/))
+  persistState()
 );
 
 export default function configureStore(initialState) {
