@@ -97,11 +97,6 @@ const renderError = err => {
   return renderFullPage(`Server Error${errTrace}`, {});
 };
 
-/**
- * Revisit this for React-router v4~
- * Component based routes will likely be different
- */
-
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
