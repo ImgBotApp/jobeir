@@ -26,14 +26,6 @@ module.exports = {
     publicPath: 'http://0.0.0.0:8000/',
   },
 
-  // resolve: {
-  //   extensions: ['', '.js', '.jsx'],
-  //   modules: [
-  //     'client',
-  //     'node_modules',
-  //   ],
-  // },
-
   module: {
     loaders: [
       {
