@@ -18,8 +18,8 @@ Requires an instance of MongoDB running locally
 Currently using
 - React
 - Redux, Redux Sagas
-- Babel
 - Webpack 2
+- Node
 - MongoDB
 - Express
 - React Reacter 3
