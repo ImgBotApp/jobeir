@@ -1,19 +1,32 @@
 import { Router } from 'express';
-// import PostController from '../controllers/A';
+import passport from 'passport';
+import Account from '../models/Account';
+
 const router = new Router();
 
-// Get all Posts
-router.route('/posts').get((req, res) => {
-  res.json({ hello: 'world' });
+router.post('/register', function(req, res) {
+    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
+        if (err) {
+            return res.render('register', { account : account });
+        }
+
+        passport.authenticate('local')(req, res, function () {
+            res.redirect('/');
+        });
+    });
 });
 
-// // Get one post by cuid
-// router.route('/posts/:cuid').get(PostController.getPost);
+router.post('/login', passport.authenticate('local'), function(req, res) {
+    res.redirect('/');
+});
 
-// // Add a new Post
-// router.route('/posts').post(PostController.addPost);
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
-// // Delete a post by cuid
-// router.route('/posts/:cuid').delete(PostController.deletePost);
+router.get('/ping', function(req, res){
+    res.status(200).send("pong!");
+});
 
 export default router;
