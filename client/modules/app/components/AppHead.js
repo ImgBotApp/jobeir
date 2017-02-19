@@ -3,7 +3,7 @@ import Helmet from "react-helmet";
 
 const AppHead = () =>
   <Helmet
-    title="Gost - Top Secret"
+    title="Gost"
     titleTemplate="%s - Top Secret"
     meta={[
       { charset: 'utf-8' },
