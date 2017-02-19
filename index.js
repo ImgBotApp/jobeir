@@ -17,7 +17,8 @@ if (process.env.NODE_ENV === 'production') {
           "config": "./webpack/webpack.config.babel.js",
           "verbose": true
         }
-      ]
+      ],
+      "syntax-dynamic-import"
     ]
   });
   require('babel-polyfill');

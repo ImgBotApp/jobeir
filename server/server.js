@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 
 
 // React And Redux Setup
-import { configureStore } from '../client/redux/store';
+import configureStore from '../client/redux/store';
 import { Provider } from 'react-redux';
 import React from 'react';
 import { renderToString } from 'react-dom/server';

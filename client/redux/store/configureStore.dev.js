@@ -7,9 +7,8 @@ import rootReducer from '../reducer';
 const logger = createLogger();
 const enhancer = compose(
   applyMiddleware(apiMiddleware, logger),
-  persistState()
 );
 
 export default function configureStore(initialState) {
-  return createStore(rootReducer(), initialState, enhancer);
+  return createStore(rootReducer, initialState, enhancer);
 }

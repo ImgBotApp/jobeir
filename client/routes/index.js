@@ -1,12 +1,5 @@
 import Core from '../modules/core/containers/Core';
 
-// // require.ensure polyfill for node
-// if (typeof require.ensure !== 'function') {
-//   require.ensure = function requireModule(deps, callback) {
-//     callback(require);
-//   };
-// }
-
 export function errorLoading(err) {
   throw new Error('Dynamic page loading failed: ' + err);
 }
@@ -21,6 +14,15 @@ export function loadRoute(cb) {
 if (process.env.NODE_ENV !== 'production') {
   // Require async routes only in development for react-hot-reloader to work.
   require('../modules/home/containers/Home.js');
+}
+
+// polyfill
+if (typeof System === "undefined") {
+  var System = {
+    import: function(path) {
+      return Promise.resolve(require(path));
+    }
+  };
 }
 
 // react-router setup with code-splitting
