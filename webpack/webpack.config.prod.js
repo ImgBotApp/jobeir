@@ -18,10 +18,18 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, '../dist/'),
+    path: path.join(__dirname, '../build/client'),
     filename: '[name].[chunkhash].js',
     publicPath: '/',
   },
+
+  resolve: {
+     extensions: ['.js', '.jsx'],
+     modules: [
+       'client',
+       'node_modules',
+     ],
+   },
 
   module: {
     loaders: [

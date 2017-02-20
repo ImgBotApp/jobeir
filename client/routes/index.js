@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from '../modules/app/containers/App';
+import Core from '../modules/core/containers/Core';
 
 // Polyfill for require.ensure
 if (typeof require.ensure !== 'function') {
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // React router setup with code splitting
 export default (
-  <Route path="/" component={App}>
+  <Route path="/" component={Core}>
     <IndexRoute
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
@@ -42,7 +42,7 @@ export default (
       }}
     />
     <Route
-      path="/sign"
+      path="/signup"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('../modules/signup/containers/Signup').default);

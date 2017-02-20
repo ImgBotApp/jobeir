@@ -7,8 +7,8 @@ module.exports = {
   entry: path.join(__dirname, '../server/server.js'),
 
   output: {
-    path: path.join(__dirname, '../dist/'),
-    filename: 'server.bundle.[hash].js',
+    path: path.join(__dirname, '../build/server'),
+    filename: 'index.[hash].js',
   },
 
   target: 'node', // in order to ignore built-in modules like path, fs, etc.
