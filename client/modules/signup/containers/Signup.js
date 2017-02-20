@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { signup } from '../ducks/';
 
 class Signup extends Component {
   constructor(props) {
@@ -22,6 +24,7 @@ class Signup extends Component {
   handleSubmit(event) {
     const { username, password } = this.state;
     event.preventDefault();
+    this.props.dispatch(signup(username, password));
     console.log({ username, password });
   }
 
@@ -56,4 +59,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default connect()(Signup);
