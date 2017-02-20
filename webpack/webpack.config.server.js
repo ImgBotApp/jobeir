@@ -1,22 +1,26 @@
 var fs = require('fs');
 var path = require('path');
-var ExternalsPlugin = require('webpack-externals-plugin');
+var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
 
-  entry: path.resolve(__dirname, '../server/server.js'),
+  entry: path.join(__dirname, '../server/server.js'),
 
   output: {
-    path: path.resolve(__dirname + '../dist/'),
+    path: path.join(__dirname, '../dist/'),
     filename: 'server.bundle.[hash].js',
   },
 
-  target: 'node',
+  target: 'node', // in order to ignore built-in modules like path, fs, etc.
 
   node: {
     __filename: true,
     __dirname: true,
   },
+
+  externals: [nodeExternals({
+    importType: 'commonjs',
+  })], // in order to ignore all modules in node_modules folder
 
   module: {
     loaders: [
@@ -39,16 +43,11 @@ module.exports = {
             ]
           ]
         },
-      }, {
+      },
+      {
         test: /\.json$/,
         loader: 'json-loader',
       },
     ],
   },
-  plugins: [
-    new ExternalsPlugin({
-      type: 'commonjs',
-      include: path.join(__dirname, '../node_modules/'),
-    }),
-  ],
 };

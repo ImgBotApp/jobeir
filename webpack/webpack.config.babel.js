@@ -13,7 +13,7 @@ module.exports = {
     libraryTarget: 'commonjs2',
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
     modules: [
       'client',
       'node_modules',
@@ -32,13 +32,4 @@ module.exports = {
       },
     ],
   },
-  postcss: () => [
-    postcssFocus(),
-    cssnext({
-      browsers: ['last 2 versions', 'IE > 10'],
-    }),
-    postcssReporter({
-      clearMessages: true,
-    }),
-  ],
 };
