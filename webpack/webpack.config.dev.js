@@ -13,6 +13,7 @@ module.exports = {
       'webpack-hot-middleware/client',
       'webpack/hot/only-dev-server',
       'react-hot-loader/patch',
+      'babel-polyfill',
       path.join(__dirname, '../client/index.js')
     ],
     vendor: [

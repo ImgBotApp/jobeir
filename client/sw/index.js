@@ -1,4 +1,4 @@
-export default const initServiceWorker = () => {
+const initServiceWorker = () => {
   if ('serviceWorker' in navigator && !window.location.host.includes('localhost')) {
     navigator.serviceWorker.register('/sw.js').then(registration => {
       // Registration was successful
@@ -9,3 +9,5 @@ export default const initServiceWorker = () => {
     });
   }
 };
+
+export default initServiceWorker;
