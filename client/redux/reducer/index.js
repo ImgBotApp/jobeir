@@ -11,12 +11,14 @@ function homeReducer(state = initialState, action) {
 }
 
 function intlReducer(state = initialState, action) {
-  return { locale: 'en' };
+  return {
+    locale: 'en'
+  };
 }
 
 const rootReducer = combineReducers({
   home: homeReducer,
-  int: intlReducer,
+  intl: intlReducer,
 });
 
 export default rootReducer;

@@ -118,7 +118,7 @@ app.use((req, res, next) => {
       .then(() => {
         const initialView = renderToString(
           <Provider store={store}>
-            <IntlWrapper locale="en">
+            <IntlWrapper>
               <RouterContext {...renderProps} />
             </IntlWrapper>
           </Provider>
