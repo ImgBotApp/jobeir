@@ -14,6 +14,7 @@ module.exports = {
       'webpack/hot/only-dev-server',
       'react-hot-loader/patch',
       'babel-polyfill',
+      'whatwg-fetch',
       path.join(__dirname, '../client/index.js')
     ],
     vendor: [

@@ -25,7 +25,6 @@ class Signup extends Component {
     const { username, password } = this.state;
     event.preventDefault();
     this.props.dispatch(signup(username, password));
-    console.log({ username, password });
   }
 
   render() {

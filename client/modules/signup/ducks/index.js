@@ -21,4 +21,4 @@ export default (state = initialState, action) => {
   }
 }
 
-export const signup = (email, password) => ({ type: SIGNUP_REQUESTED, email, password })
+export const signup = (username, password) => ({ type: SIGNUP_REQUESTED, payload: { username, password }})

@@ -1,7 +1,9 @@
 import Express from 'express';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import mongoose from 'mongoose';
+import morgan from 'morgan';
 import path from 'path';
 import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 
@@ -50,6 +52,7 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
 
 // Apply body Parser and server public assets and routes
 app.use(compression());
+app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist')));
