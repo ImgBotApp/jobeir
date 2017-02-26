@@ -57,7 +57,7 @@ const routes =  (
 function getRoutesArray(obj) {
   const arr = [
   '/api/v0/login',
-  '/api/v0/token',
+  '/api/v0/register',
   ];
 
   (function getIds(obj) {

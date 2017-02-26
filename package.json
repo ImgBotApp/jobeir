@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.22.1",
-    "bcrypt-nodejs": "latest",
+    "bcrypt": "latest",
     "body-parser": "^1.16.1",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
@@ -30,6 +30,7 @@
     "limax": "^1.4.1",
     "mongoose": "^4.8.3",
     "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
     "react": "^15.4.2",

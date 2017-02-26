@@ -6,8 +6,8 @@ import jwt from 'express-jwt';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import path from 'path';
-import keys from '../keys';
 import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
+import passport from 'passport'
 
 import webpack from 'webpack';
 import config from '../webpack/webpack.config.dev.js';
@@ -33,9 +33,22 @@ import Helmet from 'react-helmet';
 // Import required modules
 import routes, { routesArray } from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
-import posts from './routes/Account.routes';
-// import dummyData from './dummyData';
-import serverConfig from './config';
+import posts from './routes/User.routes';
+import serverConfig from './config/config';
+import passportInit from './config/passport';
+
+// Apply body Parser and server public assets and routes
+app.use(compression());
+app.use(morgan('dev'));
+app.use(passport.initialize());
+passportInit(passport);
+app.use(bodyParser.json({ limit: '20mb' }));
+app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
+app.use(Express.static(path.resolve(__dirname, '../dist')));
+// app.use(jwt({secret: serverConfig.jwt}).unless({path: routesArray}));
+// app.use(serverConfig.handleNoToken);
+app.use('/api/v0', posts);
+
 
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
@@ -46,27 +59,7 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
     throw error;
   }
-
-  // feed some dummy data in DB.
-  // dummyData();
 });
-
-// Apply body Parser and server public assets and routes
-app.use(compression());
-app.use(morgan('dev'));
-app.use(bodyParser.json({ limit: '20mb' }));
-app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
-app.use(Express.static(path.resolve(__dirname, '../dist')));
-app.use(jwt({secret: keys.JWT}).unless({path: routesArray}));
-app.use(function (err, req, res, next) {
-  if (err.name === 'UnauthorizedError') { 
-    res.status(401).send({
-      data: [],
-      error: [err]
-    });
-  }
-});
-app.use('/api/v0', posts);
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {

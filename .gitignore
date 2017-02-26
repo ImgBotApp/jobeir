@@ -4,4 +4,4 @@ npm-debug.log
 public/*
 dist
 coverage/
-keys.js
+server/config
