@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // React router setup with code splitting
-export default (
+const routes =  (
   <Route path="/" component={Core}>
     <IndexRoute
       getComponent={(nextState, cb) => {
@@ -52,3 +52,23 @@ export default (
     />
   </Route>
 );
+
+function getRoutesArray(obj) {
+  const arr = [];
+
+  (function getIds(obj) {
+    for (let x in obj) {
+      if (typeof obj[x] === 'object') {
+        getIds(obj[x]);
+      } else if (x === 'path') {
+        arr.push(obj[x]);
+      }
+    }
+  })(obj);
+
+  return arr;
+}
+
+export const routesArray = getRoutesArray(routes);
+
+export default routes;

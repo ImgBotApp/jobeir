@@ -2,9 +2,11 @@ import Express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
+import jwt from 'express-jwt';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import path from 'path';
+import keys from '../keys';
 import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 
 import webpack from 'webpack';
@@ -20,7 +22,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(webpackHotMiddleware(compiler))
 }
 
-
 // React And Redux Setup
 import configureStore from '../client/redux/store';
 import { Provider } from 'react-redux';
@@ -30,7 +31,7 @@ import { match, RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
 
 // Import required modules
-import routes from '../client/routes';
+import routes, { routesArray } from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
 import posts from './routes/Account.routes';
 // import dummyData from './dummyData';
@@ -56,6 +57,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist')));
+app.use(jwt({secret: keys.JWT}).unless({path: routesArray}));
 app.use('/api/v0', posts);
 
 // Render Initial HTML
