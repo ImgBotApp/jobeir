@@ -58,6 +58,14 @@ app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist')));
 app.use(jwt({secret: keys.JWT}).unless({path: routesArray}));
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') { 
+    res.status(401).send({
+      data: [],
+      error: [err]
+    });
+  }
+});
 app.use('/api/v0', posts);
 
 // Render Initial HTML

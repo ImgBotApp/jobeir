@@ -53,8 +53,12 @@ const routes =  (
   </Route>
 );
 
+
 function getRoutesArray(obj) {
-  const arr = [];
+  const arr = [
+  '/api/v0/login',
+  '/api/v0/token',
+  ];
 
   (function getIds(obj) {
     for (let x in obj) {
