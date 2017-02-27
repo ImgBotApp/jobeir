@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // React router setup with code splitting
-const routes =  (
+const routes = (
   <Route path="/" component={Core}>
     <IndexRoute
       getComponent={(nextState, cb) => {
@@ -51,7 +51,6 @@ const routes =  (
     />
   </Route>
 );
-
 
 function getRoutesArray(obj) {
   const arr = [

@@ -23,9 +23,12 @@ render(
 // For hot reloading of react components
 if (module.hot) {
   module.hot.accept('./modules/app/containers/App', () => {
+    // If you use Webpack 2 in ES modules mode, you can
+    // use <App /> here rather than require() a <NextApp />.
+    const NextApp = require('./modules/app/containers/App').default; // eslint-disable-line global-require
     render(
       <AppContainer>
-        <App store={store} />
+        <NextApp store={store} />
       </AppContainer>,
       mountApp
     );

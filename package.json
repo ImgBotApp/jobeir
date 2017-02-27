@@ -4,7 +4,7 @@
   "description": "project гост звук",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon index.js",
+    "start": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon index.js --ignore client/",
     "start:prod": "cross-env NODE_ENV=production node index.js",
     "bs": "yarn clean && yarn build && yarn build:server && yarn start:prod",
     "build": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js",
