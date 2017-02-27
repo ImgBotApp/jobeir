@@ -21,7 +21,6 @@ const createUserCall = (payload) => {
 };
 
 export function* createuUser(action) {
-  console.log(action);
    try {
       const data = yield call(createUserCall, action.payload)
       yield put({type: SIGNUP_SUCCEEDED, data})

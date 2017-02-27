@@ -1,4 +1,3 @@
-const cookieDomain = window.location.hostname;
 const endDate = new Date(new Date().setFullYear(new Date().getFullYear() + 5));
 
 const docCookies = {
@@ -6,7 +5,7 @@ const docCookies = {
     if (!sKey) { return null; }
     return decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
   },
-  setItem: (sKey, sValue, vEnd = endDate, sPath = '/', sDomain = cookieDomain, bSecure) => {
+  setItem: (sKey, sValue, vEnd = endDate, sPath = '/', sDomain = "", bSecure) => {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
     let sExpires = '';
     if (vEnd) {
@@ -27,7 +26,7 @@ const docCookies = {
     document.cookie = encodeURIComponent(sKey) + '=' + encodeURIComponent(sValue) + sExpires + (sDomain ? '; domain=' + sDomain : '') + (sPath ? '; path=' + sPath : '') + (bSecure ? '; secure' : '');
     return true;
   },
-  removeItem: (sKey, sPath = '/', sDomain = cookieDomain) => {
+  removeItem: (sKey, sPath = '/', sDomain = "") => {
     if (!docCookies.hasItem(sKey)) { return false; }
     document.cookie = encodeURIComponent(sKey) + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' + (sDomain ? '; domain=' + sDomain : '') + (sPath ? '; path=' + sPath : '');
     return true;

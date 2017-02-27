@@ -7,7 +7,7 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: ''
     };
 
@@ -22,25 +22,25 @@ class Signup extends Component {
   }
 
   handleSubmit(event) {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     event.preventDefault();
-    this.props.dispatch(signup(username, password));
+    this.props.dispatch(signup(email, password));
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
     return (
       <div>
         <Helmet title="Signup" />
         Signup
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email</label>
           <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
+            type="email"
+            id="email"
+            name="email"
+            value={email}
             onChange={this.handleChange}
           />
           <label htmlFor="password">Password</label>

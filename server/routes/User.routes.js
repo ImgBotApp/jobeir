@@ -58,7 +58,7 @@ router.post('/login', function(req, res) {
           const token = jwt.sign(user, serverConfig.jwt, { expiresIn: 10080 });
 
           res.status(200).send({
-            data: [{ token }],
+            data: { authenticated: true, token },
             error: []
           });
         } else {

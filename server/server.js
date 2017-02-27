@@ -45,9 +45,8 @@ passportInit(passport);
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist')));
-// app.use(jwt({secret: serverConfig.jwt}).unless({path: routesArray}));
-// app.use(serverConfig.handleNoToken);
-app.use('/api/v0', posts);
+app.use(jwt({secret: serverConfig.jwt}).unless({path: routesArray}));
+app.use(serverConfig.handleNoToken);
 
 
 // Set native promises as mongoose promise
@@ -60,6 +59,10 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
     throw error;
   }
 });
+
+
+app.use('/api/v0', posts);
+
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
@@ -108,6 +111,7 @@ const renderError = err => {
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
+    console.log(err, redirectLocation);
     if (err) {
       return res.status(500).end(renderError(err));
     }

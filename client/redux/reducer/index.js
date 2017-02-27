@@ -4,21 +4,17 @@
  
 import { combineReducers } from 'redux';
 
-const initialState = { hello: 'world' };
+import loginReducer from '../../modules/login/ducks/';
 
-function homeReducer(state = initialState, action) {
-  return state;
-}
-
-function intlReducer(state = initialState, action) {
+function intlReducer(state, action) {
   return {
     locale: 'en'
   };
 }
 
 const rootReducer = combineReducers({
-  home: homeReducer,
   intl: intlReducer,
+  login: loginReducer,
 });
 
 export default rootReducer;
