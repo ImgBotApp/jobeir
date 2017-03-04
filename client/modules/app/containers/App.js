@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import IntlWrapper from '../../intl/containers/IntlWrapper';
 import routes from '../../../routes';
+import AppStyles from '../styles/AppStyles';
 
 export default function App(props) {
   /**

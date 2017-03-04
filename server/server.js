@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === 'development') {
 import configureStore from '../client/redux/store';
 import { Provider } from 'react-redux';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { render, template } from 'rapscallion';
 import { match, RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
 
@@ -72,7 +72,7 @@ const renderFullPage = (html, initialState) => {
   const assetsManifest = process.env.webpackAssets && JSON.parse(process.env.webpackAssets);
   const chunkManifest = process.env.webpackChunkAssets && JSON.parse(process.env.webpackChunkAssets);
 
-  return `
+  return template`
     <!doctype html>
     <html>
       <head>
@@ -103,8 +103,9 @@ const renderFullPage = (html, initialState) => {
 
 const renderError = err => {
   const softTab = '&#32;&#32;&#32;&#32;';
-  const errTrace = process.env.NODE_ENV !== 'production' ?
-    `:<br><br><pre style="color:red">${softTab}${err.stack.replace(/\n/g, `<br>${softTab}`)}</pre>` : '';
+  const errTrace = process.env.NODE_ENV !== 'production'
+    ? `:<br><br><pre style="color:red">${softTab}${err.stack.replace(/\n/g, `<br>${softTab}`)}</pre>`
+    : '';
   return renderFullPage(`Server Error${errTrace}`, {});
 };
 
@@ -127,7 +128,7 @@ app.use((req, res, next) => {
 
     return fetchComponentData(store, renderProps.components, renderProps.params)
       .then(() => {
-        const initialView = renderToString(
+        const initialView = render(
           <Provider store={store}>
             <IntlWrapper>
               <RouterContext {...renderProps} />
@@ -136,10 +137,9 @@ app.use((req, res, next) => {
         );
         const finalState = store.getState();
 
-        res
-          .set('Content-Type', 'text/html')
-          .status(200)
-          .end(renderFullPage(initialView, finalState));
+        renderFullPage(initialView, finalState)
+          .toStream()
+          .pipe(res);
       })
       .catch((error) => next(error));
   });

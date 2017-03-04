@@ -26,8 +26,7 @@ function reqHeaders() {
 };
 
 export function fetchApi(method, endpoint, payload) {
-  console.log({method, endpoint, payload});
-  const url = `/api/v0/${endpoint}`;
+  const url = `/api/v0${endpoint}`;
   const options = {
     method,
     headers: reqHeaders(),
