@@ -27,7 +27,7 @@ const config = {
 export default config;
 ```
 
-### The Technology
+## The Technology
 
 Currently using
 - React
