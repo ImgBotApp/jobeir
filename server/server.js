@@ -29,6 +29,7 @@ import React from 'react';
 import { render, template } from 'rapscallion';
 import { match, RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
+import styleSheet from 'styled-components/lib/models/StyleSheet';
 
 // Import required modules
 import routes, { routesArray } from '../client/routes';
@@ -48,7 +49,6 @@ app.use(Express.static(path.resolve(__dirname, '../dist')));
 app.use(jwt({secret: serverConfig.jwt}).unless({path: routesArray}));
 app.use(serverConfig.handleNoToken);
 
-
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
 
@@ -60,13 +60,15 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
   }
 });
 
-
 app.use('/api/v0', posts);
-
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
   const head = Helmet.rewind();
+  // console.log(styleSheet.styleSheet.sheet.cssRules);
+  // const styles = styleSheet.styleSheet.sheet.cssRules.map(rule => rule.cssText).join('\n')
+  // ${<style dangerouslySetInnerHTML={{ __html: styles }} />}
+  // console.log(styles);
 
   // Import Manifests
   const assetsManifest = process.env.webpackAssets && JSON.parse(process.env.webpackAssets);
