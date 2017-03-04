@@ -6,13 +6,6 @@ import serverConfig from '../config/config';
 
 const router = new Router();
 
-// router.get('/token', function(req, res) {
-//   res.status(200).send({
-//     data: [{ token: jwt.sign({}, serverConfig.jwt) }],
-//     error: []
-//   });
-// });
-
 router.post('/register', function(req, res) {
   if (!req.body.email || !req.body.password) {
     return res.status(202).send({
@@ -55,7 +48,7 @@ router.post('/login', function(req, res) {
     } else {
       user.comparePassword(req.body.password, function(err, isMatch) {
         if (!err && isMatch) {
-          const token = jwt.sign(user, serverConfig.jwt, { expiresIn: 10080 });
+          const token = jwt.sign(user, serverConfig.jwt);
 
           res.status(200).send({
             data: { authenticated: true, token },

@@ -9,11 +9,8 @@ import {
 
 export function* login(action) {
    try {
-      const loginApi = fetchApi('POST', '/login', action.payload);
-      const payload = yield call(loginApi);
-
+      const payload = yield call(fetchApi, 'POST', '/login', action.payload);
       docCookies.setItem('SID', payload.data.token);
-      
       yield put({
         type: LOGIN_SUCCEEDED, 
         payload,
