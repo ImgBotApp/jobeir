@@ -4,7 +4,7 @@
  
 import { combineReducers } from 'redux';
 
-import loginReducer from '../../modules/login/ducks/';
+import authReducer from '../../modules/auth/ducks';
 
 function intlReducer(state, action) {
   return {
@@ -13,8 +13,8 @@ function intlReducer(state, action) {
 }
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   intl: intlReducer,
-  login: loginReducer,
 });
 
 export default rootReducer;

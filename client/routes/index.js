@@ -19,8 +19,8 @@ export function loadRoute(cb) {
 
 if (process.env.NODE_ENV === 'development') {
   require('../modules/home/containers/Home');
-  require('../modules/login/containers/Login');
-  require('../modules/signup/containers/Signup');
+  require('../modules/auth/login/containers/Login');
+  require('../modules/auth/signup/containers/Signup');
 }
 
 // React router setup with code splitting
@@ -37,7 +37,7 @@ const routes = (
       path="/login"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('../modules/login/containers/Login').default);
+          cb(null, require('../modules/auth/login/containers/Login').default);
         });
       }}
     />
@@ -45,7 +45,7 @@ const routes = (
       path="/signup"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('../modules/signup/containers/Signup').default);
+          cb(null, require('../modules/auth/signup/containers/Signup').default);
         });
       }}
     />

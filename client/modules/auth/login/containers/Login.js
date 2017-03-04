@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import { login } from '../ducks/';
+import { login } from '../../ducks/';
 
 class Login extends Component {
   constructor(props) {
