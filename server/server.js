@@ -34,13 +34,14 @@ import styleSheet from 'styled-components/lib/models/StyleSheet';
 // Import required modules
 import routes, { routesArray } from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
-import posts from './routes/User.routes';
+import userRoutes from './routes/User.routes';
 import serverConfig from './config/config';
 import passportInit from './config/passport';
 
 // Apply body Parser and server public assets and routes
 app.use(compression());
 app.use(morgan('dev'));
+app.use(cookieParser());
 app.use(passport.initialize());
 passportInit(passport);
 app.use(bodyParser.json({ limit: '20mb' }));
@@ -48,6 +49,7 @@ app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist')));
 app.use(jwt({secret: serverConfig.jwt}).unless({path: routesArray}));
 app.use(serverConfig.handleNoToken);
+
 
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
@@ -60,7 +62,7 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
   }
 });
 
-app.use('/api/v0', posts);
+app.use('/api/v0', userRoutes);
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {

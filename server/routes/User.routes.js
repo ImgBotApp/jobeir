@@ -69,13 +69,9 @@ router.get('/dashboard', passport.authenticate('jwt', { session: false }), funct
   res.send('It worked! User id is: ' + req.user._id);
 });
 
-router.get('/logout', function(req, res) {
+router.post('/logout', function(req, res) {
   req.logout();
   res.status(200).send(req.body);
-});
-
-router.get('/ping', function(req, res){
-  res.status(200).send("pong!");
 });
 
 export default router;

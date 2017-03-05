@@ -49,6 +49,14 @@ const routes = (
         });
       }}
     />
+    <Route
+      path="/dashboard"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('../modules/auth/signup/containers/Signup').default);
+        });
+      }}
+    />
   </Route>
 );
 
