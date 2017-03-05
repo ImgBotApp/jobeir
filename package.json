@@ -16,6 +16,9 @@
     "test": "jest",
     "validate": "npm ls"
   },
+  "pre-commit": [
+    "test"
+  ],
   "author": "Dennis Brotzky",
   "license": "ISC",
   "dependencies": {
@@ -99,8 +102,5 @@
     "webpack-hot-middleware": "^2.17.0",
     "webpack-manifest-plugin": "^1.1.0",
     "webpack-node-externals": "^1.5.4"
-  },
-  "pre-commit": [
-    "test"
-  ]
+  }
 }

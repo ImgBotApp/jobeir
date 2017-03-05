@@ -17,10 +17,12 @@ export function loadRoute(cb) {
   return module => cb(null, module.default);
 }
 
+// Ned to add routes here to allow development routes to work correctly
 if (process.env.NODE_ENV === 'development') {
   require('../modules/home/containers/Home');
   require('../modules/auth/login/containers/Login');
   require('../modules/auth/signup/containers/Signup');
+  require('../modules/not-found/components/NotFound');
 }
 
 // React router setup with code splitting
@@ -50,10 +52,10 @@ const routes = (
       }}
     />
     <Route
-      path="/dashboard"
+      path="*"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('../modules/auth/signup/containers/Signup').default);
+          cb(null, require('../modules/not-found/components/NotFound').default);
         });
       }}
     />
