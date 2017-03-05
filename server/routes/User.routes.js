@@ -65,8 +65,14 @@ router.post('/login', function(req, res) {
   });
 });
 
-router.get('/dashboard', passport.authenticate('jwt', { session: false }), function(req, res) {
-  res.send('It worked! User id is: ' + req.user._id);
+router.get('/auth', passport.authenticate('jwt', { session: false }), function(req, res) {
+  res.status(200).send({
+    data: {
+      authenticated: true,
+      userId: req.user._id,
+    },
+    error: []
+  });
 });
 
 router.post('/logout', function(req, res) {
