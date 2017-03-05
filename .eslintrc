@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    "react"
+  ],
+  "extends": ["airbnb"],
+  "sourceType": "module",
+  "rules": {
+    "react/prop-types": 0,
+    "no-script-url": 0,
+    "no-else-return": 0,
+    "react/jsx-boolean-value": 0,
+    "new-cap": 0,
+    "no-with": 0,
+    "no-nested-ternary": 0,
+    "indent": [2, 2, { "SwitchCase": 1 }]
+  }
+}
