@@ -39,3 +39,4 @@ Currently using
 - Rapscillion
 - React Reacter 3
 - Styled Components
+- Jest
