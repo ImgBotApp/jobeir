@@ -1,6 +1,8 @@
 import { call, put } from 'redux-saga/effects';
 import { fetchApi } from '../../../utils/api';
+import { redirectTo } from '../ducks'
 import {
+  authUser,
   signupUser,
   loginUser,
   logoutUser
@@ -14,6 +16,93 @@ const action = {
 };
 
 describe('User', () => {
+  describe('check authentication', () => {
+    it('should return a AUTH_SUCCEDED action', () => {
+      const gen = authUser(action);
+
+      expect(gen.next().value)
+        .toEqual(
+          call(fetchApi, 'GET', '/auth')
+        );
+
+      expect(gen.next().value)
+        .toEqual(
+          put({
+            type: 'AUTH_SUCCEEDED',
+            payload: undefined
+          })
+        );
+    });
+
+    it('should redict to the correct pathname after AUTH_SUCCEDED', () => {
+      const gen = authUser({ payload: { redirectPathname: '/' }});
+
+      expect(gen.next().value)
+        .toEqual(
+          call(fetchApi, 'GET', '/auth')
+        );
+
+      expect(gen.next().value)
+        .toEqual(
+          put({
+            type: 'AUTH_SUCCEEDED',
+            payload: undefined
+          })
+        );
+
+      expect(gen.next().value)
+        .toEqual(
+          call(redirectTo, '/')
+        );
+    });
+
+    it('should return a AUTH_FAILED action', () => {
+      const gen = authUser(action);
+
+      expect(
+        gen.next().value
+      ).toEqual(
+        call(fetchApi, 'GET', '/auth')
+      );
+
+      expect(
+        gen.throw({
+          error: 'unauthorized'
+        }).value
+      ).toEqual(
+        put({
+          type: 'AUTH_FAILED',
+          error: { error: 'unauthorized' }
+        })
+      );
+    });
+
+    it('should redict to the correct pathname after AUTH_FAILED', () => {
+      const gen = authUser({ payload: { redirectPathname: '/pathname' }});
+
+      expect(gen.next().value)
+        .toEqual(
+          call(fetchApi, 'GET', '/auth')
+        );
+
+      expect(
+        gen.throw({
+          error: 'unauthorized'
+        }).value
+      ).toEqual(
+        put({
+          type: 'AUTH_FAILED',
+          error: { error: 'unauthorized' }
+        })
+      );
+
+      expect(gen.next().value)
+        .toEqual(
+          call(redirectTo, '/login?next=/pathname')
+        );
+    });
+  });
+
   describe('registration ', () => {
     it('should return a SIGNUP_SUCCEEDED action', () => {
       const gen = signupUser(action);
@@ -132,5 +221,5 @@ describe('User', () => {
         })
       );
     });
-  });
+  })
 });
