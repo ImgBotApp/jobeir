@@ -185,39 +185,38 @@ describe('User', () => {
 
   describe('logout ', () => {
     it('should return a LOGOUT_SUCCEDED action', () => {
-      const gen = logoutUser(action);
+      const gen = logoutUser();
 
       expect(gen.next().value)
         .toEqual(
-          call(fetchApi, 'POST', '/logout', action.payload)
+          call(fetchApi, 'POST', '/logout')
         );
 
       expect(gen.next().value)
         .toEqual(
           put({
             type: 'LOGOUT_SUCCEEDED',
-            payload: undefined
           })
         );
     });
 
     it('should return a LOGOUT_FAILED action', () => {
-      const gen = logoutUser(action);
+      const gen = logoutUser();
 
       expect(
         gen.next().value
       ).toEqual(
-        call(fetchApi, 'POST', '/logout', action.payload)
+        call(fetchApi, 'POST', '/logout')
       );
 
       expect(
         gen.throw({
-          error: 'user not found'
+          error: 'logout failed'
         }).value
       ).toEqual(
         put({
           type: 'LOGOUT_FAILED',
-          error: { error: 'user not found' }
+          error: { error: 'logout failed' }
         })
       );
     });

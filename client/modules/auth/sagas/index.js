@@ -54,10 +54,11 @@ export function* loginUser(action) {
    }
 }
 
-export function* logoutUser(action) {
+export function* logoutUser() {
    try {
-      const payload = yield call(fetchApi, 'POST', '/logout', action.payload);
+      const payload = yield call(fetchApi, 'POST', '/logout');
       yield put({type: LOGOUT_SUCCEEDED, payload});
+      yield call(redirectTo, '/');
    } catch (error) {
       yield put({type: LOGOUT_FAILED, error});
    }

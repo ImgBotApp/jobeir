@@ -77,7 +77,10 @@ router.get('/auth', passport.authenticate('jwt', { session: false }), function(r
 
 router.post('/logout', function(req, res) {
   req.logout();
-  res.status(200).send(req.body);
+  res.status(200).send({
+    data: [],
+    error: []
+  });
 });
 
 export default router;

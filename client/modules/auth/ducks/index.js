@@ -60,5 +60,5 @@ export default (state = initialState, action) => {
 export const auth = (redirectPathname) => ({ type: AUTH_REQUESTED, payload: { redirectPathname } });
 export const signup = (email, password) => ({ type: SIGNUP_REQUESTED, payload: { email, password }});
 export const login = (email, password) => ({ type: LOGIN_REQUESTED, payload: { email, password }});
-export const logout = (email, password) => ({ type: LOGOUT_REQUESTED, payload: { email, password }});
+export const logout = (userId) => ({ type: LOGOUT_REQUESTED });
 export const redirectTo = (redirectPathname) => browserHistory.push(redirectPathname);
