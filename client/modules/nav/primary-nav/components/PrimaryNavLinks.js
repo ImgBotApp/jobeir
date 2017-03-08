@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Link from 'react-router/lib/Link';
+import { Link } from 'react-router';
 import docCookies from '../../../../utils/cookies';
 import { logout } from '../../../auth/ducks';
 
@@ -25,14 +25,14 @@ class PrimaryNavLinks extends Component {
       <div>
         <Link to="/login">Log In</Link>
         <Link to="/signup">Sign Up</Link>
-        {this.props.authenticated && <Link to="/" onClick={this.handleLogoutClick}>Log Out</Link>}
+        {this.props.isAuthenticated && <Link onClick={this.handleLogoutClick}>Log Out</Link>}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  authenticated: state.auth.authenticated,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps)(PrimaryNavLinks);

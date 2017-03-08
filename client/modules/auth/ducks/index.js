@@ -1,4 +1,4 @@
-import browserHistory from 'react-router/lib/browserHistory';
+import { browserHistory } from 'react-router';
 
 export const AUTH_REQUESTED = 'AUTH_REQUESTED';
 export const AUTH_SUCCEEDED = 'AUTH_SUCCEEDED';
@@ -45,11 +45,17 @@ export default (state = initialState, action) => {
     case AUTH_FAILED:
     case LOGIN_FAILED:
     case SIGNUP_FAILED:
-    case LOGOUT_SUCCEEDED:
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: false,
         ...action.payload.data,
+        errors: action.payload.errors,
+      });
+    case LOGOUT_SUCCEEDED:
+      return Object.assign({}, state, {
+        isAuthenticating: false,
+        isAuthenticated: false,
+        token: '',
         errors: action.payload.errors,
       });
     default:

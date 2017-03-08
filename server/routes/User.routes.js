@@ -51,7 +51,7 @@ router.post('/login', function(req, res) {
           const token = jwt.sign(user, serverConfig.jwt);
 
           res.status(200).send({
-            data: { authenticated: true, token },
+            data: { isAuthenticated: true, token },
             error: []
           });
         } else {
@@ -68,7 +68,7 @@ router.post('/login', function(req, res) {
 router.get('/auth', passport.authenticate('jwt', { session: false }), function(req, res) {
   res.status(200).send({
     data: {
-      authenticated: true,
+      isAuthenticated: true,
       userId: req.user._id,
     },
     error: []

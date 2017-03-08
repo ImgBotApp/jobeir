@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
-import browserHistory from 'react-router/lib/browserHistory';
+import { Router, browserHistory } from 'react-router';
 import IntlWrapper from '../../intl/containers/IntlWrapper';
 import routes from '../../../routes';
 import AppStyles from '../styles/AppStyles';
