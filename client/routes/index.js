@@ -75,6 +75,7 @@ function getRoutesArray(obj) {
   const arr = [
   '/api/v0/login',
   '/api/v0/register',
+  '/favicon.ico'
   ];
 
   (function getIds(obj) {

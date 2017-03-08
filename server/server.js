@@ -35,6 +35,7 @@ import styleSheet from 'styled-components/lib/models/StyleSheet';
 import routes, { routesArray } from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
 import userRoutes from './routes/User.routes';
+import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
 import passportInit from './config/passport';
 
@@ -48,7 +49,9 @@ app.use(passport.initialize());
 passportInit(passport);
 app.use(Express.static(path.resolve(__dirname, '../build/client')));
 app.use(jwt({secret: serverConfig.jwt}).unless({path: routesArray}));
+app.use(serverConfig.handleNoToken);
 app.use('/api/v0', userRoutes);
+app.use(oAuthRoutes);
 
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
