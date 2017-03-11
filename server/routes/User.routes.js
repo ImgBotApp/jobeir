@@ -10,7 +10,7 @@ router.post('/register', function(req, res) {
   if (!req.body.email || !req.body.password) {
     return res.status(202).send({
       data: [],
-      error: [{message:'Email and password are required'}],
+      errors: [{message:'Email and password are required'}],
     });
   } else {
     const newUser = new User ({
@@ -22,12 +22,12 @@ router.post('/register', function(req, res) {
       if (err) {
         return res.status(202).send({
           data: [],
-          error: [err],
+          errors: [err],
         });
       } else {
         return res.status(200).send({
           data: [req.body],
-          error: [],
+          errors: [],
         });
       }
     });
@@ -43,7 +43,7 @@ router.post('/login', function(req, res) {
     if (!user) {
       res.status(200).send({
         data: [],
-        error: [{message:'User does not exist'}],
+        errors: [{message:'User does not exist'}],
       });
     } else {
       user.comparePassword(req.body.password, function(err, isMatch) {
@@ -52,12 +52,12 @@ router.post('/login', function(req, res) {
 
           res.status(200).send({
             data: { isAuthenticated: true, token },
-            error: []
+            errors: []
           });
         } else {
           res.status(200).send({
             data: [],
-            error: [err]
+            errors: [err]
           });
         }
       });
@@ -71,7 +71,7 @@ router.get('/auth', passport.authenticate('jwt', { session: false }), function(r
       isAuthenticated: true,
       userId: req.user._id,
     },
-    error: []
+    errors: []
   });
 });
 
@@ -79,7 +79,7 @@ router.post('/logout', function(req, res) {
   req.logout();
   res.status(200).send({
     data: [],
-    error: []
+    errors: []
   });
 });
 

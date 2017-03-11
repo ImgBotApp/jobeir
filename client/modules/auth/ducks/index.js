@@ -25,6 +25,7 @@ export const initialState = {
 };
 
 export default (state = initialState, action) => {
+  console.log({action});
   switch (action.type) {
     case AUTH_REQUESTED:
     case LOGIN_REQUESTED:
@@ -42,7 +43,6 @@ export default (state = initialState, action) => {
         isAuthenticated: true,
         ...action.payload.data,
       });
-    case AUTH_FAILED:
     case LOGIN_FAILED:
     case SIGNUP_FAILED:
       return Object.assign({}, state, {
@@ -50,6 +50,12 @@ export default (state = initialState, action) => {
         isAuthenticated: false,
         ...action.payload.data,
         errors: action.payload.errors,
+      });
+    case AUTH_FAILED:
+      return Object.assign({}, state, {
+        isAuthenticating: false,
+        isAuthenticated: false,
+        errors: action.errors,
       });
     case LOGOUT_SUCCEEDED:
       return Object.assign({}, state, {

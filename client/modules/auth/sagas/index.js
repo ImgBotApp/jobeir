@@ -43,7 +43,7 @@ export function* loginUser(action) {
    try {
       const payload = yield call(fetchApi, 'POST', '/login', action.payload);
 
-      if (payload && !docCookies.getItem('SID')) {
+      if (payload && docCookies.getItem('SID')) {
         docCookies.setItem('SID', payload.data.token);
       }
 

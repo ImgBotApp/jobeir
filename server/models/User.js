@@ -19,6 +19,10 @@ const User = new Schema({
     enum: ['Organization', 'User', 'Employee'],
     default: 'User',
   },
+  provider: {
+    type: String,
+    default: 'Local'
+  },
   dateCreated: {
     type: Date,
     default: Date.now
