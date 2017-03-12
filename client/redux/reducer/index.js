@@ -4,17 +4,19 @@
  
 import { combineReducers } from 'redux';
 
-import authReducer from '../../modules/auth/ducks';
+import auth from '../../modules/auth/ducks';
+import modal from '../../modules/modal/ducks';
 
-function intlReducer(state, action) {
+function intl(state, action) {
   return {
     locale: 'en'
   };
 }
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  intl: intlReducer,
+  auth,
+  intl,
+  modal,
 });
 
 export default rootReducer;
