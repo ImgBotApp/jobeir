@@ -1,8 +1,14 @@
-var webpack = require('webpack');
-var cssnext = require('postcss-cssnext');
-var postcssFocus = require('postcss-focus');
-var postcssReporter = require('postcss-reporter');
-var path = require('path');
+const webpack = require('webpack');
+const cssnext = require('postcss-cssnext');
+const postcssFocus = require('postcss-focus');
+const postcssReporter = require('postcss-reporter');
+const path = require('path');
+const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+const webpackIsomorphicToolsConfig = require('./webpack.config.isomorphic');
+
+const ip = process.env.IP || '0.0.0.0';
+const port = 8000;
+const PUBLIC_PATH = `/${process.env.PUBLIC_PATH || ''}/`.replace('//', '/');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -24,8 +30,9 @@ module.exports = {
   },
 
   output: {
-    filename: path.join(__dirname, '../app.js'),
-    publicPath: 'http://0.0.0.0:8000/',
+    path: path.join(__dirname, '../dist'),
+    filename: '[name].[hash].js',
+    publicPath: process.env.NODE_ENV !== 'production' ? `/` : PUBLIC_PATH,
   },
 
   module: {
@@ -58,16 +65,19 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.IgnorePlugin(/\/iconv-loader$/),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
-      filename: 'vendor.js',
+      filename: '[name].[hash].js',
     }),
     new webpack.DefinePlugin({
       'process.env': {
         CLIENT: JSON.stringify(true),
-        'NODE_ENV': JSON.stringify('development'),
+        NODE_ENV: JSON.stringify('development'),
+        PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
       }
     }),
+    new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(),
   ],
 };

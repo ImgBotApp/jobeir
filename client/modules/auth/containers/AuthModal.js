@@ -4,7 +4,9 @@ import ModalWrapper from '../../modal/components/ModalWrapper';
 const AuthModal = () => {
   return (
     <ModalWrapper>
-      Auth Modal
+      <a href="/auth/google">Google</a>
+      <a href="/auth/facebook">Facebook</a>
+      <a href="/auth/github">Github</a>
     </ModalWrapper>
   );
 };

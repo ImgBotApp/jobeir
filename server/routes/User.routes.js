@@ -10,7 +10,10 @@ router.post('/register', function(req, res) {
   if (!req.body.email || !req.body.password) {
     return res.status(202).send({
       data: [],
-      errors: [{message:'Email and password are required'}],
+      errors: [{
+        error: "INVALID_EMAIL_OR_PASSWORD",
+        message:'Email and password are required'
+      }],
     });
   } else {
     const newUser = new User ({
@@ -20,11 +23,17 @@ router.post('/register', function(req, res) {
 
     newUser.save(err => {
       if (err) {
-        return res.status(202).send({
+        return res.status(409).send({
           data: [],
-          errors: [err],
+          errors: [{
+            error: "USER_ALREADY_EXISTS",
+            message: "A user with that email already exists."
+          }],
         });
       } else {
+        const token = jwt.sign(newUser, serverConfig.jwt);
+        res.cookie('SID', token);
+
         return res.status(200).send({
           data: [req.body],
           errors: [],
@@ -49,15 +58,16 @@ router.post('/login', function(req, res) {
       user.comparePassword(req.body.password, function(err, isMatch) {
         if (!err && isMatch) {
           const token = jwt.sign(user, serverConfig.jwt);
+          res.cookie('SID', token);
 
           res.status(200).send({
             data: { isAuthenticated: true, token },
             errors: []
           });
         } else {
-          res.status(200).send({
+          res.status(401).send({
             data: [],
-            errors: [err]
+            errors: [{message:'Invalid username or password'}]
           });
         }
       });

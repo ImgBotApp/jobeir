@@ -8,6 +8,7 @@ import morgan from 'morgan';
 import path from 'path';
 import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 import passport from 'passport'
+import serialize from 'serialize-javascript'
 
 import webpack from 'webpack';
 import config from '../webpack/webpack.config.dev.js';
@@ -26,10 +27,11 @@ if (process.env.NODE_ENV === 'development') {
 import configureStore from '../client/redux/store';
 import { Provider } from 'react-redux';
 import React from 'react';
-import { render, template } from 'rapscallion';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
-import styleSheet from 'styled-components/lib/models/StyleSheet';
+import styleSheet from 'styled-components/lib/models/StyleSheet'
+import Html from '../client/modules/html/containers/Html';
 
 // Import required modules
 import routes, { routesArray } from '../client/routes';
@@ -62,61 +64,15 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
   }
 });
 
-
-// Render Initial HTML
-const renderFullPage = (html, initialState) => {
-  const head = Helmet.rewind();
-  // console.log(styleSheet.styleSheet.sheet.cssRules);
-  // const styles = styleSheet.styleSheet.sheet.cssRules.map(rule => rule.cssText).join('\n')
-  // ${<style dangerouslySetInnerHTML={{ __html: styles }} />}
-  // console.log(styles);
-
-  // Import Manifests
-  const assetsManifest = process.env.webpackAssets && JSON.parse(process.env.webpackAssets);
-  const chunkManifest = process.env.webpackChunkAssets && JSON.parse(process.env.webpackChunkAssets);
-
-  return template`
-    <!doctype html>
-    <html>
-      <head>
-        ${head.base.toString()}
-        ${head.title.toString()}
-        ${head.meta.toString()}
-        ${head.link.toString()}
-        ${head.script.toString()}
-        ${process.env.NODE_ENV === 'production' ? `<link rel='stylesheet' href='${assetsManifest['/app.css']}' />` : ''}
-      </head>
-      <body>
-        <div id="root">
-          <div>${html}</div>
-        </div>
-        <script>
-          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
-          ${process.env.NODE_ENV === 'production' ?
-          `//<![CDATA[
-          window.webpackManifest = ${JSON.stringify(chunkManifest)};
-          //]]>` : ''}
-        </script>
-        <script src='${process.env.NODE_ENV === 'production' ? assetsManifest['/vendor.js'] : '/vendor.js'}'></script>
-        <script src='${process.env.NODE_ENV === 'production' ? assetsManifest['/app.js'] : '/app.js'}'></script>
-      </body>
-    </html>
-  `;
-};
-
-const renderError = err => {
-  const softTab = '&#32;&#32;&#32;&#32;';
-  const errTrace = process.env.NODE_ENV !== 'production'
-    ? `:<br><br><pre style="color:red">${softTab}${err.stack.replace(/\n/g, `<br>${softTab}`)}</pre>`
-    : '';
-  return renderFullPage(`Server Error${errTrace}`, {});
-};
-
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
+   if (process.env.NODE_ENV === 'development') {
+    global.webpackIsomorphicTools.refresh();
+  }
+
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
-      return res.status(500).end(renderError(err));
+      return res.status(500).end(err);
     }
 
     if (redirectLocation) {
@@ -129,20 +85,25 @@ app.use((req, res, next) => {
 
     const store = configureStore();
 
+
     return fetchComponentData(store, renderProps.components, renderProps.params)
       .then(() => {
-        const initialView = render(
+        const content = renderToString(
           <Provider store={store}>
             <IntlWrapper>
               <RouterContext {...renderProps} />
             </IntlWrapper>
           </Provider>
         );
-        const finalState = store.getState();
+        
+        const styles = styleSheet.getCSS();
+        const initialState = store.getState();
+        const assets = global.webpackIsomorphicTools.assets();
+        const state = `window.__INITIAL_STATE__ = ${serialize(initialState)}`;
+        const markup = <Html {...{ styles, assets, state, content }} />;
+        const html = '<!doctype html>' + renderToStaticMarkup(markup);
 
-        renderFullPage(initialView, finalState)
-          .toStream()
-          .pipe(res);
+        res.send(html)
       })
       .catch((error) => next(error));
   });

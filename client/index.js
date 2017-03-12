@@ -9,7 +9,7 @@ import App from './modules/app/containers/App';
 import initServiceWorker from './sw';
 // Initialize store
 const store = configureStore(window.__INITIAL_STATE__);
-const mountApp = document.getElementById('root');
+const mountApp = document.getElementById('app');
 // Initialize Servicie Worker register code
 initServiceWorker();
 

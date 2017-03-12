@@ -34,6 +34,7 @@ export function* signupUser(action) {
    try {
       const payload = yield call(fetchApi, 'POST', '/register', action.payload);
       yield put({type: SIGNUP_SUCCEEDED, payload});
+      yield call(redirectTo, '/account/profile');
    } catch (error) {
       yield put({type: SIGNUP_FAILED, error});
    }
@@ -42,11 +43,6 @@ export function* signupUser(action) {
 export function* loginUser(action) {
    try {
       const payload = yield call(fetchApi, 'POST', '/login', action.payload);
-
-      if (payload && docCookies.getItem('SID')) {
-        docCookies.setItem('SID', payload.data.token);
-      }
-
       yield put({type: LOGIN_SUCCEEDED, payload});
       yield call(redirectTo, '/account/profile');
    } catch (error) {

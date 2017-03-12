@@ -1,8 +1,10 @@
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var ManifestPlugin = require('webpack-manifest-plugin');
-var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
-var path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+const webpackIsomorphicToolsConfig = require('./webpack.config.isomorphic');
+const path = require('path');
 
 module.exports = {
   devtool: 'hidden-source-map',
@@ -22,6 +24,8 @@ module.exports = {
     filename: '[name].[chunkhash].js',
     publicPath: '/',
   },
+
+  target: 'node',
 
   resolve: {
      extensions: ['.js', '.jsx'],
@@ -59,6 +63,7 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.IgnorePlugin(/\/iconv-loader$/),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production'),
@@ -86,5 +91,6 @@ module.exports = {
         warnings: false,
       }
     }),
+    new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig),
   ],
 };
