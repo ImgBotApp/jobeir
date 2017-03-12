@@ -25,7 +25,6 @@ export const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log({action});
   switch (action.type) {
     case AUTH_REQUESTED:
     case LOGIN_REQUESTED:
@@ -48,8 +47,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: false,
-        ...action.payload.data,
-        errors: action.payload.errors,
+        errors: action.errors,
       });
     case AUTH_FAILED:
       return Object.assign({}, state, {
@@ -62,7 +60,7 @@ export default (state = initialState, action) => {
         isAuthenticating: false,
         isAuthenticated: false,
         token: '',
-        errors: action.payload.errors,
+        errors: action.errors,
       });
     default:
       return state

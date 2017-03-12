@@ -26,6 +26,8 @@ class PrimaryNavLinks extends Component {
         <Link to="/login">Log In</Link>
         <Link to="/signup">Sign Up</Link>
         <a href="/auth/google">Google</a>
+        <a href="/auth/facebook">Facebook</a>
+        <a href="/auth/github">Github</a>
         {this.props.isAuthenticated && <Link onClick={this.handleLogoutClick}>Log Out</Link>}
       </div>
     );

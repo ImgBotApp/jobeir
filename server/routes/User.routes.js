@@ -41,7 +41,7 @@ router.post('/login', function(req, res) {
     if (err) throw err;
 
     if (!user) {
-      res.status(200).send({
+      res.status(401).send({
         data: [],
         errors: [{message:'User does not exist'}],
       });

@@ -27,6 +27,12 @@ const User = new Schema({
     type: Date,
     default: Date.now
   },
+  firstName: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+  }
 });
 
 User.pre('save', function(next) {
