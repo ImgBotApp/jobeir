@@ -30,6 +30,7 @@ class PrimaryNavLinks extends Component {
   render() {
     return (
       <div>
+        <Link to="/post-job">Post Job</Link>
         <Link to="/login">Log In</Link>
         <Link onClick={this.handleSignUpClick} to="/signup">Sign Up</Link>
         {this.props.isAuthenticated && <Link onClick={this.handleLogoutClick}>Log Out</Link>}

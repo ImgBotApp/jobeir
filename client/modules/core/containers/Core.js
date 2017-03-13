@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
+import { ThemeProvider, injectGlobal } from 'styled-components';
+import theme from '../theme';
 
 import Modal from '../../modal/containers/Modal';
 import AppHead from '../../app/components/AppHead';
 import Header from '../../header/containers/Header';
 
-import { injectGlobal } from 'styled-components';
-
 class Core extends Component {
   render() {
     return (
-      <div>
-        <AppHead />
-        <Header />
-        {this.props.children}
-        <Modal />
-      </div>
+      <ThemeProvider theme={theme}>
+        <div>
+          <AppHead />
+          <Header />
+          {this.props.children}
+          <Modal />
+        </div>
+      </ThemeProvider>
     );
   }
 }
