@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/home/containers/Home');
   require('../modules/auth/login/containers/Login');
   require('../modules/auth/signup/containers/Signup');
-  require('../modules/post-job/containers/PostJob');
+  require('../modules/jobs/new/containers/JobsNew');
   require('../modules/account/profile/containers/Profile');
   require('../modules/not-found/components/NotFound');
 }
@@ -54,10 +54,10 @@ const routes = (
       }}
     />
     <Route
-      path="/post-job"
+      path="/jobs/new"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('../modules/post-job/containers/PostJob').default);
+          cb(null, require('../modules/jobs/new/containers/JobsNew').default);
         });
       }}
     />
