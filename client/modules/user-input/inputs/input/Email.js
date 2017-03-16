@@ -1,7 +1,7 @@
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 
-export const Text = props => {
+export const Email = props => {
   return (
     <InputWrapper>
       <input type="email" />
