@@ -10,9 +10,9 @@ import InputError from './InputError';
 export const InputWrapper = props => {
   return (
     <div>
-      <InputLabel />
+      <InputLabel {...props} />
       {props.children}
-      <InputError />
+      <InputError {...props} />
     </div>
   );
 };

@@ -15,11 +15,11 @@ function reqHeaders() {
 
   const headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   }
 
   if (SID) {
-    headers['Authorization'] = `Bearer ${SID}`;
+    headers.Authorization = `Bearer ${SID}`;
   }
 
   return headers;

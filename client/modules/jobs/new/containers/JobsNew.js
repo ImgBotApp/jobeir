@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import AuthWrapper from '../../../auth/containers/AuthWrapper';
 
 const JobNew = () => {
   return (
@@ -6,4 +8,4 @@ const JobNew = () => {
   );
 };
 
-export default JobNew;
+export default AuthWrapper(JobNew);

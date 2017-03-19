@@ -8,13 +8,15 @@ const router = new Router();
 
 router.post('/register', function(req, res) {
   if (!req.body.email || !req.body.password) {
-    return res.status(202).send({
-      data: [],
-      errors: [{
-        error: "INVALID_EMAIL_OR_PASSWORD",
-        message:'Email and password are required'
-      }],
-    });
+    return res
+      .status(202)
+      .send({
+        data: [],
+        errors: [{
+          error: "INVALID_EMAIL_OR_PASSWORD",
+          message:'Email and password are required'
+        }],
+      });
   } else {
     const newUser = new User ({
       email: req.body.email,
@@ -23,21 +25,25 @@ router.post('/register', function(req, res) {
 
     newUser.save(err => {
       if (err) {
-        return res.status(409).send({
-          data: [],
-          errors: [{
-            error: "USER_ALREADY_EXISTS",
-            message: "A user with that email already exists."
-          }],
-        });
+        return res
+          .status(409)
+          .send({
+            data: [],
+            errors: [{
+              error: "USER_ALREADY_EXISTS",
+              message: "A user with that email already exists."
+            }],
+          });
       } else {
         const token = jwt.sign(newUser, serverConfig.jwt);
-        res.cookie('SID', token);
 
-        return res.status(200).send({
-          data: [req.body],
-          errors: [],
-        });
+        return res
+          .cookie('SID', token)
+          .status(200)
+          .send({
+            data: [req.body],
+            errors: [],
+          });
       }
     });
   }
@@ -50,22 +56,26 @@ router.post('/login', function(req, res) {
     if (err) throw err;
 
     if (!user) {
-      res.status(401).send({
-        data: [],
-        errors: [{message:'User does not exist'}],
-      });
+      res
+        .status(401)
+        .send({
+          data: [],
+          errors: [{message:'User does not exist'}],
+        });
     } else {
       user.comparePassword(req.body.password, function(err, isMatch) {
         if (!err && isMatch) {
           const token = jwt.sign(user, serverConfig.jwt);
-          res.cookie('SID', token);
 
-          res.status(200).send({
-            data: { isAuthenticated: true, token },
-            errors: []
-          });
+          res
+            .status(200)
+            .send({
+              data: { isAuthenticated: true, token },
+              errors: []
+            });
         } else {
-          res.status(401).send({
+          res
+          .status(401).send({
             data: [],
             errors: [{message:'Invalid username or password'}]
           });
@@ -76,13 +86,15 @@ router.post('/login', function(req, res) {
 });
 
 router.get('/auth', passport.authenticate('jwt', { session: false }), function(req, res) {
-  res.status(200).send({
-    data: {
-      isAuthenticated: true,
-      userId: req.user._id,
-    },
-    errors: []
-  });
+  res
+    .status(200)
+    .send({
+      data: {
+        isAuthenticated: true,
+        userId: req.user._id,
+      },
+      errors: []
+    });
 });
 
 router.post('/logout', function(req, res) {

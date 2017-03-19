@@ -3,6 +3,7 @@
  */
  
 import { combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
 
 import auth from '../../modules/auth/ducks';
 import modal from '../../modules/modal/ducks';
@@ -15,6 +16,7 @@ function intl(state, action) {
 
 const rootReducer = combineReducers({
   auth,
+  form,
   intl,
   modal,
 });

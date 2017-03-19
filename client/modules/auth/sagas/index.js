@@ -40,11 +40,16 @@ export function* signupUser(action) {
    }
 }
 
-export function* loginUser(action) {
+export function* loginUser(action, redirectPath = '/account/profile') {
    try {
       const payload = yield call(fetchApi, 'POST', '/login', action.payload);
       yield put({type: LOGIN_SUCCEEDED, payload});
-      yield call(redirectTo, '/account/profile');
+
+      if (payload.data.token) {
+        docCookies.setItem('SID', payload.data.token);
+      }
+      
+      yield call(redirectTo, redirectPath);
    } catch (error) {
       yield put({type: LOGIN_FAILED, error});
    }

@@ -9,8 +9,13 @@ const numberMask = createNumberMask({
 
 export const Currency = props => {
   return (
-    <InputWrapper>
-      <MaskedInput mask={numberMask} />
+    <InputWrapper {...props}>
+      <MaskedInput
+        {...props.input}
+        id={props.input.name}
+        name={props.input.name}
+        mask={numberMask}
+      />
     </InputWrapper>
   );
 };

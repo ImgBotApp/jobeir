@@ -1,13 +1,12 @@
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 
-export const Email = props => {
-  console.log(props);
+export const Password = props => {
   return (
     <InputWrapper {...props}>
       <input
         {...props.input}
-        type="email"
+        type="password"
         id={props.input.name}
         name={props.input.name}
       />
