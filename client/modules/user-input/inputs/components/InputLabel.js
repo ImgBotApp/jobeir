@@ -3,9 +3,7 @@ import React from 'react';
 export const InputLabel = props => {
   return (
     <div>
-      <label
-        htmlFor={props.input.name}
-      >
+      <label htmlFor={props.input.name}>
         {props.label}
       </label>
     </div>

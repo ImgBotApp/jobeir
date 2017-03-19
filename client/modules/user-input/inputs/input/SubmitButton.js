@@ -6,7 +6,7 @@ export const SubmitButton = props => {
       type="submit"
       disabled={false}
     >
-      Submit
+      {props.buttonText || 'Submit'}
     </button>
   );
 };

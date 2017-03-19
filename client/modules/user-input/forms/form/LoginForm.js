@@ -6,7 +6,11 @@ import {
   Email,
   Password,
   SubmitButton
-} from '../../inputs/input/';
+} from '../../inputs/input';
+import {
+  email,
+  required,
+} from '../../validation';
 import { login } from '../../../auth/ducks';
 
 
@@ -36,11 +40,13 @@ class LoginForm extends Component {
         <Field
           name="email"
           label="Email"
+          validate={[ required, email ]}
           component={Email}
         />
         <Field
           name="password"
           label="Password"
+          validate={[ required ]}
           component={Password}
         />
         <Field

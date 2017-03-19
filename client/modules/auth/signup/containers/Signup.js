@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { signup } from '../../ducks/';
 import SignupForm from '../../../user-input/forms/form/SignupForm';
+import AuthOAuth from '../../components/AuthOAuth';
 
 class Signup extends Component {
   render() {
@@ -10,6 +11,8 @@ class Signup extends Component {
       <div>
         <Helmet title="Signup" />
         Signup
+        <AuthOAuth />
+        <SignupForm />
       </div>
     );
   }

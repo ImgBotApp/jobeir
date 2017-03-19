@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AuthWrapper from '../../../auth/containers/AuthWrapper';
+import CompanyForm from '../../../user-input/forms/form/CompanyForm';
 
 const JobNew = () => {
   return (
-    <div>New Job</div>
+    <div>
+      <div>New Job</div>
+      <CompanyForm />
+    </div>
   );
 };
 

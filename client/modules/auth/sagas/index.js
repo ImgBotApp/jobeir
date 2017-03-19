@@ -1,6 +1,7 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import { fetchApi } from '../../../utils/api';
 import queryParams from '../../../utils/queryParams';
+import authRedirect from '../../../utils/authRedirect';
 import docCookies from '../../../utils/cookies';
 import {
   AUTH_REQUESTED,
@@ -20,6 +21,7 @@ import {
 
 export function* authUser(action) {
   const { redirectPathname } = action.payload;
+  const authFailedRedirectPathname= authRedirect(redirectPathname);
 
    try {
       const payload = yield call(fetchApi, 'GET', '/auth');
@@ -27,7 +29,7 @@ export function* authUser(action) {
       yield call(redirectTo, redirectPathname);
    } catch (errors) {
       yield put({type: AUTH_FAILED, errors});
-      yield call(redirectTo, `/login?next=${redirectPathname}`);
+      yield call(redirectTo, authFailedRedirectPathname);
    }
 }
 
@@ -35,7 +37,6 @@ export function* signupUser(action) {
    try {
       const payload = yield call(fetchApi, 'POST', '/register', action.payload);
       yield put({type: SIGNUP_SUCCEEDED, payload});
-      yield call(redirectTo, '/account/profile');
    } catch (errors) {
       yield put({type: SIGNUP_FAILED, errors});
    }
@@ -43,7 +44,7 @@ export function* signupUser(action) {
 
 export function* loginUser(action, redirectPath = '/account/profile') {
   const nextValue = queryParams(window.location.search).next
-  
+
    try {
       const payload = yield call(fetchApi, 'POST', '/login', action.payload);
       yield put({type: LOGIN_SUCCEEDED, payload});

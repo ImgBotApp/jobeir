@@ -7,7 +7,12 @@ import {
   Password,
   SubmitButton
 } from '../../inputs/input/';
-import { signup } from '../../../auth/ducks';
+import {
+  email,
+  minLength,
+  required,
+} from '../../validation';
+import { signup, login } from '../../../auth/ducks';
 
 
 class SignupForm extends Component {
@@ -18,12 +23,14 @@ class SignupForm extends Component {
   }
 
   formSubmit(data) {
+    const { dispatch } = this.props;
     const { email, password } = data;
 
-    this.props.dispatch(signup(
-      email,
-      password,
-    ));
+    dispatch(signup(email, password))
+      .then(() => {
+        setTimeout(() => { dispatch(login(email, password)); }, 100);
+        
+    });
   }
 
   render() {
@@ -36,11 +43,13 @@ class SignupForm extends Component {
         <Field
           name="email"
           label="Email"
+          validate={[ required, email ]}
           component={Email}
         />
         <Field
           name="password"
           label="Password"
+          validate={[ required, minLength(6) ]}
           component={Password}
         />
         <Field

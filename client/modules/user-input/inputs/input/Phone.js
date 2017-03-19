@@ -1,5 +1,6 @@
 import React from 'react';
 import MaskedInput from 'react-text-mask';
+import InputWrapper from '../components/InputWrapper';
 
 export const Phone = props => {
   return (

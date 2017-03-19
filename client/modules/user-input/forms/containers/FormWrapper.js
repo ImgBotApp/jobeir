@@ -9,7 +9,7 @@ import FormError from '../components/FormError';
  */
 export const FormWrapper = props => {
   const {
-    formErrors,
+    formErrors = [],
     formSubmit,
     handleSubmit,
   } = props;
