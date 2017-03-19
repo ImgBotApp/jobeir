@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form } from 'redux-form';
+import FormError from '../components/FormError';
+
 /**
  * A wrapper around form Form fields that will act as
  * a utility to enable streamlined labeling, styling,
@@ -7,12 +9,14 @@ import { Form } from 'redux-form';
  */
 export const FormWrapper = props => {
   const {
-    handleSubmit,
+    formErrors,
     formSubmit,
+    handleSubmit,
   } = props;
 
   return (
-    <Form onSubmit={props.handleSubmit(formSubmit)}>
+    <Form onSubmit={handleSubmit(formSubmit)}>
+      <FormError formErrors={formErrors} />
       {props.children}
     </Form>
   );

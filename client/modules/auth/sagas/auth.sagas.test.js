@@ -67,12 +67,12 @@ describe('User', () => {
 
       expect(
         gen.throw({
-          error: 'unauthorized'
+          errors: 'unauthorized'
         }).value
       ).toEqual(
         put({
           type: 'AUTH_FAILED',
-          error: { error: 'unauthorized' }
+          errors: { errors: 'unauthorized' }
         })
       );
     });
@@ -87,12 +87,12 @@ describe('User', () => {
 
       expect(
         gen.throw({
-          error: 'unauthorized'
+          errors: 'unauthorized'
         }).value
       ).toEqual(
         put({
           type: 'AUTH_FAILED',
-          error: { error: 'unauthorized' }
+          errors: { errors: 'unauthorized' }
         })
       );
 
@@ -132,12 +132,12 @@ describe('User', () => {
 
       expect(
         gen.throw({
-          error: 'user not found'
+          errors: 'user not found'
         }).value
       ).toEqual(
         put({
           type: 'SIGNUP_FAILED',
-          error: { error: 'user not found' }
+          errors: { errors: 'user not found' }
         })
       );
     });
@@ -172,12 +172,12 @@ describe('User', () => {
 
       expect(
         gen.throw({
-          error: 'user not found'
+          errors: 'user not found'
         }).value
       ).toEqual(
         put({
           type: 'LOGIN_FAILED',
-          error: { error: 'user not found' }
+          errors: { errors: 'user not found' }
         })
       );
     });
@@ -211,12 +211,12 @@ describe('User', () => {
 
       expect(
         gen.throw({
-          error: 'logout failed'
+          errors: 'logout failed'
         }).value
       ).toEqual(
         put({
           type: 'LOGOUT_FAILED',
-          error: { error: 'logout failed' }
+          errors: { errors: 'logout failed' }
         })
       );
     });

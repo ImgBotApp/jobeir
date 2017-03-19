@@ -17,11 +17,11 @@ export const LOGOUT_SUCCEEDED = 'LOGOUT_SUCCEEDED';
 export const LOGOUT_FAILED = 'LOGOUT_FAILED';
 
 export const initialState = {
-  user: null,
+  user: '',
   isAuthenticating: false,
   isAuthenticated: false,
   token: '',
-  errors: null
+  errors: [],
 };
 
 export default (state = initialState, action) => {
@@ -47,20 +47,20 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: false,
-        errors: action.errors,
+        errors: action.errors.errors,
       });
     case AUTH_FAILED:
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: false,
-        errors: action.errors,
+        errors: action.errors.errors,
       });
     case LOGOUT_SUCCEEDED:
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: false,
         token: '',
-        errors: action.errors,
+        errors: action.errors.errors,
       });
     default:
       return state

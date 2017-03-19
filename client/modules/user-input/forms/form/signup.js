@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
-import { Field, reduxForm } from 'redux-form'
 import {
   Email,
   Password,
@@ -30,6 +31,7 @@ class SignupForm extends Component {
       <FormWrapper
         handleSubmit={this.props.handleSubmit}
         formSubmit={this.formSubmit}
+        formErrors={this.props.auth.errors}
       >
         <Field
           name="email"
@@ -50,6 +52,12 @@ class SignupForm extends Component {
   }
 };
 
-export default reduxForm({
-  form: 'signup'
-})(SignupForm)
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+SignupForm = reduxForm({
+  form: 'signup',
+})(SignupForm);
+
+export default connect(mapStateToProps)(SignupForm);

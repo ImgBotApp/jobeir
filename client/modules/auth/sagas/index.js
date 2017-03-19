@@ -24,8 +24,8 @@ export function* authUser(action) {
       const payload = yield call(fetchApi, 'GET', '/auth');
       yield put({type: AUTH_SUCCEEDED, payload});
       yield call(redirectTo, redirectPathname);
-   } catch (error) {
-      yield put({type: AUTH_FAILED, error});
+   } catch (errors) {
+      yield put({type: AUTH_FAILED, errors});
       yield call(redirectTo, `/login?next=${redirectPathname}`);
    }
 }
@@ -35,8 +35,8 @@ export function* signupUser(action) {
       const payload = yield call(fetchApi, 'POST', '/register', action.payload);
       yield put({type: SIGNUP_SUCCEEDED, payload});
       yield call(redirectTo, '/account/profile');
-   } catch (error) {
-      yield put({type: SIGNUP_FAILED, error});
+   } catch (errors) {
+      yield put({type: SIGNUP_FAILED, errors});
    }
 }
 
@@ -50,8 +50,8 @@ export function* loginUser(action, redirectPath = '/account/profile') {
       }
       
       yield call(redirectTo, redirectPath);
-   } catch (error) {
-      yield put({type: LOGIN_FAILED, error});
+   } catch (errors) {
+      yield put({type: LOGIN_FAILED, errors});
    }
 }
 
@@ -60,8 +60,8 @@ export function* logoutUser() {
       const payload = yield call(fetchApi, 'POST', '/logout');
       yield put({type: LOGOUT_SUCCEEDED, payload});
       yield call(redirectTo, '/');
-   } catch (error) {
-      yield put({type: LOGOUT_FAILED, error});
+   } catch (errors) {
+      yield put({type: LOGOUT_FAILED, errors});
    }
 }
 
