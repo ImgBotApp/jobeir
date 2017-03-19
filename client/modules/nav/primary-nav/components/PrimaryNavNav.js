@@ -7,7 +7,6 @@ const Navigation = styled.nav`
 `;
 
 const PrimaryNav = ({ props }) => {
-  console.log(props);
   return (
     <Navigation role="navigation">
       {props.children}

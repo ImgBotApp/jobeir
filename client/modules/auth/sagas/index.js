@@ -1,5 +1,6 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import { fetchApi } from '../../../utils/api';
+import queryParams from '../../../utils/queryParams';
 import docCookies from '../../../utils/cookies';
 import {
   AUTH_REQUESTED,
@@ -41,12 +42,18 @@ export function* signupUser(action) {
 }
 
 export function* loginUser(action, redirectPath = '/account/profile') {
+  const nextValue = queryParams(window.location.search).next
+  
    try {
       const payload = yield call(fetchApi, 'POST', '/login', action.payload);
       yield put({type: LOGIN_SUCCEEDED, payload});
 
       if (payload.data.token) {
         docCookies.setItem('SID', payload.data.token);
+      }
+
+      if (nextValue) {
+        redirectPath = nextValue;
       }
       
       yield call(redirectTo, redirectPath);

@@ -60,7 +60,6 @@ export default (state = initialState, action) => {
         isAuthenticating: false,
         isAuthenticated: false,
         token: '',
-        errors: action.errors.errors,
       });
     default:
       return state

@@ -78,7 +78,8 @@ router.post('/login', function(req, res) {
             });
         } else {
           res
-          .status(401).send({
+          .status(401)
+          .send({
             data: [],
             errors: [{
               error: "INVALID_EMAIL_OR_PASSWORD",

@@ -10,7 +10,6 @@ class Signup extends Component {
       <div>
         <Helmet title="Signup" />
         Signup
-        <SignupForm />
       </div>
     );
   }

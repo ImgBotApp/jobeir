@@ -51,6 +51,7 @@ app.use(passport.initialize());
 passportInit(passport);
 app.use(Express.static(path.resolve(__dirname, '../build/client')));
 app.use('/api/v0', jwt({secret: serverConfig.jwt}).unless({path: routesArray}), userRoutes);
+app.use(serverConfig.handleNoToken);
 app.use(oAuthRoutes);
 
 // Set native promises as mongoose promise
