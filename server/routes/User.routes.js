@@ -13,7 +13,7 @@ router.post('/register', function(req, res) {
       .send({
         data: [],
         errors: [{
-          error: "INVALID_EMAIL_OR_PASSWORD",
+          error: "MISSING_EMAIL_OR_PASSWORD",
           message:'Email and password are required'
         }],
       });
@@ -60,7 +60,10 @@ router.post('/login', function(req, res) {
         .status(401)
         .send({
           data: [],
-          errors: [{message:'User does not exist'}],
+          errors: [{
+            error: "INVALID_EMAIL_OR_PASSWORD",
+            message:'Invalid email or password'
+          }],
         });
     } else {
       user.comparePassword(req.body.password, function(err, isMatch) {
@@ -77,7 +80,10 @@ router.post('/login', function(req, res) {
           res
           .status(401).send({
             data: [],
-            errors: [{message:'Invalid username or password'}]
+            errors: [{
+              error: "INVALID_EMAIL_OR_PASSWORD",
+              message:'Invalid email or password'
+            }],
           });
         }
       });
