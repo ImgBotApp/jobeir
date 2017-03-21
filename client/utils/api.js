@@ -1,18 +1,18 @@
 import docCookies from './cookies';
 
-function checkStatus(response) {
+export function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   } else {
     return response
       .json()
-      .then((error) => {
+      .then(error => {
         throw error;
       });
   }
 }
 
-function reqHeaders() {
+export function reqHeaders() {
   const SID = docCookies.getItem('SID');
 
   const headers = {

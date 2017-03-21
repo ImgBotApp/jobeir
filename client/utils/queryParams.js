@@ -1,6 +1,6 @@
 export const queryParams = query => {
   if (!query) {
-    return { };
+    return {};
   }
 
   return (/^[?#]/.test(query) ? query.slice(1) : query)
