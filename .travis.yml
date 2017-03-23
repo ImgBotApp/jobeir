@@ -6,7 +6,6 @@ before_install:
 node_js:
   - 7
   - 6
-  - 5
 
 script:
   - npm run test
