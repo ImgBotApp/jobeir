@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/brotzky/gost-zvuk.svg?branch=master)](https://travis-ci.org/brotzky/gost-zvuk)
+
 # 👻 гост звук
 
 An isomorphic React application (WIP)
