@@ -4,11 +4,14 @@ before_install:
   - npm install -g npm@latest
 
 node_js:
-  - "7"
-  - "6"
-  - "5"
-  - "4"
-  - "stable"
+  - 7
+  - 6
+  - 5
 
 script:
-  - npm test
+  - npm run test
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
