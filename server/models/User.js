@@ -32,6 +32,9 @@ const User = new Schema({
   },
   lastName: {
     type: String,
+  },
+  company: {
+    type: String,
   }
 });
 

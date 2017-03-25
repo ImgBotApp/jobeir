@@ -4294,13 +4294,13 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-limax@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/limax/-/limax-1.4.1.tgz#1c0c3132250bcd53ee64363f8019652da3eb9a95"
+limax@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/limax/-/limax-1.5.0.tgz#bbe7f2d3231cef709ebef8c32e3c75bce8fa5734"
   dependencies:
     hepburn "^1.0.0"
-    pinyin "2.6.2"
-    speakingurl "^10.0.0"
+    pinyin "^2.8.2"
+    speakingurl "^13.0.0"
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -4915,9 +4915,9 @@ node-pre-gyp@0.6.32, node-pre-gyp@^0.6.29:
     tar "~2.2.1"
     tar-pack "~3.3.0"
 
-nodejieba@^1.3.0:
-  version "1.4.11"
-  resolved "https://registry.yarnpkg.com/nodejieba/-/nodejieba-1.4.11.tgz#888604861f378111494f81a83cd30965ce75eba7"
+nodejieba@^2.2.1:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/nodejieba/-/nodejieba-2.2.4.tgz#b2874abf731c885bb3ca2dabf0a76a1eff4cdc1f"
   dependencies:
     nan "~2.3.0"
 
@@ -5327,13 +5327,14 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
-pinyin@2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/pinyin/-/pinyin-2.6.2.tgz#2b7e46eeb5c9de5d6f7b6b86be7e0f15ff5d8c89"
+pinyin@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/pinyin/-/pinyin-2.8.2.tgz#b56b77e0f18906ff3ba6850c3db06c1838a1c779"
   dependencies:
     commander "~1.1.1"
+    object-assign "^4.0.1"
   optionalDependencies:
-    nodejieba "^1.3.0"
+    nodejieba "^2.2.1"
 
 pixrem@^3.0.0:
   version "3.0.2"
@@ -6796,9 +6797,9 @@ spdy@^3.4.1:
     select-hose "^2.0.0"
     spdy-transport "^2.0.15"
 
-speakingurl@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/speakingurl/-/speakingurl-10.0.0.tgz#24ef980de85194d17f2daea30a6b2c2cc51115bb"
+speakingurl@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/speakingurl/-/speakingurl-13.0.0.tgz#266c52d2b47585375af058e4783c8d1097a2d3db"
 
 split@0.3:
   version "0.3.3"

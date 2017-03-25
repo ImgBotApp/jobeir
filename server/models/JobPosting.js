@@ -5,11 +5,19 @@ const Schema = mongoose.Schema;
 
 const JobPosting = new Schema({
   title: { type: String },
-  company: { type: String },
+  company: {
+    type: String,
+    unique: true,
+  },
   location: { type: String },
-  salary: { type: Number },
+  salaryRange: { 
+    min: { type: Number },
+    max: { type: Number},
+  },
   description: { type: String },
+  language: { type: String },
   remote: { type: String },
+  type: { type: String },
   notifications: { type: String },
   experience: { type: String },
   education: { type: String },

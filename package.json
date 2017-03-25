@@ -32,7 +32,7 @@
     "express": "^4.14.1",
     "express-jwt": "^5.1.0",
     "jsonwebtoken": "^7.3.0",
-    "limax": "^1.4.1",
+    "limax": "^1.5.0",
     "mongoose": "^4.8.3",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",

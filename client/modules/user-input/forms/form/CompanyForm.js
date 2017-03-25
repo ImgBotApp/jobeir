@@ -13,6 +13,8 @@ import {
   phoneNumber,
 } from '../../validation';
 
+const parsePhone = value => value.toString().replace(/\D/g, '');
+
 class CompanyForm extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +34,7 @@ class CompanyForm extends Component {
         formErrors={this.props.auth.errors}
       >
         <Field
-          name="companyName"
+          name="name"
           label="Company Name"
           validate={[ required ]}
           component={Text}
@@ -44,13 +46,13 @@ class CompanyForm extends Component {
           component={Select}
         />
         <Field
-          name="yourName"
+          name="product"
           label="Product"
           validate={[ required ]}
           component={Text}
         />
         <Field
-          name="companyWebsite"
+          name="website"
           label="Company Website"
           validate={[ required ]}
           component={Text}
@@ -65,12 +67,12 @@ class CompanyForm extends Component {
           name="phone"
           label="Phone"
           validate={[ required, phoneNumber ]}
+          parse={parsePhone}
           component={Phone}
         />
         <Field
           name="submitButton"
           buttonText="Continue"
-          validate={[ required ]}
           component={SubmitButton}
         />
       </FormWrapper>
