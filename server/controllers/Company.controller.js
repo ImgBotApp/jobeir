@@ -25,24 +25,38 @@ export function getCompanies(req, res) {
  * @returns void
  */
 export function addCompany(req, res) {
-  if (!req.body.company.name || !req.body.company.title || !req.body.company.content) {
+  if (!req.body.name || !req.body.website || !req.body.product) {
     res.status(403).end();
   }
 
-  const newCompany = new Company(req.body.company);
+  const newCompany = new Company(req.body);
 
   // Let's sanitize inputs
-  newCompany.title = sanitizeHtml(newCompany.title);
   newCompany.name = sanitizeHtml(newCompany.name);
-  newCompany.content = sanitizeHtml(newCompany.content);
+  newCompany.website = sanitizeHtml(newCompany.website);
+  newCompany.product = sanitizeHtml(newCompany.product);
+  newCompany.location = sanitizeHtml(newCompany.location);
 
-  newCompany.slug = slug(newCompany.title.toLowerCase(), { lowercase: true });
+  newCompany.slug = slug(newCompany.name.toLowerCase(), { lowercase: true });
   newCompany.cuid = cuid();
   newCompany.save((err, saved) => {
     if (err) {
-      res.status(500).send(err);
+      res
+        .status(409)
+        .send({
+          data: {},
+          errors: [{
+            error: "COMPANY_ALREADY_EXISTS",
+            message:`The company ${req.body.name} already exists`
+          }],
+        });
     }
-    res.json({ company: saved });
+    res
+      .status(200)
+      .send({
+        data: { comany: saved },
+        errors: []
+      });
   });
 }
 

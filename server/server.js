@@ -36,7 +36,9 @@ import Html from '../client/modules/html/containers/Html';
 // Import required modules
 import routes, { routesArray } from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
-import userRoutes from './routes/User.routes';
+// import userRoutes from './routes/User.routes';
+// import companyRoutes from './routes/Company.routes';
+import apiRoutes from './routes/ApiRoutes.routes'
 import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
 import passportInit from './config/passport';
@@ -50,7 +52,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 passportInit(passport);
 app.use(Express.static(path.resolve(__dirname, '../build/client')));
-app.use('/api/v0', jwt({secret: serverConfig.jwt}).unless({path: routesArray}), userRoutes);
+app.use('/api/v0', jwt({secret: serverConfig.jwt}).unless({path: routesArray}), apiRoutes);
 app.use(serverConfig.handleNoToken);
 app.use(oAuthRoutes);
 

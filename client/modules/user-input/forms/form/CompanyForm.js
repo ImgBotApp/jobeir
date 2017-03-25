@@ -12,6 +12,7 @@ import {
   required,
   phoneNumber,
 } from '../../validation';
+import { createCompany } from '../../../jobs/ducks'
 
 const parsePhone = value => value.toString().replace(/\D/g, '');
 
@@ -23,7 +24,7 @@ class CompanyForm extends Component {
   }
 
   formSubmit(data) {
-    console.log({ data });
+    this.props.dispatch(createCompany(data));
   }
 
   render() {
@@ -31,7 +32,7 @@ class CompanyForm extends Component {
       <FormWrapper
         handleSubmit={this.props.handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={this.props.auth.errors}
+        formErrors={this.props.jobs.errors}
       >
         <Field
           name="name"
@@ -39,12 +40,14 @@ class CompanyForm extends Component {
           validate={[ required ]}
           component={Text}
         />
-        <Field
-          name="companySize"
-          label="Company Size"
-          validate={[ required ]}
-          component={Select}
-        />
+        {
+          // <Field
+          //   name="companySize"
+          //   label="Company Size"
+          //   validate={[ required ]}
+          //   component={Select}
+          // />
+        }
         <Field
           name="product"
           label="Product"
@@ -81,7 +84,7 @@ class CompanyForm extends Component {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  jobs: state.jobs,
 });
 
 CompanyForm = reduxForm({

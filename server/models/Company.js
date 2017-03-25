@@ -9,10 +9,10 @@ const Company = new Schema({
     unique: true,
     required: true
   },
-  logo: { type: String },
+  // logo: { type: String },
   website: { type: String },
-  product: { type: Number },
-  locations: { type: Array },
+  product: { type: String },
+  location: { type: String },
 });
 
 export default mongoose.model('Company', Company);
