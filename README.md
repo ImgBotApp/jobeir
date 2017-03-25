@@ -2,6 +2,8 @@
 
 An isomorphic React application (WIP)
 
+[![Build Status](https://travis-ci.org/brotzky/gost-zvuk.svg?branch=master)](https://travis-ci.org/brotzky/gost-zvuk)
+
 ## Getting Started
 
 ```
