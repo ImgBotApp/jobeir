@@ -39,6 +39,7 @@ export function addCompany(req, res) {
 
   newCompany.slug = slug(newCompany.name.toLowerCase(), { lowercase: true });
   newCompany.cuid = cuid();
+  
   newCompany.save((err, saved) => {
     if (err) {
       res
@@ -49,14 +50,15 @@ export function addCompany(req, res) {
             error: "COMPANY_ALREADY_EXISTS",
             message:`The company ${req.body.name} already exists`
           }],
+        })
+    } else {
+      res
+        .status(200)
+        .send({
+          data: { comany: saved },
+          errors: []
         });
     }
-    res
-      .status(200)
-      .send({
-        data: { comany: saved },
-        errors: []
-      });
   });
 }
 

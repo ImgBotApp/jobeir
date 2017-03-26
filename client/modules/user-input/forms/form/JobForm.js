@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
 import {
+  Currency,
+  Phone,
   Text,
   Select,
-  Phone,
   Textarea,
   SubmitButton
 } from '../../inputs/input/';
@@ -60,7 +61,12 @@ class JobForm extends Component {
         />
         <Field
           name="salaryMin"
-          label="Salary Range"
+          label="Salary Min"
+          component={Currency}
+        />
+        <Field
+          name="salaryMax"
+          label="Salary Max"
           component={Currency}
         />
         <Field
