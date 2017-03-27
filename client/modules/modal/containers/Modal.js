@@ -9,11 +9,8 @@ const MODAL_COMPONENTS = {
 
 const Modal = ({ modalType, modalProps }) => {
   const SpecificModal = MODAL_COMPONENTS[modalType];
-  return (
-    <div>
-      {modalType && <SpecificModal {...modalProps} />}
-    </div>
-  );
+
+  return modalType ? <SpecificModal {...modalProps} /> : null;
 };
 
 const mapStateToProps = state => state.modal;

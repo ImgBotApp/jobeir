@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled, { keyframes } from 'styled-components';
 import { hideModal } from '../ducks';
 
 class ModalWrapper extends Component {
   constructor(props) {
     super(props);
     
+    this.handleClick = this.handleClick.bind(this);
     this.handleEscapeKey = this.handleEscapeKey.bind(this);
   }
 
@@ -15,6 +17,10 @@ class ModalWrapper extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleEscapeKey, true);
+  }
+
+  handleClick() {
+    this.props.dispatch(hideModal());
   }
 
   handleEscapeKey(event) {
@@ -34,28 +40,86 @@ class ModalWrapper extends Component {
   render() {
     const {
       modalFull,
-      modalAction,
       modalSize,
-      className,
       children,
       modalText
     } = this.props;
 
     return (
-      <div className={`Modal ${modalFull ? '' : 'Modal--'}`}>
-        <div className="Modal__background" onClick={modalAction}></div>
-        <div className={`Modal__size ${modalSize ? `Modal__size--${modalSize}` : ''}`}>
-          <div className={`Modal__body ${className ? className : ''}`}>
-            <div className="Modal__body-top">
-              {modalAction && <div onClick={modalAction} className="Modal__actions">×</div>}
-            </div>
+      <ModalContainer full={modalFull}>
+        <ModalBackground onClick={this.handleClick} />
+        <ModalContent size={modalSize}>
+          <ModalBody>
+            <ModalBodyTop>
+              <ModalAction onClick={this.handleClick}>×</ModalAction>
+            </ModalBodyTop>
             {children || null}
-            {modalText ? <p className="Modal__text">{modalText}</p> : null}
-          </div>
-        </div>
-      </div>
+            {modalText && <ModalText>{modalText}</ModalText>}
+          </ModalBody>
+        </ModalContent>
+      </ModalContainer>
     );
   }
 };
 
 export default connect()(ModalWrapper);
+
+const FadeInPulse = keyframes`
+  0% { opacity: 0; transform: scale(0.8) translateY(15px); }
+  50% { opacity: 1; }
+  70% { transform: scale(1) translateY(0); }
+`;
+
+const ModalContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 900;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+`;
+
+const ModalBackground = styled.div`
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  opacity: 0;
+`;
+
+const ModalContent = styled.div`
+  transform-origin: bottom center;
+  animation: ${FadeInPulse} .3s forwards cubic-bezier(0.8, 0.02, 0.45, 0.91);
+`;
+
+const ModalBody = styled.div`
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,.44);
+  max-width: 520px;
+`;
+
+const ModalBodyTop = styled.div`
+
+`;
+
+const ModalAction = styled.div`
+
+`;
+
+const ModalText = styled.p`
+
+`;
+
