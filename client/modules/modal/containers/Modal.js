@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import AuthModal from '../../auth/containers/AuthModal';
 
 const MODAL_COMPONENTS = {

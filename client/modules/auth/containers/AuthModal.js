@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import ModalWrapper from '../../modal/components/ModalWrapper';
 import SignupForm from '../../user-input/forms/form/SignupForm';
 import LoginForm from '../../user-input/forms/form/LoginForm';
 import AuthOAuth from '../components/AuthOAuth';
 
 class AuthModal extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      showLoginForm: false,
-    };
-  }
+  state = { showLoginForm: false };
 
   renderSignup() {
     return (
       <div>
         <AuthOAuth />
         <SignupForm />
-        <div onClick={() => this.setState({ showLoginForm: true })}>Already have an account? Log in</div>
+        <AuthModalFooter onClick={this.setState({ showLoginForm: true })}>
+          Already have an account? Log in
+        </AuthModalFooter>
       </div>
     );
   }
@@ -28,7 +25,9 @@ class AuthModal extends Component {
       <div>
         <AuthOAuth />
         <LoginForm />
-        <div onClick={() => this.setState({ showLoginForm: false })}>Don’t have an account? Sign up?</div>
+        <AuthModalFooter onClick={this.setState({ showLoginForm: false })}>
+          Don’t have an account? Sign up?
+        </AuthModalFooter>
       </div>
     );
   }
@@ -47,3 +46,9 @@ class AuthModal extends Component {
 };
 
 export default AuthModal;
+
+const AuthModalFooter = styled.div`
+  text-align: center;
+  cursor: pointer;
+  padding: 2rem 0;
+`;

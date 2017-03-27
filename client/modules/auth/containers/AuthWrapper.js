@@ -4,10 +4,7 @@ import { auth } from '../ducks';
 
 export const AuthWrapper = WrappedComponent => {
   class AuthenticatedComponent extends Component {
-    constructor(props) {
-      super(props);
-      this.state = { count: 1 };
-    }
+    state = { count: 1 };
 
     componentWillMount() {
       const { auth: { isAuthenticated } } = this.props;
