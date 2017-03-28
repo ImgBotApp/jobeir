@@ -20,7 +20,7 @@ export const AuthOAuth = () =>
 export default AuthOAuth;
 
 const OAuthButtonContainer = styled.div`
-  padding: 1rem;
+  padding-bottom: 1rem;
 `;
 
 const OAuthButton = styled.a`
@@ -48,7 +48,7 @@ const GoogleButton = styled(OAuthButton)`
   border: 1px solid #c5c4c4;
 
   &:hover {
-    background-color: #fafafa;
+    background-color: #f7f7f7;
   }
 `;
 

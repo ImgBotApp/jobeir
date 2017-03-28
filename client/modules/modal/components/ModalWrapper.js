@@ -42,19 +42,17 @@ class ModalWrapper extends Component {
       modalFull,
       modalSize,
       children,
-      modalText
     } = this.props;
 
     return (
       <ModalContainer full={modalFull}>
         <ModalBackground onClick={this.handleClick} />
+        <ModalAction onClick={this.handleClick}>
+          <CloseIcon />
+        </ModalAction>
         <ModalContent size={modalSize}>
           <ModalBody>
-            <ModalBodyTop>
-              <ModalAction onClick={this.handleClick}>×</ModalAction>
-            </ModalBodyTop>
             {children || null}
-            {modalText && <ModalText>{modalText}</ModalText>}
           </ModalBody>
         </ModalContent>
       </ModalContainer>
@@ -105,21 +103,18 @@ const ModalContent = styled.div`
 `;
 
 const ModalBody = styled.div`
+  position: relative;
   background-color: #fff;
   border-radius: 3px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,.44);
   max-width: 520px;
 `;
 
-const ModalBodyTop = styled.div`
-
-`;
-
 const ModalAction = styled.div`
-
+  position: fixed;
+  right: 25px;
+  top: 25px;
+  cursor: pointer;
 `;
 
-const ModalText = styled.p`
-
-`;
-
+const CloseIcon = () => <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/></svg>;

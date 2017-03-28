@@ -13,7 +13,7 @@ class AuthModal extends Component {
       <div>
         <AuthOAuth />
         <SignupForm />
-        <AuthModalFooter onClick={this.setState({ showLoginForm: true })}>
+        <AuthModalFooter onClick={() => this.setState({ showLoginForm: true })}>
           Already have an account? Log in
         </AuthModalFooter>
       </div>
@@ -25,7 +25,7 @@ class AuthModal extends Component {
       <div>
         <AuthOAuth />
         <LoginForm />
-        <AuthModalFooter onClick={this.setState({ showLoginForm: false })}>
+        <AuthModalFooter onClick={() => this.setState({ showLoginForm: false })}>
           Don’t have an account? Sign up?
         </AuthModalFooter>
       </div>
@@ -35,11 +35,21 @@ class AuthModal extends Component {
   render() {
     return (
       <ModalWrapper>
-        {
-          this.state.showLoginForm
-            ? this.renderLogin()
-            : this.renderSignup()
-        }
+        <AuthModalBody>
+          <AuthModalHeader>
+            <AuthModalHeaderBlue />
+            <AuthModalHeaderRed />
+            <AuthModalHeaderBeige />
+            Logo
+          </AuthModalHeader>
+          <AuthModalContent>
+            {
+              this.state.showLoginForm
+                ? this.renderLogin()
+                : this.renderSignup()
+            }
+          </AuthModalContent>
+        </AuthModalBody>
       </ModalWrapper>
     );
   }
@@ -47,8 +57,63 @@ class AuthModal extends Component {
 
 export default AuthModal;
 
+const AuthModalBody = styled.div`
+  min-width: 500px;
+`;
+
+const AuthModalHeader = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${props => props.theme.pink};
+  min-height: 175px;
+  overflow: hidden;
+`;
+
+const AuthModalContent = styled.div`
+  padding: 2rem;
+`;
+
+const AuthModalHeaderBall = styled.div`
+  border-radius: 50%;
+  position: absolute;
+`;
+
+const AuthModalHeaderBlack = styled(AuthModalHeaderBall)`
+  right: 325px;
+  top: -500px;
+  height: 800px;
+  width: 800px;
+  background: ${props => props.theme.black};
+`;
+
+const AuthModalHeaderBlue = styled(AuthModalHeaderBall)`
+  right: 125px;
+  top: -500px;
+  height: 800px;
+  width: 800px;
+  background: ${props => props.theme.blue};
+`;
+
+const AuthModalHeaderRed = styled(AuthModalHeaderBall)`
+  right: 120px;
+  bottom: 25px;
+  height: 115px;
+  width: 115px;
+  background: ${props => props.theme.red};
+`;
+
+const AuthModalHeaderBeige = styled(AuthModalHeaderBall)`
+  top: 107px;
+  left: -487px;
+  height: 1000px;
+  width: 1000px;
+  background: ${props => props.theme.beige};
+`;
+
 const AuthModalFooter = styled.div`
   text-align: center;
   cursor: pointer;
-  padding: 2rem 0;
+  padding-top: 2rem;
 `;
