@@ -26,11 +26,7 @@ class SignupForm extends Component {
     const { dispatch } = this.props;
     const { email, password } = data;
 
-    dispatch(signup(email, password))
-      .then(() => {
-        setTimeout(() => { dispatch(login(email, password)); }, 100);
-        
-    });
+    dispatch(signup(email, password));
   }
 
   render() {
