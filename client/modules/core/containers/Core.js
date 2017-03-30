@@ -65,6 +65,10 @@ injectGlobal`
     font-style: normal;
   }
 
+  * {
+    box-sizing:border-box;
+  }
+
   body {
     margin: 0;
     font-family: 'Avenir STD', Avenir sans-serif;

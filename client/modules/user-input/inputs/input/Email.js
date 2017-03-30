@@ -1,9 +1,9 @@
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
+import { Input } from './Input';
 
 export const Email = props => {
-  console.log(props);
   return (
     <InputWrapper {...props}>
       <Input
@@ -16,7 +16,3 @@ export const Email = props => {
     </InputWrapper>
   );
 };
-
-const Input = styled.input`
-
-`;

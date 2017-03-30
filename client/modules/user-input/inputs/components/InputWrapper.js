@@ -8,7 +8,6 @@ import InputError from './InputError';
  * and error handling
  */
 export const InputWrapper = props => {
-  console.log(props);
   return (
     <div>
       {props.label && <InputLabel {...props} />}

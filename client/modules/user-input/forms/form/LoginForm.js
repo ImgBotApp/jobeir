@@ -39,18 +39,19 @@ class LoginForm extends Component {
       >
         <Field
           name="email"
-          label="Email"
+          placeholder="Email"
           validate={[ required, email ]}
           component={Email}
         />
         <Field
           name="password"
-          label="Password"
+          placeholder="Password"
           validate={[ required ]}
           component={Password}
         />
         <Field
           name="submitButton"
+          buttonText="Log in"
           component={SubmitButton}
         />
       </FormWrapper>

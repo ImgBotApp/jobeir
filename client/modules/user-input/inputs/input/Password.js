@@ -1,6 +1,7 @@
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
+import { Input } from './Input';
 
 export const Password = props => {
   return (
@@ -15,7 +16,3 @@ export const Password = props => {
     </InputWrapper>
   );
 };
-
-const Input = styled.input`
-
-`;

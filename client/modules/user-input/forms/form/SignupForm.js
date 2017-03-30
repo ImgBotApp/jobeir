@@ -35,6 +35,7 @@ class SignupForm extends Component {
         handleSubmit={this.props.handleSubmit}
         formSubmit={this.formSubmit}
         formErrors={this.props.auth.errors}
+        theme="marble"
       >
         <Field
           name="email"
@@ -50,6 +51,7 @@ class SignupForm extends Component {
         />
         <Field
           name="submitButton"
+          buttonText="Sign up"
           component={SubmitButton}
         />
       </FormWrapper>

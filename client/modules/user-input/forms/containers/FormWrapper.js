@@ -14,7 +14,7 @@ export const FormWrapper = props => {
     formErrors = [],
     formSubmit,
     handleSubmit,
-    theme = 'marble'
+    theme = 'opal'
   } = props;
 
   return (

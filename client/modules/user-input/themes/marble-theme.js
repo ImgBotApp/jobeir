@@ -1,3 +1,25 @@
 export const marble = {
-  main: 'marble',
+  input: {
+    borderRadius: '3px',
+    border: 'solid 1px #babbbb',
+    padding: '20px',
+    fontSize: '18px',
+    width: '100%',
+    margin: '0 auto 1rem',
+    activeBorderColor: '#484848',
+    ph: {
+      color: '#76767',
+    },
+  },
+  button: {
+    height: '60px',
+    borderRadius: '3px',
+    outline: 'none',
+    border: 'none',
+    background: '#fb5032',
+    width: '100%',
+    marginBottom: '2rem',
+    fontSize: '18px',
+    color: '#fff',
+  }
 };
