@@ -1,16 +1,21 @@
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
+import styled from 'styled-components';
 
 export const Select = props => {
   return (
     <InputWrapper {...props}>
-      <select
+      <SelectInput
         {...props.input}
         id={props.input.name}
         name={props.input.name}
       >
         <option />
-      </select>
+      </SelectInput>
     </InputWrapper>
   );
 };
+
+const SelectInput = styled.select`
+
+`;

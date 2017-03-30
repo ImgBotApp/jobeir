@@ -10,6 +10,7 @@ export const Phone = props => {
         type="tel"
         id={props.input.name}
         name={props.input.name}
+        placeholder={props.placeholder}
         guide={false}
         mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
       />

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Form } from 'redux-form';
+import { ThemeProvider } from 'styled-components';
 import FormError from '../components/FormError';
+import FormThemes from '../../themes';
 
 /**
  * A wrapper around form Form fields that will act as
@@ -12,13 +14,16 @@ export const FormWrapper = props => {
     formErrors = [],
     formSubmit,
     handleSubmit,
+    theme = 'marble'
   } = props;
 
   return (
-    <Form onSubmit={handleSubmit(formSubmit)}>
-      <FormError formErrors={formErrors} />
-      {props.children}
-    </Form>
+    <ThemeProvider theme={FormThemes[theme]}>
+      <Form onSubmit={handleSubmit(formSubmit)}>
+        <FormError formErrors={formErrors} />
+        {props.children}
+      </Form>
+    </ThemeProvider>
   );
 };
 

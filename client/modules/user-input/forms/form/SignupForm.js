@@ -38,13 +38,13 @@ class SignupForm extends Component {
       >
         <Field
           name="email"
-          label="Email"
+          placeholder="Email address"
           validate={[ required, email ]}
           component={Email}
         />
         <Field
           name="password"
-          label="Password"
+          placeholder="Create a password"
           validate={[ required, minLength(6) ]}
           component={Password}
         />

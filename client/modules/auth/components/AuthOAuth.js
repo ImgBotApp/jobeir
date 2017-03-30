@@ -32,7 +32,7 @@ const OAuthButton = styled.a`
   max-width: 456px;
   text-decoration: none;
   color: white;
-  padding: 0 0.8rem;
+  padding: 0 1rem;
   transition: background-color, border-color, 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);  
 `;
 

@@ -1,12 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export const SubmitButton = props => {
   return (
-    <button
+    <Button
       type="submit"
       disabled={false}
     >
       {props.buttonText || 'Submit'}
-    </button>
+    </Button>
   );
 };
+
+const Button = styled.button`
+
+`;

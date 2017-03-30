@@ -1,10 +1,11 @@
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
+import styled from 'styled-components';
 
 export const Textarea = props => {
   return (
     <InputWrapper {...props}>
-      <textarea
+      <TextareaInput
         {...props.input}
         id={props.input.name}
         name={props.input.name}
@@ -12,3 +13,7 @@ export const Textarea = props => {
     </InputWrapper>
   );
 };
+
+const TextareaInput = styled.textarea`
+
+`;

@@ -6,13 +6,23 @@ import LoginForm from '../../user-input/forms/form/LoginForm';
 import AuthOAuth from '../components/AuthOAuth';
 
 class AuthModal extends Component {
-  state = { showLoginForm: false };
+  state = {
+    showLoginForm: false,
+    signupWithEmail: false
+  };
 
   renderSignup() {
+    const { signupWithEmail } = this.state;
     return (
       <div>
-        <AuthOAuth />
-        <SignupForm />
+        {
+          signupWithEmail
+            ? <SignupForm />
+            : <AuthOAuth />
+        }
+        <AuthModalSignupEmail onClick={() => this.setState({ signupWithEmail: !signupWithEmail })}>
+          {signupWithEmail ? 'Sign up with Google, Facebook, or Github' :  'Sign up with email'}
+        </AuthModalSignupEmail>
         <AuthModalFooter onClick={() => this.setState({ showLoginForm: true })}>
           Already have an account? Log in
         </AuthModalFooter>
@@ -40,7 +50,6 @@ class AuthModal extends Component {
             <AuthModalHeaderBlue />
             <AuthModalHeaderRed />
             <AuthModalHeaderBeige />
-            Logo
           </AuthModalHeader>
           <AuthModalContent>
             {
@@ -116,4 +125,11 @@ const AuthModalFooter = styled.div`
   text-align: center;
   cursor: pointer;
   padding-top: 2rem;
+  border-top: 1px solid #dce0e0;
+`;
+
+const AuthModalSignupEmail = styled.div`
+  text-align: center;
+  cursor: pointer;
+  padding-bottom: 1.5rem;
 `;
