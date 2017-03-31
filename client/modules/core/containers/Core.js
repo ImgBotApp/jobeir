@@ -72,5 +72,6 @@ injectGlobal`
   body {
     margin: 0;
     font-family: 'Avenir STD', Avenir sans-serif;
+    color: #484848;
   }
 `;

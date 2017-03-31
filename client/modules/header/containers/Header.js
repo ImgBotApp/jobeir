@@ -4,10 +4,16 @@ import styled from 'styled-components';
 
 const Header = () => {
   return (
-    <header>
+    <HeaderContainer>
       <PrimaryNav />
-    </header>
+    </HeaderContainer>
   );
 };
 
 export default Header;
+
+const HeaderContainer = styled.header`
+  display: flex;
+  align-items: center;
+  height: 64px;
+`;

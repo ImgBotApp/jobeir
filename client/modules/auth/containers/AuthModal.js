@@ -10,7 +10,7 @@ class AuthModal extends Component {
     showLoginForm: false,
     signupWithEmail: false
   };
-
+  
   renderSignup() {
     const { signupWithEmail } = this.state;
     return (

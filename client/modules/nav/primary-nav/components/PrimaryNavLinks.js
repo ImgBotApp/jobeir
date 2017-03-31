@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import styled from 'styled-components';
+import Link from 'react-router/lib/Link';
 import docCookies from '../../../../utils/cookies';
 import { logout } from '../../../auth/ducks';
 import { showModal } from '../../../modal/ducks';
@@ -29,12 +30,12 @@ class PrimaryNavLinks extends Component {
 
   render() {
     return (
-      <div>
-        <Link to="/jobs/new">Post Job</Link>
-        <Link to="/login">Log In</Link>
-        <Link onClick={this.handleSignUpClick}>Sign Up</Link>
-        {this.props.isAuthenticated && <Link onClick={this.handleLogoutClick}>Log Out</Link>}
-      </div>
+      <PrimaryNavLinksContainer>
+        <NavLink to="/jobs/new">Post Job</NavLink>
+        <NavLink onClick={this.handleSignUpClick}>Sign Up</NavLink>
+        <NavLink to="/login">Log In</NavLink>
+        {this.props.isAuthenticated && <NavLink onClick={this.handleLogoutClick}>Log Out</NavLink>}
+      </PrimaryNavLinksContainer>
     );
   }
 }
@@ -44,3 +45,22 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(PrimaryNavLinks);
+
+const PrimaryNavLinksContainer = styled.div`
+  display: flex;
+`;
+
+const NavLink = styled(Link)`
+  display: block;
+  padding: 0 26px;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  height: 64px;
+  line-height: 64px;
+  color: ${props => props.theme.text}
+
+  &:last-child {
+    padding-right: 13px;
+  }
+`;

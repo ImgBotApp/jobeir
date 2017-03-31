@@ -1,11 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Navigation = styled.nav`
-  display: flex;
-  justify-content: space-between;
-`;
-
 const PrimaryNav = ({ props }) => {
   return (
     <Navigation role="navigation">
@@ -15,3 +10,8 @@ const PrimaryNav = ({ props }) => {
 };
 
 export default PrimaryNav;
+
+const Navigation = styled.nav`
+  display: flex;
+  justify-content: space-between;
+`;
