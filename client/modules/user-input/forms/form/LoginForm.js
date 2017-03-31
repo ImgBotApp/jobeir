@@ -36,6 +36,7 @@ class LoginForm extends Component {
         handleSubmit={this.props.handleSubmit}
         formSubmit={this.formSubmit}
         formErrors={this.props.auth.errors}
+        theme="marble"
       >
         <Field
           name="email"

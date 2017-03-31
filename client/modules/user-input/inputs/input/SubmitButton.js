@@ -18,7 +18,6 @@ const Button = styled.button`
   height: ${props => props.theme.button.height};
   width: ${props => props.theme.button.width};
   font-size: ${props => props.theme.button.fontSize};
-  margin: ${props => props.theme.button.margin};
   color: ${props => props.theme.button.color};
   background: ${props => props.theme.button.background};
   margin-bottom: ${props => props.theme.button.marginBottom};

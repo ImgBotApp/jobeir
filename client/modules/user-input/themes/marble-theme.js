@@ -2,8 +2,8 @@ export const marble = {
   input: {
     borderRadius: '3px',
     border: 'solid 1px #babbbb',
-    padding: '20px',
-    fontSize: '18px',
+    padding: '18px',
+    fontSize: '16px',
     width: '100%',
     margin: '0 auto 1rem',
     activeBorderColor: '#484848',
@@ -12,7 +12,7 @@ export const marble = {
     },
   },
   button: {
-    height: '60px',
+    height: '56px',
     borderRadius: '3px',
     outline: 'none',
     border: 'none',

@@ -11,7 +11,7 @@ import FormThemes from '../../themes';
  */
 export const FormWrapper = props => {
   const {
-    formErrors = [],
+    formErrors,
     formSubmit,
     handleSubmit,
     theme = 'opal'
@@ -20,7 +20,7 @@ export const FormWrapper = props => {
   return (
     <ThemeProvider theme={FormThemes[theme]}>
       <Form onSubmit={handleSubmit(formSubmit)}>
-        <FormError formErrors={formErrors} />
+        { formErrors.length ? <FormError formErrors={formErrors} /> : '' }
         {props.children}
       </Form>
     </ThemeProvider>

@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import { Input } from './Input';
 
 export const Email = props => {
+  const { meta } = props;
+  const showError = meta.touched && meta.error && meta.invalid;
+
   return (
     <InputWrapper {...props}>
       <Input
@@ -12,6 +15,7 @@ export const Email = props => {
         id={props.input.name}
         name={props.input.name}
         placeholder={props.placeholder}
+        style={{ borderColor: showError ? '#cc0726' : '' }}
       />
     </InputWrapper>
   );
