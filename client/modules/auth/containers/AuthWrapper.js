@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../ducks';
+import AuthLoading from '../components/AuthLoading';
 
 export const AuthWrapper = WrappedComponent => {
   class AuthenticatedComponent extends Component {
@@ -37,10 +38,8 @@ export const AuthWrapper = WrappedComponent => {
         <div className="AuthWrapper">
           {
             this.props.auth.isAuthenticated
-            ? <div className="Authenticated">
-                <WrappedComponent {...this.props} />
-              </div>
-            : <div className="Authenticating">Loading...</div>
+              ? <WrappedComponent {...this.props} />
+              : <AuthLoading />
           }
         </div>
       );
