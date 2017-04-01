@@ -33,6 +33,7 @@ export function* authUser(action) {
    } catch (errors) {
       yield put({type: AUTH_FAILURE, errors});
       yield call(redirectTo, authFailedRedirectPathname);
+      throw errors;
    }
 }
 
@@ -47,6 +48,7 @@ export function* signupUser(action) {
       yield put({type: SIGNUP_SUCCESS, payload});
    } catch (errors) {
       yield put({type: SIGNUP_FAILURE, errors});
+      throw errors;
    }
 }
 
@@ -83,8 +85,12 @@ export function* logoutUser() {
 }
 
 function* signupAndAuthUser(action) {
-  yield call(signupUser, action);
-  yield call(authUser, action);
+  try {
+    yield call(signupUser, action);
+    yield call(authUser, action);
+  } catch (errors) {
+    throw errors;
+  }
 }
 
 export function* user() {
