@@ -13,6 +13,7 @@ import {
   required,
 } from '../../validation';
 import { signup, login } from '../../../auth/ducks';
+import { queryParams } from '../../../../utils/queryParams';
 
 
 class SignupForm extends Component {
@@ -25,8 +26,11 @@ class SignupForm extends Component {
   formSubmit(data) {
     const { dispatch } = this.props;
     const { email, password } = data;
+    const nextValue = queryParams(window.location.search).next
 
-    dispatch(signup(email, password));
+    const redirectPathname = nextValue ? nextValue : '/dashboard';
+
+    dispatch(signup(email, password, redirectPathname));
   }
 
   render() {

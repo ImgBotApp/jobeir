@@ -11,7 +11,7 @@ import FormThemes from '../../themes';
  */
 export const FormWrapper = props => {
   const {
-    formErrors,
+    formErrors = [],
     formSubmit,
     handleSubmit,
     theme = 'opal'

@@ -28,7 +28,7 @@ describe('User', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'AUTH_SUCCEEDED',
+            type: 'AUTH_SUCCESS',
             payload: undefined
           })
         );
@@ -45,7 +45,7 @@ describe('User', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'AUTH_SUCCEEDED',
+            type: 'AUTH_SUCCESS',
             payload: undefined
           })
         );
@@ -56,7 +56,7 @@ describe('User', () => {
         );
     });
 
-    it('should return a AUTH_FAILED action', () => {
+    it('should return a AUTH_FAILURE action', () => {
       const gen = authUser(action);
 
       expect(
@@ -71,13 +71,13 @@ describe('User', () => {
         }).value
       ).toEqual(
         put({
-          type: 'AUTH_FAILED',
+          type: 'AUTH_FAILURE',
           errors: { errors: 'unauthorized' }
         })
       );
     });
 
-    it('should redict to the correct pathname after AUTH_FAILED', () => {
+    it('should redict to the correct pathname after AUTH_FAILURE', () => {
       const gen = authUser({ payload: { redirectPathname: '/pathname' }});
 
       expect(gen.next().value)
@@ -91,7 +91,7 @@ describe('User', () => {
         }).value
       ).toEqual(
         put({
-          type: 'AUTH_FAILED',
+          type: 'AUTH_FAILURE',
           errors: { errors: 'unauthorized' }
         })
       );
@@ -104,7 +104,7 @@ describe('User', () => {
   });
 
   describe('registration ', () => {
-    it('should return a SIGNUP_SUCCEEDED action', () => {
+    it('should return a SIGNUP_SUCCESS action', () => {
       const gen = signupUser(action);
 
       expect(gen.next().value)
@@ -115,13 +115,13 @@ describe('User', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'SIGNUP_SUCCEEDED',
+            type: 'SIGNUP_SUCCESS',
             payload: undefined
           })
         );
     });
 
-    it('should return a SIGNUP_FAILED action', () => {
+    it('should return a SIGNUP_FAILURE action', () => {
       const gen = signupUser(action);
 
       expect(
@@ -136,7 +136,7 @@ describe('User', () => {
         }).value
       ).toEqual(
         put({
-          type: 'SIGNUP_FAILED',
+          type: 'SIGNUP_FAILURE',
           errors: { errors: 'user not found' }
         })
       );
@@ -155,13 +155,13 @@ describe('User', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'LOGIN_SUCCEEDED',
+            type: 'LOGIN_SUCCESS',
             payload: undefined
           })
         );
     });
 
-    it('should return a LOGIN_FAILED action', () => {
+    it('should return a LOGIN_FAILURE action', () => {
       const gen = loginUser(action);
 
       expect(
@@ -176,7 +176,7 @@ describe('User', () => {
         }).value
       ).toEqual(
         put({
-          type: 'LOGIN_FAILED',
+          type: 'LOGIN_FAILURE',
           errors: { errors: 'user not found' }
         })
       );
@@ -195,12 +195,12 @@ describe('User', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'LOGOUT_SUCCEEDED',
+            type: 'LOGOUT_SUCCESS',
           })
         );
     });
 
-    it('should return a LOGOUT_FAILED action', () => {
+    it('should return a LOGOUT_FAILURE action', () => {
       const gen = logoutUser();
 
       expect(
@@ -215,7 +215,7 @@ describe('User', () => {
         }).value
       ).toEqual(
         put({
-          type: 'LOGOUT_FAILED',
+          type: 'LOGOUT_FAILURE',
           errors: { errors: 'logout failed' }
         })
       );

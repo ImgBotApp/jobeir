@@ -1,21 +1,23 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import { fetchApi } from '../../../utils/api';
+import { hideModal } from '../../modal/ducks';
+import fireEscapeKeypress from '../../../utils/fireEscapeKeypress';
 import queryParams from '../../../utils/queryParams';
 import authRedirect from '../../../utils/authRedirect';
 import docCookies from '../../../utils/cookies';
 import {
-  AUTH_REQUESTED,
-  AUTH_SUCCEEDED,
-  AUTH_FAILED,
-  SIGNUP_REQUESTED,
-  SIGNUP_SUCCEEDED,
-  SIGNUP_FAILED,
-  LOGIN_REQUESTED,
-  LOGIN_SUCCEEDED,
-  LOGIN_FAILED,
-  LOGOUT_REQUESTED,
-  LOGOUT_SUCCEEDED,
-  LOGOUT_FAILED,
+  AUTH_REQUEST,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
   redirectTo
 } from '../ducks';
 
@@ -25,10 +27,11 @@ export function* authUser(action) {
 
    try {
       const payload = yield call(fetchApi, 'GET', '/auth');
-      yield put({type: AUTH_SUCCEEDED, payload});
-      yield call(redirectTo, redirectPathname);
+      yield put({type: AUTH_SUCCESS, payload});
+      yield call(redirectTo, redirectPathname);      
+      yield call(fireEscapeKeypress);      
    } catch (errors) {
-      yield put({type: AUTH_FAILED, errors});
+      yield put({type: AUTH_FAILURE, errors});
       yield call(redirectTo, authFailedRedirectPathname);
    }
 }
@@ -36,18 +39,23 @@ export function* authUser(action) {
 export function* signupUser(action) {
    try {
       const payload = yield call(fetchApi, 'POST', '/register', action.payload);
-      yield put({type: SIGNUP_SUCCEEDED, payload});
+
+      if (payload !== undefined && payload.data.token) {
+        docCookies.setItem('SID', payload.data.token);
+      }
+
+      yield put({type: SIGNUP_SUCCESS, payload});
    } catch (errors) {
-      yield put({type: SIGNUP_FAILED, errors});
+      yield put({type: SIGNUP_FAILURE, errors});
    }
 }
 
-export function* loginUser(action, redirectPath = '/account/profile') {
+export function* loginUser(action, redirectPath = '/dashboard') {
   const nextValue = queryParams(window.location.search).next
 
    try {
       const payload = yield call(fetchApi, 'POST', '/login', action.payload);
-      yield put({type: LOGIN_SUCCEEDED, payload});
+      yield put({type: LOGIN_SUCCESS, payload});
 
       if (payload.data.token) {
         docCookies.setItem('SID', payload.data.token);
@@ -58,24 +66,30 @@ export function* loginUser(action, redirectPath = '/account/profile') {
       }
       
       yield call(redirectTo, redirectPath);
+      yield call(fireEscapeKeypress);
    } catch (errors) {
-      yield put({type: LOGIN_FAILED, errors});
+      yield put({type: LOGIN_FAILURE, errors});
    }
 }
 
 export function* logoutUser() {
    try {
       const payload = yield call(fetchApi, 'POST', '/logout');
-      yield put({type: LOGOUT_SUCCEEDED, payload});
+      yield put({type: LOGOUT_SUCCESS, payload});
       yield call(redirectTo, '/');
    } catch (errors) {
-      yield put({type: LOGOUT_FAILED, errors});
+      yield put({type: LOGOUT_FAILURE, errors});
    }
 }
 
+function* signupAndAuthUser(action) {
+  yield call(signupUser, action);
+  yield call(authUser, action);
+}
+
 export function* user() {
-  yield takeEvery(AUTH_REQUESTED, authUser);
-  yield takeEvery(SIGNUP_REQUESTED, signupUser);
-  yield takeEvery(LOGIN_REQUESTED, loginUser);
-  yield takeEvery(LOGOUT_REQUESTED, logoutUser);
+  yield takeEvery(AUTH_REQUEST, authUser);
+  yield takeEvery(SIGNUP_REQUEST, signupAndAuthUser);
+  yield takeEvery(LOGIN_REQUEST, loginUser);
+  yield takeEvery(LOGOUT_REQUEST, logoutUser);
 }

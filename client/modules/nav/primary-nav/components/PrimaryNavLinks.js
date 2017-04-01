@@ -33,8 +33,11 @@ class PrimaryNavLinks extends Component {
       <PrimaryNavLinksContainer>
         <NavLink to="/jobs/new">Post Job</NavLink>
         <NavLink onClick={this.handleSignUpClick}>Sign Up</NavLink>
-        <NavLink to="/login">Log In</NavLink>
-        {this.props.isAuthenticated && <NavLink onClick={this.handleLogoutClick}>Log Out</NavLink>}
+        {
+          this.props.isAuthenticated
+            ? <NavLink onClick={this.handleLogoutClick}>Log Out</NavLink>
+            : <NavLink to="/login">Log In</NavLink>
+        }
       </PrimaryNavLinksContainer>
     );
   }

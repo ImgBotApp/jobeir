@@ -1,6 +1,6 @@
-export const CREATE_COMPANY_REQUESTED = 'CREATE_COMPANY_REQUESTED';
-export const CREATE_COMPANY_SUCCEEDED = 'CREATE_COMPANY_SUCCEEDED';
-export const CREATE_COMPANY_FAILED = 'CREATE_COMPANY_FAILED';
+export const CREATE_COMPANY_REQUEST = 'CREATE_COMPANY_REQUEST';
+export const CREATE_COMPANY_SUCCESS = 'CREATE_COMPANY_SUCCESS';
+export const CREATE_COMPANY_FAILURE = 'CREATE_COMPANY_FAILURE';
 
 export const initialState = {
   isLoading: false,
@@ -9,16 +9,16 @@ export const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_COMPANY_REQUESTED:
+    case CREATE_COMPANY_REQUEST:
       return Object.assign({}, state, {
         isLoading: true,
       });
-    case CREATE_COMPANY_SUCCEEDED:
+    case CREATE_COMPANY_SUCCESS:
       return Object.assign({}, state, {
         isLoading: false,
         ...action.payload.data,
       });
-    case CREATE_COMPANY_FAILED:
+    case CREATE_COMPANY_FAILURE:
       return Object.assign({}, state, {
         isLoading: false,
         errors: action.errors.errors,
@@ -28,4 +28,4 @@ export default (state = initialState, action) => {
   }
 }
 
-export const createCompany = (data) => ({ type: CREATE_COMPANY_REQUESTED, payload: { data } });
+export const createCompany = (data) => ({ type: CREATE_COMPANY_REQUEST, payload: { data } });

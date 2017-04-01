@@ -62,7 +62,7 @@ const routes = (
       }}
     />
     <Route
-      path="/account/profile"
+      path="/dashboard"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('../modules/account/profile/containers/Profile').default);
