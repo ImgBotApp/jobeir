@@ -2,7 +2,15 @@ import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
 
+const handlePropsError = options => {
+  if (!options && !Array.isArray(options)) {
+    throw new Error('Select component requires an array of options passed as an options prop')
+  }
+}
+
 export const Select = props => {
+  handlePropsError(props.options);
+
   return (
     <InputWrapper {...props}>
       <SelectInput
@@ -10,6 +18,9 @@ export const Select = props => {
         id={props.input.name}
         name={props.input.name}
       >
+        {
+          props.options.map(option => <option key={option.valie}>{option.value}</option>)
+        }
         <option />
       </SelectInput>
     </InputWrapper>

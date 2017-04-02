@@ -50,24 +50,28 @@ class JobForm extends Component {
           name="role"
           label="Primary Role"
           validate={[ required ]}
+          options={[]}
           component={Select}
         />
         <Field
           name="type"
           label="Job Type"
           validate={[ required ]}
+          options={[]}
           component={Select}
         />
         <Field
           name="location"
           label="Locations"
           validate={[ required ]}
+          options={[]}
           component={Select}
         />
         <Field
           name="remote"
           label="Remote"
           validate={[ required ]}
+          options={[]}
           component={Select}
         />
         <Field
