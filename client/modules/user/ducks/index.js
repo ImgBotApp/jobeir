@@ -4,8 +4,10 @@ export const GET_USER_FAILURE = 'GET_USER_FAILURE';
 
 import { AUTH_SUCCESS } from '../../auth/ducks';
 
+import { CREATE_COMPANY_SUCCESS } from '../../create/ducks';
+
 export const initialState = {
-  user: '',
+  company: '',
   isFetching: false,
   isLoaded: false,
   errors: [],
@@ -32,6 +34,10 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         isAuthenticating: false,
         id: action.payload.data.id,
+      });
+    case CREATE_COMPANY_SUCCESS:
+      return Object.assign({}, state, {
+        company: action.payload.data.company.name,
       });
     default:
       return state

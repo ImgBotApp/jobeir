@@ -10,6 +10,11 @@ import {
   Textarea,
   SubmitButton
 } from '../../inputs/input/';
+import {
+  required,
+} from '../../validation';
+import { createJob } from '../../../create/job/ducks'
+
 
 class JobForm extends Component {
   constructor(props) {
@@ -19,7 +24,7 @@ class JobForm extends Component {
   }
 
   formSubmit(data) {
-    console.log({ data });
+    this.props.dispatch(createJob(data))
   }
 
   render() {
@@ -32,46 +37,55 @@ class JobForm extends Component {
         <Field
           name="title"
           label="Job Title"
+          validate={[ required ]}
           component={Text}
         />
         <Field
           name="description"
           label="Description"
+          validate={[ required ]}
           component={Textarea}
         />
         <Field
           name="role"
           label="Primary Role"
+          validate={[ required ]}
           component={Select}
         />
         <Field
           name="type"
           label="Job Type"
+          validate={[ required ]}
           component={Select}
         />
         <Field
           name="location"
           label="Locations"
+          validate={[ required ]}
           component={Select}
         />
         <Field
           name="remote"
           label="Remote"
+          validate={[ required ]}
           component={Select}
         />
         <Field
           name="salaryMin"
           label="Salary Min"
+          validate={[ required ]}
           component={Currency}
         />
         <Field
           name="salaryMax"
           label="Salary Max"
+          validate={[ required ]}
           component={Currency}
         />
         <Field
           name="submitButton"
           buttonText="Review"
+          validate={[ required ]}
           component={SubmitButton}
         />
       </FormWrapper>

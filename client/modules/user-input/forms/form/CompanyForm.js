@@ -12,7 +12,7 @@ import {
   required,
   phoneNumber,
 } from '../../validation';
-import { createCompany } from '../../../jobs/ducks'
+import { createCompany } from '../../../create/company/ducks'
 
 const parsePhone = value => value.toString().replace(/\D/g, '');
 

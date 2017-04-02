@@ -6,6 +6,6 @@ describe('[Utility] authRedirect', () => {
   });
 
   it('should a signup next path if no signup path matches', () => {
-    expect(authRedirect('/jobs/new')).toEqual('/signup?next=/jobs/new');
+    expect(authRedirect('/create/job')).toEqual('/signup?next=/create/job');
   });
 });

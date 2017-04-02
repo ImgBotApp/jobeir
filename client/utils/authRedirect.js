@@ -6,7 +6,7 @@
 
 export const authRedirect = redirectPathname => {
   const signupPaths = [
-    '/jobs/new',
+    '/create/job',
   ];
 
   return signupPaths.includes(redirectPathname)

@@ -31,7 +31,7 @@ class PrimaryNavLinks extends Component {
   render() {
     return (
       <PrimaryNavLinksContainer>
-        <NavLink to="/jobs/new">Post Job</NavLink>
+        <NavLink to="/create/job">Post Job</NavLink>
         <NavLink onClick={this.handleSignUpClick}>Sign Up</NavLink>
         {
           this.props.isAuthenticated

@@ -1,5 +1,5 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
-import { fetchApi } from '../../../utils/api';
+import { fetchApi } from '../../../../utils/api';
 import {
   CREATE_COMPANY_REQUEST,
   CREATE_COMPANY_SUCCESS,
