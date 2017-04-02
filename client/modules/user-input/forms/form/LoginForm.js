@@ -61,7 +61,7 @@ class LoginForm extends Component {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: state.session.auth,
 });
 
 LoginForm = reduxForm({

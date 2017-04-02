@@ -7,7 +7,13 @@ import { reducer as form } from 'redux-form';
 
 import auth from '../../modules/auth/ducks';
 import modal from '../../modules/modal/ducks';
-import jobs from '../../modules/jobs/ducks';
+import company from '../../modules/jobs/ducks';
+import user from '../../modules/user/ducks';
+
+const session = combineReducers({
+  auth,
+  user
+});
 
 function intl(state, action) {
   return {
@@ -16,11 +22,11 @@ function intl(state, action) {
 }
 
 const rootReducer = combineReducers({
-  auth,
+  company,
   form,
   intl,
-  jobs,
   modal,
+  session,
 });
 
 export default rootReducer;

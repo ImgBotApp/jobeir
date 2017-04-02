@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../ducks';
 import AuthLoading from '../components/AuthLoading';
+import UserWrapper from '../../user/containers/UserWrapper';
 
 export const AuthWrapper = WrappedComponent => {
   class AuthenticatedComponent extends Component {
@@ -47,7 +48,7 @@ export const AuthWrapper = WrappedComponent => {
   }
 
   const mapStateToProps = state => ({
-    auth: state.auth,
+    auth: state.session.auth,
   });
 
   return connect(mapStateToProps)(AuthenticatedComponent);

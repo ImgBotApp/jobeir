@@ -1,4 +1,4 @@
-import JobPosting from '../models/post';
+import Job from '../models/Job';
 import cuid from 'cuid';
 import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
@@ -10,7 +10,7 @@ import sanitizeHtml from 'sanitize-html';
  * @returns void
  */
 export function getJobPostings(req, res) {
-  Post.find().sort('-dateAdded').exec((err, posts) => {
+  Job.find().sort('-dateAdded').exec((err, posts) => {
     if (err) {
       res.status(500).send(err);
     }
@@ -29,16 +29,16 @@ export function addJobPosting(req, res) {
     res.status(403).end();
   }
 
-  const newPost = new Post(req.body.post);
+  const newJob = new Job(req.body.post);
 
   // Let's sanitize inputs
-  newPost.title = sanitizeHtml(newPost.title);
-  newPost.name = sanitizeHtml(newPost.name);
-  newPost.content = sanitizeHtml(newPost.content);
+  newJob.title = sanitizeHtml(newJob.title);
+  newJob.name = sanitizeHtml(newJob.name);
+  newJob.content = sanitizeHtml(newJob.content);
 
-  newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
-  newPost.cuid = cuid();
-  newPost.save((err, saved) => {
+  newJob.slug = slug(newJob.title.toLowerCase(), { lowercase: true });
+  newJob.cuid = cuid();
+  newJob.save((err, saved) => {
     if (err) {
       res.status(500).send(err);
     }
@@ -53,7 +53,7 @@ export function addJobPosting(req, res) {
  * @returns void
  */
 export function getJobPosting(req, res) {
-  Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
+  Job.findOne({ cuid: req.params.cuid }).exec((err, post) => {
     if (err) {
       res.status(500).send(err);
     }
@@ -68,7 +68,7 @@ export function getJobPosting(req, res) {
  * @returns void
  */
 export function deleteJobPosting(req, res) {
-  Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
+  Job.findOne({ cuid: req.params.cuid }).exec((err, post) => {
     if (err) {
       res.status(500).send(err);
     }

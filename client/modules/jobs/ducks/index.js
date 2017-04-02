@@ -2,6 +2,10 @@ export const CREATE_COMPANY_REQUEST = 'CREATE_COMPANY_REQUEST';
 export const CREATE_COMPANY_SUCCESS = 'CREATE_COMPANY_SUCCESS';
 export const CREATE_COMPANY_FAILURE = 'CREATE_COMPANY_FAILURE';
 
+export const CREATE_JOB_REQUEST = 'CREATE_JOB_REQUEST';
+export const CREATE_JOB_SUCCESS = 'CREATE_JOB_SUCCESS';
+export const CREATE_JOB_FAILURE = 'CREATE_JOB_FAILURE';
+
 export const initialState = {
   isLoading: false,
   errors: [],
@@ -16,7 +20,7 @@ export default (state = initialState, action) => {
     case CREATE_COMPANY_SUCCESS:
       return Object.assign({}, state, {
         isLoading: false,
-        ...action.payload.data,
+        details: action.payload.data.company,
       });
     case CREATE_COMPANY_FAILURE:
       return Object.assign({}, state, {

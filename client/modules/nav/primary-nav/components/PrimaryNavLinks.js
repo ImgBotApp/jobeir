@@ -44,7 +44,7 @@ class PrimaryNavLinks extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  isAuthenticated: state.session.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps)(PrimaryNavLinks);

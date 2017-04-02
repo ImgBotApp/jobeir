@@ -13,6 +13,7 @@ const Company = new Schema({
   website: { type: String },
   product: { type: String },
   location: { type: String },
+  phone: { type: Number },
 });
 
 export default mongoose.model('Company', Company);

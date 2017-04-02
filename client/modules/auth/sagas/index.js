@@ -92,7 +92,7 @@ function* signupAndAuthUser(action) {
   }
 }
 
-export function* user() {
+export function* auth() {
   yield takeEvery(AUTH_REQUEST, authUser);
   yield takeEvery(SIGNUP_REQUEST, signupAndAuthUser);
   yield takeEvery(LOGIN_REQUEST, loginUser);

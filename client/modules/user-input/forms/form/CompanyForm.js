@@ -32,7 +32,8 @@ class CompanyForm extends Component {
       <FormWrapper
         handleSubmit={this.props.handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={this.props.jobs.errors}
+        formErrors={this.props.company.errors}
+        theme="marble"
       >
         <Field
           name="name"
@@ -84,7 +85,7 @@ class CompanyForm extends Component {
 };
 
 const mapStateToProps = state => ({
-  jobs: state.jobs,
+  company: state.company,
 });
 
 CompanyForm = reduxForm({

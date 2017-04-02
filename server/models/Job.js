@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
-const JobPosting = new Schema({
+const Job = new Schema({
   title: { type: String },
   company: {
     type: String,
@@ -24,4 +24,4 @@ const JobPosting = new Schema({
   skills: { type: String },
 });
 
-export default mongoose.model('JobPosting', JobPosting);
+export default mongoose.model('Job', Job);

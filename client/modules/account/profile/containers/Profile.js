@@ -1,6 +1,6 @@
 import React from 'react';
-import AuthWrapper from '../../../auth/containers/AuthWrapper';
+import UserWrapper from '../../../user/containers/UserWrapper';
 
 const Profile = () => <div>Profile</div>;
 
-export default AuthWrapper(Profile);
+export default UserWrapper(Profile);

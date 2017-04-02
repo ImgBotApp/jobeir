@@ -9,11 +9,17 @@ import serverConfig from '../config/config';
  * @returns void
  */
 export function getUsers(req, res) {
-  User.find().sort('-dateAdded').exec((err, posts) => {
+  User.find().sort('-dateAdded').exec((err, user) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.json({ posts });
+
+    res
+      .status(200)
+      .send({
+        data: { user },
+        errors: [],
+      });
   });
 }
 
@@ -28,7 +34,13 @@ export function getUser(req, res) {
     if (err) {
       res.status(500).send(err);
     }
-    res.json({ user });
+    
+    res
+      .status(200)
+      .send({
+        data: { user },
+        errors: [],
+      });
   });
 }
 

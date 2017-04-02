@@ -36,6 +36,7 @@ export function addCompany(req, res) {
   newCompany.website = sanitizeHtml(newCompany.website);
   newCompany.product = sanitizeHtml(newCompany.product);
   newCompany.location = sanitizeHtml(newCompany.location);
+  newCompany.phone = sanitizeHtml(newCompany.phone);
 
   newCompany.slug = slug(newCompany.name.toLowerCase(), { lowercase: true });
   newCompany.cuid = cuid();
@@ -55,7 +56,7 @@ export function addCompany(req, res) {
       res
         .status(200)
         .send({
-          data: { comany: saved },
+          data: { company: saved },
           errors: []
         });
     }
@@ -69,7 +70,9 @@ export function addCompany(req, res) {
  * @returns void
  */
 export function getCompany(req, res) {
+  console.log(req.params.name);
   Company.findOne({ name: req.params.name }).exec((err, company) => {
+    console.log(company);
     if (err) {
       res.status(500).send(err);
     }
