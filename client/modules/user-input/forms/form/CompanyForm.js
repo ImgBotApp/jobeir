@@ -24,7 +24,11 @@ class CompanyForm extends Component {
   }
 
   formSubmit(data) {
-    this.props.dispatch(createCompany(data));
+    const { dispatch, id } = this.props;
+    // adding the user id to the data;
+    const body = { ...data, id };
+    
+    dispatch(createCompany(body));
   }
 
   render() {
@@ -86,6 +90,7 @@ class CompanyForm extends Component {
 
 const mapStateToProps = state => ({
   company: state.company,
+  id: state.session.user._id,
 });
 
 CompanyForm = reduxForm({

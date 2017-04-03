@@ -55,12 +55,7 @@ export default (state = initialState, action) => {
         errors: action.errors.errors,
       });
     case LOGOUT_SUCCESS:
-      return Object.assign({}, state, {
-        isAuthenticating: false,
-        isAuthenticated: false,
-        token: '',
-        errors: [],
-      });
+      return Object.assign({}, state, initialState);
     default:
       return state
   }

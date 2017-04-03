@@ -1,4 +1,5 @@
 import Company from '../models/Company';
+import User from '../models/User';
 import cuid from 'cuid';
 import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
@@ -40,6 +41,30 @@ export function addCompany(req, res) {
 
   newCompany.slug = slug(newCompany.name.toLowerCase(), { lowercase: true });
   newCompany.cuid = cuid();
+
+  // Add the company to the current user
+  User.findOne({ _id: req.body.id }, function(err, user) {
+    if (err) throw err;
+
+    user.companies.created.push({
+      name: req.body.name,
+      date: new Date(),
+    });
+
+    user.save(function (err) {
+      if (err) {
+        res
+          .status(500)
+          .send({
+            data: {},
+            errors: [{
+              error: "INTERNAL_SERVER_ERROR",
+              message:`There was an error creating the company ${req.body.name}`
+            }],
+          })
+      }
+    });
+  });
   
   newCompany.save((err, saved) => {
     if (err) {
@@ -70,9 +95,7 @@ export function addCompany(req, res) {
  * @returns void
  */
 export function getCompany(req, res) {
-  console.log(req.params.name);
   Company.findOne({ name: req.params.name }).exec((err, company) => {
-    console.log(company);
     if (err) {
       res.status(500).send(err);
     }

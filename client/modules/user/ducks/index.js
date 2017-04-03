@@ -4,10 +4,13 @@ export const GET_USER_FAILURE = 'GET_USER_FAILURE';
 
 import { AUTH_SUCCESS } from '../../auth/ducks';
 
-import { CREATE_COMPANY_SUCCESS } from '../../create/ducks';
+import { CREATE_COMPANY_SUCCESS } from '../../create/company/ducks';
 
 export const initialState = {
-  company: '',
+  companies: {
+    created: [],
+    joined: [],
+  },
   isFetching: false,
   isLoaded: false,
   errors: [],
@@ -37,7 +40,7 @@ export default (state = initialState, action) => {
       });
     case CREATE_COMPANY_SUCCESS:
       return Object.assign({}, state, {
-        company: action.payload.data.company.name,
+        companies: action.payload.data.company.name,
       });
     default:
       return state

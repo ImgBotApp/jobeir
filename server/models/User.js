@@ -33,8 +33,23 @@ const User = new Schema({
   lastName: {
     type: String,
   },
-  company: {
-    type: String,
+  companies: {
+    created: [{
+      name: {
+        type: String
+      },
+      date: {
+        type: Date,
+      }
+    }],
+    joined: [{
+      name: {
+        type: String
+      },
+      date: {
+        type: Date,
+      }
+    }]
   }
 });
 
