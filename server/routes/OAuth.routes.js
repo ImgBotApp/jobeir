@@ -12,7 +12,7 @@ router.get('/auth/google',
 router.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    const token = jwt.sign(req.user, serverConfig.jwt);
+    const token = jwt.sign(req.user._id, serverConfig.jwt);
     
     res.cookie('SID', token).redirect('/account/profile');
   });
@@ -24,7 +24,7 @@ router.get('/auth/facebook',
 router.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    const token = jwt.sign(req.user, serverConfig.jwt);
+    const token = jwt.sign(req.user._id, serverConfig.jwt);
     
     res.cookie('SID', token).redirect('/account/profile');
   });
@@ -36,7 +36,7 @@ router.get('/auth/github',
 router.get('/auth/github/callback', 
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
-    const token = jwt.sign(req.user, serverConfig.jwt);
+    const token = jwt.sign(req.user._id, serverConfig.jwt);
     
     res.cookie('SID', token).redirect('/account/profile');
   });

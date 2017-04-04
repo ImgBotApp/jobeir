@@ -9,7 +9,7 @@ class StepRouter extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.user.company !== prevProps.user.company) {
+    if (this.props.user.companies.created.length !== prevProps.user.companies.created.length) {
       this.handleRouting();
     }
   }

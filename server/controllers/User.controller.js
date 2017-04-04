@@ -82,7 +82,6 @@ export function registerUser(req, res) {
         const token = jwt.sign(newUser, serverConfig.jwt);
 
         return res
-          .cookie('SID', token)
           .status(200)
           .send({
             data: {
@@ -121,12 +120,16 @@ export function loginUser(req, res) {
     } else {
       user.comparePassword(req.body.password, function(err, isMatch) {
         if (!err && isMatch) {
-          const token = jwt.sign(user, serverConfig.jwt);
+          const token = jwt.sign(user._id, serverConfig.jwt);
 
           res
             .status(200)
             .send({
-              data: { isAuthenticated: true, token },
+              data: {
+                isAuthenticated: true,
+                id: user._id,
+                token
+              },
               errors: []
             });
         } else {
