@@ -7,7 +7,7 @@ import {
   Select,
   Phone,
   SubmitButton
-} from '../../inputs/input/';
+} from '../../inputs/input';
 import {
   required,
   phoneNumber,
@@ -16,6 +16,15 @@ import { createCompany } from '../../../create/company/ducks'
 
 const parsePhone = value => value.toString().replace(/\D/g, '');
 
+const companySizeOptions = [
+  { name: 'How many emplooyes?', value: '' },
+  { name: '1 - 9', value: '1 - 9' },
+  { name: '10 - 49', value: '10 - 49' },
+  { name: '50 - 149', value: '50 - 149' },
+  { name: '150 - 499', value: '150 - 499' },
+  { name: '500 - 999', value: '500 - 999' },
+  { name: '1000 +', value: '1000 +' },
+];
 class CompanyForm extends Component {
   constructor(props) {
     super(props);
@@ -45,14 +54,13 @@ class CompanyForm extends Component {
           validate={[ required ]}
           component={Text}
         />
-        {
-          // <Field
-          //   name="companySize"
-          //   label="Company Size"
-          //   validate={[ required ]}
-          //   component={Select}
-          // />
-        }
+        <Field
+          name="companySize"
+          label="Company Size"
+          validate={[ required ]}
+          options={companySizeOptions}
+          component={Select}
+        />
         <Field
           name="product"
           label="Product"

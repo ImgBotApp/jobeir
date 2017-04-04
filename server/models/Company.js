@@ -10,6 +10,7 @@ const Company = new Schema({
     required: true
   },
   // logo: { type: String },
+  size: { type: String },
   website: { type: String },
   product: { type: String },
   location: { type: String },

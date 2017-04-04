@@ -3,18 +3,29 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
 import {
+  Checkbox,
   Currency,
   Phone,
   Text,
   Select,
   Textarea,
   SubmitButton
-} from '../../inputs/input/';
+} from '../../inputs/input';
 import {
   required,
 } from '../../validation';
-import { createJob } from '../../../create/job/ducks'
+import { createJob } from '../../../create/job/ducks';
 
+const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
+
+const jobTypes = [
+  { name: 'Full-time', value: 'FULL_TIME' },
+  { name: 'Part-time', value: 'PART_TIME' },
+  { name: 'Contractor', value: 'CONTRACTOR' },
+  { name: 'Freelance', value: 'FREELANCE' },
+  { name: 'Intern', value: 'INTERN' },
+  { name: 'Volunteer', value: 'VOLUNTEER' },
+];
 
 class JobForm extends Component {
   constructor(props) {
@@ -32,7 +43,8 @@ class JobForm extends Component {
       <FormWrapper
         handleSubmit={this.props.handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={this.props.auth.errors}
+        formErrors={this.props.job.errors}
+        theme="marble"
       >
         <Field
           name="title"
@@ -47,49 +59,40 @@ class JobForm extends Component {
           component={Textarea}
         />
         <Field
-          name="role"
-          label="Primary Role"
-          validate={[ required ]}
-          options={[]}
-          component={Select}
-        />
-        <Field
           name="type"
           label="Job Type"
           validate={[ required ]}
-          options={[]}
+          options={jobTypes}
           component={Select}
         />
         <Field
-          name="location"
+          name="locations"
           label="Locations"
           validate={[ required ]}
-          options={[]}
-          component={Select}
+          component={Text}
         />
         <Field
           name="remote"
           label="Remote"
-          validate={[ required ]}
-          options={[]}
-          component={Select}
+          component={Checkbox}
         />
         <Field
           name="salaryMin"
           label="Salary Min"
           validate={[ required ]}
+          parse={parseNumber}
           component={Currency}
         />
         <Field
           name="salaryMax"
           label="Salary Max"
           validate={[ required ]}
+          parse={parseNumber}
           component={Currency}
         />
         <Field
           name="submitButton"
           buttonText="Review"
-          validate={[ required ]}
           component={SubmitButton}
         />
       </FormWrapper>
@@ -98,6 +101,7 @@ class JobForm extends Component {
 };
 
 const mapStateToProps = state => ({
+  job: state.job,
   auth: state.session.auth,
 });
 

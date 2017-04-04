@@ -18,10 +18,7 @@ export const Select = props => {
         id={props.input.name}
         name={props.input.name}
       >
-        {
-          props.options.map(option => <option key={option.valie}>{option.value}</option>)
-        }
-        <option />
+        {props.options.map(option => <option key={option.value}>{option.name}</option>)}
       </SelectInput>
     </InputWrapper>
   );

@@ -1,3 +1,4 @@
+export { Checkbox } from './Checkbox';
 export { Currency } from './Currency';
 export { Email } from './Email';
 export { Password } from './Password';

@@ -25,7 +25,7 @@ export function getCompanies(req, res) {
  * @param res
  * @returns void
  */
-export function addCompany(req, res) {
+export function createCompany(req, res) {
   if (!req.body.name || !req.body.website || !req.body.product) {
     res.status(403).end();
   }
