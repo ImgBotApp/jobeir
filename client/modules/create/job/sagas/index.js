@@ -6,7 +6,7 @@ import {
   CREATE_JOB_FAILURE,
 } from '../ducks';
 
-export function* postJob(action) {
+export function* createJob(action) {
    try {
       const payload = yield call(fetchApi, 'POST', '/jobs', action.payload.data);
       yield put({type: CREATE_JOB_SUCCESS, payload});
@@ -16,5 +16,5 @@ export function* postJob(action) {
 }
 
 export function* job() {
-  yield takeEvery(CREATE_JOB_REQUEST, postJob);
+  yield takeEvery(CREATE_JOB_REQUEST, createJob);
 }

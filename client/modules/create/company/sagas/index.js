@@ -6,7 +6,7 @@ import {
   CREATE_COMPANY_FAILURE,
 } from '../ducks';
 
-export function* postCompany(action) {
+export function* createCompany(action) {
    try {
       const payload = yield call(fetchApi, 'POST', '/companies', action.payload.data);
       yield put({type: CREATE_COMPANY_SUCCESS, payload});
@@ -16,5 +16,5 @@ export function* postCompany(action) {
 }
 
 export function* company() {
-  yield takeEvery(CREATE_COMPANY_REQUEST, postCompany);
+  yield takeEvery(CREATE_COMPANY_REQUEST, createCompany);
 }
