@@ -1,3 +1,10 @@
+/**
+ * queryParams
+ * Utility used to return an object containing all the
+ * query params as key value pairs.
+ * For example, /?query=param would translate to
+ * { query: 'param' }
+ */
 export const queryParams = query => {
   if (!query) {
     return {};
