@@ -14,7 +14,7 @@ router.get('/auth/google/callback',
   function(req, res) {
     const token = jwt.sign(req.user._id, serverConfig.jwt);
     
-    res.cookie('SID', token).redirect('/account/profile');
+    res.cookie('SID', token).redirect('/dashboard');
   });
 
 // Facebook Auth
@@ -26,7 +26,7 @@ router.get('/auth/facebook/callback',
   function(req, res) {
     const token = jwt.sign(req.user._id, serverConfig.jwt);
     
-    res.cookie('SID', token).redirect('/account/profile');
+    res.cookie('SID', token).redirect('/dashboard');
   });
 
 // Github Auth
@@ -38,7 +38,7 @@ router.get('/auth/github/callback',
   function(req, res) {
     const token = jwt.sign(req.user._id, serverConfig.jwt);
     
-    res.cookie('SID', token).redirect('/account/profile');
+    res.cookie('SID', token).redirect('/dashboard');
   });
 
 export default router;
