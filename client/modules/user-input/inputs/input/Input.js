@@ -7,6 +7,7 @@ export const Input = styled.input`
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
   margin: ${props => props.theme.input.margin};
+  max-width: 320px;
   
   &:active,
   &:focus {

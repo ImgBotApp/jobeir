@@ -31,9 +31,9 @@ class StepRouter extends Component {
 
   render() {
     return (
-      <div>
+      <StepRouterContainer>
         {this.props.children}
-      </div>
+      </StepRouterContainer>
     );
   }
 };
@@ -43,3 +43,9 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(StepRouter);
+
+const StepRouterContainer = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+`;

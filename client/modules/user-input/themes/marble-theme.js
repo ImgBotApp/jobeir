@@ -21,5 +21,10 @@ export const marble = {
     marginBottom: '2rem',
     fontSize: '18px',
     color: '#fff',
+  },
+  label: {
+    display: 'block',
+    marginBottom: '6px',
+    fontSize: '18px', 
   }
 };

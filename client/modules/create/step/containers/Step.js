@@ -5,6 +5,9 @@ import UserWrapper from '../../../user/containers/UserWrapper';
 
 import StepRouter from './StepRouter';
 import StepForm from './StepForm';
+import StepHelp from './StepHelp';
+import StepSideBar from './StepSideBar';
+import StepBackground from '../components/StepBackground';
 
 /**
  * The process for posting a new job
@@ -15,8 +18,11 @@ import StepForm from './StepForm';
 const Step = props => {
   return (
     <StepContainer>
+      <StepBackground />
+      <StepSideBar />
       <StepRouter>
         <StepForm params={props.params} />
+        <StepHelp />
       </StepRouter>
     </StepContainer>
   );
@@ -26,5 +32,5 @@ export default UserWrapper(Step);
 
 const StepContainer = styled.div`
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 50px auto 0;
 `;

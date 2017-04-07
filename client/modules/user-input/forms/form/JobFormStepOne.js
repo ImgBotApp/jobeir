@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
+import FormHeader from '../components/FormHeader';
 import {
   Text,
   Textarea,
@@ -32,15 +33,18 @@ class JobFormStepOne extends Component {
         formErrors={job.errors}
         theme="marble"
       >
+        <FormHeader
+          text="Let's start with the basics"
+        />
         <Field
           name="title"
-          label="Job Title"
+          label="What's the job title?"
           validate={[ required ]}
           component={Text}
         />
         <Field
           name="description"
-          label="Description"
+          label="What are you looking for?"
           validate={[ required ]}
           component={Textarea}
         />

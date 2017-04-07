@@ -13,13 +13,13 @@ import JobForm from '../../../user-input/forms/form/JobForm';
 class StepForm extends Component {
   render() {
     return (
-      <div>
+      <StepFormContainer>
           {
             this.props.params.step === 'job'
               ? <JobForm />
               : <CompanyForm />
           }
-      </div>
+      </StepFormContainer>
     );
   }
 };
@@ -30,3 +30,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(StepForm);
 
+const StepFormContainer = styled.div`
+  width: 65%;
+`;
