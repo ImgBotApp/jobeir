@@ -17,6 +17,12 @@ export const FormWrapper = props => {
     theme = 'opal'
   } = props;
 
+  /**
+   * handleSubmit is passed to the FormWrapper which is just a generic
+   * submit function required by redux-form. The formSubmit function is
+   * the custom function we would like to fire when the user submits
+   * the form when clicking a button type submit
+   */
   return (
     <ThemeProvider theme={FormThemes[theme]}>
       <Form onSubmit={handleSubmit(formSubmit)}>

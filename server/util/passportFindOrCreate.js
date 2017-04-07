@@ -8,7 +8,6 @@ import User from '../models/User';
  * Otherwise, we create a new user and pass that to the callback
  */
 export function passportFindOrCreate(accessToken, refreshToken, profile, done) {
-  console.log(profile);
   User.findOne({
     email: profile.emails[0].value,
   }, function(err, user) {
