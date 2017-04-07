@@ -30,13 +30,19 @@ class PrimaryNavLinks extends Component {
 
   render() {
     return (
-      <PrimaryNavLinksContainer>
-        <NavLink to="/create/job">Post Job</NavLink>
-        <NavLink onClick={this.handleSignUpClick}>Sign Up</NavLink>
+      <PrimaryNavLinksContainer>        
         {
           this.props.isAuthenticated
-            ? <NavLink onClick={this.handleLogoutClick}>Log Out</NavLink>
-            : <NavLink to="/login">Log In</NavLink>
+            ? <NavLinkContainer>
+                <NavLink to="/create/job">Post Job</NavLink>
+                <NavLink to="/dashboard">Dashboard</NavLink>
+                <NavLink onClick={this.handleLogoutClick}>Log Out</NavLink>
+              </NavLinkContainer>
+            : <NavLinkContainer>
+                <NavLink to="/create/job">Post Job</NavLink>
+                <NavLink onClick={this.handleSignUpClick}>Sign Up</NavLink>
+                <NavLink to="/login">Log In</NavLink>
+              </NavLinkContainer>
         }
       </PrimaryNavLinksContainer>
     );
@@ -50,6 +56,10 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(PrimaryNavLinks);
 
 const PrimaryNavLinksContainer = styled.div`
+  display: flex;
+`;
+
+const NavLinkContainer = styled.div`
   display: flex;
 `;
 
