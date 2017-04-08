@@ -15,7 +15,7 @@ export const Email = props => {
         id={props.input.name}
         name={props.input.name}
         placeholder={props.placeholder}
-        style={{ borderColor: showError ? '#cc0726' : '' }}
+        showError={showError}
       />
     </InputWrapper>
   );

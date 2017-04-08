@@ -5,11 +5,12 @@ import FormWrapper from '../containers/FormWrapper';
 import FormHeader from '../components/FormHeader';
 import {
   Text,
-  Textarea,
+  Wysiwyg,
   SubmitButton
 } from '../../inputs/input';
 import {
   required,
+  wysiwygLength,
 } from '../../validation';
 
 class JobFormStepOne extends Component {
@@ -44,9 +45,9 @@ class JobFormStepOne extends Component {
         />
         <Field
           name="description"
-          label="What are you looking for?"
-          validate={[ required ]}
-          component={Textarea}
+          ui={{ maxWidth: '100%' }}
+          validate={[ required, wysiwygLength(50) ]}
+          component={Wysiwyg}
         />
         <Field
           name="submitButton"

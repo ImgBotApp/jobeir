@@ -3,11 +3,12 @@ import styled from 'styled-components';
 export const Input = styled.input`
   border-radius: ${props => props.theme.input.borderRadius};
   border: ${props => props.theme.input.border};
+  border-color: ${props => props.showError ? props.theme.error.color : ''};
   padding: ${props => props.theme.input.padding};
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
   margin: ${props => props.theme.input.margin};
-  max-width: 320px;
+  max-width: ${props => props.theme.input.maxWidth};
   
   &:active,
   &:focus {

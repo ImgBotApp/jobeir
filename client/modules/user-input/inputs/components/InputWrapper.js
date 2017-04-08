@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import InputLabel from './InputLabel';
 import InputError from './InputError';
 
@@ -9,12 +10,24 @@ import InputError from './InputError';
  */
 export const InputWrapper = props => {
   return (
-    <div>
+    <InputWrapperContainer ui={props.ui}>
       {props.label && <InputLabel {...props} />}
       {props.children}
       <InputError {...props} />
-    </div>
+    </InputWrapperContainer>
   );
 };
 
 export default InputWrapper;
+
+/**
+ * When adding a ui prop to the redux form Field it allows us
+ * to override the custom theme per form. Make sure you pass
+ * ui an object
+ */
+const InputWrapperContainer = styled.div`
+  max-width: ${props =>
+    props.ui && props.ui.maxWidth ||
+    props.theme.input.maxWidth
+  };
+`;

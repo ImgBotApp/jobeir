@@ -7,3 +7,4 @@ export { Select } from './Select';
 export { SubmitButton } from './SubmitButton';
 export { Text } from './Text';
 export { Textarea } from './Textarea';
+export { Wysiwyg } from './Wysiwyg';

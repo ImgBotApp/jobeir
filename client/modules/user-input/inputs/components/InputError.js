@@ -21,7 +21,7 @@ export default InputError;
 
 const InputErrorContainer = styled.div`
   position: relative;
-  top: -1.1rem;
+  top: -1.15rem;
 `;
 
 const InputErrorRed = styled.div`
