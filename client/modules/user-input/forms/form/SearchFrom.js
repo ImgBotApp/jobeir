@@ -27,6 +27,7 @@ class SearchForm extends Component {
         handleSubmit={this.props.handleSubmit}
         formSubmit={this.formSubmit}
         formErrors={[]}
+        theme="opal"
       >
         <Field
           name="title"

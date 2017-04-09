@@ -30,6 +30,7 @@ const StepBackgroundRight = styled.div`
   position: fixed;
   max-width: 1280px;
   background: #fafafa;
+  border-left: 1px solid #eceaea;
   right: 0;
   bottom: 0;
   left: 60%;

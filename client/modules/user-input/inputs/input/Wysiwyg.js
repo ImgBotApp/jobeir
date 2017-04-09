@@ -29,7 +29,6 @@ export class Wysiwyg extends Component {
           <Editor
             {...this.props.input}
             toolbar={wysiwig}
-            placeholder="Job description..."
             ref={(editor) => { this.Editor = editor; }}
           />
         </EditorContainer>
@@ -41,7 +40,8 @@ export class Wysiwyg extends Component {
 const EditorContainer = styled.div`
   border-radius: 3px;
   border: 1px solid #babbbb;
-  padding: 10px;
+  padding: 18px;
   min-height: 300px;
+  margin: 0 auto 1rem;
   border-color: ${props => props.showError ? '#cc0726' : ''};
 `;

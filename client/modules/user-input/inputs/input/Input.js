@@ -12,7 +12,10 @@ export const Input = styled.input`
   
   &:active,
   &:focus {
-    border-color:  ${props => props.theme.input.activeBorderColor};
+    border-color: ${props => props.showError
+      ? props.theme.error.color
+      : props.theme.input.activeBorderColor
+    };
     outline: none;
   }
 

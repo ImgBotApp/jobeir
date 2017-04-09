@@ -7,8 +7,8 @@ const PrimaryNavLogo = () => <Logo to="/"></Logo>;
 export default PrimaryNavLogo;
 
 const Logo = styled(Link)`
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: ${props => props.theme.red};
 `;

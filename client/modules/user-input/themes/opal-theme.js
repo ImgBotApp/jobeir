@@ -21,5 +21,13 @@ export const opal = {
     marginBottom: '',
     fontSize: '',
     color: '',
+  },
+  error: {
+    color: '#cc0726',
+  },
+  label: {
+    display: 'block',
+    marginBottom: '6px',
+    fontSize: '18px', 
   }
 };

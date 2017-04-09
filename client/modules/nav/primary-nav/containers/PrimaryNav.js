@@ -27,5 +27,5 @@ const Navigation = styled.nav`
   flex: 1;
   padding: 0 20px;
   background: #fff;
-  border-bottom: 1px solid ${props => props.isAuthenticated ? '#DBDBDB' : 'transparent'};
+  border-bottom: 1px solid ${props => props.isAuthenticated ? '#eceaea' : 'transparent'};
 `;

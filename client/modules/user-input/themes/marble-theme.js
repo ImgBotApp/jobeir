@@ -1,6 +1,6 @@
 export const marble = {
   button: {
-    height: '56px',
+    height: '50px',
     borderRadius: '3px',
     outline: 'none',
     border: 'none',
@@ -16,7 +16,6 @@ export const marble = {
     padding: '18px',
     fontSize: '16px',
     width: '100%',
-    maxWidth: '320px',
     margin: '0 auto 1rem',
     activeBorderColor: '#484848',
     ph: {
