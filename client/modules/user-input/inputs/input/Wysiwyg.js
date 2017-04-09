@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import InputWrapper from '../components/InputWrapper';
 import { Editor } from 'react-draft-wysiwyg';
 import styled from 'styled-components';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { wysiwig } from '../../themes/wysiwig-theme';
 
+/**
+ * Wysiwyg
+ * Based on Draft JS, a third party react component pulled in to
+ * be used to allow users to write a company description within
+ * the job and company process.
+ */
 export class Wysiwyg extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +18,10 @@ export class Wysiwyg extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  /**
+   * Used to fake making the Editor seem bigger than it is because
+   * the styling does not play very well with styled-components
+   */
   handleClick() {
     this.Editor.focusEditor();
   }

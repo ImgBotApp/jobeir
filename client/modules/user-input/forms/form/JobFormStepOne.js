@@ -4,14 +4,14 @@ import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
 import FormHeader from '../components/FormHeader';
 import {
+  required,
+  wysiwygLength,
+} from '../../validation';
+import {
   Text,
   Wysiwyg,
   SubmitButton
 } from '../../inputs/input';
-import {
-  required,
-  wysiwygLength,
-} from '../../validation';
 
 class JobFormStepOne extends Component {
   constructor(props) {

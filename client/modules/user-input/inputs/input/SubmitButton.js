@@ -22,6 +22,7 @@ const Button = styled.button`
   background: ${props => props.theme.button.background};
   margin-bottom: ${props => props.theme.button.marginBottom};
   max-width: 200px;
+  cursor: pointer;
 
   &:active,
   &:focus,
