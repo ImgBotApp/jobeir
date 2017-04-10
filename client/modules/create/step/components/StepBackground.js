@@ -19,7 +19,7 @@ const StepBackgroundContainer = styled.div`
 const StepBackgroundLeft = styled.div`
   position: fixed;
   background: #fff;
-  right: 40%;
+  right: 45%;
   bottom: 0;
   left: 0%;
   top: 0;
@@ -33,7 +33,7 @@ const StepBackgroundRight = styled.div`
   border-left: 1px solid #eceaea;
   right: 0;
   bottom: 0;
-  left: 60%;
+  left: 55%;
   top: 0;
   z-index: -1;
 `;

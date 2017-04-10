@@ -1,3 +1,4 @@
+export { BackButton } from './BackButton';
 export { Checkbox } from './Checkbox';
 export { Currency } from './Currency';
 export { Email } from './Email';

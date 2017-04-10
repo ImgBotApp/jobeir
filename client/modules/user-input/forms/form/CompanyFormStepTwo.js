@@ -4,6 +4,7 @@ import { Field, formValueSelector, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
 import FormHeader from '../components/FormHeader';
 import {
+  BackButton,
   Email,
   Phone,
   Text,
@@ -48,6 +49,7 @@ class CompanyFormStepTwo extends Component {
         <Field
           name="phone"
           label="Phone"
+          placeholder="(604) 843-5555"
           validate={[ required, phoneNumber ]}
           parse={parsePhone}
           component={Phone}
@@ -64,7 +66,10 @@ class CompanyFormStepTwo extends Component {
           validate={[ email, required ]}
           component={Email}
         />
-        <button type="button" className="previous" onClick={this.props.previousPage}>Previous</button>
+        <BackButton
+          onClick={this.props.previousPage}
+          buttonText="Back"
+        />
         <Field
           name="submitButton"
           buttonText="Next"

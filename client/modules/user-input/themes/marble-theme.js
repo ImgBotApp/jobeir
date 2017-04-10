@@ -19,7 +19,7 @@ export const marble = {
     margin: '0 auto 1rem',
     activeBorderColor: '#484848',
     ph: {
-      color: '#76767',
+      color: '#afafaf',
     },
   },
   error: {
@@ -40,7 +40,7 @@ export const marble = {
     margin: '0 auto 1rem',
     activeBorderColor: '#484848',
     ph: {
-      color: '#76767',
+      color: '#afafaf',
     },
   },
   textarea: {

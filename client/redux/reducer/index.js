@@ -3,7 +3,9 @@
  */
  
 import { combineReducers } from 'redux';
+
 import { reducer as form } from 'redux-form';
+import { routerReducer as routing } from 'react-router-redux';
 
 import auth from '../../modules/auth/ducks';
 import company from '../../modules/create/company/ducks';
@@ -28,6 +30,7 @@ const rootReducer = combineReducers({
   form,
   intl,
   modal,
+  routing,
   session,
 });
 

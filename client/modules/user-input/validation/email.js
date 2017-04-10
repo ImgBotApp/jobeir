@@ -1,5 +1,9 @@
 import validator from 'validator';
 
 export default function(value) {
-  return validator.isEmail(value) ? '' : 'Invalid email address';
+  if (!value) {
+    return '';
+  }
+  
+  return validator.isEmail(value.toString()) ? '' : 'Invalid email address';
 }

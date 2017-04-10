@@ -4,6 +4,9 @@ import MaskedInput from 'react-text-mask';
 import InputWrapper from '../components/InputWrapper';
 
 export const Phone = props => {
+  const { meta } = props;
+  const showError = meta.touched && meta.error && meta.invalid;
+
   return (
     <InputWrapper {...props}>
       <StyledMaskedInput
@@ -12,7 +15,7 @@ export const Phone = props => {
         id={props.input.name}
         name={props.input.name}
         placeholder={props.placeholder}
-        guide={false}
+        showError={showError}
         mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
       />
     </InputWrapper>
@@ -23,6 +26,7 @@ export const Phone = props => {
 const StyledMaskedInput = styled(MaskedInput)`
   border-radius: ${props => props.theme.input.borderRadius};
   border: ${props => props.theme.input.border};
+  border-color: ${props => props.showError ? props.theme.error.color : ''};
   padding: ${props => props.theme.input.padding};
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
@@ -30,7 +34,7 @@ const StyledMaskedInput = styled(MaskedInput)`
 
   &:active,
   &:focus {
-    border-color:  ${props => props.theme.input.activeBorderColor};
+    border-color:  ${props => props.showError ? props.theme.error.color : props.theme.input.activeBorderColor};
     outline: none;
   }
 

@@ -63,7 +63,7 @@ class JobFormStepTwo extends Component {
           label="Remote"
           component={Checkbox}
         />
-        <button type="button" className="previous" onClick={this.props.previousPage}>Previous</button>
+        <button type="button" className="previous" onClick={this.props.previousPage}>back</button>
         <Field
           name="submitButton"
           buttonText="Next"

@@ -53,7 +53,7 @@ class JobFormStepThree extends Component {
           parse={parseNumber}
           component={Currency}
         />
-        <button type="button" className="previous" onClick={this.props.previousPage}>Previous</button>
+        <button type="button" className="previous" onClick={this.props.previousPage}>back</button>
         <Field
           name="submitButton"
           buttonText="Creat Job"
