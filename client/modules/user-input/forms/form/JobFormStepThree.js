@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
+import FormHeader from '../components/FormHeader';
+import FormFooter from '../components/FormFooter';
 import {
+  BackButton,
   Checkbox,
   Currency,
   Phone,
@@ -30,7 +33,11 @@ class JobFormStepThree extends Component {
   }
 
   render() {
-    const { handleSubmit, job } = this.props;
+    const {
+      handleSubmit,
+      job,
+      previousPage,
+    } = this.props;
 
     return (
       <FormWrapper
@@ -39,6 +46,9 @@ class JobFormStepThree extends Component {
         formErrors={job.errors}
         theme="marble"
       >
+        <FormHeader
+          text="What's the compensation?"
+        />
         <Field
           name="salaryMin"
           label="Salary Min"
@@ -53,12 +63,17 @@ class JobFormStepThree extends Component {
           parse={parseNumber}
           component={Currency}
         />
-        <button type="button" className="previous" onClick={this.props.previousPage}>back</button>
-        <Field
-          name="submitButton"
-          buttonText="Creat Job"
-          component={SubmitButton}
-        />
+        <FormFooter>
+          <BackButton
+            action={previousPage}
+            buttonText="Back"
+          />
+          <Field
+            name="submitButton"
+            buttonText="Next"
+            component={SubmitButton}
+          />
+        </FormFooter>
       </FormWrapper>
     );
   }

@@ -13,7 +13,7 @@ import {
 } from '../../inputs/input';
 
 const companySizeOptions = [
-  { name: 'Selet size', disabled: true, value: '' },
+  { name: 'Select size', disabled: true, value: '' },
   { name: '1 - 9', value: '1 - 9' },
   { name: '10 - 49', value: '10 - 49' },
   { name: '50 - 149', value: '50 - 149' },

@@ -5,8 +5,9 @@ import FormWrapper from '../containers/FormWrapper';
 import FormHeader from '../components/FormHeader';
 import FormFooter from '../components/FormFooter';
 import {
+  BackButton,
+  SubmitButton,
   Text,
-  SubmitButton
 } from '../../inputs/input';
 import { required } from '../../validation';
 import { createCompany } from '../../../create/company/ducks'

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
 import FormHeader from '../components/FormHeader';
+import FormFooter from '../components/FormFooter';
 import {
   required,
   wysiwygLength,
@@ -25,7 +26,10 @@ class JobFormStepOne extends Component {
   }
 
   render() {
-    const { handleSubmit, job } = this.props;
+    const {
+      handleSubmit,
+      job,
+    } = this.props;
 
     return (
       <FormWrapper
@@ -35,7 +39,7 @@ class JobFormStepOne extends Component {
         theme="marble"
       >
         <FormHeader
-          text="Let's start with the basics"
+          text="Create a job"
         />
         <Field
           name="title"
@@ -49,11 +53,13 @@ class JobFormStepOne extends Component {
           validate={[ required, wysiwygLength(50) ]}
           component={Wysiwyg}
         />
-        <Field
-          name="submitButton"
-          buttonText="Next"
-          component={SubmitButton}
-        />
+        <FormFooter>
+          <Field
+            name="submitButton"
+            buttonText="Next"
+            component={SubmitButton}
+          />
+        </FormFooter>
       </FormWrapper>
     );
   }

@@ -2,28 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
+import FormHeader from '../components/FormHeader';
+import FormFooter from '../components/FormFooter';
+import { required } from '../../validation';
 import {
-  Checkbox,
+  BackButton,
+  Radio,
   Currency,
   Phone,
-  Text,
   Select,
+  SubmitButton,
   Textarea,
-  SubmitButton
+  Text,
 } from '../../inputs/input';
-import {
-  required,
-} from '../../validation';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 
 const jobTypes = [
+  { name: 'Select type', disabled: true, value: '' },
   { name: 'Full-time', value: 'FULL_TIME' },
   { name: 'Part-time', value: 'PART_TIME' },
   { name: 'Contractor', value: 'CONTRACTOR' },
   { name: 'Freelance', value: 'FREELANCE' },
   { name: 'Intern', value: 'INTERN' },
   { name: 'Volunteer', value: 'VOLUNTEER' },
+];
+
+const remoteOptions = [
+  { text: 'Yes', value: 'Yes' },
+  { text: 'No', value: 'No' },
 ];
 
 class JobFormStepTwo extends Component {
@@ -38,13 +45,22 @@ class JobFormStepTwo extends Component {
   }
 
   render() {
+    const {
+      handleSubmit,
+      job,
+      previousPage,
+    } = this.props;
+
     return (
       <FormWrapper
-        handleSubmit={this.props.handleSubmit}
+        handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={this.props.job.errors}
+        formErrors={job.errors}
         theme="marble"
       >
+        <FormHeader
+          text="What kind of job is it?"
+        />
         <Field
           name="type"
           label="Job Type"
@@ -60,15 +76,21 @@ class JobFormStepTwo extends Component {
         />
         <Field
           name="remote"
-          label="Remote"
-          component={Checkbox}
+          label="Is this a remote position?"
+          options={remoteOptions}
+          component={Radio}
         />
-        <button type="button" className="previous" onClick={this.props.previousPage}>back</button>
-        <Field
-          name="submitButton"
-          buttonText="Next"
-          component={SubmitButton}
-        />
+        <FormFooter>
+          <BackButton
+            action={previousPage}
+            buttonText="Back"
+          />
+          <Field
+            name="submitButton"
+            buttonText="Next"
+            component={SubmitButton}
+          />
+        </FormFooter>
       </FormWrapper>
     );
   }
