@@ -54,4 +54,20 @@ const EditorContainer = styled.div`
   min-height: 300px;
   margin: 0 auto 1rem;
   border-color: ${props => props.showError ? '#cc0726' : ''};
+
+  .rdw-editor-toolbar {
+    padding-bottom: 10px;
+  }
+
+  .rdw-editor-toolbar,
+  .rdw-inline-wrapper,
+  .rdw-list-wrapper {
+    display: flex;
+  }
+
+  .rdw-option-wrapper {
+    padding-right: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
 `;

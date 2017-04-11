@@ -26,6 +26,7 @@ export const Select = props => {
           id={props.input.name}
           name={props.input.name}
           showError={showError}
+          visited={meta.visited}
         >
           {
             props.options.map(option =>
@@ -63,6 +64,7 @@ const SelectInput = styled.select`
   width: ${props => props.theme.select.width};
   margin: ${props => props.theme.select.margin};
   max-width: ${props => props.theme.select.maxWidth};
+  color: ${props => props.visited ? '#484848' : '#989898'};
   
   &:active,
   &:focus {

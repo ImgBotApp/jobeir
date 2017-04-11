@@ -7,7 +7,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 export default function App(props) {
   const { store } = props;
-  console.log(store.getState());
   const history = syncHistoryWithStore(browserHistory, store)
 
   /**

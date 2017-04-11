@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
 import FormHeader from '../components/FormHeader';
+import FormFooter from '../components/FormFooter';
 import { required } from '../../validation';
 import {
   Select,
@@ -64,11 +65,13 @@ class CompanyFormStepOne extends Component {
           validate={[ required ]}
           component={Textarea}
         />
-        <Field
-          name="submitButton"
-          buttonText="Next"
-          component={SubmitButton}
-        />
+        <FormFooter>
+          <Field
+            name="submitButton"
+            buttonText="Next"
+            component={SubmitButton}
+          />
+        </FormFooter>
       </FormWrapper>
     );
   }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
 import FormHeader from '../components/FormHeader';
+import FormFooter from '../components/FormFooter';
 import {
   BackButton,
   Email,
@@ -31,9 +32,10 @@ class CompanyFormStepTwo extends Component {
 
   render() {
     const {
-      handleSubmit,
       company,
-      companyName
+      companyName,
+      handleSubmit,
+      previousPage,
     } = this.props;
 
     return (
@@ -66,15 +68,17 @@ class CompanyFormStepTwo extends Component {
           validate={[ email, required ]}
           component={Email}
         />
-        <BackButton
-          onClick={this.props.previousPage}
-          buttonText="Back"
-        />
-        <Field
-          name="submitButton"
-          buttonText="Next"
-          component={SubmitButton}
-        />
+        <FormFooter>
+          <BackButton
+            action={previousPage}
+            buttonText="Back"
+          />
+          <Field
+            name="submitButton"
+            buttonText="Next"
+            component={SubmitButton}
+          />
+        </FormFooter>
       </FormWrapper>
     );
   }

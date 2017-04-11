@@ -6,7 +6,6 @@ export const marble = {
     border: 'none',
     background: '#fb5032',
     width: '100%',
-    marginBottom: '2rem',
     fontSize: '18px',
     color: '#fff',
   },
