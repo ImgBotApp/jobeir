@@ -42,29 +42,41 @@ class CompanyFormStepThree extends Component {
         theme="marble"
       >
         <FormHeader
-          text="Where is your office located?"
+          text="Where's your office located?"
         />
         <Field
-          name="location"
-          label="Location"
+          name="country"
+          label="Country"
+          validate={[ required ]}
+          component={Text}
+        />
+        <Field
+          name="streetAddress"
+          label="Steet Address"
           validate={[ required ]}
           component={Text}
         />
         <Field
           name="location"
-          label="Location"
+          label="Apt, Suite, Bldg. (optional)"
           validate={[ required ]}
           component={Text}
         />
         <Field
-          name="location"
-          label="Location"
+          name="city"
+          label="City"
           validate={[ required ]}
           component={Text}
         />
         <Field
-          name="location"
-          label="Location"
+          name="province"
+          label="Province"
+          validate={[ required ]}
+          component={Text}
+        />
+        <Field
+          name="postalCode"
+          label="Postal Code"
           validate={[ required ]}
           component={Text}
         />
