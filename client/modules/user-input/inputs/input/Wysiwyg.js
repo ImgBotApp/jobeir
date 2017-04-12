@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import InputWrapper from '../components/InputWrapper';
 import { Editor } from 'react-draft-wysiwyg';
 import styled from 'styled-components';
-// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { wysiwig } from '../../themes/wysiwig-theme';
 
 /**

@@ -7,11 +7,18 @@ import FormFooter from '../components/FormFooter';
 import FormRow from '../components/FormRow';
 import {
   BackButton,
+  SelectSearch,
   SubmitButton,
   Text,
 } from '../../inputs/input';
 import { required } from '../../validation';
 import { createCompany } from '../../../create/company/ducks'
+
+const options = [
+  { value: 'one', label: 'One' },
+  { value: 'two', label: 'Two' },
+  { value: 'two', label: 'Two' }
+];
 
 class CompanyFormStepThree extends Component {
   constructor(props) {
@@ -48,8 +55,9 @@ class CompanyFormStepThree extends Component {
         <Field
           name="country"
           label="Country"
+          options={options}
           validate={[ required ]}
-          component={Text}
+          component={SelectSearch}
         />
         <Field
           name="streetAddress"

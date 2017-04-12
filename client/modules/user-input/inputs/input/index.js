@@ -6,6 +6,7 @@ export { Password } from './Password';
 export { Phone } from './Phone';
 export { Radio } from './Radio';
 export { Select } from './Select';
+export { SelectSearch } from './SelectSearch';
 export { SubmitButton } from './SubmitButton';
 export { Text } from './Text';
 export { Textarea } from './Textarea';
