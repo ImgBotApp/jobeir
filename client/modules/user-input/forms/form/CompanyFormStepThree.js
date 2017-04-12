@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
 import FormHeader from '../components/FormHeader';
 import FormFooter from '../components/FormFooter';
+import FormRow from '../components/FormRow';
 import {
   BackButton,
   SubmitButton,
@@ -62,24 +63,28 @@ class CompanyFormStepThree extends Component {
           validate={[ required ]}
           component={Text}
         />
-        <Field
-          name="city"
-          label="City"
-          validate={[ required ]}
-          component={Text}
-        />
-        <Field
-          name="province"
-          label="Province"
-          validate={[ required ]}
-          component={Text}
-        />
-        <Field
-          name="postalCode"
-          label="Postal Code"
-          validate={[ required ]}
-          component={Text}
-        />
+        <FormRow>
+          <Field
+            name="city"
+            label="City"
+            validate={[ required ]}
+            component={Text}
+          />
+          <Field
+            name="province"
+            label="Province"
+            validate={[ required ]}
+            component={Text}
+          />
+        </FormRow>
+        <FormRow>
+          <Field
+            name="postalCode"
+            label="Postal Code"
+            validate={[ required ]}
+            component={Text}
+          />
+        </FormRow>
         <FormFooter>
           <BackButton
             action={previousPage}
