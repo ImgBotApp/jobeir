@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import FormWrapper from '../containers/FormWrapper';
-import FormHeader from '../components/FormHeader';
-import FormFooter from '../components/FormFooter';
+import FormWrapper from '../../containers/FormWrapper';
+import FormHeader from '../../components/FormHeader';
+import FormFooter from '../../components/FormFooter';
 import {
   required,
   wysiwygLength,
-} from '../../validation';
+} from '../../../validation';
 import {
   Text,
   Wysiwyg,
   SubmitButton
-} from '../../inputs/input';
+} from '../../../inputs/input';
 
 class JobFormStepOne extends Component {
   constructor(props) {

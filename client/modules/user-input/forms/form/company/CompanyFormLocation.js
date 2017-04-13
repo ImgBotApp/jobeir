@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import FormWrapper from '../containers/FormWrapper';
-import FormHeader from '../components/FormHeader';
-import FormFooter from '../components/FormFooter';
-import FormRow from '../components/FormRow';
+import FormWrapper from '../../containers/FormWrapper';
+import FormHeader from '../../components/FormHeader';
+import FormFooter from '../../components/FormFooter';
+import FormRow from '../../components/FormRow';
 import {
   BackButton,
   SelectSearch,
   SubmitButton,
   Text,
-} from '../../inputs/input';
-import { required } from '../../validation';
-import { createCompany } from '../../../create/company/ducks'
+} from '../../../inputs/input';
+import { required } from '../../../validation';
+import { createCompany } from '../../../../create/company/ducks'
 
 const options = [
   { value: 'one', label: 'One' },
@@ -39,7 +39,7 @@ class CompanyFormStepThree extends Component {
     const {
       company,
       handleSubmit,
-      previousPage,
+      prevPage,
     } = this.props;
 
     return (
@@ -55,6 +55,7 @@ class CompanyFormStepThree extends Component {
         <Field
           name="country"
           label="Country"
+          placeholder="Select Country"
           options={options}
           validate={[ required ]}
           component={SelectSearch}
@@ -95,7 +96,7 @@ class CompanyFormStepThree extends Component {
         </FormRow>
         <FormFooter>
           <BackButton
-            action={previousPage}
+            action={prevPage}
             buttonText="Back"
           />
           <Field

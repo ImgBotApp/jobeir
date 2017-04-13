@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
-import FormWrapper from '../containers/FormWrapper';
-import FormHeader from '../components/FormHeader';
-import FormFooter from '../components/FormFooter';
-import { required } from '../../validation';
+import FormWrapper from '../../containers/FormWrapper';
+import FormHeader from '../../components/FormHeader';
+import FormFooter from '../../components/FormFooter';
+import { required } from '../../../validation';
 import {
   Select,
   SubmitButton,
   Text,
   Textarea,
-} from '../../inputs/input';
+} from '../../../inputs/input';
 
 const companySizeOptions = [
   { name: 'Select size', disabled: true, value: '' },
@@ -34,7 +35,10 @@ class CompanyFormStepOne extends Component {
   }
 
   render() {
-    const { handleSubmit, company } = this.props;
+    const {
+      handleSubmit,
+      company
+    } = this.props;
 
     return (
       <FormWrapper

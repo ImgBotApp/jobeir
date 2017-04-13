@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import FormWrapper from '../containers/FormWrapper';
-import FormHeader from '../components/FormHeader';
-import FormFooter from '../components/FormFooter';
+import FormWrapper from '../../containers/FormWrapper';
+import FormHeader from '../../components/FormHeader';
+import FormFooter from '../../components/FormFooter';
 import {
   BackButton,
   Checkbox,
@@ -13,11 +13,11 @@ import {
   Select,
   Textarea,
   SubmitButton
-} from '../../inputs/input';
+} from '../../../inputs/input';
 import {
   required,
-} from '../../validation';
-import { createJob } from '../../../create/job/ducks';
+} from '../../../validation';
+import { createJob } from '../../../../create/job/ducks';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 

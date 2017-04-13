@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import CompanyForm from '../../../user-input/forms/form/CompanyForm';
-import JobForm from '../../../user-input/forms/form/JobForm';
+import CompanyForm from '../../../user-input/forms/form/company/CompanyForm';
+import JobForm from '../../../user-input/forms/form/job/JobForm';
 
 /**
  * The process for posting a new job
@@ -14,11 +14,11 @@ class StepForm extends Component {
   render() {
     return (
       <StepFormContainer>
-          {
-            this.props.params.step === 'job'
-              ? <JobForm />
-              : <CompanyForm />
-          }
+        {
+          this.props.params.create === 'job'
+            ? <JobForm />
+            : <CompanyForm />
+        }
       </StepFormContainer>
     );
   }

@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
-import FormWrapper from '../containers/FormWrapper';
-import FormHeader from '../components/FormHeader';
-import FormFooter from '../components/FormFooter';
+import FormWrapper from '../../containers/FormWrapper';
+import FormHeader from '../../components/FormHeader';
+import FormFooter from '../../components/FormFooter';
 import {
   BackButton,
   Email,
   Phone,
   Text,
   SubmitButton
-} from '../../inputs/input';
+} from '../../../inputs/input';
 import {
   email,
   required,
   phoneNumber,
-} from '../../validation';
+} from '../../../validation';
 
 const parsePhone = value => value.toString().replace(/\D/g, '');
 
@@ -35,7 +35,7 @@ class CompanyFormStepTwo extends Component {
       company,
       companyName,
       handleSubmit,
-      previousPage,
+      prevPage,
     } = this.props;
 
     return (
@@ -70,7 +70,7 @@ class CompanyFormStepTwo extends Component {
         />
         <FormFooter>
           <BackButton
-            action={previousPage}
+            action={(prevPage)}
             buttonText="Back"
           />
           <Field

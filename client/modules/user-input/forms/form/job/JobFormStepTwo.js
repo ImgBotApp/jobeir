@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import FormWrapper from '../containers/FormWrapper';
-import FormHeader from '../components/FormHeader';
-import FormFooter from '../components/FormFooter';
-import { required } from '../../validation';
+import FormWrapper from '../../containers/FormWrapper';
+import FormHeader from '../../components/FormHeader';
+import FormFooter from '../../components/FormFooter';
+import { required } from '../../../validation';
 import {
   BackButton,
   Radio,
@@ -14,7 +14,7 @@ import {
   SubmitButton,
   Textarea,
   Text,
-} from '../../inputs/input';
+} from '../../../inputs/input';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 

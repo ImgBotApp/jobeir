@@ -54,7 +54,7 @@ const routes = (
       }}
     />
     <Route
-      path="/create/:step"
+      path="/create/:create/:step"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('../modules/create/step/containers/Step').default);

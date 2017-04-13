@@ -23,9 +23,9 @@ class StepRouter extends Component {
      * to create a job
      */
     if (user.companies.created.length) {
-      browserHistory.push('/create/job')
+      browserHistory.push('/create/job/about')
     } else {
-      browserHistory.push('/create/company')
+      browserHistory.push('/create/company/about')
     }
   }
 
