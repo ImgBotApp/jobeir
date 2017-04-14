@@ -120,7 +120,7 @@ export function loginUser(req, res) {
     } else {
       user.comparePassword(req.body.password, function(err, isMatch) {
         if (!err && isMatch) {
-          const token = jwt.sign(user._id, serverConfig.jwt);
+          const token = jwt.sign(user, serverConfig.jwt);
 
           res
             .status(200)

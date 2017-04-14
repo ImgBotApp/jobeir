@@ -4,39 +4,51 @@ import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
+import { required } from '../../../validation';
 import {
   BackButton,
-  Checkbox,
+  Radio,
   Currency,
   Phone,
-  Text,
   Select,
+  SubmitButton,
   Textarea,
-  SubmitButton
+  Text,
 } from '../../../inputs/input';
-import {
-  required,
-} from '../../../validation';
-import { createJob } from '../../../../create/job/ducks';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 
-class JobFormStepThree extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.formSubmit = this.formSubmit.bind(this);
-  }
+const jobTypes = [
+  { name: 'Select type', disabled: true, value: '' },
+  { name: 'Full-time', value: 'FULL_TIME' },
+  { name: 'Part-time', value: 'PART_TIME' },
+  { name: 'Contractor', value: 'CONTRACTOR' },
+  { name: 'Freelance', value: 'FREELANCE' },
+  { name: 'Intern', value: 'INTERN' },
+  { name: 'Volunteer', value: 'VOLUNTEER' },
+];
 
-  formSubmit(data) {
-    this.props.dispatch(createJob(data))
+const remoteOptions = [
+  { text: 'Yes', value: 'Yes' },
+  { text: 'No', value: 'No' },
+];
+
+class JobFormType extends Component {
+  constructor(props) {
+     super(props);
+     
+     this.formSubmit = this.formSubmit.bind(this);
+   }
+
+  formSubmit() {
+    this.props.nextPage();
   }
 
   render() {
     const {
       handleSubmit,
       job,
-      previousPage,
+      prevPage,
     } = this.props;
 
     return (
@@ -47,25 +59,30 @@ class JobFormStepThree extends Component {
         theme="marble"
       >
         <FormHeader
-          text="What's the compensation?"
+          text="What kind of job is it?"
         />
         <Field
-          name="salaryMin"
-          label="Salary Min"
+          name="type"
+          label="Job Type"
           validate={[ required ]}
-          parse={parseNumber}
-          component={Currency}
+          options={jobTypes}
+          component={Select}
         />
         <Field
-          name="salaryMax"
-          label="Salary Max"
+          name="locations"
+          label="Locations"
           validate={[ required ]}
-          parse={parseNumber}
-          component={Currency}
+          component={Text}
+        />
+        <Field
+          name="remote"
+          label="Is this a remote position?"
+          options={remoteOptions}
+          component={Radio}
         />
         <FormFooter>
           <BackButton
-            action={previousPage}
+            action={prevPage}
             buttonText="Back"
           />
           <Field
@@ -84,10 +101,10 @@ const mapStateToProps = state => ({
   auth: state.session.auth,
 });
 
-JobFormStepThree = reduxForm({
+JobFormType = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true, 
-})(JobFormStepThree);
+})(JobFormType);
 
-export default connect(mapStateToProps)(JobFormStepThree);
+export default connect(mapStateToProps)(JobFormType);

@@ -13,13 +13,13 @@ router.route('/logout').post(UserController.logoutUser);
 
 router.route('/users/:id').get(UserController.getUser);
 
-router.get('/auth', passport.authenticate('jwt', { session: false }), function(req, res) {
+router.route('/auth').get(passport.authenticate('jwt', { session: false }), function(req, res) {
   res
     .status(200)
     .send({
       data: {
         isAuthenticated: true,
-        userId: req.user._id,
+        id: req.user._id,
       },
       errors: []
     });

@@ -14,7 +14,7 @@ import {
   SubmitButton
 } from '../../../inputs/input';
 
-class JobFormStepOne extends Component {
+class JobFormabout extends Component {
   constructor(props) {
      super(props);
      
@@ -69,10 +69,10 @@ const mapStateToProps = state => ({
   job: state.job,
 });
 
-JobFormStepOne = reduxForm({
+JobFormabout = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true, 
-})(JobFormStepOne);
+})(JobFormabout);
 
-export default connect(mapStateToProps)(JobFormStepOne);
+export default connect(mapStateToProps)(JobFormabout);

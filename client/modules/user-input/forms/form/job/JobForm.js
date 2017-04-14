@@ -1,39 +1,59 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
-
-import JobFormStepOne from './JobFormStepOne';
-import JobFormStepTwo from './JobFormStepTwo';
-import JobFormStepThree from './JobFormStepThree';
+import JobFormAbout from './JobFormAbout';
+import JobFormType from './JobFormType';
+import JobFormCompensation from './JobFormCompensation';
+import JobFormContact from './JobFormContact';
 
 class JobForm extends Component {
   constructor(props) {
     super(props)
     this.nextPage = this.nextPage.bind(this)
-    this.previousPage = this.previousPage.bind(this)
-    this.state = {
-      page: 1
-    }
+    this.prevPage = this.prevPage.bind(this)
   }
 
-  nextPage() {
-    this.setState({ page: this.state.page + 1 })
+  nextPage(path) {
+    browserHistory.push(path)
   }
 
-  previousPage() {
-    this.setState({ page: this.state.page - 1 })
+  prevPage(path) {
+    browserHistory.push(path)
   }
 
   render() {
-    const { page } = this.state
+    const { pathname } = this.props;
+    const about = '/create/job/about';
+    const type = '/create/job/type';
+    const compensation = '/create/job/compensation';
+    const contact = '/create/job/contact';
 
     return (
       <div>
-        {page === 1 && <JobFormStepOne nextPage={this.nextPage}/>}
-        {page === 2 && <JobFormStepTwo previousPage={this.previousPage} nextPage={this.nextPage}/>}
-        {page === 3 && <JobFormStepThree previousPage={this.previousPage} />}
+        {pathname === about && <JobFormAbout nextPage={() => this.nextPage(type)} />}
+        {
+          pathname === type &&
+          <JobFormType
+            prevPage={() => this.prevPage(about)}
+            nextPage={() => this.nextPage(compensation)}
+          />
+        }
+        {
+          pathname === compensation &&
+          <JobFormCompensation
+            prevPage={() => this.prevPage(compensation)}
+            nextPage={() => this.nextPage(contact)}
+          />
+        }
+        {pathname === contact && <JobFormContact prevPage={() => this.prevPage(compensation)} />}
       </div>
     )
   }
 }
 
-export default JobForm
+const mapStateToProps = state => ({
+  pathname: state.routing.locationBeforeTransitions.pathname,
+});
+
+export default connect(mapStateToProps)(JobForm);

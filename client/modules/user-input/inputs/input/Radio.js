@@ -46,7 +46,7 @@ const RadioInputContainer = styled.div`
   justify-content: center;
 
   &:last-child {
-    margin-left: 3rem;
+    margin-left: 2rem;
   }
 
   input[type=radio]:checked {
@@ -81,8 +81,8 @@ const RadioInput = styled.input`
   position: absolute;
   -webkit-appearance: none;
   border-radius: 50%;
-  width: 75px;
-  height: 75px;
+  width: 65px;
+  height: 65px;
   cursor: pointer;
 `;
 

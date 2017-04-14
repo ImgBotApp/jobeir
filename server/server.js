@@ -36,8 +36,6 @@ import Html from '../client/modules/html/containers/Html';
 // Import required modules
 import routes, { routesArray } from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
-// import userRoutes from './routes/User.routes';
-// import companyRoutes from './routes/Company.routes';
 import apiRoutes from './routes/ApiRoutes.routes'
 import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
