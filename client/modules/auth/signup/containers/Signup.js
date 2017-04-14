@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { signup } from '../../ducks/';
@@ -31,7 +30,7 @@ class Signup extends Component {
   }
 }
 
-export default connect()(Signup);
+export default Signup;
 
 const AuthSignupEmail = styled.div`
   text-align: center;

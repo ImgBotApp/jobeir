@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import LoginForm from '../../../user-input/forms/form/LoginForm';
@@ -20,4 +19,4 @@ class Login extends Component {
   }
 }
 
-export default connect()(Login);
+export default Login;
