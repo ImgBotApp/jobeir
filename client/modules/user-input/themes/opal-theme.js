@@ -11,6 +11,9 @@ export const opal = {
       color: '',
     },
   },
+  inputWrapper: {
+    marginBottom: '1rem',
+  },
   button: {
     height: '',
     borderRadius: '',

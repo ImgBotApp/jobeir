@@ -21,6 +21,9 @@ export const marble = {
       color: '#afafaf',
     },
   },
+  inputWrapper: {
+    marginBottom: '1rem',
+  },
   error: {
     color: '#cc0726',
   },

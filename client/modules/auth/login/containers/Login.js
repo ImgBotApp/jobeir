@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import styled from 'styled-components';
 import LoginForm from '../../../user-input/forms/form/LoginForm';
 import AuthOAuth from '../../components/AuthOAuth';
+import AuthPage from '../../components/AuthPage';
+import AuthHeader from '../../components/AuthHeader';
 
-class Signup extends Component {
+class Login extends Component {
   render() {
     return (
-      <div>
-        <Helmet title="Signup" />
-        Login
+      <AuthPage>
+        <Helmet title="Login" />
+        <AuthHeader text="Log into This Application" />
         <AuthOAuth />
         <LoginForm />
-      </div>
+      </AuthPage>
     );
   }
 }
 
-export default connect()(Signup);
+export default connect()(Login);

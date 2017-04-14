@@ -39,7 +39,7 @@ class SignupForm extends Component {
         handleSubmit={this.props.handleSubmit}
         formSubmit={this.formSubmit}
         formErrors={this.props.auth.errors}
-        theme="marble"
+        theme="auth"
       >
         <Field
           name="email"

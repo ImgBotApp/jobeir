@@ -30,5 +30,5 @@ const InputWrapperContainer = styled.div`
     props.ui && props.ui.maxWidth ||
     props.theme.input.maxWidth
   };
-  margin-bottom: 1rem;
+  margin-bottom: ${props => props.theme.inputWrapper.marginBottom || '1rem'};
 `;

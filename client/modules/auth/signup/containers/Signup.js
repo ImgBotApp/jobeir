@@ -1,21 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import styled from 'styled-components';
 import { signup } from '../../ducks/';
 import SignupForm from '../../../user-input/forms/form/SignupForm';
 import AuthOAuth from '../../components/AuthOAuth';
+import AuthPage from '../../components/AuthPage';
+import AuthHeader from '../../components/AuthHeader';
 
 class Signup extends Component {
+  state = { signupWithEmail: false };
+
   render() {
+    const { signupWithEmail } = this.state;
+
     return (
-      <div>
+      <AuthPage>
         <Helmet title="Signup" />
-        Signup
-        <AuthOAuth />
-        <SignupForm />
-      </div>
+        <AuthHeader text="Sign up for Gost" />
+        {
+          signupWithEmail
+            ? <SignupForm />
+            : <AuthOAuth />
+        }
+        <AuthSignupEmail onClick={() => this.setState({ signupWithEmail: !signupWithEmail })}>
+          {signupWithEmail ? 'Sign up with Google, Facebook, or Github' :  'Sign up with email'}
+        </AuthSignupEmail>
+      </AuthPage>
     );
   }
 }
 
 export default connect()(Signup);
+
+const AuthSignupEmail = styled.div`
+  text-align: center;
+  cursor: pointer;
+  padding-top: 1rem;
+`;
