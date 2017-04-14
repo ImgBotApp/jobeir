@@ -76,7 +76,7 @@ const SelectContainer = styled.div`
     padding: 18px;
     font-size: 16px;
     width: 100%;
-    margin: 0 auto 1rem;
+    margin: 0 auto 2rem;
   }
   .Select-control:hover {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
@@ -95,7 +95,7 @@ const SelectContainer = styled.div`
   }
   .is-open > .Select-control .Select-arrow {
     top: -2px;
-    border-color: transparent transparent #999;
+    border-color: transparent transparent #676767;
     border-width: 0 5px 5px;
   }
   .is-searchable.is-focused:not(.is-open) > .Select-control {
@@ -206,7 +206,7 @@ const SelectContainer = styled.div`
     -webkit-animation: Select-animation-fadeIn 200ms;
     -o-animation: Select-animation-fadeIn 200ms;
     animation: Select-animation-fadeIn 200ms;
-    color: #999;
+    color: #676767;
     cursor: pointer;
     display: table-cell;
     position: relative;
@@ -235,7 +235,7 @@ const SelectContainer = styled.div`
     padding-right: 5px;
   }
   .Select-arrow {
-    border-color: #999 transparent transparent;
+    border-color: #676767 transparent transparent;
     border-style: solid;
     border-width: 5px 5px 2.5px;
     display: inline-block;
@@ -325,7 +325,7 @@ const SelectContainer = styled.div`
   }
   .Select-noresults {
     box-sizing: border-box;
-    color: #999999;
+    color: #676767;
     cursor: default;
     display: block;
     padding: 8px 10px;
