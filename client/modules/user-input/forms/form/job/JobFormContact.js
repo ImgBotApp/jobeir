@@ -5,13 +5,8 @@ import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import {
-  BackButton,
-  Checkbox,
-  Currency,
-  Phone,
   Text,
   Select,
-  Textarea,
   SubmitButton
 } from '../../../inputs/input';
 import {
@@ -47,21 +42,14 @@ class JobFormComponesation extends Component {
         theme="marble"
       >
         <FormHeader
-          text="What's the compensation?"
+          text="How would you like to receive applications?"
         />
         <Field
           name="salaryMin"
           label="Salary Min"
           validate={[ required ]}
           parse={parseNumber}
-          component={Currency}
-        />
-        <Field
-          name="salaryMax"
-          label="Salary Max"
-          validate={[ required ]}
-          parse={parseNumber}
-          component={Currency}
+          component={Text}
         />
         <FormFooter>
           <BackButton

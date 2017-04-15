@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
+import FormRow from '../../components/FormRow';
 import FormFooter from '../../components/FormFooter';
 import {
   BackButton,
@@ -49,20 +50,22 @@ class JobFormComponesation extends Component {
         <FormHeader
           text="What's the compensation?"
         />
-        <Field
-          name="salaryMin"
-          label="Salary Min"
-          validate={[ required ]}
-          parse={parseNumber}
-          component={Currency}
-        />
-        <Field
-          name="salaryMax"
-          label="Salary Max"
-          validate={[ required ]}
-          parse={parseNumber}
-          component={Currency}
-        />
+        <FormRow>
+          <Field
+            name="salaryMin"
+            label="Salary minimum"
+            validate={[ required ]}
+            parse={parseNumber}
+            component={Currency}
+          />
+          <Field
+            name="salaryMax"
+            label="Salary maximum"
+            validate={[ required ]}
+            parse={parseNumber}
+            component={Currency}
+          />
+        </FormRow>
         <FormFooter>
           <BackButton
             action={prevPage}

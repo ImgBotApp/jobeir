@@ -9,10 +9,11 @@ import {
   wysiwygLength,
 } from '../../../validation';
 import {
-  Text,
+  SelectSearch,
   Wysiwyg,
   SubmitButton
 } from '../../../inputs/input';
+import { jobOptions } from '../../options/jobs';
 
 class JobFormabout extends Component {
   constructor(props) {
@@ -44,13 +45,16 @@ class JobFormabout extends Component {
         <Field
           name="title"
           label="What's the job title?"
+          placeholder="Enter title"
           validate={[ required ]}
-          component={Text}
+          options={jobOptions}
+          component={SelectSearch}
         />
         <Field
+          label="Describe the role"
           name="description"
           ui={{ maxWidth: '100%' }}
-          validate={[ required, wysiwygLength(50) ]}
+          validate={[ required, wysiwygLength(25) ]}
           component={Wysiwyg}
         />
         <FormFooter>

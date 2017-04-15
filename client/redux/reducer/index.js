@@ -24,7 +24,8 @@ function intl(state, action) {
   };
 }
 
-const rootReducer = combineReducers({
+// creating an appReducer
+const appReducer = combineReducers({
   company,
   job,
   form,
@@ -33,5 +34,18 @@ const rootReducer = combineReducers({
   routing,
   session,
 });
+
+/**
+ * rootReducer is a "global" reducer that will have access to all actions
+ * and return a new state depending on the action. It's currently used
+ * to reset state when a user decides to log out.
+ */
+const rootReducer = (state, action) => {
+  if (action.type === 'LOGOUT_SUCCESS') {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}
 
 export default rootReducer;

@@ -1,6 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router';
 import UserWrapper from '../../../user/containers/UserWrapper';
 
-const Profile = () => <div>Profile</div>;
+const Profile = () => {
+  return (
+    <div>
+      <div>Profile</div>
+      <Link to="/create/company">Create a company</Link>
+    </div>
+  );
+};
 
 export default UserWrapper(Profile);

@@ -12,7 +12,8 @@ import {
   Text,
 } from '../../../inputs/input';
 import { required } from '../../../validation';
-import { createCompany } from '../../../../create/company/ducks'
+import { createCompany } from '../../../../create/company/ducks';
+import { countryOptions } from '../../options/countries';
 
 const options = [
   { value: 'one', label: 'One' },
@@ -32,7 +33,7 @@ class CompanyFormStepThree extends Component {
     // adding the user id to the data;
     const body = { ...data, id };
     
-    dispatch(createCompany(data))
+    dispatch(createCompany(body))
    }
 
   render() {
@@ -56,7 +57,7 @@ class CompanyFormStepThree extends Component {
           name="country"
           label="Country"
           placeholder="Select Country"
-          options={options}
+          options={countryOptions}
           validate={[ required ]}
           component={SelectSearch}
         />
@@ -67,9 +68,8 @@ class CompanyFormStepThree extends Component {
           component={Text}
         />
         <Field
-          name="location"
+          name="apt"
           label="Apt, Suite, Bldg. (optional)"
-          validate={[ required ]}
           component={Text}
         />
         <FormRow>

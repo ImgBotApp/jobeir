@@ -16,6 +16,7 @@ export const Phone = props => {
         name={props.input.name}
         placeholder={props.placeholder}
         showError={showError}
+        guide={false}
         mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
       />
     </InputWrapper>

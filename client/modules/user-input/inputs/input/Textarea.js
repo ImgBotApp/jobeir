@@ -12,6 +12,7 @@ export const Textarea = props => {
         {...props.input}
         id={props.input.name}
         name={props.input.name}
+        placeholder={props.placeholder}
         showError={showError}
       />
     </InputWrapper>
@@ -36,5 +37,28 @@ const TextareaInput = styled.textarea`
       : props.theme.textarea.activeBorderColor
     };
     outline: none;
+  }
+
+  ::-webkit-input-placeholder {
+    font-size: ${props => props.theme.input.fontSize};
+    color: ${props => props.theme.input.ph.color};
+    line-height: 1.5;
+  }
+  :-moz-placeholder {
+    font-size: ${props => props.theme.input.fontSize};
+    color: ${props => props.theme.input.ph.color};
+    opacity:  1;
+    line-height: 1.5;
+  }
+  ::-moz-placeholder {
+    font-size: ${props => props.theme.input.fontSize};
+    color: ${props => props.theme.input.ph.color};
+    opacity:  1;
+    line-height: 1.5;
+  }
+  :-ms-input-placeholder {
+    font-size: ${props => props.theme.input.fontSize};
+    color: ${props => props.theme.input.ph.color};
+    line-height: 1.5;
   }
 `;

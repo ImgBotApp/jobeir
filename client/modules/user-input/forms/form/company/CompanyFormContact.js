@@ -51,7 +51,7 @@ class CompanyFormStepTwo extends Component {
         <Field
           name="phone"
           label="Phone"
-          placeholder="(604) 843-5555"
+          placeholder="(555) 123-4567"
           validate={[ required, phoneNumber ]}
           parse={parsePhone}
           component={Phone}

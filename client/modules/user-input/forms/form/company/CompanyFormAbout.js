@@ -66,6 +66,7 @@ class CompanyFormStepOne extends Component {
         <Field
           name="product"
           label="Briefly describe your company"
+          placeholder="Let applicants know what your company does and what it’s like to work there."
           validate={[ required ]}
           component={Textarea}
         />

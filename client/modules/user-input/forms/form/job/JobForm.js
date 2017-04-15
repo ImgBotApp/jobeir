@@ -42,7 +42,7 @@ class JobForm extends Component {
         {
           pathname === compensation &&
           <JobFormCompensation
-            prevPage={() => this.prevPage(compensation)}
+            prevPage={() => this.prevPage(type)}
             nextPage={() => this.nextPage(contact)}
           />
         }

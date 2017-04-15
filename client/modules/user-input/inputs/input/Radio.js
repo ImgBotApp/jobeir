@@ -3,8 +3,6 @@ import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
 
-const func = () => console.log('fired')
-
 export const Radio = props => {
   const { meta } = props;
   const showError = meta.touched && meta.error && meta.invalid;
@@ -62,7 +60,7 @@ const RadioInputContainer = styled.div`
 const RadioInput = styled.input`
   border-radius: ${props => props.theme.input.borderRadius};
   border: ${props => props.theme.input.border};
-  border-color: ${props => props.showError ? props.theme.error.color : props.theme.text};
+  border-color: ${props => props.showError ? props.theme.error.color : ''};
   padding: ${props => props.theme.input.padding};
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
