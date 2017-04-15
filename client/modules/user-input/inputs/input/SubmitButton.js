@@ -1,11 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// check if there are any form errors
+const isDisabled = (errors = []) => {
+  return errors.length >= 1;
+};
+
 export const SubmitButton = props => {
   return (
     <Button
       type="submit"
-      disabled={false}
+      disabled={isDisabled(props.formErrors)}
     >
       {props.buttonText || 'Submit'}
     </Button>
@@ -22,7 +27,8 @@ const Button = styled.button`
   background: ${props => props.theme.button.background};
   margin-bottom: ${props => props.theme.button.marginBottom};
   max-width: ${props => props.theme.button.maxWidth};
-  cursor: pointer;
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+  opacity: ${props => props.disabled ? '0.55' : '1'};
 
   &:active,
   &:focus,

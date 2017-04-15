@@ -8,13 +8,14 @@ import {
   BackButton,
   Email,
   Phone,
+  SubmitButton,
   Text,
-  SubmitButton
 } from '../../../inputs/input';
 import {
   email,
   required,
   phoneNumber,
+  url,
 } from '../../../validation';
 
 const parsePhone = value => value.toString().replace(/\D/g, '');
@@ -59,7 +60,7 @@ class CompanyFormStepTwo extends Component {
         <Field
           name="website"
           label="Company Website"
-          validate={[ required ]}
+          validate={[ required, url ]}
           component={Text}
         />
         <Field

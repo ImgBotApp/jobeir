@@ -7,6 +7,7 @@ import FormFooter from '../../components/FormFooter';
 import FormRow from '../../components/FormRow';
 import {
   BackButton,
+  PostalCode,
   SelectSearch,
   SubmitButton,
   Text,
@@ -91,7 +92,7 @@ class CompanyFormStepThree extends Component {
             name="postalCode"
             label="Postal Code"
             validate={[ required ]}
-            component={Text}
+            component={PostalCode}
           />
         </FormRow>
         <FormFooter>

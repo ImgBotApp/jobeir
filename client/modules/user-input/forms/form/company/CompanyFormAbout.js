@@ -84,6 +84,7 @@ class CompanyFormStepOne extends Component {
           <Field
             name="submitButton"
             buttonText="Next"
+            formErrors={company.errors}
             component={SubmitButton}
           />
         </FormFooter>
