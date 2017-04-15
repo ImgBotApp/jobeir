@@ -3,6 +3,7 @@ import { fetchApi } from '../../../../utils/api';
 import { redirectTo } from '../ducks'
 import {
   createCompany,
+  checkCompany,
 } from './';
 
 const action = {

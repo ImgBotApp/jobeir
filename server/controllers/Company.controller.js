@@ -18,6 +18,40 @@ export function getCompanies(req, res) {
     res.json({ companies });
   });
 }
+/**
+ * Check if a company exists
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function checkCompany(req, res) {
+  Company.findOne({ name: req.params.name.toLowerCase() }).exec((err, company) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+
+    // if there is a company return an error
+    if (company) {
+      res
+        .status(409)
+        .send({
+          data: {},
+          errors: [{
+            error: "COMPANY_ALREADY_EXISTS",
+            message:`The company ${req.params.name} already exists`
+          }],
+        });
+    } else {
+      // if no company exists, let the user continue
+      res
+        .status(200)
+        .send({
+          data: {},
+          errors: [],
+        });
+    }
+  });
+}
 
 /**
  * Save a Company
@@ -33,7 +67,8 @@ export function createCompany(req, res) {
   const newCompany = new Company(req.body);
 
   // Let's sanitize inputs
-  newCompany.name = sanitizeHtml(newCompany.name);
+  newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
+  newCompany.displayName = sanitizeHtml(newCompany.name);
   newCompany.website = sanitizeHtml(newCompany.website);
   newCompany.product = sanitizeHtml(newCompany.product);
   newCompany.location = sanitizeHtml(newCompany.location);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
@@ -12,6 +12,8 @@ import {
   Text,
   Textarea,
 } from '../../../inputs/input';
+import { checkCompany } from '../../../../create/company/ducks';
+import debounce from 'lodash/debounce'
 
 const companySizeOptions = [
   { name: 'Select size', disabled: true, value: '' },
@@ -25,10 +27,17 @@ const companySizeOptions = [
 
 class CompanyFormStepOne extends Component {
   constructor(props) {
-     super(props);
+    super(props);
      
-     this.formSubmit = this.formSubmit.bind(this);
-   }
+    this.handleCheckCompany = debounce(this.handleCheckCompany, 400).bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
+  }
+
+  handleCheckCompany() {
+    const { companyName, dispatch } = this.props;
+
+    if (companyName) dispatch(checkCompany(companyName));
+  }
 
   formSubmit() {
     this.props.nextPage();
@@ -55,6 +64,7 @@ class CompanyFormStepOne extends Component {
           label="What's your company name?"
           validate={[ required ]}
           component={Text}
+          onChange={this.handleCheckCompany}
         />
         <Field
           name="companySize"
@@ -82,8 +92,11 @@ class CompanyFormStepOne extends Component {
   }
 };
 
+const selector = formValueSelector('company')
+
 const mapStateToProps = state => ({
   company: state.company,
+  companyName: selector(state, 'name'),
 });
 
 CompanyFormStepOne = reduxForm({

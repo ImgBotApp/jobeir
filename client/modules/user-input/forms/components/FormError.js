@@ -22,8 +22,9 @@ const FormErrorContainer = styled.div`
   background: #fee7e8;
   color: #cc0726;
   font-size: 16px;
-  border: 1px solid #cc0726;
   border-radius: 3px;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
+
+// border: 1px solid #cc0726;

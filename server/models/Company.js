@@ -4,7 +4,15 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 const Company = new Schema({
+  // used to internally match
   name: {
+    type: String,
+    unique: true,
+    required: true,
+    lowercase: true,
+  },
+  // used to display in UI
+  displayName: {
     type: String,
     unique: true,
     required: true
