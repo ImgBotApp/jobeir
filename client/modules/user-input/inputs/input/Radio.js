@@ -4,25 +4,26 @@ import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
 
 export const Radio = props => {
-  const { meta } = props;
+  const { meta, ...rest } = props;
   const showError = meta.touched && meta.error && meta.invalid;
 
   return (
-    <InputWrapper {...props}>
+    <InputWrapper {...rest}>
       <RadioContainer>
         {
           props.options.map(option =>
             <RadioInputContainer>
               <RadioInput
-                onClick={func}
                 {...props.input}
                 type="radio"
                 key={option.value}
                 id={props.input.name}
                 name={props.input.name}
                 value={option.text}
+                showError={showError}
+                checked={option.text === props.input.value}
               />
-              <RadioText>
+              <RadioText showError={showError}>
                 {option.text}
               </RadioText>
             </RadioInputContainer>
@@ -88,4 +89,5 @@ const RadioText = styled.div`
   position: relative;
   top: 2px;
   pointer-events: none;
+  color: ${props => props.showError ? props.theme.error.color : props.theme.text};
 `;

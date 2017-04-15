@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 export const InputError = props => {
+  if (!props.meta) return null;
+
   const { meta } = props;
   const showError = meta.touched && meta.error && meta.invalid;
 

@@ -77,6 +77,7 @@ class JobFormType extends Component {
         <Field
           name="remote"
           label="Is this a remote position?"
+          validate={[ required ]}
           options={remoteOptions}
           component={Radio}
         />

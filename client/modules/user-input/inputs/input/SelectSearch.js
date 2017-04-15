@@ -301,7 +301,7 @@ const SelectContainer = styled.div`
     color: #484848;
     cursor: pointer;
     display: block;
-    padding: 8px 10px;
+    padding: 12px 18px;
   }
   .Select-option:last-child {
     border-bottom-right-radius: 4px;
@@ -310,13 +310,13 @@ const SelectContainer = styled.div`
   .Select-option.is-selected {
     background-color: #f5faff;
     /* Fallback color for IE 8 */
-    background-color: rgba(0, 126, 255, 0.04);
+    background-color: rgba(251, 80, 50, 0.03);
     color: #484848;
   }
   .Select-option.is-focused {
     background-color: #ebf5ff;
     /* Fallback color for IE 8 */
-    background-color: rgba(0, 126, 255, 0.08);
+    background-color: rgba(251, 80, 50, 0.08);
     color: #484848;
   }
   .Select-option.is-disabled {
