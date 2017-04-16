@@ -17,12 +17,11 @@ export const SelectSearch = props => {
    */
   return (
     <InputWrapper {...props}>
-      <SelectContainer>
+      <SelectContainer showError={showError}>
         <Select
           {...props.input}
           id={props.input.name}
           name={props.input.name}
-          showError={showError}
           options={props.options}
           placeholder={props.placeholder}
           onBlur={() => {}}
@@ -57,7 +56,6 @@ const SelectContainer = styled.div`
   }
   .Select-control {
     background-color: #fff;
-    border-color: #d9d9d9 #ccc #b3b3b3;
     border-radius: 4px;
     border: 1px solid #ccc;
     color: #484848;
@@ -72,11 +70,11 @@ const SelectContainer = styled.div`
     width: 100%;
     border-radius: 3px;
     border: solid 1px #babbbb;
-    border-color: ;
+    border-color: ${props => props.showError ? props.theme.error.color : '#babbbb'};
     padding: 18px;
     font-size: 16px;
     width: 100%;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1rem;
   }
   .Select-control:hover {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
@@ -91,7 +89,7 @@ const SelectContainer = styled.div`
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     background: #fff;
-    border-color: #b3b3b3 #ccc #d9d9d9;
+    border-color: ${props => props.showError ? props.theme.error.color : props.theme.text};
   }
   .is-open > .Select-control .Select-arrow {
     top: -2px;
@@ -102,7 +100,7 @@ const SelectContainer = styled.div`
     cursor: text;
   }
   .is-focused:not(.is-open) > .Select-control {
-    border-color: #007eff;
+    border-color: ${props => props.showError ? props.theme.error.color : props.theme.text};
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 126, 255, 0.1);
   }
 
@@ -118,7 +116,7 @@ const SelectContainer = styled.div`
     bottom: 0;
     color: #aaa;
     left: 0;
-    line-height: 20px;
+    line-height: 1.5;
     padding-left: 18px;
     padding-right: 18px;
     position: absolute;
@@ -279,7 +277,7 @@ const SelectContainer = styled.div`
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     background-color: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #484848;
     border-top-color: #e6e6e6;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
@@ -349,7 +347,7 @@ const SelectContainer = styled.div`
     color: #007eff;
     display: inline-block;
     font-size: 0.9em;
-    line-height: 1.4;
+    line-height: 1.5;
     margin-left: 5px;
     margin-top: 5px;
     vertical-align: top;

@@ -24,9 +24,11 @@ export const FormFooter = props => {
 export default FormFooter;
 
 const FormFooterContainer = styled.div`
+  position: absolute;
+  width: 53%;
   display: flex;
   align-items: center;
   justify-content: ${props => props.multipleChildren ? 'space-between' : 'flex-end'};
-  margin-top: 4rem;
-
+  bottom: 0;
+  background: #fff;
 `;

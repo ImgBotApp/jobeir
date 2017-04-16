@@ -22,11 +22,11 @@ class StepRouter extends Component {
      * push the user to create a company before being able
      * to create a job
      */
-    if (user.companies.created.length) {
-      browserHistory.push('/create/job/about')
-    } else {
-      browserHistory.push('/create/company/about')
-    }
+    // if (user.companies.created.length) {
+    //   browserHistory.push('/create/job/about')
+    // } else {
+    //   browserHistory.push('/create/company/about')
+    // }
   }
 
   render() {
@@ -45,7 +45,9 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(StepRouter);
 
 const StepRouterContainer = styled.div`
+  position: relative;
   max-width: 900px;
   margin: 0 auto;
   display: flex;
+  min-height: calc(100vh - 175px);
 `;

@@ -70,7 +70,7 @@ class JobFormType extends Component {
         />
         <Field
           name="locations"
-          label="Locations"
+          label="Where will the employee be working?"
           validate={[ required ]}
           component={Text}
         />

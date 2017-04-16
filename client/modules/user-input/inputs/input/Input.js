@@ -10,6 +10,10 @@ export const Input = styled.input`
   margin: ${props => props.theme.input.margin};
   max-width: ${props => props.theme.input.maxWidth};
   
+  &:hover: {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  }
+  
   &:active,
   &:focus {
     border-color: ${props => props.showError

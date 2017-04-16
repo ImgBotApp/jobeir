@@ -47,11 +47,11 @@ class CompanyFormStepTwo extends Component {
         theme="marble"
       >
         <FormHeader
-          text={`How can applicants contact ${companyName}?`}
+          text={`How can applicants reach out to ${companyName}?`}
         />
         <Field
           name="phone"
-          label="Phone"
+          label="Company phone"
           placeholder="(555) 123-4567"
           validate={[ required, phoneNumber ]}
           parse={parsePhone}
@@ -59,13 +59,13 @@ class CompanyFormStepTwo extends Component {
         />
         <Field
           name="website"
-          label="Company Website"
+          label="Company website"
           validate={[ required, url ]}
           component={Text}
         />
         <Field
           name="email"
-          label="Company Email"
+          label="Company email"
           validate={[ email, required ]}
           component={Email}
         />

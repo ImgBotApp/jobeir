@@ -45,11 +45,12 @@ class JobFormabout extends Component {
         <Field
           name="title"
           label="What's the job title?"
-          placeholder="Enter title"
+          placeholder="Search titles"
           validate={[ required ]}
           options={jobOptions}
           component={SelectSearch}
         />
+        <div style={{ paddingBottom: '1rem' }} />
         <Field
           label="Describe the role"
           name="description"

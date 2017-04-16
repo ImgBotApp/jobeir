@@ -57,11 +57,12 @@ class CompanyFormStepThree extends Component {
         <Field
           name="country"
           label="Country"
-          placeholder="Select Country"
+          placeholder="Search Country"
           options={countryOptions}
           validate={[ required ]}
           component={SelectSearch}
         />
+        <div style={{ paddingBottom: '1rem' }} />
         <Field
           name="streetAddress"
           label="Steet Address"

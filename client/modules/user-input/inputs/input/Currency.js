@@ -9,13 +9,19 @@ const numberMask = createNumberMask({
 })
 
 export const Currency = props => {
+  const { meta } = props;
+  const showError = meta.touched && meta.error && meta.invalid;
+
   return (
     <InputWrapper {...props}>
       <StyledMaskedInput
         {...props.input}
         id={props.input.name}
         name={props.input.name}
+        placeholder={props.placeholder}
+        showError={showError}
         mask={numberMask}
+        guide={false}
       />
     </InputWrapper>
   );
@@ -24,6 +30,7 @@ export const Currency = props => {
 const StyledMaskedInput = styled(MaskedInput)`
   border-radius: ${props => props.theme.input.borderRadius};
   border: ${props => props.theme.input.border};
+  border-color: ${props => props.showError ? props.theme.error.color : ''};
   padding: ${props => props.theme.input.padding};
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
@@ -31,7 +38,7 @@ const StyledMaskedInput = styled(MaskedInput)`
 
   &:active,
   &:focus {
-    border-color:  ${props => props.theme.input.activeBorderColor};
+    border-color:  ${props => props.showError ? props.theme.error.color : props.theme.input.activeBorderColor};
     outline: none;
   }
 

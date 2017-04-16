@@ -5,7 +5,13 @@ const StepBackground = props => {
   return (
     <StepBackgroundContainer>
       <StepBackgroundLeft />
-      <StepBackgroundRight />
+      <StepBackgroundRight>
+        <RedBall />
+        <BlueBall />
+        <BlackBall />
+        <BeigBall />
+        <PinkBall />
+      </StepBackgroundRight>
     </StepBackgroundContainer>
   );
 };
@@ -36,4 +42,58 @@ const StepBackgroundRight = styled.div`
   left: 55%;
   top: 0;
   z-index: -1;
+  overflow: hidden;
+  opacity: 0.5;
 `;
+
+const RedBall = styled.div`
+  position: absolute;
+  top: 45%;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  background: ${props => props.theme.red};
+  left: 230px;
+`;
+
+const BlueBall = styled.div`
+  position: absolute;
+  top: -80px;
+  height: 450px;
+  width: 450px;
+  border-radius: 50%;
+  background: ${props => props.theme.blue};
+  left: 150px;
+`;
+
+const BlackBall = styled.div`
+  position: absolute;
+  bottom: -20px;
+  height: 270px;
+  width: 270px;
+  border-radius: 50%;
+  background: ${props => props.theme.black};
+  left: -50px;
+`;
+
+const BeigBall = styled.div`
+  position: absolute;
+  bottom: 340px;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  background: ${props => props.theme.beige};
+  left: -50px;
+`;
+
+const PinkBall = styled.div`
+  position: absolute;
+  bototm: 0px;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  background: ${props => props.theme.pink};
+  right: -250px;
+`;
+
+// rgba(251, 80, 50, 0.14);

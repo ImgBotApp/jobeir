@@ -54,6 +54,7 @@ class JobFormComponesation extends Component {
           <Field
             name="salaryMin"
             label="Salary minimum"
+            placeholder="$"
             validate={[ required ]}
             parse={parseNumber}
             component={Currency}
@@ -61,6 +62,7 @@ class JobFormComponesation extends Component {
           <Field
             name="salaryMax"
             label="Salary maximum"
+            placeholder="$"
             validate={[ required ]}
             parse={parseNumber}
             component={Currency}

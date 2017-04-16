@@ -70,13 +70,13 @@ export class Wysiwyg extends Component {
 const EditorContainer = styled.div`
   border-radius: 3px;
   border: 1px solid #babbbb;
-  padding: 18px;
+  padding: 20px;
   min-height: 300px;
   margin: 0 auto 1rem;
   border-color: ${props => props.showError ? '#cc0726' : ''};
 
   .rdw-editor-toolbar {
-    padding-bottom: 10px;
+    margin: -8px 0 0 -10px;
   }
 
   .rdw-editor-toolbar,
@@ -86,8 +86,75 @@ const EditorContainer = styled.div`
   }
 
   .rdw-option-wrapper {
-    padding-right: 10px;
-    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    margin: 0px 2px;
     cursor: pointer;
+  }
+
+  .rdw-option-active {
+    background: ${props => props.theme.pink};
+    color: white;
+    border-radius: 4px;
+  }
+
+  .DraftEditor-root {
+    line-height: 1.5;
+  }
+
+  .public-DraftStyleDefault-block {
+    margin: 0.5em 0;
+  }
+
+  .public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR {
+    margin-left: 1.25em;
+  }
+
+  .rdw-emoji-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .rdw-emoji-modal {
+    overflow: auto;
+    position: absolute;
+    top: 35px;
+    left: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 235px;
+    height: 180px;
+    border: 1px solid #F1F1F1;
+    padding: 15px;
+    border-radius: 2px;
+    z-index: 100;
+    background: white;
+    box-shadow: 3px 3px 5px #BFBDBD;
+  }
+  .rdw-emoji-icon {
+    margin: 2.5px;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    font-size: 22px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 `;
