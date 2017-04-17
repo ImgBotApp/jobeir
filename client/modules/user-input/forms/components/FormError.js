@@ -18,13 +18,18 @@ export const FormError = props => {
 export default FormError;
 
 const FormErrorContainer = styled.div`
-  padding: 20px;
+  padding: 18px;
   background: #fee7e8;
   color: #cc0726;
   font-size: 16px;
   border-radius: 3px;
   text-align: center;
   margin-bottom: 1.5rem;
+  position: ${props => props.theme.error.position === 'absolute'
+    ? 'absolute'
+    : 'relative'
+  };
+  width: 53%;
 `;
 
 // border: 1px solid #cc0726;

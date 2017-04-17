@@ -6,7 +6,7 @@ import UserWrapper from '../../../user/containers/UserWrapper';
 import StepRouter from './StepRouter';
 import StepForm from './StepForm';
 import StepHelp from './StepHelp';
-import StepSideBar from './StepSideBar';
+import StepProgress from '../components/StepProgress';
 import StepBackground from '../components/StepBackground';
 
 /**
@@ -19,10 +19,9 @@ const Step = props => {
   return (
     <StepContainer>
       <StepBackground />
-      <StepSideBar />
       <StepRouter>
         <StepForm params={props.params} />
-        <StepHelp />
+        <StepHelp params={props.params} />
       </StepRouter>
     </StepContainer>
   );
@@ -31,6 +30,7 @@ const Step = props => {
 export default UserWrapper(Step);
 
 const StepContainer = styled.div`
+  display: flex;
   max-width: 1280px;
   margin: 50px auto 0;
 `;

@@ -46,7 +46,7 @@ export default connect(mapStateToProps)(StepRouter);
 
 const StepRouterContainer = styled.div`
   position: relative;
-  max-width: 900px;
+  width: 900px;
   margin: 0 auto;
   display: flex;
   min-height: calc(100vh - 175px);

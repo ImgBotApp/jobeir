@@ -10,5 +10,5 @@ const Logo = styled(Link)`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: ${props => props.theme.red};
+  background-color: ${props => props.theme.colors.red};
 `;

@@ -31,5 +31,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(StepForm);
 
 const StepFormContainer = styled.div`
-  width: 53%;
+  width: 52.5%;
 `;

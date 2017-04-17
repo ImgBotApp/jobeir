@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StepSideBar = props => {
   return (
     <StepSidebarContainer>
-
+      Sidebar
     </StepSidebarContainer>
   );
 };
@@ -12,5 +12,4 @@ const StepSideBar = props => {
 export default StepSideBar;
 
 const StepSidebarContainer = styled.div`
-  
 `;

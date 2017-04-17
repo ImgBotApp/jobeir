@@ -49,8 +49,8 @@ const RadioInputContainer = styled.div`
   }
 
   input[type=radio]:checked {
-    background: ${props => props.theme.blue};
-    border-color: ${props => props.theme.blue};
+    background: ${props => props.theme.colors.blue};
+    border-color: ${props => props.theme.colors.blue};
   }
 
   input[type=radio]:checked ~ div {

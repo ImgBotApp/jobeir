@@ -75,7 +75,7 @@ const AuthModalHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${props => props.theme.pink};
+  background: ${props => props.theme.colors.pink};
   min-height: 175px;
   overflow: hidden;
 `;
@@ -94,7 +94,7 @@ const AuthModalHeaderBlack = styled(AuthModalHeaderBall)`
   top: -500px;
   height: 800px;
   width: 800px;
-  background: ${props => props.theme.black};
+  background: ${props => props.theme.colors.black};
 `;
 
 const AuthModalHeaderBlue = styled(AuthModalHeaderBall)`
@@ -102,7 +102,7 @@ const AuthModalHeaderBlue = styled(AuthModalHeaderBall)`
   top: -500px;
   height: 800px;
   width: 800px;
-  background: ${props => props.theme.blue};
+  background: ${props => props.theme.colors.blue};
 `;
 
 const AuthModalHeaderRed = styled(AuthModalHeaderBall)`
@@ -110,7 +110,7 @@ const AuthModalHeaderRed = styled(AuthModalHeaderBall)`
   bottom: 25px;
   height: 115px;
   width: 115px;
-  background: ${props => props.theme.red};
+  background: ${props => props.theme.colors.red};
 `;
 
 const AuthModalHeaderBeige = styled(AuthModalHeaderBall)`
@@ -118,7 +118,7 @@ const AuthModalHeaderBeige = styled(AuthModalHeaderBall)`
   left: -487px;
   height: 1000px;
   width: 1000px;
-  background: ${props => props.theme.beige};
+  background: ${props => props.theme.colors.beige};
 `;
 
 const AuthModalFooter = styled.div`

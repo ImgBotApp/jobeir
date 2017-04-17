@@ -28,6 +28,16 @@ const jobTypes = [
   { name: 'Volunteer', value: 'VOLUNTEER' },
 ];
 
+const Yolo = [
+  { name: 'Select type', disabled: true, value: '' },
+  { name: 'Full-time', value: 'FULL_TIME' },
+  { name: 'Part-time', value: 'PART_TIME' },
+  { name: 'Contractor', value: 'CONTRACTOR' },
+  { name: 'Freelance', value: 'FREELANCE' },
+  { name: 'Intern', value: 'INTERN' },
+  { name: 'Volunteer', value: 'VOLUNTEER' },
+];
+
 const remoteOptions = [
   { text: 'Yes', value: 'Yes' },
   { text: 'No', value: 'No' },
@@ -72,7 +82,8 @@ class JobFormType extends Component {
           name="locations"
           label="Where will the employee be working?"
           validate={[ required ]}
-          component={Text}
+          options={jobTypes}
+          component={Select}
         />
         <Field
           name="remote"

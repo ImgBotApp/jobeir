@@ -89,13 +89,13 @@ const EditorContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 10px;
+    padding: 6px 10px;
     margin: 0px 2px;
     cursor: pointer;
   }
 
   .rdw-option-active {
-    background: ${props => props.theme.pink};
+    background: ${props => props.theme.colors.pink};
     color: white;
     border-radius: 4px;
   }

@@ -71,7 +71,7 @@ const NavLink = styled(Link)`
   cursor: pointer;
   height: 64px;
   line-height: 64px;
-  color: ${props => props.theme.text}
+  color: ${props => props.theme.colors.text}
 
   &:last-child {
     padding-right: 13px;

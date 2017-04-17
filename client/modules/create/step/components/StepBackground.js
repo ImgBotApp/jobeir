@@ -6,15 +6,17 @@ const StepBackground = props => {
     <StepBackgroundContainer>
       <StepBackgroundLeft />
       <StepBackgroundRight>
-        <RedBall />
-        <BlueBall />
-        <BlackBall />
-        <BeigBall />
-        <PinkBall />
+
       </StepBackgroundRight>
     </StepBackgroundContainer>
   );
 };
+
+// <RedBall />
+// <BlueBall />
+// <BlackBall />
+// <BeigBall />
+// <PinkBall />
 
 export default StepBackground;
 
@@ -52,7 +54,7 @@ const RedBall = styled.div`
   height: 400px;
   width: 400px;
   border-radius: 50%;
-  background: ${props => props.theme.red};
+  background: ${props => props.theme.colors.red};
   left: 230px;
 `;
 
@@ -62,7 +64,7 @@ const BlueBall = styled.div`
   height: 450px;
   width: 450px;
   border-radius: 50%;
-  background: ${props => props.theme.blue};
+  background: ${props => props.theme.colors.blue};
   left: 150px;
 `;
 
@@ -72,7 +74,7 @@ const BlackBall = styled.div`
   height: 270px;
   width: 270px;
   border-radius: 50%;
-  background: ${props => props.theme.black};
+  background: ${props => props.theme.colors.black};
   left: -50px;
 `;
 
@@ -82,7 +84,7 @@ const BeigBall = styled.div`
   height: 250px;
   width: 250px;
   border-radius: 50%;
-  background: ${props => props.theme.beige};
+  background: ${props => props.theme.colors.beige};
   left: -50px;
 `;
 
@@ -92,7 +94,7 @@ const PinkBall = styled.div`
   height: 400px;
   width: 400px;
   border-radius: 50%;
-  background: ${props => props.theme.pink};
+  background: ${props => props.theme.colors.pink};
   right: -250px;
 `;
 
