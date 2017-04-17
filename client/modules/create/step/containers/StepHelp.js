@@ -22,7 +22,7 @@ const StepHelpContainer = styled.div`
   width: 33.5%;
   margin-left: 7.5rem;
   border-radius: 3px;
-  border: 1px solid #f5f4f4;
+  border: 1px solid #eceaea;
   padding: 18px;
   background: #fff;
 `;

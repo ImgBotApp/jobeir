@@ -6,17 +6,18 @@ const StepBackground = props => {
     <StepBackgroundContainer>
       <StepBackgroundLeft />
       <StepBackgroundRight>
-
+        <BlueBall>
+          <RedBall />
+        </BlueBall>
       </StepBackgroundRight>
     </StepBackgroundContainer>
   );
 };
 
-// <RedBall />
+// <BlueBall />
 // <BlueBall />
 // <BlackBall />
 // <BeigBall />
-// <PinkBall />
 
 export default StepBackground;
 
@@ -45,57 +46,57 @@ const StepBackgroundRight = styled.div`
   top: 0;
   z-index: -1;
   overflow: hidden;
-  opacity: 0.5;
+`;
+
+const BlueBall = styled.div`
+  position: relative;
+  top: 55%;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: ${props => props.theme.colors.blue};
+  opacity: 0.2;
+  left: 330px;
 `;
 
 const RedBall = styled.div`
   position: absolute;
-  top: 45%;
-  height: 400px;
-  width: 400px;
-  border-radius: 50%;
-  background: ${props => props.theme.colors.red};
-  left: 230px;
-`;
-
-const BlueBall = styled.div`
-  position: absolute;
-  top: -80px;
-  height: 450px;
-  width: 450px;
-  border-radius: 50%;
-  background: ${props => props.theme.colors.blue};
-  left: 150px;
+  right: -30px;
+  border-radius: 80px/80px;
+  border: solid 12px ${props => props.theme.colors.red};
+  width: 80px;
+  height: 80px;
+  opacity: 0.6;
 `;
 
 const BlackBall = styled.div`
   position: absolute;
-  bottom: -20px;
-  height: 270px;
-  width: 270px;
+  height: 52px;
+  width: 52px;
   border-radius: 50%;
   background: ${props => props.theme.colors.black};
-  left: -50px;
+  right: 10px;
+  bottom: -50px;
 `;
 
 const BeigBall = styled.div`
   position: absolute;
-  bottom: 340px;
-  height: 250px;
-  width: 250px;
+  top: -60px;
+  left: -60px;
   border-radius: 50%;
   background: ${props => props.theme.colors.beige};
-  left: -50px;
+  width: 150px;
+  height: 150px;
 `;
 
 const PinkBall = styled.div`
   position: absolute;
-  bototm: 0px;
-  height: 400px;
-  width: 400px;
+  height: 76px;
+  width: 76px;
   border-radius: 50%;
   background: ${props => props.theme.colors.pink};
-  right: -250px;
+  right: -35px;
+  bottom: -30px;
 `;
 
 // rgba(251, 80, 50, 0.14);
