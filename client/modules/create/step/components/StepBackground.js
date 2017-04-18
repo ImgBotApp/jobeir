@@ -6,14 +6,15 @@ const StepBackground = props => {
     <StepBackgroundContainer>
       <StepBackgroundLeft />
       <StepBackgroundRight>
-        <BlueBall>
-          <RedBall />
-        </BlueBall>
+ 
       </StepBackgroundRight>
     </StepBackgroundContainer>
   );
 };
 
+// <BlueBall>
+//   <RedBall />
+// </BlueBall>
 // <BlueBall />
 // <BlueBall />
 // <BlackBall />

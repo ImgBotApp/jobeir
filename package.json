@@ -43,6 +43,7 @@
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
+    "querystring": "^0.2.0",
     "rapscallion": "^2.1.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

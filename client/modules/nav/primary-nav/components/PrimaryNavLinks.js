@@ -28,21 +28,47 @@ class PrimaryNavLinks extends Component {
     docCookies.removeItem('SID');
   }
 
+  /**
+   * buildCreateNavigation()
+   * Used when the user is creating a company or job posting. We want to keep
+   * the navigation minimal to keep the user on the correct track.
+   */
+  buildCreateNavigation() {
+    return (
+      <NavLinkContainer>
+        <NavLink to="/dashboard">Exit</NavLink>
+      </NavLinkContainer>
+    );
+  }
+
+  /**
+   * buildMainNavigation()
+   * Takes care of the authenticated or not authenticated version of the
+   * primary navigation.
+   */
+  buildMainNavigation(isAuthenticated) {
+    return isAuthenticated
+      ? <NavLinkContainer>
+          <NavLink to="/create/job/about">Post Job</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink onClick={this.handleLogoutClick}>Log Out</NavLink>
+        </NavLinkContainer>
+      : <NavLinkContainer>
+          <NavLink to="/create/job/about">Post Job</NavLink>
+          <NavLink onClick={this.handleSignUpClick}>Sign Up</NavLink>
+          <NavLink to="/login">Log In</NavLink>
+        </NavLinkContainer>;
+  }
+
   render() {
+    const { pathname, isAuthenticated } = this.props;
+
     return (
       <PrimaryNavLinksContainer>        
         {
-          this.props.isAuthenticated
-            ? <NavLinkContainer>
-                <NavLink to="/create/job/about">Post Job</NavLink>
-                <NavLink to="/dashboard">Dashboard</NavLink>
-                <NavLink onClick={this.handleLogoutClick}>Log Out</NavLink>
-              </NavLinkContainer>
-            : <NavLinkContainer>
-                <NavLink to="/create/job/about">Post Job</NavLink>
-                <NavLink onClick={this.handleSignUpClick}>Sign Up</NavLink>
-                <NavLink to="/login">Log In</NavLink>
-              </NavLinkContainer>
+          pathname.includes('create')
+            ? this.buildCreateNavigation()
+            : this.buildMainNavigation(isAuthenticated)
         }
       </PrimaryNavLinksContainer>
     );
@@ -51,6 +77,7 @@ class PrimaryNavLinks extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.session.auth.isAuthenticated,
+  pathname: state.routing.locationBeforeTransitions && state.routing.locationBeforeTransitions.pathname || '',
 });
 
 export default connect(mapStateToProps)(PrimaryNavLinks);
