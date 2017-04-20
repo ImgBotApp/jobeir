@@ -5,7 +5,10 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
-import { required } from '../../../validation';
+import {
+  required,
+  maxLength,
+} from '../../../validation';
 import {
   Select,
   SubmitButton,
@@ -76,8 +79,8 @@ class CompanyFormStepOne extends Component {
         <Field
           name="product"
           label="Briefly describe your company"
-          placeholder="Let applicants know what your company does and what it’s like to work there."
-          validate={[ required ]}
+          placeholder="What is your company mission? Let applicants know what your company does and what it’s like to work there."
+          validate={[ required, maxLength(500) ]}
           component={Textarea}
         />
         <FormFooter>
