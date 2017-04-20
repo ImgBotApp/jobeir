@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormRow from '../../components/FormRow';
 import FormFooter from '../../components/FormFooter';
 import {
   BackButton,
-  Checkbox,
   Currency,
-  Phone,
   Text,
-  Select,
-  Textarea,
+  Radio,
   SubmitButton
 } from '../../../inputs/input';
-import {
-  required,
-} from '../../../validation';
+import { required } from '../../../validation';
 import { createJob } from '../../../../create/job/ducks';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
+const equityOptions = [
+  { text: 'Yes', value: 'Yes' },
+  { text: 'No', value: 'No' },
+];
 
 class JobFormComponesation extends Component {
   constructor(props) {
@@ -37,6 +36,7 @@ class JobFormComponesation extends Component {
     const {
       handleSubmit,
       job,
+      offersEquity,
       prevPage,
     } = this.props;
 
@@ -68,6 +68,34 @@ class JobFormComponesation extends Component {
             component={Currency}
           />
         </FormRow>
+        <Field
+          name="offerEquity"
+          label="Do you offer equity?"
+          validate={[ required ]}
+          options={equityOptions}
+          component={Radio}
+        />
+        {
+          offersEquity === 'Yes' &&
+          <FormRow>
+            <Field
+              name="equityMin"
+              label="Equity minimum"
+              placeholder="$"
+              validate={[ required ]}
+              parse={parseNumber}
+              component={Currency}
+            />
+            <Field
+              name="equityMax"
+              label="Equity maximum"
+              placeholder="$"
+              validate={[ required ]}
+              parse={parseNumber}
+              component={Currency}
+            />
+          </FormRow>
+        }
         <FormFooter>
           <BackButton
             action={prevPage}
@@ -84,9 +112,12 @@ class JobFormComponesation extends Component {
   }
 };
 
+const selector = formValueSelector('job');
+
 const mapStateToProps = state => ({
   job: state.job,
   auth: state.session.auth,
+  offersEquity: selector(state, 'offerEquity'),
 });
 
 JobFormComponesation = reduxForm({
