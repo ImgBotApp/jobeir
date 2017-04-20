@@ -29,7 +29,7 @@ const FormErrorContainer = styled.div`
     ? 'absolute'
     : 'relative'
   };
-  width: 53%;
+  width: ${props => props.theme.error.width};
 `;
 
 // border: 1px solid #cc0726;

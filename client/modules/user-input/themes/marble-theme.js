@@ -28,6 +28,7 @@ export const marble = {
   error: {
     color: '#cc0726',
     position: 'absolute',
+    width: '53%',
   },
   label: {
     display: 'block',

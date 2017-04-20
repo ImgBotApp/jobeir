@@ -11,6 +11,11 @@ export const auth = {
     fontSize: '18px',
     color: '#fff',
   },
+  error: {
+    color: '#cc0726',
+    position: 'relative',
+    width: '100%',
+  },
   input: {
     borderRadius: '3px',
     border: 'solid 1px #babbbb',
