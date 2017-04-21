@@ -1,12 +1,26 @@
 import { call, put } from 'redux-saga/effects';
-import { fetchApi } from '../../../utils/api';
-import { redirectTo } from '../ducks'
+import { fetchApi } from '../../../../utils/api';
+import {
+  AUTH_REQUEST,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
+  redirectTo
+} from '../../ducks';
 import {
   authUser,
   signupUser,
   loginUser,
   logoutUser
-} from './';
+} from '../';
 
 const action = {
   payload: {
@@ -28,7 +42,7 @@ describe('User', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'AUTH_SUCCESS',
+            type: AUTH_SUCCESS,
             payload: undefined
           })
         );
@@ -45,7 +59,7 @@ describe('User', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'AUTH_SUCCESS',
+            type: AUTH_SUCCESS,
             payload: undefined
           })
         );
@@ -71,7 +85,7 @@ describe('User', () => {
         }).value
       ).toEqual(
         put({
-          type: 'AUTH_FAILURE',
+          type: AUTH_FAILURE,
           errors: { errors: 'unauthorized' }
         })
       );
@@ -91,7 +105,7 @@ describe('User', () => {
         }).value
       ).toEqual(
         put({
-          type: 'AUTH_FAILURE',
+          type: AUTH_FAILURE,
           errors: { errors: 'unauthorized' }
         })
       );
@@ -115,7 +129,7 @@ describe('User', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'SIGNUP_SUCCESS',
+            type: SIGNUP_SUCCESS,
             payload: undefined
           })
         );
@@ -136,7 +150,7 @@ describe('User', () => {
         }).value
       ).toEqual(
         put({
-          type: 'SIGNUP_FAILURE',
+          type: SIGNUP_FAILURE,
           errors: { errors: 'user not found' }
         })
       );
@@ -155,7 +169,7 @@ describe('User', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'LOGIN_SUCCESS',
+            type: LOGIN_SUCCESS,
             payload: undefined
           })
         );
@@ -176,7 +190,7 @@ describe('User', () => {
         }).value
       ).toEqual(
         put({
-          type: 'LOGIN_FAILURE',
+          type: LOGIN_FAILURE,
           errors: { errors: 'user not found' }
         })
       );
@@ -195,7 +209,7 @@ describe('User', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'LOGOUT_SUCCESS',
+            type: LOGOUT_SUCCESS,
           })
         );
     });
@@ -215,7 +229,7 @@ describe('User', () => {
         }).value
       ).toEqual(
         put({
-          type: 'LOGOUT_FAILURE',
+          type: LOGOUT_FAILURE,
           errors: { errors: 'logout failed' }
         })
       );

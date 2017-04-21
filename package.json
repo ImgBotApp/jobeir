@@ -12,7 +12,7 @@
     "clean": "rimraf dist",
     "slate": "rimraf node_modules && yarn install",
     "lint": "eslint client server",
-    "test:watch": "jest --watchAll",
+    "test:watch": "jest --watch",
     "test": "jest",
     "validate": "npm ls"
   },

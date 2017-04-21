@@ -1,10 +1,18 @@
 import { call, put } from 'redux-saga/effects';
-import { fetchApi } from '../../../../utils/api';
-import { redirectTo } from '../ducks'
+import { fetchApi } from '../../../../../utils/api';
+import {
+  redirectTo,
+  CHECK_COMPANY_REQUEST,
+  CHECK_COMPANY_SUCCESS,
+  CHECK_COMPANY_FAILURE,
+  CREATE_COMPANY_REQUEST,
+  CREATE_COMPANY_SUCCESS,
+  CREATE_COMPANY_FAILURE,
+} from '../../ducks';
 import {
   createCompany,
   checkCompany,
-} from './';
+} from '../';
 
 const action = {
   payload: {
@@ -14,7 +22,7 @@ const action = {
   }
 };
 
-describe('Job', () => {
+describe('[Sagas Company]', () => {
   describe('creation', () => {
     it('should return a CREATE_COMPANY_SUCCESS action', () => {
       const gen = createCompany(action);
@@ -27,7 +35,7 @@ describe('Job', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'CREATE_COMPANY_SUCCESS',
+            type: CREATE_COMPANY_SUCCESS,
             payload: undefined
           })
         );
@@ -48,7 +56,7 @@ describe('Job', () => {
         }).value
       ).toEqual(
         put({
-          type: 'CREATE_COMPANY_FAILURE',
+          type: CREATE_COMPANY_FAILURE,
           errors: { errors: 'unable to create job' }
         })
       );

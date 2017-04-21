@@ -1,9 +1,13 @@
 import { call, put } from 'redux-saga/effects';
-import { fetchApi } from '../../../../utils/api';
-import { redirectTo } from '../ducks'
+import { fetchApi } from '../../../../../utils/api';
+import {
+  CREATE_JOB_REQUEST,
+  CREATE_JOB_SUCCESS,
+  CREATE_JOB_FAILURE,
+} from '../../ducks';
 import {
   createJob,
-} from './';
+} from '../';
 
 const action = {
   payload: {
@@ -13,7 +17,7 @@ const action = {
   }
 };
 
-describe('Job', () => {
+describe('[Sagas Job]', () => {
   describe('creation', () => {
     it('should return a CREATE_JOB_SUCCESS action', () => {
       const gen = createJob(action);
@@ -26,7 +30,7 @@ describe('Job', () => {
       expect(gen.next().value)
         .toEqual(
           put({
-            type: 'CREATE_JOB_SUCCESS',
+            type: CREATE_JOB_SUCCESS,
             payload: undefined
           })
         );
@@ -47,7 +51,7 @@ describe('Job', () => {
         }).value
       ).toEqual(
         put({
-          type: 'CREATE_JOB_FAILURE',
+          type: CREATE_JOB_FAILURE,
           errors: { errors: 'unable to create job' }
         })
       );

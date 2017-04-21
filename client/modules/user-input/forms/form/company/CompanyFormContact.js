@@ -47,7 +47,7 @@ class CompanyFormStepTwo extends Component {
         theme="marble"
       >
         <FormHeader
-          text={`How can applicants reach out to ${companyName}?`}
+          text={`How can people reach out to ${companyName}?`}
         />
         <Field
           name="phone"

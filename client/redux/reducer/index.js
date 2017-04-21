@@ -25,7 +25,7 @@ function intl(state, action) {
 }
 
 // creating an appReducer
-const appReducer = combineReducers({
+export const appReducer = combineReducers({
   company,
   job,
   form,
@@ -40,7 +40,7 @@ const appReducer = combineReducers({
  * and return a new state depending on the action. It's currently used
  * to reset state when a user decides to log out.
  */
-const rootReducer = (state, action) => {
+const rootReducer = (state = {}, action = {}) => {
   if (action.type === 'LOGOUT_SUCCESS') {
     state = undefined
   }
