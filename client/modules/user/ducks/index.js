@@ -16,7 +16,7 @@ export const initialState = {
   errors: [],
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case GET_USER_REQUEST:
       return Object.assign({}, state, {
@@ -31,6 +31,7 @@ export default (state = initialState, action) => {
     case GET_USER_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
+        isLoaded: true,
         errors: action.errors.errors,
       });
     case AUTH_SUCCESS:
