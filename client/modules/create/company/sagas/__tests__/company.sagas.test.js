@@ -62,4 +62,44 @@ describe('[Sagas Company]', () => {
       );
     });
   });
+
+  describe('check', () => {
+    it('should return a CHECK_COMPANY_SUCCESS action', () => {
+      const gen = checkCompany(action);
+
+      expect(gen.next().value)
+        .toEqual(
+          call(fetchApi, 'GET', `/companies/check/${action.payload.data}`)
+        );
+
+      expect(gen.next().value)
+        .toEqual(
+          put({
+            type: CHECK_COMPANY_SUCCESS,
+            payload: undefined
+          })
+        );
+    });
+
+    it('should return a CHECK_COMPANY_FAILURE action', () => {
+      const gen = checkCompany(action);
+
+      expect(
+        gen.next().value
+      ).toEqual(
+        call(fetchApi, 'GET', `/companies/check/${action.payload.data}`)
+      );
+
+      expect(
+        gen.throw({
+          errors: `The company ${action.payload.data} already exists`
+        }).value
+      ).toEqual(
+        put({
+          type: CHECK_COMPANY_FAILURE,
+          errors: { errors: `The company ${action.payload.data} already exists` }
+        })
+      );
+    });
+  });
 });
