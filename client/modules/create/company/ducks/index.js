@@ -13,10 +13,11 @@ export const CREATE_JOB_FAILURE = 'CREATE_JOB_FAILURE';
 export const initialState = {
   isLoading: false,
   isChecking: false,
+  details: {},
   errors: [],
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case CREATE_COMPANY_REQUEST:
       return Object.assign({}, state, {

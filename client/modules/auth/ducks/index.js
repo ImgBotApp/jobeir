@@ -23,7 +23,7 @@ export const initialState = {
   errors: [],
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case AUTH_REQUEST:
     case LOGIN_REQUEST:
