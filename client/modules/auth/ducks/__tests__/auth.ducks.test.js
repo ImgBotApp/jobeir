@@ -13,9 +13,9 @@ import authReducer, {
   LOGOUT_FAILURE,
   initialState,
   auth,
-  signup,
   login,
   logout,
+  signup,
   redirectTo,
 } from '../';
 
@@ -27,7 +27,7 @@ import authReducer, {
 // };
 
 describe('[Ducks Auth]', () => {
-  describe('authReducer', () => {
+  describe('authReducer()', () => {
     it('should return the initialState', () => {
       expect(authReducer()).toEqual(initialState);
     });
@@ -54,7 +54,7 @@ describe('[Ducks Auth]', () => {
       expect(authReducer({}, action)).toEqual(nextState);
     });
 
-    it('should return the correct state on AUTH_FAILURE', () => {
+    it('should return the correct state on SIGNUP_FAILURE', () => {
       const nextState = {
         isAuthenticating: false,
         isAuthenticated: false,
@@ -64,20 +64,82 @@ describe('[Ducks Auth]', () => {
         errors: {
           errors: []
         },
-        type: AUTH_FAILURE
+        type: SIGNUP_FAILURE
+      };
+
+      expect(authReducer({}, action)).toEqual(nextState);
+    });
+
+    it('should return the correct state on SIGNUP_SUCCESS', () => {
+      const nextState = {
+        isAuthenticated: true,
+        isAuthenticating: false
+      };
+      const action = {
+        payload: {
+          data: {}
+        },
+        type: SIGNUP_SUCCESS
+      };
+
+      expect(authReducer({}, action)).toEqual(nextState);
+    });
+
+    it('should return the correct state on SIGNUP_FAILURE', () => {
+      const nextState = {
+        isAuthenticating: false,
+        isAuthenticated: false,
+        errors: []
+      };
+      const action = {
+        errors: {
+          errors: []
+        },
+        type: SIGNUP_FAILURE
       };
 
       expect(authReducer({}, action)).toEqual(nextState);
     });
   });
 
-  describe('auth', () => {
+  describe('auth()', () => {
     it('should return the AUTH_REQUEST action', () => {
       expect(auth({})).toEqual({
         payload: {
           redirectPathname: {}
         }, 
         type: AUTH_REQUEST,
+      });
+    });
+  });
+
+  describe('login()', () => {
+    it('should return the LOGIN_REQUEST action', () => {
+      expect(login({}, {})).toEqual({
+        payload: {
+          email: {}, 
+          password: {},
+        },
+        type: LOGIN_REQUEST
+      });
+    });
+  });
+
+  describe('logout()', () => {
+    it('should return the LOGOUT_REQUEST action', () => {
+      expect(logout()).toEqual({ type: LOGOUT_REQUEST });
+    });
+  });
+
+  describe('signup()', () => {
+    it('should return the SIGNUP_REQUEST action', () => {
+      expect(signup({}, {}, {})).toEqual({
+        payload: {
+          email: {}, 
+          password: {},
+          redirectPathname: {}
+        },
+        type: SIGNUP_REQUEST
       });
     });
   });
