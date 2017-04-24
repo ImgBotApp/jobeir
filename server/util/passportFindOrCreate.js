@@ -8,30 +8,33 @@ import User from '../models/User';
  * Otherwise, we create a new user and pass that to the callback
  */
 export function passportFindOrCreate(accessToken, refreshToken, profile, done) {
-  User.findOne({
-    email: profile.emails[0].value,
-  }, function(err, user) {
-    if (err) {
-      return done(err);
-    }
-    if (!user) {
-      const newUser = new User();
+  User.findOne(
+    {
+      email: profile.emails[0].value,
+    },
+    function(err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        const newUser = new User();
 
-      newUser.firstName = profile.name.givenName;
-      newUser.lastName = profile.name.familyName;
-      newUser.email = profile.emails[0].value;
-      newUser.provider = profile.provider;
-      newUser.id = profile.id;
+        newUser.firstName = profile.name.givenName;
+        newUser.lastName = profile.name.familyName;
+        newUser.email = profile.emails[0].value;
+        newUser.provider = profile.provider;
+        newUser.id = profile.id;
 
-      newUser.save(err => {
-        if (err) {
-          throw err;
-        }
+        newUser.save(err => {
+          if (err) {
+            throw err;
+          }
 
-        return done(null, newUser);
-      });
-    } else {
-      return done(err, user);
-    }
-  });
+          return done(null, newUser);
+        });
+      } else {
+        return done(err, user);
+      }
+    },
+  );
 }

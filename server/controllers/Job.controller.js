@@ -60,22 +60,20 @@ export function createJob(req, res) {
 
   newJob.save((err, saved) => {
     if (err) {
-      res
-        .status(409)
-        .send({
-          data: {},
-          errors: [{
-            error: "UNABLE_TO_CREATE_JOB",
-            message:`Unable to create the job ${req.body.title}`
-          }],
-        });
+      res.status(409).send({
+        data: {},
+        errors: [
+          {
+            error: 'UNABLE_TO_CREATE_JOB',
+            message: `Unable to create the job ${req.body.title}`,
+          },
+        ],
+      });
     } else {
-      res
-        .status(200)
-        .send({
-          data: { job: saved },
-          errors: []
-        });
+      res.status(200).send({
+        data: { job: saved },
+        errors: [],
+      });
     }
   });
 }

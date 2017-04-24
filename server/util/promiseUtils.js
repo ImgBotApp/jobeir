@@ -1,4 +1,3 @@
-
 /**
  * Throw an array to it and a function which can generate promises
  * and it will call them sequentially, one after another
@@ -9,7 +8,7 @@ export function sequence(items, consumer) {
     const item = items.shift();
     if (item) {
       return consumer(item)
-        .then((result) => {
+        .then(result => {
           results.push(result);
         })
         .then(runner);

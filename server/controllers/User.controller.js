@@ -14,12 +14,10 @@ export function getUsers(req, res) {
       res.status(500).send(err);
     }
 
-    res
-      .status(200)
-      .send({
-        data: { user },
-        errors: [],
-      });
+    res.status(200).send({
+      data: { user },
+      errors: [],
+    });
   });
 }
 
@@ -34,13 +32,11 @@ export function getUser(req, res) {
     if (err) {
       res.status(500).send(err);
     }
-    
-    res
-      .status(200)
-      .send({
-        data: { user },
-        errors: [],
-      });
+
+    res.status(200).send({
+      data: { user },
+      errors: [],
+    });
   });
 }
 
@@ -52,44 +48,42 @@ export function getUser(req, res) {
  */
 export function registerUser(req, res) {
   if (!req.body.email || !req.body.password) {
-    return res
-      .status(202)
-      .send({
-        data: {},
-        errors: [{
-          error: "MISSING_EMAIL_OR_PASSWORD",
-          message:'Email and password are required'
-        }],
-      });
+    return res.status(202).send({
+      data: {},
+      errors: [
+        {
+          error: 'MISSING_EMAIL_OR_PASSWORD',
+          message: 'Email and password are required',
+        },
+      ],
+    });
   } else {
-    const newUser = new User ({
+    const newUser = new User({
       email: req.body.email,
       password: req.body.password,
     });
 
     newUser.save(err => {
       if (err) {
-        return res
-          .status(409)
-          .send({
-            data: {},
-            errors: [{
-              error: "USER_ALREADY_EXISTS",
-              message: "A user with that email already exists."
-            }],
-          });
+        return res.status(409).send({
+          data: {},
+          errors: [
+            {
+              error: 'USER_ALREADY_EXISTS',
+              message: 'A user with that email already exists.',
+            },
+          ],
+        });
       } else {
         const token = jwt.sign(newUser, serverConfig.jwt);
 
-        return res
-          .status(200)
-          .send({
-            data: {
-              token,
-              user: req.body
-            },
-            errors: [],
-          });
+        return res.status(200).send({
+          data: {
+            token,
+            user: req.body,
+          },
+          errors: [],
+        });
       }
     });
   }
@@ -102,50 +96,51 @@ export function registerUser(req, res) {
  * @returns void
  */
 export function loginUser(req, res) {
-  User.findOne({
-    email: req.body.email
-  }, function(err, user) {
-    if (err) throw err;
+  User.findOne(
+    {
+      email: req.body.email,
+    },
+    function(err, user) {
+      if (err) throw err;
 
-    if (!user) {
-      res
-        .status(401)
-        .send({
+      if (!user) {
+        res.status(401).send({
           data: {},
-          errors: [{
-            error: "INVALID_EMAIL_OR_PASSWORD",
-            message:'Invalid email or password'
-          }],
+          errors: [
+            {
+              error: 'INVALID_EMAIL_OR_PASSWORD',
+              message: 'Invalid email or password',
+            },
+          ],
         });
-    } else {
-      user.comparePassword(req.body.password, function(err, isMatch) {
-        if (!err && isMatch) {
-          const token = jwt.sign(user, serverConfig.jwt);
+      } else {
+        user.comparePassword(req.body.password, function(err, isMatch) {
+          if (!err && isMatch) {
+            const token = jwt.sign(user, serverConfig.jwt);
 
-          res
-            .status(200)
-            .send({
+            res.status(200).send({
               data: {
                 isAuthenticated: true,
                 id: user._id,
-                token
+                token,
               },
-              errors: []
+              errors: [],
             });
-        } else {
-          res
-          .status(401)
-          .send({
-            data: {},
-            errors: [{
-              error: "INVALID_EMAIL_OR_PASSWORD",
-              message:'Invalid email or password'
-            }],
-          });
-        }
-      });
-    }
-  });
+          } else {
+            res.status(401).send({
+              data: {},
+              errors: [
+                {
+                  error: 'INVALID_EMAIL_OR_PASSWORD',
+                  message: 'Invalid email or password',
+                },
+              ],
+            });
+          }
+        });
+      }
+    },
+  );
 }
 
 /**
@@ -158,6 +153,6 @@ export function logoutUser(req, res) {
   req.logout();
   res.status(200).send({
     data: [],
-    errors: []
+    errors: [],
   });
 }

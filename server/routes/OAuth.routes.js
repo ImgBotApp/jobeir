@@ -15,7 +15,7 @@ function checkReturnTo(req, res, next) {
   if (returnTo) {
     // Maybe unnecessary, but just to be sure.
     req.session = req.session || {};
-    
+
     // Set returnTo to the absolute path you want to be redirect to after the authentication succeeds.
     req.session.returnTo = getFullUrl(querystring.unescape(returnTo));
   }
@@ -23,50 +23,62 @@ function checkReturnTo(req, res, next) {
 }
 
 // Google Auth
-router.get('/auth/google',
+router.get(
+  '/auth/google',
   checkReturnTo,
-  passport.authenticate('google', {  scope : ['profile', 'email'] }));
+  passport.authenticate('google', { scope: ['profile', 'email'] }),
+);
 
-router.get('/auth/google/callback', 
+router.get(
+  '/auth/google/callback',
   checkReturnTo,
   passport.authenticate('google', {
     successReturnToOrRedirect: '/',
-    failureRedirect: '/login'
+    failureRedirect: '/login',
   }),
   function(req, res) {
     const token = jwt.sign(req.user, serverConfig.jwt);
-    
+
     res.cookie('SID', token).redirect('/dashboard');
-  });
+  },
+);
 
 // Facebook Auth
-router.get('/auth/facebook',
-  passport.authenticate('facebook', { scope: [ 'email' ] }));
+router.get(
+  '/auth/facebook',
+  passport.authenticate('facebook', { scope: ['email'] }),
+);
 
-router.get('/auth/facebook/callback',
+router.get(
+  '/auth/facebook/callback',
   passport.authenticate('facebook', {
     successReturnToOrRedirect: '/',
-    failureRedirect: '/login'
+    failureRedirect: '/login',
   }),
   function(req, res) {
     const token = jwt.sign(req.user, serverConfig.jwt);
-    
+
     res.cookie('SID', token).redirect('/dashboard');
-  });
+  },
+);
 
 // Github Auth
-router.get('/auth/github',
-  passport.authenticate('github', { scope: [ 'user:email' ] }));
+router.get(
+  '/auth/github',
+  passport.authenticate('github', { scope: ['user:email'] }),
+);
 
-router.get('/auth/github/callback', 
+router.get(
+  '/auth/github/callback',
   passport.authenticate('github', {
     successReturnToOrRedirect: '/',
-    failureRedirect: '/login'
+    failureRedirect: '/login',
   }),
   function(req, res) {
     const token = jwt.sign(req.user, serverConfig.jwt);
-    
+
     res.cookie('SID', token).redirect('/dashboard');
-  });
+  },
+);
 
 export default router;

@@ -9,7 +9,7 @@ const User = new Schema({
     type: String,
     lowercase: true,
     unique: true,
-    required: true
+    required: true,
   },
   password: {
     type: String,
@@ -21,11 +21,11 @@ const User = new Schema({
   },
   provider: {
     type: String,
-    default: 'Local'
+    default: 'Local',
   },
   dateCreated: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   firstName: {
     type: String,
@@ -34,23 +34,27 @@ const User = new Schema({
     type: String,
   },
   companies: {
-    created: [{
-      name: {
-        type: String
+    created: [
+      {
+        name: {
+          type: String,
+        },
+        date: {
+          type: Date,
+        },
       },
-      date: {
-        type: Date,
-      }
-    }],
-    joined: [{
-      name: {
-        type: String
+    ],
+    joined: [
+      {
+        name: {
+          type: String,
+        },
+        date: {
+          type: Date,
+        },
       },
-      date: {
-        type: Date,
-      }
-    }]
-  }
+    ],
+  },
 });
 
 User.pre('save', function(next) {

@@ -25,30 +25,30 @@ export function getCompanies(req, res) {
  * @returns void
  */
 export function checkCompany(req, res) {
-  Company.findOne({ name: req.params.name.toLowerCase() }).exec((err, company) => {
+  Company.findOne({
+    name: req.params.name.toLowerCase(),
+  }).exec((err, company) => {
     if (err) {
       res.status(500).send(err);
     }
 
     // if there is a company return an error
     if (company) {
-      res
-        .status(409)
-        .send({
-          data: {},
-          errors: [{
-            error: "COMPANY_ALREADY_EXISTS",
-            message:`The company ${req.params.name} already exists`
-          }],
-        });
+      res.status(409).send({
+        data: {},
+        errors: [
+          {
+            error: 'COMPANY_ALREADY_EXISTS',
+            message: `The company ${req.params.name} already exists`,
+          },
+        ],
+      });
     } else {
       // if no company exists, let the user continue
-      res
-        .status(200)
-        .send({
-          data: {},
-          errors: [],
-        });
+      res.status(200).send({
+        data: {},
+        errors: [],
+      });
     }
   });
 }
@@ -86,39 +86,37 @@ export function createCompany(req, res) {
       date: new Date(),
     });
 
-    user.save(function (err) {
+    user.save(function(err) {
       if (err) {
-        res
-          .status(500)
-          .send({
-            data: {},
-            errors: [{
-              error: "INTERNAL_SERVER_ERROR",
-              message:`There was an error creating the company ${req.body.name}`
-            }],
-          })
+        res.status(500).send({
+          data: {},
+          errors: [
+            {
+              error: 'INTERNAL_SERVER_ERROR',
+              message: `There was an error creating the company ${req.body.name}`,
+            },
+          ],
+        });
       }
     });
   });
-  
+
   newCompany.save((err, saved) => {
     if (err) {
-      res
-        .status(409)
-        .send({
-          data: {},
-          errors: [{
-            error: "COMPANY_ALREADY_EXISTS",
-            message:`The company ${req.body.name} already exists`
-          }],
-        })
+      res.status(409).send({
+        data: {},
+        errors: [
+          {
+            error: 'COMPANY_ALREADY_EXISTS',
+            message: `The company ${req.body.name} already exists`,
+          },
+        ],
+      });
     } else {
-      res
-        .status(200)
-        .send({
-          data: { company: saved },
-          errors: []
-        });
+      res.status(200).send({
+        data: { company: saved },
+        errors: [],
+      });
     }
   });
 }
