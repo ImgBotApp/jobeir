@@ -10,13 +10,8 @@ module.exports = {
   devtool: 'hidden-source-map',
 
   entry: {
-    app: [
-      path.join(__dirname, '../client/index.js'),
-    ],
-    vendor: [
-      'react',
-      'react-dom',
-    ]
+    app: [path.join(__dirname, '../client/index.js')],
+    vendor: ['react', 'react-dom'],
   },
 
   output: {
@@ -28,12 +23,9 @@ module.exports = {
   target: 'node',
 
   resolve: {
-     extensions: ['.js', '.jsx'],
-     modules: [
-       'client',
-       'node_modules',
-     ],
-   },
+    extensions: ['.js', '.jsx'],
+    modules: ['client', 'node_modules'],
+  },
 
   module: {
     loaders: [
@@ -42,20 +34,24 @@ module.exports = {
         exclude: /node_modules/,
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: 'css-loader?localIdentName=[hash:base64]&modules&importLoaders=1!postcss-loader' 
+          loader: 'css-loader?localIdentName=[hash:base64]&modules&importLoaders=1!postcss-loader',
         }),
-      }, {
+      },
+      {
         test: /\.css$/,
         include: /node_modules/,
         loaders: ['style-loader', 'css-loader'],
-      }, {
+      },
+      {
         test: /\.jsx*$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-      }, {
+      },
+      {
         test: /\.(jpe?g|gif|png|svg)$/i,
         loader: 'url-loader?limit=10000',
-      }, {
+      },
+      {
         test: /\.json$/,
         loader: 'json-loader',
       },
@@ -66,8 +62,8 @@ module.exports = {
     new webpack.IgnorePlugin(/\/iconv-loader$/),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production'),
-      }
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -77,19 +73,19 @@ module.exports = {
     new ExtractTextPlugin({
       filename: 'app.[chunkhash].css',
       disable: false,
-      allChunks: true
+      allChunks: true,
     }),
     new ManifestPlugin({
       basePath: '/',
     }),
     new ChunkManifestPlugin({
-      filename: "chunk-manifest.json",
-      manifestVariable: "webpackManifest",
+      filename: 'chunk-manifest.json',
+      manifestVariable: 'webpackManifest',
     }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
-      }
+      },
     }),
     new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig),
   ],

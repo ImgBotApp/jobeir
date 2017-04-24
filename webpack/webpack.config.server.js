@@ -3,7 +3,6 @@ var path = require('path');
 var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-
   entry: path.join(__dirname, '../server/server.js'),
 
   output: {
@@ -18,9 +17,11 @@ module.exports = {
     __dirname: true,
   },
 
-  externals: [nodeExternals({
-    importType: 'commonjs',
-  })], // in order to ignore all modules in node_modules folder
+  externals: [
+    nodeExternals({
+      importType: 'commonjs',
+    }),
+  ], // in order to ignore all modules in node_modules folder
 
   module: {
     loaders: [
@@ -29,19 +30,16 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: [
-            'react',
-            'es2015',
-            'stage-0',
-          ],
+          presets: ['react', 'es2015', 'stage-0'],
           plugins: [
             [
-              'babel-plugin-webpack-loaders', {
-                'config': './webpack/webpack.config.babel.js',
-                "verbose": false
-              }
-            ]
-          ]
+              'babel-plugin-webpack-loaders',
+              {
+                config: './webpack/webpack.config.babel.js',
+                verbose: false,
+              },
+            ],
+          ],
         },
       },
       {

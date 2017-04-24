@@ -21,12 +21,9 @@ module.exports = {
       'react-hot-loader/patch',
       'babel-polyfill',
       'whatwg-fetch',
-      path.join(__dirname, '../client/index.js')
+      path.join(__dirname, '../client/index.js'),
     ],
-    vendor: [
-      'react',
-      'react-dom',
-    ],
+    vendor: ['react', 'react-dom'],
   },
 
   output: {
@@ -76,8 +73,10 @@ module.exports = {
         CLIENT: JSON.stringify(true),
         NODE_ENV: JSON.stringify('development'),
         PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
-      }
+      },
     }),
-    new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(),
+    new WebpackIsomorphicToolsPlugin(
+      webpackIsomorphicToolsConfig,
+    ).development(),
   ],
 };

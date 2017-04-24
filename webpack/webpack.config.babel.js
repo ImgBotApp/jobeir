@@ -14,17 +14,16 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    modules: [
-      'client',
-      'node_modules',
-    ],
+    modules: ['client', 'node_modules'],
   },
   module: {
     loaders: [
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: 'style-loader!css-loader?localIdentName=' + cssModulesIdentName + '&modules&importLoaders=1&sourceMap!postcss-loader',
+        loader: 'style-loader!css-loader?localIdentName=' +
+          cssModulesIdentName +
+          '&modules&importLoaders=1&sourceMap!postcss-loader',
       },
       {
         test: /\.jpe?g$|\.gif$|\.png$|\.svg$/i,
