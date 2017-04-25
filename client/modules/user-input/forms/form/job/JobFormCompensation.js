@@ -10,7 +10,7 @@ import {
   Currency,
   Text,
   Radio,
-  SubmitButton
+  SubmitButton,
 } from '../../../inputs/input';
 import { required } from '../../../validation';
 import { createJob } from '../../../../create/job/ducks';
@@ -24,7 +24,7 @@ const equityOptions = [
 class JobFormComponesation extends Component {
   constructor(props) {
     super(props);
-    
+
     this.formSubmit = this.formSubmit.bind(this);
   }
 
@@ -33,12 +33,7 @@ class JobFormComponesation extends Component {
   }
 
   render() {
-    const {
-      handleSubmit,
-      job,
-      offersEquity,
-      prevPage,
-    } = this.props;
+    const { handleSubmit, job, offersEquity, prevPage } = this.props;
 
     return (
       <FormWrapper
@@ -47,15 +42,13 @@ class JobFormComponesation extends Component {
         formErrors={job.errors}
         theme="marble"
       >
-        <FormHeader
-          text="What's the compensation?"
-        />
+        <FormHeader text="What's the compensation?" />
         <FormRow>
           <Field
             name="salaryMin"
             label="Salary minimum"
             placeholder="$"
-            validate={[ required ]}
+            validate={[required]}
             parse={parseNumber}
             component={Currency}
           />
@@ -63,7 +56,7 @@ class JobFormComponesation extends Component {
             name="salaryMax"
             label="Salary maximum"
             placeholder="$"
-            validate={[ required ]}
+            validate={[required]}
             parse={parseNumber}
             component={Currency}
           />
@@ -71,18 +64,17 @@ class JobFormComponesation extends Component {
         <Field
           name="offerEquity"
           label="Do you offer equity?"
-          validate={[ required ]}
+          validate={[required]}
           options={equityOptions}
           component={Radio}
         />
-        {
-          offersEquity === 'Yes' &&
+        {offersEquity === 'Yes' &&
           <FormRow>
             <Field
               name="equityMin"
               label="Equity minimum"
               placeholder="$"
-              validate={[ required ]}
+              validate={[required]}
               parse={parseNumber}
               component={Currency}
             />
@@ -90,17 +82,13 @@ class JobFormComponesation extends Component {
               name="equityMax"
               label="Equity maximum"
               placeholder="$"
-              validate={[ required ]}
+              validate={[required]}
               parse={parseNumber}
               component={Currency}
             />
-          </FormRow>
-        }
+          </FormRow>}
         <FormFooter>
-          <BackButton
-            action={prevPage}
-            buttonText="Back"
-          />
+          <BackButton action={prevPage} buttonText="Back" />
           <Field
             name="submitButton"
             buttonText="Next"
@@ -110,7 +98,7 @@ class JobFormComponesation extends Component {
       </FormWrapper>
     );
   }
-};
+}
 
 const selector = formValueSelector('job');
 
@@ -118,12 +106,16 @@ const mapStateToProps = state => ({
   job: state.job,
   auth: state.session.auth,
   offersEquity: selector(state, 'offerEquity'),
+  initialValues: {
+    equityMin: 0,
+    equityMax: 0,
+  },
 });
 
 JobFormComponesation = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true, 
+  forceUnregisterOnUnmount: true,
 })(JobFormComponesation);
 
 export default connect(mapStateToProps)(JobFormComponesation);

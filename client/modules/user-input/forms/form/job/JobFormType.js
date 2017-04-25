@@ -45,21 +45,17 @@ const remoteOptions = [
 
 class JobFormType extends Component {
   constructor(props) {
-     super(props);
-     
-     this.formSubmit = this.formSubmit.bind(this);
-   }
+    super(props);
+
+    this.formSubmit = this.formSubmit.bind(this);
+  }
 
   formSubmit() {
     this.props.nextPage();
   }
 
   render() {
-    const {
-      handleSubmit,
-      job,
-      prevPage,
-    } = this.props;
+    const { handleSubmit, job, prevPage } = this.props;
 
     return (
       <FormWrapper
@@ -68,35 +64,30 @@ class JobFormType extends Component {
         formErrors={job.errors}
         theme="marble"
       >
-        <FormHeader
-          text="What kind of job is it?"
-        />
+        <FormHeader text="What kind of job is it?" />
         <Field
-          name="type"
-          label="Job Type"
-          validate={[ required ]}
+          name="employmentType"
+          label="Employment Type"
+          validate={[required]}
           options={jobTypes}
           component={Select}
         />
         <Field
           name="locations"
           label="Where will the employee be working?"
-          validate={[ required ]}
+          validate={[required]}
           options={jobTypes}
           component={Select}
         />
         <Field
           name="remote"
           label="Is this a remote position?"
-          validate={[ required ]}
+          validate={[required]}
           options={remoteOptions}
           component={Radio}
         />
         <FormFooter>
-          <BackButton
-            action={prevPage}
-            buttonText="Back"
-          />
+          <BackButton action={prevPage} buttonText="Back" />
           <Field
             name="submitButton"
             buttonText="Next"
@@ -106,7 +97,7 @@ class JobFormType extends Component {
       </FormWrapper>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   job: state.job,
@@ -116,7 +107,7 @@ const mapStateToProps = state => ({
 JobFormType = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true, 
+  forceUnregisterOnUnmount: true,
 })(JobFormType);
 
 export default connect(mapStateToProps)(JobFormType);

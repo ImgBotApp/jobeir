@@ -17,6 +17,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         isLoading: false,
         details: action.payload.data.company,
+        errors: [],
       });
     case CREATE_JOB_FAILURE:
       return Object.assign({}, state, {
@@ -24,8 +25,11 @@ export default (state = initialState, action) => {
         errors: action.errors.errors,
       });
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const createJob = (data) => ({ type: CREATE_JOB_REQUEST, payload: { data } });
+export const createJob = data => ({
+  type: CREATE_JOB_REQUEST,
+  payload: { data },
+});

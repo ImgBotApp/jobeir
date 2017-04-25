@@ -55,6 +55,7 @@ const User = new Schema({
       },
     ],
   },
+  versionKey: false,
 });
 
 User.pre('save', function(next) {

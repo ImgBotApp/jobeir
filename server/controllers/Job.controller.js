@@ -43,17 +43,21 @@ export function createJob(req, res) {
   if (!req.body.title) {
     res.status(403).end();
   }
-
   const newJob = new Job(req.body);
 
+  newJob.description.blocks = newJob.description.blocks;
+
   // Let's sanitize inputs
-  newJob.title = sanitizeHtml(newJob.title);
-  newJob.description = sanitizeHtml(newJob.description);
-  newJob.type = sanitizeHtml(newJob.type);
+  newJob.company = sanitizeHtml(newJob.company);
+  newJob.title = sanitizeHtml(newJob.title.label);
+  newJob.employmentType = sanitizeHtml(newJob.employmentType);
   newJob.locations = sanitizeHtml(newJob.locations);
   newJob.remote = sanitizeHtml(newJob.remote);
   newJob.salaryMin = sanitizeHtml(newJob.salaryMin);
   newJob.salaryMax = sanitizeHtml(newJob.salaryMax);
+  newJob.equityMin = sanitizeHtml(newJob.equityMin);
+  newJob.equityMax = sanitizeHtml(newJob.equityMax);
+  newJob.offerEquity = sanitizeHtml(newJob.offerEquity);
 
   newJob.slug = slug(newJob.title.toLowerCase(), { lowercase: true });
   newJob.cuid = cuid();
@@ -65,7 +69,7 @@ export function createJob(req, res) {
         errors: [
           {
             error: 'UNABLE_TO_CREATE_JOB',
-            message: `Unable to create the job ${req.body.title}`,
+            message: `Unable to create the job ${req.body.title.label}`,
           },
         ],
       });
