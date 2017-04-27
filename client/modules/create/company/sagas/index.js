@@ -10,21 +10,30 @@ import {
 } from '../ducks';
 
 export function* createCompany(action) {
-   try {
-      const payload = yield call(fetchApi, 'POST', '/companies', action.payload.data);
-      yield put({type: CREATE_COMPANY_SUCCESS, payload});
-   } catch (errors) {
-      yield put({type: CREATE_COMPANY_FAILURE, errors});
-   }
+  try {
+    const payload = yield call(
+      fetchApi,
+      'POST',
+      '/companies',
+      action.payload.data,
+    );
+    yield put({ type: CREATE_COMPANY_SUCCESS, payload });
+  } catch (errors) {
+    yield put({ type: CREATE_COMPANY_FAILURE, errors });
+  }
 }
 
 export function* checkCompany(action) {
-   try {
-      const payload = yield call(fetchApi, 'GET', `/companies/check/${action.payload.data}`);
-      yield put({type: CHECK_COMPANY_SUCCESS, payload});
-   } catch (errors) {
-      yield put({type: CHECK_COMPANY_FAILURE, errors});
-   }
+  try {
+    const payload = yield call(
+      fetchApi,
+      'GET',
+      `/companies/check/${action.payload.data}`,
+    );
+    yield put({ type: CHECK_COMPANY_SUCCESS, payload });
+  } catch (errors) {
+    yield put({ type: CHECK_COMPANY_FAILURE, errors });
+  }
 }
 
 export function* company() {

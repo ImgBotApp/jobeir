@@ -65,7 +65,10 @@ const routes = (
       path="/dashboard"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('../modules/account/profile/containers/Profile').default);
+          cb(
+            null,
+            require('../modules/account/profile/containers/Profile').default,
+          );
         });
       }}
     />
@@ -81,11 +84,7 @@ const routes = (
 );
 
 function getRoutesArray(obj) {
-  const arr = [
-  '/api/v0/login',
-  '/api/v0/register',
-  '/favicon.ico'
-  ];
+  const arr = ['/api/v0/login', '/api/v0/register', '/favicon.ico'];
 
   (function getIds(obj) {
     for (let x in obj) {

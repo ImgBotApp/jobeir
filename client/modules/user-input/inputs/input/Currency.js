@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import MaskedInput from 'react-text-mask';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import InputWrapper from '../components/InputWrapper';
 
 const numberMask = createNumberMask({
   prefix: '$',
-})
+});
 
 export const Currency = props => {
   const { meta } = props;
@@ -30,7 +30,7 @@ export const Currency = props => {
 const StyledMaskedInput = styled(MaskedInput)`
   border-radius: ${props => props.theme.input.borderRadius};
   border: ${props => props.theme.input.border};
-  border-color: ${props => props.showError ? props.theme.error.color : ''};
+  border-color: ${props => (props.showError ? props.theme.error.color : '')};
   padding: ${props => props.theme.input.padding};
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
@@ -38,7 +38,7 @@ const StyledMaskedInput = styled(MaskedInput)`
 
   &:active,
   &:focus {
-    border-color:  ${props => props.showError ? props.theme.error.color : props.theme.input.activeBorderColor};
+    border-color:  ${props => (props.showError ? props.theme.error.color : props.theme.input.activeBorderColor)};
     outline: none;
   }
 

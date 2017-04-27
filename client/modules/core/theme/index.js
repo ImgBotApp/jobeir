@@ -12,7 +12,7 @@ const theme = {
     black: '#0f0f17',
     beige: '#faf3d5',
     text: '#484848',
-  }
+  },
 };
 
 export default theme;

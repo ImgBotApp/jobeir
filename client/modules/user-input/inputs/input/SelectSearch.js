@@ -70,7 +70,7 @@ const SelectContainer = styled.div`
     width: 100%;
     border-radius: 3px;
     border: solid 1px #babbbb;
-    border-color: ${props => props.showError ? props.theme.error.color : '#babbbb'};
+    border-color: ${props => (props.showError ? props.theme.error.color : '#babbbb')};
     padding: 18px;
     font-size: 16px;
     width: 100%;
@@ -89,7 +89,7 @@ const SelectContainer = styled.div`
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     background: #fff;
-    border-color: ${props => props.showError ? props.theme.error.color : props.theme.colors.text};
+    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.colors.text)};
   }
   .is-open > .Select-control .Select-arrow {
     top: -2px;
@@ -100,7 +100,7 @@ const SelectContainer = styled.div`
     cursor: text;
   }
   .is-focused:not(.is-open) > .Select-control {
-    border-color: ${props => props.showError ? props.theme.error.color : props.theme.colors.text};
+    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.colors.text)};
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 126, 255, 0.1);
   }
 

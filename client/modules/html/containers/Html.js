@@ -16,11 +16,14 @@ const Html = ({ styles, assets, state, content }) => {
         <style dangerouslySetInnerHTML={{ __html: styles }} />
       </head>
       <body>
-        <main id="app" dangerouslySetInnerHTML={{ __html: `<div>${content}</div>` }} />
+        <main
+          id="app"
+          dangerouslySetInnerHTML={{ __html: `<div>${content}</div>` }}
+        />
         <script dangerouslySetInnerHTML={{ __html: state }} />
-        {Object.keys(assets.javascript).reverse().map((key) =>
-          <script key={key} src={assets.javascript[key]} />
-        )}
+        {Object.keys(assets.javascript)
+          .reverse()
+          .map(key => <script key={key} src={assets.javascript[key]} />)}
       </body>
     </html>
   );

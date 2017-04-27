@@ -4,11 +4,12 @@ import Link from 'react-router/lib/Link';
 import SearchForm from '../../user-input/forms/form/SearchFrom';
 import HomeHeader from '../components/HomeHeader';
 
-const Home = () =>
+const Home = () => (
   <HomeContainer>
     <HomeHeader />
     <SearchForm />
-  </HomeContainer>;
+  </HomeContainer>
+);
 
 export default Home;
 

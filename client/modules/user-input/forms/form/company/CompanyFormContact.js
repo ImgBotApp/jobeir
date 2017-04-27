@@ -11,33 +11,23 @@ import {
   SubmitButton,
   Text,
 } from '../../../inputs/input';
-import {
-  email,
-  required,
-  phoneNumber,
-  url,
-} from '../../../validation';
+import { email, required, phoneNumber, url } from '../../../validation';
 
 const parsePhone = value => value.toString().replace(/\D/g, '');
 
 class CompanyFormStepTwo extends Component {
   constructor(props) {
-     super(props);
-     
-     this.formSubmit = this.formSubmit.bind(this);
-   }
+    super(props);
+
+    this.formSubmit = this.formSubmit.bind(this);
+  }
 
   formSubmit() {
     this.props.nextPage();
   }
 
   render() {
-    const {
-      company,
-      companyName,
-      handleSubmit,
-      prevPage,
-    } = this.props;
+    const { company, companyName, handleSubmit, prevPage } = this.props;
 
     return (
       <FormWrapper
@@ -46,34 +36,29 @@ class CompanyFormStepTwo extends Component {
         formErrors={company.errors}
         theme="marble"
       >
-        <FormHeader
-          text={`How can people reach out to ${companyName}?`}
-        />
+        <FormHeader text={`How can people reach out to ${companyName}?`} />
         <Field
           name="phone"
           label="Company phone"
           placeholder="(555) 123-4567"
-          validate={[ required, phoneNumber ]}
+          validate={[required, phoneNumber]}
           parse={parsePhone}
           component={Phone}
         />
         <Field
           name="website"
           label="Company website"
-          validate={[ required, url ]}
+          validate={[required, url]}
           component={Text}
         />
         <Field
           name="email"
           label="Company email"
-          validate={[ email, required ]}
+          validate={[email, required]}
           component={Email}
         />
         <FormFooter>
-          <BackButton
-            action={(prevPage)}
-            buttonText="Back"
-          />
+          <BackButton action={prevPage} buttonText="Back" />
           <Field
             name="submitButton"
             buttonText="Next"
@@ -83,9 +68,9 @@ class CompanyFormStepTwo extends Component {
       </FormWrapper>
     );
   }
-};
+}
 
-const selector = formValueSelector('company')
+const selector = formValueSelector('company');
 
 const mapStateToProps = state => ({
   company: state.company,
@@ -95,7 +80,7 @@ const mapStateToProps = state => ({
 CompanyFormStepTwo = reduxForm({
   form: 'company',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true, 
+  forceUnregisterOnUnmount: true,
 })(CompanyFormStepTwo);
 
 export default connect(mapStateToProps)(CompanyFormStepTwo);

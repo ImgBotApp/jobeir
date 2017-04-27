@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InputWrapper from '../components/InputWrapper';
 import { Editor } from 'react-draft-wysiwyg';
-import { EditorState, ContentState, convertFromRaw } from "draft-js"
+import { EditorState, ContentState, convertFromRaw } from 'draft-js';
 import styled from 'styled-components';
 import { wysiwig } from '../../themes/wysiwig-theme';
 
@@ -19,8 +19,7 @@ export class Wysiwyg extends Component {
 
     if (input.value.blocks) {
       editorState = EditorState.createWithContent(convertFromRaw(input.value));
-    }
-    else {
+    } else {
       editorState = EditorState.createEmpty();
     }
 
@@ -45,27 +44,26 @@ export class Wysiwyg extends Component {
   }
 
   render() {
-    const { meta , input} = this.props;
+    const { meta, input } = this.props;
     const showError = meta.touched && meta.error && meta.invalid;
 
     return (
       <InputWrapper {...this.props}>
-        <EditorContainer
-          showError={showError}
-          onClick={this.handleClick}
-        >
+        <EditorContainer showError={showError} onClick={this.handleClick}>
           <Editor
             {...input}
             toolbar={wysiwig}
             editorState={this.state.editorState}
             onEditorStateChange={this.onEditorStateChange}
-            ref={(editor) => { this.Editor = editor; }}
+            ref={editor => {
+              this.Editor = editor;
+            }}
           />
         </EditorContainer>
       </InputWrapper>
     );
   }
-};
+}
 
 const EditorContainer = styled.div`
   border-radius: 3px;
@@ -73,7 +71,7 @@ const EditorContainer = styled.div`
   padding: 20px;
   min-height: 300px;
   margin: 0 auto 1rem;
-  border-color: ${props => props.showError ? '#cc0726' : ''};
+  border-color: ${props => (props.showError ? '#cc0726' : '')};
 
   .rdw-editor-toolbar {
     margin: -8px 0 0 -10px;

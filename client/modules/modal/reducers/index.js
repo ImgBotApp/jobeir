@@ -1,8 +1,4 @@
-import {
-  SHOW_MODAL,
-  HIDE_MODAL,
-  SHOW_MODAL_LOADER,
-} from '../constants';
+import { SHOW_MODAL, HIDE_MODAL, SHOW_MODAL_LOADER } from '../constants';
 
 const initialState = {
   modalType: null,

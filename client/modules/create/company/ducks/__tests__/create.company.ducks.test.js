@@ -41,8 +41,8 @@ describe('[Ducks Create Company]', () => {
       const action = {
         type: CHECK_COMPANY_FAILURE,
         errors: {
-          errors: ['error']
-        }
+          errors: ['error'],
+        },
       };
 
       expect(compnayReducer({}, action)).toEqual(nextState);
@@ -64,9 +64,9 @@ describe('[Ducks Create Company]', () => {
         type: CREATE_COMPANY_SUCCESS,
         payload: {
           data: {
-            company: {}
-          }
-        }
+            company: {},
+          },
+        },
       };
 
       expect(compnayReducer({}, action)).toEqual(nextState);
@@ -80,8 +80,8 @@ describe('[Ducks Create Company]', () => {
       const action = {
         type: CREATE_COMPANY_FAILURE,
         errors: {
-          errors: ['error']
-        }
+          errors: ['error'],
+        },
       };
 
       expect(compnayReducer({}, action)).toEqual(nextState);
@@ -91,7 +91,7 @@ describe('[Ducks Create Company]', () => {
   describe('createCompany', () => {
     it('should return the CREATE_COMPANY_REQUEST action', () => {
       expect(createCompany({})).toEqual({
-        payload: { data: {} }, 
+        payload: { data: {} },
         type: CREATE_COMPANY_REQUEST,
       });
     });
@@ -99,7 +99,7 @@ describe('[Ducks Create Company]', () => {
   describe('checkCompany', () => {
     it('should return the CHECK_COMPANY_REQUEST action', () => {
       expect(checkCompany({})).toEqual({
-        payload: { data: {} }, 
+        payload: { data: {} },
         type: CHECK_COMPANY_REQUEST,
       });
     });

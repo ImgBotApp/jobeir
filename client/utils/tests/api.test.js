@@ -1,21 +1,17 @@
 import fetch from 'whatwg-fetch';
-import {
-  checkStatus,
-  fetchApi,
-  reqHeaders,
-} from '../api';
+import { checkStatus, fetchApi, reqHeaders } from '../api';
 
 const headers = {
-  'Accept': 'application/json',
+  Accept: 'application/json',
   'Content-Type': 'application/json',
-}
+};
 
-const blob = new Blob;
+const blob = new Blob();
 const fetchResponse = new Response(blob, {
   status: 404,
   body: {
-    error: [{error: "ERROR", message: "There as an error"}]
-  }
+    error: [{ error: 'ERROR', message: 'There as an error' }],
+  },
 });
 
 describe('[Utility] api', () => {
@@ -23,7 +19,7 @@ describe('[Utility] api', () => {
     it('should return the response if the status >= 200', () => {
       expect(checkStatus({ status: 200 })).toEqual({ status: 200 });
     });
-    
+
     it('should return the response if the status < 300', () => {
       expect(checkStatus({ status: 299 })).toEqual({ status: 299 });
     });

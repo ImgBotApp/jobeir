@@ -5,18 +5,10 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
-import {
-  required,
-  maxLength,
-} from '../../../validation';
-import {
-  Select,
-  SubmitButton,
-  Text,
-  Textarea,
-} from '../../../inputs/input';
+import { required, maxLength } from '../../../validation';
+import { Select, SubmitButton, Text, Textarea } from '../../../inputs/input';
 import { checkCompany } from '../../../../create/company/ducks';
-import debounce from 'lodash/debounce'
+import debounce from 'lodash/debounce';
 
 const companySizeOptions = [
   { name: 'Select size', disabled: true, value: '' },
@@ -31,7 +23,7 @@ const companySizeOptions = [
 class CompanyFormStepOne extends Component {
   constructor(props) {
     super(props);
-     
+
     this.handleCheckCompany = debounce(this.handleCheckCompany, 400).bind(this);
     this.formSubmit = this.formSubmit.bind(this);
   }
@@ -47,10 +39,7 @@ class CompanyFormStepOne extends Component {
   }
 
   render() {
-    const {
-      handleSubmit,
-      company
-    } = this.props;
+    const { handleSubmit, company } = this.props;
 
     return (
       <FormWrapper
@@ -59,20 +48,18 @@ class CompanyFormStepOne extends Component {
         formErrors={company.errors}
         theme="marble"
       >
-        <FormHeader
-          text="Tell us about your company"
-        />
+        <FormHeader text="Tell us about your company" />
         <Field
           name="name"
           label="What's your company name?"
-          validate={[ required ]}
+          validate={[required]}
           component={Text}
           onChange={this.handleCheckCompany}
         />
         <Field
           name="companySize"
           label="How many employees work at your company?"
-          validate={[ required ]}
+          validate={[required]}
           options={companySizeOptions}
           component={Select}
         />
@@ -80,7 +67,7 @@ class CompanyFormStepOne extends Component {
           name="product"
           label="Briefly describe your company"
           placeholder="What is your company mission? Let applicants know what your company does and what it’s like to work there."
-          validate={[ required, maxLength(500) ]}
+          validate={[required, maxLength(500)]}
           component={Textarea}
         />
         <FormFooter>
@@ -94,9 +81,9 @@ class CompanyFormStepOne extends Component {
       </FormWrapper>
     );
   }
-};
+}
 
-const selector = formValueSelector('company')
+const selector = formValueSelector('company');
 
 const mapStateToProps = state => ({
   company: state.company,
@@ -106,7 +93,7 @@ const mapStateToProps = state => ({
 CompanyFormStepOne = reduxForm({
   form: 'company',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true, 
+  forceUnregisterOnUnmount: true,
 })(CompanyFormStepOne);
 
 export default connect(mapStateToProps)(CompanyFormStepOne);

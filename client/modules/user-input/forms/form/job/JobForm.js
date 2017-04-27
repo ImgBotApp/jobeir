@@ -9,17 +9,17 @@ import JobFormContact from './JobFormContact';
 
 class JobForm extends Component {
   constructor(props) {
-    super(props)
-    this.nextPage = this.nextPage.bind(this)
-    this.prevPage = this.prevPage.bind(this)
+    super(props);
+    this.nextPage = this.nextPage.bind(this);
+    this.prevPage = this.prevPage.bind(this);
   }
 
   nextPage(path) {
-    browserHistory.push(path)
+    browserHistory.push(path);
   }
 
   prevPage(path) {
-    browserHistory.push(path)
+    browserHistory.push(path);
   }
 
   render() {
@@ -31,24 +31,22 @@ class JobForm extends Component {
 
     return (
       <div>
-        {pathname === about && <JobFormAbout nextPage={() => this.nextPage(type)} />}
-        {
-          pathname === type &&
+        {pathname === about &&
+          <JobFormAbout nextPage={() => this.nextPage(type)} />}
+        {pathname === type &&
           <JobFormType
             prevPage={() => this.prevPage(about)}
             nextPage={() => this.nextPage(compensation)}
-          />
-        }
-        {
-          pathname === compensation &&
+          />}
+        {pathname === compensation &&
           <JobFormCompensation
             prevPage={() => this.prevPage(type)}
             nextPage={() => this.nextPage(contact)}
-          />
-        }
-        {pathname === contact && <JobFormContact prevPage={() => this.prevPage(compensation)} />}
+          />}
+        {pathname === contact &&
+          <JobFormContact prevPage={() => this.prevPage(compensation)} />}
       </div>
-    )
+    );
   }
 }
 

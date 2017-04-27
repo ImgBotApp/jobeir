@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const AuthLoading = () =>
+export const AuthLoading = () => (
   <AuthLoadingContainer>
     Loading...
-  </AuthLoadingContainer>;
+  </AuthLoadingContainer>
+);
 
 export default AuthLoading;
 
@@ -19,4 +20,4 @@ const AuthLoadingContainer = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-`
+`;

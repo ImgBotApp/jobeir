@@ -18,78 +18,77 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
-  redirectTo
+  redirectTo,
 } from '../ducks';
 
 export function* authUser(action) {
   const { redirectPathname } = action.payload;
-  const authFailedRedirectPathname= authRedirect(redirectPathname);
+  const authFailedRedirectPathname = authRedirect(redirectPathname);
 
-   try {
-      const payload = yield call(fetchApi, 'GET', '/auth');
-      yield put({type: AUTH_SUCCESS, payload});
-      yield call(redirectTo, redirectPathname);      
-      yield call(fireEscapeKeypress);      
-   } catch (errors) {
-      yield put({type: AUTH_FAILURE, errors});
-      yield call(redirectTo, authFailedRedirectPathname);
-      // throw errors;
-   }
+  try {
+    const payload = yield call(fetchApi, 'GET', '/auth');
+    yield put({ type: AUTH_SUCCESS, payload });
+    yield call(redirectTo, redirectPathname);
+    yield call(fireEscapeKeypress);
+  } catch (errors) {
+    yield put({ type: AUTH_FAILURE, errors });
+    yield call(redirectTo, authFailedRedirectPathname);
+    // throw errors;
+  }
 }
 
 export function* signupUser(action) {
-   try {
-      const payload = yield call(fetchApi, 'POST', '/register', action.payload);
+  try {
+    const payload = yield call(fetchApi, 'POST', '/register', action.payload);
 
-      if (payload !== undefined && payload.data.token) {
-        docCookies.setItem('SID', payload.data.token);
-      }
+    if (payload !== undefined && payload.data.token) {
+      docCookies.setItem('SID', payload.data.token);
+    }
 
-      yield put({type: SIGNUP_SUCCESS, payload});
-   } catch (errors) {
-      yield put({type: SIGNUP_FAILURE, errors});
-      throw errors;
-   }
+    yield put({ type: SIGNUP_SUCCESS, payload });
+  } catch (errors) {
+    yield put({ type: SIGNUP_FAILURE, errors });
+    throw errors;
+  }
 }
 
 export function* loginUser(action, redirectPath = '/dashboard') {
-  const nextValue = queryParams(window.location.search).next
+  const nextValue = queryParams(window.location.search).next;
 
-   try {
-      const payload = yield call(fetchApi, 'POST', '/login', action.payload);
-      yield put({type: LOGIN_SUCCESS, payload});
+  try {
+    const payload = yield call(fetchApi, 'POST', '/login', action.payload);
+    yield put({ type: LOGIN_SUCCESS, payload });
 
-      if (payload.data.token) {
-        docCookies.setItem('SID', payload.data.token);
-      }
+    if (payload.data.token) {
+      docCookies.setItem('SID', payload.data.token);
+    }
 
-      if (nextValue) {
-        redirectPath = nextValue;
-      }
-      
-      yield call(redirectTo, redirectPath);
-      yield call(fireEscapeKeypress);
-   } catch (errors) {
-      yield put({type: LOGIN_FAILURE, errors});
-   }
+    if (nextValue) {
+      redirectPath = nextValue;
+    }
+
+    yield call(redirectTo, redirectPath);
+    yield call(fireEscapeKeypress);
+  } catch (errors) {
+    yield put({ type: LOGIN_FAILURE, errors });
+  }
 }
 
 export function* logoutUser() {
-   try {
-      const payload = yield call(fetchApi, 'POST', '/logout');
-      yield put({type: LOGOUT_SUCCESS, payload});
-      yield call(redirectTo, '/');
-   } catch (errors) {
-      yield put({type: LOGOUT_FAILURE, errors});
-   }
+  try {
+    const payload = yield call(fetchApi, 'POST', '/logout');
+    yield put({ type: LOGOUT_SUCCESS, payload });
+    yield call(redirectTo, '/');
+  } catch (errors) {
+    yield put({ type: LOGOUT_FAILURE, errors });
+  }
 }
 
 function* signupAndAuthUser(action) {
   try {
     yield call(signupUser, action);
     yield call(authUser, action);
-  } catch (errors) {
-  }
+  } catch (errors) {}
 }
 
 export function* auth() {

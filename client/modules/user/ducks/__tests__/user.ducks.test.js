@@ -29,8 +29,8 @@ describe('[Ducks User]', () => {
       const action = {
         type: GET_USER_SUCCESS,
         payload: {
-          data: 'hello'
-        }
+          data: 'hello',
+        },
       };
 
       expect(userReducer({}, action)).toEqual(nextState);
@@ -40,13 +40,13 @@ describe('[Ducks User]', () => {
       const nextState = {
         isFetching: false,
         isLoaded: true,
-        errors: ['error']
+        errors: ['error'],
       };
       const action = {
         type: GET_USER_FAILURE,
         errors: {
-          errors: ['error']
-        }
+          errors: ['error'],
+        },
       };
 
       expect(userReducer({}, action)).toEqual(nextState);
@@ -55,15 +55,15 @@ describe('[Ducks User]', () => {
     it('should return the correct state on AUTH_SUCCESS', () => {
       const nextState = {
         isAuthenticating: false,
-        id: '123'
+        id: '123',
       };
       const action = {
         type: AUTH_SUCCESS,
         payload: {
           data: {
-            id: '123'
-          }
-        }
+            id: '123',
+          },
+        },
       };
 
       expect(userReducer({}, action)).toEqual(nextState);

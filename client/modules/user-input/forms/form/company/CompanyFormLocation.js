@@ -19,30 +19,26 @@ import { countryOptions } from '../../options/countries';
 const options = [
   { value: 'one', label: 'One' },
   { value: 'two', label: 'Two' },
-  { value: 'two', label: 'Two' }
+  { value: 'two', label: 'Two' },
 ];
 
 class CompanyFormStepThree extends Component {
   constructor(props) {
-     super(props);
-     
-     this.formSubmit = this.formSubmit.bind(this);
-   }
+    super(props);
 
-   formSubmit(data) {
+    this.formSubmit = this.formSubmit.bind(this);
+  }
+
+  formSubmit(data) {
     const { dispatch, id } = this.props;
     // adding the user id to the data;
     const body = { ...data, id };
-    
-    dispatch(createCompany(body))
-   }
+
+    dispatch(createCompany(body));
+  }
 
   render() {
-    const {
-      company,
-      handleSubmit,
-      prevPage,
-    } = this.props;
+    const { company, handleSubmit, prevPage } = this.props;
 
     return (
       <FormWrapper
@@ -51,22 +47,20 @@ class CompanyFormStepThree extends Component {
         formErrors={company.errors}
         theme="marble"
       >
-        <FormHeader
-          text="Where's your office located?"
-        />
+        <FormHeader text="Where's your office located?" />
         <Field
           name="country"
           label="Country"
           placeholder="Search Country"
           options={countryOptions}
-          validate={[ required ]}
+          validate={[required]}
           component={SelectSearch}
         />
         <div style={{ paddingBottom: '1rem' }} />
         <Field
           name="streetAddress"
           label="Steet Address"
-          validate={[ required ]}
+          validate={[required]}
           component={Text}
         />
         <Field
@@ -78,13 +72,13 @@ class CompanyFormStepThree extends Component {
           <Field
             name="city"
             label="City"
-            validate={[ required ]}
+            validate={[required]}
             component={Text}
           />
           <Field
             name="province"
             label="Province"
-            validate={[ required ]}
+            validate={[required]}
             component={Text}
           />
         </FormRow>
@@ -92,15 +86,12 @@ class CompanyFormStepThree extends Component {
           <Field
             name="postalCode"
             label="Postal Code"
-            validate={[ required ]}
+            validate={[required]}
             component={PostalCode}
           />
         </FormRow>
         <FormFooter>
-          <BackButton
-            action={prevPage}
-            buttonText="Back"
-          />
+          <BackButton action={prevPage} buttonText="Back" />
           <Field
             name="submitButton"
             buttonText="Next"
@@ -110,7 +101,7 @@ class CompanyFormStepThree extends Component {
       </FormWrapper>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   company: state.company,
@@ -120,7 +111,7 @@ const mapStateToProps = state => ({
 CompanyFormStepThree = reduxForm({
   form: 'company',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true, 
+  forceUnregisterOnUnmount: true,
 })(CompanyFormStepThree);
 
 export default connect(mapStateToProps)(CompanyFormStepThree);

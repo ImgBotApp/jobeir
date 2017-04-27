@@ -17,13 +17,13 @@ class Signup extends Component {
       <AuthPage>
         <Helmet title="Signup" />
         <AuthHeader text="Sign up for Gost" />
-        {
-          signupWithEmail
-            ? <SignupForm />
-            : <AuthOAuth />
-        }
-        <AuthSignupEmail onClick={() => this.setState({ signupWithEmail: !signupWithEmail })}>
-          {signupWithEmail ? 'Sign up with Google, Facebook, or Github' :  'Sign up with email'}
+        {signupWithEmail ? <SignupForm /> : <AuthOAuth />}
+        <AuthSignupEmail
+          onClick={() => this.setState({ signupWithEmail: !signupWithEmail })}
+        >
+          {signupWithEmail
+            ? 'Sign up with Google, Facebook, or Github'
+            : 'Sign up with email'}
         </AuthSignupEmail>
       </AuthPage>
     );

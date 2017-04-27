@@ -4,13 +4,9 @@ import styled from 'styled-components';
 export const FormError = props => {
   return (
     <FormErrorContainer>
-      {
-        props.formErrors.map(error => {
-          return (
-            <div key={error.error}>{error.message}</div>
-          );
-        })
-      }
+      {props.formErrors.map(error => {
+        return <div key={error.error}>{error.message}</div>;
+      })}
     </FormErrorContainer>
   );
 };
@@ -25,10 +21,7 @@ const FormErrorContainer = styled.div`
   border-radius: 3px;
   text-align: center;
   margin-bottom: 1.5rem;
-  position: ${props => props.theme.error.position === 'absolute'
-    ? 'absolute'
-    : 'relative'
-  };
+  position: ${props => (props.theme.error.position === 'absolute' ? 'absolute' : 'relative')};
   width: ${props => props.theme.error.width};
 `;
 

@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
-import {
-  Text,
-  SubmitButton
-} from '../../inputs/input';
-import {
-  required,
-} from '../../validation';
+import { Text, SubmitButton } from '../../inputs/input';
+import { required } from '../../validation';
 
 class SearchForm extends Component {
   constructor(props) {
     super(props);
-    
+
     this.formSubmit = this.formSubmit.bind(this);
   }
 
@@ -32,23 +27,20 @@ class SearchForm extends Component {
         <Field
           name="title"
           label="Job Title"
-          validate={[ required ]}
+          validate={[required]}
           component={Text}
         />
         <Field
           name="location"
           label="Location"
-          validate={[ required ]}
+          validate={[required]}
           component={Text}
         />
-        <Field
-          name="submitButton"
-          component={SubmitButton}
-        />
+        <Field name="submitButton" component={SubmitButton} />
       </FormWrapper>
     );
   }
-};
+}
 
 SearchForm = reduxForm({
   form: 'search',

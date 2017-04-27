@@ -48,9 +48,15 @@ export default (state = initialState, action = {}) => {
         errors: action.errors.errors,
       });
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const createCompany = (data) => ({ type: CREATE_COMPANY_REQUEST, payload: { data } });
-export const checkCompany = (data) => ({ type: CHECK_COMPANY_REQUEST, payload: { data } });
+export const createCompany = data => ({
+  type: CREATE_COMPANY_REQUEST,
+  payload: { data },
+});
+export const checkCompany = data => ({
+  type: CHECK_COMPANY_REQUEST,
+  payload: { data },
+});

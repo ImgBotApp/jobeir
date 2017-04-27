@@ -14,11 +14,11 @@ class CompanyForm extends Component {
   }
 
   nextPage(path) {
-    browserHistory.push(path)
+    browserHistory.push(path);
   }
 
   prevPage(path) {
-    browserHistory.push(path)
+    browserHistory.push(path);
   }
 
   render() {
@@ -29,17 +29,17 @@ class CompanyForm extends Component {
 
     return (
       <div>
-        {pathname === about && <CompanyFormAbout nextPage={() => this.nextPage(contact)} />}
-        {
-          pathname === contact &&
+        {pathname === about &&
+          <CompanyFormAbout nextPage={() => this.nextPage(contact)} />}
+        {pathname === contact &&
           <CompanyFormContact
             prevPage={() => this.prevPage(about)}
             nextPage={() => this.nextPage(location)}
-          />
-        }
-        {pathname === location && <CompanyFormLocation prevPage={() => this.prevPage(contact)} />}
+          />}
+        {pathname === location &&
+          <CompanyFormLocation prevPage={() => this.prevPage(contact)} />}
       </div>
-    )
+    );
   }
 }
 

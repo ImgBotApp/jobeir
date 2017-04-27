@@ -8,20 +8,20 @@ import AuthOAuth from '../components/AuthOAuth';
 class AuthModal extends Component {
   state = {
     showLoginForm: false,
-    signupWithEmail: false
+    signupWithEmail: false,
   };
-  
+
   renderSignup() {
     const { signupWithEmail } = this.state;
     return (
       <div>
-        {
-          signupWithEmail
-            ? <SignupForm />
-            : <AuthOAuth />
-        }
-        <AuthModalSignupEmail onClick={() => this.setState({ signupWithEmail: !signupWithEmail })}>
-          {signupWithEmail ? 'Sign up with Google, Facebook, or Github' :  'Sign up with email'}
+        {signupWithEmail ? <SignupForm /> : <AuthOAuth />}
+        <AuthModalSignupEmail
+          onClick={() => this.setState({ signupWithEmail: !signupWithEmail })}
+        >
+          {signupWithEmail
+            ? 'Sign up with Google, Facebook, or Github'
+            : 'Sign up with email'}
         </AuthModalSignupEmail>
         <AuthModalFooter onClick={() => this.setState({ showLoginForm: true })}>
           Already have an account? Log in
@@ -35,7 +35,9 @@ class AuthModal extends Component {
       <div>
         <AuthOAuth />
         <LoginForm />
-        <AuthModalFooter onClick={() => this.setState({ showLoginForm: false })}>
+        <AuthModalFooter
+          onClick={() => this.setState({ showLoginForm: false })}
+        >
           Don’t have an account? Sign up?
         </AuthModalFooter>
       </div>
@@ -52,17 +54,15 @@ class AuthModal extends Component {
             <AuthModalHeaderBeige />
           </AuthModalHeader>
           <AuthModalContent>
-            {
-              this.state.showLoginForm
-                ? this.renderLogin()
-                : this.renderSignup()
-            }
+            {this.state.showLoginForm
+              ? this.renderLogin()
+              : this.renderSignup()}
           </AuthModalContent>
         </AuthModalBody>
       </ModalWrapper>
     );
   }
-};
+}
 
 export default AuthModal;
 

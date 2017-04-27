@@ -4,6 +4,8 @@ export default function(minLength) {
       return '';
     }
 
-    return value.toString().length >= minLength ? '' : `Minumum of ${minLength} characters required`;
-  }
+    return value.toString().length >= minLength
+      ? ''
+      : `Minumum of ${minLength} characters required`;
+  };
 }

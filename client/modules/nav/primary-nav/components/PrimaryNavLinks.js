@@ -64,12 +64,10 @@ class PrimaryNavLinks extends Component {
     const { pathname, isAuthenticated } = this.props;
 
     return (
-      <PrimaryNavLinksContainer>        
-        {
-          pathname.includes('create')
-            ? this.buildCreateNavigation()
-            : this.buildMainNavigation(isAuthenticated)
-        }
+      <PrimaryNavLinksContainer>
+        {pathname.includes('create')
+          ? this.buildCreateNavigation()
+          : this.buildMainNavigation(isAuthenticated)}
       </PrimaryNavLinksContainer>
     );
   }
@@ -77,7 +75,9 @@ class PrimaryNavLinks extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.session.auth.isAuthenticated,
-  pathname: state.routing.locationBeforeTransitions && state.routing.locationBeforeTransitions.pathname || '',
+  pathname: (state.routing.locationBeforeTransitions &&
+    state.routing.locationBeforeTransitions.pathname) ||
+    '',
 });
 
 export default connect(mapStateToProps)(PrimaryNavLinks);

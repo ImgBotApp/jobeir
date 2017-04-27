@@ -4,33 +4,23 @@ import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
-import {
-  required,
-  wysiwygLength,
-} from '../../../validation';
-import {
-  SelectSearch,
-  Wysiwyg,
-  SubmitButton
-} from '../../../inputs/input';
+import { required, wysiwygLength } from '../../../validation';
+import { SelectSearch, Wysiwyg, SubmitButton } from '../../../inputs/input';
 import { jobOptions } from '../../options/jobs';
 
 class JobFormabout extends Component {
   constructor(props) {
-     super(props);
-     
-     this.formSubmit = this.formSubmit.bind(this);
-   }
+    super(props);
+
+    this.formSubmit = this.formSubmit.bind(this);
+  }
 
   formSubmit() {
     this.props.nextPage();
   }
 
   render() {
-    const {
-      handleSubmit,
-      job,
-    } = this.props;
+    const { handleSubmit, job } = this.props;
 
     return (
       <FormWrapper
@@ -39,14 +29,12 @@ class JobFormabout extends Component {
         formErrors={job.errors}
         theme="marble"
       >
-        <FormHeader
-          text="Create a job"
-        />
+        <FormHeader text="Create a job" />
         <Field
           name="title"
           label="What's the job title?"
           placeholder="Search titles"
-          validate={[ required ]}
+          validate={[required]}
           options={jobOptions}
           component={SelectSearch}
         />
@@ -55,7 +43,7 @@ class JobFormabout extends Component {
           label="Describe the role"
           name="description"
           ui={{ maxWidth: '100%' }}
-          validate={[ required, wysiwygLength(25) ]}
+          validate={[required, wysiwygLength(25)]}
           component={Wysiwyg}
         />
         <FormFooter>
@@ -68,7 +56,7 @@ class JobFormabout extends Component {
       </FormWrapper>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   job: state.job,
@@ -77,7 +65,7 @@ const mapStateToProps = state => ({
 JobFormabout = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true, 
+  forceUnregisterOnUnmount: true,
 })(JobFormabout);
 
 export default connect(mapStateToProps)(JobFormabout);

@@ -1,7 +1,7 @@
 /**
  * Redux Reducers
  */
- 
+
 import { combineReducers } from 'redux';
 
 import { reducer as form } from 'redux-form';
@@ -15,12 +15,12 @@ import user from '../../modules/user/ducks';
 
 const session = combineReducers({
   auth,
-  user
+  user,
 });
 
 function intl(state, action) {
   return {
-    locale: 'en'
+    locale: 'en',
   };
 }
 
@@ -42,10 +42,10 @@ export const appReducer = combineReducers({
  */
 const rootReducer = (state = {}, action = {}) => {
   if (action.type === 'LOGOUT_SUCCESS') {
-    state = undefined
+    state = undefined;
   }
 
-  return appReducer(state, action)
-}
+  return appReducer(state, action);
+};
 
 export default rootReducer;

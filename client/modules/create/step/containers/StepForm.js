@@ -14,15 +14,11 @@ class StepForm extends Component {
   render() {
     return (
       <StepFormContainer>
-        {
-          this.props.params.create === 'job'
-            ? <JobForm />
-            : <CompanyForm />
-        }
+        {this.props.params.create === 'job' ? <JobForm /> : <CompanyForm />}
       </StepFormContainer>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   company: state.company,

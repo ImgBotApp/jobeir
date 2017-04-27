@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'react-router/lib/Link';
 
-const PrimaryNavLogo = () => <Logo to="/"></Logo>;
+const PrimaryNavLogo = () => <Logo to="/" />;
 
 export default PrimaryNavLogo;
 

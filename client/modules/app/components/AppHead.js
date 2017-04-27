@@ -1,7 +1,7 @@
 import React from 'react';
-import Helmet from "react-helmet";
+import Helmet from 'react-helmet';
 
-const AppHead = () =>
+const AppHead = () => (
   <Helmet
     title="Gost"
     titleTemplate="%s - Top Secret"
@@ -16,6 +16,7 @@ const AppHead = () =>
         content: 'width=device-width, initial-scale=1',
       },
     ]}
-  />;
+  />
+);
 
 export default AppHead;

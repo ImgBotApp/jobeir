@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const HomeHeader = () =>
+const HomeHeader = () => (
   <Header>
     <HeaderText>Find your next job in tech</HeaderText>
   </Header>
+);
 
 export default HomeHeader;
 

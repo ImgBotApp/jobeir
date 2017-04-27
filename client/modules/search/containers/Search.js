@@ -4,9 +4,10 @@ import Link from 'react-router/lib/Link';
 
 import Search from '../../user-input/forms/form';
 
-const Search = () =>
+const Search = () => (
   <div>
     <Search />
-  </div>;
+  </div>
+);
 
 export default Search;

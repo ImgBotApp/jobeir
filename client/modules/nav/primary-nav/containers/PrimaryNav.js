@@ -5,7 +5,7 @@ import PrimaryNavLogo from '../components/PrimaryNavLogo';
 import PrimaryNavLinks from '../components/PrimaryNavLinks';
 import PrimaryNavNav from '../components/PrimaryNavNav';
 
-const PrimaryNav = (props) => {
+const PrimaryNav = props => {
   return (
     <Navigation isAuthenticated={props.isAuthenticated}>
       <PrimaryNavLogo />
@@ -27,5 +27,5 @@ const Navigation = styled.nav`
   flex: 1;
   padding: 0 20px;
   background: #fff;
-  box-shadow: ${props => props.isAuthenticated ? '0px 1px 2px rgba(0, 0, 0, 0.16)' : 'none'};
+  box-shadow: ${props => (props.isAuthenticated ? '0px 1px 2px rgba(0, 0, 0, 0.16)' : 'none')};
 `;

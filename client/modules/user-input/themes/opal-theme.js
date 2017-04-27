@@ -31,6 +31,6 @@ export const opal = {
   label: {
     display: 'block',
     marginBottom: '6px',
-    fontSize: '18px', 
-  }
+    fontSize: '18px',
+  },
 };

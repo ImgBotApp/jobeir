@@ -33,5 +33,5 @@ export const auth = {
   },
   error: {
     color: '#cc0726',
-  }
+  },
 };

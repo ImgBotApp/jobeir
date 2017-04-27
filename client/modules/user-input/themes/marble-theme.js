@@ -33,10 +33,10 @@ export const marble = {
   label: {
     display: 'block',
     marginBottom: '6px',
-    fontSize: '18px', 
+    fontSize: '18px',
   },
   select: {
-    background: "#fff",
+    background: '#fff',
     borderRadius: '3px',
     border: 'solid 1px #babbbb',
     padding: '18px',
@@ -49,7 +49,7 @@ export const marble = {
     },
   },
   textarea: {
-    background: "#fff",
+    background: '#fff',
     borderRadius: '3px',
     border: 'solid 1px #babbbb',
     padding: '18px',
@@ -58,5 +58,5 @@ export const marble = {
     margin: '0 auto 0.6rem',
     minHeight: '175px',
     activeBorderColor: '#484848',
-  }
+  },
 };

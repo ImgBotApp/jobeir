@@ -7,10 +7,8 @@ import rootSaga from '../../sagas';
 const sagaMiddleware = createSagaMiddleware();
 
 const logger = createLogger();
-const enhancer = compose(
-  applyMiddleware(sagaMiddleware, apiMiddleware),
-);
+const enhancer = compose(applyMiddleware(sagaMiddleware, apiMiddleware));
 
 export default function configureStore(initialState) {
-  return store = createStore(rootReducer, initialState, enhancer);
+  return (store = createStore(rootReducer, initialState, enhancer));
 }

@@ -7,7 +7,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 export default function App(props) {
   const { store } = props;
-  const history = syncHistoryWithStore(browserHistory, store)
+  const history = syncHistoryWithStore(browserHistory, store);
 
   /**
    * key={Math.random()} within the Router removes the error message

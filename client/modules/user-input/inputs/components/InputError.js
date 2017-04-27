@@ -9,12 +9,10 @@ export const InputError = props => {
 
   return (
     <InputErrorContainer>
-      {
-        showError &&
+      {showError &&
         <InputErrorRed>
           {meta.error}
-        </InputErrorRed>
-      }
+        </InputErrorRed>}
     </InputErrorContainer>
   );
 };

@@ -26,9 +26,6 @@ export default InputWrapper;
  * ui an object
  */
 const InputWrapperContainer = styled.div`
-  max-width: ${props =>
-    props.ui && props.ui.maxWidth ||
-    props.theme.input.maxWidth
-  };
+  max-width: ${props => (props.ui && props.ui.maxWidth) || props.theme.input.maxWidth};
   margin-bottom: ${props => props.theme.inputWrapper.marginBottom || '1rem'};
 `;

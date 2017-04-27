@@ -5,9 +5,7 @@ const StepBackground = props => {
   return (
     <StepBackgroundContainer>
       <StepBackgroundLeft />
-      <StepBackgroundRight>
- 
-      </StepBackgroundRight>
+      <StepBackgroundRight />
     </StepBackgroundContainer>
   );
 };

@@ -2,32 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
-import {
-  Email,
-  Password,
-  SubmitButton
-} from '../../inputs/input';
-import {
-  email,
-  required,
-} from '../../validation';
+import { Email, Password, SubmitButton } from '../../inputs/input';
+import { email, required } from '../../validation';
 import { login } from '../../../auth/ducks';
-
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
-    
+
     this.formSubmit = this.formSubmit.bind(this);
   }
 
   formSubmit(data) {
     const { email, password } = data;
 
-    this.props.dispatch(login(
-      email,
-      password,
-    ));
+    this.props.dispatch(login(email, password));
   }
 
   render() {
@@ -41,13 +30,13 @@ class LoginForm extends Component {
         <Field
           name="email"
           placeholder="Email"
-          validate={[ required, email ]}
+          validate={[required, email]}
           component={Email}
         />
         <Field
           name="password"
           placeholder="Password"
-          validate={[ required ]}
+          validate={[required]}
           component={Password}
         />
         <Field
@@ -59,7 +48,7 @@ class LoginForm extends Component {
       </FormWrapper>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   auth: state.session.auth,

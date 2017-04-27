@@ -10,6 +10,6 @@ describe('[Utility] queryParams', () => {
   });
 
   it('should return an object with no values when no query params present', () => {
-    expect(queryParams('path/to')).toEqual({ 'path/to': "" });
+    expect(queryParams('path/to')).toEqual({ 'path/to': '' });
   });
 });

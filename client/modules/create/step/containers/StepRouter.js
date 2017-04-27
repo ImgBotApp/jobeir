@@ -9,7 +9,10 @@ class StepRouter extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.user.companies.created.length !== prevProps.user.companies.created.length) {
+    if (
+      this.props.user.companies.created.length !==
+      prevProps.user.companies.created.length
+    ) {
       this.handleRouting();
     }
   }
@@ -36,7 +39,7 @@ class StepRouter extends Component {
       </StepRouterContainer>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   user: state.session.user,

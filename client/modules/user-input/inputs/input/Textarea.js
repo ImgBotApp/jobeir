@@ -22,7 +22,7 @@ export const Textarea = props => {
 const TextareaInput = styled.textarea`
   border-radius: ${props => props.theme.textarea.borderRadius};
   border: ${props => props.theme.textarea.border};
-  border-color: ${props => props.showError ? props.theme.error.color : ''};
+  border-color: ${props => (props.showError ? props.theme.error.color : '')};
   padding: ${props => props.theme.textarea.padding};
   font-size: ${props => props.theme.textarea.fontSize};
   width: ${props => props.theme.textarea.width};
@@ -33,10 +33,7 @@ const TextareaInput = styled.textarea`
   
   &:active,
   &:focus {
-    border-color: ${props => props.showError
-      ? props.theme.error.color
-      : props.theme.textarea.activeBorderColor
-    };
+    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.textarea.activeBorderColor)};
     outline: none;
   }
 

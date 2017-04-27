@@ -9,7 +9,7 @@ export const UserWrapper = WrappedComponent => {
     state = { count: 1 };
 
     componentWillMount() {
-      const { user : { isLoaded } } = this.props;
+      const { user: { isLoaded } } = this.props;
       return this.handleGetUser(isLoaded);
     }
 
@@ -37,11 +37,9 @@ export const UserWrapper = WrappedComponent => {
     render() {
       return (
         <div className="UserWrapper">
-          {
-            this.props.user.isLoaded
-              ? <WrappedComponent {...this.props} />
-              : <AuthLoading />
-          }
+          {this.props.user.isLoaded
+            ? <WrappedComponent {...this.props} />
+            : <AuthLoading />}
         </div>
       );
     }

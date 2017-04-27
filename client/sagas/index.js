@@ -4,10 +4,5 @@ import { job } from '../modules/create/job/sagas';
 import { user } from '../modules/user/sagas';
 
 export default function* rootSaga() {
-  yield [
-    auth(),
-    company(),
-    job(),
-    user(),
-  ]
+  yield [auth(), company(), job(), user()];
 }

@@ -13,9 +13,7 @@ export const FormFooter = props => {
    * have space-between
    */
   return (
-    <FormFooterContainer
-      multipleChildren={Array.isArray(props.children)}
-    >
+    <FormFooterContainer multipleChildren={Array.isArray(props.children)}>
       {props.children}
     </FormFooterContainer>
   );
@@ -28,7 +26,7 @@ const FormFooterContainer = styled.div`
   width: 52.5%;
   display: flex;
   align-items: center;
-  justify-content: ${props => props.multipleChildren ? 'space-between' : 'flex-end'};
+  justify-content: ${props => (props.multipleChildren ? 'space-between' : 'flex-end')};
   bottom: 0;
   background: #fff;
 `;

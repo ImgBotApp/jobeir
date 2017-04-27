@@ -26,7 +26,7 @@ export default (state = initialState, action = {}) => {
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
-        ...action.payload.data.user
+        ...action.payload.data.user,
       });
     case GET_USER_FAILURE:
       return Object.assign({}, state, {
@@ -42,14 +42,19 @@ export default (state = initialState, action = {}) => {
     case CREATE_COMPANY_SUCCESS:
       return Object.assign({}, state, {
         companies: {
-          created: [{
-            name: action.payload.data.company.name,
-          }]
-        }
+          created: [
+            {
+              name: action.payload.data.company.name,
+            },
+          ],
+        },
       });
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const getUser = (userId) => ({ type: GET_USER_REQUEST, payload: { userId } });
+export const getUser = userId => ({
+  type: GET_USER_REQUEST,
+  payload: { userId },
+});

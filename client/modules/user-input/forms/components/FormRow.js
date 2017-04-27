@@ -8,7 +8,7 @@ import styled from 'styled-components';
  */
 export const FormRow = props => {
   return (
-    <FormRowContainer >
+    <FormRowContainer>
       {props.children}
     </FormRowContainer>
   );

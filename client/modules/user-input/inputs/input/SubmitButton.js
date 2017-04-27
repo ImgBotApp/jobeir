@@ -8,10 +8,7 @@ const isDisabled = (errors = []) => {
 
 export const SubmitButton = props => {
   return (
-    <Button
-      type="submit"
-      disabled={isDisabled(props.formErrors)}
-    >
+    <Button type="submit" disabled={isDisabled(props.formErrors)}>
       {props.buttonText || 'Submit'}
     </Button>
   );
@@ -27,8 +24,8 @@ const Button = styled.button`
   background: ${props => props.theme.button.background};
   margin-bottom: ${props => props.theme.button.marginBottom};
   max-width: ${props => props.theme.button.maxWidth};
-  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
-  opacity: ${props => props.disabled ? '0.55' : '1'};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  opacity: ${props => (props.disabled ? '0.55' : '1')};
 
   &:active,
   &:focus,

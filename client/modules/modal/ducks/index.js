@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export const showModal = (modalType, modalProps) => ({
   type: SHOW_MODAL,

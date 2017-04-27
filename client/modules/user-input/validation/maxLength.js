@@ -4,6 +4,8 @@ export default function(maxLength) {
       return '';
     }
 
-    return value.toString().length <= maxLength ? '' : `Maximum of ${maxLength} characters allowed`;
-  }
+    return value.toString().length <= maxLength
+      ? ''
+      : `Maximum of ${maxLength} characters allowed`;
+  };
 }

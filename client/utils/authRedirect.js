@@ -5,13 +5,11 @@
  */
 
 export const authRedirect = redirectPathname => {
-  const signupPaths = [
-    '/create/job',
-  ];
+  const signupPaths = ['/create/job'];
 
   return signupPaths.includes(redirectPathname)
     ? `/signup?next=${redirectPathname}`
-    : `/login?next=${redirectPathname}`
+    : `/login?next=${redirectPathname}`;
 };
 
 export default authRedirect;

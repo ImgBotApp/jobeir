@@ -1,4 +1,3 @@
-
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
@@ -10,25 +9,23 @@ export const Radio = props => {
   return (
     <InputWrapper {...rest}>
       <RadioContainer>
-        {
-          props.options.map(option =>
-            <RadioInputContainer>
-              <RadioInput
-                {...props.input}
-                type="radio"
-                key={option.value}
-                id={props.input.name}
-                name={props.input.name}
-                value={option.text}
-                showError={showError}
-                checked={option.text === props.input.value}
-              />
-              <RadioText showError={showError}>
-                {option.text}
-              </RadioText>
-            </RadioInputContainer>
-          )
-        }
+        {props.options.map(option => (
+          <RadioInputContainer>
+            <RadioInput
+              {...props.input}
+              type="radio"
+              key={option.value}
+              id={props.input.name}
+              name={props.input.name}
+              value={option.text}
+              showError={showError}
+              checked={option.text === props.input.value}
+            />
+            <RadioText showError={showError}>
+              {option.text}
+            </RadioText>
+          </RadioInputContainer>
+        ))}
       </RadioContainer>
     </InputWrapper>
   );
@@ -61,7 +58,7 @@ const RadioInputContainer = styled.div`
 const RadioInput = styled.input`
   border-radius: ${props => props.theme.input.borderRadius};
   border: ${props => props.theme.input.border};
-  border-color: ${props => props.showError ? props.theme.error.color : ''};
+  border-color: ${props => (props.showError ? props.theme.error.color : '')};
   padding: ${props => props.theme.input.padding};
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
@@ -70,10 +67,7 @@ const RadioInput = styled.input`
   
   &:active,
   &:focus {
-    border-color: ${props => props.showError
-      ? props.theme.error.color
-      : props.theme.input.activeBorderColor
-    };
+    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.input.activeBorderColor)};
     outline: none;
   }
 
@@ -89,5 +83,5 @@ const RadioText = styled.div`
   position: relative;
   top: 2px;
   pointer-events: none;
-  color: ${props => props.showError ? props.theme.error.color : props.theme.text};
+  color: ${props => (props.showError ? props.theme.error.color : props.theme.text)};
 `;
