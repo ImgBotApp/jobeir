@@ -1,20 +1,48 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import styled from 'styled-components';
+import { Field, FieldArray, reduxForm, initialize } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { BackButton, Text, Select, SubmitButton } from '../../../inputs/input';
-import { required } from '../../../validation';
+import { email, required } from '../../../validation';
 import { createJob } from '../../../../create/job/ducks';
 
-const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
+const renderEmailFields = ({
+  fields,
+  meta: { touched, error, submitFailed },
+}) => (
+  <FormListWrapper>
+    {fields.map(renderFields)}
+    <FormListButton onClick={() => fields.push({})}>
+      Add additional email
+    </FormListButton>
+  </FormListWrapper>
+);
+
+const renderFields = (member, index, fields) => (
+  <FormListItem key={member}>
+    <Field
+      name={`${member}.email`}
+      label={`${index === 0 ? 'Send applications to the following emails:' : ''}`}
+      validate={[email, required]}
+      component={Text}
+    />
+  </FormListItem>
+);
 
 class JobFormComponesation extends Component {
   constructor(props) {
     super(props);
 
     this.formSubmit = this.formSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const { dispatch, user } = this.props;
+
+    dispatch(initialize('job', { receivingEmails: [{ email: user.email }] }));
   }
 
   formSubmit(data) {
@@ -35,14 +63,8 @@ class JobFormComponesation extends Component {
         formErrors={job.errors}
         theme="marble"
       >
-        <FormHeader text="How would you like to receive applications?" />
-        <Field
-          name="salaryMin"
-          label="Salary Min"
-          validate={[required]}
-          parse={parseNumber}
-          component={Text}
-        />
+        <FormHeader text="Receiving applications" />
+        <FieldArray name="receivingEmails" component={renderEmailFields} />
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
           <Field
@@ -60,12 +82,28 @@ const mapStateToProps = state => ({
   job: state.job,
   auth: state.session.auth,
   company: state.session.user.companies.created[0].name,
+  user: state.session.user,
 });
 
 JobFormComponesation = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
+  initialValues: {
+    receivingEmails: [{}],
+  },
 })(JobFormComponesation);
 
 export default connect(mapStateToProps)(JobFormComponesation);
+
+const FormListWrapper = styled.div`
+  padding-top: 1rem;
+`;
+
+const FormListItem = styled.div`
+  margin-top: -1rem;
+`;
+
+const FormListButton = styled.div`
+  cursor: pointer;
+`;
