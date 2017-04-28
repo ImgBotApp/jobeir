@@ -105,5 +105,23 @@ const FormListItem = styled.div`
 `;
 
 const FormListButton = styled.div`
+  position: relative;
   cursor: pointer;
+  color: ${props => props.theme.colors.red};
+  text-decoration: underline;
+  padding-left: 30px;
+
+  &::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    top: -3px;
+    border-radius: 50%;
+    border: 1px solid ${props => props.theme.colors.red};
+    height: 16px;
+    width: 15px;
+    display: flex;
+    padding: 2px 0 2px 5px;
+    text-align: center;
+  }
 `;
