@@ -25,11 +25,11 @@ export function getJobs(req, res) {
  * @returns void
  */
 export function getJob(req, res) {
-  Job.findOne({ cuid: req.params.cuid }).exec((err, post) => {
+  Job.findOne({ _id: req.params.id }).exec((err, job) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.json({ post });
+    res.json({ job });
   });
 }
 
@@ -41,7 +41,7 @@ export function getJob(req, res) {
  */
 export function createJob(req, res) {
   if (!req.body.title) {
-    res.status(403).end();
+    res.status(400).end();
   }
   const newJob = new Job(req.body);
 
@@ -58,6 +58,7 @@ export function createJob(req, res) {
   newJob.equityMin = sanitizeHtml(newJob.equityMin);
   newJob.equityMax = sanitizeHtml(newJob.equityMax);
   newJob.offerEquity = sanitizeHtml(newJob.offerEquity);
+  newJob.receivingEmails = sanitizeHtml(newJob.receivingEmails);
 
   newJob.slug = slug(newJob.title.toLowerCase(), { lowercase: true });
   newJob.cuid = cuid();

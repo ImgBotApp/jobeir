@@ -29,6 +29,7 @@ const Job = new Schema({
   // language: { type: String },
   locations: { type: String }, // convert to an array
   offerEquity: { type: String },
+  receivingEmails: { tyoe: Array },
   remote: { type: String },
   salaryMax: { type: Number },
   salaryMin: { type: Number },
