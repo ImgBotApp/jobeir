@@ -29,6 +29,11 @@ export function getJob(req, res) {
     if (err) {
       res.status(500).send(err);
     }
+
+    if (!job) {
+      res.status(204).send();
+    }
+
     res.json({ job });
   });
 }
@@ -46,6 +51,7 @@ export function createJob(req, res) {
   const newJob = new Job(req.body);
 
   newJob.description.blocks = newJob.description.blocks;
+  newJob.receivingEmails = newJob.receivingEmails;
 
   // Let's sanitize inputs
   newJob.company = sanitizeHtml(newJob.company);
@@ -55,11 +61,9 @@ export function createJob(req, res) {
   newJob.remote = sanitizeHtml(newJob.remote);
   newJob.salaryMin = sanitizeHtml(newJob.salaryMin);
   newJob.salaryMax = sanitizeHtml(newJob.salaryMax);
-  newJob.equityMin = sanitizeHtml(newJob.equityMin);
-  newJob.equityMax = sanitizeHtml(newJob.equityMax);
+  newJob.equityMin = sanitizeHtml(newJob.equityMin || 0);
+  newJob.equityMax = sanitizeHtml(newJob.equityMax || 0);
   newJob.offerEquity = sanitizeHtml(newJob.offerEquity);
-  newJob.receivingEmails = sanitizeHtml(newJob.receivingEmails);
-
   newJob.slug = slug(newJob.title.toLowerCase(), { lowercase: true });
   newJob.cuid = cuid();
 

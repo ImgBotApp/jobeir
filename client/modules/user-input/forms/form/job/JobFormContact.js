@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Field, FieldArray, reduxForm, initialize } from 'redux-form';
+import { Field, FieldArray, reduxForm, change } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
@@ -42,7 +42,7 @@ class JobFormComponesation extends Component {
   componentDidMount() {
     const { dispatch, user } = this.props;
 
-    dispatch(initialize('job', { receivingEmails: [{ email: user.email }] }));
+    dispatch(change('job', 'receivingEmails', [{ email: user.email }]));
   }
 
   formSubmit(data) {
@@ -88,7 +88,6 @@ const mapStateToProps = state => ({
 JobFormComponesation = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
   initialValues: {
     receivingEmails: [{}],
   },

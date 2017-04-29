@@ -65,7 +65,6 @@ const mapStateToProps = state => ({
 JobFormabout = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
 })(JobFormabout);
 
 export default connect(mapStateToProps)(JobFormabout);
