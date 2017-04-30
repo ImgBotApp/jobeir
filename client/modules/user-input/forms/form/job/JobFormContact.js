@@ -23,6 +23,10 @@ const renderEmailFields = ({
 
 const renderFields = (member, index, fields) => (
   <FormListItem key={member}>
+    {index > 0 &&
+      <FormListRemoveItem onClick={() => fields.remove(index)}>
+        <FormListRemoveIcon />
+      </FormListRemoveItem>}
     <Field
       name={`${member}.email`}
       label={`${index === 0 ? 'Send applications to the following emails:' : ''}`}
@@ -100,8 +104,35 @@ const FormListWrapper = styled.div`
 `;
 
 const FormListItem = styled.div`
+  position: relative;
   margin-top: -1rem;
 `;
+
+const FormListRemoveItem = styled.div`
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #484848;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
+const FormListRemoveIcon = () => (
+  <svg
+    fill="#484848"
+    height="12"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+    <path d="M0 0h24v24H0z" fill="none" />
+  </svg>
+);
 
 const FormListButton = styled.div`
   position: relative;
