@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const BackButton = props => {
   return (
-    <BackButtonContainer onClick={props.action}>
+    <BackButtonContainer tabIndex="0" onClick={props.action}>
       <BackButtonkArrow />
       <BackButtonText>
         {props.buttonText || 'Back'}
@@ -18,6 +18,10 @@ const BackButtonContainer = styled.div`
   font-size: 18px;
   color: #676767;
   cursor: pointer;
+
+  &:focus {
+    ouline: auto 5px -webkit-focus-ring-color;
+  }
 `;
 
 const BackButtonText = styled.span`

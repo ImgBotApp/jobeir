@@ -67,7 +67,6 @@ const SelectInput = styled.select`
   &:active,
   &:focus {
     border-color: ${props => (props.showError ? props.theme.error.color : props.theme.select.activeBorderColor)};
-    outline: none;
   }
 
   -webkit-appearance: none;

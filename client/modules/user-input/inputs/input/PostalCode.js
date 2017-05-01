@@ -34,7 +34,6 @@ const StyledMaskedInput = styled(MaskedInput)`
   &:active,
   &:focus {
     border-color:  ${props => props.theme.input.activeBorderColor};
-    outline: none;
   }
 
   ::-webkit-input-placeholder {

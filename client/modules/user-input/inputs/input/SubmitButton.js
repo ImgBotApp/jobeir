@@ -26,10 +26,4 @@ const Button = styled.button`
   max-width: ${props => props.theme.button.maxWidth};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   opacity: ${props => (props.disabled ? '0.55' : '1')};
-
-  &:active,
-  &:focus,
-  &:hover {
-    outline: none;
-  }
 `;

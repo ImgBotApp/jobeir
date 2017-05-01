@@ -10,11 +10,10 @@ export const Radio = props => {
     <InputWrapper {...rest}>
       <RadioContainer>
         {props.options.map(option => (
-          <RadioInputContainer>
+          <RadioInputContainer key={option.value}>
             <RadioInput
               {...props.input}
               type="radio"
-              key={option.value}
               id={props.input.name}
               name={props.input.name}
               value={option.text}
@@ -68,7 +67,6 @@ const RadioInput = styled.input`
   &:active,
   &:focus {
     border-color: ${props => (props.showError ? props.theme.error.color : props.theme.input.activeBorderColor)};
-    outline: none;
   }
 
   position: absolute;

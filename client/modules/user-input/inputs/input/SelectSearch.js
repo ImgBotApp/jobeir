@@ -64,7 +64,6 @@ const SelectContainer = styled.div`
     border-spacing: 0;
     border-collapse: separate;
     height: 36px;
-    outline: none;
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -80,7 +79,6 @@ const SelectContainer = styled.div`
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
   }
   .Select-control .Select-input:focus {
-    outline: none;
   }
   .is-searchable.is-open > .Select-control {
     cursor: text;
