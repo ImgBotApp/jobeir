@@ -29,6 +29,17 @@ const config = {
 export default config;
 ```
 
+### Running Tests and Prettier
+
+There is a pre-commit hook that will run all tests before each commit. This is to ensure
+basic code quality. There is also a lint-staged feature to run prettier on all staged
+files. It is recommended you install Prettier on your favourite editor to run on save.
+
+The Prettier config for this repository includes trailing slashes and single quotes.
+```
+ --single-quote --trailing-comma all --write
+```
+
 ## The Technology
 
 Currently using
