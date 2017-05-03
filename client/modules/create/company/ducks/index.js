@@ -1,3 +1,5 @@
+import { GET_USER_SUCCESS } from '../../../user/ducks/';
+
 export const CHECK_COMPANY_REQUEST = 'CHECK_COMPANY_REQUEST';
 export const CHECK_COMPANY_SUCCESS = 'CHECK_COMPANY_SUCCESS';
 export const CHECK_COMPANY_FAILURE = 'CHECK_COMPANY_FAILURE';
@@ -19,6 +21,10 @@ export const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case GET_USER_SUCCESS:
+      return Object.assign({}, state, {
+        details: action.payload.data.user.companies,
+      });
     case CREATE_COMPANY_REQUEST:
       return Object.assign({}, state, {
         isLoading: true,
@@ -56,6 +62,7 @@ export const createCompany = data => ({
   type: CREATE_COMPANY_REQUEST,
   payload: { data },
 });
+
 export const checkCompany = data => ({
   type: CHECK_COMPANY_REQUEST,
   payload: { data },

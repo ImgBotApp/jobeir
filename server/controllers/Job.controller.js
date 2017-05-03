@@ -10,11 +10,12 @@ import sanitizeHtml from 'sanitize-html';
  * @returns void
  */
 export function getJobs(req, res) {
-  Job.find().sort('-dateAdded').exec((err, posts) => {
+  // currently just filtering GET jobs just by date added...
+  Job.find().sort('-dateAdded').exec((err, jobs) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.json({ posts });
+    res.json({ data: { jobs: jobs }, errors: [] });
   });
 }
 
@@ -31,10 +32,18 @@ export function getJob(req, res) {
     }
 
     if (!job) {
-      res.status(204).send();
+      res.status(204).send({
+        data: {},
+        errors: [
+          {
+            error: 'UNABLE_TO_FIND_JOB',
+            message: 'Unable to find job',
+          },
+        ],
+      });
+    } else {
+      res.json({ job });
     }
-
-    res.json({ job });
   });
 }
 
@@ -94,12 +103,12 @@ export function createJob(req, res) {
  * @returns void
  */
 export function deleteJob(req, res) {
-  Job.findOne({ cuid: req.params.cuid }).exec((err, post) => {
+  Job.findOne({ _id: req.params.id }).exec((err, job) => {
     if (err) {
       res.status(500).send(err);
     }
 
-    post.remove(() => {
+    job.remove(() => {
       res.status(200).end();
     });
   });

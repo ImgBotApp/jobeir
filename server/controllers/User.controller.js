@@ -1,4 +1,5 @@
 import User from '../models/User';
+import Company from '../models/Company';
 import jwt from 'jsonwebtoken';
 import serverConfig from '../config/config';
 
@@ -32,6 +33,18 @@ export function getUser(req, res) {
     if (err) {
       res.status(500).send(err);
     }
+
+    /**
+     * Query for the user
+     * Query all companies the user has joined or created
+     * Return companies with user
+     */
+    // Company.findOne({ name: req.params.name }).exec((err, company) => {
+    //   if (err) {
+    //     res.status(500).send(err);
+    //   }
+    //   res.json({ company });
+    // });
 
     res.status(200).send({
       data: { user },

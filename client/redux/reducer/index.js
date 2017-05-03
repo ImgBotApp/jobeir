@@ -3,6 +3,7 @@
  */
 
 import { combineReducers } from 'redux';
+import * as storage from 'redux-storage';
 
 import { reducer as form } from 'redux-form';
 import { routerReducer as routing } from 'react-router-redux';
