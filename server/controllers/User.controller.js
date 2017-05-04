@@ -46,6 +46,7 @@ export function getUser(req, res) {
     //   res.json({ company });
     // });
 
+    // We're passing back the user password, make sure to update that... :)
     res.status(200).send({
       data: { user },
       errors: [],

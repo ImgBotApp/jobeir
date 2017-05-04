@@ -6,7 +6,12 @@ const Profile = () => {
   return (
     <div>
       <div>Profile</div>
-      <Link to="/create/company/about">Create a company</Link>
+      <div>
+        <Link to="/create/company/about">Create a company</Link>
+      </div>
+      <div>
+        <Link to="/create/job/about">Post a job</Link>
+      </div>
     </div>
   );
 };

@@ -54,8 +54,9 @@ export default (state = initialState, action = {}) => {
         isAuthenticated: false,
         errors: action.errors.errors,
       });
+    case 'SHOW_MODAL':
     case LOGOUT_SUCCESS:
-      return Object.assign({}, state, initialState);
+      return initialState;
     default:
       return state;
   }
@@ -65,14 +66,18 @@ export const auth = redirectPathname => ({
   type: AUTH_REQUEST,
   payload: { redirectPathname },
 });
+
 export const signup = (email, password, redirectPathname) => ({
   type: SIGNUP_REQUEST,
   payload: { email, password, redirectPathname },
 });
+
 export const login = (email, password) => ({
   type: LOGIN_REQUEST,
   payload: { email, password },
 });
+
 export const logout = userId => ({ type: LOGOUT_REQUEST });
+
 export const redirectTo = redirectPathname =>
   browserHistory.push(redirectPathname);

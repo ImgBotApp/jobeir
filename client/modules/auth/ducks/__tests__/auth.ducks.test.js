@@ -19,13 +19,6 @@ import authReducer, {
   redirectTo,
 } from '../';
 
-// export const initialState = {
-//   isAuthenticating: false,
-//   isAuthenticated: false,
-//   token: '',
-//   errors: [],
-// };
-
 describe('[Ducks Auth]', () => {
   describe('authReducer()', () => {
     it('should return the initialState', () => {
