@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import CompanyOnboarding from '../../company/components/CompanyOnboarding';
 import CompanyForm from '../../../user-input/forms/form/company/CompanyForm';
 import JobForm from '../../../user-input/forms/form/job/JobForm';
 
@@ -14,7 +15,9 @@ class StepForm extends Component {
   render() {
     return (
       <StepFormContainer>
-        {this.props.params.create === 'job' ? <JobForm /> : <CompanyForm />}
+        <CompanyOnboarding />
+        {this.props.params.create === 'job' && <JobForm />}
+        {this.props.params.create === 'company' && <CompanyForm />}
       </StepFormContainer>
     );
   }
