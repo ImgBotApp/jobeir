@@ -92,9 +92,6 @@ const mapStateToProps = state => ({
 JobFormComponesation = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
-  initialValues: {
-    receivingEmails: [{}],
-  },
 })(JobFormComponesation);
 
 export default connect(mapStateToProps)(JobFormComponesation);

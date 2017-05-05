@@ -106,10 +106,6 @@ const mapStateToProps = state => ({
   job: state.job,
   auth: state.session.auth,
   offersEquity: selector(state, 'offerEquity'),
-  initialValues: {
-    equityMin: 0,
-    equityMax: 0,
-  },
 });
 
 JobFormComponesation = reduxForm({

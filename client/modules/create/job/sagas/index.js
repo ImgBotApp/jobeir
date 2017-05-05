@@ -10,6 +10,7 @@ export function* createJob(action) {
   try {
     const payload = yield call(fetchApi, 'POST', '/jobs', action.payload.data);
     yield put({ type: CREATE_JOB_SUCCESS, payload });
+    localStorage.removeItem('state');
   } catch (errors) {
     yield put({ type: CREATE_JOB_FAILURE, errors });
   }

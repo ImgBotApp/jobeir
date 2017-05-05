@@ -11,7 +11,7 @@ import initServiceWorker from './sw';
 const store = configureStore(window.__INITIAL_STATE__);
 const mountApp = document.getElementById('app');
 // Initialize Servicie Worker register code
-initServiceWorker();
+// initServiceWorker();
 
 render(
   <AppContainer>
