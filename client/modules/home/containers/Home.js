@@ -4,12 +4,14 @@ import Link from 'react-router/lib/Link';
 import SearchForm from '../../user-input/forms/form/SearchFrom';
 import HomeHeader from '../components/HomeHeader';
 
-const Home = () => (
-  <HomeContainer>
-    <HomeHeader />
-    <SearchForm />
-  </HomeContainer>
-);
+const Home = () => {
+  return (
+    <HomeContainer>
+      <HomeHeader />
+      <SearchForm />
+    </HomeContainer>
+  );
+};
 
 export default Home;
 

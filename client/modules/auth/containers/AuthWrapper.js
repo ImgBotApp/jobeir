@@ -8,7 +8,7 @@ export const AuthWrapper = WrappedComponent => {
   class AuthenticatedComponent extends Component {
     state = { count: 1 };
 
-    componentWillMount() {
+    componentDidMount() {
       const { auth: { isAuthenticated } } = this.props;
       return this.handleCheckAuth(isAuthenticated);
     }

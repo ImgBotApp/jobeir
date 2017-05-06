@@ -8,18 +8,17 @@ const router = new Router();
 
 // The middleware to set up the parameters for the authenticate middleware.
 function checkReturnTo(req, res, next) {
-  console.log(req);
-  console.log(req.headers.referer);
-  const returnTo = req.query['returnTo'];
+  const returnTo = req.query['next'];
   const nextPath = req.headers.referer;
+
   if (returnTo) {
     // Maybe unnecessary, but just to be sure.
     req.session = req.session || {};
 
-    // Set returnTo to the absolute path you want to be redirect to after the authentication succeeds.
-    req.session.returnTo = getFullUrl(querystring.unescape(returnTo));
+    req.session.returnTo = querystring.unescape(returnTo);
   }
-  next(null, nextPath);
+
+  next();
 }
 
 // Google Auth
@@ -31,15 +30,13 @@ router.get(
 
 router.get(
   '/auth/google/callback',
-  checkReturnTo,
   passport.authenticate('google', {
-    successReturnToOrRedirect: '/',
     failureRedirect: '/login',
   }),
   function(req, res) {
     const token = jwt.sign(req.user, serverConfig.jwt);
 
-    res.cookie('SID', token).redirect('/dashboard');
+    res.cookie('SID', token).redirect('/redirect');
   },
 );
 
@@ -52,32 +49,31 @@ router.get(
 router.get(
   '/auth/facebook/callback',
   passport.authenticate('facebook', {
-    successReturnToOrRedirect: '/',
     failureRedirect: '/login',
   }),
   function(req, res) {
     const token = jwt.sign(req.user, serverConfig.jwt);
 
-    res.cookie('SID', token).redirect('/dashboard');
+    res.cookie('SID', token).redirect('/redirect');
   },
 );
 
 // Github Auth
 router.get(
   '/auth/github',
+  checkReturnTo,
   passport.authenticate('github', { scope: ['user:email'] }),
 );
 
 router.get(
   '/auth/github/callback',
   passport.authenticate('github', {
-    successReturnToOrRedirect: '/',
     failureRedirect: '/login',
   }),
   function(req, res) {
     const token = jwt.sign(req.user, serverConfig.jwt);
 
-    res.cookie('SID', token).redirect('/dashboard');
+    res.cookie('SID', token).redirect('/redirect');
   },
 );
 

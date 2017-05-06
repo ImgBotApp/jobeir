@@ -1,24 +1,46 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import docCookies from '../../../utils/cookies';
 
-export const AuthOAuth = () => (
-  <OAuthButtonContainer>
-    <GoogleButton href="/auth/google">
-      <GoogleIcon />
-      <OAuthButtonText>Continue with Google</OAuthButtonText>
-    </GoogleButton>
-    <FacebookButton href="/auth/facebook">
-      <FacebookIcon />
-      <OAuthButtonText>Continue with Facebook</OAuthButtonText>
-    </FacebookButton>
-    <GithubButton href="/auth/github">
-      <GithubIcon />
-      <OAuthButtonText>Continue with Github</OAuthButtonText>
-    </GithubButton>
-  </OAuthButtonContainer>
-);
+const buildRedirectPath = routing => {
+  if (routing.search) {
+    return routing.search.split('=')[1];
+  }
 
-export default AuthOAuth;
+  return '/dashboard';
+};
+
+export const AuthOAuth = props => {
+  const { routing } = props;
+
+  if (typeof document !== undefined) {
+    docCookies.setItem('redirectTo', buildRedirectPath(routing));
+  }
+
+  return (
+    <OAuthButtonContainer>
+      <GoogleButton href={`/auth/google/${routing.search}`}>
+        <GoogleIcon />
+        <OAuthButtonText>Continue with Google</OAuthButtonText>
+      </GoogleButton>
+      <FacebookButton href={`/auth/facebook/${routing.search}`}>
+        <FacebookIcon />
+        <OAuthButtonText>Continue with Facebook</OAuthButtonText>
+      </FacebookButton>
+      <GithubButton href={`/auth/github/${routing.search}`}>
+        <GithubIcon />
+        <OAuthButtonText>Continue with Github</OAuthButtonText>
+      </GithubButton>
+    </OAuthButtonContainer>
+  );
+};
+
+const mapStateToProps = state => ({
+  routing: state.routing.locationBeforeTransitions || {},
+});
+
+export default connect(mapStateToProps)(AuthOAuth);
 
 const OAuthButtonContainer = styled.div`
   padding-bottom: 1rem;

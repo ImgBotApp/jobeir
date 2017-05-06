@@ -42,9 +42,9 @@ export const appReducer = combineReducers({
  * to reset state when a user decides to log out.
  */
 const rootReducer = (state = {}, action = {}) => {
-  if (action.type === 'LOGOUT_SUCCESS') {
-    state = undefined;
-  }
+  // if (action.type === 'LOGOUT_SUCCESS') {
+  //   state = window.__INITIAL_STATE__;
+  // }
 
   return appReducer(state, action);
 };

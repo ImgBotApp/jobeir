@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import UserWrapper from '../../../user/containers/UserWrapper';
 
 const Onboarding = () => {
   return (
@@ -11,4 +10,4 @@ const Onboarding = () => {
   );
 };
 
-export default UserWrapper(Onboarding);
+export default Onboarding;

@@ -56,7 +56,7 @@ export default (state = initialState, action = {}) => {
       });
     case 'SHOW_MODAL':
     case LOGOUT_SUCCESS:
-      return initialState;
+      return window.__INITIAL_STATE__;
     default:
       return state;
   }

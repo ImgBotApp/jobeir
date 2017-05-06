@@ -8,7 +8,7 @@ export const UserWrapper = WrappedComponent => {
   class UserComponent extends Component {
     state = { count: 1 };
 
-    componentWillMount() {
+    componentDidMount() {
       const { user: { isLoaded } } = this.props;
       return this.handleGetUser(isLoaded);
     }

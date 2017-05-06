@@ -11,7 +11,7 @@ class ModalWrapper extends Component {
     this.handleEscapeKey = this.handleEscapeKey.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     window.addEventListener('keydown', this.handleEscapeKey, true);
   }
 
