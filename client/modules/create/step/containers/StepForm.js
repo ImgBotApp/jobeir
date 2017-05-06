@@ -13,11 +13,15 @@ import JobForm from '../../../user-input/forms/form/job/JobForm';
  */
 class StepForm extends Component {
   render() {
+    const { params } = this.props;
+    const isCompany = params.create === 'company';
+    const isJob = params.create === 'job';
+
     return (
       <StepFormContainer>
-        <CompanyOnboarding />
-        {this.props.params.create === 'job' && <JobForm />}
-        {this.props.params.create === 'company' && <CompanyForm />}
+        {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
+        {isJob && <JobForm />}
+        {isCompany && <CompanyForm />}
       </StepFormContainer>
     );
   }
