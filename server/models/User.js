@@ -33,6 +33,10 @@ const User = new Schema({
   lastName: {
     type: String,
   },
+  agreedToValues: {
+    type: Boolean,
+    default: false,
+  },
   companies: {
     created: [
       {

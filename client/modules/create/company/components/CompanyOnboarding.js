@@ -1,24 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router';
-import { SubmitButton } from '../../../user-input/inputs/input';
+import { updateUser } from '../../../user/ducks';
+
+const agreeToValues = props => {
+  const { dispatch, user } = props;
+
+  dispatch(
+    updateUser(user.id, { agreedToValues: true }, '/create/company/about'),
+  );
+};
 
 const CompanyOnboarding = props => {
   return (
     <div>
       <Header>Our values</Header>
       <Text>
-        At -company name- we believe in equal oppotunity employment and no discrimination against any applicants.
+        At -company name- we believe in equal oppotunity employment and no
+        discrimination against any applicants.
       </Text>
       <Text>
-        By continuing you agree to not to discriminate against any job applicant because of race, color, religion, national origin, sex, physical or mental disability, or age
+        By continuing you agree to not to discriminate against any job applicant because of race,
+        color, religion, national origin, sex, physical or mental disability, or age
       </Text>
-      <AgreeLink to="/create/company/about">Agree</AgreeLink>
+      <AgreeLink onClick={() => agreeToValues(props)}>I Agree</AgreeLink>
     </div>
   );
 };
 
-export default CompanyOnboarding;
+const mapStateToProps = state => ({
+  user: state.session.user,
+});
+
+export default connect(mapStateToProps)(CompanyOnboarding);
 
 const Header = styled.h2`
   font-size: 2rem;
@@ -31,7 +45,7 @@ const Text = styled.p`
   line-height: 1.6;
 `;
 
-const AgreeLink = styled(Link)`
+const AgreeLink = styled.div`
   height: 50px;
   border-radius: 3px;
   outline: none;
@@ -45,4 +59,5 @@ const AgreeLink = styled(Link)`
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  cursor: pointer;
 `;

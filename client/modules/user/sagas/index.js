@@ -1,6 +1,14 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import { fetchApi } from '../../../utils/api';
-import { GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE } from '../ducks';
+import {
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_FAILURE,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE,
+  redirectTo,
+} from '../ducks';
 
 export function* getUser(action) {
   try {
@@ -16,6 +24,27 @@ export function* getUser(action) {
   }
 }
 
+export function* updateUser(action) {
+  try {
+    const payload = yield call(
+      fetchApi,
+      'PUT',
+      `/users/${action.payload.userId}`,
+      action.payload.data,
+    );
+
+    yield put({ type: UPDATE_USER_SUCCESS, payload });
+
+    // Redirect to desired path if it exists
+    if (action.payload.redirectPathname) {
+      yield call(redirectTo, action.payload.redirectPathname);
+    }
+  } catch (errors) {
+    yield put({ type: UPDATE_USER_FAILURE, errors });
+  }
+}
+
 export function* user() {
   yield takeEvery(GET_USER_REQUEST, getUser);
+  yield takeEvery(UPDATE_USER_REQUEST, updateUser);
 }

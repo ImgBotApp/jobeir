@@ -53,6 +53,28 @@ export function getUser(req, res) {
     });
   });
 }
+/**
+ * Update a single User
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function updateUser(req, res) {
+  User.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      agreedToValues: true,
+    },
+    function(err, user) {
+      if (err) return res.send(500, { error: err });
+
+      return res.status(200).send({
+        data: { user },
+        errors: [],
+      });
+    },
+  );
+}
 
 /**
  * Register a single User

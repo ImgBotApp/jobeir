@@ -13,6 +13,8 @@ router.route('/logout').post(UserController.logoutUser);
 
 router.route('/users/:id').get(UserController.getUser);
 
+router.route('/users/:id').put(UserController.updateUser);
+
 router
   .route('/auth')
   .get(passport.authenticate('jwt', { session: false }), function(req, res) {
