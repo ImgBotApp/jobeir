@@ -50,7 +50,7 @@ import passportInit from './config/passport';
 app.use(compression());
 app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: '20mb' }));
-app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
+app.use(bodyParser.urlencoded({ limit: '20mb', extended: true }));
 app.use(cookieParser());
 app.use(passport.initialize());
 passportInit(passport);

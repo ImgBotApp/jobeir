@@ -1,12 +1,13 @@
 import Job from '../models/Job';
 import Image from '../models/Image';
-import fs from 'fs';
 import multer from 'multer';
 import jimp from 'jimp';
 import uuid from 'uuid';
 
 export const createUpload = (req, res, next) => {
+  res.json({});
   console.log('createUpload', req.body);
+  res.next();
 };
 
 // multer options
@@ -15,8 +16,6 @@ export const multerOptions = {
   fileFilter(req, file, next) {
     const isPhoto = file.mimetype.startsWith('image/');
 
-    console.log(file);
-    console.log(isPhoto);
     if (isPhoto) {
       next(null, true);
     } else {
@@ -32,17 +31,17 @@ export const upload = multer(multerOptions).single('photo');
 
 // jimp resize middleware
 export const resize = async (req, res, next) => {
-  // if (!req.file) {
-  //   next();
-  //   return;
-  // }
+  if (!req.file) {
+    next();
+    return;
+  }
 
-  // const extension = req.file.mimetype.split('/')[1];
-  // req.body.photo = `${uuid.v4()}.${extension}`;
+  const extension = req.file.mimetype.split('/')[1];
+  req.body.photo = `${uuid.v4()}.${extension}`;
 
-  // const photo = await jimp.read(req.file.buffer);
-  // await photo.resize(250, jimp.AUTO);
-  // await photo.write(`./public/uploads/${req.body.photo}`);
+  const photo = await jimp.read(req.file.buffer);
+  await photo.resize(250, jimp.AUTO);
+  await photo.write(`./public/uploads/${req.body.photo}`);
 
   next();
 };

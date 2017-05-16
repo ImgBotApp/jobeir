@@ -41,7 +41,6 @@
     "express": "^4.14.1",
     "express-jwt": "^5.1.0",
     "fs": "^0.0.1-security",
-    "gridfs-stream": "^1.1.1",
     "jimp": "^0.2.27",
     "jsonwebtoken": "^7.3.0",
     "limax": "^1.5.0",

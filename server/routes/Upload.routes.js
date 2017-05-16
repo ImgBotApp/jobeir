@@ -11,8 +11,8 @@ const router = new Router();
 // Upload a new image
 router
   .route('/uploads')
-  // .all(Uploader.upload, Uploader.resize)
-  .post(Uploader.upload, Uploader.resize, Uploader.createUpload);
+  .all(Uploader.upload, Uploader.resize)
+  .post(Uploader.createUpload);
 
 // // Get all images
 // router.route('/uploads/').get(Uploader.getUploads);
