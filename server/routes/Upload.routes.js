@@ -9,12 +9,15 @@ const router = new Router();
 // router.route('/jobs/:id').get(JobController.getJob);
 
 // Upload a new image
-router.route('/uploads/:id').post(Uploader.createUpload);
+router
+  .route('/uploads')
+  // .all(Uploader.upload, Uploader.resize)
+  .post(Uploader.upload, Uploader.resize, Uploader.createUpload);
 
-// Get all images
-router.route('/uploads/').get(Uploader.getUploads);
+// // Get all images
+// router.route('/uploads/').get(Uploader.getUploads);
 
-// Get all images
-router.route('/uploads/:id').get(Uploader.getUpload);
+// // Get all images
+// router.route('/uploads/:id').get(Uploader.getUpload);
 
 export default router;

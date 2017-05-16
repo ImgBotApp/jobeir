@@ -42,6 +42,7 @@
     "express-jwt": "^5.1.0",
     "fs": "^0.0.1-security",
     "gridfs-stream": "^1.1.1",
+    "jimp": "^0.2.27",
     "jsonwebtoken": "^7.3.0",
     "limax": "^1.5.0",
     "lodash": "^4.17.4",
@@ -76,6 +77,7 @@
     "sanitize-html": "^1.14.1",
     "styled-components": "next",
     "text-mask-addons": "^3.5.0",
+    "uuid": "^3.0.1",
     "validator": "^7.0.0",
     "whatwg-fetch": "^2.0.2"
   },

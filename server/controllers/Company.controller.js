@@ -3,12 +3,6 @@ import User from '../models/User';
 import cuid from 'cuid';
 import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
-import fs from 'fs';
-import Grid from 'gridfs-stream';
-import mongoose from 'mongoose';
-
-Grid.mongo = mongoose.mongo;
-const gfs = new Grid(mongoose.connection.db);
 
 /**
  * Get all Companies
@@ -158,29 +152,4 @@ export function deleteCompany(req, res) {
       res.status(200).end();
     });
   });
-}
-
-/**
- * Delete a Company
- * @param req
- * @param res
- * @returns void
- */
-export function uploadCompanyLogo(req, res, done) {
-  const writestream = gfs.createWriteStream({
-    filename: req.file.originalname,
-  });
-
-  // //pipe multer's temp file /uploads/filename into the stream we created above. On end deletes the temporary file.
-  fs
-    .createReadStream('./uploads/' + req.file.filename)
-    .on('end', function() {
-      fs.unlink('./uploads/' + req.file.filename, function(err) {
-        res.send('success');
-      });
-    })
-    .on('err', function() {
-      res.send('Error uploading image');
-    })
-    .pipe(writestream);
 }
