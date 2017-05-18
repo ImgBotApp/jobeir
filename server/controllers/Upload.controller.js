@@ -4,15 +4,16 @@ import jimp from 'jimp';
 import uuid from 'uuid';
 
 export const createUpload = (req, res, next) => {
-  console.log('createUpload', req.file);
-  res.json({});
+  res.status(200).send({
+    data: {},
+    errors: [],
+  });
 };
 
 // multer options
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
-    console.log('fired multer fileFilter');
     const isPhoto = file.mimetype.startsWith('image/');
     if (isPhoto) {
       next(null, true);
@@ -24,14 +25,9 @@ const multerOptions = {
 
 // create middleware to be used before uploadeing
 export const upload = multer(multerOptions).single('photo');
-// export const upload = (req, res, next) => {
-//   console.log('createUpload', req.body);
-//   next();
-// };
 
 // jimp resize middleware
 export const resize = async (req, res, next) => {
-  console.log('fired resize middleware', req.file);
   if (!req.file) return next();
 
   const extension = req.file.mimetype.split('/')[1];
