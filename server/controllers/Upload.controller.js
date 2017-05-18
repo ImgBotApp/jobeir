@@ -1,40 +1,38 @@
-import Job from '../models/Job';
 import Image from '../models/Image';
 import multer from 'multer';
 import jimp from 'jimp';
 import uuid from 'uuid';
 
 export const createUpload = (req, res, next) => {
+  console.log('createUpload', req.file);
   res.json({});
-  console.log('createUpload', req.body);
-  res.next();
 };
 
 // multer options
-export const multerOptions = {
+const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
+    console.log('fired multer fileFilter');
     const isPhoto = file.mimetype.startsWith('image/');
-
     if (isPhoto) {
       next(null, true);
     } else {
-      next({
-        message: `The filetype ${file.mimetype} is not allowed`,
-      });
+      next({ message: "That filetype isn't allowed!" }, false);
     }
   },
 };
 
 // create middleware to be used before uploadeing
 export const upload = multer(multerOptions).single('photo');
+// export const upload = (req, res, next) => {
+//   console.log('createUpload', req.body);
+//   next();
+// };
 
 // jimp resize middleware
 export const resize = async (req, res, next) => {
-  if (!req.file) {
-    next();
-    return;
-  }
+  console.log('fired resize middleware', req.file);
+  if (!req.file) return next();
 
   const extension = req.file.mimetype.split('/')[1];
   req.body.photo = `${uuid.v4()}.${extension}`;
