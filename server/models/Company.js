@@ -24,7 +24,6 @@ const Company = new Schema({
   product: { type: String },
   location: { type: String },
   phone: { type: Number },
-  versionKey: false,
 });
 
 export default mongoose.model('Company', Company);

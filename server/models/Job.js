@@ -19,7 +19,6 @@ const Job = new Schema({
         key: { type: String },
         text: { type: String },
         type: { type: String },
-        versionKey: false,
       },
     ],
   },
@@ -33,7 +32,6 @@ const Job = new Schema({
   receivingEmails: [
     {
       email: { type: String },
-      versionKey: false,
     },
   ],
   remote: { type: String },
@@ -41,7 +39,6 @@ const Job = new Schema({
   salaryMin: { type: Number },
   // skills: { type: String },
   title: { type: Object },
-  versionKey: false,
 });
 
 export default mongoose.model('Job', Job);

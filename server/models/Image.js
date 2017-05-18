@@ -13,7 +13,6 @@ const Image = new Schema({
     type: String,
     required: true,
   },
-  versionKey: false,
 });
 
 export default mongoose.model('Image', Image);

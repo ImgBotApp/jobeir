@@ -8,6 +8,7 @@ const User = new Schema({
   email: {
     type: String,
     lowercase: true,
+    trim: true,
     unique: true,
     required: true,
   },
@@ -29,9 +30,11 @@ const User = new Schema({
   },
   firstName: {
     type: String,
+    trim: true,
   },
   lastName: {
     type: String,
+    trim: true,
   },
   agreedToValues: {
     type: Boolean,
@@ -59,7 +62,6 @@ const User = new Schema({
       },
     ],
   },
-  versionKey: false,
 });
 
 User.pre('save', function(next) {
