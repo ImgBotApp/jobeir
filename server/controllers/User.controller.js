@@ -192,3 +192,35 @@ export function logoutUser(req, res) {
     errors: [],
   });
 }
+
+/**
+ * Check is a user is authentication
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function checkAuthentication(req, res) {
+  res.status(200).send({
+    data: {
+      isAuthenticated: true,
+      id: req.user._id,
+    },
+    errors: [],
+  });
+}
+
+/**
+ * Check is a user is authentication
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function resetPassword(req, res) {
+  res.status(200).send({
+    data: {
+      isAuthenticated: true,
+      id: req.user._id,
+    },
+    errors: [],
+  });
+}

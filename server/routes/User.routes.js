@@ -17,14 +17,11 @@ router.route('/users/:id').put(UserController.updateUser);
 
 router
   .route('/auth')
-  .get(passport.authenticate('jwt', { session: false }), function(req, res) {
-    res.status(200).send({
-      data: {
-        isAuthenticated: true,
-        id: req.user._id,
-      },
-      errors: [],
-    });
-  });
+  .get(
+    passport.authenticate('jwt', { session: false }),
+    UserController.checkAuthentication,
+  );
+
+router.route('/reset').post(UserController.resetPassword);
 
 export default router;

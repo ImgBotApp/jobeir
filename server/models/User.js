@@ -62,6 +62,8 @@ const User = new Schema({
       },
     ],
   },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
 });
 
 User.pre('save', function(next) {
