@@ -15,6 +15,7 @@ router.route('/users/:id').get(UserController.getUser);
 
 router.route('/users/:id').put(UserController.updateUser);
 
+// Check authentication of the current token
 router
   .route('/auth')
   .get(
@@ -22,6 +23,9 @@ router
     UserController.checkAuthentication,
   );
 
-router.route('/reset').post(UserController.resetPassword);
+// Password reset routes
+router.route('/reset').post(UserController.resetPasswordRequest);
+
+router.route('/password').post(UserController.resetPassword);
 
 export default router;

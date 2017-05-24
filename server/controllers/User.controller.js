@@ -211,12 +211,12 @@ export function checkAuthentication(req, res) {
 }
 
 /**
- * Check is a user is authentication
+ * Send the user an email to reset password
  * @param req
  * @param res
  * @returns void
  */
-export function resetPassword(req, res) {
+export function resetPasswordRequest(req, res) {
   User.findOne({ email: req.body.email }).exec((err, user) => {
     if (err) {
       res.status(500).send(err);
@@ -240,11 +240,75 @@ export function resetPassword(req, res) {
       const resetUrl = `https://${req.headers.host}/login/password/${user.resetPasswordToken}`;
       // send them an email with the link
       res.status(200).send({
-        data: [],
+        data: [{ resetUrl }],
         errors: [],
       });
     });
   });
-  // 3. Send them an email with token
+  // 3. Send them an email wisth token
   // 4. Return success
+}
+
+/**
+ * Reset the user's password
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function resetPassword(req, res) {
+  if (req.body.password !== req.body.confirmPassword) {
+    res.status(200).send({
+      data: [],
+      errors: [
+        {
+          error: 'PASSWORDS_DO_NOT_MATCH',
+          message: 'The provided passwords do not match. Please try again.',
+        },
+      ],
+    });
+  }
+
+  User.findOne({
+    resetPasswordToken: req.body.resetPasswordToken,
+    resetPasswordExpires: { $gt: Date.now() },
+  }).exec((err, user) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+
+    if (!user) {
+      res.status(401).send({
+        data: [],
+        errors: [
+          {
+            error: 'EXPIRED_PASSWORD_RESET_TOKEN',
+            message: 'Unable to update password. Please try a new password reset link',
+          },
+        ],
+      });
+    }
+
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+
+    user.save((err, saved) => {
+      if (err) {
+        res.status(500).send({
+          data: {},
+          errors: [
+            {
+              error: 'INTERNAL_SERVER_ERROR',
+              message: 'There was an error updating your password',
+            },
+          ],
+        });
+      }
+
+      res.status(200).send({
+        data: { user: saved },
+        errors: [],
+      });
+    });
+  });
 }
