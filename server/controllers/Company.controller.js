@@ -86,7 +86,7 @@ export function createCompany(req, res) {
       date: new Date(),
     });
 
-    user.save(function(err) {
+    user.save(err => {
       if (err) {
         res.status(500).send({
           data: {},

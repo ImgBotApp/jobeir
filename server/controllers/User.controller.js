@@ -2,6 +2,7 @@ import User from '../models/User';
 import Company from '../models/Company';
 import jwt from 'jsonwebtoken';
 import serverConfig from '../config/config';
+import crypto from 'crypto';
 
 /**
  * Get all Users
@@ -216,11 +217,34 @@ export function checkAuthentication(req, res) {
  * @returns void
  */
 export function resetPassword(req, res) {
-  res.status(200).send({
-    data: {
-      isAuthenticated: true,
-      id: req.user._id,
-    },
-    errors: [],
+  User.findOne({ email: req.body.email }).exec((err, user) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+
+    if (!user) {
+      res.status(200).send({
+        data: [],
+        errors: [],
+      });
+    }
+
+    user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
+    user.resetPasswordExpires = Date.now() + 3600000;
+
+    user.save(err => {
+      if (err) {
+        res.status(500).send(err);
+      }
+
+      const resetUrl = `https://${req.headers.host}/login/password/${user.resetPasswordToken}`;
+      // send them an email with the link
+      res.status(200).send({
+        data: [],
+        errors: [],
+      });
+    });
   });
+  // 3. Send them an email with token
+  // 4. Return success
 }
