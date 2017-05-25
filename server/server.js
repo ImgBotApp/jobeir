@@ -14,6 +14,9 @@ import webpack from 'webpack';
 import config from '../webpack/webpack.config.dev.js';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import dotenv from 'dotenv';
+
+dotenv.load();
 
 const app = new Express();
 
@@ -57,7 +60,7 @@ passportInit(passport);
 app.use(Express.static(path.resolve(__dirname, '../build/client')));
 app.use(
   '/api/v0',
-  jwt({ secret: serverConfig.jwt }).unless({ path: routesArray }),
+  jwt({ secret: process.env.JWT }).unless({ path: routesArray }),
   apiRoutes,
 );
 app.use(serverConfig.handleNoToken);
@@ -67,7 +70,7 @@ app.use(oAuthRoutes);
 mongoose.Promise = global.Promise;
 
 // MongoDB Connection
-mongoose.connect(serverConfig.mongoURL, error => {
+mongoose.connect(process.env.MONGO_URL, error => {
   if (error) {
     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
     throw error;
@@ -122,9 +125,9 @@ app.use((req, res, next) => {
 });
 
 // start app
-app.listen(serverConfig.port, error => {
+app.listen(process.env.PORT, error => {
   if (!error) {
-    console.log(`Running on port ${serverConfig.port}`); // eslint-disable-line
+    console.log(`👋  Running on port ${process.env.PORT}`); // eslint-disable-line
   }
 });
 

@@ -6,3 +6,4 @@ dist
 build
 coverage/
 server/config
+.env

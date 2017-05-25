@@ -1,7 +1,6 @@
 import User from '../models/User';
 import Company from '../models/Company';
 import jwt from 'jsonwebtoken';
-import serverConfig from '../config/config';
 import crypto from 'crypto';
 
 /**
@@ -112,7 +111,7 @@ export function registerUser(req, res) {
           ],
         });
       } else {
-        const token = jwt.sign(newUser, serverConfig.jwt);
+        const token = jwt.sign(newUser, process.env.JWT);
 
         return res.status(200).send({
           data: {
@@ -153,7 +152,7 @@ export function loginUser(req, res) {
       } else {
         user.comparePassword(req.body.password, function(err, isMatch) {
           if (!err && isMatch) {
-            const token = jwt.sign(user, serverConfig.jwt);
+            const token = jwt.sign(user, process.env.JWT);
 
             res.status(200).send({
               data: {

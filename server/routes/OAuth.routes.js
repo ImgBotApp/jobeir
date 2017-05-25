@@ -34,7 +34,7 @@ router.get(
     failureRedirect: '/login',
   }),
   function(req, res) {
-    const token = jwt.sign(req.user, serverConfig.jwt);
+    const token = jwt.sign(req.user, process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
   },
@@ -52,7 +52,7 @@ router.get(
     failureRedirect: '/login',
   }),
   function(req, res) {
-    const token = jwt.sign(req.user, serverConfig.jwt);
+    const token = jwt.sign(req.user, process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
   },
@@ -71,7 +71,7 @@ router.get(
     failureRedirect: '/login',
   }),
   function(req, res) {
-    const token = jwt.sign(req.user, serverConfig.jwt);
+    const token = jwt.sign(req.user, process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
   },
