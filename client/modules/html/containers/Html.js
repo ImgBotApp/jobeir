@@ -1,8 +1,9 @@
 /* eslint-disable react/no-danger */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-const Html = ({ styles, assets, state, content }) => {
+const Html = ({ css, assets, state, content }) => {
   const helmet = Helmet.rewind();
   const attrs = helmet.htmlAttributes.toComponent();
 
@@ -13,7 +14,7 @@ const Html = ({ styles, assets, state, content }) => {
         {helmet.meta.toComponent()}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {helmet.link.toComponent()}
-        <style dangerouslySetInnerHTML={{ __html: styles }} />
+        <style dangerouslySetInnerHTML={{ __html: css }} />
       </head>
       <body>
         <main
@@ -30,7 +31,7 @@ const Html = ({ styles, assets, state, content }) => {
 };
 
 Html.propTypes = {
-  styles: PropTypes.string.isRequired,
+  css: PropTypes.string.isRequired,
   assets: PropTypes.object.isRequired,
   state: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,

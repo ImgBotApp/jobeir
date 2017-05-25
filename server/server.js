@@ -38,7 +38,8 @@ import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
-import styleSheet from 'styled-components/lib/models/StyleSheet';
+// import styleSheet from 'styled-components/lib/models/StyleSheet';
+import { ServerStyleSheet } from 'styled-components';
 import Html from '../client/modules/html/containers/Html';
 
 // Import required modules
@@ -103,19 +104,22 @@ app.use((req, res, next) => {
 
     return fetchComponentData(store, renderProps.components, renderProps.params)
       .then(() => {
+        const sheet = new ServerStyleSheet();
         const content = renderToString(
-          <Provider store={store}>
-            <IntlWrapper>
-              <RouterContext {...renderProps} />
-            </IntlWrapper>
-          </Provider>,
+          sheet.collectStyles(
+            <Provider store={store}>
+              <IntlWrapper>
+                <RouterContext {...renderProps} />
+              </IntlWrapper>
+            </Provider>,
+          ),
         );
 
-        const styles = styleSheet.getCSS();
+        const css = sheet.getStyleTags();
         const initialState = store.getState();
         const assets = global.webpackIsomorphicTools.assets();
         const state = `window.__INITIAL_STATE__ = ${serialize(initialState)}`;
-        const markup = <Html {...{ styles, assets, state, content }} />;
+        const markup = <Html {...{ css, assets, state, content }} />;
         const html = '<!doctype html>' + renderToStaticMarkup(markup);
 
         res.send(html);
