@@ -2,6 +2,7 @@ import User from '../models/User';
 import Company from '../models/Company';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
+import { send } from '../mail/mail';
 
 /**
  * Get all Users
@@ -17,7 +18,7 @@ export function getUsers(req, res) {
 
     res.status(200).send({
       data: { user },
-      errors: [],
+      errors: []
     });
   });
 }
@@ -49,7 +50,7 @@ export function getUser(req, res) {
     // We're passing back the user password, make sure to update that... :)
     res.status(200).send({
       data: { user },
-      errors: [],
+      errors: []
     });
   });
 }
@@ -63,16 +64,16 @@ export function updateUser(req, res) {
   User.findOneAndUpdate(
     { _id: req.params.id },
     {
-      agreedToValues: true,
+      agreedToValues: true
     },
     function(err, user) {
       if (err) return res.send(500, { error: err });
 
       return res.status(200).send({
         data: { user },
-        errors: [],
+        errors: []
       });
-    },
+    }
   );
 }
 
@@ -89,14 +90,14 @@ export function registerUser(req, res) {
       errors: [
         {
           error: 'MISSING_EMAIL_OR_PASSWORD',
-          message: 'Email and password are required',
-        },
-      ],
+          message: 'Email and password are required'
+        }
+      ]
     });
   } else {
     const newUser = new User({
       email: req.body.email,
-      password: req.body.password,
+      password: req.body.password
     });
 
     newUser.save(err => {
@@ -106,9 +107,9 @@ export function registerUser(req, res) {
           errors: [
             {
               error: 'USER_ALREADY_EXISTS',
-              message: 'A user with that email already exists.',
-            },
-          ],
+              message: 'A user with that email already exists.'
+            }
+          ]
         });
       } else {
         const token = jwt.sign(newUser, process.env.JWT);
@@ -116,9 +117,9 @@ export function registerUser(req, res) {
         return res.status(200).send({
           data: {
             token,
-            user: req.body,
+            user: req.body
           },
-          errors: [],
+          errors: []
         });
       }
     });
@@ -134,7 +135,7 @@ export function registerUser(req, res) {
 export function loginUser(req, res) {
   User.findOne(
     {
-      email: req.body.email,
+      email: req.body.email
     },
     function(err, user) {
       if (err) throw err;
@@ -145,9 +146,9 @@ export function loginUser(req, res) {
           errors: [
             {
               error: 'INVALID_EMAIL_OR_PASSWORD',
-              message: 'Invalid email or password',
-            },
-          ],
+              message: 'Invalid email or password'
+            }
+          ]
         });
       } else {
         user.comparePassword(req.body.password, function(err, isMatch) {
@@ -158,9 +159,9 @@ export function loginUser(req, res) {
               data: {
                 isAuthenticated: true,
                 id: user._id,
-                token,
+                token
               },
-              errors: [],
+              errors: []
             });
           } else {
             res.status(401).send({
@@ -168,14 +169,14 @@ export function loginUser(req, res) {
               errors: [
                 {
                   error: 'INVALID_EMAIL_OR_PASSWORD',
-                  message: 'Invalid email or password',
-                },
-              ],
+                  message: 'Invalid email or password'
+                }
+              ]
             });
           }
         });
       }
-    },
+    }
   );
 }
 
@@ -189,7 +190,7 @@ export function logoutUser(req, res) {
   req.logout();
   res.status(200).send({
     data: [],
-    errors: [],
+    errors: []
   });
 }
 
@@ -203,9 +204,9 @@ export function checkAuthentication(req, res) {
   res.status(200).send({
     data: {
       isAuthenticated: true,
-      id: req.user._id,
+      id: req.user._id
     },
-    errors: [],
+    errors: []
   });
 }
 
@@ -224,23 +225,30 @@ export function resetPasswordRequest(req, res) {
     if (!user) {
       res.status(200).send({
         data: [],
-        errors: [],
+        errors: []
       });
     }
 
     user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
     user.resetPasswordExpires = Date.now() + 3600000;
 
-    user.save(err => {
+    user.save((err, user) => {
       if (err) {
         res.status(500).send(err);
       }
 
       const resetUrl = `https://${req.headers.host}/login/password/${user.resetPasswordToken}`;
+
+      send({
+        user,
+        subject: 'Password Reset',
+        resetUrl
+      });
+
       // send them an email with the link
       res.status(200).send({
         data: [{ resetUrl }],
-        errors: [],
+        errors: []
       });
     });
   });
@@ -261,15 +269,15 @@ export function resetPassword(req, res) {
       errors: [
         {
           error: 'PASSWORDS_DO_NOT_MATCH',
-          message: 'The provided passwords do not match. Please try again.',
-        },
-      ],
+          message: 'The provided passwords do not match. Please try again.'
+        }
+      ]
     });
   }
 
   User.findOne({
     resetPasswordToken: req.body.resetPasswordToken,
-    resetPasswordExpires: { $gt: Date.now() },
+    resetPasswordExpires: { $gt: Date.now() }
   }).exec((err, user) => {
     if (err) {
       res.status(500).send(err);
@@ -281,9 +289,9 @@ export function resetPassword(req, res) {
         errors: [
           {
             error: 'EXPIRED_PASSWORD_RESET_TOKEN',
-            message: 'Unable to update password. Please try a new password reset link',
-          },
-        ],
+            message: 'Unable to update password. Please try a new password reset link'
+          }
+        ]
       });
     }
 
@@ -298,15 +306,15 @@ export function resetPassword(req, res) {
           errors: [
             {
               error: 'INTERNAL_SERVER_ERROR',
-              message: 'There was an error updating your password',
-            },
-          ],
+              message: 'There was an error updating your password'
+            }
+          ]
         });
       }
 
       res.status(200).send({
         data: { user: saved },
-        errors: [],
+        errors: []
       });
     });
   });
