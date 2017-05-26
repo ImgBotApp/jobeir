@@ -25,8 +25,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(
     webpackDevMiddleware(compiler, {
       noInfo: true,
-      publicPath: config.output.publicPath,
-    }),
+      publicPath: config.output.publicPath
+    })
   );
   app.use(webpackHotMiddleware(compiler));
 }
@@ -62,7 +62,7 @@ app.use(Express.static(path.resolve(__dirname, '../build/client')));
 app.use(
   '/api/v0',
   jwt({ secret: process.env.JWT }).unless({ path: routesArray }),
-  apiRoutes,
+  apiRoutes
 );
 app.use(serverConfig.handleNoToken);
 app.use(oAuthRoutes);
@@ -92,7 +92,7 @@ app.use((req, res, next) => {
     if (redirectLocation) {
       return res.redirect(
         302,
-        redirectLocation.pathname + redirectLocation.search,
+        redirectLocation.pathname + redirectLocation.search
       );
     }
 
@@ -111,8 +111,8 @@ app.use((req, res, next) => {
               <IntlWrapper>
                 <RouterContext {...renderProps} />
               </IntlWrapper>
-            </Provider>,
-          ),
+            </Provider>
+          )
         );
 
         const css = sheet.getStyleTags();

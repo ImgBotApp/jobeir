@@ -6,4 +6,5 @@ dist
 build
 coverage/
 server/config
+server/mail/config.js
 .env

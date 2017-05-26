@@ -7,10 +7,10 @@ const webpackIsomorphicToolsConfig = require('./webpack/webpack.config.isomorphi
 
 if (process.env.NODE_ENV === 'production') {
   process.env.webpackAssets = JSON.stringify(
-    require('./build/client/manifest.json'),
+    require('./build/client/manifest.json')
   );
   process.env.webpackChunkAssets = JSON.stringify(
-    require('./build/client/chunk-manifest.json'),
+    require('./build/client/chunk-manifest.json')
   );
   // In production, serve the webpacked server file.
   require('./build/server/server.bundle.js');
@@ -22,18 +22,18 @@ if (process.env.NODE_ENV === 'production') {
         'babel-plugin-webpack-loaders',
         {
           config: './webpack/webpack.config.babel.js',
-          verbose: true,
-        },
+          verbose: true
+        }
       ],
       'transform-es2015-modules-commonjs',
-      'syntax-dynamic-import',
-    ],
+      'syntax-dynamic-import'
+    ]
   });
 
   require('babel-polyfill');
 
   global.webpackIsomorphicTools = new WebpackIsomorphicTools(
-    webpackIsomorphicToolsConfig,
+    webpackIsomorphicToolsConfig
   ).server('./', () => {
     require('./server/server');
   });
