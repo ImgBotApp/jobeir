@@ -8,8 +8,7 @@ export default props => {
     color: '#262626',
     backgroundColor: '#fff',
     fontFamily: '"Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif',
-    fontSize: '18px',
-    padding: '15px'
+    fontSize: '18px'
   };
 
   return (
@@ -17,7 +16,7 @@ export default props => {
       <TBody>
         <TR>
           <TD style={textStyle}>
-            <EmptySpace height={50} />
+            <EmptySpace height={10} />
             {props.children}
             <EmptySpace height={50} />
           </TD>

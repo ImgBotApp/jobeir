@@ -56,11 +56,11 @@ class SignupForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.session.auth,
+  auth: state.session.auth
 });
 
 SignupForm = reduxForm({
-  form: 'signup',
+  form: 'signup'
 })(SignupForm);
 
 export default connect(mapStateToProps)(SignupForm);

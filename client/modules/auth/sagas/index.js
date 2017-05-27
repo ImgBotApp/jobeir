@@ -18,7 +18,13 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
-  redirectTo,
+  RESET_REQUEST,
+  RESET_SUCCESS,
+  RESET_FAILURE,
+  PASSWORD_REQUEST,
+  PASSWORD_SUCCESS,
+  PASSWORD_FAILURE,
+  redirectTo
 } from '../ducks';
 
 export function* authUser(action) {
@@ -91,9 +97,30 @@ function* signupAndAuthUser(action) {
   } catch (errors) {}
 }
 
+function* reset(action) {
+  try {
+    const payload = yield call(fetchApi, 'POST', '/reset', action.payload);
+    yield put({ type: RESET_SUCCESS, payload });
+  } catch (errors) {
+    yield put({ type: RESET_FAILURE, errors });
+  }
+}
+
+function* password(action) {
+  try {
+    const payload = yield call(fetchApi, 'POST', '/password', action.payload);
+    yield put({ type: PASSWORD_SUCCESS, payload });
+    yield call(redirectTo, '/login');
+  } catch (errors) {
+    yield put({ type: PASSWORD_FAILURE, errors });
+  }
+}
+
 export function* auth() {
   yield takeEvery(AUTH_REQUEST, authUser);
   yield takeEvery(SIGNUP_REQUEST, signupAndAuthUser);
   yield takeEvery(LOGIN_REQUEST, loginUser);
   yield takeEvery(LOGOUT_REQUEST, logoutUser);
+  yield takeEvery(RESET_REQUEST, reset);
+  yield takeEvery(PASSWORD_REQUEST, password);
 }

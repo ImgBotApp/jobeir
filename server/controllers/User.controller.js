@@ -141,7 +141,7 @@ export function loginUser(req, res) {
       if (err) throw err;
 
       if (!user) {
-        res.status(401).send({
+        return res.status(401).send({
           data: {},
           errors: [
             {
@@ -155,7 +155,7 @@ export function loginUser(req, res) {
           if (!err && isMatch) {
             const token = jwt.sign(user, process.env.JWT);
 
-            res.status(200).send({
+            return res.status(200).send({
               data: {
                 isAuthenticated: true,
                 id: user._id,
@@ -164,7 +164,7 @@ export function loginUser(req, res) {
               errors: []
             });
           } else {
-            res.status(401).send({
+            return res.status(401).send({
               data: {},
               errors: [
                 {
@@ -188,7 +188,7 @@ export function loginUser(req, res) {
  */
 export function logoutUser(req, res) {
   req.logout();
-  res.status(200).send({
+  return res.status(200).send({
     data: [],
     errors: []
   });
@@ -201,7 +201,7 @@ export function logoutUser(req, res) {
  * @returns void
  */
 export function checkAuthentication(req, res) {
-  res.status(200).send({
+  return res.status(200).send({
     data: {
       isAuthenticated: true,
       id: req.user._id
@@ -219,11 +219,11 @@ export function checkAuthentication(req, res) {
 export function resetPasswordRequest(req, res) {
   User.findOne({ email: req.body.email }).exec((err, user) => {
     if (err) {
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
 
     if (!user) {
-      res.status(200).send({
+      return res.status(200).send({
         data: [],
         errors: []
       });
@@ -234,20 +234,26 @@ export function resetPasswordRequest(req, res) {
 
     user.save((err, user) => {
       if (err) {
-        res.status(500).send(err);
+        return res.status(500).send(err);
       }
 
-      const resetUrl = `https://${req.headers.host}/login/password/${user.resetPasswordToken}`;
+      // changing protocol for local testing
+      const protocol = req.headers.host.includes('localhost')
+        ? 'http://'
+        : 'https://';
+      const resetUrl = `${protocol}${req.headers.host}/password/${user.resetPasswordToken}`;
 
+      // Fire off the password reset email
       send({
-        user,
         subject: 'Password Reset',
+        template: 'PasswordReset',
+        user,
         resetUrl
       });
 
       // send them an email with the link
-      res.status(200).send({
-        data: [{ resetUrl }],
+      return res.status(200).send({
+        data: [],
         errors: []
       });
     });
@@ -264,7 +270,7 @@ export function resetPasswordRequest(req, res) {
  */
 export function resetPassword(req, res) {
   if (req.body.password !== req.body.confirmPassword) {
-    res.status(200).send({
+    return res.status(200).send({
       data: [],
       errors: [
         {
@@ -280,16 +286,16 @@ export function resetPassword(req, res) {
     resetPasswordExpires: { $gt: Date.now() }
   }).exec((err, user) => {
     if (err) {
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
 
     if (!user) {
-      res.status(401).send({
+      return res.status(401).send({
         data: [],
         errors: [
           {
             error: 'EXPIRED_PASSWORD_RESET_TOKEN',
-            message: 'Unable to update password. Please try a new password reset link'
+            message: 'Unable to update password. Your reset password link has timed out.'
           }
         ]
       });
@@ -301,7 +307,7 @@ export function resetPassword(req, res) {
 
     user.save((err, saved) => {
       if (err) {
-        res.status(500).send({
+        return res.status(500).send({
           data: {},
           errors: [
             {
@@ -312,7 +318,7 @@ export function resetPassword(req, res) {
         });
       }
 
-      res.status(200).send({
+      return res.status(200).send({
         data: { user: saved },
         errors: []
       });

@@ -23,6 +23,8 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/auth/containers/Redirect');
   require('../modules/auth/login/containers/Login');
   require('../modules/auth/signup/containers/Signup');
+  require('../modules/auth/reset/containers/Reset');
+  require('../modules/auth/password/containers/Password');
   require('../modules/create/step/containers/Step');
   require('../modules/account/profile/containers/Profile');
   require('../modules/not-found/components/NotFound');
@@ -55,6 +57,25 @@ const routes = (
       }}
     />
     <Route
+      path="/reset"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('../modules/auth/reset/containers/Reset').default);
+        });
+      }}
+    />
+    <Route
+      path="/password/:resetPasswordToken"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(
+            null,
+            require('../modules/auth/password/containers/Password').default
+          );
+        });
+      }}
+    />
+    <Route
       path="/redirect"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
@@ -76,7 +97,7 @@ const routes = (
         require.ensure([], require => {
           cb(
             null,
-            require('../modules/account/profile/containers/Profile').default,
+            require('../modules/account/profile/containers/Profile').default
           );
         });
       }}
@@ -93,7 +114,13 @@ const routes = (
 );
 
 function getRoutesArray(obj) {
-  const arr = ['/api/v0/login', '/api/v0/register', '/favicon.ico'];
+  const arr = [
+    '/api/v0/login',
+    '/api/v0/register',
+    '/api/v0/reset',
+    '/api/v0/password',
+    '/favicon.ico'
+  ];
 
   (function getIds(obj) {
     for (let x in obj) {

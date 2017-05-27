@@ -1,10 +1,9 @@
-import nodemailer from 'nodemailer';
-import mailConfig from './config';
 import React from 'react';
-
 import Oy from 'oy-vey';
-
-import PasswordReset from './templates/emails/PasswordReset';
+import nodemailer from 'nodemailer';
+import htmlToText from 'html-to-text';
+import mailConfig from './config';
+import * as emails from './templates/emails/';
 
 const transport = nodemailer.createTransport({
   host: mailConfig.host,
@@ -16,17 +15,19 @@ const transport = nodemailer.createTransport({
 });
 
 export function send(options) {
-  const html = Oy.renderTemplate(<PasswordReset options={options} />, {
-    title: 'Password Reset',
-    previewText: options.resetUrl
+  const EmailTemplate = emails[options.template];
+  const html = Oy.renderTemplate(<EmailTemplate options={options} />, {
+    title: options.subject,
+    previewText: options.subject
   });
+  const text = htmlToText.fromString(html);
 
   const mailOptions = {
     from: `Dennis Brotzky <noreply@brotzky.co`,
     subject: options.user.subject,
     to: options.user.email,
     html,
-    text: options.resetUrl
+    text
   };
 
   return transport.sendMail(mailOptions);

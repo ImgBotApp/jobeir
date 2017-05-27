@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import docCookies from '../../../utils/cookies';
@@ -11,33 +11,35 @@ const buildRedirectPath = routing => {
   return '/dashboard';
 };
 
-export const AuthOAuth = props => {
-  const { routing } = props;
-
-  if (typeof document !== undefined) {
+export class AuthOAuth extends Component {
+  componentDidMount() {
     docCookies.setItem('redirectTo', buildRedirectPath(routing));
   }
 
-  return (
-    <OAuthButtonContainer>
-      <GoogleButton href={`/auth/google/${routing.search}`}>
-        <GoogleIcon />
-        <OAuthButtonText>Continue with Google</OAuthButtonText>
-      </GoogleButton>
-      <FacebookButton href={`/auth/facebook/${routing.search}`}>
-        <FacebookIcon />
-        <OAuthButtonText>Continue with Facebook</OAuthButtonText>
-      </FacebookButton>
-      <GithubButton href={`/auth/github/${routing.search}`}>
-        <GithubIcon />
-        <OAuthButtonText>Continue with Github</OAuthButtonText>
-      </GithubButton>
-    </OAuthButtonContainer>
-  );
-};
+  render() {
+    const { routing } = this.props;
+
+    return (
+      <OAuthButtonContainer>
+        <GoogleButton href={`/auth/google/${routing.search}`}>
+          <GoogleIcon />
+          <OAuthButtonText>Continue with Google</OAuthButtonText>
+        </GoogleButton>
+        <FacebookButton href={`/auth/facebook/${routing.search}`}>
+          <FacebookIcon />
+          <OAuthButtonText>Continue with Facebook</OAuthButtonText>
+        </FacebookButton>
+        <GithubButton href={`/auth/github/${routing.search}`}>
+          <GithubIcon />
+          <OAuthButtonText>Continue with Github</OAuthButtonText>
+        </GithubButton>
+      </OAuthButtonContainer>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
-  routing: state.routing.locationBeforeTransitions || {},
+  routing: state.routing.locationBeforeTransitions || {}
 });
 
 export default connect(mapStateToProps)(AuthOAuth);

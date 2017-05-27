@@ -11,10 +11,10 @@ const docCookies = {
           new RegExp(
             '(?:(?:^|.*;)\\s*' +
               encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, '\\$&') +
-              '\\s*\\=\\s*([^;]*).*$)|^.*$',
+              '\\s*\\=\\s*([^;]*).*$)|^.*$'
           ),
-          '$1',
-        ),
+          '$1'
+        )
       ) || null
     );
   },
@@ -24,7 +24,7 @@ const docCookies = {
     vEnd = endDate,
     sPath = '/',
     sDomain = '',
-    bSecure,
+    bSecure
   ) => {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
       return false;
@@ -67,26 +67,7 @@ const docCookies = {
       (sDomain ? '; domain=' + sDomain : '') +
       (sPath ? '; path=' + sPath : '');
     return true;
-  },
-  hasItem: sKey => {
-    if (!sKey) {
-      return false;
-    }
-    return new RegExp(
-      '(?:^|;\\s*)' +
-        encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, '\\$&') +
-        '\\s*\\=',
-    ).test(document.cookie);
-  },
-  keys: () => {
-    const aKeys = document.cookie
-      .replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '')
-      .split(/\s*(?:\=[^;]*)?;\s*/);
-    for (let nLen = aKeys.length, nIdx = 0; nIdx < nLen; nIdx++) {
-      aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]);
-    }
-    return aKeys;
-  },
+  }
 };
 
 export default docCookies;
