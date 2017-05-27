@@ -5,20 +5,21 @@ import EmptySpace from './EmptySpace';
 
 export default props => {
   const textStyle = {
-    color: '#42444c',
-    backgroundColor: '#eeeeee',
-    fontFamily: 'Arial',
-    fontSize: '18px'
+    color: '#262626',
+    backgroundColor: '#fff',
+    fontFamily: '"Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif',
+    fontSize: '18px',
+    padding: '15px'
   };
 
   return (
     <Table width="100%">
       <TBody>
         <TR>
-          <TD align="center" style={textStyle}>
-            <EmptySpace height={200} />
+          <TD style={textStyle}>
+            <EmptySpace height={50} />
             {props.children}
-            <EmptySpace height={200} />
+            <EmptySpace height={50} />
           </TD>
         </TR>
       </TBody>

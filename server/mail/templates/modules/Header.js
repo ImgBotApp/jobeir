@@ -5,7 +5,7 @@ import EmptySpace from './EmptySpace';
 
 const Header = props => {
   const style = {
-    color: props.color,
+    color: props.color || '#262626',
     fontWeight: 'bold'
   };
 
@@ -14,7 +14,7 @@ const Header = props => {
       <TBody>
         <TR>
           <TD>
-            <EmptySpace height={50} />
+            <EmptySpace height={30} />
 
             {/* Text area, could be another component, i.e. HeroText */}
             <Table width="100%">
@@ -29,17 +29,12 @@ const Header = props => {
                 </TR>
               </TBody>
             </Table>
-
-            <EmptySpace height={50} />
+            <EmptySpace height={30} />
           </TD>
         </TR>
       </TBody>
     </Table>
   );
-};
-
-Header.propTypes = {
-  color: React.PropTypes.string.isRequired
 };
 
 export default Header;

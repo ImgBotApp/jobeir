@@ -5,24 +5,23 @@ export default props => {
   return (
     <Table
       width="100%"
-      align="center"
       style={{
         WebkitTextSizeAdjust: '100%',
         msTextSizeAdjust: '100%',
         msoTableLspace: '0pt',
         msoTableRspace: '0pt',
         borderCollapse: 'collapse',
-        margin: '0px auto'
+        margin: '0px auto',
+        background: '#fff'
       }}
     >
       <TBody>
         <TR>
-          <TD align="center">
+          <TD>
 
             {/* Centered column */}
             <Table
               width="600"
-              align="center"
               style={{
                 WebkitTextSizeAdjust: '100%',
                 msTextSizeAdjust: '100%',

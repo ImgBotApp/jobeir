@@ -5,8 +5,8 @@ import EmptySpace from './EmptySpace';
 
 const Footer = props => {
   const style = {
-    color: props.color,
-    backgroundColor: '#dddddd'
+    color: props.color || '#262626',
+    backgroundColor: '#fff'
   };
 
   const spaceStyle = {
@@ -33,11 +33,7 @@ const Footer = props => {
             <Table width="270">
               <TBody>
                 <TR>
-                  <TD
-                    align="center"
-                    bgColor="#EEEEEE"
-                    style={{ fontFamily: 'Arial' }}
-                  >
+                  <TD align="center" style={{ fontFamily: 'Arial' }}>
 
                     <EmptySpace height="10" />
 
@@ -65,11 +61,7 @@ const Footer = props => {
             <Table width="270">
               <TBody>
                 <TR>
-                  <TD
-                    align="center"
-                    bgColor="#EEEEEE"
-                    style={{ fontFamily: 'Arial' }}
-                  >
+                  <TD align="center" style={{ fontFamily: 'Arial' }}>
 
                     <EmptySpace height="10" />
 
@@ -104,10 +96,6 @@ const Footer = props => {
       </TBody>
     </Table>
   );
-};
-
-Footer.propTypes = {
-  color: React.PropTypes.string.isRequired
 };
 
 export default Footer;

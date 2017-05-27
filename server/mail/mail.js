@@ -4,7 +4,7 @@ import React from 'react';
 
 import Oy from 'oy-vey';
 
-import HelloWorldEmail from './templates/emails/HelloWorld';
+import PasswordReset from './templates/emails/PasswordReset';
 
 const transport = nodemailer.createTransport({
   host: mailConfig.host,
@@ -16,8 +16,8 @@ const transport = nodemailer.createTransport({
 });
 
 export function send(options) {
-  const html = Oy.renderTemplate(<HelloWorldEmail />, {
-    title: 'This is an example',
+  const html = Oy.renderTemplate(<PasswordReset options={options} />, {
+    title: 'Password Reset',
     previewText: options.resetUrl
   });
 
@@ -31,13 +31,3 @@ export function send(options) {
 
   return transport.sendMail(mailOptions);
 }
-
-// export const send = () => {
-//   transport.sendMail({
-//     from: 'Dennis Brotzky <brotzky@gmail.com>',
-//     to: 'brotzky@gmail.com',
-//     subject: 'Hello, world',
-//     html: '<stonrg>Hello, world<strong>',
-//     text: 'Hello, world'
-//   });
-// };
