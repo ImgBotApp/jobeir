@@ -20,7 +20,7 @@ router
   .route('/auth')
   .get(
     passport.authenticate('jwt', { session: false }),
-    UserController.checkAuthentication,
+    UserController.checkAuthentication
   );
 
 // Password reset routes

@@ -6,6 +6,7 @@ import jwt from 'express-jwt';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import path from 'path';
+import session from 'express-session';
 import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 import passport from 'passport';
 import serialize from 'serialize-javascript';
@@ -56,8 +57,16 @@ app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(cookieParser());
+app.use(
+  session({
+    secret: process.env.JWT,
+    resave: false,
+    saveUninitialized: true
+  })
+);
 app.use(passport.initialize());
 passportInit(passport);
+app.use(passport.session());
 app.use(Express.static(path.resolve(__dirname, '../build/client')));
 app.use(
   '/api/v0',

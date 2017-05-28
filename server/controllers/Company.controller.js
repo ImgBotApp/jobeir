@@ -26,7 +26,7 @@ export function getCompanies(req, res) {
  */
 export function checkCompany(req, res) {
   Company.findOne({
-    name: req.params.name.toLowerCase(),
+    name: req.params.name.toLowerCase()
   }).exec((err, company) => {
     if (err) {
       res.status(500).send(err);
@@ -39,15 +39,15 @@ export function checkCompany(req, res) {
         errors: [
           {
             error: 'COMPANY_ALREADY_EXISTS',
-            message: `The company ${req.params.name} already exists`,
-          },
-        ],
+            message: `The company ${req.params.name} already exists`
+          }
+        ]
       });
     } else {
       // if no company exists, let the user continue
       res.status(200).send({
         data: {},
-        errors: [],
+        errors: []
       });
     }
   });
@@ -83,7 +83,7 @@ export function createCompany(req, res) {
 
     user.companies.created.push({
       name: req.body.name,
-      date: new Date(),
+      date: new Date()
     });
 
     user.save(err => {
@@ -93,9 +93,9 @@ export function createCompany(req, res) {
           errors: [
             {
               error: 'INTERNAL_SERVER_ERROR',
-              message: `There was an error creating the company ${req.body.name}`,
-            },
-          ],
+              message: `There was an error creating the company ${req.body.name}`
+            }
+          ]
         });
       }
     });
@@ -108,14 +108,14 @@ export function createCompany(req, res) {
         errors: [
           {
             error: 'COMPANY_ALREADY_EXISTS',
-            message: `The company ${req.body.name} already exists`,
-          },
-        ],
+            message: `The company ${req.body.name} already exists`
+          }
+        ]
       });
     } else {
       res.status(200).send({
         data: { company: saved },
-        errors: [],
+        errors: []
       });
     }
   });

@@ -10,60 +10,52 @@ const User = new Schema({
     lowercase: true,
     trim: true,
     unique: true,
-    required: true,
+    required: true
   },
   password: {
-    type: String,
+    type: String
   },
   role: {
     type: String,
     enum: ['Organization', 'User', 'Employee'],
-    default: 'User',
+    default: 'User'
   },
   provider: {
     type: String,
-    default: 'Local',
+    default: 'Local'
   },
   dateCreated: {
     type: Date,
-    default: Date.now,
+    default: Date.now
   },
   firstName: {
     type: String,
-    trim: true,
+    trim: true
   },
   lastName: {
     type: String,
-    trim: true,
+    trim: true
   },
   agreedToValues: {
     type: Boolean,
-    default: false,
+    default: false
   },
   companies: {
     created: [
       {
-        name: {
-          type: String,
-        },
-        date: {
-          type: Date,
-        },
-      },
+        type: mongoose.Schema.ObjectId,
+        ref: 'Company'
+      }
     ],
     joined: [
       {
-        name: {
-          type: String,
-        },
-        date: {
-          type: Date,
-        },
-      },
-    ],
+        type: mongoose.Schema.ObjectId,
+        ref: 'Company'
+      }
+    ]
   },
   resetPasswordToken: String,
-  resetPasswordExpires: Date,
+  resetPasswordExpires: Date
 });
 
 User.pre('save', function(next) {

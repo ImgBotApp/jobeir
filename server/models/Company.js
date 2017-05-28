@@ -9,13 +9,13 @@ const Company = new Schema({
     type: String,
     unique: true,
     required: true,
-    lowercase: true,
+    lowercase: true
   },
   // used to display in UI
   displayName: {
     type: String,
     unique: true,
-    required: true,
+    required: true
   },
   // logo: { type: String },
   size: { type: String },
@@ -24,6 +24,12 @@ const Company = new Schema({
   product: { type: String },
   location: { type: String },
   phone: { type: Number },
+  jobs: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Jobs'
+    }
+  ]
 });
 
 export default mongoose.model('Company', Company);

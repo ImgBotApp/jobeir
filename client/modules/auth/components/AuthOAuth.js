@@ -13,7 +13,7 @@ const buildRedirectPath = routing => {
 
 export class AuthOAuth extends Component {
   componentDidMount() {
-    docCookies.setItem('redirectTo', buildRedirectPath(routing));
+    docCookies.setItem('redirectTo', buildRedirectPath(this.props.routing));
   }
 
   render() {

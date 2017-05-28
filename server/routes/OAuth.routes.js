@@ -25,56 +25,56 @@ function checkReturnTo(req, res, next) {
 router.get(
   '/auth/google',
   checkReturnTo,
-  passport.authenticate('google', { scope: ['profile', 'email'] }),
+  passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
 router.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    failureRedirect: '/login',
+    failureRedirect: '/login'
   }),
   function(req, res) {
     const token = jwt.sign(req.user, process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
-  },
+  }
 );
 
 // Facebook Auth
 router.get(
   '/auth/facebook',
-  passport.authenticate('facebook', { scope: ['email'] }),
+  passport.authenticate('facebook', { scope: ['email'] })
 );
 
 router.get(
   '/auth/facebook/callback',
   passport.authenticate('facebook', {
-    failureRedirect: '/login',
+    failureRedirect: '/login'
   }),
   function(req, res) {
     const token = jwt.sign(req.user, process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
-  },
+  }
 );
 
 // Github Auth
 router.get(
   '/auth/github',
   checkReturnTo,
-  passport.authenticate('github', { scope: ['user:email'] }),
+  passport.authenticate('github', { scope: ['user:email'] })
 );
 
 router.get(
   '/auth/github/callback',
   passport.authenticate('github', {
-    failureRedirect: '/login',
+    failureRedirect: '/login'
   }),
   function(req, res) {
     const token = jwt.sign(req.user, process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
-  },
+  }
 );
 
 export default router;

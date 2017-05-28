@@ -4,10 +4,13 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 const Job = new Schema({
-  company: { type: String },
+  company: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Company'
+  },
   dateCreated: {
     type: Date,
-    default: Date.now,
+    default: Date.now
   },
   description: {
     blocks: [
@@ -18,9 +21,9 @@ const Job = new Schema({
         inlineStyleRanges: { type: Array },
         key: { type: String },
         text: { type: String },
-        type: { type: String },
-      },
-    ],
+        type: { type: String }
+      }
+    ]
   },
   employmentType: { type: String },
   equityMax: { type: Number },
@@ -31,14 +34,18 @@ const Job = new Schema({
   offerEquity: { type: String },
   receivingEmails: [
     {
-      email: { type: String },
-    },
+      email: {
+        type: String,
+        lowercase: true,
+        trim: true
+      }
+    }
   ],
   remote: { type: String },
   salaryMax: { type: Number },
   salaryMin: { type: Number },
   // skills: { type: String },
-  title: { type: Object },
+  title: { type: Object }
 });
 
 export default mongoose.model('Job', Job);
