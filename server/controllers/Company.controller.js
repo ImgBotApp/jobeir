@@ -60,11 +60,13 @@ export function checkCompany(req, res) {
  * @returns void
  */
 export function createCompany(req, res) {
+  console.log(req.user);
   if (!req.body.name || !req.body.website || !req.body.product) {
     res.status(403).end();
   }
 
   const newCompany = new Company(req.body);
+  console.log(newCompany);
 
   // Let's sanitize inputs
   newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
@@ -78,13 +80,10 @@ export function createCompany(req, res) {
   newCompany.cuid = cuid();
 
   // Add the company to the current user
-  User.findOne({ _id: req.body.id }, function(err, user) {
+  User.findOne({ _id: req.user._doc._id }, function(err, user) {
     if (err) throw err;
 
-    user.companies.created.push({
-      name: req.body.name,
-      date: new Date()
-    });
+    user.companies.created.push(newCompany._id);
 
     user.save(err => {
       if (err) {
