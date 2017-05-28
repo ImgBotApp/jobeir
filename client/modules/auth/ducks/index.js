@@ -102,9 +102,9 @@ export const password = (resetPasswordToken, confirmPassword, password) => ({
   payload: { resetPasswordToken, confirmPassword, password }
 });
 
-export const signup = (email, password, redirectPathname) => ({
+export const signup = (data, redirectPathname) => ({
   type: SIGNUP_REQUEST,
-  payload: { email, password, redirectPathname }
+  payload: { ...data, redirectPathname }
 });
 
 export const login = (email, password) => ({

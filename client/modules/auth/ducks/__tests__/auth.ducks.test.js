@@ -16,7 +16,7 @@ import authReducer, {
   login,
   logout,
   signup,
-  redirectTo,
+  redirectTo
 } from '../';
 
 describe('[Ducks Auth]', () => {
@@ -35,13 +35,13 @@ describe('[Ducks Auth]', () => {
     it('should return the correct state on AUTH_SUCCESS', () => {
       const nextState = {
         isAuthenticated: true,
-        isAuthenticating: false,
+        isAuthenticating: false
       };
       const action = {
         payload: {
-          data: {},
+          data: {}
         },
-        type: AUTH_SUCCESS,
+        type: AUTH_SUCCESS
       };
 
       expect(authReducer({}, action)).toEqual(nextState);
@@ -51,13 +51,13 @@ describe('[Ducks Auth]', () => {
       const nextState = {
         isAuthenticating: false,
         isAuthenticated: false,
-        errors: [],
+        errors: []
       };
       const action = {
         errors: {
-          errors: [],
+          errors: []
         },
-        type: SIGNUP_FAILURE,
+        type: SIGNUP_FAILURE
       };
 
       expect(authReducer({}, action)).toEqual(nextState);
@@ -66,13 +66,13 @@ describe('[Ducks Auth]', () => {
     it('should return the correct state on SIGNUP_SUCCESS', () => {
       const nextState = {
         isAuthenticated: true,
-        isAuthenticating: false,
+        isAuthenticating: false
       };
       const action = {
         payload: {
-          data: {},
+          data: {}
         },
-        type: SIGNUP_SUCCESS,
+        type: SIGNUP_SUCCESS
       };
 
       expect(authReducer({}, action)).toEqual(nextState);
@@ -82,13 +82,13 @@ describe('[Ducks Auth]', () => {
       const nextState = {
         isAuthenticating: false,
         isAuthenticated: false,
-        errors: [],
+        errors: []
       };
       const action = {
         errors: {
-          errors: [],
+          errors: []
         },
-        type: SIGNUP_FAILURE,
+        type: SIGNUP_FAILURE
       };
 
       expect(authReducer({}, action)).toEqual(nextState);
@@ -99,9 +99,9 @@ describe('[Ducks Auth]', () => {
     it('should return the AUTH_REQUEST action', () => {
       expect(auth({})).toEqual({
         payload: {
-          redirectPathname: {},
+          redirectPathname: {}
         },
-        type: AUTH_REQUEST,
+        type: AUTH_REQUEST
       });
     });
   });
@@ -111,9 +111,9 @@ describe('[Ducks Auth]', () => {
       expect(login({}, {})).toEqual({
         payload: {
           email: {},
-          password: {},
+          password: {}
         },
-        type: LOGIN_REQUEST,
+        type: LOGIN_REQUEST
       });
     });
   });
@@ -126,13 +126,11 @@ describe('[Ducks Auth]', () => {
 
   describe('signup()', () => {
     it('should return the SIGNUP_REQUEST action', () => {
-      expect(signup({}, {}, {})).toEqual({
+      expect(signup({}, {})).toEqual({
         payload: {
-          email: {},
-          password: {},
-          redirectPathname: {},
+          redirectPathname: {}
         },
-        type: SIGNUP_REQUEST,
+        type: SIGNUP_REQUEST
       });
     });
   });

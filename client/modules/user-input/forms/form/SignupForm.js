@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
-import { Email, Password, SubmitButton } from '../../inputs/input/';
+import { Email, Password, SubmitButton, Text } from '../../inputs/input/';
 import { email, minLength, required } from '../../validation';
 import { signup, login } from '../../../auth/ducks';
 import { queryParams } from '../../../../utils/queryParams';
@@ -16,12 +16,11 @@ class SignupForm extends Component {
 
   formSubmit(data) {
     const { dispatch } = this.props;
-    const { email, password } = data;
     const nextValue = queryParams(window.location.search).next;
-
     const redirectPathname = nextValue ? nextValue : '/dashboard';
 
-    dispatch(signup(email, password, redirectPathname));
+    console.log(data);
+    dispatch(signup(data, redirectPathname));
   }
 
   render() {
@@ -32,6 +31,18 @@ class SignupForm extends Component {
         formErrors={this.props.auth.errors}
         theme="auth"
       >
+        <Field
+          name="firstName"
+          placeholder="First name"
+          validate={[required]}
+          component={Text}
+        />
+        <Field
+          name="lastName"
+          placeholder="Last name"
+          validate={[required]}
+          component={Text}
+        />
         <Field
           name="email"
           placeholder="Email address"

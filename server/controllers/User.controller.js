@@ -99,11 +99,14 @@ export function registerUser(req, res) {
     });
   } else {
     const newUser = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password
     });
 
     newUser.save(err => {
+      console.log(err);
       if (err) {
         return res.status(409).send({
           data: {},

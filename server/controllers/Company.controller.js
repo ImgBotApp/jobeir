@@ -66,8 +66,6 @@ export function createCompany(req, res) {
 
   const newCompany = new Company(req.body);
 
-  console.log(req.body);
-
   const address = {
     city: req.body.city,
     country: req.body.country.label,
@@ -76,8 +74,6 @@ export function createCompany(req, res) {
     street: req.body.streetAddress,
     province: req.body.province
   };
-
-  console.log(address);
 
   // Let's sanitize inputs
   newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
