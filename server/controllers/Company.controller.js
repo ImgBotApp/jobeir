@@ -60,20 +60,31 @@ export function checkCompany(req, res) {
  * @returns void
  */
 export function createCompany(req, res) {
-  console.log(req.user);
   if (!req.body.name || !req.body.website || !req.body.product) {
     res.status(403).end();
   }
 
   const newCompany = new Company(req.body);
-  console.log(newCompany);
+
+  console.log(req.body);
+
+  const address = {
+    city: req.body.city,
+    country: req.body.country.label,
+    apt: req.body.apt,
+    postalCode: req.body.postalCode,
+    street: req.body.streetAddress,
+    province: req.body.province
+  };
+
+  console.log(address);
 
   // Let's sanitize inputs
   newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
   newCompany.displayName = sanitizeHtml(newCompany.name);
   newCompany.website = sanitizeHtml(newCompany.website);
   newCompany.product = sanitizeHtml(newCompany.product);
-  newCompany.location = sanitizeHtml(newCompany.location);
+  newCompany.locations.push(address);
   newCompany.phone = sanitizeHtml(newCompany.phone);
 
   newCompany.slug = slug(newCompany.name.toLowerCase(), { lowercase: true });

@@ -22,7 +22,19 @@ const Company = new Schema({
   logo: { type: Buffer, contentType: String },
   website: { type: String },
   product: { type: String },
-  location: { type: String },
+  locations: [
+    {
+      city: String,
+      country: String,
+      postalCode: String,
+      street: String,
+      province: String,
+      hq: {
+        type: Boolean,
+        default: true
+      }
+    }
+  ],
   phone: { type: Number },
   jobs: [
     {
