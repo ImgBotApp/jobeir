@@ -106,7 +106,6 @@ export function registerUser(req, res) {
     });
 
     newUser.save(err => {
-      console.log(err);
       if (err) {
         return res.status(409).send({
           data: {},
@@ -139,11 +138,12 @@ export function registerUser(req, res) {
  * @returns void
  */
 export function loginUser(req, res) {
-  User.findOne(
-    {
-      email: req.body.email
-    },
-    function(err, user) {
+  User.findOne({
+    email: req.body.email
+  })
+    .select('+password')
+    .exec(function(err, user) {
+      console.log(user);
       if (err) throw err;
 
       if (!user) {
@@ -182,8 +182,7 @@ export function loginUser(req, res) {
           }
         });
       }
-    }
-  );
+    });
 }
 
 /**

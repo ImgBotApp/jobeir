@@ -10,7 +10,7 @@ import {
   PostalCode,
   SelectSearch,
   SubmitButton,
-  Text,
+  Text
 } from '../../../inputs/input';
 import { required } from '../../../validation';
 import { createCompany } from '../../../../create/company/ducks';
@@ -19,7 +19,7 @@ import { countryOptions } from '../../options/countries';
 const options = [
   { value: 'one', label: 'One' },
   { value: 'two', label: 'Two' },
-  { value: 'two', label: 'Two' },
+  { value: 'two', label: 'Two' }
 ];
 
 class CompanyFormStepThree extends Component {
@@ -30,11 +30,7 @@ class CompanyFormStepThree extends Component {
   }
 
   formSubmit(data) {
-    const { dispatch, id } = this.props;
-    // adding the user id to the data;
-    const body = { ...data, id };
-
-    dispatch(createCompany(body));
+    this.props.dispatch(createCompany(data));
   }
 
   render() {
@@ -104,14 +100,13 @@ class CompanyFormStepThree extends Component {
 }
 
 const mapStateToProps = state => ({
-  company: state.company,
-  id: state.session.user._id,
+  company: state.company
 });
 
 CompanyFormStepThree = reduxForm({
   form: 'company',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
+  forceUnregisterOnUnmount: true
 })(CompanyFormStepThree);
 
 export default connect(mapStateToProps)(CompanyFormStepThree);

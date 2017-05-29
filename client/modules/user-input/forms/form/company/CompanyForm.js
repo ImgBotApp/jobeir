@@ -44,7 +44,7 @@ class CompanyForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  pathname: state.routing.locationBeforeTransitions.pathname,
+  pathname: state.routing.locationBeforeTransitions.pathname
 });
 
 export default connect(mapStateToProps)(CompanyForm);

@@ -6,7 +6,7 @@ import uuid from 'uuid';
 export const createUpload = (req, res, next) => {
   res.status(200).send({
     data: {},
-    errors: [],
+    errors: []
   });
 };
 
@@ -20,10 +20,10 @@ const multerOptions = {
     } else {
       next({ message: "That filetype isn't allowed!" }, false);
     }
-  },
+  }
 };
 
-// create middleware to be used before uploadeing
+// create middleware to be used before uploading
 export const upload = multer(multerOptions).single('photo');
 
 // jimp resize middleware

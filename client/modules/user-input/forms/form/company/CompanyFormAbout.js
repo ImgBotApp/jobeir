@@ -17,7 +17,7 @@ const companySizeOptions = [
   { name: '50 - 149', value: '50 - 149' },
   { name: '150 - 499', value: '150 - 499' },
   { name: '500 - 999', value: '500 - 999' },
-  { name: '1000 +', value: '1000 +' },
+  { name: '1000 +', value: '1000 +' }
 ];
 
 class CompanyFormStepOne extends Component {
@@ -87,13 +87,13 @@ const selector = formValueSelector('company');
 
 const mapStateToProps = state => ({
   company: state.company,
-  companyName: selector(state, 'name'),
+  companyName: selector(state, 'name')
 });
 
 CompanyFormStepOne = reduxForm({
   form: 'company',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
+  forceUnregisterOnUnmount: true
 })(CompanyFormStepOne);
 
 export default connect(mapStateToProps)(CompanyFormStepOne);

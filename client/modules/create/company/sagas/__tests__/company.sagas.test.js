@@ -7,16 +7,16 @@ import {
   CHECK_COMPANY_FAILURE,
   CREATE_COMPANY_REQUEST,
   CREATE_COMPANY_SUCCESS,
-  CREATE_COMPANY_FAILURE,
+  CREATE_COMPANY_FAILURE
 } from '../../ducks';
 import { createCompany, checkCompany } from '../';
 
 const action = {
   payload: {
     data: {
-      company: 'abc',
-    },
-  },
+      company: 'abc'
+    }
+  }
 };
 
 describe('[Sagas Company]', () => {
@@ -25,14 +25,14 @@ describe('[Sagas Company]', () => {
       const gen = createCompany(action);
 
       expect(gen.next().value).toEqual(
-        call(fetchApi, 'POST', '/companies', action.payload.data),
+        call(fetchApi, 'POST', '/companies', action.payload.data, true)
       );
 
       expect(gen.next().value).toEqual(
         put({
           type: CREATE_COMPANY_SUCCESS,
-          payload: undefined,
-        }),
+          payload: undefined
+        })
       );
     });
 
@@ -40,18 +40,18 @@ describe('[Sagas Company]', () => {
       const gen = createCompany(action);
 
       expect(gen.next().value).toEqual(
-        call(fetchApi, 'POST', '/companies', action.payload.data),
+        call(fetchApi, 'POST', '/companies', action.payload.data, true)
       );
 
       expect(
         gen.throw({
-          errors: 'unable to create job',
-        }).value,
+          errors: 'unable to create job'
+        }).value
       ).toEqual(
         put({
           type: CREATE_COMPANY_FAILURE,
-          errors: { errors: 'unable to create job' },
-        }),
+          errors: { errors: 'unable to create job' }
+        })
       );
     });
   });
@@ -61,14 +61,14 @@ describe('[Sagas Company]', () => {
       const gen = checkCompany(action);
 
       expect(gen.next().value).toEqual(
-        call(fetchApi, 'GET', `/companies/check/${action.payload.data}`),
+        call(fetchApi, 'GET', `/companies/check/${action.payload.data}`)
       );
 
       expect(gen.next().value).toEqual(
         put({
           type: CHECK_COMPANY_SUCCESS,
-          payload: undefined,
-        }),
+          payload: undefined
+        })
       );
     });
 
@@ -76,20 +76,20 @@ describe('[Sagas Company]', () => {
       const gen = checkCompany(action);
 
       expect(gen.next().value).toEqual(
-        call(fetchApi, 'GET', `/companies/check/${action.payload.data}`),
+        call(fetchApi, 'GET', `/companies/check/${action.payload.data}`)
       );
 
       expect(
         gen.throw({
-          errors: `The company ${action.payload.data} already exists`,
-        }).value,
+          errors: `The company ${action.payload.data} already exists`
+        }).value
       ).toEqual(
         put({
           type: CHECK_COMPANY_FAILURE,
           errors: {
-            errors: `The company ${action.payload.data} already exists`,
-          },
-        }),
+            errors: `The company ${action.payload.data} already exists`
+          }
+        })
       );
     });
   });

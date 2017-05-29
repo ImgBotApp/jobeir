@@ -76,6 +76,7 @@ export function createCompany(req, res) {
   };
 
   // Let's sanitize inputs
+  newCompany.creator = req.user._doc._id;
   newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
   newCompany.displayName = sanitizeHtml(newCompany.name);
   newCompany.website = sanitizeHtml(newCompany.website);

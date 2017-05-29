@@ -10,13 +10,18 @@ export function checkStatus(response) {
   }
 }
 
-export function reqHeaders() {
+export function reqHeaders(hasImage) {
   const SID = docCookies.getItem('SID');
 
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json'
   };
+
+  // For image uploading, need to pass entype header
+  if (hasImage) {
+    headers.enctype = 'multipart/form-data';
+  }
 
   if (SID) {
     headers.Authorization = `Bearer ${SID}`;
@@ -25,12 +30,12 @@ export function reqHeaders() {
   return headers;
 }
 
-export function fetchApi(method, endpoint, payload = {}) {
+export function fetchApi(method, endpoint, payload = {}, hasImage = false) {
   const url = `/api/v0${endpoint}`;
   const options = {};
 
   options.method = method;
-  options.headers = reqHeaders();
+  options.headers = reqHeaders(hasImage);
 
   if (method.toUpperCase() !== 'GET') {
     options.body = JSON.stringify(payload);

@@ -8,50 +8,50 @@ export const CREATE_COMPANY_REQUEST = 'CREATE_COMPANY_REQUEST';
 export const CREATE_COMPANY_SUCCESS = 'CREATE_COMPANY_SUCCESS';
 export const CREATE_COMPANY_FAILURE = 'CREATE_COMPANY_FAILURE';
 
-export const CREATE_JOB_REQUEST = 'CREATE_JOB_REQUEST';
-export const CREATE_JOB_SUCCESS = 'CREATE_JOB_SUCCESS';
-export const CREATE_JOB_FAILURE = 'CREATE_JOB_FAILURE';
+export const UPDATE_COMPANY_REQUEST = 'UPDATE_COMPANY_REQUEST';
+export const UPDATE_COMPANY_SUCCESS = 'UPDATE_COMPANY_SUCCESS';
+export const UPDATE_COMPANY_FAILURE = 'UPDATE_COMPANY_FAILURE';
 
 export const initialState = {
   isLoading: false,
   isChecking: false,
   details: {},
-  errors: [],
+  errors: []
 };
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case GET_USER_SUCCESS:
       return Object.assign({}, state, {
-        details: action.payload.data.user.companies,
+        details: action.payload.data.user.companies
       });
     case CREATE_COMPANY_REQUEST:
       return Object.assign({}, state, {
-        isLoading: true,
+        isLoading: true
       });
     case CREATE_COMPANY_SUCCESS:
       return Object.assign({}, state, {
         isLoading: false,
-        details: action.payload.data.company,
+        details: action.payload.data.company
       });
     case CREATE_COMPANY_FAILURE:
       return Object.assign({}, state, {
         isLoading: false,
-        errors: action.errors.errors,
+        errors: action.errors.errors
       });
     case CHECK_COMPANY_REQUEST:
       return Object.assign({}, state, {
-        isChecking: true,
+        isChecking: true
       });
     case CHECK_COMPANY_SUCCESS:
       return Object.assign({}, state, {
         isChecking: false,
-        errors: [],
+        errors: []
       });
     case CHECK_COMPANY_FAILURE:
       return Object.assign({}, state, {
         isChecking: false,
-        errors: action.errors.errors,
+        errors: action.errors.errors
       });
     default:
       return state;
@@ -60,10 +60,10 @@ export default (state = initialState, action = {}) => {
 
 export const createCompany = data => ({
   type: CREATE_COMPANY_REQUEST,
-  payload: { data },
+  payload: { data }
 });
 
 export const checkCompany = data => ({
   type: CHECK_COMPANY_REQUEST,
-  payload: { data },
+  payload: { data }
 });

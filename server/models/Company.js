@@ -5,6 +5,10 @@ const Schema = mongoose.Schema;
 
 const Company = new Schema({
   // used to internally match
+  creator: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  },
   name: {
     type: String,
     unique: true,
@@ -17,9 +21,22 @@ const Company = new Schema({
     unique: true,
     required: true
   },
-  // logo: { type: String },
   size: { type: String },
-  logo: { type: Buffer, contentType: String },
+  logo: {
+    image: {
+      type: Buffer,
+      contentType: String
+    },
+    path: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    originalName: {
+      type: String,
+      required: true
+    }
+  },
   website: { type: String },
   product: { type: String },
   locations: [

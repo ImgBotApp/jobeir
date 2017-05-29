@@ -8,6 +8,10 @@ const Job = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Company'
   },
+  creator: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  },
   dateCreated: {
     type: Date,
     default: Date.now
@@ -30,7 +34,17 @@ const Job = new Schema({
   equityMin: { type: Number },
   // experience: { type: String },
   // language: { type: String },
-  locations: { type: String }, // convert to an array
+  address: {
+    city: String,
+    country: String,
+    postalCode: String,
+    street: String,
+    province: String,
+    hq: {
+      type: Boolean,
+      default: true
+    }
+  },
   offerEquity: { type: String },
   receivingEmails: [
     {
@@ -46,6 +60,11 @@ const Job = new Schema({
   salaryMin: { type: Number },
   // skills: { type: String },
   title: { type: Object }
+});
+
+Job.index({
+  company: 'text',
+  'address.city': 'text'
 });
 
 export default mongoose.model('Job', Job);

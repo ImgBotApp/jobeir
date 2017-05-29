@@ -10,6 +10,7 @@ import {
   Phone,
   SubmitButton,
   Text,
+  Upload
 } from '../../../inputs/input';
 import { email, required, phoneNumber, url } from '../../../validation';
 
@@ -57,6 +58,12 @@ class CompanyFormStepTwo extends Component {
           validate={[email, required]}
           component={Email}
         />
+        <Field
+          name="logo"
+          label="Company logo"
+          validate={[required]}
+          component={Upload}
+        />
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
           <Field
@@ -74,13 +81,13 @@ const selector = formValueSelector('company');
 
 const mapStateToProps = state => ({
   company: state.company,
-  companyName: selector(state, 'name'),
+  companyName: selector(state, 'name')
 });
 
 CompanyFormStepTwo = reduxForm({
   form: 'company',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
+  forceUnregisterOnUnmount: true
 })(CompanyFormStepTwo);
 
 export default connect(mapStateToProps)(CompanyFormStepTwo);
