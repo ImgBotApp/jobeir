@@ -21,24 +21,10 @@ const Company = new Schema({
     unique: true,
     required: true
   },
-  size: { type: String },
-  logo: {
-    image: {
-      type: Buffer,
-      contentType: String
-    },
-    path: {
-      type: String,
-      required: true,
-      trim: true
-    },
-    originalName: {
-      type: String,
-      required: true
-    }
-  },
-  website: { type: String },
-  product: { type: String },
+  size: String,
+  logo: String,
+  website: String,
+  product: String,
   locations: [
     {
       city: String,
@@ -52,7 +38,7 @@ const Company = new Schema({
       }
     }
   ],
-  phone: { type: Number },
+  phone: Number,
   jobs: [
     {
       type: mongoose.Schema.ObjectId,

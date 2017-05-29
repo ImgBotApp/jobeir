@@ -30,7 +30,7 @@ export function reqHeaders(hasImage) {
   return headers;
 }
 
-export function fetchApi(method, endpoint, payload = {}, hasImage = false) {
+export function fetchApi(method, endpoint, payload = {}, hasImage) {
   const url = `/api/v0${endpoint}`;
   const options = {};
 

@@ -24,18 +24,21 @@ const multerOptions = {
 };
 
 // create middleware to be used before uploading
-export const upload = multer(multerOptions).single('photo');
+export const upload = multer(multerOptions).single('logo');
 
 // jimp resize middleware
 export const resize = async (req, res, next) => {
   if (!req.file) return next();
 
+  const orginal = req.file.mimetype.split('/')[0];
   const extension = req.file.mimetype.split('/')[1];
-  req.body.photo = `${uuid.v4()}.${extension}`;
+
+  req.body.logo = `${uuid.v4()}-${orginal.toLowerCase()}.${extension}`;
+  const path = `./public/uploads/${req.body.name}/logo/${req.body.logo}`;
 
   const photo = await jimp.read(req.file.buffer);
-  await photo.resize(250, jimp.AUTO);
-  await photo.write(`./public/uploads/${req.body.photo}`);
+  await photo.resize(75, jimp.AUTO);
+  await photo.write(path);
 
-  next();
+  next(null, req);
 };

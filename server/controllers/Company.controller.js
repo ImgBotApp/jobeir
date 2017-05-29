@@ -109,6 +109,7 @@ export function createCompany(req, res) {
   });
 
   newCompany.save((err, saved) => {
+    console.log(err);
     if (err) {
       res.status(409).send({
         data: {},

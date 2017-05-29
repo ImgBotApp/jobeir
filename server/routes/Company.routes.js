@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as CompanyController from '../controllers/Company.controller';
+import * as Upload from '../controllers/Upload.controller';
 const router = new Router();
 
 // Check if company name exists
@@ -12,7 +13,10 @@ router.route('/companies').get(CompanyController.getCompanies);
 router.route('/companies/:name').get(CompanyController.getCompany);
 
 // Add a new company
-router.route('/companies').post(CompanyController.createCompany);
+router
+  .route('/companies')
+  .all(Upload.upload, Upload.resize)
+  .post(CompanyController.createCompany);
 
 // Delete a post by company
 router.route('/companies/:name').delete(CompanyController.deleteCompany);

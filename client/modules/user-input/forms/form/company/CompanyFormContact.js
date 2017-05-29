@@ -86,8 +86,7 @@ const mapStateToProps = state => ({
 
 CompanyFormStepTwo = reduxForm({
   form: 'company',
-  destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true
+  destroyOnUnmount: false
 })(CompanyFormStepTwo);
 
 export default connect(mapStateToProps)(CompanyFormStepTwo);

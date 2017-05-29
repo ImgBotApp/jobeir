@@ -20,20 +20,20 @@ const Job = new Schema({
     blocks: [
       {
         data: {},
-        depth: { type: Number },
-        entityRanges: { type: Array },
-        inlineStyleRanges: { type: Array },
-        key: { type: String },
-        text: { type: String },
-        type: { type: String }
+        depth: Number,
+        entityRanges: Array,
+        inlineStyleRanges: Array,
+        key: String,
+        text: String,
+        type: String
       }
     ]
   },
-  employmentType: { type: String },
-  equityMax: { type: Number },
-  equityMin: { type: Number },
-  // experience: { type: String },
-  // language: { type: String },
+  employmentType: String,
+  equityMax: Number,
+  equityMin: Number,
+  // experience: String,
+  // language: String,
   address: {
     city: String,
     country: String,
@@ -45,7 +45,7 @@ const Job = new Schema({
       default: true
     }
   },
-  offerEquity: { type: String },
+  offerEquity: String,
   receivingEmails: [
     {
       email: {
@@ -55,10 +55,10 @@ const Job = new Schema({
       }
     }
   ],
-  remote: { type: String },
-  salaryMax: { type: Number },
-  salaryMin: { type: Number },
-  // skills: { type: String },
+  remote: String,
+  salaryMax: Number,
+  salaryMin: Number,
+  // skills: String,
   title: { type: Object }
 });
 
