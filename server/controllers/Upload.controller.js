@@ -28,6 +28,7 @@ export const upload = multer(multerOptions).single('logo');
 
 // jimp resize middleware
 export const resize = async (req, res, next) => {
+  console.log(req.body, req.file);
   if (!req.file) return next();
 
   const orginal = req.file.mimetype.split('/')[0];

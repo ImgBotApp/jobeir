@@ -30,6 +30,11 @@ class CompanyFormStepThree extends Component {
   }
 
   formSubmit(data) {
+    var body = new FormData();
+    Object.keys(data).forEach(key => {
+      body.append(key, data[key]);
+    });
+    console.info('POST', body, data);
     this.props.dispatch(createCompany(data));
   }
 

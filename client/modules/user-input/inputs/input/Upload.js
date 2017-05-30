@@ -1,24 +1,62 @@
-import React from 'react';
+import React, { Component } from 'react';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
+import Dropzone from 'react-dropzone';
 
-export const Upload = props => {
-  const { meta } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+export class Upload extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.onChange = this.onChange.bind(this);
+  // }
 
-  return (
-    <InputWrapper {...props}>
-      <UploadInput
-        {...props.input}
-        type="file"
-        id={props.input.name}
-        name={props.input.name}
-        placeholder={props.placeholder}
-        showError={showError}
-      />
-    </InputWrapper>
-  );
-};
+  // onChange(e) {
+  //   const { input: { onChange } } = this.props;
+  //   onChange(e.target.files[0]);
+  // }
+
+  render() {
+    const files = this.props.input.value;
+    return (
+      <div>
+        <Dropzone
+          name={this.props.name}
+          onDrop={(filesToUpload, e) =>
+            this.props.input.onChange(filesToUpload)}
+        >
+          <div>
+            Try dropping some files here, or click to select files to upload.
+          </div>
+        </Dropzone>
+        {this.props.meta.touched &&
+          this.props.meta.error &&
+          <span className="error">{this.props.meta.error}</span>}
+        {files &&
+          Array.isArray(files) &&
+          <ul>
+            {files.map((file, i) => <li key={i}>{file.name}</li>)}
+          </ul>}
+      </div>
+    );
+
+    // const { meta } = this.props;
+    // delete this.props.input.value;
+    // const showError = meta.touched && meta.error && meta.invalid;
+
+    // return (
+    //   <InputWrapper {...this.props}>
+    //     <UploadInput
+    //       {...this.props.input}
+    //       type="file"
+    //       id={this.props.input.name}
+    //       name={this.props.input.name}
+    //       onChange={this.onChange}
+    //       placeholder={this.props.placeholder}
+    //       showError={showError}
+    //     />
+    //   </InputWrapper>
+    // );
+  }
+}
 
 export const UploadInput = styled.input`
   border-radius: ${props => props.theme.input.borderRadius};
