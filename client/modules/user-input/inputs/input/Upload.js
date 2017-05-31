@@ -4,32 +4,30 @@ import styled from 'styled-components';
 import Dropzone from 'react-dropzone';
 
 export class Upload extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.onChange = this.onChange.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+    this.handleDrop = this.handleDrop.bind(this);
+  }
 
-  // onChange(e) {
-  //   const { input: { onChange } } = this.props;
-  //   onChange(e.target.files[0]);
-  // }
+  handleDrop(files) {
+    const file = files[0];
+    const formData = new FormData();
+    formData.append('logo', file);
+
+    fetch('/api/v0/upload', {
+      headers: {
+        enctype: 'multipart/form-data'
+      },
+      method: 'POST',
+      body: formData
+    });
+  }
 
   render() {
     const files = this.props.input.value;
     return (
       <div>
-        <Dropzone
-          name={this.props.name}
-          onDrop={(filesToUpload, e) =>
-            this.props.input.onChange(filesToUpload)}
-        >
-          <div>
-            Try dropping some files here, or click to select files to upload.
-          </div>
-        </Dropzone>
-        {this.props.meta.touched &&
-          this.props.meta.error &&
-          <span className="error">{this.props.meta.error}</span>}
+        <Dropzone name={this.props.name} onDrop={this.handleDrop} />
         {files &&
           Array.isArray(files) &&
           <ul>
@@ -37,24 +35,6 @@ export class Upload extends Component {
           </ul>}
       </div>
     );
-
-    // const { meta } = this.props;
-    // delete this.props.input.value;
-    // const showError = meta.touched && meta.error && meta.invalid;
-
-    // return (
-    //   <InputWrapper {...this.props}>
-    //     <UploadInput
-    //       {...this.props.input}
-    //       type="file"
-    //       id={this.props.input.name}
-    //       name={this.props.input.name}
-    //       onChange={this.onChange}
-    //       placeholder={this.props.placeholder}
-    //       showError={showError}
-    //     />
-    //   </InputWrapper>
-    // );
   }
 }
 

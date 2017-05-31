@@ -14,6 +14,7 @@ export const createUpload = (req, res, next) => {
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
+    console.log(req, file);
     const isPhoto = file.mimetype.startsWith('image/');
     if (isPhoto) {
       next(null, true);

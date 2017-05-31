@@ -119,6 +119,7 @@ function getRoutesArray(obj) {
     '/api/v0/register',
     '/api/v0/reset',
     '/api/v0/password',
+    '/api/v0/upload',
     '/favicon.ico'
   ];
 
