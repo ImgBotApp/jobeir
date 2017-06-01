@@ -14,7 +14,6 @@ export const createUpload = (req, res, next) => {
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
-    console.log(req, file);
     const isPhoto = file.mimetype.startsWith('image/');
     if (isPhoto) {
       next(null, true);
@@ -29,7 +28,6 @@ export const upload = multer(multerOptions).single('logo');
 
 // jimp resize middleware
 export const resize = async (req, res, next) => {
-  console.log(req.body, req.file);
   if (!req.file) return next();
 
   const orginal = req.file.mimetype.split('/')[0];

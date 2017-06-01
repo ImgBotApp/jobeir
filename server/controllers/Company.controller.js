@@ -60,32 +60,32 @@ export function checkCompany(req, res) {
  * @returns void
  */
 export function createCompany(req, res) {
-  if (!req.body.name || !req.body.website || !req.body.product) {
+  if (!req.body.name) {
     return res.status(403).end();
   }
 
   const newCompany = new Company(req.body);
 
-  const address = {
-    city: req.body.city,
-    country: req.body.country.label,
-    apt: req.body.apt,
-    postalCode: req.body.postalCode,
-    street: req.body.streetAddress,
-    province: req.body.province
-  };
+  // const address = {
+  //   city: req.body.city,
+  //   country: req.body.country.label,
+  //   apt: req.body.apt,
+  //   postalCode: req.body.postalCode,
+  //   street: req.body.streetAddress,
+  //   province: req.body.province
+  // };
 
   // Let's sanitize inputs
   newCompany.creator = req.user._doc._id;
   newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
   newCompany.displayName = sanitizeHtml(newCompany.name);
-  newCompany.website = sanitizeHtml(newCompany.website);
-  newCompany.product = sanitizeHtml(newCompany.product);
-  newCompany.locations.push(address);
-  newCompany.phone = sanitizeHtml(newCompany.phone);
+  // newCompany.website = sanitizeHtml(newCompany.website);
+  // newCompany.product = sanitizeHtml(newCompany.product);
+  // newCompany.locations.push(address);
+  // newCompany.phone = sanitizeHtml(newCompany.phone);
 
-  newCompany.slug = slug(newCompany.name.toLowerCase(), { lowercase: true });
-  newCompany.cuid = cuid();
+  // newCompany.slug = slug(newCompany.name.toLowerCase(), { lowercase: true });
+  // newCompany.cuid = cuid();
 
   // Add the company to the current user
   User.findOne({ _id: req.user._doc._id }, function(err, user) {
