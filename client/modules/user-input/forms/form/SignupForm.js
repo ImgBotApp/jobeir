@@ -19,7 +19,6 @@ class SignupForm extends Component {
     const nextValue = queryParams(window.location.search).next;
     const redirectPathname = nextValue ? nextValue : '/dashboard';
 
-    console.log(data);
     dispatch(signup(data, redirectPathname));
   }
 

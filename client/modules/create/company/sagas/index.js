@@ -12,6 +12,8 @@ import {
   UPDATE_COMPANY_FAILURE
 } from '../ducks';
 
+import { redirectTo } from '../../../user/ducks/';
+
 export function* createCompany(action) {
   try {
     const payload = yield call(
@@ -22,6 +24,7 @@ export function* createCompany(action) {
       true
     );
     yield put({ type: CREATE_COMPANY_SUCCESS, payload });
+    yield call(redirectTo, action.payload.redirectPathname);
   } catch (errors) {
     yield put({ type: CREATE_COMPANY_FAILURE, errors });
   }

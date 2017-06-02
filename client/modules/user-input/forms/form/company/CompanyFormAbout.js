@@ -7,7 +7,7 @@ import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { required, maxLength } from '../../../validation';
 import { Select, SubmitButton, Text, Textarea } from '../../../inputs/input';
-import { checkCompany, createCompany } from '../../../../create/company/ducks';
+import { checkCompany } from '../../../../create/company/ducks';
 import debounce from 'lodash/debounce';
 
 const companySizeOptions = [
@@ -34,11 +34,7 @@ class CompanyFormStepOne extends Component {
     if (companyName) dispatch(checkCompany(companyName));
   }
 
-  formSubmit(data) {}
-
-  formSubmit(data) {
-    this.props.dispatch(createCompany(data));
-
+  formSubmit() {
     this.props.nextPage();
   }
 

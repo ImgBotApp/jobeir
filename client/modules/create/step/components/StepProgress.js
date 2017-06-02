@@ -2,19 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 const createJob = ['about', 'type', 'compensation', 'contact'];
-const createCompany = ['about', 'contact', 'location'];
+const createCompany = ['about', 'contact', 'location', 'upload'];
 
 const getFormStepDetails = params => {
   switch (params.create) {
     case 'job':
       return {
         steps: createJob,
-        index: createJob.indexOf(params.step),
+        index: createJob.indexOf(params.step)
       };
     case 'company':
       return {
         steps: createCompany,
-        index: createCompany.indexOf(params.step),
+        index: createCompany.indexOf(params.step)
       };
     default:
       return 0;

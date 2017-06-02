@@ -58,9 +58,9 @@ export default (state = initialState, action = {}) => {
   }
 };
 
-export const createCompany = data => ({
+export const createCompany = (data, redirectPathname) => ({
   type: CREATE_COMPANY_REQUEST,
-  payload: { data }
+  payload: { data, redirectPathname }
 });
 
 export const checkCompany = data => ({

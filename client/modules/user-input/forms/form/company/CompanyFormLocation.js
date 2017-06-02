@@ -30,7 +30,7 @@ class CompanyFormStepThree extends Component {
   }
 
   formSubmit(data) {
-    this.props.dispatch(createCompany(data));
+    this.props.dispatch(createCompany(data, '/create/company/upload'));
   }
 
   render() {

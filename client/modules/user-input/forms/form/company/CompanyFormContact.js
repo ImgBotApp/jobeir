@@ -58,12 +58,6 @@ class CompanyFormStepTwo extends Component {
           validate={[email, required]}
           component={Email}
         />
-        <Field
-          name="logo"
-          label="Company logo"
-          validate={[required]}
-          component={Upload}
-        />
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
           <Field

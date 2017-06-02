@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import CompanyOnboarding from '../../company/components/CompanyOnboarding';
 import CompanyForm from '../../../user-input/forms/form/company/CompanyForm';
+import CompanyUpload
+  from '../../../user-input/forms/form/company/CompanyUpload';
 import JobForm from '../../../user-input/forms/form/job/JobForm';
 
 /**
@@ -16,19 +18,21 @@ class StepForm extends Component {
     const { params } = this.props;
     const isCompany = params.create === 'company';
     const isJob = params.create === 'job';
+    const isUpload = params.step === 'upload';
 
     return (
       <StepFormContainer>
         {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
         {isJob && <JobForm />}
         {isCompany && <CompanyForm />}
+        {isCompany && isUpload && <CompanyUpload />}
       </StepFormContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  company: state.company,
+  company: state.company
 });
 
 export default connect(mapStateToProps)(StepForm);
