@@ -27,7 +27,12 @@ export class Upload extends Component {
     const files = this.props.input.value;
     return (
       <div>
-        <Dropzone name={this.props.name} onDrop={this.handleDrop} />
+        <StyledDropzone
+          accept="image/*'"
+          maxSize={2097152}
+          name={this.props.name}
+          onDrop={this.handleDrop}
+        />
         {files &&
           Array.isArray(files) &&
           <ul>
@@ -38,12 +43,14 @@ export class Upload extends Component {
   }
 }
 
-export const UploadInput = styled.input`
-  border-radius: ${props => props.theme.input.borderRadius};
-  font-size: ${props => props.theme.input.fontSize};
-  width: ${props => props.theme.input.width};
-  margin: ${props => props.theme.input.margin};
-  max-width: ${props => props.theme.input.maxWidth};
+export const StyledDropzone = styled(Dropzone)`
+  border-radius: ${props => props.theme.dropzone.borderRadius};
+  border: ${props => props.theme.dropzone.border};
+  font-size: ${props => props.theme.dropzone.fontSize};
+  width: ${props => props.theme.dropzone.width};
+  min-height: ${props => props.theme.dropzone.minHeight};
+  margin: ${props => props.theme.dropzone.margin};
+  max-width: ${props => props.theme.dropzone.maxWidth};
   
   &:hover: {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
@@ -51,25 +58,6 @@ export const UploadInput = styled.input`
   
   &:active,
   &:focus {
-    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.input.activeBorderColor)};
-  }
-
-  ::-webkit-input-placeholder {
-    font-size: ${props => props.theme.input.fontSize};
-    color: ${props => props.theme.input.ph.color};
-  }
-  :-moz-placeholder {
-    font-size: ${props => props.theme.input.fontSize};
-    color: ${props => props.theme.input.ph.color};
-    opacity:  1;
-  }
-  ::-moz-placeholder {
-    font-size: ${props => props.theme.input.fontSize};
-    color: ${props => props.theme.input.ph.color};
-    opacity:  1;
-  }
-  :-ms-input-placeholder {
-    font-size: ${props => props.theme.input.fontSize};
-    color: ${props => props.theme.input.ph.color};
+    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.dropzone.activeBorderColor)};
   }
 `;
