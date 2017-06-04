@@ -168,12 +168,6 @@ export function deleteCompany(req, res) {
  * @returns void
  */
 export const upload = (req, res, next) => {
-  // User.findOneAndUpdate(
-  // { _id: req.params.id },
-  // {
-  //   agreedToValues: true
-  // },
-
   Company.findOneAndUpdate(
     {
       _id: req.params.id
