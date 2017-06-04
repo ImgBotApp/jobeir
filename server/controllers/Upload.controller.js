@@ -34,7 +34,8 @@ export const resize = async (req, res, next) => {
   const extension = req.file.mimetype.split('/')[1];
 
   req.body.logo = `${uuid.v4()}-${orginal.toLowerCase()}.${extension}`;
-  const path = `./public/uploads/${req.body.name}/logo/${req.body.logo}`;
+  const path = `./public/uploads/${req.params.id}/${req.params.section}/${req.body.logo}`;
+  req.body.path = path;
 
   const photo = await jimp.read(req.file.buffer);
   await photo.resize(75, jimp.AUTO);

@@ -10,15 +10,15 @@ router.route('/companies/check/:name').get(CompanyController.checkCompany);
 router.route('/companies').get(CompanyController.getCompanies);
 
 // Get one post by company
-router.route('/companies/:name').get(CompanyController.getCompany);
+router.route('/companies/:id').get(CompanyController.getCompany);
 
 // Add a new company
 router
-  .route('/companies')
+  .route('/companies/:id/upload/:section')
   .all(Upload.upload, Upload.resize)
-  .post(CompanyController.createCompany);
+  .post(CompanyController.upload);
 
 // Delete a post by company
-router.route('/companies/:name').delete(CompanyController.deleteCompany);
+router.route('/companies/:id').delete(CompanyController.deleteCompany);
 
 export default router;

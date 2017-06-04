@@ -6,16 +6,26 @@ import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { BackButton, SubmitButton, Upload } from '../../../inputs/input';
 import { required } from '../../../validation';
+import { uploadCompanyLogo } from '../../../../create/company/ducks/';
 
 class CompanyLogo extends Component {
   constructor(props) {
     super(props);
 
     this.formSubmit = this.formSubmit.bind(this);
+    this.handleOnDrop = this.handleOnDrop.bind(this);
   }
 
   formSubmit() {
     console.log('fired');
+  }
+
+  handleOnDrop(files) {
+    const file = files[0];
+    const formData = new FormData();
+    formData.append('logo', file);
+
+    this.props.dispatch(uploadCompanyLogo(formData, 123));
   }
 
   render() {
@@ -33,6 +43,7 @@ class CompanyLogo extends Component {
           name="logo"
           label="Company logo"
           validate={[required]}
+          handleOnDrop={this.handleOnDrop}
           component={Upload}
         />
         <FormFooter>

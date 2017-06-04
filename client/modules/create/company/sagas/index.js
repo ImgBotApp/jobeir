@@ -65,9 +65,10 @@ export function* uploadCompanyLogo(action) {
       fetchApi,
       'POST',
       `/companies/${action.payload.companyId}/upload/logo`,
-      action.paylod.formData,
+      action.payload.formData,
       'multipart/form-data'
     );
+
     yield put({ type: UPLOAD_COMPANY_LOGO_SUCCESS, payload });
   } catch (errors) {
     yield put({ type: UPLOAD_COMPANY_LOGO_FAILURE, errors });

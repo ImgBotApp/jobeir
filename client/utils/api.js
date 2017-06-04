@@ -14,13 +14,14 @@ export function reqHeaders(header) {
   const SID = docCookies.getItem('SID');
 
   const headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    Accept: 'application/json'
   };
 
   // For image uploading, need to pass entype header
   if (header === 'multipart/form-data') {
     headers.enctype = 'multipart/form-data';
+  } else {
+    headers['Content-Type'] = 'application/json';
   }
 
   if (SID) {
@@ -37,8 +38,12 @@ export function fetchApi(method, endpoint, payload = {}, header) {
   options.method = method;
   options.headers = reqHeaders(header);
 
-  if (method.toUpperCase() !== 'GET') {
+  if (method.toUpperCase() !== 'GET' && header !== 'multipart/form-data') {
     options.body = JSON.stringify(payload);
+  }
+
+  if (header === 'multipart/form-data') {
+    options.body = payload;
   }
 
   return fetch(url, options).then(checkStatus).then(res => res.json());

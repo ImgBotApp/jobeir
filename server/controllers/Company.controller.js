@@ -109,7 +109,6 @@ export function createCompany(req, res) {
   });
 
   newCompany.save((err, saved) => {
-    console.log(err);
     if (err) {
       res.status(409).send({
         data: {},
@@ -161,3 +160,34 @@ export function deleteCompany(req, res) {
     });
   });
 }
+
+/**
+ * Upload an image to a Company
+ * @param req
+ * @param res
+ * @returns void
+ */
+export const upload = (req, res, next) => {
+  // User.findOneAndUpdate(
+  // { _id: req.params.id },
+  // {
+  //   agreedToValues: true
+  // },
+
+  Company.findOneAndUpdate(
+    {
+      _id: req.params.id
+    },
+    {
+      logo: req.body.path
+    },
+    function(err, company) {
+      if (err) return res.status(500).send({ error: err });
+
+      return res.status(200).send({
+        data: { company },
+        errors: []
+      });
+    }
+  );
+};

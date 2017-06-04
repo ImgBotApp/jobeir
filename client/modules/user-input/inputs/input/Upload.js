@@ -1,26 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
 import Dropzone from 'react-dropzone';
+import { uploadCompanyLogo } from '../../../create/company/sagas/';
 
 export class Upload extends Component {
   constructor(props) {
     super(props);
-    this.handleDrop = this.handleDrop.bind(this);
-  }
-
-  handleDrop(files) {
-    const file = files[0];
-    const formData = new FormData();
-    formData.append('logo', file);
-
-    fetch('/api/v0/upload', {
-      headers: {
-        enctype: 'multipart/form-data'
-      },
-      method: 'POST',
-      body: formData
-    });
+    // this.handleDrop = this.handleDrop.bind(this);
   }
 
   render() {
@@ -28,10 +16,10 @@ export class Upload extends Component {
     return (
       <div>
         <StyledDropzone
-          accept="image/*'"
+          accept="image/*"
           maxSize={2097152}
           name={this.props.name}
-          onDrop={this.handleDrop}
+          onDrop={this.props.handleOnDrop}
         />
         {files &&
           Array.isArray(files) &&
