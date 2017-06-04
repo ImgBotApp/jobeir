@@ -9,7 +9,10 @@ import {
   CREATE_COMPANY_FAILURE,
   UPDATE_COMPANY_REQUEST,
   UPDATE_COMPANY_SUCCESS,
-  UPDATE_COMPANY_FAILURE
+  UPDATE_COMPANY_FAILURE,
+  UPLOAD_COMPANY_LOGO_REQUEST,
+  UPLOAD_COMPANY_LOGO_SUCCESS,
+  UPLOAD_COMPANY_LOGO_FAILURE
 } from '../ducks';
 
 import { redirectTo } from '../../../user/ducks/';
@@ -56,9 +59,24 @@ export function* checkCompany(action) {
     yield put({ type: CHECK_COMPANY_FAILURE, errors });
   }
 }
+export function* uploadCompanyLogo(action) {
+  try {
+    const payload = yield call(
+      fetchApi,
+      'POST',
+      `/companies/${action.payload.companyId}/upload/logo`,
+      action.paylod.formData,
+      'multipart/form-data'
+    );
+    yield put({ type: UPLOAD_COMPANY_LOGO_SUCCESS, payload });
+  } catch (errors) {
+    yield put({ type: UPLOAD_COMPANY_LOGO_FAILURE, errors });
+  }
+}
 
 export function* company() {
   yield takeEvery(CHECK_COMPANY_REQUEST, checkCompany);
   yield takeEvery(CREATE_COMPANY_REQUEST, createCompany);
   yield takeEvery(UPDATE_COMPANY_REQUEST, updateCompany);
+  yield takeEvery(UPLOAD_COMPANY_LOGO_REQUEST, uploadCompanyLogo);
 }

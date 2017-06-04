@@ -15,7 +15,7 @@ class CompanyLogo extends Component {
   }
 
   formSubmit() {
-    this.props.nextPage();
+    console.log('fired');
   }
 
   render() {

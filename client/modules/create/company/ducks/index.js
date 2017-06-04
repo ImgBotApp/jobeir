@@ -12,6 +12,10 @@ export const UPDATE_COMPANY_REQUEST = 'UPDATE_COMPANY_REQUEST';
 export const UPDATE_COMPANY_SUCCESS = 'UPDATE_COMPANY_SUCCESS';
 export const UPDATE_COMPANY_FAILURE = 'UPDATE_COMPANY_FAILURE';
 
+export const UPLOAD_COMPANY_LOGO_REQUEST = 'UPLOAD_COMPANY_LOGO_REQUEST';
+export const UPLOAD_COMPANY_LOGO_SUCCESS = 'UPLOAD_COMPANY_LOGO_SUCCESS';
+export const UPLOAD_COMPANY_LOGO_FAILURE = 'UPLOAD_COMPANY_LOGO_FAILURE';
+
 export const initialState = {
   isLoading: false,
   isChecking: false,
@@ -66,4 +70,14 @@ export const createCompany = (data, redirectPathname) => ({
 export const checkCompany = data => ({
   type: CHECK_COMPANY_REQUEST,
   payload: { data }
+});
+
+export const updateCompany = data => ({
+  type: UPDATE_COMPANY_REQUEST,
+  payload: { data }
+});
+
+export const uploadCompanyLogo = (formData, companyId) => ({
+  type: UPLOAD_COMPANY_LOGO_REQUEST,
+  payload: { formData, companyId }
 });
