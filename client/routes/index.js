@@ -84,7 +84,7 @@ const routes = (
       }}
     />
     <Route
-      path="/create/:create/:step"
+      path="/create/:create/:step(/:companyId)"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('../modules/create/step/containers/Step').default);

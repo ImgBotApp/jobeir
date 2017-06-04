@@ -30,12 +30,13 @@ export const upload = multer(multerOptions).single('logo');
 export const resize = async (req, res, next) => {
   if (!req.file) return next();
 
-  const orginal = req.file.mimetype.split('/')[0];
+  const original = req.file.originalname.split('.')[0];
   const extension = req.file.mimetype.split('/')[1];
 
-  req.body.logo = `${uuid.v4()}-${orginal.toLowerCase()}.${extension}`;
+  req.body.logo = `${uuid.v4()}-${original.toLowerCase()}.${extension}`;
   const path = `./public/uploads/${req.params.id}/${req.params.section}/${req.body.logo}`;
-  req.body.path = path;
+  const savedPath = `/public/uploads/${req.params.id}/${req.params.section}/${req.body.logo}`;
+  req.body.path = savedPath;
 
   const photo = await jimp.read(req.file.buffer);
   await photo.resize(75, jimp.AUTO);

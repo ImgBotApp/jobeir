@@ -48,7 +48,7 @@ export function reqHeaders(header) {
  * Will handle upload formatting, POST body, and no body
  * for GET calls.
  */
-export function reqBody(method, paylod, header) {
+export function reqBody(method, payload, header) {
   let body;
 
   if (method.toUpperCase() !== 'GET' && header !== 'multipart/form-data') {

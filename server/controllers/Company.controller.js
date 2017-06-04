@@ -69,7 +69,7 @@ export function createCompany(req, res) {
   const address = {
     city: req.body.city,
     country: req.body.country.label,
-    apt: req.body.apt,
+    apt: req.body.apt || '',
     postalCode: req.body.postalCode,
     street: req.body.streetAddress,
     province: req.body.province
@@ -175,6 +175,7 @@ export const upload = (req, res, next) => {
     {
       logo: req.body.path
     },
+    { new: true },
     function(err, company) {
       if (err) return res.status(500).send({ error: err });
 

@@ -9,6 +9,9 @@ router.route('/companies/check/:name').get(CompanyController.checkCompany);
 // Get all companies
 router.route('/companies').get(CompanyController.getCompanies);
 
+// Create a new company
+router.route('/companies').post(CompanyController.createCompany);
+
 // Get one post by company
 router.route('/companies/:id').get(CompanyController.getCompany);
 

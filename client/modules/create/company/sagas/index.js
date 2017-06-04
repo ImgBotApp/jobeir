@@ -27,7 +27,10 @@ export function* createCompany(action) {
       true
     );
     yield put({ type: CREATE_COMPANY_SUCCESS, payload });
-    yield call(redirectTo, action.payload.redirectPathname);
+    yield call(
+      redirectTo,
+      `${action.payload.redirectPathname}/${payload.data.company._id}`
+    );
   } catch (errors) {
     yield put({ type: CREATE_COMPANY_FAILURE, errors });
   }

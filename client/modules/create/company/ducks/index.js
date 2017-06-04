@@ -19,6 +19,7 @@ export const UPLOAD_COMPANY_LOGO_FAILURE = 'UPLOAD_COMPANY_LOGO_FAILURE';
 export const initialState = {
   isLoading: false,
   isChecking: false,
+  activeId: '',
   details: {},
   errors: []
 };

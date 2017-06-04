@@ -21,11 +21,12 @@ class CompanyLogo extends Component {
   }
 
   handleOnDrop(files) {
+    const { dispatch, params } = this.props;
     const file = files[0];
     const formData = new FormData();
     formData.append('logo', file);
 
-    this.props.dispatch(uploadCompanyLogo(formData, 123));
+    dispatch(uploadCompanyLogo(formData, params.companyId));
   }
 
   render() {
