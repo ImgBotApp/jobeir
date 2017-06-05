@@ -45,6 +45,7 @@ class CompanyLogo extends Component {
           label="Company logo"
           validate={[required]}
           handleOnDrop={this.handleOnDrop}
+          isUploading={company.isUploading}
           component={Upload}
         />
         <FormFooter>

@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
 import Dropzone from 'react-dropzone';
-import { uploadCompanyLogo } from '../../../create/company/sagas/';
 
 export class Upload extends Component {
   constructor(props) {
     super(props);
     this.handleDropAccepted = this.handleDropAccepted.bind(this);
+    this.handleDropRejected = this.handleDropRejected.bind(this);
     this.state = {
       preview: '',
       name: ''
@@ -16,33 +16,38 @@ export class Upload extends Component {
   }
 
   handleDropAccepted(files) {
-    console.log(files);
     this.setState({
       preview: files[0].preview,
       name: files[0].name
     });
   }
 
+  handleDropRejected(files) {
+    console.log(files);
+  }
+
   render() {
     const files = this.props.input.value;
+    const { name, preview } = this.state;
+
     return (
-      <div>
+      <InputWrapper>
         <StyledDropzone
-          accept="image/*"
+          accept="image/jpeg, image/png"
           maxSize={2097152}
           name={this.props.name}
           onDrop={this.props.handleOnDrop}
           onDropAccepted={this.handleDropAccepted}
+          onDropRejected={this.handleDropRejected}
           activeStyle={activeStyle}
         >
           <DropZoneInner>
-
-            {this.state.preview
+            {preview
               ? <DropZoneImgContainer>
-                  <DropZoneImg src={this.state.preview} alt={this.state.name} />
-                  {this.state.name}
+                  <DropZoneImg src={preview} alt={name} />
+                  {name}
                 </DropZoneImgContainer>
-              : <div>
+              : <DropZoneButtonContainer>
                   <DropZoneButton>
                     {UploadIcon()}
                     <DropZoneButtonText>
@@ -50,16 +55,10 @@ export class Upload extends Component {
                     </DropZoneButtonText>
                   </DropZoneButton>
                   or drag them in
-                </div>}
-
+                </DropZoneButtonContainer>}
           </DropZoneInner>
         </StyledDropzone>
-        {files &&
-          Array.isArray(files) &&
-          <ul>
-            {files.map((file, i) => <li key={i}>{file.name}</li>)}
-          </ul>}
-      </div>
+      </InputWrapper>
     );
   }
 }
@@ -97,6 +96,8 @@ const DropZoneInner = styled.div`
   justify-content: center;
   text-align: center;
 `;
+
+const DropZoneButtonContainer = styled.div``;
 
 const DropZoneButton = styled.div`
   display: flex;

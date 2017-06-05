@@ -19,7 +19,7 @@ export const UPLOAD_COMPANY_LOGO_FAILURE = 'UPLOAD_COMPANY_LOGO_FAILURE';
 export const initialState = {
   isLoading: false,
   isChecking: false,
-  activeId: '',
+  isUploading: false,
   details: {},
   errors: []
 };
@@ -56,6 +56,20 @@ export default (state = initialState, action = {}) => {
     case CHECK_COMPANY_FAILURE:
       return Object.assign({}, state, {
         isChecking: false,
+        errors: action.errors.errors
+      });
+    case UPLOAD_COMPANY_LOGO_REQUEST:
+      return Object.assign({}, state, {
+        isUploading: true
+      });
+    case UPLOAD_COMPANY_LOGO_SUCCESS:
+      return Object.assign({}, state, {
+        isUploading: false,
+        errors: []
+      });
+    case UPLOAD_COMPANY_LOGO_FAILURE:
+      return Object.assign({}, state, {
+        isUploading: false,
         errors: action.errors.errors
       });
     default:
