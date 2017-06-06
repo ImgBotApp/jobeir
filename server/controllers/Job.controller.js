@@ -37,9 +37,9 @@ export function getJob(req, res) {
         errors: [
           {
             error: 'UNABLE_TO_FIND_JOB',
-            message: 'Unable to find job',
-          },
-        ],
+            message: 'Unable to find job'
+          }
+        ]
       });
     } else {
       res.json({ job });
@@ -83,14 +83,14 @@ export function createJob(req, res) {
         errors: [
           {
             error: 'UNABLE_TO_CREATE_JOB',
-            message: `Unable to create the job ${req.body.title.label}`,
-          },
-        ],
+            message: `Unable to create the job ${req.body.title.label}`
+          }
+        ]
       });
     } else {
       res.status(200).send({
         data: { job: saved },
-        errors: [],
+        errors: []
       });
     }
   });

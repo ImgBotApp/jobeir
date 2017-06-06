@@ -23,12 +23,13 @@ class JobForm extends Component {
   }
 
   render() {
-    const { pathname } = this.props;
-    const about = '/create/job/about';
-    const type = '/create/job/type';
-    const compensation = '/create/job/compensation';
-    const contact = '/create/job/contact';
-    // console.log(this.props);
+    const { params, pathname } = this.props;
+    // brute coded for now, need to cleanup this logic.
+    const about = `/create/job/about/${params.companyId}`;
+    const type = `/create/job/type/${params.companyId}`;
+    const compensation = `/create/job/compensation/${params.companyId}`;
+    const contact = `/create/job/contact/${params.companyId}`;
+
     return (
       <div>
         {pathname.includes(about) &&
@@ -44,7 +45,10 @@ class JobForm extends Component {
             nextPage={() => this.nextPage(contact)}
           />}
         {pathname.includes(contact) &&
-          <JobFormContact prevPage={() => this.prevPage(compensation)} />}
+          <JobFormContact
+            params={params}
+            prevPage={() => this.prevPage(compensation)}
+          />}
       </div>
     );
   }

@@ -11,7 +11,7 @@ import { createJob } from '../../../../create/job/ducks';
 
 const renderEmailFields = ({
   fields,
-  meta: { touched, error, submitFailed },
+  meta: { touched, error, submitFailed }
 }) => (
   <FormListWrapper>
     {fields.map(renderFields)}
@@ -32,6 +32,7 @@ const renderFields = (member, index, fields) => (
       label={`${index === 0 ? 'Send applications to the following emails:' : ''}`}
       validate={[email, required]}
       component={Text}
+      autoFocus
     />
   </FormListItem>
 );
@@ -50,9 +51,9 @@ class JobFormComponesation extends Component {
   }
 
   formSubmit(data) {
-    const { dispatch, company } = this.props;
+    const { dispatch, params: { companyId } } = this.props;
     // adding the company to the data;
-    const body = { ...data, company };
+    const body = { ...data, company: companyId };
 
     dispatch(createJob(body));
   }
@@ -85,13 +86,12 @@ class JobFormComponesation extends Component {
 const mapStateToProps = state => ({
   job: state.job,
   auth: state.session.auth,
-  company: state.session.user.companies.created[0].name,
-  user: state.session.user,
+  user: state.session.user
 });
 
 JobFormComponesation = reduxForm({
   form: 'job',
-  destroyOnUnmount: false,
+  destroyOnUnmount: false
 })(JobFormComponesation);
 
 export default connect(mapStateToProps)(JobFormComponesation);

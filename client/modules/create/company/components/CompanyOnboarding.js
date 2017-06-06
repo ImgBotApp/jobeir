@@ -7,7 +7,7 @@ const agreeToValues = props => {
   const { dispatch, user } = props;
 
   dispatch(
-    updateUser(user.id, { agreedToValues: true }, '/create/company/about'),
+    updateUser(user.id, { agreedToValues: true }, '/create/company/about')
   );
 };
 
@@ -16,7 +16,7 @@ const CompanyOnboarding = props => {
     <div>
       <Header>Our values</Header>
       <Text>
-        At -company name- we believe in equal oppotunity employment and no
+        At -company name- we believe in equal opportunity employment and no
         discrimination against any applicants.
       </Text>
       <Text>
@@ -29,7 +29,7 @@ const CompanyOnboarding = props => {
 };
 
 const mapStateToProps = state => ({
-  user: state.session.user,
+  user: state.session.user
 });
 
 export default connect(mapStateToProps)(CompanyOnboarding);

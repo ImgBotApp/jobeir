@@ -67,6 +67,16 @@ const docCookies = {
       (sDomain ? '; domain=' + sDomain : '') +
       (sPath ? '; path=' + sPath : '');
     return true;
+  },
+  hasItem: sKey => {
+    if (!sKey) {
+      return false;
+    }
+    return new RegExp(
+      '(?:^|;\\s*)' +
+        encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, '\\$&') +
+        '\\s*\\='
+    ).test(document.cookie);
   }
 };
 

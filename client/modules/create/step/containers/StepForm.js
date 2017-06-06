@@ -23,7 +23,7 @@ class StepForm extends Component {
     return (
       <StepFormContainer isUpload={isUpload}>
         {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
-        {isJob && <JobForm />}
+        {isJob && <JobForm params={params} />}
         {isCompany && <CompanyForm />}
         {isCompany && isUpload && <CompanyUpload params={params} />}
       </StepFormContainer>
