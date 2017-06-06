@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 const Html = ({ css, assets, state, content }) => {
@@ -28,13 +27,6 @@ const Html = ({ css, assets, state, content }) => {
       </body>
     </html>
   );
-};
-
-Html.propTypes = {
-  css: PropTypes.string.isRequired,
-  assets: PropTypes.object.isRequired,
-  state: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
 };
 
 export default Html;
