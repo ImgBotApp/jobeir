@@ -16,12 +16,13 @@ import StepBackground from '../components/StepBackground';
  * a new company and then post a job
  */
 const Step = props => {
+  const isUpload = props.params.step === 'upload';
   return (
     <StepContainer>
-      <StepBackground />
+      {!isUpload && <StepBackground />}
       <StepRouter>
         <StepForm params={props.params} />
-        <StepHelp params={props.params} />
+        {!isUpload && <StepHelp params={props.params} />}
       </StepRouter>
     </StepContainer>
   );

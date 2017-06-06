@@ -20,6 +20,7 @@ export const initialState = {
   isLoading: false,
   isChecking: false,
   isUploading: false,
+  successfulUpload: false,
   details: {},
   errors: []
 };
@@ -65,6 +66,7 @@ export default (state = initialState, action = {}) => {
     case UPLOAD_COMPANY_LOGO_SUCCESS:
       return Object.assign({}, state, {
         isUploading: false,
+        successfulUpload: true,
         errors: []
       });
     case UPLOAD_COMPANY_LOGO_FAILURE:

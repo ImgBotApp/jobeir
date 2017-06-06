@@ -8,7 +8,10 @@ const isDisabled = (errors = []) => {
 
 export const SubmitButton = props => {
   return (
-    <Button type="submit" disabled={isDisabled(props.formErrors)}>
+    <Button
+      type="submit"
+      disabled={props.disabled || isDisabled(props.formErrors)}
+    >
       {props.buttonText || 'Submit'}
     </Button>
   );

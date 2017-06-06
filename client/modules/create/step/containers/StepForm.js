@@ -21,7 +21,7 @@ class StepForm extends Component {
     const isUpload = params.step === 'upload';
 
     return (
-      <StepFormContainer>
+      <StepFormContainer isUpload={isUpload}>
         {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
         {isJob && <JobForm />}
         {isCompany && <CompanyForm />}
@@ -38,5 +38,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(StepForm);
 
 const StepFormContainer = styled.div`
-  width: 52.5%;
+  width: ${props => (props.isUpload ? '100%' : '52.5%')};
 `;

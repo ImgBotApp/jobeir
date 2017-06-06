@@ -11,14 +11,19 @@ export const marble = {
     color: '#fff'
   },
   dropzone: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: '3px',
     border: '2px dashed #babbbb',
     padding: '18px',
     fontSize: '16px',
     width: '100%',
-    minHeight: '250px',
+    minHeight: '300px',
     margin: '0 auto 1rem',
     activeBorderColor: '#484848',
+    background: '#fafafa',
+    cursor: 'pointer',
     ph: {
       color: '#afafaf'
     }

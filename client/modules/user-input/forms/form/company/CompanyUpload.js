@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
@@ -29,8 +30,12 @@ class CompanyLogo extends Component {
     dispatch(uploadCompanyLogo(formData, params.companyId));
   }
 
+  handleExit() {
+    browserHistory.push('/dashboard');
+  }
+
   render() {
-    const { company, handleSubmit, prevPage } = this.props;
+    const { company, handleSubmit } = this.props;
 
     return (
       <FormWrapper
@@ -39,7 +44,7 @@ class CompanyLogo extends Component {
         formErrors={company.errors}
         theme="marble"
       >
-        <FormHeader text={`Add your company logo`} />
+        <FormHeader text="Add your company logo to attract the best applicants" />
         <Field
           name="logo"
           label="Company logo"
@@ -47,13 +52,15 @@ class CompanyLogo extends Component {
           handleOnDrop={this.handleOnDrop}
           isUploading={company.isUploading}
           component={Upload}
+          buttonText="Upload Logo"
         />
-        <FormFooter>
-          <BackButton action={prevPage} buttonText="Back" />
+        <FormFooter isUpload={true}>
+          <BackButton action={this.handleExit} buttonText="Exit" />
           <Field
             name="submitButton"
             buttonText="Next"
             component={SubmitButton}
+            disabled={!company.successfulUpload}
           />
         </FormFooter>
       </FormWrapper>
