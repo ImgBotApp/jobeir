@@ -25,7 +25,6 @@ const Button = styled.button`
   font-size: ${props => props.theme.button.fontSize};
   color: ${props => props.theme.button.color};
   background: ${props => props.theme.button.background};
-  margin-bottom: ${props => props.theme.button.marginBottom};
   max-width: ${props => props.theme.button.maxWidth};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   opacity: ${props => (props.disabled ? '0.55' : '1')};

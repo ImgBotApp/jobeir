@@ -28,22 +28,22 @@ class JobForm extends Component {
     const type = '/create/job/type';
     const compensation = '/create/job/compensation';
     const contact = '/create/job/contact';
-
+    // console.log(this.props);
     return (
       <div>
-        {pathname === about &&
+        {pathname.includes(about) &&
           <JobFormAbout nextPage={() => this.nextPage(type)} />}
-        {pathname === type &&
+        {pathname.includes(type) &&
           <JobFormType
             prevPage={() => this.prevPage(about)}
             nextPage={() => this.nextPage(compensation)}
           />}
-        {pathname === compensation &&
+        {pathname.includes(compensation) &&
           <JobFormCompensation
             prevPage={() => this.prevPage(type)}
             nextPage={() => this.nextPage(contact)}
           />}
-        {pathname === contact &&
+        {pathname.includes(contact) &&
           <JobFormContact prevPage={() => this.prevPage(compensation)} />}
       </div>
     );
@@ -51,7 +51,7 @@ class JobForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  pathname: state.routing.locationBeforeTransitions.pathname,
+  pathname: state.routing.locationBeforeTransitions.pathname
 });
 
 export default connect(mapStateToProps)(JobForm);

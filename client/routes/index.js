@@ -26,6 +26,7 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/auth/reset/containers/Reset');
   require('../modules/auth/password/containers/Password');
   require('../modules/create/step/containers/Step');
+  require('../modules/create/step/containers/StepComplete');
   require('../modules/account/profile/containers/Profile');
   require('../modules/not-found/components/NotFound');
 }
@@ -88,6 +89,17 @@ const routes = (
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('../modules/create/step/containers/Step').default);
+        });
+      }}
+    />
+    <Route
+      path="/complete/:create(/:companyId)"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(
+            null,
+            require('../modules/create/step/containers/StepComplete').default
+          );
         });
       }}
     />

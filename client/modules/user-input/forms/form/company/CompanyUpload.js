@@ -19,6 +19,7 @@ class CompanyLogo extends Component {
 
   formSubmit() {
     console.log('fired');
+    browserHistory.push(`/complete/company/${this.props.params.companyId}`);
   }
 
   handleOnDrop(files) {
@@ -48,7 +49,6 @@ class CompanyLogo extends Component {
         <Field
           name="logo"
           label="Company logo"
-          validate={[required]}
           handleOnDrop={this.handleOnDrop}
           isUploading={company.isUploading}
           component={Upload}

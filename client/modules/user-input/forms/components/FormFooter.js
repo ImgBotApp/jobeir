@@ -26,7 +26,7 @@ export default FormFooter;
 
 const FormFooterContainer = styled.div`
   position: absolute;
-  width: ${props => (props.multipleChildren ? '100%' : '52.5%')};
+  width: ${props => (props.isUpload ? '100%' : '52.5%')};
   display: flex;
   align-items: center;
   justify-content: ${props => (props.multipleChildren ? 'space-between' : 'flex-end')};
