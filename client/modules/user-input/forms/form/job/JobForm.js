@@ -36,6 +36,7 @@ class JobForm extends Component {
           <JobFormAbout nextPage={() => this.nextPage(type)} />}
         {pathname.includes(type) &&
           <JobFormType
+            params={params}
             prevPage={() => this.prevPage(about)}
             nextPage={() => this.nextPage(compensation)}
           />}

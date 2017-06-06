@@ -14,7 +14,6 @@ import {
   UPLOAD_COMPANY_LOGO_SUCCESS,
   UPLOAD_COMPANY_LOGO_FAILURE
 } from '../ducks';
-
 import { redirectTo } from '../../../user/ducks/';
 
 export function* createCompany(action) {

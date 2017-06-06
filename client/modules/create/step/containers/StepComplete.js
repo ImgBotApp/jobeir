@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
+import UserWrapper from '../../../user/containers/UserWrapper';
+
 const StepComplete = props => {
   const { params } = props;
 
@@ -12,7 +14,7 @@ const StepComplete = props => {
   );
 };
 
-export default StepComplete;
+export default UserWrapper(StepComplete);
 
 const StepCompleteContainer = styled.div`
   display: flex;

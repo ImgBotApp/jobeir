@@ -7,7 +7,7 @@ import compnayReducer, {
   CREATE_COMPANY_FAILURE,
   createCompany,
   checkCompany,
-  initialState,
+  initialState
 } from '../';
 
 describe('[Ducks Create Company]', () => {
@@ -26,7 +26,7 @@ describe('[Ducks Create Company]', () => {
     it('should return the correct state on CHECK_COMPANY_SUCCESS', () => {
       const nextState = {
         isChecking: false,
-        errors: [],
+        errors: []
       };
       const action = { type: CHECK_COMPANY_SUCCESS };
 
@@ -36,13 +36,13 @@ describe('[Ducks Create Company]', () => {
     it('should return the correct state on CHECK_COMPANY_FAILURE', () => {
       const nextState = {
         isChecking: false,
-        errors: ['error'],
+        errors: ['error']
       };
       const action = {
         type: CHECK_COMPANY_FAILURE,
         errors: {
-          errors: ['error'],
-        },
+          errors: ['error']
+        }
       };
 
       expect(compnayReducer({}, action)).toEqual(nextState);
@@ -56,17 +56,15 @@ describe('[Ducks Create Company]', () => {
     });
 
     it('should return the correct state on CREATE_COMPANY_SUCCESS', () => {
-      const nextState = {
-        isLoading: false,
-        details: {},
-      };
+      const nextState = { details: { created: [{}] }, isLoading: false };
+
       const action = {
         type: CREATE_COMPANY_SUCCESS,
         payload: {
           data: {
-            company: {},
-          },
-        },
+            company: {}
+          }
+        }
       };
 
       expect(compnayReducer({}, action)).toEqual(nextState);
@@ -75,13 +73,13 @@ describe('[Ducks Create Company]', () => {
     it('should return the correct state on CREATE_COMPANY_FAILURE', () => {
       const nextState = {
         isLoading: false,
-        errors: ['error'],
+        errors: ['error']
       };
       const action = {
         type: CREATE_COMPANY_FAILURE,
         errors: {
-          errors: ['error'],
-        },
+          errors: ['error']
+        }
       };
 
       expect(compnayReducer({}, action)).toEqual(nextState);
@@ -92,7 +90,7 @@ describe('[Ducks Create Company]', () => {
     it('should return the CREATE_COMPANY_REQUEST action', () => {
       expect(createCompany({})).toEqual({
         payload: { data: {} },
-        type: CREATE_COMPANY_REQUEST,
+        type: CREATE_COMPANY_REQUEST
       });
     });
   });
@@ -100,7 +98,7 @@ describe('[Ducks Create Company]', () => {
     it('should return the CHECK_COMPANY_REQUEST action', () => {
       expect(checkCompany({})).toEqual({
         payload: { data: {} },
-        type: CHECK_COMPANY_REQUEST,
+        type: CHECK_COMPANY_REQUEST
       });
     });
   });

@@ -13,7 +13,7 @@ import {
   Select,
   SubmitButton,
   Textarea,
-  Text,
+  Text
 } from '../../../inputs/input';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
@@ -25,7 +25,7 @@ const jobTypes = [
   { name: 'Contractor', value: 'CONTRACTOR' },
   { name: 'Freelance', value: 'FREELANCE' },
   { name: 'Intern', value: 'INTERN' },
-  { name: 'Volunteer', value: 'VOLUNTEER' },
+  { name: 'Volunteer', value: 'VOLUNTEER' }
 ];
 
 const Yolo = [
@@ -35,12 +35,12 @@ const Yolo = [
   { name: 'Contractor', value: 'CONTRACTOR' },
   { name: 'Freelance', value: 'FREELANCE' },
   { name: 'Intern', value: 'INTERN' },
-  { name: 'Volunteer', value: 'VOLUNTEER' },
+  { name: 'Volunteer', value: 'VOLUNTEER' }
 ];
 
 const remoteOptions = [
   { text: 'Yes', value: 'Yes' },
-  { text: 'No', value: 'No' },
+  { text: 'No', value: 'No' }
 ];
 
 class JobFormType extends Component {
@@ -48,6 +48,20 @@ class JobFormType extends Component {
     super(props);
 
     this.formSubmit = this.formSubmit.bind(this);
+  }
+
+  buildLocationsDropdown() {
+    const { company, params } = this.props;
+    const activeCompany = company.details.created.find(
+      comp => comp._id === params.companyId
+    );
+
+    return activeCompany.locations.map(location => {
+      return {
+        name: `${location.street}, ${location.city}, ${location.country}`,
+        value: location._id
+      };
+    });
   }
 
   formSubmit() {
@@ -76,7 +90,7 @@ class JobFormType extends Component {
           name="locations"
           label="Where will the employee be working?"
           validate={[required]}
-          options={jobTypes}
+          options={this.buildLocationsDropdown()}
           component={Select}
         />
         <Field
@@ -100,14 +114,15 @@ class JobFormType extends Component {
 }
 
 const mapStateToProps = state => ({
+  company: state.company,
   job: state.job,
-  auth: state.session.auth,
+  auth: state.session.auth
 });
 
 JobFormType = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
-  keepDirtyOnReinitialize: true,
+  keepDirtyOnReinitialize: true
 })(JobFormType);
 
 export default connect(mapStateToProps)(JobFormType);
