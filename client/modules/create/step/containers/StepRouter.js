@@ -8,17 +8,22 @@ class StepRouter extends Component {
     this.handleRouting();
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.user.companies.created.length !==
-      prevProps.user.companies.created.length
-    ) {
-      this.handleRouting();
-    }
+  compnentDidMount(prevProps) {
+    // if (
+    //   this.props.user.companies.created.length !==
+    //   prevProps.user.companies.created.length
+    // ) {
+    this.handleRouting();
+    // }
   }
 
   handleRouting() {
     const { user } = this.props;
+    console.log('fired');
+
+    if (!user.agreedToValues) {
+      browserHistory.push('/create/company/onboarding');
+    }
 
     /**
      * If the user is not part of a company the router will
@@ -42,7 +47,7 @@ class StepRouter extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.session.user,
+  user: state.session.user
 });
 
 export default connect(mapStateToProps)(StepRouter);

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import UserWrapper from '../../../user/containers/UserWrapper';
-
 import StepRouter from './StepRouter';
 import StepForm from './StepForm';
 import StepHelp from './StepHelp';
@@ -16,19 +15,25 @@ import StepBackground from '../components/StepBackground';
  * a new company and then post a job
  */
 const Step = props => {
-  const isUpload = props.params.step === 'upload';
+  const { params, user } = props;
+  const isUpload = params.step === 'upload';
   return (
     <StepContainer>
       {!isUpload && <StepBackground />}
-      <StepRouter>
-        <StepForm params={props.params} />
-        {!isUpload && <StepHelp params={props.params} />}
-      </StepRouter>
+      {user.isLoaded &&
+        <StepRouter>
+          <StepForm params={props.params} />
+          {!isUpload && <StepHelp params={props.params} />}
+        </StepRouter>}
     </StepContainer>
   );
 };
 
-export default UserWrapper(Step);
+const mapStateToProps = state => ({
+  user: state.session.user
+});
+
+export default connect()(UserWrapper(Step));
 
 const StepContainer = styled.div`
   display: flex;

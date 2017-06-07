@@ -16,12 +16,12 @@ import user from '../../modules/user/ducks';
 
 const session = combineReducers({
   auth,
-  user,
+  user
 });
 
 function intl(state, action) {
   return {
-    locale: 'en',
+    locale: 'en'
   };
 }
 
@@ -33,7 +33,7 @@ export const appReducer = combineReducers({
   intl,
   modal,
   routing,
-  session,
+  session
 });
 
 /**
@@ -42,9 +42,9 @@ export const appReducer = combineReducers({
  * to reset state when a user decides to log out.
  */
 const rootReducer = (state = {}, action = {}) => {
-  // if (action.type === 'LOGOUT_SUCCESS') {
-  //   state = window.__INITIAL_STATE__;
-  // }
+  if (action.type === 'LOGOUT_SUCCESS') {
+    state = window.__INITIAL_STATE__;
+  }
 
   return appReducer(state, action);
 };
