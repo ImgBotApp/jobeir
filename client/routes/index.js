@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/auth/password/containers/Password');
   require('../modules/create/step/containers/Step');
   require('../modules/create/step/containers/StepComplete');
-  require('../modules/account/profile/containers/Profile');
+  require('../modules/account/dashboard/containers/Dashboard');
   require('../modules/not-found/components/NotFound');
 }
 
@@ -109,7 +109,7 @@ const routes = (
         require.ensure([], require => {
           cb(
             null,
-            require('../modules/account/profile/containers/Profile').default
+            require('../modules/account/dashboard/containers/Dashboard').default
           );
         });
       }}

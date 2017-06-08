@@ -19,22 +19,14 @@ class StepRouter extends Component {
 
   handleRouting() {
     const { user } = this.props;
-    console.log('fired');
 
     if (!user.agreedToValues) {
       browserHistory.push('/create/company/onboarding');
     }
 
-    /**
-     * If the user is not part of a company the router will
-     * push the user to create a company before being able
-     * to create a job
-     */
-    // if (user.companies.created.length) {
-    //   browserHistory.push('/create/job/about')
-    // } else {
-    //   browserHistory.push('/create/company/about')
-    // }
+    if (!user.companies.created && !user.companies.created.length) {
+      browserHistory.push('/create/company/about');
+    }
   }
 
   render() {
