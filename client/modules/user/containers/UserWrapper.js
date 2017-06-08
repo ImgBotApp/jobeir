@@ -22,14 +22,15 @@ export const UserWrapper = WrappedComponent => {
 
     handleGetUser(isLoaded) {
       const { dispatch, location, auth } = this.props;
+      const { count } = this.state;
 
       /**
        * Increasing count to avoid multiple handleCheckAuth calls
        * as the Component will receive props more than once.
        */
-      this.setState({ count: this.state.count + 1 });
+      this.setState({ count: count + 1 });
 
-      if (!isLoaded && this.state.count <= 1) {
+      if (count === 2) {
         dispatch(getUser(auth.id));
       }
     }
@@ -47,7 +48,7 @@ export const UserWrapper = WrappedComponent => {
 
   const mapStateToProps = state => ({
     auth: state.session.auth,
-    user: state.session.user,
+    user: state.session.user
   });
 
   return connect(mapStateToProps)(AuthWrapper(UserComponent));

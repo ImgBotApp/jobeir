@@ -6,8 +6,6 @@ import UserWrapper from '../../../user/containers/UserWrapper';
 
 class Dashboard extends Component {
   render() {
-    console.log(this.props);
-
     return (
       <DashboardContainer>
         <div>Profile</div>

@@ -38,19 +38,6 @@ export function getUser(req, res) {
         res.status(500).send(err);
       }
 
-      /**
-     * Query for the user
-     * Query all companies the user has joined or created
-     * Return companies with user
-     */
-      // Company.findOne({ name: req.params.name }).exec((err, company) => {
-      //   if (err) {
-      //     res.status(500).send(err);
-      //   }
-      //   res.json({ company });
-      // });
-
-      // We're passing back the user password, make sure to update that... :)
       res.status(200).send({
         data: { user },
         errors: []
@@ -64,11 +51,12 @@ export function getUser(req, res) {
  * @returns void
  */
 export function updateUser(req, res) {
+  const values = req.body;
+
   User.findOneAndUpdate(
     { _id: req.params.id },
-    {
-      agreedToValues: true
-    },
+    { ...values },
+    { new: true },
     function(err, user) {
       if (err) return res.send(500, { error: err });
 
