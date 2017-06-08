@@ -39,13 +39,13 @@ class CompanyFormStepOne extends Component {
   }
 
   render() {
-    const { handleSubmit, company } = this.props;
+    const { handleSubmit, companies } = this.props;
 
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={company.errors}
+        formErrors={companies.errors}
         theme="marble"
       >
         <FormHeader text="Tell us about your company" />
@@ -74,7 +74,7 @@ class CompanyFormStepOne extends Component {
           <Field
             name="submitButton"
             buttonText="Next"
-            formErrors={company.errors}
+            formErrors={companies.errors}
             component={SubmitButton}
           />
         </FormFooter>
@@ -86,7 +86,7 @@ class CompanyFormStepOne extends Component {
 const selector = formValueSelector('company');
 
 const mapStateToProps = state => ({
-  company: state.company,
+  companies: state.companies,
   companyName: selector(state, 'name')
 });
 

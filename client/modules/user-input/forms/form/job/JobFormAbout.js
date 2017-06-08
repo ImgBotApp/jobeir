@@ -20,13 +20,13 @@ class JobFormabout extends Component {
   }
 
   render() {
-    const { handleSubmit, job } = this.props;
+    const { handleSubmit, jobs } = this.props;
 
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={job.errors}
+        formErrors={jobs.errors}
         theme="marble"
       >
         <FormHeader text="Create a job" />
@@ -59,7 +59,7 @@ class JobFormabout extends Component {
 }
 
 const mapStateToProps = state => ({
-  job: state.job
+  jobs: state.jobs
 });
 
 JobFormabout = reduxForm({

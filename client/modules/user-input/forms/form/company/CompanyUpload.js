@@ -18,7 +18,6 @@ class CompanyLogo extends Component {
   }
 
   formSubmit() {
-    console.log('fired');
     browserHistory.push(`/complete/company/${this.props.params.companyId}`);
   }
 
@@ -36,13 +35,13 @@ class CompanyLogo extends Component {
   }
 
   render() {
-    const { company, handleSubmit } = this.props;
+    const { companies, handleSubmit } = this.props;
 
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={company.errors}
+        formErrors={companies.errors}
         theme="marble"
       >
         <FormHeader text="Add your company logo to attract the best applicants" />
@@ -50,7 +49,7 @@ class CompanyLogo extends Component {
           name="logo"
           label="Company logo"
           handleOnDrop={this.handleOnDrop}
-          isUploading={company.isUploading}
+          isUploading={companies.isUploading}
           component={Upload}
           buttonText="Upload Logo"
         />
@@ -60,7 +59,7 @@ class CompanyLogo extends Component {
             name="submitButton"
             buttonText="Next"
             component={SubmitButton}
-            disabled={!company.successfulUpload}
+            disabled={!companies.successfulUpload}
           />
         </FormFooter>
       </FormWrapper>
@@ -69,7 +68,7 @@ class CompanyLogo extends Component {
 }
 
 const mapStateToProps = state => ({
-  company: state.company
+  companies: state.companies
 });
 
 CompanyLogo = reduxForm({

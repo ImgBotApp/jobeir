@@ -60,13 +60,13 @@ class JobFormComponesation extends Component {
   }
 
   render() {
-    const { handleSubmit, job, prevPage } = this.props;
+    const { handleSubmit, jobs, prevPage } = this.props;
 
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={job.errors}
+        formErrors={jobs.errors}
         theme="marble"
       >
         <FormHeader text="Receiving applications" />
@@ -85,7 +85,7 @@ class JobFormComponesation extends Component {
 }
 
 const mapStateToProps = state => ({
-  job: state.job,
+  jobs: state.jobs,
   auth: state.session.auth,
   user: state.session.user
 });

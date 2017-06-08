@@ -13,29 +13,23 @@ import JobForm from '../../../user-input/forms/form/job/JobForm';
  * with the current user. If not, we will ask them to create
  * a new company and then post a job
  */
-class StepForm extends Component {
-  render() {
-    const { params } = this.props;
-    const isCompany = params.create === 'company';
-    const isJob = params.create === 'job';
-    const isUpload = params.step === 'upload';
+const StepForm = props => {
+  const { params } = props;
+  const isCompany = params.create === 'company';
+  const isJob = params.create === 'job';
+  const isUpload = params.step === 'upload';
 
-    return (
-      <StepFormContainer isUpload={isUpload}>
-        {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
-        {isJob && <JobForm params={params} />}
-        {isCompany && <CompanyForm />}
-        {isCompany && isUpload && <CompanyUpload params={params} />}
-      </StepFormContainer>
-    );
-  }
-}
+  return (
+    <StepFormContainer isUpload={isUpload}>
+      {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
+      {isJob && <JobForm params={params} />}
+      {isCompany && <CompanyForm />}
+      {isCompany && isUpload && <CompanyUpload params={params} />}
+    </StepFormContainer>
+  );
+};
 
-const mapStateToProps = state => ({
-  company: state.company
-});
-
-export default connect(mapStateToProps)(StepForm);
+export default StepForm;
 
 const StepFormContainer = styled.div`
   width: ${props => (props.isUpload ? '100%' : '52.5%')};

@@ -21,7 +21,8 @@ export const initialState = {
   isChecking: false,
   isUploading: false,
   successfulUpload: false,
-  details: {},
+  created: [],
+  joined: [],
   errors: []
 };
 
@@ -29,7 +30,7 @@ export default (state = initialState, action = {}) => {
   switch (action.type) {
     case GET_USER_SUCCESS:
       return Object.assign({}, state, {
-        details: action.payload.data.user.companies
+        ...action.payload.data.user.companies
       });
     case CREATE_COMPANY_REQUEST:
       return Object.assign({}, state, {
@@ -38,9 +39,7 @@ export default (state = initialState, action = {}) => {
     case CREATE_COMPANY_SUCCESS:
       return Object.assign({}, state, {
         isLoading: false,
-        details: {
-          created: [action.payload.data.company]
-        }
+        created: [...action.payload.data.company]
       });
     case CREATE_COMPANY_FAILURE:
       return Object.assign({}, state, {

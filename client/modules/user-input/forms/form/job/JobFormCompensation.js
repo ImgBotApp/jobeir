@@ -10,7 +10,7 @@ import {
   Currency,
   Text,
   Radio,
-  SubmitButton,
+  SubmitButton
 } from '../../../inputs/input';
 import { required } from '../../../validation';
 import { createJob } from '../../../../create/job/ducks';
@@ -18,7 +18,7 @@ import { createJob } from '../../../../create/job/ducks';
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 const equityOptions = [
   { text: 'Yes', value: 'Yes' },
-  { text: 'No', value: 'No' },
+  { text: 'No', value: 'No' }
 ];
 
 class JobFormComponesation extends Component {
@@ -33,13 +33,13 @@ class JobFormComponesation extends Component {
   }
 
   render() {
-    const { handleSubmit, job, offersEquity, prevPage } = this.props;
+    const { handleSubmit, jobs, offersEquity, prevPage } = this.props;
 
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={job.errors}
+        formErrors={jobs.errors}
         theme="marble"
       >
         <FormHeader text="What's the compensation?" />
@@ -103,14 +103,14 @@ class JobFormComponesation extends Component {
 const selector = formValueSelector('job');
 
 const mapStateToProps = state => ({
-  job: state.job,
+  jobs: state.jobs,
   auth: state.session.auth,
-  offersEquity: selector(state, 'offerEquity'),
+  offersEquity: selector(state, 'offerEquity')
 });
 
 JobFormComponesation = reduxForm({
   form: 'job',
-  destroyOnUnmount: false,
+  destroyOnUnmount: false
 })(JobFormComponesation);
 
 export default connect(mapStateToProps)(JobFormComponesation);

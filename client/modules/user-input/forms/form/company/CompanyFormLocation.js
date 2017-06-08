@@ -34,13 +34,13 @@ class CompanyFormStepThree extends Component {
   }
 
   render() {
-    const { company, handleSubmit, prevPage } = this.props;
+    const { companies, handleSubmit, prevPage } = this.props;
 
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={company.errors}
+        formErrors={companies.errors}
         theme="marble"
       >
         <FormHeader text="Where's your office located?" />
@@ -100,7 +100,7 @@ class CompanyFormStepThree extends Component {
 }
 
 const mapStateToProps = state => ({
-  company: state.company
+  companies: state.companies
 });
 
 CompanyFormStepThree = reduxForm({

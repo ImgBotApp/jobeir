@@ -20,6 +20,7 @@ export const initialState = {
   isFetching: false,
   isUpdating: false,
   isLoaded: false,
+  agreedToValues: false,
   errors: []
 };
 
@@ -31,7 +32,8 @@ export default (state = initialState, action = {}) => {
       });
     case UPDATE_USER_REQUEST:
       return Object.assign({}, state, {
-        isUpdating: true
+        isUpdating: true,
+        ...action.payload.data.user
       });
     case GET_USER_SUCCESS:
       return Object.assign({}, state, {

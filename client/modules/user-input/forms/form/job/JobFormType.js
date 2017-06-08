@@ -51,8 +51,8 @@ class JobFormType extends Component {
   }
 
   buildLocationsDropdown() {
-    const { company, params } = this.props;
-    const activeCompany = company.details.created.find(
+    const { companies, params } = this.props;
+    const activeCompany = companies.created.find(
       comp => comp._id === params.companyId
     );
 
@@ -69,13 +69,13 @@ class JobFormType extends Component {
   }
 
   render() {
-    const { handleSubmit, job, prevPage } = this.props;
+    const { handleSubmit, jobs, prevPage } = this.props;
 
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={job.errors}
+        formErrors={jobs.errors}
         theme="marble"
       >
         <FormHeader text="What kind of job is it?" />
@@ -114,8 +114,8 @@ class JobFormType extends Component {
 }
 
 const mapStateToProps = state => ({
-  company: state.company,
-  job: state.job,
+  companies: state.companies,
+  jobs: state.jobs,
   auth: state.session.auth
 });
 

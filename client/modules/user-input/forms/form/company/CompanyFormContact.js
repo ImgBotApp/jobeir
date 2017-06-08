@@ -28,13 +28,13 @@ class CompanyFormStepTwo extends Component {
   }
 
   render() {
-    const { company, companyName, handleSubmit, prevPage } = this.props;
+    const { companies, companyName, handleSubmit, prevPage } = this.props;
 
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={company.errors}
+        formErrors={companies.errors}
         theme="marble"
       >
         <FormHeader text={`How can people reach out to ${companyName}?`} />
@@ -74,7 +74,7 @@ class CompanyFormStepTwo extends Component {
 const selector = formValueSelector('company');
 
 const mapStateToProps = state => ({
-  company: state.company,
+  companies: state.companies,
   companyName: selector(state, 'name')
 });
 

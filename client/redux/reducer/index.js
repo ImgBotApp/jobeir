@@ -9,8 +9,8 @@ import { reducer as form } from 'redux-form';
 import { routerReducer as routing } from 'react-router-redux';
 
 import auth from '../../modules/auth/ducks';
-import company from '../../modules/create/company/ducks';
-import job from '../../modules/create/job/ducks';
+import companies from '../../modules/create/company/ducks';
+import jobs from '../../modules/create/job/ducks';
 import modal from '../../modules/modal/ducks';
 import user from '../../modules/user/ducks';
 
@@ -27,8 +27,8 @@ function intl(state, action) {
 
 // creating an appReducer
 export const appReducer = combineReducers({
-  company,
-  job,
+  companies,
+  jobs,
   form,
   intl,
   modal,

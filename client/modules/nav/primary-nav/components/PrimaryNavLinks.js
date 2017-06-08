@@ -49,7 +49,6 @@ class PrimaryNavLinks extends Component {
   buildMainNavigation(isAuthenticated) {
     return isAuthenticated
       ? <NavLinkContainer>
-          <NavLink to="/create/job/about">Post Job</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
           <NavLink onClick={this.handleLogoutClick}>Log Out</NavLink>
         </NavLinkContainer>
@@ -77,7 +76,7 @@ const mapStateToProps = state => ({
   isAuthenticated: state.session.auth.isAuthenticated,
   pathname: (state.routing.locationBeforeTransitions &&
     state.routing.locationBeforeTransitions.pathname) ||
-    '',
+    ''
 });
 
 export default connect(mapStateToProps)(PrimaryNavLinks);

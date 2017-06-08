@@ -16,6 +16,10 @@ const Job = new Schema({
     type: Date,
     default: Date.now
   },
+  state: {
+    type: String,
+    default: 'review'
+  },
   description: {
     blocks: [
       {
