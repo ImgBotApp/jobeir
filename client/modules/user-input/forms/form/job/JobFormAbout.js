@@ -59,12 +59,12 @@ class JobFormabout extends Component {
 }
 
 const mapStateToProps = state => ({
-  job: state.job,
+  job: state.job
 });
 
 JobFormabout = reduxForm({
   form: 'job',
-  destroyOnUnmount: false,
+  destroyOnUnmount: false
 })(JobFormabout);
 
 export default connect(mapStateToProps)(JobFormabout);

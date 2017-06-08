@@ -39,7 +39,7 @@ export class Wysiwyg extends Component {
 
   onEditorStateChange(editorState) {
     this.setState({
-      editorState,
+      editorState
     });
   }
 
@@ -69,7 +69,7 @@ const EditorContainer = styled.div`
   border-radius: 3px;
   border: 1px solid #babbbb;
   padding: 20px;
-  min-height: 300px;
+  min-height:  ${props => (props.minHeight ? props.minHeight : '300px')};
   margin: 0 auto 1rem;
   border-color: ${props => (props.showError ? '#cc0726' : '')};
 

@@ -12,9 +12,7 @@ class Dashboard extends Component {
         <div>
           <Link to="/create/company/about">Create a company</Link>
         </div>
-        <div>
-          <Link to="/create/job/about">Post a job</Link>
-        </div>
+
         {this.props.user.companies.created.map(company => {
           return (
             <div
@@ -39,6 +37,9 @@ class Dashboard extends Component {
                   );
                 })}
               </div>
+              <h3>
+                <Link to={`/create/job/about/${company._id}`}>Post a job</Link>
+              </h3>
             </div>
           );
         })}
@@ -55,5 +56,5 @@ export default connect()(UserWrapper(Dashboard));
 
 const DashboardContainer = styled.div`
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 50px auto;
 `;
