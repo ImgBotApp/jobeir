@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import StepProgress from '../components/StepProgress';
+import StepTips from '../components/StepTips';
 
 const StepHelp = props => {
   const { params } = props;
@@ -8,9 +9,7 @@ const StepHelp = props => {
   return (
     <StepHelpContainer>
       <StepProgress params={params} />
-      <StepHelpHeader>
-        Create a {params.create}
-      </StepHelpHeader>
+      <StepTips params={params} />
     </StepHelpContainer>
   );
 };
@@ -21,10 +20,7 @@ const StepHelpContainer = styled.div`
   align-self: flex-start;
   width: 33.5%;
   margin-left: 7.5rem;
-  border-radius: 3px;
-  border: 1px solid #eceaea;
-  padding: 18px;
-  background: #fff;
+
 `;
 
 const StepHelpHeader = styled.div`

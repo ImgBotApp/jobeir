@@ -44,15 +44,17 @@ const StepProgress = props => {
 export default StepProgress;
 
 const StepProgressContainer = styled.div`
+  border-radius: 3px;
+  border: 1px solid #eceaea;
+  padding: 18px;
+  background: #fff;
 `;
 
 const StepProgressNodeContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #f5f4f4;
-  padding-bottom: 18px;
-  margin-bottom: 18px;
+  padding-bottom: 3px;
   overflow: hidden;
 `;
 
