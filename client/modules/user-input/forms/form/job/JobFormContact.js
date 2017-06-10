@@ -8,6 +8,7 @@ import FormFooter from '../../components/FormFooter';
 import { BackButton, Text, Select, SubmitButton } from '../../../inputs/input';
 import { email, required } from '../../../validation';
 import { createJob } from '../../../../create/job/ducks';
+import { FormListRemoveIcon } from '../../../../../icons/';
 
 const renderEmailFields = ({
   fields,
@@ -119,18 +120,6 @@ const FormListRemoveItem = styled.div`
   border-radius: 50%;
   cursor: pointer;
 `;
-
-const FormListRemoveIcon = () => (
-  <svg
-    fill="#484848"
-    height="12"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-    <path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
 
 const FormListButton = styled.div`
   position: relative;

@@ -68,4 +68,8 @@ injectGlobal`
     font-family: 'Avenir STD', Avenir sans-serif;
     color: #484848;
   }
+
+  p {
+    line-height: 1.6;
+  }
 `;

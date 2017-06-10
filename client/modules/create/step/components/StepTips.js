@@ -7,7 +7,6 @@ const StepTips = props => {
 
   return (
     <StepTipsContainer>
-      <StepTipsHeader>Application Tips</StepTipsHeader>
       {Tips[params.create](params.step)}
     </StepTipsContainer>
   );
@@ -18,11 +17,7 @@ export default StepTips;
 const StepTipsContainer = styled.div`
   border-radius: 3px;
   border: 1px solid #eceaea;
-  padding: 18px;
+  padding: 30px;
   margin-top: 18px;
   background: #fff;
-`;
-
-const StepTipsHeader = styled.div`
-  font-weight: 600;
 `;

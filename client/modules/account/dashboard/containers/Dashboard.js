@@ -59,18 +59,19 @@ class Dashboard extends Component {
                   <div>{job.website}</div>
                   <div>{job.phone}</div>
                   <div>
-                    {job.locations.map(location => {
-                      return (
-                        <div key={location._id}>
-                          <h2>Location</h2>
-                          <div>{location.street}</div>
-                          <div>{location.city}</div>
-                          <div>{location.province}</div>
-                          <div>{location.postalCode}</div>
-                          <div>{location.country}</div>
-                        </div>
-                      );
-                    })}
+                    {job.locations &&
+                      job.locations.map(location => {
+                        return (
+                          <div key={location._id}>
+                            <h2>Location</h2>
+                            <div>{location.street}</div>
+                            <div>{location.city}</div>
+                            <div>{location.province}</div>
+                            <div>{location.postalCode}</div>
+                            <div>{location.country}</div>
+                          </div>
+                        );
+                      })}
                   </div>
                   <h3>
                     <Link to={`/create/job/about/${job._id}`}>Post a job</Link>

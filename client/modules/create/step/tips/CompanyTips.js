@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { EarthPointIcon, LightBulbIcon } from '../../../../icons/';
 
 const CompanyTips = step => {
   switch (step) {
     case 'about':
       return (
         <StepTipsContainer>
-          Tip for about section
+          <LightBulbIcon height={40} width={40} />
+          <StepTipsHeader>
+            Your mission
+          </StepTipsHeader>
+          <StepTipsText>
+            Every company is unique and faces exciting challenges. Let applicants know what your company mission is and what you're trying to solve.
+          </StepTipsText>
+          <StepTipsText />
         </StepTipsContainer>
       );
     case 'contact':
@@ -18,7 +26,17 @@ const CompanyTips = step => {
     case 'location':
       return (
         <StepTipsContainer>
-          Tip for location section
+          <EarthPointIcon height={40} width={40} />
+          <StepTipsHeader>
+            Adding Location
+          </StepTipsHeader>
+          <StepTipsText>
+            The address you enter will be used when creating job postings. If you have multiple locations you can enter them later.
+          </StepTipsText>
+          <StepTipsText>
+            Location is very important when applicants are searching for jobs, so be as accurate as possible.
+          </StepTipsText>
+          <StepTipsText />
         </StepTipsContainer>
       );
     default:
@@ -33,13 +51,14 @@ const CompanyTips = step => {
 export default CompanyTips;
 
 const StepTipsContainer = styled.div`
-  border-radius: 3px;
-  border: 1px solid #eceaea;
-  padding: 18px;
-  margin-top: 18px;
-  background: #fff;
 `;
 
-const StepTipsHeader = styled.div`
+const StepTipsHeader = styled.h4`
+  margin-top: 10px;
   font-weight: 600;
+  font-size: 1.2rem;
+`;
+
+const StepTipsText = styled.p`
+  margin-top: 10px;
 `;

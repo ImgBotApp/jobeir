@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
 import Dropzone from 'react-dropzone';
+import { UploadIcon } from '../../../../icons/';
 
 export class Upload extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ export class Upload extends Component {
                 </DropZoneImgContainer>
               : <DropZoneButtonContainer>
                   <DropZoneButton>
-                    {UploadIcon()}
+                    <UploadIcon />
                     <DropZoneButtonText>
                       {this.props.buttonText}
                     </DropZoneButtonText>
@@ -128,51 +129,3 @@ const DropZoneImg = styled.img`
   max-width: 200px;
   margin-bottom: 10px;
 `;
-
-const UploadIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    x="0px"
-    y="0px"
-    width="24px"
-    height="24px"
-    viewBox="0 0 48 48"
-  >
-    <g transform="translate(0, 0)">
-      <line
-        data-cap="butt"
-        fill="none"
-        stroke="#fff"
-        strokeWidth="2"
-        strokeMiterlimit="10"
-        x1="24"
-        y1="36"
-        x2="24"
-        y2="20"
-        strokeLinejoin="miter"
-        strokeLinecap="butt"
-      />
-      <polyline
-        fill="none"
-        stroke="#fff"
-        strokeWidth="2"
-        strokeLinecap="square"
-        strokeMiterlimit="10"
-        points="18,26 24,20 
-  30,26 "
-        strokeLinejoin="miter"
-      />
-      <path
-        data-color="color-2"
-        fill="none"
-        stroke="#fff"
-        strokeWidth="2"
-        strokeLinecap="square"
-        strokeMiterlimit="10"
-        d="M32,38h6
-  c4.4,0,8-3.6,8-8c0-4.4-3.6-8-8-8c0,0,0,0-0.1,0c-0.5-7.8-7-14-14.9-14C15,8,8.4,14.3,8,22.3c-3.5,0.9-6,4-6,7.7c0,4.4,3.6,8,8,8h6"
-        strokeLinejoin="miter"
-      />
-    </g>
-  </svg>
-);
