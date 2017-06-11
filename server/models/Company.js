@@ -24,6 +24,7 @@ const Company = new Schema({
   size: String,
   logo: String,
   website: String,
+  perks: Array,
   product: String,
   locations: [
     {

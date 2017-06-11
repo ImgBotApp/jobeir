@@ -80,6 +80,7 @@ export function createCompany(req, res) {
   newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
   newCompany.displayName = sanitizeHtml(newCompany.name);
   newCompany.website = sanitizeHtml(newCompany.website);
+  newCompany.perks = newCompany.perks;
   newCompany.product = sanitizeHtml(newCompany.product);
   newCompany.locations.push(address);
   newCompany.phone = sanitizeHtml(newCompany.phone);

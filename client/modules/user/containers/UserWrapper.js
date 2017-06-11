@@ -14,8 +14,8 @@ export const UserWrapper = WrappedComponent => {
     }
 
     componentWillReceiveProps(nextProps) {
-      const { user: { isLoaded } } = nextProps;
-      if (!isLoaded) {
+      const { user: { isLoaded, isFetching } } = nextProps;
+      if (!isLoaded && !isFetching) {
         return this.handleGetUser(isLoaded);
       }
     }
@@ -28,9 +28,9 @@ export const UserWrapper = WrappedComponent => {
        * Increasing count to avoid multiple handleCheckAuth calls
        * as the Component will receive props more than once.
        */
-      this.setState({ count: count + 1 });
+      this.setState({ count: this.state.count + 1 });
 
-      if (count === 2) {
+      if (count <= 1) {
         dispatch(getUser(auth.id));
       }
     }
