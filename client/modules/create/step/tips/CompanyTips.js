@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { EarthPointIcon, LightBulbIcon } from '../../../../icons/';
+import {
+  EarthPointIcon,
+  LightBulbIcon,
+  PaperClipIcon
+} from '../../../../icons/';
 
 const CompanyTips = step => {
   switch (step) {
@@ -14,13 +18,21 @@ const CompanyTips = step => {
           <StepTipsText>
             Every company is unique and faces exciting challenges. Let applicants know what your company mission is and what you're trying to solve.
           </StepTipsText>
-          <StepTipsText />
         </StepTipsContainer>
       );
     case 'contact':
       return (
         <StepTipsContainer>
-          Tip for contact section
+          <PaperClipIcon height={40} width={40} />
+          <StepTipsHeader>
+            Contact
+          </StepTipsHeader>
+          <StepTipsText>
+            The contact information provided here will be availalble to applicants applying for jobs.
+          </StepTipsText>
+          <StepTipsText>
+            Make sure these are safe to be publicly shared and checked frequently.
+          </StepTipsText>
         </StepTipsContainer>
       );
     case 'location':
@@ -28,21 +40,26 @@ const CompanyTips = step => {
         <StepTipsContainer>
           <EarthPointIcon height={40} width={40} />
           <StepTipsHeader>
-            Adding Location
+            Location
           </StepTipsHeader>
           <StepTipsText>
             The address you enter will be used when creating job postings. If you have multiple locations you can enter them later.
           </StepTipsText>
           <StepTipsText>
-            Location is very important when applicants are searching for jobs, so be as accurate as possible.
+            Job location is very important when applicants are searching for jobs, so be as accurate as possible.
           </StepTipsText>
-          <StepTipsText />
         </StepTipsContainer>
       );
     default:
       return (
         <StepTipsContainer>
-          Generic Tip
+          <LightBulbIcon height={40} width={40} />
+          <StepTipsHeader>
+            You're in good company.
+          </StepTipsHeader>
+          <StepTipsText>
+            Job postings on -name- are amongst the highest quality in the world.
+          </StepTipsText>
         </StepTipsContainer>
       );
   }
@@ -50,13 +67,13 @@ const CompanyTips = step => {
 
 export default CompanyTips;
 
-const StepTipsContainer = styled.div`
-`;
+const StepTipsContainer = styled.div``;
 
 const StepTipsHeader = styled.h4`
   margin-top: 10px;
   font-weight: 600;
   font-size: 1.2rem;
+  line-height: 1.5;
 `;
 
 const StepTipsText = styled.p`

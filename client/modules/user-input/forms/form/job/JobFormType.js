@@ -38,7 +38,7 @@ const Yolo = [
   { name: 'Volunteer', value: 'VOLUNTEER' }
 ];
 
-const remoteOptions = [
+const yesNoOptions = [
   { text: 'Yes', value: 'Yes' },
   { text: 'No', value: 'No' }
 ];
@@ -97,7 +97,14 @@ class JobFormType extends Component {
           name="remote"
           label="Is this a remote position?"
           validate={[required]}
-          options={remoteOptions}
+          options={yesNoOptions}
+          component={Radio}
+        />
+        <Field
+          name="fromHome"
+          label="Are employees allowed to work from home?"
+          validate={[required]}
+          options={yesNoOptions}
           component={Radio}
         />
         <FormFooter>

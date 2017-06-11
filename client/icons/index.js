@@ -1,5 +1,179 @@
 import React from 'react';
 
+export const BackpackIcon = ({ width = 24, height = 24, className = '' }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 48 48"
+  >
+    <g transform="translate(0, 0)">
+      <polyline
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        points="
+  16,10 16,2 32,2 32,10 "
+        strokeLinejoin="miter"
+      />
+      <polyline
+        data-cap="butt"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        points="42,30.9 42,46 6,46 6,30.9 
+  "
+        strokeLinejoin="miter"
+        strokeLinecap="butt"
+      />
+      <path
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        d="M38,32H10c-4.4,0-8-3.6-8-8
+  V10h44v14C46,28.4,42.4,32,38,32z"
+        strokeLinejoin="miter"
+      />
+      <line
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        x1="12"
+        y1="26"
+        x2="16"
+        y2="26"
+        strokeLinejoin="miter"
+      />
+      <line
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        x1="14"
+        y1="26"
+        x2="14"
+        y2="38"
+        strokeLinejoin="miter"
+      />
+      <line
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        x1="32"
+        y1="26"
+        x2="36"
+        y2="26"
+        strokeLinejoin="miter"
+      />
+      <line
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        x1="34"
+        y1="26"
+        x2="34"
+        y2="38"
+        strokeLinejoin="miter"
+      />
+    </g>
+  </svg>
+);
+
+export const BoxGraphIcon = ({ width = 24, height = 24, className = '' }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 48 48"
+  >
+    <g transform="translate(0, 0)">
+      <polyline
+        data-cap="butt"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        points="35.99,20.28 41,23 
+    46,16 "
+        strokeLinejoin="miter"
+        strokeLinecap="butt"
+      />
+      <polyline
+        data-cap="butt"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        points="2,24 6,27 10,20 
+    16,31 20,23 24,26 28.178,21.183 "
+        strokeLinejoin="miter"
+        strokeLinecap="butt"
+      />
+      <rect
+        x="2"
+        y="5"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        width="44"
+        height="38"
+        strokeLinejoin="miter"
+      />
+      <line
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        x1="32"
+        y1="29"
+        x2="32"
+        y2="43"
+        strokeLinejoin="miter"
+      />
+      <line
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        x1="32"
+        y1="5"
+        x2="32"
+        y2="16"
+        strokeLinejoin="miter"
+      />
+      <circle
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        cx="32"
+        cy="20"
+        r="4"
+        strokeLinejoin="miter"
+      />
+    </g>
+  </svg>
+);
+
 export const EarthPointIcon = ({ width = 24, height = 24, className = '' }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -108,6 +282,75 @@ export const FormListRemoveIcon = ({
   </svg>
 );
 
+export const HandsCoinsIcon = ({ width = 24, height = 24, className = '' }) => (
+  <svg
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={width}
+    viewBox="0 0 48 48"
+  >
+    <g transform="translate(0, 0)">
+      <path
+        data-cap="butt"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        d="M8,26h3c3.284,0,6.3,1.462,8,4h6
+  c2.907,0,6,3.093,6,6H17"
+        strokeLinejoin="miter"
+        strokeLinecap="butt"
+      />
+      <path
+        data-cap="butt"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        d="M29.176,32H39c4.833,0,6,4,6,4
+  l-21.203,7.746c-1.647,0.392-3.37,0.33-4.985-0.18L8,39"
+        strokeLinejoin="miter"
+        strokeLinecap="butt"
+      />
+      <circle
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        cx="33"
+        cy="19"
+        r="5"
+        strokeLinejoin="miter"
+      />
+      <circle
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        cx="19"
+        cy="9"
+        r="5"
+        strokeLinejoin="miter"
+      />
+      <rect
+        x="2"
+        y="24"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        width="6"
+        height="16"
+        strokeLinejoin="miter"
+      />
+    </g>
+  </svg>
+);
+
 export const LightBulbIcon = ({ width = 24, height = 24, className = '' }) => (
   <svg
     className={className}
@@ -148,6 +391,121 @@ export const LightBulbIcon = ({ width = 24, height = 24, className = '' }) => (
       y2="46"
       strokeLinejoin="miter"
     />
+  </svg>
+);
+
+export const MailIcon = ({ width = 24, height = 24, className = '' }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 48 48"
+  >
+    <g transform="translate(0, 0)">
+      <polyline
+        data-cap="butt"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        points="10,16.2 2,22 2,46 46,46 
+  46,22 38,16.2 "
+        strokeLinejoin="miter"
+        strokeLinecap="butt"
+      />
+      <polyline
+        data-cap="butt"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        points="10,26.4 10,2 38,2 38,26.4 
+  "
+        strokeLinejoin="miter"
+        strokeLinecap="butt"
+      />
+      <line
+        data-cap="butt"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        x1="2"
+        y1="22"
+        x2="46"
+        y2="46"
+        strokeLinejoin="miter"
+        strokeLinecap="butt"
+      />
+      <line
+        data-cap="butt"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        x1="46"
+        y1="22"
+        x2="24"
+        y2="34"
+        strokeLinejoin="miter"
+        strokeLinecap="butt"
+      />
+      <line
+        data-color="color-2"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        x1="18"
+        y1="12"
+        x2="30"
+        y2="12"
+        strokeLinejoin="miter"
+      />
+      <line
+        data-color="color-2"
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        x1="18"
+        y1="20"
+        x2="30"
+        y2="20"
+        strokeLinejoin="miter"
+      />
+    </g>
+  </svg>
+);
+
+export const PaperClipIcon = ({ width = 24, height = 24, className = '' }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 48 48"
+  >
+    <g transform="translate(0, 0)">
+      <path
+        fill="none"
+        stroke="#444444"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        d="M43.9,22.7L26.3,40.4
+  c-5.1,5.1-13.3,5.1-18.4,0l0,0c-5.1-5.1-5.1-13.3,0-18.4L23.4,6.4c3.5-3.5,9.2-3.5,12.7,0l0,0c3.5,3.5,3.5,9.2,0,12.7L22,33.3
+  c-2,2-5.1,2-7.1,0l0,0c-2-2-2-5.1,0-7.1l12-12"
+        strokeLinejoin="miter"
+      />
+    </g>
   </svg>
 );
 
