@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import CompanyFormAbout from './CompanyFormAbout';
 import CompanyFormContact from './CompanyFormContact';
 import CompanyFormLocation from './CompanyFormLocation';
+import CompanyFormPerks from './CompanyFormPerks';
 
 class CompanyForm extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class CompanyForm extends Component {
     const about = '/create/company/about';
     const contact = '/create/company/contact';
     const location = '/create/company/location';
+    const perks = '/create/company/perks';
 
     return (
       <div>
@@ -34,10 +36,15 @@ class CompanyForm extends Component {
         {pathname === contact &&
           <CompanyFormContact
             prevPage={() => this.prevPage(about)}
+            nextPage={() => this.nextPage(perks)}
+          />}
+        {pathname === perks &&
+          <CompanyFormPerks
+            prevPage={() => this.prevPage(contact)}
             nextPage={() => this.nextPage(location)}
           />}
         {pathname === location &&
-          <CompanyFormLocation prevPage={() => this.prevPage(contact)} />}
+          <CompanyFormLocation prevPage={() => this.prevPage(perks)} />}
       </div>
     );
   }

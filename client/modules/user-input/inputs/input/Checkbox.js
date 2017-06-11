@@ -82,9 +82,8 @@ const CheckboxGroupItem = styled.label`
   display: flex;
   align-items: center;
   flex-basis: 49.5%;
-  padding: 15px 20px;
-  font-weight: 600;
-  background:  ${props => (props.checked ? '#f27c5e' : '#fafafa')};
+  padding: 10px 20px;
+  background:  ${props => (props.checked ? props.theme.colors.blue : '#faf3d5')};
   color:  ${props => (props.checked ? '#fff' : '#484848')};
   margin-bottom: 1%;
   cursor: pointer;

@@ -19,17 +19,6 @@ import {
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 
 const jobTypes = [
-  { name: 'Select type', disabled: true, value: '' },
-  { name: 'Full-time', value: 'FULL_TIME' },
-  { name: 'Part-time', value: 'PART_TIME' },
-  { name: 'Contractor', value: 'CONTRACTOR' },
-  { name: 'Freelance', value: 'FREELANCE' },
-  { name: 'Intern', value: 'INTERN' },
-  { name: 'Volunteer', value: 'VOLUNTEER' }
-];
-
-const Yolo = [
-  { name: 'Select type', disabled: true, value: '' },
   { name: 'Full-time', value: 'FULL_TIME' },
   { name: 'Part-time', value: 'PART_TIME' },
   { name: 'Contractor', value: 'CONTRACTOR' },
@@ -56,12 +45,15 @@ class JobFormType extends Component {
       comp => comp._id === params.companyId
     );
 
-    return activeCompany.locations.map(location => {
-      return {
-        name: `${location.street}, ${location.city}, ${location.country}`,
-        value: location._id
-      };
-    });
+    return (
+      activeCompany &&
+      activeCompany.locations.map(location => {
+        return {
+          name: `${location.street}, ${location.city}, ${location.country}`,
+          value: location._id
+        };
+      })
+    );
   }
 
   formSubmit() {
@@ -84,7 +76,8 @@ class JobFormType extends Component {
           label="Employment Type"
           validate={[required]}
           options={jobTypes}
-          component={Select}
+          type="list"
+          component={Radio}
         />
         <Field
           name="locations"
@@ -98,6 +91,7 @@ class JobFormType extends Component {
           label="Is this a remote position?"
           validate={[required]}
           options={yesNoOptions}
+          type="yes/no"
           component={Radio}
         />
         <Field
@@ -105,6 +99,7 @@ class JobFormType extends Component {
           label="Are employees allowed to work from home?"
           validate={[required]}
           options={yesNoOptions}
+          type="yes/no"
           component={Radio}
         />
         <FormFooter>

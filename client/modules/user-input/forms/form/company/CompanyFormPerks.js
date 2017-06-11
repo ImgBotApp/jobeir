@@ -52,7 +52,7 @@ const perkOptions = [
   { icon: '', label: 'Unique to company', value: 'Unique to company' }
 ];
 
-class JobFormPerks extends Component {
+class CompanyFormPerks extends Component {
   constructor(props) {
     super(props);
 
@@ -73,7 +73,7 @@ class JobFormPerks extends Component {
         formErrors={jobs.errors}
         theme="marble"
       >
-        <FormHeader text="The perks" />
+        <FormHeader text="The perks and benefits" />
         <Field
           name="perks"
           label="Select all that apply"
@@ -97,9 +97,9 @@ const mapStateToProps = state => ({
   jobs: state.jobs
 });
 
-JobFormPerks = reduxForm({
+CompanyFormPerks = reduxForm({
   form: 'job',
   destroyOnUnmount: false
-})(JobFormPerks);
+})(CompanyFormPerks);
 
-export default connect(mapStateToProps)(JobFormPerks);
+export default connect(mapStateToProps)(CompanyFormPerks);

@@ -66,6 +66,7 @@ class JobFormComponesation extends Component {
           label="Do you offer equity?"
           validate={[required]}
           options={equityOptions}
+          type="yes/no"
           component={Radio}
         />
         {offersEquity === 'Yes' &&

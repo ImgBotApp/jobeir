@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const createJob = ['about', 'type', 'perks', 'compensation', 'contact'];
-const createCompany = ['about', 'contact', 'location', 'upload'];
+const createJob = ['about', 'type', 'compensation', 'contact'];
+const createCompany = ['about', 'contact', 'perks', 'location', 'upload'];
 
 const getFormStepDetails = params => {
   switch (params.create) {
