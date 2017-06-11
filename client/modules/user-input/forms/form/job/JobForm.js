@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import JobFormAbout from './JobFormAbout';
 import JobFormType from './JobFormType';
+import JobFormPerks from './JobFormPerks';
 import JobFormCompensation from './JobFormCompensation';
 import JobFormContact from './JobFormContact';
 
@@ -27,6 +28,7 @@ class JobForm extends Component {
     // brute coded for now, need to cleanup this logic.
     const about = `/create/job/about/${params.companyId}`;
     const type = `/create/job/type/${params.companyId}`;
+    const perks = `/create/job/perks/${params.companyId}`;
     const compensation = `/create/job/compensation/${params.companyId}`;
     const contact = `/create/job/contact/${params.companyId}`;
 
@@ -38,11 +40,16 @@ class JobForm extends Component {
           <JobFormType
             params={params}
             prevPage={() => this.prevPage(about)}
+            nextPage={() => this.nextPage(perks)}
+          />}
+        {pathname.includes(perks) &&
+          <JobFormPerks
+            prevPage={() => this.prevPage(type)}
             nextPage={() => this.nextPage(compensation)}
           />}
         {pathname.includes(compensation) &&
           <JobFormCompensation
-            prevPage={() => this.prevPage(type)}
+            prevPage={() => this.prevPage(perks)}
             nextPage={() => this.nextPage(contact)}
           />}
         {pathname.includes(contact) &&

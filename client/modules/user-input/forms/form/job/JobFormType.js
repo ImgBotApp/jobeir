@@ -101,7 +101,7 @@ class JobFormType extends Component {
           component={Radio}
         />
         <Field
-          name="fromHome"
+          name="home"
           label="Are employees allowed to work from home?"
           validate={[required]}
           options={yesNoOptions}

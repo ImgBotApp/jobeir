@@ -63,7 +63,8 @@ const Job = new Schema({
   salaryMax: Number,
   salaryMin: Number,
   // skills: String,
-  title: { type: Object }
+  title: Object,
+  role: Object
 });
 
 Job.index({

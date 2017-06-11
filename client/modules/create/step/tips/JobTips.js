@@ -4,6 +4,7 @@ import {
   BackpackIcon,
   BoxGraphIcon,
   HandsCoinsIcon,
+  LightBulbIcon,
   MailIcon
 } from '../../../../icons/';
 
