@@ -71,7 +71,7 @@ const EditorContainer = styled.div`
   padding: 20px;
   min-height:  ${props => (props.minHeight ? props.minHeight : '300px')};
   margin: 0 auto 1rem;
-  border-color: ${props => (props.showError ? '#cc0726' : '')};
+  border-color: ${props => (props.showError ? '#f73c3c' : '')};
 
   .rdw-editor-toolbar {
     margin: -8px 0 0 -10px;

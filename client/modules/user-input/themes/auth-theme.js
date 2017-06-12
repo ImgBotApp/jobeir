@@ -9,12 +9,12 @@ export const auth = {
     maxWidth: '500px',
     marginBottom: '2rem',
     fontSize: '18px',
-    color: '#fff',
+    color: '#fff'
   },
   error: {
-    color: '#cc0726',
+    color: '#f73c3c',
     position: 'relative',
-    width: '100%',
+    width: '100%'
   },
   input: {
     borderRadius: '3px',
@@ -23,15 +23,15 @@ export const auth = {
     fontSize: '16px',
     width: '100%',
     margin: '0 auto 1rem',
-    activeBorderColor: '#484848',
+    activeBorderColor: '#555',
     ph: {
-      color: '#afafaf',
-    },
+      color: '#afafaf'
+    }
   },
   inputWrapper: {
-    marginBottom: '0',
+    marginBottom: '0'
   },
   error: {
-    color: '#cc0726',
-  },
+    color: '#f73c3c'
+  }
 };

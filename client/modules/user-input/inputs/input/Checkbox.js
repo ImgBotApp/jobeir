@@ -63,7 +63,7 @@ export const Checkbox = props => {
         id={props.input.name}
         name={props.input.name}
         placeholder={props.placeholder}
-        style={{ borderColor: showError ? '#cc0726' : '' }}
+        style={{ borderColor: showError ? '#f73c3c' : '' }}
       />
     </InputWrapper>
   );
@@ -83,8 +83,8 @@ const CheckboxGroupItem = styled.label`
   align-items: center;
   flex-basis: 49.5%;
   padding: 10px 20px;
-  background:  ${props => (props.checked ? props.theme.colors.blue : '#fafafa')};
-  color:  ${props => (props.checked ? '#fff' : '#484848')};
+  background:  ${props => (props.checked ? props.theme.colors.blue : '#f9f8f7')};
+  color:  ${props => (props.checked ? '#fff' : '#555')};
   margin-bottom: 1%;
   cursor: pointer;
 `;
@@ -96,7 +96,7 @@ const CheckboxGroupIcon = styled.div`
     padding: 1px;
 
     path {
-      stroke: ${props => (props.checked ? '#fff' : '#484848')};
+      stroke: ${props => (props.checked ? '#fff' : '#555')};
     }
   }
 `;

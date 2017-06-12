@@ -15,7 +15,7 @@ export const Password = props => {
         id={props.input.name}
         name={props.input.name}
         placeholder={props.placeholder}
-        style={{ borderColor: showError ? '#cc0726' : '' }}
+        style={{ borderColor: showError ? '#f73c3c' : '' }}
       />
     </InputWrapper>
   );

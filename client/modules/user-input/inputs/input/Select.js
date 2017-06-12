@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const handlePropsError = options => {
   if (!options && !Array.isArray(options)) {
     throw new Error(
-      'Select component requires an array of options passed as an options prop',
+      'Select component requires an array of options passed as an options prop'
     );
   }
 };
@@ -62,7 +62,7 @@ const SelectInput = styled.select`
   width: ${props => props.theme.select.width};
   margin: ${props => props.theme.select.margin};
   max-width: ${props => props.theme.select.maxWidth};
-  color: ${props => (props.visited ? '#484848' : '#989898')};
+  color: ${props => (props.visited ? '#555' : '#989898')};
   
   &:active,
   &:focus {

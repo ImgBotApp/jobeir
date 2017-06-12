@@ -27,9 +27,9 @@ const InputErrorContainer = styled.div`
 const InputErrorRed = styled.div`
   padding: 10px 20px;
   background: #fee7e8;
-  color: #cc0726;
+  color: #f73c3c;
   font-size: 14px;
-  border: 1px solid #cc0726;
+  border: 1px solid #f73c3c;
   border-top: none;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;

@@ -7,13 +7,13 @@
 const theme = {
   colors: {
     red: '#fb5032', // WS red #f27c5e // #fb7857
-    green: '#7cb7b6', // WS green #7cb7b6
+    green: '#6eafae', // WS green #7cb7b6
     pink: '#fe9591',
     blue: '#161533',
     lightBlue: '#82a3b9', // WS blue #82a3b9
     black: '#0f0f17',
     beige: '#faf3d5',
-    text: '#484848'
+    text: '#555'
   }
 };
 

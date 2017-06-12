@@ -30,6 +30,7 @@ const FormFooterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${props => (props.multipleChildren ? 'space-between' : 'flex-end')};
+  padding-top: 15px;
   bottom: 0;
   background: #fff;
 `;

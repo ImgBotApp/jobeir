@@ -32,8 +32,8 @@ const perkOptions = [
   { icon: <FoodBowlIcon />, label: 'Catered meals', value: 'Catered Meals' },
   {
     icon: <BeerGlassIcon />,
-    label: 'Alcoholic beverages',
-    value: 'Alcoholic beverages'
+    label: 'Drinks',
+    value: 'Drinks'
   },
   { icon: <DesktopMonitorIcon />, label: 'Hardware', value: 'Hardware' },
   { icon: <MoneyFolderIcon />, label: '401(k)', value: '401(k)' },

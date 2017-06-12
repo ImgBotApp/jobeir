@@ -8,11 +8,11 @@ export const opal = {
     margin: '',
     activeBorderColor: '',
     ph: {
-      color: '',
-    },
+      color: ''
+    }
   },
   inputWrapper: {
-    marginBottom: '1rem',
+    marginBottom: '1rem'
   },
   button: {
     height: '',
@@ -23,14 +23,14 @@ export const opal = {
     width: '',
     marginBottom: '',
     fontSize: '',
-    color: '',
+    color: ''
   },
   error: {
-    color: '#cc0726',
+    color: '#f73c3c'
   },
   label: {
     display: 'block',
     marginBottom: '6px',
-    fontSize: '18px',
-  },
+    fontSize: '18px'
+  }
 };

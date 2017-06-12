@@ -58,7 +58,7 @@ const SelectContainer = styled.div`
     background-color: #fff;
     border-radius: 4px;
     border: 1px solid #ccc;
-    color: #484848;
+    color: #555;
     cursor: default;
     display: table;
     border-spacing: 0;
@@ -128,7 +128,7 @@ const SelectContainer = styled.div`
   .has-value.Select--single > .Select-control .Select-value .Select-value-label,
   .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
     font-weight: 600;
-    color: #484848;
+    color: #555;
   }
   .has-value.Select--single > .Select-control .Select-value a.Select-value-label,
   .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label {
@@ -193,7 +193,7 @@ const SelectContainer = styled.div`
     box-sizing: border-box;
     border-radius: 50%;
     border: 2px solid #ccc;
-    border-right-color: #484848;
+    border-right-color: #555;
     display: inline-block;
     position: relative;
     vertical-align: middle;
@@ -275,7 +275,7 @@ const SelectContainer = styled.div`
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     background-color: #fff;
-    border: 1px solid #484848;
+    border: 1px solid #555;
     border-top-color: #e6e6e6;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
@@ -294,7 +294,7 @@ const SelectContainer = styled.div`
   .Select-option {
     box-sizing: border-box;
     background-color: #fff;
-    color: #484848;
+    color: #555;
     cursor: pointer;
     display: block;
     padding: 12px 18px;
@@ -307,13 +307,13 @@ const SelectContainer = styled.div`
     background-color: #f5faff;
     /* Fallback color for IE 8 */
     background-color: rgba(251, 80, 50, 0.03);
-    color: #484848;
+    color: #555;
   }
   .Select-option.is-focused {
     background-color: #ebf5ff;
     /* Fallback color for IE 8 */
     background-color: rgba(251, 80, 50, 0.08);
-    color: #484848;
+    color: #555;
   }
   .Select-option.is-disabled {
     color: #cccccc;
@@ -393,7 +393,7 @@ const SelectContainer = styled.div`
   .Select--multi.is-disabled .Select-value {
     background-color: #fcfcfc;
     border: 1px solid #e3e3e3;
-    color: #484848;
+    color: #555;
   }
   .Select--multi.is-disabled .Select-value-icon {
     cursor: not-allowed;

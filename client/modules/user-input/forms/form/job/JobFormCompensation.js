@@ -16,6 +16,8 @@ import { required } from '../../../validation';
 import { createJob } from '../../../../create/job/ducks';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
+const parsePercentage = value => value / 100;
+const formatPercentage = value => value * 100 + '%';
 const equityOptions = [
   { text: 'Yes', value: 'Yes' },
   { text: 'No', value: 'No' }
@@ -74,18 +76,22 @@ class JobFormComponesation extends Component {
             <Field
               name="equityMin"
               label="Equity minimum"
-              placeholder="$"
+              type="number"
+              placeholder="%"
               validate={[required]}
-              parse={parseNumber}
-              component={Currency}
+              format={formatPercentage}
+              parse={parsePercentage}
+              component={Text}
             />
             <Field
               name="equityMax"
               label="Equity maximum"
-              placeholder="$"
+              type="number"
+              placeholder="%"
               validate={[required]}
-              parse={parseNumber}
-              component={Currency}
+              format={formatPercentage}
+              parse={parsePercentage}
+              component={Text}
             />
           </FormRow>}
         <FormFooter>

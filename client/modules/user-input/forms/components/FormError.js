@@ -16,7 +16,7 @@ export default FormError;
 const FormErrorContainer = styled.div`
   padding: 18px;
   background: #fee7e8;
-  color: #cc0726;
+  color: #f73c3c;
   font-size: 16px;
   border-radius: 3px;
   text-align: center;
@@ -25,4 +25,4 @@ const FormErrorContainer = styled.div`
   width: ${props => props.theme.error.width};
 `;
 
-// border: 1px solid #cc0726;
+// border: 1px solid #f73c3c;

@@ -10,7 +10,7 @@ export const Text = props => {
     <InputWrapper {...props}>
       <Input
         {...props.input}
-        type="text"
+        type={props.input.type || 'text'}
         id={props.input.name}
         name={props.input.name}
         placeholder={props.placeholder}

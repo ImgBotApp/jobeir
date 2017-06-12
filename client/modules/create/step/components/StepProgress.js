@@ -45,7 +45,7 @@ export default StepProgress;
 
 const StepProgressContainer = styled.div`
   border-radius: 3px;
-  border: 1px solid #eceaea;
+  box-shadow: 0 0 0 1px rgba(63,63,68,0.05), 0 1px 3px 0 rgba(63,63,68,0.15);
   padding: 18px;
   background: #fff;
 `;

@@ -21,8 +21,8 @@ export const marble = {
     width: '100%',
     minHeight: '300px',
     margin: '0 auto 1rem',
-    activeBorderColor: '#484848',
-    background: '#fafafa',
+    activeBorderColor: '#555',
+    background: '#f9f8f7',
     cursor: 'pointer',
     ph: {
       color: '#afafaf'
@@ -35,7 +35,7 @@ export const marble = {
     fontSize: '16px',
     width: '100%',
     margin: '0 auto 1rem',
-    activeBorderColor: '#484848',
+    activeBorderColor: '#555',
     ph: {
       color: '#afafaf'
     }
@@ -44,7 +44,7 @@ export const marble = {
     marginBottom: '1rem'
   },
   error: {
-    color: '#cc0726',
+    color: '#f73c3c',
     position: 'absolute',
     width: '53%'
   },
@@ -61,7 +61,7 @@ export const marble = {
     fontSize: '16px',
     width: '100%',
     margin: '0 auto 1rem',
-    activeBorderColor: '#484848',
+    activeBorderColor: '#555',
     ph: {
       color: '#afafaf'
     }
@@ -75,6 +75,6 @@ export const marble = {
     width: '100%',
     margin: '0 auto 0.6rem',
     minHeight: '175px',
-    activeBorderColor: '#484848'
+    activeBorderColor: '#555'
   }
 };
