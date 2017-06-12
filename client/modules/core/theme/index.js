@@ -13,7 +13,7 @@ const theme = {
     lightBlue: '#82a3b9', // WS blue #82a3b9
     black: '#0f0f17',
     beige: '#faf3d5',
-    text: '#555'
+    text: 'rgba(0,0,0,0.8)'
   }
 };
 

@@ -1,4 +1,5 @@
 import Job from '../models/Job';
+import Company from '../models/Company';
 import cuid from 'cuid';
 import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
@@ -76,6 +77,27 @@ export function createJob(req, res) {
   newJob.offerEquity = sanitizeHtml(newJob.offerEquity);
   newJob.slug = slug(newJob.title.toLowerCase(), { lowercase: true });
   newJob.cuid = cuid();
+
+  // Add the company to the current user
+  Company.findOne({ _id: newJob.company }, function(err, company) {
+    if (err) throw err;
+
+    company.jobs.push(newJob._id);
+
+    company.save(err => {
+      if (err) {
+        res.status(500).send({
+          data: {},
+          errors: [
+            {
+              error: 'INTERNAL_SERVER_ERROR',
+              message: `There was an error creating the job ${newJob.title}`
+            }
+          ]
+        });
+      }
+    });
+  });
 
   newJob.save((err, saved) => {
     if (err) {

@@ -84,7 +84,7 @@ const CheckboxGroupItem = styled.label`
   flex-basis: 49.5%;
   padding: 10px 20px;
   background:  ${props => (props.checked ? props.theme.colors.blue : '#f9f8f7')};
-  color:  ${props => (props.checked ? '#fff' : '#555')};
+  color:  ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.8)')};
   margin-bottom: 1%;
   cursor: pointer;
 `;
@@ -96,7 +96,7 @@ const CheckboxGroupIcon = styled.div`
     padding: 1px;
 
     path {
-      stroke: ${props => (props.checked ? '#fff' : '#555')};
+      stroke: ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.8)')};
     }
   }
 `;

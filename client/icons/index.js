@@ -269,7 +269,7 @@ export const FormListRemoveIcon = ({
   width = 24,
   height = 12,
   className = '',
-  fill = '#555'
+  fill = 'rgba(0,0,0,0.8)'
 }) => (
   <svg
     fill={fill}

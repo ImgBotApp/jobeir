@@ -9,23 +9,18 @@ const Company = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
-  name: {
-    type: String,
-    unique: true,
-    required: true,
-    lowercase: true
-  },
   // used to display in UI
   displayName: {
     type: String,
     unique: true,
     required: true
   },
-  size: String,
-  logo: String,
-  website: String,
-  perks: Array,
-  product: String,
+  jobs: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Jobs'
+    }
+  ],
   locations: [
     {
       city: String,
@@ -39,13 +34,19 @@ const Company = new Schema({
       }
     }
   ],
+  logo: String,
+  name: {
+    type: String,
+    unique: true,
+    required: true,
+    lowercase: true
+  },
+  perks: Array,
   phone: Number,
-  jobs: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Jobs'
-    }
-  ]
+  product: String,
+
+  size: String,
+  website: String
 });
 
 export default mongoose.model('Company', Company);

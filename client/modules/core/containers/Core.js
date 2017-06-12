@@ -66,7 +66,7 @@ injectGlobal`
   body {
     margin: 0;
     font-family: 'Avenir STD', Avenir sans-serif;
-    color: #555;
+    color: rgba(0,0,0,0.8);
   }
 
   p {

@@ -62,7 +62,7 @@ const SelectInput = styled.select`
   width: ${props => props.theme.select.width};
   margin: ${props => props.theme.select.margin};
   max-width: ${props => props.theme.select.maxWidth};
-  color: ${props => (props.visited ? '#555' : '#989898')};
+  color: ${props => (props.visited ? 'rgba(0,0,0,0.8)' : '#989898')};
   
   &:active,
   &:focus {
