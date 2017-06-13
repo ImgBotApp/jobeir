@@ -23,7 +23,7 @@ const Job = new Schema({
   description: {
     blocks: [
       {
-        data: {},
+        data: Object,
         depth: Number,
         entityRanges: Array,
         inlineStyleRanges: Array,

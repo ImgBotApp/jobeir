@@ -48,6 +48,7 @@
     "jsonwebtoken": "^7.4.1",
     "limax": "^1.5.0",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "mongoose": "^4.10.2",
     "multer": "^1.3.0",
     "node-mailer": "^0.1.1",

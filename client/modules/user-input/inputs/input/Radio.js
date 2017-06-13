@@ -134,10 +134,12 @@ const RadioListInputContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-basis: 49.5%;
   padding: 15px 20px;
   background:  ${props => (props.checked ? '#f27c5e' : '#f9f8f7')};
   color:  ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.8)')};
+  border-radius: 2px;
   margin-bottom: 1%;
   cursor: pointer;
 
@@ -162,6 +164,7 @@ const RadioListInput = styled.input`
   width: 100%;
   background:  ${props => (props.checked ? '#f27c5e' : '#f9f8f7')};
   color:  ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.8)')};
+  border-radius: 2px;
   margin-bottom: 1%;
   cursor: pointer;
 

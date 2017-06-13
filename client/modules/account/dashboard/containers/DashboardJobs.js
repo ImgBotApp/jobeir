@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import styled from 'styled-components';
 import UserWrapper from '../../../user/containers/UserWrapper';
+import moment from 'moment';
 
 class DashboardJobs extends Component {
   render() {
@@ -15,16 +16,22 @@ class DashboardJobs extends Component {
                 <DashboardJobsHeading>
                   {company.displayName} Jobs
                 </DashboardJobsHeading>
-                <DashboardJobsCreate to={`/create/job/about/${company._id}`}>
-                  Create job
-                </DashboardJobsCreate>
               </DashboardJobsHeader>
 
               {company.jobs.map(job => {
+                console.log(job);
                 return (
                   <DashboardJobsBody>
-                    <p>{job.title}</p>
-                    <p>{job.dateCreated}</p>
+                    <DashboardJobsMain>
+                      <DashboardJobsTitle>{job.title}</DashboardJobsTitle>
+                    </DashboardJobsMain>
+                    <DashboardJobsSub>
+                      <div>created {moment(job.dateCreated).fromNow()}</div>
+                      <div>{job.city}</div>
+                      <div>
+                        {job.salaryMin / 1000}K - {job.salaryMax / 1000}K
+                      </div>
+                    </DashboardJobsSub>
                   </DashboardJobsBody>
                 );
               })}
@@ -53,20 +60,35 @@ const DashboardJobsHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(0,0,0,.15);
-  margin-bttom: 25px;
-  padding-bottom: 20px;
+  border-bottom: 1px solid #f2f2f2;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
 `;
 
 const DashboardJobsHeading = styled.h1`
-  font-size: 24px;
+  font-size: 42px;
 `;
 
-const DashboardJobsBody = styled.p`
+const DashboardJobsBody = styled.div`
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f2f2f2;
+
+  &:last-child {
+    border: none;
+  }
 `;
 
-const DashboardJobsCreate = styled(Link)`
-  text-transform: uppercase;
-  color: ${props => props.theme.colors.red};
-  font-size: 14px;
+const DashboardJobsTitle = styled.h3`
+  font-size: 22px;
+`;
+
+const DashboardJobsMain = styled.div`
+`;
+
+const DashboardJobsSub = styled.div`
+  color: #929292;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 200;
 `;

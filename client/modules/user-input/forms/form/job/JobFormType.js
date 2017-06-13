@@ -94,14 +94,6 @@ class JobFormType extends Component {
           type="yes/no"
           component={Radio}
         />
-        <Field
-          name="home"
-          label="Are employees allowed to work from home?"
-          validate={[required]}
-          options={yesNoOptions}
-          type="yes/no"
-          component={Radio}
-        />
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
           <Field
