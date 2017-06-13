@@ -30,11 +30,27 @@ export const Select = props => {
           showError={showError}
           visited={meta.visited}
         >
-          {props.options.map(option => (
-            <OptionInput disabled={option.disabled} key={option.value}>
-              {option.name}
-            </OptionInput>
-          ))}
+          {props.options.map(option => {
+            /**
+             * We're allowing for objects to be passed in as value to these select
+             * option input fields. To do so, the object must be JSON (a string)
+             * to be stored within the HTML elelent
+             */
+            const val = typeof option.value === 'object'
+              ? JSON.stringify(option.value)
+              : option.value;
+
+            return (
+              <OptionInput
+                disabled={option.disabled}
+                key={val}
+                value={val}
+                data-value={val}
+              >
+                {option.name}
+              </OptionInput>
+            );
+          })}
         </SelectInput>
         <SelectArrow />
       </SelectContainer>

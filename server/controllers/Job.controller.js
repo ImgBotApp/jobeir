@@ -67,7 +67,7 @@ export function createJob(req, res) {
   newJob.company = sanitizeHtml(newJob.company);
   newJob.title = sanitizeHtml(newJob.title.label);
   newJob.employmentType = sanitizeHtml(newJob.employmentType);
-  newJob.locations = sanitizeHtml(newJob.locations);
+  newJob.address = newJob.address;
   newJob.remote = sanitizeHtml(newJob.remote);
   newJob.salaryMin = sanitizeHtml(newJob.salaryMin);
   newJob.salaryMax = sanitizeHtml(newJob.salaryMax);

@@ -4,14 +4,16 @@ import { Link } from 'react-router';
 import styled from 'styled-components';
 import UserWrapper from '../../../user/containers/UserWrapper';
 import DashboardCompany from './DashboardCompany';
-import DashboardJobs from './DashboardJobs';
+import Jobs from '../../jobs/containers/Jobs';
 
 class Dashboard extends Component {
   render() {
     return (
       <DashboardContainer>
-        <DashboardCompany />
-        <DashboardJobs />
+        {
+          // <DashboardCompany />
+        }
+        <Jobs />
       </DashboardContainer>
     );
   }

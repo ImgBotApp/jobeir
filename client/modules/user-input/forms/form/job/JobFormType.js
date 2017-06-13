@@ -19,12 +19,12 @@ import {
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 
 const jobTypes = [
-  { name: 'Full-time', value: 'FULL_TIME' },
-  { name: 'Part-time', value: 'PART_TIME' },
-  { name: 'Contractor', value: 'CONTRACTOR' },
-  { name: 'Freelance', value: 'FREELANCE' },
-  { name: 'Intern', value: 'INTERN' },
-  { name: 'Volunteer', value: 'VOLUNTEER' }
+  { name: 'Full-time', value: 'Full-time' },
+  { name: 'Part-time', value: 'Part-time' },
+  { name: 'Contractor', value: 'Contractor' },
+  { name: 'Freelance', value: 'Freelance' },
+  { name: 'Intern', value: 'Intern' },
+  { name: 'Volunteer', value: 'Volunteer' }
 ];
 
 const yesNoOptions = [
@@ -50,7 +50,7 @@ class JobFormType extends Component {
       activeCompany.locations.map(location => {
         return {
           name: `${location.street}, ${location.city}, ${location.country}`,
-          value: location._id
+          value: location
         };
       })
     );
@@ -80,7 +80,7 @@ class JobFormType extends Component {
           component={Radio}
         />
         <Field
-          name="locations"
+          name="address"
           label="Where will the employee be working?"
           validate={[required]}
           options={this.buildLocationsDropdown()}
