@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import UserWrapper from '../../../user/containers/UserWrapper';
 import JobsFilter from './JobsFilter';
 import JobsHeader from '../components/JobsHeader';
 import JobsList from '../components/JobsList';
@@ -28,7 +27,7 @@ const mapStateToProps = state => ({
   companies: state.companies
 });
 
-export default connect(mapStateToProps)(UserWrapper(Jobs));
+export default connect(mapStateToProps)(Jobs);
 
 const JobsContainer = styled.div`
   width: 1000px;

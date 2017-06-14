@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 import theme from '../theme';
 
@@ -8,12 +9,14 @@ import Header from '../../header/containers/Header';
 
 class Core extends Component {
   render() {
+    const { children, isAuthenticated } = this.props;
+
     return (
       <ThemeProvider theme={theme}>
         <div>
           <AppHead />
-          <Header />
-          {this.props.children}
+          {!isAuthenticated && <Header />}
+          {children}
           <Modal />
         </div>
       </ThemeProvider>
@@ -21,7 +24,11 @@ class Core extends Component {
   }
 }
 
-export default Core;
+const mapStateToProps = state => ({
+  isAuthenticated: state.session.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Core);
 
 injectGlobal`
   /* woff formats */

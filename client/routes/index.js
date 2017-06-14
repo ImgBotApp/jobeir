@@ -25,9 +25,11 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/auth/signup/containers/Signup');
   require('../modules/auth/reset/containers/Reset');
   require('../modules/auth/password/containers/Password');
+  require('../modules/account/shell/containers/Shell');
   require('../modules/create/step/containers/Step');
   require('../modules/create/step/containers/StepComplete');
   require('../modules/account/dashboard/containers/Dashboard');
+  require('../modules/account/jobs/containers/Jobs');
   require('../modules/not-found/components/NotFound');
 }
 
@@ -104,16 +106,40 @@ const routes = (
       }}
     />
     <Route
-      path="/dashboard"
+      path="/account"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(
             null,
-            require('../modules/account/dashboard/containers/Dashboard').default
+            require('../modules/account/shell/containers/Shell').default
           );
         });
       }}
-    />
+    >
+      <Route
+        path="/account/dashboard"
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(
+              null,
+              require('../modules/account/dashboard/containers/Dashboard')
+                .default
+            );
+          });
+        }}
+      />
+      <Route
+        path="/account/jobs"
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(
+              null,
+              require('../modules/account/jobs/containers/Jobs').default
+            );
+          });
+        }}
+      />
+    </Route>
     <Route
       path="*"
       getComponent={(nextState, cb) => {

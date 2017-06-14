@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import styled from 'styled-components';
-import UserWrapper from '../../../user/containers/UserWrapper';
 import DashboardCompany from './DashboardCompany';
 import Jobs from '../../jobs/containers/Jobs';
 
@@ -25,7 +24,7 @@ const mapStateToProps = state => ({
   jobs: state.jobs
 });
 
-export default connect(mapStateToProps)(UserWrapper(Dashboard));
+export default connect(mapStateToProps)(Dashboard);
 
 const DashboardContainer = styled.div`
   max-width: 1000px;
