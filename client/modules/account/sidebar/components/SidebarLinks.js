@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Link from 'react-router/lib/Link';
 import { logout } from '../../../auth/ducks';
+import docCookies from '../../../../utils/cookies';
 
 class SidebarLinks extends Component {
   constructor(props) {

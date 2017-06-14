@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import ShellHeader from './ShellHeader';
 import Sidebar from '../../sidebar/containers/Sidebar';
 import UserWrapper from '../../../user/containers/UserWrapper';
 
@@ -9,9 +10,12 @@ class Shell extends Component {
     return (
       <ShellContainer>
         <Sidebar />
-        <ShellDynamic>
-          {this.props.children}
-        </ShellDynamic>
+        <ShellContent>
+          <ShellHeader />
+          <ShellDynamic>
+            {this.props.children}
+          </ShellDynamic>
+        </ShellContent>
       </ShellContainer>
     );
   }
@@ -30,6 +34,9 @@ const ShellContainer = styled.div`
   height: 100vh;
 `;
 
+const ShellContent = styled.div`
+  padding: 40px 50px;
+`;
+
 const ShellDynamic = styled.div`
-  padding: 0 50px;
 `;

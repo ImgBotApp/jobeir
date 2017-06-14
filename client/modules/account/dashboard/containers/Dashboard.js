@@ -9,10 +9,7 @@ class Dashboard extends Component {
   render() {
     return (
       <DashboardContainer>
-        {
-          // <DashboardCompany />
-        }
-        <Jobs />
+        Main Dashboard
       </DashboardContainer>
     );
   }
@@ -28,5 +25,5 @@ export default connect(mapStateToProps)(Dashboard);
 
 const DashboardContainer = styled.div`
   max-width: 1000px;
-  margin: 50px auto;
+  margin: 40px auto;
 `;
