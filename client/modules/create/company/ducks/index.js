@@ -21,16 +21,18 @@ export const initialState = {
   isChecking: false,
   isUploading: false,
   successfulUpload: false,
+  activeCompany: {},
   created: [],
-  joined: [],
   errors: []
 };
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case GET_USER_SUCCESS:
+      console.log(action.payload.data.user.companies);
       return Object.assign({}, state, {
-        ...action.payload.data.user.companies
+        created: action.payload.data.user.companies,
+        activeCompany: action.payload.data.user.activeCompany
       });
     case CREATE_COMPANY_REQUEST:
       return Object.assign({}, state, {

@@ -7,7 +7,7 @@ export const Redirect = props => {
   if (typeof document !== 'undefined') {
     const redirectTo = docCookies.getItem('redirectTo');
     docCookies.removeItem('redirectTo');
-    browserHistory.push(redirectTo || '/dashboard');
+    browserHistory.push(redirectTo || '/account/dashboard');
   }
 
   return (

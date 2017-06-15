@@ -17,7 +17,7 @@ render(
   <AppContainer>
     <App store={store} />
   </AppContainer>,
-  mountApp,
+  mountApp
 );
 
 // For hot reloading of react components
@@ -30,7 +30,7 @@ if (module.hot) {
       <AppContainer>
         <NextApp store={store} />
       </AppContainer>,
-      mountApp,
+      mountApp
     );
   });
 }

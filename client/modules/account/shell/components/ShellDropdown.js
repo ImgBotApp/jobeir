@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import styled from 'styled-components';
+import { logout } from '../../../auth/ducks';
+import docCookies from '../../../../utils/cookies';
 import moment from 'moment';
 
 class ShellDropdown extends Component {
@@ -11,10 +12,11 @@ class ShellDropdown extends Component {
     this.state = {
       showDropdown: false
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
 
   componentDidMount() {
+    this._isMounted = true;
     document.addEventListener(
       'click',
       this.handleClickOutside.bind(this),
@@ -23,29 +25,43 @@ class ShellDropdown extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside.bind(this));
+    this._isMounted = false;
+    document.removeEventListener(
+      'click',
+      this.handleClickOutside.bind(this),
+      true
+    );
   }
 
-  handleClick() {
-    this.setState({ showDropdown: !this.state.show });
+  /**
+   * handleLogoutClick()
+   * Will dispatch to the server to logout the user and at the same time
+   * we will remove the JWT session cookie to unauthenticate the user.
+   */
+  handleLogoutClick() {
+    this.props.dispatch(logout());
+    docCookies.removeItem('SID');
   }
 
   handleClickOutside(event) {
-    const domNode = ReactDOM.findDOMNode(this);
+    if (this._isMounted) {
+      const domNode = ReactDOM.findDOMNode(this);
 
-    if (!domNode || !domNode.contains(event.target)) {
-      this.setState({
-        showDropdown: false
-      });
-    } else {
-      this.setState({
-        showDropdown: !this.state.showDropdown
-      });
+      if (!domNode || !domNode.contains(event.target)) {
+        this.setState({
+          showDropdown: false
+        });
+      } else {
+        this.setState({
+          showDropdown: !this.state.showDropdown
+        });
+      }
     }
   }
 
   render() {
-    const { show, user } = this.props;
+    const { user } = this.props;
+
     return (
       <ShellHeaderDropdown>
         <ShellDropdownContainer showDropdown={this.state.showDropdown}>
@@ -63,8 +79,8 @@ class ShellDropdown extends Component {
               Settings
             </ShellDropdownListItem>
             <ShellDropdownListItemHr />
-            <ShellDropdownListItem>
-              <Link to="account/dashboard/"> Log out</Link>
+            <ShellDropdownListItem onClick={this.handleLogoutClick}>
+              Log out
             </ShellDropdownListItem>
           </ShellDropdownList>
         </ShellDropdownContainer>
@@ -86,7 +102,8 @@ const ShellHeaderDropdown = styled.nav`
   height: 36px;
   width: 36px;
   border-radius: 50%;
-  background: ${props => props.theme.colors.pink}
+  background: ${props => props.theme.colors.pink};
+  cursor: pointer;
 `;
 
 const ShellDropdownContainer = styled.div`

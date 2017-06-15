@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { Link } from 'react-router';
 
 class Company extends Component {
   render() {
-    return <div />;
+    return (
+      <div>
+        <Link to="/create/company/about">Create Company</Link>
+      </div>
+    );
   }
 }
 

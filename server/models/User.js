@@ -41,20 +41,28 @@ const User = new Schema({
     type: Boolean,
     default: false
   },
-  companies: {
-    created: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Company'
-      }
-    ],
-    joined: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Company'
-      }
-    ]
+  activeCompany: {
+    _id: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Company'
+    },
+    name: {
+      type: String,
+      trim: true
+    }
   },
+  companies: [
+    {
+      _id: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Company'
+      },
+      name: {
+        type: String,
+        trim: true
+      }
+    }
+  ],
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });

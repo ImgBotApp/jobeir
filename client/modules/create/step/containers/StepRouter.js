@@ -24,7 +24,7 @@ class StepRouter extends Component {
       browserHistory.push('/create/company/onboarding');
     }
 
-    if (!user.companies.created && !user.companies.created.length) {
+    if (!user.companies && !user.companies.length) {
       browserHistory.push('/create/company/about');
     }
   }

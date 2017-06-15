@@ -92,7 +92,15 @@ export function createCompany(req, res) {
   User.findOne({ _id: req.user._doc._id }, function(err, user) {
     if (err) throw err;
 
-    user.companies.created.push(newCompany._id);
+    user.companies.push({
+      _id: newCompany._id,
+      name: newCompany.name
+    });
+
+    user.activeCompany = {
+      _id: newCompany._id,
+      name: newCompany.name
+    };
 
     user.save(err => {
       if (err) {

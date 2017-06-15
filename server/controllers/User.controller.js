@@ -31,14 +31,7 @@ export function getUsers(req, res) {
  */
 export function getUser(req, res) {
   User.findOne({ _id: req.params.id })
-    .populate({
-      path: 'companies.created',
-      populate: {
-        path: 'jobs',
-        model: 'Job'
-      }
-    })
-    .populate('companies.joined')
+    .populate('companies.created')
     .exec((err, user) => {
       if (err) {
         res.status(500).send(err);
