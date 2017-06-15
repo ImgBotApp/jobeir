@@ -42,7 +42,6 @@ class DashboardJobs extends Component {
               </DashboardJobsFilter>
 
               {company.jobs.map(job => {
-                console.log(job);
                 return (
                   <DashboardJobsBody
                     onClick={() => this.handleJobClick(job._id)}

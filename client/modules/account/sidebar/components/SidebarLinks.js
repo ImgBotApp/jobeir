@@ -33,13 +33,10 @@ class SidebarLinks extends Component {
         <NavLink activeClassName="route-active" to="/account/jobs">
           Jobs
         </NavLink>
-        <NavLink activeClassName="route-active" to="/account/applicants">
-          Applicants
-        </NavLink>
         <NavLink activeClassName="route-active" to="/account/people">
           People
         </NavLink>
-        <NavLink onClick={this.handleLogoutClick}>Log Out</NavLink>
+        <NavLink onClick={this.handleLogoutClick}>Log out</NavLink>
       </SidebarLinksContainer>
     );
   }
@@ -60,7 +57,7 @@ const NavLink = styled(Link)`
   padding: 0;
   font-size: 16px;
   text-decoration: none;
-  height: 34px;
+  height: 40px;
   cursor: pointer;
   color: ${props => props.theme.colors.text};
 

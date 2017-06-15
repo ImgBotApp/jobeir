@@ -18,7 +18,7 @@ const Job = new Schema({
   },
   state: {
     type: String,
-    default: 'review'
+    default: 'pending'
   },
   description: {
     blocks: [

@@ -50,11 +50,11 @@ class PrimaryNavLinks extends Component {
     return isAuthenticated
       ? <NavLinkContainer>
           <NavLink to="/account/dashboard">Dashboard</NavLink>
-          <NavLink onClick={this.handleLogoutClick}>Log Out</NavLink>
+          <NavLink onClick={this.handleLogoutClick}>Log out</NavLink>
         </NavLinkContainer>
       : <NavLinkContainer>
           <NavLink to="/create/job/about">Post Job</NavLink>
-          <NavLink onClick={this.handleSignUpClick}>Sign Up</NavLink>
+          <NavLink onClick={this.handleSignUpClick}>Sign up</NavLink>
           <NavLink to="/login">Log In</NavLink>
         </NavLinkContainer>;
   }

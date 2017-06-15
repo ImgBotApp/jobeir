@@ -30,6 +30,8 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/create/step/containers/StepComplete');
   require('../modules/account/dashboard/containers/Dashboard');
   require('../modules/account/jobs/containers/Jobs');
+  require('../modules/account/company/containers/Company');
+  require('../modules/account/people/containers/People');
   require('../modules/not-found/components/NotFound');
 }
 
@@ -118,6 +120,7 @@ const routes = (
     >
       <Route
         path="/account/dashboard"
+        name="Dashboard"
         getComponent={(nextState, cb) => {
           require.ensure([], require => {
             cb(
@@ -129,12 +132,37 @@ const routes = (
         }}
       />
       <Route
+        path="/account/company"
+        name="Company"
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(
+              null,
+              require('../modules/account/company/containers/Company').default
+            );
+          });
+        }}
+      />
+      <Route
         path="/account/jobs"
+        name="Jobs"
         getComponent={(nextState, cb) => {
           require.ensure([], require => {
             cb(
               null,
               require('../modules/account/jobs/containers/Jobs').default
+            );
+          });
+        }}
+      />
+      <Route
+        path="/account/people"
+        name="People"
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(
+              null,
+              require('../modules/account/people/containers/People').default
             );
           });
         }}

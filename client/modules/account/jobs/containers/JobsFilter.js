@@ -6,7 +6,7 @@ class JobsFilter extends Component {
     super(props);
     this.state = {
       activeState: 'All Jobs',
-      states: ['All Jobs', 'Review', 'Active', 'Paused', 'Deleted']
+      states: ['All Jobs', 'Pending', 'Active', 'Paused', 'Deleted']
     };
   }
 
@@ -18,7 +18,7 @@ class JobsFilter extends Component {
         {states.map(state => {
           const active = state === activeState;
           return (
-            <JobsFilterItem active={active}>
+            <JobsFilterItem active={active} key={state}>
               {state}
             </JobsFilterItem>
           );

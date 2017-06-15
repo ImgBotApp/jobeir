@@ -12,7 +12,9 @@ class Jobs extends Component {
         {this.props.companies.created.map(company => {
           return (
             <JobsContainer key={company._id}>
-              <JobsHeader name={company.displayName} id={company._id} />
+              {
+                // <JobsHeader name={company.displayName} id={company._id} />
+              }
               <JobsFilter />
               <JobsList jobs={company.jobs} />
             </JobsContainer>
@@ -30,6 +32,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Jobs);
 
 const JobsContainer = styled.div`
-  width: 1000px;
+  width: 100%;
   margin: 0 auto;
 `;

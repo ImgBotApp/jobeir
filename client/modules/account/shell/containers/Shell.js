@@ -7,13 +7,15 @@ import UserWrapper from '../../../user/containers/UserWrapper';
 
 class Shell extends Component {
   render() {
+    const { children } = this.props;
+
     return (
       <ShellContainer>
         <Sidebar />
         <ShellContent>
-          <ShellHeader />
+          <ShellHeader headerText={children.props.route.name} />
           <ShellDynamic>
-            {this.props.children}
+            {children}
           </ShellDynamic>
         </ShellContent>
       </ShellContainer>
@@ -35,6 +37,7 @@ const ShellContainer = styled.div`
 `;
 
 const ShellContent = styled.div`
+  width: 100%;
   padding: 40px 50px;
 `;
 
