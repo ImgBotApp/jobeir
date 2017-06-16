@@ -18,7 +18,7 @@ const JobsListItem = ({ job }) => {
         </div>
         <JobsDot>·</JobsDot>
         <div>
-          {job.salaryMin / 1000}K - {job.salaryMax / 1000}K
+          ${job.salaryMin / 1000}K - ${job.salaryMax / 1000}K
         </div>
       </JobsSub>
     </div>

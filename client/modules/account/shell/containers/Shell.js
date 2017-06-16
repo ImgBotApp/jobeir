@@ -5,6 +5,24 @@ import ShellHeader from './ShellHeader';
 import Sidebar from '../../sidebar/containers/Sidebar';
 import UserWrapper from '../../../user/containers/UserWrapper';
 
+/**
+ * <Shell />
+ * The highest level component for the authenticated account section.
+ * Shell wraps the sidebar navigation along with all the different
+ * account sections.
+ *
+ *Browser view on desktop
+ *_______________________________
+ *     |
+ *  S  |     <ShellHeader />
+ *  I  |_________________________
+ *  D  |  
+ *  E  |     <ShellDynamic>
+ *  B  |      {children}
+ *  A  |     </ShellDynamic>
+ *  R  |
+ *     |
+ */
 class Shell extends Component {
   render() {
     const { children } = this.props;

@@ -53,14 +53,8 @@ const User = new Schema({
   },
   companies: [
     {
-      _id: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Company'
-      },
-      name: {
-        type: String,
-        trim: true
-      }
+      type: mongoose.Schema.ObjectId,
+      ref: 'Company'
     }
   ],
   resetPasswordToken: String,

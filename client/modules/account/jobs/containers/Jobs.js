@@ -2,25 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router';
+import { getJobs } from '../../../create/job/ducks/';
 import JobsFilter from './JobsFilter';
 import JobsHeader from '../components/JobsHeader';
 import JobsList from '../components/JobsList';
 
 class Jobs extends Component {
+  componentDidMount() {
+    const { companies, dispatch } = this.props;
+    dispatch(getJobs(companies.activeCompany._id));
+  }
+
   render() {
     const { companies, jobs } = this.props;
     return (
       <div>
-        {jobs.created.length > 0
+        {jobs.postings.length > 0
           ? <div>
-              {jobs.map(company => {
-                return (
-                  <JobsContainer key={company._id}>
-                    <JobsFilter />
-                    <JobsList jobs={company.jobs} />
-                  </JobsContainer>
-                );
-              })}
+              <JobsContainer>
+                <JobsFilter />
+                <JobsList jobs={jobs.postings} />
+              </JobsContainer>
             </div>
           : <Link to={`/create/job/about/${companies.activeCompany._id}`}>
               Create a job

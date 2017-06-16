@@ -16,6 +16,13 @@ class ShellDropdown extends Component {
   }
 
   componentDidMount() {
+    /**
+     * this._isMounted is required because setState is asynchronous and cannot
+     * be called on an unmounted component. That is why we're internally
+     * keeping track of isMounted. If removed there will be a lot of invariant
+     * errors in the console.
+     * https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
+     */
     this._isMounted = true;
     document.addEventListener(
       'click',

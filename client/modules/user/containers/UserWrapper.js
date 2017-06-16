@@ -4,6 +4,12 @@ import { getUser } from '../ducks';
 import AuthLoading from '../../auth/components/AuthLoading';
 import AuthWrapper from '../../auth/containers/AuthWrapper';
 
+/**
+ * UserWrapper()
+ * Higher Order Component that takes care of call getUser globally
+ * throughout the application. UserWrapper also has wraps AuthWrapper
+ * which takes care of authentication throughout the application.
+ */
 export const UserWrapper = WrappedComponent => {
   class UserComponent extends Component {
     state = { count: 1 };

@@ -31,7 +31,7 @@ export function getUsers(req, res) {
  */
 export function getUser(req, res) {
   User.findOne({ _id: req.params.id })
-    .populate('companies.created')
+    .populate('companies')
     .exec((err, user) => {
       if (err) {
         res.status(500).send(err);

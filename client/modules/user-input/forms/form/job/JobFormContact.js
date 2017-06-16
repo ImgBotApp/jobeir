@@ -55,10 +55,10 @@ class JobFormComponesation extends Component {
     const { dispatch, params: { companyId } } = this.props;
     // adding the company to the data;
     const address = JSON.parse(data.address);
-    const body = { ...data, address, company: companyId };
+    const body = { ...data, address };
     const redirectPath = `/complete/job/${companyId}`;
 
-    dispatch(createJob(body, redirectPath));
+    dispatch(createJob(companyId, body, redirectPath));
   }
 
   render() {

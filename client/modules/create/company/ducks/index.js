@@ -29,7 +29,6 @@ export const initialState = {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case GET_USER_SUCCESS:
-      console.log(action.payload.data.user.companies);
       return Object.assign({}, state, {
         created: action.payload.data.user.companies,
         activeCompany: action.payload.data.user.activeCompany

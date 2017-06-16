@@ -9,7 +9,7 @@ const JobsList = ({ jobs }) => {
       {jobs.map(job => {
         return (
           <JobsBody
-            onClick={() => browserHistory.push(`dashboard/jobs/${id}`)}
+            onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
             key={job._id}
           >
             <JostListItem job={job} />

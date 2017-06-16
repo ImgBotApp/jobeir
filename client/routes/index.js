@@ -30,6 +30,7 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/create/step/containers/StepComplete');
   require('../modules/account/dashboard/containers/Dashboard');
   require('../modules/account/jobs/containers/Jobs');
+  require('../modules/account/jobs/posting/containers/Posting');
   require('../modules/account/company/containers/Company');
   require('../modules/account/people/containers/People');
   require('../modules/not-found/components/NotFound');
@@ -151,6 +152,19 @@ const routes = (
             cb(
               null,
               require('../modules/account/jobs/containers/Jobs').default
+            );
+          });
+        }}
+      />
+      <Route
+        path="/account/jobs/:jobId"
+        name="Job"
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(
+              null,
+              require('../modules/account/jobs/posting/containers/Posting')
+                .default
             );
           });
         }}

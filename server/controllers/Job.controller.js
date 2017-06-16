@@ -12,12 +12,14 @@ import sanitizeHtml from 'sanitize-html';
  */
 export function getJobs(req, res) {
   // currently just filtering GET jobs just by date added...
-  Job.find().sort('-dateAdded').exec((err, jobs) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ data: { jobs: jobs }, errors: [] });
-  });
+  Job.find({ company: req.params.companyId })
+    .sort('-dateAdded')
+    .exec((err, jobs) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      res.json({ data: { postings: jobs }, errors: [] });
+    });
 }
 
 /**
@@ -27,25 +29,27 @@ export function getJobs(req, res) {
  * @returns void
  */
 export function getJob(req, res) {
-  Job.findOne({ _id: req.params.id }).exec((err, job) => {
-    if (err) {
-      res.status(500).send(err);
-    }
+  Job.findOne({ _id: req.params.jobId })
+    .populate('company')
+    .exec((err, job) => {
+      if (err) {
+        res.status(500).send(err);
+      }
 
-    if (!job) {
-      res.status(204).send({
-        data: {},
-        errors: [
-          {
-            error: 'UNABLE_TO_FIND_JOB',
-            message: 'Unable to find job'
-          }
-        ]
-      });
-    } else {
-      res.json({ job });
-    }
-  });
+      if (!job) {
+        res.status(204).send({
+          data: {},
+          errors: [
+            {
+              error: 'UNABLE_TO_FIND_JOB',
+              message: 'Unable to find job'
+            }
+          ]
+        });
+      } else {
+        res.json({ data: { posting: job }, errors: [] });
+      }
+    });
 }
 
 /**
@@ -64,7 +68,7 @@ export function createJob(req, res) {
   newJob.receivingEmails = newJob.receivingEmails;
 
   // Let's sanitize inputs
-  newJob.company = sanitizeHtml(newJob.company);
+  newJob.company = sanitizeHtml(req.params.companyId);
   newJob.title = sanitizeHtml(newJob.title.label);
   newJob.employmentType = sanitizeHtml(newJob.employmentType);
   newJob.address = newJob.address;
