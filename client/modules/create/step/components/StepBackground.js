@@ -3,15 +3,16 @@ import styled from 'styled-components';
 
 const StepBackground = props => {
   return (
-    <StepBackgroundContainer>
+    <div>
       <StepBackgroundLeft />
       <StepBackgroundRight />
-    </StepBackgroundContainer>
+    </div>
   );
 };
 
+// Keep these here as a todo task
 // <BlueBall>
-//   <RedBall />
+// <RedBall />
 // </BlueBall>
 // <BlueBall />
 // <BlueBall />
@@ -19,10 +20,6 @@ const StepBackground = props => {
 // <BeigBall />
 
 export default StepBackground;
-
-const StepBackgroundContainer = styled.div`
-
-`;
 
 const StepBackgroundLeft = styled.div`
   position: fixed;

@@ -1,9 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// The steps required (in order) for each creation option
 const createJob = ['about', 'type', 'compensation', 'contact'];
 const createCompany = ['about', 'contact', 'perks', 'location', 'upload'];
 
+/**
+ * getFormStepDetails()
+ * Based off the step param from react router we keep track of how
+ * far the user has gotten through the application. This is required to
+ * build the step progress indicator.
+ */
 const getFormStepDetails = params => {
   switch (params.create) {
     case 'job':
@@ -27,15 +34,13 @@ const StepProgress = props => {
   return (
     <StepProgressContainer>
       <StepProgressNodeContainer>
-        {formStep.steps.map((node, index) => {
-          return (
-            <StepProgressNode
-              key={node}
-              fillCircle={index <= formStep.index}
-              fillLine={index < formStep.index}
-            />
-          );
-        })}
+        {formStep.steps.map((node, index) => (
+          <StepProgressNode
+            key={node}
+            fillCircle={index <= formStep.index}
+            fillLine={index < formStep.index}
+          />
+        ))}
       </StepProgressNodeContainer>
     </StepProgressContainer>
   );

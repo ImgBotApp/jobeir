@@ -1,5 +1,5 @@
 /**
- * theme
+ * theme {}
  * This object stores the general theme for all
  * styled-components nested within Core
  */

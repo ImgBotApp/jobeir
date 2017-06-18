@@ -1,9 +1,9 @@
-import { HIDE_MODAL, SHOW_MODAL, hideModal, showModal } from './';
+import { HIDE_MODAL, SHOW_MODAL, hideModal, showModal } from '../';
 
 const action = {
   type: SHOW_MODAL,
   modalType: 'EXAMPLE_MODAL',
-  modalProps: 'dispatch',
+  modalProps: 'dispatch'
 };
 
 describe('Modal', () => {

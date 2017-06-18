@@ -5,10 +5,9 @@ import { updateUser } from '../../../user/ducks';
 
 const agreeToValues = props => {
   const { dispatch, user } = props;
+  const data = { agreedToValues: true };
 
-  dispatch(
-    updateUser(user.id, { agreedToValues: true }, '/create/company/about')
-  );
+  dispatch(updateUser(user.id, data, '/create/company/about'));
 };
 
 const CompanyOnboarding = props => {
