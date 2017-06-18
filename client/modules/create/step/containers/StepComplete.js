@@ -10,7 +10,9 @@ const StepComplete = props => {
     <StepCompleteContainer>
       Congratulations {params.create}
       <div>
-        <Link to={`/create/job/about/${params.companyId}`}>Create a job</Link>
+        <Link to={`/create/job/about/${params.companyId}`}>
+          Create another job
+        </Link>
       </div>
       <div>
         <Link to="/account/dashboard/">Dashboard</Link>

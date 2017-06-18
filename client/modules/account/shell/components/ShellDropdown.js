@@ -13,6 +13,7 @@ class ShellDropdown extends Component {
       showDropdown: false
     };
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentDidMount() {
@@ -24,20 +25,12 @@ class ShellDropdown extends Component {
      * https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
      */
     this._isMounted = true;
-    document.addEventListener(
-      'click',
-      this.handleClickOutside.bind(this),
-      true
-    );
+    document.addEventListener('click', this.handleClickOutside, true);
   }
 
   componentWillUnmount() {
     this._isMounted = false;
-    document.removeEventListener(
-      'click',
-      this.handleClickOutside.bind(this),
-      true
-    );
+    document.removeEventListener('click', this.handleClickOutside, true);
   }
 
   /**

@@ -18,7 +18,7 @@ import { createJob } from '../../../../create/job/ducks';
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 const parsePercentage = value => value / 100;
 const formatPercentage = value => value * 100 + '%';
-const equityOptions = [
+const yesNoOptions = [
   { text: 'Yes', value: 'Yes' },
   { text: 'No', value: 'No' }
 ];
@@ -67,7 +67,7 @@ class JobFormComponesation extends Component {
           name="offerEquity"
           label="Do you offer equity?"
           validate={[required]}
-          options={equityOptions}
+          options={yesNoOptions}
           type="yes/no"
           component={Radio}
         />

@@ -52,19 +52,16 @@ export function getUser(req, res) {
 export function updateUser(req, res) {
   const values = req.body;
 
-  User.findOneAndUpdate(
-    { _id: req.params.id },
-    { ...values },
-    { new: true },
-    function(err, user) {
-      if (err) return res.send(500, { error: err });
+  User.findOneAndUpdate({ _id: req.params.id }, { ...values }, { new: true })
+    .populate('companies')
+    .exec((err, user) => {
+      if (err) return res.status(500).send({ error: err });
 
-      return res.status(200).send({
+      res.status(200).send({
         data: { user },
         errors: []
       });
-    }
-  );
+    });
 }
 
 /**

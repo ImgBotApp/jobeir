@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import { getJob } from '../../../../create/job/ducks/';
+import JobEditForm from '../../../../user-input/forms/form/JobEditForm';
 
 class Posting extends Component {
   componentDidMount() {
@@ -11,9 +12,15 @@ class Posting extends Component {
   }
 
   render() {
+    const { params, jobs } = this.props;
+    const activePosting = jobs.postings.find(
+      posting => posting._id === params.jobId
+    );
+
     return (
       <PostingContainer>
         Posting
+        <JobEditForm initialValues={activePosting} />
       </PostingContainer>
     );
   }
@@ -27,6 +34,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Posting);
 
 const PostingContainer = styled.div`
-  width: 100%;
+  width: 480px;
   margin: 0 auto;
 `;

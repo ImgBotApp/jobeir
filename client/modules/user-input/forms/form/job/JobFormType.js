@@ -5,16 +5,7 @@ import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { required } from '../../../validation';
-import {
-  BackButton,
-  Radio,
-  Currency,
-  Phone,
-  Select,
-  SubmitButton,
-  Textarea,
-  Text
-} from '../../../inputs/input';
+import { BackButton, Radio, Select, SubmitButton } from '../../../inputs/input';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 

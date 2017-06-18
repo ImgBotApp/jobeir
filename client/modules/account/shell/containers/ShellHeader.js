@@ -1,33 +1,25 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
+import ShellHeaderTitle from '../components/ShellHeaderTitle';
 import ShellDropdown from '../components/ShellDropdown';
+import ShellHeaderNav from './ShellHeaderNav';
 
 /**
  * <ShellHeader />
  * Takes care of the dropdown on the top right of the screen
  * and dispalys the header text based on the Route name
  */
-class ShellHeader extends Component {
-  render() {
-    return (
-      <ShellHeaderContainer>
-        <ShellHeaderHeader>
-          {this.props.headerText}
-        </ShellHeaderHeader>
-        <ShellDropdown />
-      </ShellHeaderContainer>
-    );
-  }
-}
+const ShellHeader = ({ headerText, params }) => (
+  <ShellHeaderContainer>
+    <ShellHeaderTitle headerText={headerText} params={params} />
+    <ShellRightSide>
+      <ShellHeaderNav />
+      <ShellDropdown />
+    </ShellRightSide>
+  </ShellHeaderContainer>
+);
 
-const mapStateToProps = state => ({
-  user: state.session.user,
-  companies: state.companies,
-  jobs: state.jobs
-});
-
-export default connect(mapStateToProps)(ShellHeader);
+export default ShellHeader;
 
 const ShellHeaderContainer = styled.div`
   display: flex;
@@ -38,4 +30,9 @@ const ShellHeaderContainer = styled.div`
 const ShellHeaderHeader = styled.header`
   font-weight: 800;
   font-size: 30px;
+`;
+
+const ShellRightSide = styled.div`
+  display: flex;
+  align-items: flex-start;
 `;

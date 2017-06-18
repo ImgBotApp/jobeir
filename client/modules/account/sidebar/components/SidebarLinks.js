@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import Link from 'react-router/lib/Link';
+import { Link } from 'react-router';
 import { logout } from '../../../auth/ducks';
 import docCookies from '../../../../utils/cookies';
+import SidebarLinksDropdown from './SidebarLinksDropdown';
 
 class SidebarLinks extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class SidebarLinks extends Component {
   render() {
     return (
       <SidebarLinksContainer>
+        <SidebarLinksDropdown />
         <NavLink activeClassName="route-active" to="/account/dashboard">
           Dashboard
         </NavLink>
@@ -43,7 +45,8 @@ class SidebarLinks extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.session.auth.isAuthenticated
+  isAuthenticated: state.session.auth.isAuthenticated,
+  companies: state.companies
 });
 
 export default connect(mapStateToProps)(SidebarLinks);
@@ -60,6 +63,7 @@ const NavLink = styled(Link)`
   height: 40px;
   cursor: pointer;
   color: ${props => props.theme.colors.text};
+  margin-bottom: ${props => (props.company ? '15px' : '0px')};
 
   &:last-child {
     padding-right: 13px;
@@ -68,5 +72,12 @@ const NavLink = styled(Link)`
   &.route-active {
     color: ${props => props.theme.colors.red};
     font-weight: 600;
+  }
+
+  svg {
+    padding: 3px;
+    position: relative;
+    top: -1px;
+    fill: rgba(0,0,0,0.8);
   }
 `;

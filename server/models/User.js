@@ -42,11 +42,11 @@ const User = new Schema({
     default: false
   },
   activeCompany: {
-    _id: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Company'
-    },
     name: {
+      type: String,
+      trim: true
+    },
+    displayName: {
       type: String,
       trim: true
     }

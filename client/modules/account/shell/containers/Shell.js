@@ -25,13 +25,13 @@ import UserWrapper from '../../../user/containers/UserWrapper';
  */
 class Shell extends Component {
   render() {
-    const { children } = this.props;
+    const { children, params } = this.props;
 
     return (
       <ShellContainer>
         <Sidebar />
         <ShellContent>
-          <ShellHeader headerText={children.props.route.name} />
+          <ShellHeader headerText={children.props.route.name} params={params} />
           <ShellDynamic>
             {children}
           </ShellDynamic>

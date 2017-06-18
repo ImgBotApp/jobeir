@@ -8,6 +8,10 @@ export const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 
+export const SWITCH_ACTIVE_COMPANY_REQUEST = 'SWITCH_ACTIVE_COMPANY_REQUEST';
+export const SWITCH_ACTIVE_COMPANY_SUCCESS = 'SWITCH_ACTIVE_COMPANY_SUCCESS';
+export const SWITCH_ACTIVE_COMPANY_FAILURE = 'SWITCH_ACTIVE_COMPANY_FAILURE';
+
 import { AUTH_SUCCESS } from '../../auth/ducks';
 
 import { CREATE_COMPANY_SUCCESS } from '../../create/company/ducks';
@@ -85,6 +89,11 @@ export const getUser = userId => ({
 export const updateUser = (userId, data, redirectPathname) => ({
   type: UPDATE_USER_REQUEST,
   payload: { userId, data, redirectPathname }
+});
+
+export const switchCompany = (data, userId) => ({
+  type: SWITCH_ACTIVE_COMPANY_REQUEST,
+  payload: { data, userId }
 });
 
 export const redirectTo = redirectPathname =>
