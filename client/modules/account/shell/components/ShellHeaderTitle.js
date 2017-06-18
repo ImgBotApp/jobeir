@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import ShellHeaderTitleJob from './ShellHeaderTitleJob';
 
 /**
@@ -12,8 +13,14 @@ const ShellHeaderTitle = ({ headerText, params }) => {
     case 'Job':
       return <ShellHeaderTitleJob params={params} />;
     default:
-      return <div>{headerText}</div>;
+      return (
+        <ShellHeaderTitleContainer>{headerText}</ShellHeaderTitleContainer>
+      );
   }
 };
 
 export default ShellHeaderTitle;
+
+const ShellHeaderTitleContainer = styled.h1`
+  font-size: 36px;
+`;

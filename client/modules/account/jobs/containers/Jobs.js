@@ -41,6 +41,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Jobs);
 
 const JobsContainer = styled.div`
-  width: 100%;
-  margin: 0 auto;
+  max-width: 1040px;
 `;

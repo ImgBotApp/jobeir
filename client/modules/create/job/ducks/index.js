@@ -10,6 +10,8 @@ export const GET_JOB_REQUEST = 'GET_JOB_REQUEST';
 export const GET_JOB_SUCCESS = 'GET_JOB_SUCCESS';
 export const GET_JOB_FAILURE = 'GET_JOB_FAILURE';
 
+import { SWITCH_ACTIVE_COMPANY_SUCCESS } from '../../../user/ducks/';
+
 export const initialState = {
   isLoading: false,
   isFetching: false,
@@ -81,6 +83,8 @@ export default (state = initialState, action) => {
         isFetching: false,
         errors: action.errors.errors
       });
+    case SWITCH_ACTIVE_COMPANY_SUCCESS:
+      return initialState;
     default:
       return state;
   }

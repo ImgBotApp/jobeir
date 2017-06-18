@@ -23,15 +23,19 @@ const Company = new Schema({
   ],
   locations: [
     {
-      city: String,
-      country: String,
-      postalCode: String,
-      street: String,
-      province: String,
+      address: {
+        type: String,
+        required: true
+      },
       hq: {
         type: Boolean,
         default: true
-      }
+      },
+      type: {
+        type: String,
+        default: 'Point'
+      },
+      coordinates: [{ type: Number, required: true }]
     }
   ],
   logo: String,

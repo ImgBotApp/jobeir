@@ -78,7 +78,7 @@ class SidebarLinksDropdown extends Component {
                   <DropdownNavDropdownListHr />
                 </div>
               ))}
-            <div>
+            <div onClick={() => browserHistory.push('/create/company/about')}>
               <DropdownNavDropdownListItem>
                 + Create new
               </DropdownNavDropdownListItem>
@@ -133,7 +133,7 @@ const DropdownNavButton = styled(Link)`
 const DropdownNavDropdown = styled.div`
   position: absolute;
   background-color: #fff;
-  min-width: 190px;
+  min-width: 220px;
   border-radius: 3px;
   box-shadow: 0 0 0 1px rgba(99,114,130,0.16), 0 8px 16px rgba(27,39,51,0.08);
   transition: all 280ms ease;
@@ -148,7 +148,7 @@ const DropdownNavDropdownList = styled.ul`
 
 const DropdownNavDropdownListItem = styled.li`
   list-style: none;
-  padding: 11px 20px 9px;
+  padding: 12px 20px 10px;
 
   &:hover {
     background: #f7f9fa;

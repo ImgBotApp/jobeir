@@ -15,7 +15,7 @@ const JobsListItem = ({ job }) => {
         <JobsState>{job.state}</JobsState>
       </JobsMain>
       <JobsSub>
-        <div>created {moment(job.dateCreated).fromNow()}</div>
+        <div>Created {moment(job.dateCreated).fromNow()}</div>
         <div>{job.city}</div>
         <JobsDot>·</JobsDot>
         <div>
@@ -37,7 +37,7 @@ const JobsTitle = styled.h3`
 `;
 
 const JobsState = styled.div`
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 const JobsMain = styled.div`

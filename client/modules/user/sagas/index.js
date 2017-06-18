@@ -57,11 +57,7 @@ export function* switchActiveCompanyUser(action) {
     );
 
     yield put({ type: SWITCH_ACTIVE_COMPANY_SUCCESS, payload });
-
-    // Redirect to desired path if it exists
-    if (action.payload.redirectPathname) {
-      yield call(redirectTo, action.payload.redirectPathname);
-    }
+    yield call(redirectTo, '/account/dashboard');
   } catch (errors) {
     yield put({ type: SWITCH_ACTIVE_COMPANY_FAILURE, errors });
   }
