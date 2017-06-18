@@ -31,7 +31,10 @@ export default (state = initialState, action = {}) => {
   switch (action.type) {
     case GET_USER_SUCCESS:
     case SWITCH_ACTIVE_COMPANY_SUCCESS:
-      // adding in the active company id to our redux store
+      /**
+       * Adding in the active company id to our redux store since
+       * it's not stored within the User's model on the server
+       */
       const userData = action.payload.data.user;
       return Object.assign({}, state, {
         created: userData.companies,

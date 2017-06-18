@@ -20,7 +20,10 @@ class Posting extends Component {
     return (
       <PostingContainer>
         Posting
-        <JobEditForm initialValues={activePosting} />
+        {
+          // Not show this for now.
+        }
+        {false && <JobEditForm initialValues={activePosting} />}
       </PostingContainer>
     );
   }

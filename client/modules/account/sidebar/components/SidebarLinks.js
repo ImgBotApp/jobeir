@@ -1,58 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
-import { logout } from '../../../auth/ducks';
-import docCookies from '../../../../utils/cookies';
-import SidebarLinksDropdown from './SidebarLinksDropdown';
+import SidebarLinksDropdown from '../containers/SidebarLinksDropdown';
 
-class SidebarLinks extends Component {
-  constructor(props) {
-    super(props);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-  }
+// The sidebar navigation gets built from this array
+const sidebarLinksData = ['Dashboard', 'Company', 'Jobs', 'People'];
 
-  /**
-   * handleLogoutClick()
-   * Will dispatch to the server to logout the user and at the same time
-   * we will remove the JWT session cookie to unauthenticate the user.
-   */
-  handleLogoutClick() {
-    this.props.dispatch(logout());
-    docCookies.removeItem('SID');
-  }
+const SidebarLinks = () => (
+  <div>
+    <SidebarLinksDropdown />
+    {sidebarLinksData.map(link => (
+      <NavLink
+        key={link}
+        activeClassName="route-active"
+        to={`/account/${link.toLowerCase()}`}
+      >
+        {link}
+      </NavLink>
+    ))}
+  </div>
+);
 
-  render() {
-    return (
-      <SidebarLinksContainer>
-        <SidebarLinksDropdown />
-        <NavLink activeClassName="route-active" to="/account/dashboard">
-          Dashboard
-        </NavLink>
-        <NavLink activeClassName="route-active" to="/account/company">
-          Company
-        </NavLink>
-        <NavLink activeClassName="route-active" to="/account/jobs">
-          Jobs
-        </NavLink>
-        <NavLink activeClassName="route-active" to="/account/people">
-          People
-        </NavLink>
-        <NavLink onClick={this.handleLogoutClick}>Log out</NavLink>
-      </SidebarLinksContainer>
-    );
-  }
-}
-
-const mapStateToProps = state => ({
-  isAuthenticated: state.session.auth.isAuthenticated,
-  companies: state.companies
-});
-
-export default connect(mapStateToProps)(SidebarLinks);
-
-const SidebarLinksContainer = styled.div`
-`;
+export default SidebarLinks;
 
 const NavLink = styled(Link)`
   display: flex;

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import ShellHeaderTitle from '../components/ShellHeaderTitle';
-import ShellDropdown from '../components/ShellDropdown';
-import ShellHeaderNav from './ShellHeaderNav';
+import ShellHeaderTitle from './ShellHeaderTitle';
+import ShellDropdown from '../containers/ShellDropdown';
+import ShellHeaderNav from '../containers/ShellHeaderNav';
 
 /**
  * <ShellHeader />

@@ -12,7 +12,7 @@ class ShellHeaderTitleJob extends Component {
     );
 
     return (
-      <ShellHeaderTitleContainer>
+      <div>
         {!jobs.postings.length || jobs.isFetching
           ? null
           : <ShellHeaderTitleHeader>
@@ -22,7 +22,7 @@ class ShellHeaderTitleJob extends Component {
                 title={activePosting.title}
               />
             </ShellHeaderTitleHeader>}
-      </ShellHeaderTitleContainer>
+      </div>
     );
   }
 }
@@ -32,10 +32,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(ShellHeaderTitleJob);
-
-const ShellHeaderTitleContainer = styled.header`
-
-`;
 
 const ShellHeaderTitleHeader = styled.header`
   font-weight: 800;

@@ -2,6 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
+/**
+ * JobsListItem()
+ * Gets passed a single job posting and will render the list item
+ * to the Jobs page within the account section.
+ */
 const JobsListItem = ({ job }) => {
   return (
     <div>

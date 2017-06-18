@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import ShellHeader from './ShellHeader';
+import ShellHeader from '../components/ShellHeader';
 import Sidebar from '../../sidebar/containers/Sidebar';
 import UserWrapper from '../../../user/containers/UserWrapper';
 

@@ -9,9 +9,7 @@ import moment from 'moment';
 class ShellDropdown extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showDropdown: false
-    };
+    this.state = { showDropdown: false };
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
@@ -48,13 +46,9 @@ class ShellDropdown extends Component {
       const domNode = ReactDOM.findDOMNode(this);
 
       if (!domNode || !domNode.contains(event.target)) {
-        this.setState({
-          showDropdown: false
-        });
+        this.setState({ showDropdown: false });
       } else {
-        this.setState({
-          showDropdown: !this.state.showDropdown
-        });
+        this.setState({ showDropdown: !this.state.showDropdown });
       }
     }
   }
@@ -90,9 +84,7 @@ class ShellDropdown extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.session.user,
-  companies: state.companies,
-  jobs: state.jobs
+  user: state.session.user
 });
 
 export default connect(mapStateToProps)(ShellDropdown);

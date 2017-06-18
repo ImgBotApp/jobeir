@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router';
 import { getJobs } from '../../../create/job/ducks/';
 import JobsFilter from './JobsFilter';
-import JobsHeader from '../components/JobsHeader';
 import JobsList from '../components/JobsList';
 
 class Jobs extends Component {
@@ -15,9 +14,11 @@ class Jobs extends Component {
 
   render() {
     const { companies, jobs } = this.props;
+    const hasJobPostings = jobs.postings.length > 0;
+
     return (
       <div>
-        {jobs.postings.length > 0
+        {hasJobPostings
           ? <div>
               <JobsContainer>
                 <JobsFilter />

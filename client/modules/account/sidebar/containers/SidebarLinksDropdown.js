@@ -9,9 +9,7 @@ import { ChevronDown } from '../../../../icons/';
 class SidebarLinksDropdown extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showDropdown: false
-    };
+    this.state = { showDropdown: false };
     this.switchCompanies = this.switchCompanies.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
@@ -38,27 +36,23 @@ class SidebarLinksDropdown extends Component {
       const domNode = ReactDOM.findDOMNode(this);
 
       if (!domNode || !domNode.contains(event.target)) {
-        this.setState({
-          showDropdown: false
-        });
+        this.setState({ showDropdown: false });
       } else {
-        this.setState({
-          showDropdown: !this.state.showDropdown
-        });
+        this.setState({ showDropdown: !this.state.showDropdown });
       }
     }
   }
 
   switchCompanies(company) {
     const { dispatch, user } = this.props;
-    const activeCompany = {
+    const data = {
       activeCompany: {
         name: company.name,
         displayName: company.displayName
       }
     };
 
-    this.props.dispatch(switchCompany(activeCompany, user._id));
+    dispatch(switchCompany(data, user._id));
   }
 
   render() {

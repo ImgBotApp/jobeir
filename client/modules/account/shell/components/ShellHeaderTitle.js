@@ -1,51 +1,19 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
-import { Link } from 'react-router';
+import React from 'react';
 import ShellHeaderTitleJob from './ShellHeaderTitleJob';
+
 /**
  * <ShellHeaderTitle />
- * Takes care of the dropdown on the top right of the screen
- * and dispalys the header text based on the Route name
+ * A simple component that will check the headerText and return
+ * the appropriate header title depending on it. This component is
+ * used like a router for the correct header.
  */
-class ShellHeaderTitle extends Component {
-  buildHeaderText(text) {
-    const { params } = this.props;
-
-    switch (text) {
-      case 'Job':
-        return <ShellHeaderTitleJob params={params} />;
-      default:
-        return (
-          <ShellHeaderTitleHeader>
-            {text}
-          </ShellHeaderTitleHeader>
-        );
-    }
+const ShellHeaderTitle = ({ headerText, params }) => {
+  switch (headerText) {
+    case 'Job':
+      return <ShellHeaderTitleJob params={params} />;
+    default:
+      return <div>{headerText}</div>;
   }
+};
 
-  render() {
-    return (
-      <ShellHeaderTitleContainer>
-        {this.buildHeaderText(this.props.headerText)}
-      </ShellHeaderTitleContainer>
-    );
-  }
-}
-
-const mapStateToProps = state => ({
-  user: state.session.user,
-  companies: state.companies,
-  jobs: state.jobs
-});
-
-export default connect(mapStateToProps)(ShellHeaderTitle);
-
-const ShellHeaderTitleContainer = styled.header`
-
-`;
-
-const ShellHeaderTitleHeader = styled.header`
-  font-weight: 800;
-  font-size: 30px;
-`;
+export default ShellHeaderTitle;
