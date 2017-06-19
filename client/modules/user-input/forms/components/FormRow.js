@@ -6,13 +6,11 @@ import styled from 'styled-components';
  * Will for the children to go on a single row
  * and apply a width of 48% to each child div
  */
-export const FormRow = props => {
-  return (
-    <FormRowContainer>
-      {props.children}
-    </FormRowContainer>
-  );
-};
+export const FormRow = props => (
+  <FormRowContainer>
+    {props.children}
+  </FormRowContainer>
+);
 
 export default FormRow;
 

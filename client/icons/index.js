@@ -535,6 +535,40 @@ export const PaperClipIcon = ({ width = 24, height = 24, className = '' }) => (
   </svg>
 );
 
+export const PencilIcon = ({ width = 24, height = 24, className = '' }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 24 24"
+  >
+    <line
+      data-cap="butt"
+      fill="none"
+      stroke="#444444"
+      strokeWidth="2"
+      strokeMiterlimit="10"
+      x1="19"
+      y1="9"
+      x2="15"
+      y2="5"
+      strokeLinejoin="miter"
+      strokeLinecap="butt"
+    />
+    <polygon
+      fill="none"
+      stroke="#444444"
+      strokeWidth="2"
+      strokeLinecap="square"
+      strokeMiterlimit="10"
+      points="7,21 2,22 3,17 
+  18,2 22,6 "
+      strokeLinejoin="miter"
+    />
+  </svg>
+);
+
 export const UploadIcon = ({ width = 24, height = 24, className = '' }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
