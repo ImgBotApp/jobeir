@@ -43,20 +43,23 @@ class CompanyFormStepThree extends Component {
         postal_code: 'short_name'
       };
       const location = {
-        unit: '',
-        street_number: '',
-        route: '',
-        locality: '',
-        administrative_area_level_1: '',
-        country: '',
-        postal_code: ''
+        address: {
+          unit: '',
+          street_number: '',
+          route: '',
+          locality: '',
+          administrative_area_level_1: '',
+          country: '',
+          postal_code: ''
+        },
+        coordinates: [lng, lat]
       };
 
-      for (var i = 0; i < place.address_components.length; i++) {
-        var addressType = place.address_components[i].types[0];
+      for (let i = 0; i < place.address_components.length; i++) {
+        const addressType = place.address_components[i].types[0];
         if (componentForm[addressType]) {
-          var val = place.address_components[i][componentForm[addressType]];
-          location[addressType] = val;
+          const val = place.address_components[i][componentForm[addressType]];
+          location.address[addressType] = val;
         }
       }
 
@@ -82,7 +85,7 @@ class CompanyFormStepThree extends Component {
         <FormHeader text="Where's your office located?" />
         <Field
           name="fullAddress"
-          label="Star typing full address"
+          label="Start typing full address"
           component={Text}
         />
         {locations.length === 1 &&

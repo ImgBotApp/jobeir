@@ -36,13 +36,14 @@ export default (state = initialState, action = {}) => {
        * it's not stored within the User's model on the server
        */
       const userData = action.payload.data.user;
+      const activeCompany = userData.companies.find(
+        company => company.name === userData.activeCompany.name
+      ) || {};
       return Object.assign({}, state, {
         created: userData.companies,
         activeCompany: {
           ...userData.activeCompany,
-          _id: userData.companies.find(
-            company => company.name === userData.activeCompany.name
-          )._id
+          _id: activeCompany._id
         }
       });
     case CREATE_COMPANY_REQUEST:

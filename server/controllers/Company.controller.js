@@ -64,16 +64,8 @@ export function createCompany(req, res) {
     return res.status(403).end();
   }
 
+  console.log(req.body);
   const newCompany = new Company(req.body);
-
-  const address = {
-    city: req.body.city,
-    country: req.body.country.label,
-    apt: req.body.apt || '',
-    postalCode: req.body.postalCode,
-    street: req.body.streetAddress,
-    province: req.body.province
-  };
 
   // Let's sanitize inputs
   newCompany.creator = req.user._doc._id;
@@ -82,7 +74,7 @@ export function createCompany(req, res) {
   newCompany.website = sanitizeHtml(newCompany.website);
   newCompany.perks = newCompany.perks;
   newCompany.product = sanitizeHtml(newCompany.product);
-  newCompany.locations.push(address);
+  // newCompany.locations.push(address);
   newCompany.phone = sanitizeHtml(newCompany.phone);
 
   newCompany.slug = slug(newCompany.name.toLowerCase(), { lowercase: true });
@@ -116,6 +108,7 @@ export function createCompany(req, res) {
   });
 
   newCompany.save((err, saved) => {
+    console.log(err);
     if (err) {
       res.status(409).send({
         data: {},

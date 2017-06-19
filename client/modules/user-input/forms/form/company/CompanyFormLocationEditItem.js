@@ -29,7 +29,7 @@ class CompanyFormLocationEdit extends Component {
 
   renderPrettyAddress() {
     const { location, locations, index } = this.props;
-    const currentLocation = locations[index];
+    const currentLocation = locations[index].address;
 
     if (!currentLocation) return null;
 
@@ -52,6 +52,7 @@ class CompanyFormLocationEdit extends Component {
 
   renderAddressForm() {
     const { location } = this.props;
+    console.log(location);
 
     return (
       <ThemeProvider theme={AddressTheme}>
@@ -70,13 +71,13 @@ class CompanyFormLocationEdit extends Component {
           </AddressFormTop>
           <FormRow>
             <Field
-              name={`${location}.street_number`}
+              name={`${location}.address.street_number`}
               type="text"
               component={Text}
               label="Street Number"
             />
             <Field
-              name={`${location}.route`}
+              name={`${location}.address.route`}
               type="text"
               component={Text}
               label="Street Address"
@@ -84,13 +85,13 @@ class CompanyFormLocationEdit extends Component {
           </FormRow>
           <FormRow>
             <Field
-              name={`${location}.unit`}
+              name={`${location}.address.unit`}
               type="text"
               component={Text}
               label="Unit"
             />
             <Field
-              name={`${location}.locality`}
+              name={`${location}.address.locality`}
               type="text"
               component={Text}
               label="City"
@@ -98,13 +99,13 @@ class CompanyFormLocationEdit extends Component {
           </FormRow>
           <FormRow>
             <Field
-              name={`${location}.administrative_area_level_1`}
+              name={`${location}.address.administrative_area_level_1`}
               type="text"
               component={Text}
               label="Province/State"
             />
             <Field
-              name={`${location}.country`}
+              name={`${location}.address.country`}
               type="text"
               component={Text}
               label="Country"
@@ -112,7 +113,7 @@ class CompanyFormLocationEdit extends Component {
           </FormRow>
           <FormRow>
             <Field
-              name={`${location}.postal_code`}
+              name={`${location}.address.postal_code`}
               type="text"
               component={Text}
               label="Postal Code / Zip"

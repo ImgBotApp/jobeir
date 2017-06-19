@@ -24,7 +24,7 @@ const Company = new Schema({
   locations: [
     {
       address: {
-        type: String,
+        type: Object,
         required: true
       },
       hq: {
