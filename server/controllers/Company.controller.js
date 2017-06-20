@@ -64,7 +64,6 @@ export function createCompany(req, res) {
     return res.status(403).end();
   }
 
-  console.log(req.body);
   const newCompany = new Company(req.body);
 
   // Let's sanitize inputs

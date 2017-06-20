@@ -32,19 +32,34 @@ export const Radio = props => {
   }
 
   if (props.type === 'list') {
+    console.log(props.options);
     return (
       <InputWrapper {...rest}>
         <RadioListContainer>
           {props.options.map(option => {
-            const checked = option.value === props.input.value;
+            /**
+             * We're allowing for objects to be passed in as value to these select
+             * option input fields. To do so, the object must be JSON (a string)
+             * to be stored within the HTML elelent
+             */
+            const val = typeof option.value === 'object'
+              ? JSON.stringify(option.value)
+              : option.value;
+            const checked = val === props.input.value;
+
             return (
-              <RadioListInputContainer checked={checked} key={option.value}>
+              <RadioListInputContainer
+                checked={checked}
+                key={val}
+                row={props.row}
+              >
                 <RadioListInput
                   {...props.input}
                   type="radio"
                   id={props.input.name}
                   name={props.input.name}
-                  value={option.value}
+                  value={val}
+                  data-val={val}
                   showError={showError}
                   checked={checked}
                 />
@@ -134,9 +149,9 @@ const RadioListInputContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-basis: 49.5%;
-  padding: 15px 20px;
+  justify-content: ${props => (props.row === 'full' ? '' : 'center')};
+  flex-basis: ${props => (props.row === 'full' ? '100%' : '49.5%')};
+  padding: 20px;
   background:  ${props => (props.checked ? '#f27c5e' : '#f9f8f7')};
   color:  ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.8)')};
   border-radius: 2px;

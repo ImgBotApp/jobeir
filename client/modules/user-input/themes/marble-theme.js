@@ -74,7 +74,7 @@ export const marble = {
     fontSize: '16px',
     width: '100%',
     margin: '0 auto 0.6rem',
-    minHeight: '175px',
+    minHeight: '225px',
     activeBorderColor: 'rgba(0,0,0,0.8)'
   }
 };

@@ -52,7 +52,6 @@ class CompanyFormLocationEdit extends Component {
 
   renderAddressForm() {
     const { location } = this.props;
-    console.log(location);
 
     return (
       <ThemeProvider theme={AddressTheme}>
@@ -133,9 +132,11 @@ class CompanyFormLocationEdit extends Component {
             : this.renderPrettyAddress()}
         </AddressItemLeft>
         {!this.state.showManualAddressInputs &&
-          <AddressItemRight onClick={this.handleEditClick}>
+          <AddressItemRight>
             <PencilIcon height={20} width={20} />
           </AddressItemRight>}
+        {!this.state.showManualAddressInputs &&
+          <AddressItemClick onClick={this.handleEditClick} />}
       </AddressItem>
     );
   }
@@ -165,7 +166,9 @@ const AddressTheme = {
     fontSize: '14px'
   }
 };
+
 const AddressItem = styled.li`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -177,6 +180,20 @@ const AddressItem = styled.li`
 
   svg {
     cursor: pointer;
+  }
+`;
+
+const AddressItemClick = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  transition: background 200ms ease;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(0,0,0,0.05);
   }
 `;
 

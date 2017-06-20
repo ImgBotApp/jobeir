@@ -39,9 +39,19 @@ class JobFormType extends Component {
     return (
       activeCompany &&
       activeCompany.locations.map(location => {
+        const {
+          unit,
+          street_number,
+          route,
+          locality,
+          country
+        } = location.address;
+        const noUnit = `${street_number} ${route}, ${locality}, ${country}`;
+        const completeAddress = unit ? `${unit} - ${noUnit}` : noUnit;
+
         return {
-          name: `${location.street}, ${location.city}, ${location.country}`,
-          value: location
+          name: completeAddress,
+          value: location.address
         };
       })
     );
@@ -64,7 +74,7 @@ class JobFormType extends Component {
         <FormHeader text="What kind of job is it?" />
         <Field
           name="employmentType"
-          label="Employment Type"
+          label="Select the type"
           validate={[required]}
           options={jobTypes}
           type="list"
@@ -75,7 +85,9 @@ class JobFormType extends Component {
           label="Where will the employee be working?"
           validate={[required]}
           options={this.buildLocationsDropdown()}
-          component={Select}
+          type="list"
+          row="full"
+          component={Radio}
         />
         <Field
           name="remote"

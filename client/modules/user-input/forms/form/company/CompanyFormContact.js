@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
+import FormRow from '../../components/FormRow';
 import FormFooter from '../../components/FormFooter';
 import {
   BackButton,
@@ -38,26 +39,30 @@ class CompanyFormStepTwo extends Component {
         theme="marble"
       >
         <FormHeader text={`How can people reach out to ${companyName}?`} />
-        <Field
-          name="phone"
-          label="Company phone"
-          placeholder="(555) 123-4567"
-          validate={[required, phoneNumber]}
-          parse={parsePhone}
-          component={Phone}
-        />
-        <Field
-          name="website"
-          label="Company website"
-          validate={[required, url]}
-          component={Text}
-        />
-        <Field
-          name="email"
-          label="Company email"
-          validate={[email, required]}
-          component={Email}
-        />
+        <FormRow>
+          <Field
+            name="website"
+            label="Company website"
+            validate={[required, url]}
+            component={Text}
+          />
+          <Field
+            name="email"
+            label="Company email"
+            validate={[email, required]}
+            component={Email}
+          />
+        </FormRow>
+        <FormRow>
+          <Field
+            name="phone"
+            label="Company phone"
+            placeholder="(555) 123-4567"
+            validate={[required, phoneNumber]}
+            parse={parsePhone}
+            component={Phone}
+          />
+        </FormRow>
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
           <Field

@@ -40,15 +40,14 @@ const Job = new Schema({
   // experience: String,
   // language: String,
   address: {
-    city: String,
+    unit: Number,
+    administrative_area_level_1: String,
     country: String,
-    postalCode: String,
-    street: String,
-    province: String,
-    hq: {
-      type: Boolean,
-      default: true
-    }
+    postal_code: String,
+    route: String,
+    locality: String,
+    street_number: Number,
+    hq: Boolean
   },
   offerEquity: String,
   receivingEmails: [
