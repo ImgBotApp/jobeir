@@ -63,7 +63,6 @@ export function createJob(req, res) {
     res.status(400).end();
   }
 
-  console.log(req.body.description.blocks);
   const newJob = new Job(req.body);
 
   newJob.description.blocks = newJob.description.blocks;

@@ -65,7 +65,7 @@ class JobFormComponesation extends Component {
         </FormRow>
         <Field
           name="offerEquity"
-          label="Do you offer equity?"
+          label="Do you offer equity for this job?"
           validate={[required]}
           options={yesNoOptions}
           type="yes/no"

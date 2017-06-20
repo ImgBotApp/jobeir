@@ -16,6 +16,7 @@ const Job = new Schema({
     type: Date,
     default: Date.now
   },
+  externalLink: String,
   state: {
     type: String,
     default: 'pending'

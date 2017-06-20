@@ -6,7 +6,7 @@ import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { BackButton, Text, Select, SubmitButton } from '../../../inputs/input';
-import { email, required } from '../../../validation';
+import { email, required, url } from '../../../validation';
 import { createJob } from '../../../../create/job/ducks';
 import { FormListRemoveIcon } from '../../../../../icons/';
 
@@ -33,7 +33,6 @@ const renderFields = (member, index, fields) => (
       label={`${index === 0 ? 'Send applications to the following emails:' : ''}`}
       validate={[email, required]}
       component={Text}
-      autoFocus
     />
   </FormListItem>
 );
@@ -72,6 +71,13 @@ class JobFormComponesation extends Component {
         theme="marble"
       >
         <FormHeader text="Receiving applications" />
+        <Field
+          name="externalLink"
+          label="Is there an application page you'd like to link to?"
+          placeholder="https://example.com/careers/job-posting"
+          validate={[required, url]}
+          component={Text}
+        />
         <FieldArray name="receivingEmails" component={renderEmailFields} />
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
@@ -118,6 +124,7 @@ const FormListRemoveItem = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(0,0,0,0.8);
+  opacity: 0.5;
   border-radius: 50%;
   cursor: pointer;
 `;
