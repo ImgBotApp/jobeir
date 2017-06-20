@@ -8,24 +8,22 @@ class StepRouter extends Component {
     this.handleRouting();
   }
 
-  compnentDidMount(prevProps) {
-    // if (
-    //   this.props.user.companies.created.length !==
-    //   prevProps.user.companies.created.length
-    // ) {
-    this.handleRouting();
-    // }
-  }
-
   handleRouting() {
-    const { user } = this.props;
+    const { params, user } = this.props;
 
+    // If new user, take them through values first
     if (!user.agreedToValues) {
       browserHistory.push('/create/company/onboarding');
     }
 
-    if (!user.companies && !user.companies.length) {
+    // If user refreshes on create company take them back
+    if (params.create === 'company') {
       browserHistory.push('/create/company/about');
+    }
+
+    // If user refreshes on job company take them back
+    if (params.create === 'job') {
+      browserHistory.push(`/create/job/about/${params.companyId}`);
     }
   }
 

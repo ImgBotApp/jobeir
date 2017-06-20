@@ -21,7 +21,7 @@ const Step = props => {
     <StepContainer>
       {!isUpload && <StepBackground />}
       {user.isLoaded &&
-        <StepRouter>
+        <StepRouter params={props.params}>
           <StepForm params={props.params} />
           {!isUpload && <StepHelp params={props.params} />}
         </StepRouter>}
