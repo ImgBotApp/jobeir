@@ -5,6 +5,7 @@ import UserWrapper from '../../../user/containers/UserWrapper';
 import StepRouter from './StepRouter';
 import StepForm from './StepForm';
 import StepHelp from './StepHelp';
+import StepHeader from '../components/StepHeader';
 import StepProgress from '../components/StepProgress';
 import StepBackground from '../components/StepBackground';
 
@@ -19,6 +20,7 @@ const Step = props => {
   const isUpload = params.step === 'upload';
   return (
     <StepContainer>
+      <StepHeader />
       {!isUpload && <StepBackground />}
       {user.isLoaded &&
         <StepRouter params={props.params}>

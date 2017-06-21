@@ -17,9 +17,9 @@ export const Radio = props => {
                 type="radio"
                 id={props.input.name}
                 name={props.input.name}
-                value={option.text}
+                value={option.value}
                 showError={showError}
-                checked={option.text === props.input.value}
+                checked={option.value === props.input.value}
               />
               <RadioText showError={showError}>
                 {option.text}
@@ -32,7 +32,6 @@ export const Radio = props => {
   }
 
   if (props.type === 'list') {
-    console.log(props.options);
     return (
       <InputWrapper {...rest}>
         <RadioListContainer>
