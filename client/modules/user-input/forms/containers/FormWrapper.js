@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Form } from 'redux-form';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import FormError from '../components/FormError';
 import FormThemes from '../../themes';
 
@@ -9,23 +9,36 @@ import FormThemes from '../../themes';
  * a utility to enable streamlined labeling, styling,
  * and error handling
  */
-export const FormWrapper = props => {
-  const { formErrors = [], formSubmit, handleSubmit, theme = 'opal' } = props;
+class FormWrapper extends Component {
+  render() {
+    const {
+      children,
+      formErrors = [],
+      formSubmit,
+      handleSubmit,
+      theme = 'opal'
+    } = this.props;
 
-  /**
-   * handleSubmit is passed to the FormWrapper which is just a generic
-   * submit function required by redux-form. The formSubmit function is
-   * the custom function we would like to fire when the user submits
-   * the form when clicking a button type submit
-   */
-  return (
-    <ThemeProvider theme={FormThemes[theme]}>
-      <Form onSubmit={handleSubmit(formSubmit)}>
-        {formErrors.length ? <FormError formErrors={formErrors} /> : ''}
-        {props.children}
-      </Form>
-    </ThemeProvider>
-  );
-};
+    /**
+     * handleSubmit is passed to the FormWrapper which is just a generic
+     * submit function required by redux-form. The formSubmit function is
+     * the custom function we would like to fire when the user submits
+     * the form when clicking a button type submit
+     */
+    return (
+      <ThemeProvider theme={FormThemes[theme]}>
+        <StyledForm onSubmit={handleSubmit(formSubmit)} className="Form">
+          {formErrors.length ? <FormError formErrors={formErrors} /> : ''}
+          {children}
+        </StyledForm>
+      </ThemeProvider>
+    );
+  }
+}
 
 export default FormWrapper;
+
+const StyledForm = styled.form`
+  margin-bottom: ${props => props.theme.form.marginBottom};
+  padding-bottom: ${props => props.theme.form.paddingBottom};
+`;

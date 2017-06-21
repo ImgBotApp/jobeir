@@ -3,14 +3,12 @@ import styled from 'styled-components';
 import PrimaryNavLogo from '../../../nav/primary-nav/components/PrimaryNavLogo';
 import { Link } from 'react-router';
 
-const StepHeader = props => {
-  return (
-    <StepHeaderContainer>
-      <PrimaryNavLogo />
-      <StepStyledLink to="/account/dashboard">Exit</StepStyledLink>
-    </StepHeaderContainer>
-  );
-};
+const StepHeader = () => (
+  <StepHeaderContainer>
+    <PrimaryNavLogo />
+    <StepStyledLink to="/account/dashboard">Exit</StepStyledLink>
+  </StepHeaderContainer>
+);
 
 export default StepHeader;
 

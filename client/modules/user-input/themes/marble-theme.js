@@ -48,6 +48,10 @@ export const marble = {
     position: 'absolute',
     width: '53%'
   },
+  form: {
+    marginBottom: '160px',
+    paddingBottom: '10px'
+  },
   label: {
     display: 'block',
     marginBottom: '6px',
