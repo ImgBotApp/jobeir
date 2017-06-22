@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { updateJobFilter } from '../../../create/job/ducks/';
 
 class JobsFilter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeState: 'All Jobs',
-      states: ['All Jobs', 'Pending', 'Active', 'Paused']
-    };
-  }
-
-  handleFilterClick(activeState) {
-    this.setState({ activeState });
+  handleFilterClick(state) {
+    this.props.dispatch(updateJobFilter(state));
   }
 
   render() {
-    const { activeState, states } = this.state;
+    const states = ['All Jobs', 'Pending', 'Active', 'Paused'];
 
     return (
       <JobsFilterContainer>
         {states.map(state => {
-          const active = state === activeState;
+          const active = state === this.props.filter;
           return (
             <JobsFilterItem
               active={active}
@@ -36,7 +30,11 @@ class JobsFilter extends Component {
   }
 }
 
-export default JobsFilter;
+const mapStateToProps = state => ({
+  filter: state.jobs.filter
+});
+
+export default connect(mapStateToProps)(JobsFilter);
 
 const JobsFilterContainer = styled.div`
   display: flex;

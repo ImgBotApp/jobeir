@@ -78,7 +78,7 @@ const FormFooterCenter = styled.div`
   width: ${props => (props.isUpload ? '100%' : '52.5%')};
   display: flex;
   align-items: center;
-  justify-content: ${props => (props.multipleChildren ? 'space-between' : 'flex-end')};
+  justify-content: space-between;
   padding: 25px 0 35px;
   bottom: 0;
   background: #fff;

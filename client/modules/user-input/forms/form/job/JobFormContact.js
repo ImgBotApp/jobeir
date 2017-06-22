@@ -73,7 +73,7 @@ class JobFormComponesation extends Component {
         <FormHeader text="Receiving applications" />
         <Field
           name="externalLink"
-          label="Is there an application page you'd like to link to?"
+          label="Please provide the URL to job the application"
           placeholder="https://example.com/careers/job-posting"
           validate={[required, url]}
           component={Text}
