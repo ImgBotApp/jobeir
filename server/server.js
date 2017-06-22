@@ -1,4 +1,4 @@
-import Express from 'express';
+import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
@@ -19,7 +19,7 @@ import dotenv from 'dotenv';
 
 dotenv.load();
 
-const app = new Express();
+const app = new express();
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(config);
@@ -39,7 +39,6 @@ import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
-// import styleSheet from 'styled-components/lib/models/StyleSheet';
 import { ServerStyleSheet } from 'styled-components';
 import Html from '../client/modules/html/containers/Html';
 
@@ -64,10 +63,15 @@ app.use(
     saveUninitialized: true
   })
 );
+app.use(
+  '/public/uploads',
+  express.static(path.join(__dirname, '../public/uploads'))
+);
+console.log(__dirname);
 app.use(passport.initialize());
 passportInit(passport);
 app.use(passport.session());
-app.use(Express.static(path.resolve(__dirname, '../build/client')));
+// app.use(express.static(path.resolve(__dirname, '../build/client')));
 app.use(
   '/api/v0',
   jwt({ secret: process.env.JWT }).unless({ path: routesArray }),

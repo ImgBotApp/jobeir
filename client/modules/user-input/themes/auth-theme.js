@@ -31,6 +31,10 @@ export const auth = {
   inputWrapper: {
     marginBottom: '0'
   },
+  form: {
+    marginBottom: '0',
+    paddingBottom: '0'
+  },
   error: {
     color: '#f73c3c'
   }

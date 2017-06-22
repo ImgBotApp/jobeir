@@ -28,6 +28,10 @@ export const opal = {
   error: {
     color: '#f73c3c'
   },
+  form: {
+    marginBottom: '0',
+    paddingBottom: '0'
+  },
   label: {
     display: 'block',
     marginBottom: '6px',
