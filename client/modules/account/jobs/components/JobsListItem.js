@@ -16,10 +16,10 @@ const JobsListItem = ({ job }) => {
       </JobsMain>
       <JobsSub>
         <div>Created {moment(job.dateCreated).fromNow()}</div>
-        <div>{job.city}</div>
         <JobsDot>·</JobsDot>
         <div>
-          {job.address.city}
+          {job.address.locality}{', '}
+          {job.address.administrative_area_level_1}
         </div>
         <JobsDot>·</JobsDot>
         <div>

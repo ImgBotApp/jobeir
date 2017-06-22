@@ -5,16 +5,27 @@ import { Link } from 'react-router';
 
 class Company extends Component {
   render() {
+    const { company } = this.props;
     return (
       <div>
         <Link to="/create/company/about">Create Company</Link>
+        <div>{company.displayName}</div>
+        <div>
+          <img src={company.logo} alt={company.displayName} />
+        </div>
+        <div>{company.product}</div>
+        <div>{company.website}</div>
+        <div>{company.phone}</div>
+        <div>{company.perks.map(perk => <span key={perk}>{perk}</span>)}</div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  companies: state.companies
+  company: state.companies.created.find(
+    company => company.name === state.companies.activeCompany.name
+  )
 });
 
 export default connect(mapStateToProps)(Company);

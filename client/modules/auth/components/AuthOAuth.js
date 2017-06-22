@@ -9,7 +9,7 @@ const buildRedirectPath = routing => {
     return routing.search.split('=')[1];
   }
 
-  return '/account/dashboard';
+  return '/account/jobs';
 };
 
 export class AuthOAuth extends Component {

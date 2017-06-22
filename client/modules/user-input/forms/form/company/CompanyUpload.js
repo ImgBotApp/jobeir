@@ -31,7 +31,7 @@ class CompanyLogo extends Component {
   }
 
   handleExit() {
-    browserHistory.push('/account/dashboard');
+    browserHistory.push('/account/jobs');
   }
 
   render() {

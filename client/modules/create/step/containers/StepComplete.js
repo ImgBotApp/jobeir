@@ -15,7 +15,7 @@ const StepComplete = props => {
         </Link>
       </div>
       <div>
-        <Link to="/account/dashboard/">Dashboard</Link>
+        <Link to="/account/jobs/">Dashboard</Link>
       </div>
     </StepCompleteContainer>
   );

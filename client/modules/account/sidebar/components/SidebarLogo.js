@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'react-router/lib/Link';
 
-const SidebarLogo = () => <Logo to="/account/dashboard" />;
+const SidebarLogo = () => <Logo to="/account/jobs" />;
 
 export default SidebarLogo;
 

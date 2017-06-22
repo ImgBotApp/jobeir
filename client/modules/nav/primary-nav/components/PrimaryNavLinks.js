@@ -36,7 +36,7 @@ class PrimaryNavLinks extends Component {
   buildCreateNavigation() {
     return (
       <NavLinkContainer>
-        <NavLink to="/account/dashboard">Exit</NavLink>
+        <NavLink to="/account/jobs">Exit</NavLink>
       </NavLinkContainer>
     );
   }
@@ -49,7 +49,7 @@ class PrimaryNavLinks extends Component {
   buildMainNavigation(isAuthenticated) {
     return isAuthenticated
       ? <NavLinkContainer>
-          <NavLink to="/account/dashboard">Dashboard</NavLink>
+          <NavLink to="/account/jobs">Dashboard</NavLink>
           <NavLink onClick={this.handleLogoutClick}>Log out</NavLink>
         </NavLinkContainer>
       : <NavLinkContainer>

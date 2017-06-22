@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 const StepHeader = () => (
   <StepHeaderContainer>
     <PrimaryNavLogo />
-    <StepStyledLink to="/account/dashboard">Exit</StepStyledLink>
+    <StepStyledLink to="/account/jobs">Exit</StepStyledLink>
   </StepHeaderContainer>
 );
 

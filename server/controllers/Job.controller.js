@@ -13,7 +13,8 @@ import sanitizeHtml from 'sanitize-html';
 export function getJobs(req, res) {
   // currently just filtering GET jobs just by date added...
   Job.find({ company: req.params.companyId })
-    .sort('-dateAdded')
+    .sort('-dateCreated')
+    .populate('company')
     .exec((err, jobs) => {
       if (err) {
         res.status(500).send(err);

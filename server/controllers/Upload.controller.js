@@ -39,7 +39,7 @@ export const resize = async (req, res, next) => {
   req.body.path = savedPath;
 
   const photo = await jimp.read(req.file.buffer);
-  await photo.resize(75, jimp.AUTO);
+  await photo.resize(500, jimp.AUTO);
   await photo.write(path);
 
   next(null, req);

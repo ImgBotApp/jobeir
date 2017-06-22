@@ -57,7 +57,7 @@ export function* switchActiveCompanyUser(action) {
     );
 
     yield put({ type: SWITCH_ACTIVE_COMPANY_SUCCESS, payload });
-    yield call(redirectTo, '/account/dashboard');
+    yield call(redirectTo, '/account/jobs');
   } catch (errors) {
     yield put({ type: SWITCH_ACTIVE_COMPANY_FAILURE, errors });
   }

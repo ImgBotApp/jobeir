@@ -48,13 +48,11 @@ class FormFooter extends Component {
      * have space-between
      */
     return (
-      <FormFooterContainer
-        multipleChildren={Array.isArray(children)}
-        isUpload={isUpload}
-      >
+      <FormFooterContainer isUpload={isUpload}>
         <FormFooterCenter
           className="FormFooter"
           isOverlapped={this.state.isOverlapped}
+          multipleChildren={Array.isArray(children)}
         >
           {children}
         </FormFooterCenter>
@@ -78,7 +76,7 @@ const FormFooterCenter = styled.div`
   width: ${props => (props.isUpload ? '100%' : '52.5%')};
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${props => (props.multipleChildren ? 'space-between' : 'flex-end')};
   padding: 25px 0 35px;
   bottom: 0;
   background: #fff;

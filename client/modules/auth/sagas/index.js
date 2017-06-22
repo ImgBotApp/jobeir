@@ -58,7 +58,7 @@ export function* signupUser(action) {
   }
 }
 
-export function* loginUser(action, redirectPath = '/account/dashboard') {
+export function* loginUser(action, redirectPath = '/account/jobs') {
   const nextValue = queryParams(window.location.search).next;
 
   try {

@@ -17,7 +17,7 @@ class SignupForm extends Component {
   formSubmit(data) {
     const { dispatch } = this.props;
     const nextValue = queryParams(window.location.search).next;
-    const redirectPathname = nextValue ? nextValue : '/account/dashboard';
+    const redirectPathname = nextValue ? nextValue : '/account/jobs';
 
     dispatch(signup(data, redirectPathname));
   }

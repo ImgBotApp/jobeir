@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import SidebarLinksDropdown from '../containers/SidebarLinksDropdown';
 
 // The sidebar navigation gets built from this array
-const sidebarLinksData = ['Dashboard', 'Company', 'Jobs', 'People'];
+const sidebarLinksData = ['Jobs', 'Company', 'People'];
 
 const SidebarLinks = () => (
   <div>
