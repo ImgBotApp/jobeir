@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import timestamps from 'mongoose-timestamp';
 
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
@@ -52,5 +53,7 @@ const Company = new Schema({
   size: String,
   website: String
 });
+
+Company.plugin(timestamps);
 
 export default mongoose.model('Company', Company);

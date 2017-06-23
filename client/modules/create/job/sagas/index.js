@@ -9,7 +9,10 @@ import {
   GET_JOBS_FAILURE,
   GET_JOB_REQUEST,
   GET_JOB_SUCCESS,
-  GET_JOB_FAILURE
+  GET_JOB_FAILURE,
+  UPDATE_JOB_REQUEST,
+  UPDATE_JOB_SUCCESS,
+  UPDATE_JOB_FAILURE
 } from '../ducks';
 import { redirectTo } from '../../../user/ducks/';
 
@@ -26,6 +29,20 @@ export function* createJob(action) {
     yield call(redirectTo, `${action.payload.redirectPathname}`);
   } catch (errors) {
     yield put({ type: CREATE_JOB_FAILURE, errors });
+  }
+}
+
+export function* updateJobSaga(action) {
+  try {
+    const payload = yield call(
+      fetchApi,
+      'PUT',
+      `/company/${action.payload.companyId}/jobs/${action.payload.jobId}`,
+      action.payload.data
+    );
+    yield put({ type: UPDATE_JOB_SUCCESS, payload });
+  } catch (errors) {
+    yield put({ type: UPDATE_JOB_FAILURE, errors });
   }
 }
 
@@ -57,6 +74,7 @@ export function* getJobSaga(action) {
 
 export function* job() {
   yield takeEvery(CREATE_JOB_REQUEST, createJob);
+  yield takeEvery(UPDATE_JOB_REQUEST, updateJobSaga);
   yield takeEvery(GET_JOBS_REQUEST, getJobsSaga);
   yield takeEvery(GET_JOB_REQUEST, getJobSaga);
 }

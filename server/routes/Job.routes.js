@@ -11,6 +11,9 @@ router.route('/company/:companyId/jobs/:jobId').get(JobController.getJob);
 // Create a new job
 router.route('/company/:companyId/jobs').post(JobController.createJob);
 
+// Update a job
+router.route('/company/:companyId/jobs/:jobId').put(JobController.updateJob);
+
 // Delete a job posting
 router.route('/company/:companyId/jobs/:jobId').delete(JobController.deleteJob);
 

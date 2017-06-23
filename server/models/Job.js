@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import timestamps from 'mongoose-timestamp';
 
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
@@ -73,5 +74,7 @@ Job.index({
   company: 'text',
   'address.city': 'text'
 });
+
+Job.plugin(timestamps);
 
 export default mongoose.model('Job', Job);

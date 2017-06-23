@@ -44,7 +44,14 @@ export const Radio = props => {
             const val = typeof option.value === 'object'
               ? JSON.stringify(option.value)
               : option.value;
-            const checked = val === props.input.value;
+
+            // allowing re-assignment of the value if it's address input
+            let checked = val === props.input.value;
+
+            if (props.input.name === 'address') {
+              checked =
+                option.value.postal_code === props.input.value.postal_code;
+            }
 
             return (
               <RadioListInputContainer
@@ -58,7 +65,7 @@ export const Radio = props => {
                   id={props.input.name}
                   name={props.input.name}
                   value={val}
-                  data-val={val}
+                  data-val={JSON.stringify(option.value)}
                   showError={showError}
                   checked={checked}
                 />

@@ -23,7 +23,7 @@ export default connect(mapStateToProps)(Sidebar);
 const SidebarContainer = styled.nav`
   display: flex;
   flex-direction: column;
-  width: 270px;
+  width: 290px;
   background: #f9f9f9;
   padding: 40px 0 0 40px;
 `;

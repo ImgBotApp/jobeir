@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import timestamps from 'mongoose-timestamp';
 import bcrypt from 'bcrypt';
 
 mongoose.Promise = global.Promise;
@@ -83,5 +84,7 @@ User.methods.comparePassword = function(pw, cb) {
     cb(null, isMatch);
   });
 };
+
+User.plugin(timestamps);
 
 export default mongoose.model('User', User);

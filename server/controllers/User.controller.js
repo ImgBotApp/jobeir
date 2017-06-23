@@ -43,6 +43,7 @@ export function getUser(req, res) {
       });
     });
 }
+
 /**
  * Update a single User
  * @param req

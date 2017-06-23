@@ -24,6 +24,7 @@ import {
 } from '../../inputs/input';
 import { jobOptions } from '../options/jobs';
 import { FormListRemoveIcon } from '../../../../icons/';
+import { updateJob } from '../../../create/job/ducks/';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 const jobTypes = [
@@ -60,7 +61,6 @@ const renderFields = (member, index, fields) => (
       label={`${index === 0 ? 'Send applications to the following emails:' : ''}`}
       validate={[email, required]}
       component={Text}
-      autoFocus
     />
   </FormListItem>
 );
@@ -99,13 +99,15 @@ class JobEditFrom extends Component {
     );
   }
 
-  formSubmit() {
-    this.props.nextPage();
+  formSubmit(data) {
+    const { dispatch, companies, params } = this.props;
+    const title = data.title.value;
+    const body = { ...data, title };
+    dispatch(updateJob(companies.activeCompany._id, params.jobId, body));
   }
 
   render() {
     const { handleSubmit, offersEquity, jobs } = this.props;
-    console.log(this.props.initialValues !== undefined);
     return (
       <FormWrapper
         handleSubmit={handleSubmit}

@@ -21,7 +21,7 @@ class Posting extends Component {
       <PostingContainer>
         {jobs.isFetching && activePosting !== undefined
           ? null
-          : <JobEditForm initialValues={activePosting} />}
+          : <JobEditForm initialValues={activePosting} params={params} />}
       </PostingContainer>
     );
   }
@@ -35,6 +35,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Posting);
 
 const PostingContainer = styled.div`
-  width: 480px;
+  width: 570px;
   margin: 0 auto;
 `;

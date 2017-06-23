@@ -125,6 +125,28 @@ export function createJob(req, res) {
 }
 
 /**
+ * Update a single Job
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function updateJob(req, res) {
+  const values = req.body;
+  console.log(req.body);
+
+  Job.findOneAndUpdate({ _id: req.params.jobId }, { ...values }, { new: true })
+    .populate('companies')
+    .exec((err, posting) => {
+      if (err) return res.status(500).send({ error: err });
+
+      res.status(200).send({
+        data: { posting },
+        errors: []
+      });
+    });
+}
+
+/**
  * Delete a job
  * @param req
  * @param res

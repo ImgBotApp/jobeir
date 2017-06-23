@@ -57,7 +57,6 @@ const SelectContainer = styled.div`
   .Select-control {
     background-color: #fff;
     border-radius: 4px;
-    border: 1px solid #ccc;
     color: rgba(0,0,0,0.8);
     cursor: default;
     display: table;
@@ -68,7 +67,7 @@ const SelectContainer = styled.div`
     position: relative;
     width: 100%;
     border-radius: 3px;
-    border: solid 1px #babbbb;
+    border: solid 1px;
     border-color: ${props => (props.showError ? props.theme.error.color : '#babbbb')};
     padding: 18px;
     font-size: 16px;
