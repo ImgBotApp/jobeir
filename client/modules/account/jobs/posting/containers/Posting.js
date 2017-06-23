@@ -19,11 +19,9 @@ class Posting extends Component {
 
     return (
       <PostingContainer>
-        Posting
-        {
-          // Not show this for now.
-        }
-        {false && <JobEditForm initialValues={activePosting} />}
+        {jobs.isFetching && activePosting !== undefined
+          ? null
+          : <JobEditForm initialValues={activePosting} />}
       </PostingContainer>
     );
   }

@@ -81,5 +81,5 @@ const FormFooterCenter = styled.div`
   bottom: 0;
   background: #fff;
   border-top: 1px solid #ebebeb;
-  box-shadow: ${props => (props.isOverlapped ? '0 -9px 15px -5px rgba(0,0,0,0.09)' : 'none')};
+  box-shadow: ${props => (props.isOverlapped ? '0 -9px 15px -7px rgba(0,0,0,0.09)' : 'none')};
 `;

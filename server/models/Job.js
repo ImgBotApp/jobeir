@@ -21,6 +21,7 @@ const Job = new Schema({
     type: String,
     default: 'pending'
   },
+  descriptionRaw: String,
   description: {
     type: Object,
     blocks: [

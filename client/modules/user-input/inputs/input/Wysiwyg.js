@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import InputWrapper from '../components/InputWrapper';
+import { change } from 'redux-form';
 import { Editor } from 'react-draft-wysiwyg';
-import { EditorState, ContentState, convertFromRaw } from 'draft-js';
+import {
+  EditorState,
+  ContentState,
+  convertFromRaw,
+  convertToRaw
+} from 'draft-js';
 import styled from 'styled-components';
 import { wysiwig } from '../../themes/wysiwig-theme';
 
@@ -11,13 +18,23 @@ import { wysiwig } from '../../themes/wysiwig-theme';
  * be used to allow users to write a company description within
  * the job and company process.
  */
-export class Wysiwyg extends Component {
+class WysiwygForm extends Component {
   constructor(props) {
     super(props);
-    const { input } = props;
+    const { input, initialValues } = props;
     let editorState;
 
-    if (input.value.blocks) {
+    // Checking if we have initial values passed in
+    if (typeof initialValues === 'string') {
+      /**
+       * Converting the raw initial values that are in JSON format
+       * into something that draft js can initialize the editor with
+       */
+
+      editorState = EditorState.createWithContent(
+        convertFromRaw(JSON.parse(props.initialValues))
+      );
+    } else if (input.value.blocks) {
       editorState = EditorState.createWithContent(convertFromRaw(input.value));
     } else {
       editorState = EditorState.createEmpty();
@@ -38,9 +55,13 @@ export class Wysiwyg extends Component {
   }
 
   onEditorStateChange(editorState) {
-    this.setState({
-      editorState
-    });
+    const { dispatch, meta } = this.props;
+    const rawEditorState = JSON.stringify(
+      convertToRaw(editorState.getCurrentContent())
+    );
+
+    dispatch(change(meta.form, 'descriptionRaw', rawEditorState));
+    this.setState({ editorState });
   }
 
   render() {
@@ -49,7 +70,11 @@ export class Wysiwyg extends Component {
 
     return (
       <InputWrapper {...this.props}>
-        <EditorContainer showError={showError} onClick={this.handleClick}>
+        <EditorContainer
+          data-val={this.state.rawEditorState}
+          showError={showError}
+          onClick={this.handleClick}
+        >
           <Editor
             {...input}
             toolbar={wysiwig}
@@ -64,6 +89,8 @@ export class Wysiwyg extends Component {
     );
   }
 }
+
+export const Wysiwyg = connect()(WysiwygForm);
 
 const EditorContainer = styled.div`
   border-radius: 3px;

@@ -73,17 +73,27 @@ class JobEditFrom extends Component {
   }
 
   buildLocationsDropdown() {
-    const { companies } = this.props;
+    const { companies, params } = this.props;
     const activeCompany = companies.created.find(
-      company => company._id === companies.activeCompany._id
+      comp => comp._id === companies.activeCompany._id
     );
 
     return (
       activeCompany &&
       activeCompany.locations.map(location => {
+        const {
+          unit,
+          street_number,
+          route,
+          locality,
+          country
+        } = location.address;
+        const noUnit = `${street_number} ${route}, ${locality}, ${country}`;
+        const completeAddress = unit ? `${unit} - ${noUnit}` : noUnit;
+
         return {
-          name: `${location.street}, ${location.city}, ${location.country}`,
-          value: location
+          name: completeAddress,
+          value: location.address
         };
       })
     );
@@ -95,7 +105,7 @@ class JobEditFrom extends Component {
 
   render() {
     const { handleSubmit, offersEquity, jobs } = this.props;
-
+    console.log(this.props.initialValues !== undefined);
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
@@ -103,100 +113,117 @@ class JobEditFrom extends Component {
         formErrors={jobs.errors}
         theme="marble"
       >
-        <Field
-          name="title"
-          label="What's the job title?"
-          placeholder="Search titles"
-          validate={[required]}
-          options={jobOptions}
-          component={SelectSearch}
-        />
-        <div style={{ paddingBottom: '1rem' }} />
-        <Field
-          label="Describe the role"
-          name="description"
-          ui={{ maxWidth: '100%' }}
-          validate={[required, wysiwygLength(25)]}
-          component={Wysiwyg}
-        />
-        <Field
-          name="employmentType"
-          label="Employment Type"
-          validate={[required]}
-          options={jobTypes}
-          type="list"
-          component={Radio}
-        />
-        <Field
-          name="address"
-          label="Where will the employee be working?"
-          validate={[required]}
-          options={this.buildLocationsDropdown()}
-          component={Select}
-        />
-        <Field
-          name="remote"
-          label="Is this a remote position?"
-          validate={[required]}
-          options={yesNoOptions}
-          type="yes/no"
-          component={Radio}
-        />
-        <FormRow>
-          <Field
-            name="salaryMin"
-            label="Salary minimum"
-            placeholder="$"
-            validate={[required]}
-            parse={parseNumber}
-            component={Currency}
-          />
-          <Field
-            name="salaryMax"
-            label="Salary maximum"
-            placeholder="$"
-            validate={[required]}
-            parse={parseNumber}
-            component={Currency}
-          />
-        </FormRow>
-        <Field
-          name="offerEquity"
-          label="Do you offer equity?"
-          validate={[required]}
-          options={yesNoOptions}
-          type="yes/no"
-          component={Radio}
-        />
-        {offersEquity === 'Yes' &&
-          <FormRow>
-            <Field
-              name="equityMin"
-              label="Equity minimum"
-              type="number"
-              placeholder="%"
-              validate={[required]}
-              format={formatPercentage}
-              parse={parsePercentage}
-              component={Text}
-            />
-            <Field
-              name="equityMax"
-              label="Equity maximum"
-              type="number"
-              placeholder="%"
-              validate={[required]}
-              format={formatPercentage}
-              parse={parsePercentage}
-              component={Text}
-            />
-          </FormRow>}
-        <FieldArray name="receivingEmails" component={renderEmailFields} />
-        <Field
-          name="submitButton"
-          buttonText="Update"
-          component={SubmitButton}
-        />
+        {this.props.initialValues !== undefined
+          ? <div>
+              <Field
+                name="title"
+                label="What's the job title?"
+                placeholder="Search titles"
+                validate={[required]}
+                options={jobOptions}
+                component={SelectSearch}
+                selectedValue={
+                  this.props.initialValues && this.props.initialValues.title
+                }
+              />
+              <div style={{ paddingBottom: '1rem' }} />
+              <Field
+                label="Describe the role"
+                name="description"
+                ui={{ maxWidth: '100%' }}
+                validate={[required, wysiwygLength(25)]}
+                initialValues={
+                  this.props.initialValues &&
+                    this.props.initialValues.descriptionRaw
+                }
+                component={Wysiwyg}
+              />
+              <Field
+                name="employmentType"
+                label="Employment Type"
+                validate={[required]}
+                options={jobTypes}
+                type="list"
+                component={Radio}
+              />
+              <Field
+                name="address"
+                label="Where will the employee be working?"
+                validate={[required]}
+                options={this.buildLocationsDropdown()}
+                type="list"
+                row="full"
+                component={Radio}
+              />
+              <Field
+                name="remote"
+                label="Is this a remote position?"
+                validate={[required]}
+                options={yesNoOptions}
+                type="yes/no"
+                component={Radio}
+              />
+              <FormRow>
+                <Field
+                  name="salaryMin"
+                  label="Salary minimum"
+                  placeholder="$"
+                  validate={[required]}
+                  parse={parseNumber}
+                  component={Currency}
+                />
+                <Field
+                  name="salaryMax"
+                  label="Salary maximum"
+                  placeholder="$"
+                  validate={[required]}
+                  parse={parseNumber}
+                  component={Currency}
+                />
+              </FormRow>
+              <Field
+                name="offerEquity"
+                label="Do you offer equity?"
+                validate={[required]}
+                options={yesNoOptions}
+                type="yes/no"
+                component={Radio}
+              />
+              {offersEquity === 'Yes' &&
+                <FormRow>
+                  <Field
+                    name="equityMin"
+                    label="Equity minimum"
+                    type="number"
+                    placeholder="%"
+                    validate={[required]}
+                    format={formatPercentage}
+                    parse={parsePercentage}
+                    component={Text}
+                  />
+                  <Field
+                    name="equityMax"
+                    label="Equity maximum"
+                    type="number"
+                    placeholder="%"
+                    validate={[required]}
+                    format={formatPercentage}
+                    parse={parsePercentage}
+                    component={Text}
+                  />
+                </FormRow>}
+              <FieldArray
+                name="receivingEmails"
+                component={renderEmailFields}
+              />
+              <Field
+                name="submitButton"
+                buttonText="Update"
+                component={SubmitButton}
+              />
+            </div>
+          : null}
+
       </FormWrapper>
     );
   }
