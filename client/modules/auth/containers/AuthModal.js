@@ -8,7 +8,7 @@ import AuthOAuth from '../components/AuthOAuth';
 class AuthModal extends Component {
   state = {
     showLoginForm: false,
-    signupWithEmail: false,
+    signupWithEmail: false
   };
 
   renderSignup() {
@@ -46,7 +46,7 @@ class AuthModal extends Component {
 
   render() {
     return (
-      <ModalWrapper>
+      <ModalWrapper bgColor="white">
         <AuthModalBody>
           <AuthModalHeader>
             <AuthModalHeaderBlue />

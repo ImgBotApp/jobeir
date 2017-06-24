@@ -39,16 +39,16 @@ class ModalWrapper extends Component {
   }
 
   render() {
-    const { modalFull, modalSize, children } = this.props;
+    const { bgColor, modalFull, modalSize, children } = this.props;
 
     return (
-      <ModalContainer full={modalFull}>
+      <ModalContainer full={modalFull} bgColor={bgColor}>
         <ModalBackground onClick={this.handleClick} />
         <ModalAction onClick={this.handleClick}>
-          <ExIcon />
+          <ExIcon fill={bgColor === 'white' ? '#fe9591' : ''} />
         </ModalAction>
         <ModalContent size={modalSize}>
-          <ModalBody>
+          <ModalBody bgColor={bgColor}>
             {children || null}
           </ModalBody>
         </ModalContent>
@@ -69,7 +69,7 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${props => (props.bgColor === 'white' ? '#fff' : rgba(0, 0, 0, 0.6))};
   position: fixed;
   overflow: auto;
   top: 0;
@@ -103,7 +103,7 @@ const ModalBody = styled.div`
   position: relative;
   background-color: #fff;
   border-radius: 3px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,.44);
+  box-shadow: ${props => (props.bgColor === 'white' ? '0 3px 16px 0 rgba(0,0,0,.24)' : '0 2px 6px 0 rgba(0,0,0,.44)')};
   max-width: 520px;
 `;
 
