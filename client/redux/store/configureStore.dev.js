@@ -2,7 +2,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { apiMiddleware } from 'redux-api-middleware';
 import { persistState } from 'redux-devtools';
 import createSagaMiddleware from 'redux-saga';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import rootReducer from '../reducer';
 import rootSaga from '../../sagas';
 import { loadState, saveState } from './localstorage';
@@ -23,10 +23,10 @@ export default function configureStore(state) {
   store.subscribe(
     throttle(() => {
       saveState({
-        form: store.getState().form,
+        form: store.getState().form
       });
     }),
-    800,
+    800
   );
 
   return store;
