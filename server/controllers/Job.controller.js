@@ -17,9 +17,10 @@ export function getJobs(req, res) {
     .populate('company')
     .exec((err, jobs) => {
       if (err) {
-        res.status(500).send(err);
+        return res.status(204).send({ data: {}, errors: [err] });
+      } else {
+        res.json({ data: { postings: jobs }, errors: [] });
       }
-      res.json({ data: { postings: jobs }, errors: [] });
     });
 }
 
@@ -34,7 +35,7 @@ export function getJob(req, res) {
     .populate('company')
     .exec((err, job) => {
       if (err) {
-        res.status(500).send(err);
+        return res.status(500).send(err);
       }
 
       if (!job) {

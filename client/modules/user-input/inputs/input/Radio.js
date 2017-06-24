@@ -47,8 +47,10 @@ export const Radio = props => {
 
             // allowing re-assignment of the value if it's address input
             let checked = val === props.input.value;
-
-            if (props.input.name === 'address') {
+            if (
+              props.meta.form === 'job-edit' &&
+              props.input.name === 'address'
+            ) {
               checked =
                 option.value.postal_code === props.input.value.postal_code;
             }
@@ -157,7 +159,7 @@ const RadioListInputContainer = styled.div`
   align-items: center;
   justify-content: ${props => (props.row === 'full' ? '' : 'center')};
   flex-basis: ${props => (props.row === 'full' ? '100%' : '49.5%')};
-  padding: 20px;
+  padding: 18px;
   background:  ${props => (props.checked ? '#f27c5e' : '#f9f8f7')};
   color:  ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.8)')};
   border-radius: 2px;

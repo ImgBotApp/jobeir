@@ -13,17 +13,17 @@ class StepRouter extends Component {
 
     // If new user, take them through values first
     if (!user.agreedToValues) {
-      browserHistory.push('/create/company/onboarding');
+      return browserHistory.push('/create/company/onboarding');
     }
 
     // If user refreshes on create company take them back
     if (params.create === 'company') {
-      browserHistory.push('/create/company/about');
+      return browserHistory.push('/create/company/about');
     }
 
     // If user refreshes on job company take them back
     if (params.create === 'job') {
-      browserHistory.push(`/create/job/about/${params.companyId}`);
+      return browserHistory.push(`/create/job/about/${params.companyId}`);
     }
   }
 

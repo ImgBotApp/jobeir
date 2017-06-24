@@ -14,6 +14,9 @@ const theme = {
     black: '#0f0f17',
     beige: '#faf3d5',
     text: 'rgba(0,0,0,0.8)'
+  },
+  width: {
+    max: '1440px'
   }
 };
 

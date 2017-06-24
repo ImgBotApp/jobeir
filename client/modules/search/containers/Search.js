@@ -1,13 +1,16 @@
 import React from 'react';
-import Helmet from 'react-helmet';
-import Link from 'react-router/lib/Link';
+import styled from 'styled-components';
 
-import Search from '../../user-input/forms/form';
+import SearchForm from '../../user-input/forms/form/search/SearchFrom';
 
 const Search = () => (
-  <div>
-    <Search />
-  </div>
+  <SearchContainer>
+    <SearchForm />
+  </SearchContainer>
 );
 
 export default Search;
+
+const SearchContainer = styled.div`
+  display: flex;
+`;
