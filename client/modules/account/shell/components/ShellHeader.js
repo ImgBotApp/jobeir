@@ -9,15 +9,16 @@ import ShellHeaderNav from '../containers/ShellHeaderNav';
  * Takes care of the dropdown on the top right of the screen
  * and dispalys the header text based on the Route name
  */
-const ShellHeader = ({ headerText, params }) => (
+const ShellHeader = ({ headerText, params }) =>
   <ShellHeaderContainer>
     <ShellHeaderTitle headerText={headerText} params={params} />
     <ShellRightSide>
-      <ShellHeaderNav />
-      <ShellDropdown />
+      <ShellRightContent>
+        <ShellHeaderNav />
+        <ShellDropdown />
+      </ShellRightContent>
     </ShellRightSide>
-  </ShellHeaderContainer>
-);
+  </ShellHeaderContainer>;
 
 export default ShellHeader;
 
@@ -35,4 +36,9 @@ const ShellHeaderHeader = styled.header`
 const ShellRightSide = styled.div`
   display: flex;
   align-items: flex-start;
+`;
+
+const ShellRightContent = styled.div`
+  display: flex;
+  align-items: center;
 `;

@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import { getJob } from '../../../../create/job/ducks/';
 import JobEditForm from '../../../../user-input/forms/form/JobEditForm';
 import PostingPreview from './PostingPreview';
+import PostingHeader from '../components/PostingHeader';
 
 class Posting extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Posting extends Component {
 
     return (
       <PostingContainer>
-        <div onClick={this.handleEditClick}>Edit Posting</div>
+        <PostingHeader handleEditClick={this.handleEditClick} />
         {jobs.isFetching && activePosting !== undefined
           ? null
           : this.renderPreviewOrEdit(params, activePosting)}
@@ -54,5 +55,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Posting);
 
 const PostingContainer = styled.div`
-  margin-top: 75px;
+  margin-top: 50px;
 `;

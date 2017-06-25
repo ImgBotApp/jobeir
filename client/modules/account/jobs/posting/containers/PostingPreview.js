@@ -90,7 +90,7 @@ export default connect(mapStateToProps)(PostingPreview);
 const PostingPreviewContainer = styled.div`
   display: flex;
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1040px;
 
   p {
     line-height: 1.6;
@@ -133,7 +133,7 @@ const PostingPreviewMain = styled.div`
 `;
 
 const PostingPreviewSide = styled.div`
-  margin-left: 50px;
+  margin: 187px 0 0 100px;
   align-self: flex-start;
 
   #map {

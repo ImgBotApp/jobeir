@@ -115,117 +115,118 @@ class JobEditFrom extends Component {
         formErrors={jobs.errors}
         theme="marble"
       >
-        {this.props.initialValues !== undefined
-          ? <FormEditContainer>
-              <Field
-                name="title"
-                label="What's the job title?"
-                placeholder="Search titles"
-                validate={[required]}
-                options={jobOptions}
-                component={SelectSearch}
-                selectedValue={
-                  this.props.initialValues && this.props.initialValues.title
-                }
-              />
-              <div style={{ paddingBottom: '1rem' }} />
-              <Field
-                label="Describe the role"
-                name="description"
-                ui={{ maxWidth: '100%' }}
-                validate={[required, wysiwygLength(25)]}
-                initialValues={
-                  this.props.initialValues &&
-                  this.props.initialValues.descriptionRaw
-                }
-                component={Wysiwyg}
-              />
-              <Field
-                name="employmentType"
-                label="Employment Type"
-                validate={[required]}
-                options={jobTypes}
-                type="list"
-                component={Radio}
-              />
-              <Field
-                name="address"
-                label="Where will the employee be working?"
-                validate={[required]}
-                options={this.buildLocationsDropdown()}
-                type="list"
-                row="full"
-                component={Radio}
-              />
-              <Field
-                name="remote"
-                label="Is this a remote position?"
-                validate={[required]}
-                options={yesNoOptions}
-                type="yes/no"
-                component={Radio}
-              />
-              <FormRow>
+        <FormEditContainer>
+          {this.props.initialValues !== undefined
+            ? <FormEditForm>
                 <Field
-                  name="salaryMin"
-                  label="Salary minimum"
-                  placeholder="$"
+                  name="title"
+                  label="What's the job title?"
+                  placeholder="Search titles"
                   validate={[required]}
-                  parse={parseNumber}
-                  component={Currency}
+                  options={jobOptions}
+                  component={SelectSearch}
+                  selectedValue={
+                    this.props.initialValues && this.props.initialValues.title
+                  }
+                />
+                <div style={{ paddingBottom: '1rem' }} />
+                <Field
+                  label="Describe the role"
+                  name="description"
+                  ui={{ maxWidth: '100%' }}
+                  validate={[required, wysiwygLength(25)]}
+                  initialValues={
+                    this.props.initialValues &&
+                    this.props.initialValues.descriptionRaw
+                  }
+                  component={Wysiwyg}
                 />
                 <Field
-                  name="salaryMax"
-                  label="Salary maximum"
-                  placeholder="$"
+                  name="employmentType"
+                  label="Employment Type"
                   validate={[required]}
-                  parse={parseNumber}
-                  component={Currency}
+                  options={jobTypes}
+                  type="list"
+                  component={Radio}
                 />
-              </FormRow>
-              <Field
-                name="offerEquity"
-                label="Do you offer equity?"
-                validate={[required]}
-                options={yesNoOptions}
-                type="yes/no"
-                component={Radio}
-              />
-              {offersEquity === 'Yes' &&
+                <Field
+                  name="address"
+                  label="Where will the employee be working?"
+                  validate={[required]}
+                  options={this.buildLocationsDropdown()}
+                  type="list"
+                  row="full"
+                  component={Radio}
+                />
+                <Field
+                  name="remote"
+                  label="Is this a remote position?"
+                  validate={[required]}
+                  options={yesNoOptions}
+                  type="yes/no"
+                  component={Radio}
+                />
                 <FormRow>
                   <Field
-                    name="equityMin"
-                    label="Equity minimum"
-                    type="number"
-                    placeholder="%"
+                    name="salaryMin"
+                    label="Salary minimum"
+                    placeholder="$"
                     validate={[required]}
-                    format={formatPercentage}
-                    parse={parsePercentage}
-                    component={Text}
+                    parse={parseNumber}
+                    component={Currency}
                   />
                   <Field
-                    name="equityMax"
-                    label="Equity maximum"
-                    type="number"
-                    placeholder="%"
+                    name="salaryMax"
+                    label="Salary maximum"
+                    placeholder="$"
                     validate={[required]}
-                    format={formatPercentage}
-                    parse={parsePercentage}
-                    component={Text}
+                    parse={parseNumber}
+                    component={Currency}
                   />
-                </FormRow>}
-              <FieldArray
-                name="receivingEmails"
-                component={renderEmailFields}
-              />
-              <Field
-                name="submitButton"
-                buttonText="Update"
-                component={SubmitButton}
-              />
-            </FormEditContainer>
-          : null}
-
+                </FormRow>
+                <Field
+                  name="offerEquity"
+                  label="Do you offer equity?"
+                  validate={[required]}
+                  options={yesNoOptions}
+                  type="yes/no"
+                  component={Radio}
+                />
+                {offersEquity === 'Yes' &&
+                  <FormRow>
+                    <Field
+                      name="equityMin"
+                      label="Equity minimum"
+                      type="number"
+                      placeholder="%"
+                      validate={[required]}
+                      format={formatPercentage}
+                      parse={parsePercentage}
+                      component={Text}
+                    />
+                    <Field
+                      name="equityMax"
+                      label="Equity maximum"
+                      type="number"
+                      placeholder="%"
+                      validate={[required]}
+                      format={formatPercentage}
+                      parse={parsePercentage}
+                      component={Text}
+                    />
+                  </FormRow>}
+                <FieldArray
+                  name="receivingEmails"
+                  component={renderEmailFields}
+                />
+                <Field
+                  name="submitButton"
+                  buttonText="Update"
+                  component={SubmitButton}
+                />
+              </FormEditForm>
+            : null}
+        </FormEditContainer>
       </FormWrapper>
     );
   }
@@ -246,8 +247,12 @@ JobEditFrom = reduxForm({
 export default connect(mapStateToProps)(JobEditFrom);
 
 const FormEditContainer = styled.div`
+  max-width: 1040px;
   margin: 0 auto;
-  max-width: 600px;
+`;
+
+const FormEditForm = styled.div`
+  max-width: 580px;
 `;
 
 const FormListWrapper = styled.div`
