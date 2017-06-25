@@ -8,6 +8,7 @@ import moment from 'moment';
  * to the Jobs page within the account section.
  */
 const JobsListItem = ({ job }) => {
+  console.log(job);
   return (
     <div>
       <JobsMain>
@@ -18,8 +19,8 @@ const JobsListItem = ({ job }) => {
         <div>Created {moment(job.dateCreated).fromNow()}</div>
         <JobsDot>·</JobsDot>
         <div>
-          {job.address.locality}{', '}
-          {job.address.administrative_area_level_1}
+          {job.location.address.locality}{', '}
+          {job.location.address.administrative_area_level_1}
         </div>
         <JobsDot>·</JobsDot>
         <div>

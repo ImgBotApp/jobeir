@@ -51,7 +51,7 @@ export default connect(mapStateToProps)(UserWrapper(Shell));
 
 const ShellContainer = styled.div`
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 const ShellContent = styled.div`

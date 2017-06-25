@@ -10,7 +10,7 @@ export const Radio = props => {
     return (
       <InputWrapper {...rest}>
         <RadioContainer>
-          {props.options.map(option => (
+          {props.options.map(option =>
             <RadioInputContainer key={option.value}>
               <RadioInput
                 {...props.input}
@@ -25,7 +25,7 @@ export const Radio = props => {
                 {option.text}
               </RadioText>
             </RadioInputContainer>
-          ))}
+          )}
         </RadioContainer>
       </InputWrapper>
     );
@@ -124,7 +124,10 @@ const RadioInput = styled.input`
   
   &:active,
   &:focus {
-    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.input.activeBorderColor)};
+    border-color: ${props =>
+      props.showError
+        ? props.theme.error.color
+        : props.theme.input.activeBorderColor};
   }
 
   position: absolute;
@@ -139,7 +142,8 @@ const RadioText = styled.div`
   position: relative;
   top: 2px;
   pointer-events: none;
-  color: ${props => (props.showError ? props.theme.error.color : props.theme.text)};
+  color: ${props =>
+    props.showError ? props.theme.error.color : props.theme.text};
 `;
 
 /**
@@ -159,7 +163,7 @@ const RadioListInputContainer = styled.div`
   align-items: center;
   justify-content: ${props => (props.row === 'full' ? '' : 'center')};
   flex-basis: ${props => (props.row === 'full' ? '100%' : '49.5%')};
-  padding: 18px;
+  padding: 15px;
   background:  ${props => (props.checked ? '#f27c5e' : '#f9f8f7')};
   color:  ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.8)')};
   border-radius: 2px;
@@ -194,7 +198,10 @@ const RadioListInput = styled.input`
   
   &:active,
   &:focus {
-    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.input.activeBorderColor)};
+    border-color: ${props =>
+      props.showError
+        ? props.theme.error.color
+        : props.theme.input.activeBorderColor};
   }
 `;
 
@@ -202,5 +209,6 @@ const RadioListText = styled.div`
   position: relative;
   top: 2px;
   pointer-events: none;
-  color: ${props => (props.showError ? props.theme.error.color : props.theme.text)};
+  color: ${props =>
+    props.showError ? props.theme.error.color : props.theme.text};
 `;

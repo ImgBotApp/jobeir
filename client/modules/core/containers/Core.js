@@ -75,32 +75,4 @@ injectGlobal`
     font-family: 'Avenir STD', Avenir sans-serif;
     color: rgba(0,0,0,0.8);
   }
-
-  p {
-    line-height: 1.6;
-    margin-bottom: 16px;
-    font-size: 16px;
-    color: #717171;
-  }
-  
-  h2 {
-    font-size: 20px;
-    margin-bottom: 16px;
-  }
-
-  ul, ol {
-    line-height: 1.6;
-    padding-left: 20px;
-    margin-bottom: 16px;
-    font-size: 16px;
-    color: #717171;
-
-    & > li {
-      margin-bottom: 8px;
-      font-size: 16px;
-      color: #717171;
-    }
-  }
-
-
 `;

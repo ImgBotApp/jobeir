@@ -42,15 +42,20 @@ const Job = new Schema({
   equityMin: Number,
   // experience: String,
   // language: String,
-  address: {
-    unit: Number,
-    administrative_area_level_1: String,
-    country: String,
-    postal_code: String,
-    route: String,
-    locality: String,
-    street_number: Number,
-    hq: Boolean
+  location: {
+    address: {
+      type: Object,
+      required: true
+    },
+    hq: {
+      type: Boolean,
+      default: true
+    },
+    type: {
+      type: String,
+      default: 'Point'
+    },
+    coordinates: [{ type: Number, required: true }]
   },
   offerEquity: String,
   receivingEmails: [

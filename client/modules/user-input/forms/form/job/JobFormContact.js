@@ -13,16 +13,15 @@ import { FormListRemoveIcon } from '../../../../../icons/';
 const renderEmailFields = ({
   fields,
   meta: { touched, error, submitFailed }
-}) => (
+}) =>
   <FormListWrapper>
     {fields.map(renderFields)}
     <FormListButton onClick={() => fields.push({})}>
       Add additional email
     </FormListButton>
-  </FormListWrapper>
-);
+  </FormListWrapper>;
 
-const renderFields = (member, index, fields) => (
+const renderFields = (member, index, fields) =>
   <FormListItem key={member}>
     {index > 0 &&
       <FormListRemoveItem onClick={() => fields.remove(index)}>
@@ -30,12 +29,13 @@ const renderFields = (member, index, fields) => (
       </FormListRemoveItem>}
     <Field
       name={`${member}.email`}
-      label={`${index === 0 ? 'Send applications to the following emails:' : ''}`}
+      label={`${index === 0
+        ? 'Send applications to the following emails:'
+        : ''}`}
       validate={[email, required]}
       component={Text}
     />
-  </FormListItem>
-);
+  </FormListItem>;
 
 class JobFormComponesation extends Component {
   constructor(props) {
@@ -53,8 +53,8 @@ class JobFormComponesation extends Component {
   formSubmit(data) {
     const { dispatch, params: { companyId } } = this.props;
     // adding the company to the data;
-    const address = JSON.parse(data.address);
-    const body = { ...data, address };
+    const location = JSON.parse(data.address);
+    const body = { ...data, location };
     const redirectPath = `/complete/job/${companyId}`;
 
     dispatch(createJob(companyId, body, redirectPath));

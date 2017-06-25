@@ -51,7 +51,7 @@ class JobFormType extends Component {
 
         return {
           name: completeAddress,
-          value: location.address
+          value: location
         };
       })
     );

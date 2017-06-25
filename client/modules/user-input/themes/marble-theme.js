@@ -55,7 +55,8 @@ export const marble = {
   label: {
     display: 'block',
     marginBottom: '6px',
-    fontSize: '18px'
+    fontSize: '18px',
+    fontWeight: '600'
   },
   select: {
     background: '#fff',

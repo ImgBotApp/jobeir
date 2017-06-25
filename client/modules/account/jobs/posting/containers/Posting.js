@@ -47,6 +47,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Posting);
 
 const PostingContainer = styled.div`
-  width: 570px;
-  margin: 0 auto;
+
 `;
