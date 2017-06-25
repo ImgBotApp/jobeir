@@ -78,11 +78,14 @@ const SelectInput = styled.select`
   width: ${props => props.theme.select.width};
   margin: ${props => props.theme.select.margin};
   max-width: ${props => props.theme.select.maxWidth};
-  color: ${props => (props.visited ? 'rgba(0,0,0,0.8)' : '#989898')};
+  color: ${props => (props.visited ? 'rgba(0,0,0,0.85)' : '#989898')};
   
   &:active,
   &:focus {
-    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.select.activeBorderColor)};
+    border-color: ${props =>
+      props.showError
+        ? props.theme.error.color
+        : props.theme.select.activeBorderColor};
   }
 
   -webkit-appearance: none;
@@ -102,7 +105,7 @@ const OptionInput = styled.option`
   }
 `;
 
-const SelectArrow = () => (
+const SelectArrow = () =>
   <svg
     fill="#676767"
     width="36"
@@ -110,5 +113,4 @@ const SelectArrow = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path d="M7 10l5 5 5-5z" /><path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
+  </svg>;

@@ -123,7 +123,7 @@ const FormListRemoveItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(0,0,0,0.8);
+  border: 1px solid rgba(0,0,0,0.85);
   opacity: 0.5;
   border-radius: 50%;
   cursor: pointer;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const BackpackIcon = ({ width = 24, height = 24, className = '' }) => (
+export const BackpackIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -89,10 +89,9 @@ export const BackpackIcon = ({ width = 24, height = 24, className = '' }) => (
         strokeLinejoin="miter"
       />
     </g>
-  </svg>
-);
+  </svg>;
 
-export const BoxGraphIcon = ({ width = 24, height = 24, className = '' }) => (
+export const BoxGraphIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -171,10 +170,9 @@ export const BoxGraphIcon = ({ width = 24, height = 24, className = '' }) => (
         strokeLinejoin="miter"
       />
     </g>
-  </svg>
-);
+  </svg>;
 
-export const ChevronLeft = ({ width = 24, height = 24, className = '' }) => (
+export const ChevronLeft = ({ width = 24, height = 24, className = '' }) =>
   <svg
     className={className}
     height={height}
@@ -184,10 +182,9 @@ export const ChevronLeft = ({ width = 24, height = 24, className = '' }) => (
   >
     <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
     <path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
+  </svg>;
 
-export const ChevronDown = ({ width = 24, height = 24, className = '' }) => (
+export const ChevronDown = ({ width = 24, height = 24, className = '' }) =>
   <svg
     className={className}
     height={height}
@@ -197,10 +194,9 @@ export const ChevronDown = ({ width = 24, height = 24, className = '' }) => (
   >
     <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
     <path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
+  </svg>;
 
-export const EarthPointIcon = ({ width = 24, height = 24, className = '' }) => (
+export const EarthPointIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -269,15 +265,14 @@ export const EarthPointIcon = ({ width = 24, height = 24, className = '' }) => (
         strokeLinejoin="miter"
       />
     </g>
-  </svg>
-);
+  </svg>;
 
 export const ExIcon = ({
   width = 24,
   height = 24,
   className = '',
   fill = '#fff'
-}) => (
+}) =>
   <svg
     fill={fill}
     className={className}
@@ -288,15 +283,14 @@ export const ExIcon = ({
   >
     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
     <path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
+  </svg>;
 
 export const FormListRemoveIcon = ({
   width = 24,
   height = 12,
   className = '',
-  fill = 'rgba(0,0,0,0.8)'
-}) => (
+  fill = 'rgba(0,0,0,0.85)'
+}) =>
   <svg
     fill={fill}
     height={height}
@@ -305,10 +299,9 @@ export const FormListRemoveIcon = ({
   >
     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
     <path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
+  </svg>;
 
-export const HandsCoinsIcon = ({ width = 24, height = 24, className = '' }) => (
+export const HandsCoinsIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -374,10 +367,9 @@ export const HandsCoinsIcon = ({ width = 24, height = 24, className = '' }) => (
         strokeLinejoin="miter"
       />
     </g>
-  </svg>
-);
+  </svg>;
 
-export const LightBulbIcon = ({ width = 24, height = 24, className = '' }) => (
+export const LightBulbIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -417,10 +409,9 @@ export const LightBulbIcon = ({ width = 24, height = 24, className = '' }) => (
       y2="46"
       strokeLinejoin="miter"
     />
-  </svg>
-);
+  </svg>;
 
-export const MailIcon = ({ width = 24, height = 24, className = '' }) => (
+export const MailIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -506,10 +497,9 @@ export const MailIcon = ({ width = 24, height = 24, className = '' }) => (
         strokeLinejoin="miter"
       />
     </g>
-  </svg>
-);
+  </svg>;
 
-export const PaperClipIcon = ({ width = 24, height = 24, className = '' }) => (
+export const PaperClipIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -532,10 +522,9 @@ export const PaperClipIcon = ({ width = 24, height = 24, className = '' }) => (
         strokeLinejoin="miter"
       />
     </g>
-  </svg>
-);
+  </svg>;
 
-export const PencilIcon = ({ width = 24, height = 24, className = '' }) => (
+export const PencilIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -566,10 +555,9 @@ export const PencilIcon = ({ width = 24, height = 24, className = '' }) => (
   18,2 22,6 "
       strokeLinejoin="miter"
     />
-  </svg>
-);
+  </svg>;
 
-export const UploadIcon = ({ width = 24, height = 24, className = '' }) => (
+export const UploadIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -615,22 +603,20 @@ export const UploadIcon = ({ width = 24, height = 24, className = '' }) => (
         strokeLinejoin="miter"
       />
     </g>
-  </svg>
-);
+  </svg>;
 
 /**
  * Company Icons
  */
-export const FacebookIcon = () => (
+export const FacebookIcon = () =>
   <svg width="25" viewBox="0 0 25 25">
     <path
       d="M23.62,0H1.38A1.38,1.38,0,0,0,0,1.38V23.62A1.38,1.38,0,0,0,1.38,25h12V15.32H10.1V11.55h3.26V8.76c0-3.23,2-5,4.85-5a26.73,26.73,0,0,1,2.91.15V7.3h-2c-1.57,0-1.87.74-1.87,1.84v2.41H21l-.49,3.77H17.25V25h6.37A1.38,1.38,0,0,0,25,23.62V1.38A1.38,1.38,0,0,0,23.62,0Z"
       fill="#fff"
     />
-  </svg>
-);
+  </svg>;
 
-export const GoogleIcon = () => (
+export const GoogleIcon = () =>
   <svg width="25" viewBox="0 0 25 25">
     <path
       d="M24.5,12.78a14.36,14.36,0,0,0-.23-2.56H12.5v4.84h6.73a5.75,5.75,0,0,1-2.49,3.77V22h4a12.19,12.19,0,0,0,3.73-9.19Z"
@@ -649,22 +635,20 @@ export const GoogleIcon = () => (
       fill="#ea4335"
     />
     <path d="M0,0H25V25H0Z" fill="none" />
-  </svg>
-);
+  </svg>;
 
-export const GithubIcon = () => (
+export const GithubIcon = () =>
   <svg width="25" viewBox="0 0 25 24.47">
     <path
       d="M12.56,0a12.55,12.55,0,0,0-4,24.45c.62.12.85-.27.85-.61V21.71C5.94,22.47,5.2,20,5.2,20a3.32,3.32,0,0,0-1.39-1.83c-1.14-.77.08-.77.08-.77a2.63,2.63,0,0,1,1.93,1.29,2.67,2.67,0,0,0,3.63,1.05h0a2.68,2.68,0,0,1,.77-1.68c-2.76-.3-5.68-1.38-5.68-6.18A4.85,4.85,0,0,1,5.85,8.53,4.51,4.51,0,0,1,6,5.21S7,4.87,9.42,6.49a11.89,11.89,0,0,1,6.28,0c2.4-1.62,3.45-1.29,3.45-1.29a4.51,4.51,0,0,1,.11,3.32,4.84,4.84,0,0,1,1.29,3.37c0,4.82-2.93,5.88-5.73,6.16a3,3,0,0,1,.85,2.31V23.8c0,.42.22.72.86.6A12.55,12.55,0,0,0,12.56,0Z"
       fill="#fff"
     />
-  </svg>
-);
+  </svg>;
 
 /**
  * Small Icons, can't adjust size. They're fixed path width
  */
-export const BabyFaceIcon = ({ width = 24, height = 24, className = '' }) => (
+export const BabyFaceIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24px"
@@ -683,10 +667,9 @@ export const BabyFaceIcon = ({ width = 24, height = 24, className = '' }) => (
   c-3.936,0-7.273,2.53-8.495,6.05C2.085,10.287,1,11.513,1,13c0,1.486,1.085,2.713,2.505,2.95C4.727,19.471,8.064,22,12,22
   c3.936,0,7.273-2.529,8.495-6.05C21.915,15.713,23,14.486,23,13z M12,7c-0.25-3.583,1.667-5.792,5-6"
     />
-  </svg>
-);
+  </svg>;
 
-export const BeerGlassIcon = ({ width = 24, height = 24, className = '' }) => (
+export const BeerGlassIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24px"
@@ -703,10 +686,9 @@ export const BeerGlassIcon = ({ width = 24, height = 24, className = '' }) => (
   c0,1.1-0.9,2-2,2h-2 M17,10.5V23H3V10.5 M15.5,6L15.5,6c-0.3-2.8-2.6-5-5.5-5C7.1,1,4.8,3.2,4.5,6l0,0C3,6,1.9,7.3,2,8.8
   C2.1,10.1,3.3,11,4.6,11H7v4c0,1.1,0.9,2,2,2l0,0c1.1,0,2-0.9,2-2v-4h4.4c1.3,0,2.5-0.9,2.6-2.2C18.1,7.3,17,6,15.5,6z"
     />
-  </svg>
-);
+  </svg>;
 
-export const BusIcon = ({ width = 24, height = 24, className = '' }) => (
+export const BusIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -725,10 +707,9 @@ export const BusIcon = ({ width = 24, height = 24, className = '' }) => (
   H7.9 M3.1,17H1V6c0-1.1,0.9-2,2-2h18c1.1,0,2,0.9,2,2v11h-2.1 M5.5,15C6.881,15,8,16.119,8,17.5S6.881,20,5.5,20S3,18.881,3,17.5
   S4.119,15,5.5,15z M18.5,15c1.381,0,2.5,1.119,2.5,2.5S19.881,20,18.5,20S16,18.881,16,17.5S17.119,15,18.5,15z M4,7h10v4H4V7z"
     />
-  </svg>
-);
+  </svg>;
 
-export const ClockIcon = ({ width = 24, height = 24, className = '' }) => (
+export const ClockIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24px"
@@ -744,10 +725,9 @@ export const ClockIcon = ({ width = 24, height = 24, className = '' }) => (
       d="M12,1v4 M23,12h-4
    M12,23v-4 M1,12h4 M12,1c6.075,0,11,4.925,11,11s-4.925,11-11,11S1,18.075,1,12S5.925,1,12,1z M8,6l4,6h4"
     />
-  </svg>
-);
+  </svg>;
 
-export const CoffeeCupIcon = ({ width = 24, height = 24, className = '' }) => (
+export const CoffeeCupIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -765,14 +745,13 @@ export const CoffeeCupIcon = ({ width = 24, height = 24, className = '' }) => (
       d="M10,1v2 M5,2v2
    M15,2v2 M19,8h4v4c0,1.1-0.9,2-2,2h-2.5 M10,20L10,20c-5,0-9-4-9-9V8h18v3C19,16,15,20,10,20z M1,23h18"
     />
-  </svg>
-);
+  </svg>;
 
 export const DesktopMonitorIcon = ({
   width = 24,
   height = 24,
   className = ''
-}) => (
+}) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24px"
@@ -789,10 +768,9 @@ export const DesktopMonitorIcon = ({
    M12,4c0.553,0,1,0.448,1,1s-0.447,1-1,1c-0.552,0-1-0.448-1-1S11.448,4,12,4z M21,19H3c-1.105,0-2-0.895-2-2V3c0-1.105,0.895-2,2-2
   h18c1.105,0,2,0.895,2,2v14C23,18.105,22.105,19,21,19z M1,15h22"
     />
-  </svg>
-);
+  </svg>;
 
-export const DogIcon = ({ width = 24, height = 24, className = '' }) => (
+export const DogIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24px"
@@ -813,10 +791,9 @@ export const DogIcon = ({ width = 24, height = 24, className = '' }) => (
   V19c0,2.209,1.791,4,4,4h2v-5c0-1.656-1.344-3-3-3h-0.765 M10.766,14h2.468c0.777,0,1.257,0.848,0.857,1.515l-1.234,2.056
   c-0.389,0.648-1.327,0.648-1.715,0l-1.234-2.056C9.509,14.848,9.989,14,10.766,14z"
     />
-  </svg>
-);
+  </svg>;
 
-export const FamilyIcon = ({ width = 24, height = 24, className = '' }) => (
+export const FamilyIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24px"
@@ -835,10 +812,9 @@ export const FamilyIcon = ({ width = 24, height = 24, className = '' }) => (
   C1.428,18.786,1,19.479,1,20.236V23h12v-2.764c0-0.758-0.428-1.45-1.106-1.789l-2.487-1.254 M7,18L7,18c-2.209,0-4-1.791-4-4v-1
   c0-2.209,1.791-4,4-4l0,0c2.209,0,4,1.791,4,4v1C11,16.209,9.209,18,7,18z"
     />
-  </svg>
-);
+  </svg>;
 
-export const FoodBowlIcon = ({ width = 24, height = 24, className = '' }) => (
+export const FoodBowlIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24px"
@@ -855,14 +831,9 @@ export const FoodBowlIcon = ({ width = 24, height = 24, className = '' }) => (
   L2,2 M9.3,7c0.8-2.4,3-4,5.7-4c3.3,0,6,2.7,6,6c0,1.1-0.3,2.1-0.8,3 M5,12c0-2.8,2.2-5,5-5s5,2.2,5,5 M1.7,16h20.6 M12,23
   c6.1,0,11-4.9,11-11H1C1,18.1,5.9,23,12,23z"
     />
-  </svg>
-);
+  </svg>;
 
-export const MedicalCrossIcon = ({
-  width = 24,
-  height = 24,
-  className = ''
-}) => (
+export const MedicalCrossIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24px"
@@ -878,14 +849,9 @@ export const MedicalCrossIcon = ({
       d="M12,1
   c6.075,0,11,4.925,11,11s-4.925,11-11,11S1,18.075,1,12S5.925,1,12,1z M18,10h-4V6h-4v4H6v4h4v4h4v-4h4V10z"
     />
-  </svg>
-);
+  </svg>;
 
-export const MoneyFolderIcon = ({
-  width = 24,
-  height = 24,
-  className = ''
-}) => (
+export const MoneyFolderIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24px"
@@ -902,10 +868,9 @@ export const MoneyFolderIcon = ({
   L9,16.5c0,1.4,1.1,2.5,2.5,2.5h1c1.4,0,2.5-1.1,2.5-2.5l0,0c0-3.5-6-1.5-6-5l0,0C9,10.1,10.1,9,11.5,9h1c1.4,0,2.5,1.1,2.5,2.5
    M12,8v12"
     />
-  </svg>
-);
+  </svg>;
 
-export const GlobeIcon = ({ width = 24, height = 24, className = '' }) => (
+export const GlobeIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -924,14 +889,13 @@ export const GlobeIcon = ({ width = 24, height = 24, className = '' }) => (
   c3.313,0,6,2.687,6,6s-2.687,6-6,6s-6-2.687-6-6S7.687,3,11,3z M6,23h10 M3.01,15.001C4.832,17.428,7.73,19,11,19
   c5.523,0,10-4.477,10-10c0-3.269-1.572-6.167-3.999-7.99"
     />
-  </svg>
-);
+  </svg>;
 
 export const PersonSpeakingIcon = ({
   width = 24,
   height = 24,
   className = ''
-}) => (
+}) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24px"
@@ -949,5 +913,4 @@ export const PersonSpeakingIcon = ({
   c2.209,0,4,1.791,4,4s-1.791,4-4,4s-4-1.791-4-4S5.791,5,8,5z M17.001,6.355C17.623,7.06,18,7.986,18,9s-0.378,1.94-1,2.646
    M20.001,2.293C21.842,3.941,23,6.335,23,9s-1.158,5.061-2.999,6.708"
     />
-  </svg>
-);
+  </svg>;

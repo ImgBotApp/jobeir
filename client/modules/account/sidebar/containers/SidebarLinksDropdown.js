@@ -67,7 +67,7 @@ class SidebarLinksDropdown extends Component {
           <DropdownNavDropdownList>
             {companies.created
               .filter(company => company.name !== companies.activeCompany.name)
-              .map(company => (
+              .map(company =>
                 <div
                   key={company._id}
                   onClick={() => this.switchCompanies(company)}
@@ -77,7 +77,7 @@ class SidebarLinksDropdown extends Component {
                   </DropdownNavDropdownListItem>
                   <DropdownNavDropdownListHr />
                 </div>
-              ))}
+              )}
             <div onClick={() => browserHistory.push('/create/company/about')}>
               <DropdownNavDropdownListItem>
                 + Create new
@@ -126,7 +126,7 @@ const DropdownNavButton = styled(Link)`
     padding: 3px;
     position: relative;
     top: -1px;
-    fill: rgba(0,0,0,0.8);
+    fill: rgba(0,0,0,0.85);
   }
 `;
 
@@ -139,7 +139,10 @@ const DropdownNavDropdown = styled.div`
   transition: all 280ms ease;
   pointer-events: ${props => (props.showDropdown ? 'initial' : 'none')};
   opacity: ${props => (props.showDropdown ? '1' : '0')};
-  transform: ${props => (props.showDropdown ? 'translate3d(0px, 0px, 0px)' : 'translate3d(0px, -10px, 0px)')};
+  transform: ${props =>
+    props.showDropdown
+      ? 'translate3d(0px, 0px, 0px)'
+      : 'translate3d(0px, -10px, 0px)'};
 `;
 
 const DropdownNavDropdownList = styled.ul`

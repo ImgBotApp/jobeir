@@ -42,15 +42,14 @@ const yesNoOptions = [
 const renderEmailFields = ({
   fields,
   meta: { touched, error, submitFailed }
-}) => (
+}) =>
   <FormListWrapper>
     {fields.map(renderFields)}
     <FormListButton onClick={() => fields.push({})}>
       Add additional email
     </FormListButton>
-  </FormListWrapper>
-);
-const renderFields = (member, index, fields) => (
+  </FormListWrapper>;
+const renderFields = (member, index, fields) =>
   <FormListItem key={member}>
     {index > 0 &&
       <FormListRemoveItem onClick={() => fields.remove(index)}>
@@ -58,12 +57,13 @@ const renderFields = (member, index, fields) => (
       </FormListRemoveItem>}
     <Field
       name={`${member}.email`}
-      label={`${index === 0 ? 'Send applications to the following emails:' : ''}`}
+      label={`${index === 0
+        ? 'Send applications to the following emails:'
+        : ''}`}
       validate={[email, required]}
       component={Text}
     />
-  </FormListItem>
-);
+  </FormListItem>;
 
 class JobEditFrom extends Component {
   constructor(props) {
@@ -116,7 +116,7 @@ class JobEditFrom extends Component {
         theme="marble"
       >
         {this.props.initialValues !== undefined
-          ? <div>
+          ? <FormEditContainer>
               <Field
                 name="title"
                 label="What's the job title?"
@@ -136,7 +136,7 @@ class JobEditFrom extends Component {
                 validate={[required, wysiwygLength(25)]}
                 initialValues={
                   this.props.initialValues &&
-                    this.props.initialValues.descriptionRaw
+                  this.props.initialValues.descriptionRaw
                 }
                 component={Wysiwyg}
               />
@@ -223,7 +223,7 @@ class JobEditFrom extends Component {
                 buttonText="Update"
                 component={SubmitButton}
               />
-            </div>
+            </FormEditContainer>
           : null}
 
       </FormWrapper>
@@ -245,6 +245,11 @@ JobEditFrom = reduxForm({
 
 export default connect(mapStateToProps)(JobEditFrom);
 
+const FormEditContainer = styled.div`
+  margin: 0 auto;
+  max-width: 600px;
+`;
+
 const FormListWrapper = styled.div`
   padding-top: 1rem;
 `;
@@ -263,7 +268,7 @@ const FormListRemoveItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(0,0,0,0.8);
+  border: 1px solid rgba(0,0,0,0.85);
   border-radius: 50%;
   cursor: pointer;
 `;

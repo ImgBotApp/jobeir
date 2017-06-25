@@ -6,10 +6,10 @@ import SidebarLinksDropdown from '../containers/SidebarLinksDropdown';
 // The sidebar navigation gets built from this array
 const sidebarLinksData = ['Jobs', 'Company', 'People'];
 
-const SidebarLinks = () => (
+const SidebarLinks = () =>
   <div>
     <SidebarLinksDropdown />
-    {sidebarLinksData.map(link => (
+    {sidebarLinksData.map(link =>
       <NavLink
         key={link}
         activeClassName="route-active"
@@ -17,9 +17,8 @@ const SidebarLinks = () => (
       >
         {link}
       </NavLink>
-    ))}
-  </div>
-);
+    )}
+  </div>;
 
 export default SidebarLinks;
 
@@ -47,6 +46,6 @@ const NavLink = styled(Link)`
     padding: 3px;
     position: relative;
     top: -1px;
-    fill: rgba(0,0,0,0.8);
+    fill: rgba(0,0,0,0.85);
   }
 `;

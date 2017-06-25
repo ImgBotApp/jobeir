@@ -23,7 +23,7 @@ export const auth = {
     fontSize: '16px',
     width: '100%',
     margin: '0 auto 1rem',
-    activeBorderColor: 'rgba(0,0,0,0.8)',
+    activeBorderColor: 'rgba(0,0,0,0.85)',
     ph: {
       color: '#afafaf'
     }

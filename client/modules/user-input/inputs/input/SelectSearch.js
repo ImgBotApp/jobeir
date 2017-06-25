@@ -57,7 +57,7 @@ const SelectContainer = styled.div`
   .Select-control {
     background-color: #fff;
     border-radius: 4px;
-    color: rgba(0,0,0,0.8);
+    color: rgba(0,0,0,0.85);
     cursor: default;
     display: table;
     border-spacing: 0;
@@ -68,7 +68,8 @@ const SelectContainer = styled.div`
     width: 100%;
     border-radius: 3px;
     border: solid 1px;
-    border-color: ${props => (props.showError ? props.theme.error.color : '#babbbb')};
+    border-color: ${props =>
+      props.showError ? props.theme.error.color : '#babbbb'};
     padding: 18px;
     font-size: 16px;
     width: 100%;
@@ -86,7 +87,8 @@ const SelectContainer = styled.div`
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     background: #fff;
-    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.colors.text)};
+    border-color: ${props =>
+      props.showError ? props.theme.error.color : props.theme.colors.text};
   }
   .is-open > .Select-control .Select-arrow {
     top: -2px;
@@ -97,7 +99,8 @@ const SelectContainer = styled.div`
     cursor: text;
   }
   .is-focused:not(.is-open) > .Select-control {
-    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.colors.text)};
+    border-color: ${props =>
+      props.showError ? props.theme.error.color : props.theme.colors.text};
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 126, 255, 0.1);
   }
 
@@ -127,7 +130,7 @@ const SelectContainer = styled.div`
   .has-value.Select--single > .Select-control .Select-value .Select-value-label,
   .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
     font-weight: 600;
-    color: rgba(0,0,0,0.8);
+    color: rgba(0,0,0,0.85);
   }
   .has-value.Select--single > .Select-control .Select-value a.Select-value-label,
   .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label {
@@ -192,7 +195,7 @@ const SelectContainer = styled.div`
     box-sizing: border-box;
     border-radius: 50%;
     border: 2px solid #ccc;
-    border-right-color: rgba(0,0,0,0.8);
+    border-right-color: rgba(0,0,0,0.85);
     display: inline-block;
     position: relative;
     vertical-align: middle;
@@ -274,7 +277,7 @@ const SelectContainer = styled.div`
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.8);
+    border: 1px solid rgba(0,0,0,0.85);
     border-top-color: #e6e6e6;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
@@ -293,7 +296,7 @@ const SelectContainer = styled.div`
   .Select-option {
     box-sizing: border-box;
     background-color: #fff;
-    color: rgba(0,0,0,0.8);
+    color: rgba(0,0,0,0.85);
     cursor: pointer;
     display: block;
     padding: 12px 18px;
@@ -306,13 +309,13 @@ const SelectContainer = styled.div`
     background-color: #f5faff;
     /* Fallback color for IE 8 */
     background-color: rgba(251, 80, 50, 0.03);
-    color: rgba(0,0,0,0.8);
+    color: rgba(0,0,0,0.85);
   }
   .Select-option.is-focused {
     background-color: #ebf5ff;
     /* Fallback color for IE 8 */
     background-color: rgba(251, 80, 50, 0.08);
-    color: rgba(0,0,0,0.8);
+    color: rgba(0,0,0,0.85);
   }
   .Select-option.is-disabled {
     color: #cccccc;
@@ -392,7 +395,7 @@ const SelectContainer = styled.div`
   .Select--multi.is-disabled .Select-value {
     background-color: #fcfcfc;
     border: 1px solid #e3e3e3;
-    color: rgba(0,0,0,0.8);
+    color: rgba(0,0,0,0.85);
   }
   .Select--multi.is-disabled .Select-value-icon {
     cursor: not-allowed;

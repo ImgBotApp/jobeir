@@ -10,6 +10,8 @@ class Posting extends Component {
   constructor(props) {
     super(props);
     this.state = { renderEdit: false };
+
+    this.handleEditClick = this.handleEditClick.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +25,10 @@ class Posting extends Component {
       : <PostingPreview activePosting={activePosting} params={params} />;
   }
 
+  handleEditClick() {
+    this.setState({ renderEdit: !this.state.renderEdit });
+  }
+
   render() {
     const { params, jobs } = this.props;
     const activePosting = jobs.postings.find(
@@ -31,6 +37,7 @@ class Posting extends Component {
 
     return (
       <PostingContainer>
+        <div onClick={this.handleEditClick}>Edit Posting</div>
         {jobs.isFetching && activePosting !== undefined
           ? null
           : this.renderPreviewOrEdit(params, activePosting)}
@@ -47,5 +54,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Posting);
 
 const PostingContainer = styled.div`
-
+  margin-top: 75px;
 `;

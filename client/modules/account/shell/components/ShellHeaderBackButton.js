@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router';
 import { ChevronLeft } from '../../../../icons/';
 
-const ShellHeaderBackButton = ({ to, parent, title }) => (
+const ShellHeaderBackButton = ({ to, parent, title }) =>
   <ShellHeaderBackButtonContainer>
     <ShellHeaderBackButtonLink to={to}>
       <StyledChevronLeft />
@@ -13,8 +13,7 @@ const ShellHeaderBackButton = ({ to, parent, title }) => (
     <ShellHeaderBackButtonTitle>
       {title}
     </ShellHeaderBackButtonTitle>
-  </ShellHeaderBackButtonContainer>
-);
+  </ShellHeaderBackButtonContainer>;
 
 export default ShellHeaderBackButton;
 
@@ -31,7 +30,7 @@ const ShellHeaderBackButtonLink = styled(Link)`
   font-weight: 600;
   font-size: 18px;
   text-decoration: none;
-  color: rgba(0,0,0,0.8);
+  color: rgba(0,0,0,0.85);
   align-self: flex-start;
   padding: 3px 6px 2px 3px;
   margin-bottom: 10px;
@@ -49,7 +48,7 @@ const ShellHeaderBackButtonLinkText = styled.span`
 `;
 
 const StyledChevronLeft = styled(ChevronLeft)`
-  fill: rgba(0,0,0,0.8);
+  fill: rgba(0,0,0,0.85);
   position: relative;
   top: -1px;
   left: -4px;

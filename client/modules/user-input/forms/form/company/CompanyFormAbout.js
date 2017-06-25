@@ -67,7 +67,7 @@ class CompanyFormStepOne extends Component {
           name="product"
           label="Briefly describe your company"
           placeholder="What is your company mission? Let applicants know what your company does and what it’s like to work there."
-          validate={[required, maxLength(500)]}
+          validate={[required, maxLength(1000)]}
           component={Textarea}
         />
         <FormFooter>

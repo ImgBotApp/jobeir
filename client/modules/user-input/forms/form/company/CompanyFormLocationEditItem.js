@@ -152,7 +152,7 @@ const AddressTheme = {
     fontSize: '14px',
     width: '100%',
     margin: '0 auto 0.5rem',
-    activeBorderColor: 'rgba(0,0,0,0.8)',
+    activeBorderColor: 'rgba(0,0,0,0.85)',
     ph: {
       color: '#afafaf'
     }
@@ -224,7 +224,7 @@ const AddresRemoveButton = styled.button`
   border-radius: 3px;
   outline: none;
   border: none;
-  background: #fafafa;
+  background: #f9f8f7;
   width: 100%;
   maxWidth: 200px;
   font-size: 14px;
