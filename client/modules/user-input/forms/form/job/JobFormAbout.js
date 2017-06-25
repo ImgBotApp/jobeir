@@ -20,7 +20,7 @@ class JobFormabout extends Component {
   }
 
   render() {
-    const { handleSubmit, jobs } = this.props;
+    const { activeCompany, handleSubmit, jobs } = this.props;
 
     return (
       <FormWrapper
@@ -29,7 +29,7 @@ class JobFormabout extends Component {
         formErrors={jobs.errors}
         theme="marble"
       >
-        <FormHeader text="Create a job" />
+        <FormHeader text={`Create a job at ${activeCompany.displayName}`} />
         <Field
           name="title"
           label="What's the job title?"
@@ -40,7 +40,7 @@ class JobFormabout extends Component {
         />
         <div style={{ paddingBottom: '1rem' }} />
         <Field
-          label="Describe the role"
+          label="Describe the role and requirements"
           name="description"
           ui={{ maxWidth: '100%' }}
           validate={[required, wysiwygLength(25)]}
@@ -59,7 +59,8 @@ class JobFormabout extends Component {
 }
 
 const mapStateToProps = state => ({
-  jobs: state.jobs
+  jobs: state.jobs,
+  activeCompany: state.companies.activeCompany
 });
 
 JobFormabout = reduxForm({

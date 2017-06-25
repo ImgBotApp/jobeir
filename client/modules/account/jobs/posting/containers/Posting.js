@@ -4,11 +4,23 @@ import styled from 'styled-components';
 import { Link } from 'react-router';
 import { getJob } from '../../../../create/job/ducks/';
 import JobEditForm from '../../../../user-input/forms/form/JobEditForm';
+import PostingPreview from './PostingPreview';
 
 class Posting extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { renderEdit: false };
+  }
+
   componentDidMount() {
     const { companies, dispatch, params } = this.props;
     dispatch(getJob(companies.activeCompany._id, params.jobId));
+  }
+
+  renderPreviewOrEdit(params, activePosting = {}) {
+    return this.state.renderEdit
+      ? <JobEditForm initialValues={activePosting} params={params} />
+      : <PostingPreview activePosting={activePosting} params={params} />;
   }
 
   render() {
@@ -21,7 +33,7 @@ class Posting extends Component {
       <PostingContainer>
         {jobs.isFetching && activePosting !== undefined
           ? null
-          : <JobEditForm initialValues={activePosting} params={params} />}
+          : this.renderPreviewOrEdit(params, activePosting)}
       </PostingContainer>
     );
   }

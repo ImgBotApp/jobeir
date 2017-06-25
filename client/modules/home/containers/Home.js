@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'react-router/lib/Link';
 import HomeHeader from '../components/HomeHeader';
+import HomeBody from '../components/HomeBody';
 
 const Home = () => {
   return (
     <HomeContainer>
       <HomeHeader />
+      <HomeBody />
     </HomeContainer>
   );
 };
