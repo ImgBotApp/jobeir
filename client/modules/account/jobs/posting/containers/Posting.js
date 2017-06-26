@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router';
 import { getJob, deleteJob } from '../../../../create/job/ducks/';
 import JobEditForm from '../../../../user-input/forms/form/JobEditForm';
-import PostingPreview from './PostingPreview';
+import PostingPreview from '../components/PostingPreview';
 import PostingHeader from '../components/PostingHeader';
 
 class Posting extends Component {
@@ -21,10 +20,17 @@ class Posting extends Component {
     dispatch(getJob(companies.activeCompany._id, params.jobId));
   }
 
-  renderPreviewOrEdit(params, activePosting = {}) {
-    return this.state.renderEdit
-      ? <JobEditForm initialValues={activePosting} params={params} />
-      : <PostingPreview activePosting={activePosting} params={params} />;
+  renderPreviewOrEdit() {
+    const { jobs, params } = this.props;
+    const activePosting = jobs.postings.find(
+      posting => posting._id === params.jobId
+    );
+
+    if (activePosting) {
+      return this.state.renderEdit
+        ? <JobEditForm initialValues={activePosting} params={params} />
+        : <PostingPreview activePosting={activePosting} params={params} />;
+    }
   }
 
   handleEditClick() {
@@ -39,20 +45,13 @@ class Posting extends Component {
   }
 
   render() {
-    const { params, jobs } = this.props;
-    const activePosting = jobs.postings.find(
-      posting => posting._id === params.jobId
-    );
-
     return (
       <PostingContainer>
         <PostingHeader
           handleEditClick={this.handleEditClick}
           handleDeleteClick={this.handleDeleteClick}
         />
-        {jobs.isFetching && activePosting !== undefined
-          ? null
-          : this.renderPreviewOrEdit(params, activePosting)}
+        {!this.props.jobs.isFetching && this.renderPreviewOrEdit()}
       </PostingContainer>
     );
   }

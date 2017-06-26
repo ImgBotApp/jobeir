@@ -124,7 +124,7 @@ export default (state = initialState, action) => {
     case DELETE_JOB_SUCCESS:
       return Object.assign({}, state, {
         isDeleting: false,
-        postings: [...state.postings, action.payload.data.job],
+        postings: state.postings.filter(posting => posting._id !== payload),
         errors: []
       });
     case DELETE_JOB_FAILURE:

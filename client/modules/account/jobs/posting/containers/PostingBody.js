@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import draftToHtml from 'draftjs-to-html';
-import { lightTheme } from '../../../../../maps/styles/';
 
-class PostingPreview extends Component {
+class PostingBody extends Component {
   constructor(props) {
     super(props);
-
     this.state = { html: '' };
   }
 
@@ -30,53 +28,31 @@ class PostingPreview extends Component {
         html: draftToHtml(JSON.parse(activePosting.descriptionRaw))
       });
     }
-
-    if (activePosting.location) {
-      this.renderMap(activePosting.location.coordinates);
-    }
-  }
-
-  renderMap(coordinates) {
-    const mapSelector = document.getElementById('map');
-
-    if (!coordinates || !mapSelector) return;
-
-    const [lng, lat] = coordinates;
-    const position = { lat, lng };
-    const map = new google.maps.Map(mapSelector, {
-      center: new google.maps.LatLng(lat, lng),
-      zoom: 13,
-      styles: lightTheme
-    });
-    const marker = new google.maps.Marker({ map, position });
   }
 
   render() {
     const { activePosting } = this.props;
 
     return (
-      <PostingPreviewContainer>
+      <PostingBodyContainer>
         {this.state.html &&
-          <PostingPreviewMain>
-            <PostingPreviewImg
+          <div>
+            <PostingBodyImg
               src={activePosting.company.logo}
               alt={activePosting.company.displayName}
             />
-            <PostingPreviewHeader>
-              <PostingPreviewHeading>
+            <PostingBodyHeader>
+              <PostingBodyHeading>
                 {activePosting.title}
-              </PostingPreviewHeading>
-              <PostingPreviewSubHeading>
+              </PostingBodyHeading>
+              <PostingBodySubHeading>
                 {activePosting.location.address.locality}{', '}
                 {activePosting.location.address.country}
-              </PostingPreviewSubHeading>
-            </PostingPreviewHeader>
+              </PostingBodySubHeading>
+            </PostingBodyHeader>
             <div dangerouslySetInnerHTML={{ __html: this.state.html }} />
-          </PostingPreviewMain>}
-        <PostingPreviewSide>
-          <div id="map" />
-        </PostingPreviewSide>
-      </PostingPreviewContainer>
+          </div>}
+      </PostingBodyContainer>
     );
   }
 }
@@ -85,16 +61,13 @@ const mapStateToProps = state => ({
   companies: state.companies
 });
 
-export default connect(mapStateToProps)(PostingPreview);
+export default connect(mapStateToProps)(PostingBody);
 
-const PostingPreviewContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1040px;
-
+const PostingBodyContainer = styled.div`
+  max-width: 570px;
+  
   p {
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: 18px;
     font-size: 18px;
     color: #333;
@@ -115,7 +88,7 @@ const PostingPreviewContainer = styled.div`
   }
 
   ul, ol {
-    line-height: 1.6;
+    line-height: 1.7;
     padding-left: 20px;
     margin-bottom: 18px;
     font-size: 18px;
@@ -129,32 +102,18 @@ const PostingPreviewContainer = styled.div`
   }
 `;
 
-const PostingPreviewMain = styled.div`
-  max-width: 570px;
-`;
-
-const PostingPreviewSide = styled.div`
-  margin: 187px 0 0 100px;
-  align-self: flex-start;
-
-  #map {
-    height: 280px;
-    width: 280px;
-  }
-`;
-
-const PostingPreviewHeader = styled.header`
+const PostingBodyHeader = styled.header`
   margin: 25px auto 35px;
 `;
 
-const PostingPreviewHeading = styled.h1`
+const PostingBodyHeading = styled.h1`
   font-weight: 900;
   font-size: 42px;
 `;
 
-const PostingPreviewSubHeading = styled.p`
+const PostingBodySubHeading = styled.p`
 `;
 
-const PostingPreviewImg = styled.img`
+const PostingBodyImg = styled.img`
   height: 40px;
 `;
