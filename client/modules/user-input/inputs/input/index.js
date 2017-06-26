@@ -4,6 +4,7 @@ export { Currency } from './Currency';
 export { Email } from './Email';
 export { Password } from './Password';
 export { Phone } from './Phone';
+export { Percentage } from './Percentage';
 export { PostalCode } from './PostalCode';
 export { Radio } from './Radio';
 export { Select } from './Select';

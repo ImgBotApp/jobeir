@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PostingHeader = ({ handleEditClick }) => {
+const PostingHeader = ({ handleEditClick, handleDeleteClick }) => {
   return (
     <PostingHeaderContainer>
       <PlainButton onClick={handleEditClick}>
         Edit Posting
+      </PlainButton>
+      <PlainButton onClick={handleDeleteClick}>
+        Delete Posting
       </PlainButton>
     </PostingHeaderContainer>
   );

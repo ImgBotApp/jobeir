@@ -24,6 +24,6 @@ const SidebarContainer = styled.nav`
   display: flex;
   flex-direction: column;
   width: 290px;
-  background: #f9f9f9;
+  background: #f9f8f7;
   padding: 40px 0 0 40px;
 `;

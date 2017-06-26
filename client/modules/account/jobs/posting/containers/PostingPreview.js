@@ -89,6 +89,7 @@ export default connect(mapStateToProps)(PostingPreview);
 
 const PostingPreviewContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   margin: 0 auto;
   max-width: 1040px;
 

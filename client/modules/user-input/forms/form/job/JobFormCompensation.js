@@ -8,6 +8,7 @@ import FormFooter from '../../components/FormFooter';
 import {
   BackButton,
   Currency,
+  Percentage,
   Text,
   Radio,
   SubmitButton
@@ -16,8 +17,10 @@ import { required } from '../../../validation';
 import { createJob } from '../../../../create/job/ducks';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
-const parsePercentage = value => value / 100;
-const formatPercentage = value => value * 100 + '%';
+// const parsePercent = value =>
+// parseInt(value.toString().replace(/%/g, ''), 10) / 100;
+// const formatPercentage = value => value * 100;
+
 const yesNoOptions = [
   { text: 'Yes', value: 'Yes' },
   { text: 'No', value: 'No' }
@@ -77,21 +80,21 @@ class JobFormComponesation extends Component {
               name="equityMin"
               label="Equity minimum"
               type="number"
-              placeholder="%"
+              placeholder="0.1%"
+              // parse={parsePercent}
+              // format={formatPercentage}
               validate={[required]}
-              format={formatPercentage}
-              parse={parsePercentage}
-              component={Text}
+              component={Percentage}
             />
             <Field
               name="equityMax"
               label="Equity maximum"
               type="number"
-              placeholder="%"
+              placeholder="3%"
+              // parse={parsePercent}
+              // format={formatPercentage}
               validate={[required]}
-              format={formatPercentage}
-              parse={parsePercentage}
-              component={Text}
+              component={Percentage}
             />
           </FormRow>}
         <FormFooter>

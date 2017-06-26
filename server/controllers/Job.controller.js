@@ -133,7 +133,6 @@ export function createJob(req, res) {
  */
 export function updateJob(req, res) {
   const values = req.body;
-  console.log(req.body);
 
   Job.findOneAndUpdate({ _id: req.params.jobId }, { ...values }, { new: true })
     .populate('companies')
@@ -154,13 +153,16 @@ export function updateJob(req, res) {
  * @returns void
  */
 export function deleteJob(req, res) {
-  Job.findOne({ _id: req.params.id }).exec((err, job) => {
+  Job.findOne({ _id: req.params.jobId }).exec((err, job) => {
     if (err) {
       res.status(500).send(err);
     }
 
     job.remove(() => {
-      res.status(200).end();
+      res.status(200).send({
+        data: {},
+        errors: []
+      });
     });
   });
 }

@@ -12,7 +12,10 @@ import {
   GET_JOB_FAILURE,
   UPDATE_JOB_REQUEST,
   UPDATE_JOB_SUCCESS,
-  UPDATE_JOB_FAILURE
+  UPDATE_JOB_FAILURE,
+  DELETE_JOB_REQUEST,
+  DELETE_JOB_SUCCESS,
+  DELETE_JOB_FAILURE
 } from '../ducks';
 import { redirectTo } from '../../../user/ducks/';
 
@@ -72,9 +75,24 @@ export function* getJobSaga(action) {
   }
 }
 
+export function* deleteJobSaga(action) {
+  try {
+    const payload = yield call(
+      fetchApi,
+      'DELETE',
+      `/company/${action.payload.companyId}/jobs/${action.payload.jobId}`
+    );
+    yield put({ type: DELETE_JOB_SUCCESS, payload });
+    yield call(redirectTo, `${action.payload.redirectPathname}`);
+  } catch (errors) {
+    yield put({ type: DELETE_JOB_FAILURE, errors });
+  }
+}
+
 export function* job() {
   yield takeEvery(CREATE_JOB_REQUEST, createJob);
   yield takeEvery(UPDATE_JOB_REQUEST, updateJobSaga);
   yield takeEvery(GET_JOBS_REQUEST, getJobsSaga);
   yield takeEvery(GET_JOB_REQUEST, getJobSaga);
+  yield takeEvery(DELETE_JOB_REQUEST, deleteJobSaga);
 }

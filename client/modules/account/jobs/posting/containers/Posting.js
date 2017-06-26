@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router';
-import { getJob } from '../../../../create/job/ducks/';
+import { getJob, deleteJob } from '../../../../create/job/ducks/';
 import JobEditForm from '../../../../user-input/forms/form/JobEditForm';
 import PostingPreview from './PostingPreview';
 import PostingHeader from '../components/PostingHeader';
@@ -13,6 +13,7 @@ class Posting extends Component {
     this.state = { renderEdit: false };
 
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,13 @@ class Posting extends Component {
     this.setState({ renderEdit: !this.state.renderEdit });
   }
 
+  handleDeleteClick() {
+    const { companies, dispatch, params } = this.props;
+    dispatch(
+      deleteJob(companies.activeCompany._id, params.jobId, '/account/jobs')
+    );
+  }
+
   render() {
     const { params, jobs } = this.props;
     const activePosting = jobs.postings.find(
@@ -38,7 +46,10 @@ class Posting extends Component {
 
     return (
       <PostingContainer>
-        <PostingHeader handleEditClick={this.handleEditClick} />
+        <PostingHeader
+          handleEditClick={this.handleEditClick}
+          handleDeleteClick={this.handleDeleteClick}
+        />
         {jobs.isFetching && activePosting !== undefined
           ? null
           : this.renderPreviewOrEdit(params, activePosting)}

@@ -14,6 +14,10 @@ export const UPDATE_JOB_REQUEST = 'UPDATE_JOB_REQUEST';
 export const UPDATE_JOB_SUCCESS = 'UPDATE_JOB_SUCCESS';
 export const UPDATE_JOB_FAILURE = 'UPDATE_JOB_FAILURE';
 
+export const DELETE_JOB_REQUEST = 'DELETE_JOB_REQUEST';
+export const DELETE_JOB_SUCCESS = 'DELETE_JOB_SUCCESS';
+export const DELETE_JOB_FAILURE = 'DELETE_JOB_FAILURE';
+
 export const UPDATE_JOB_FILTER = 'UPDATE_JOB_FILTER';
 
 import { SWITCH_ACTIVE_COMPANY_SUCCESS } from '../../../user/ducks/';
@@ -22,6 +26,7 @@ export const initialState = {
   isLoading: false,
   isFetching: false,
   isUpdating: false,
+  isDeleting: false,
   filter: 'All Jobs',
   postings: [],
   errors: []
@@ -111,6 +116,22 @@ export default (state = initialState, action) => {
         isFetching: false,
         errors: action.errors.errors
       });
+
+    case DELETE_JOB_REQUEST:
+      return Object.assign({}, state, {
+        isDeleting: true
+      });
+    case DELETE_JOB_SUCCESS:
+      return Object.assign({}, state, {
+        isDeleting: false,
+        postings: [...state.postings, action.payload.data.job],
+        errors: []
+      });
+    case DELETE_JOB_FAILURE:
+      return Object.assign({}, state, {
+        isDeleting: false,
+        errors: action.errors.errors
+      });
     case UPDATE_JOB_FILTER:
       return Object.assign({}, state, {
         filter: action.payload.filter
@@ -155,6 +176,11 @@ export const getJob = (companyId, jobId) => ({
 export const updateJob = (companyId, jobId, data) => ({
   type: UPDATE_JOB_REQUEST,
   payload: { companyId, jobId, data }
+});
+
+export const deleteJob = (companyId, jobId, redirectPathname) => ({
+  type: DELETE_JOB_REQUEST,
+  payload: { companyId, jobId, redirectPathname }
 });
 
 export const updateJobFilter = filter => ({
