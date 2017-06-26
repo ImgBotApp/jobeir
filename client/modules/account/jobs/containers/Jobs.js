@@ -6,10 +6,25 @@ import { getJobs } from '../../../create/job/ducks/';
 import JobsFilter from './JobsFilter';
 import JobsList from '../components/JobsList';
 
+/**
+ * <Jobs />
+ * Currently this jobs container serves as the main dashboard for the
+ * authenticated admin section. It is used to display all the jobs
+ * and the filter for them
+ */
 class Jobs extends Component {
   componentDidMount() {
     const { companies, dispatch } = this.props;
     dispatch(getJobs(companies.activeCompany._id));
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const { companies, dispatch } = this.props;
+
+    // If the active company gets updated we have to call get jobs again
+    if (nextProps.companies.activeCompany._id !== companies.activeCompany._id) {
+      dispatch(getJobs(nextProps.companies.activeCompany._id));
+    }
   }
 
   render() {
