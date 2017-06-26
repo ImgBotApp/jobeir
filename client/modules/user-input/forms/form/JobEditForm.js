@@ -247,7 +247,7 @@ JobEditFrom = reduxForm({
 export default connect(mapStateToProps)(JobEditFrom);
 
 const FormEditContainer = styled.div`
-  max-width: 1040px;
+  max-width: 1000px;
   margin: 0 auto;
 `;
 

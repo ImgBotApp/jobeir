@@ -14,7 +14,7 @@ class Jobs extends Component {
 
   render() {
     const { companies, jobs } = this.props;
-    const hasJobPostings = jobs.postings.length > 0;
+    const hasJobPostings = jobs.postings.length;
 
     return (
       <div>

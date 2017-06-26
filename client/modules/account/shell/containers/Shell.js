@@ -57,6 +57,8 @@ const ShellContainer = styled.div`
 const ShellContent = styled.div`
   width: 100%;
   padding: 40px 50px;
+  width: 1040px;
+  margin: 0 auto;
 `;
 
 const ShellDynamic = styled.div`

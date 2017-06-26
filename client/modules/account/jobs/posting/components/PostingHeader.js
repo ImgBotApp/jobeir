@@ -17,7 +17,7 @@ const PostingHeader = ({ handleEditClick, handleDeleteClick }) => {
 export default PostingHeader;
 
 const PostingHeaderContainer = styled.div`
-  max-width: 1040px;
+  max-width: 1000px;
   margin: 0 auto 50px;
 `;
 
@@ -35,4 +35,5 @@ const PlainButton = styled.button`
   box-shadow: 0 1px 0 0 rgba(22,29,37,0.05);
   transition: all 0.2s ease-out;
   transition-property: background, border, box-shadow, color;
+  margin-right: 25px;
 `;

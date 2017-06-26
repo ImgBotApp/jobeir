@@ -4,24 +4,24 @@ import { browserHistory } from 'react-router';
 import styled from 'styled-components';
 import JostListItem from './JobsListItem';
 
+const filterJobs = (job, filter) => {
+  if (filter === 'all jobs') return true;
+  return job.state === filter;
+};
+
 const JobsList = ({ jobs, filter }) => {
   return (
     <div>
-      {jobs
-        .filter(job => {
-          if (filter === 'all jobs') return true;
-          return job.state === filter;
-        })
-        .map(job => {
-          return (
-            <JobsBody
-              onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
-              key={job._id}
-            >
-              <JostListItem job={job} />
-            </JobsBody>
-          );
-        })}
+      {jobs.filter(job => filterJobs(job, filter)).map(job => {
+        return (
+          <JobsBody
+            key={job._id}
+            onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
+          >
+            <JostListItem job={job} />
+          </JobsBody>
+        );
+      })}
     </div>
   );
 };

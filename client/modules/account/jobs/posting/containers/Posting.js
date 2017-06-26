@@ -6,6 +6,11 @@ import JobEditForm from '../../../../user-input/forms/form/JobEditForm';
 import PostingPreview from '../components/PostingPreview';
 import PostingHeader from '../components/PostingHeader';
 
+/**
+ * <Posting />
+ * Provides the UI for previewing the posting within the Admin or
+ * toggling to edit the posting.
+ */
 class Posting extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +25,7 @@ class Posting extends Component {
     dispatch(getJob(companies.activeCompany._id, params.jobId));
   }
 
+  // Handles the logc either show the preview or edit components
   renderPreviewOrEdit() {
     const { jobs, params } = this.props;
     const activePosting = jobs.postings.find(

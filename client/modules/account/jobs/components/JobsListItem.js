@@ -8,7 +8,6 @@ import moment from 'moment';
  * to the Jobs page within the account section.
  */
 const JobsListItem = ({ job }) => {
-  console.log(job);
   return (
     <div>
       <JobsMain>
@@ -34,7 +33,7 @@ const JobsListItem = ({ job }) => {
 export default JobsListItem;
 
 const JobsTitle = styled.h3`
-  font-size: 22px;
+  font-size: 24px;
 `;
 
 const JobsState = styled.div`
