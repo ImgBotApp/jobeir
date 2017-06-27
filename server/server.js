@@ -10,6 +10,7 @@ import session from 'express-session';
 import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 import passport from 'passport';
 import serialize from 'serialize-javascript';
+import geoip from 'geoip-lite';
 
 import webpack from 'webpack';
 import config from '../webpack/webpack.config.dev.js';
@@ -96,6 +97,8 @@ app.use((req, res, next) => {
   if (process.env.NODE_ENV === 'development') {
     global.webpackIsomorphicTools.refresh();
   }
+  console.log(req);
+  console.log(req.ip);
 
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
@@ -114,6 +117,17 @@ app.use((req, res, next) => {
     }
 
     const store = configureStore();
+
+    /**
+     * ::1 is the actual IP. It is an ipv6 loopback address (i.e. localhost).
+     * If you were using ipv4 it would be 127.0.0.1
+     */
+    const ip =
+      req.headers['x-forwarded-for'] ||
+      req.connection.remoteAddress ||
+      req.socket.remoteAddress ||
+      req.connection.socket.remoteAddress;
+    const geo = geoip.lookup(ip);
 
     return fetchComponentData(store, renderProps.components, renderProps.params)
       .then(() => {
