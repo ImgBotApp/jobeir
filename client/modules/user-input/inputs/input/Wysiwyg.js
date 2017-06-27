@@ -96,7 +96,7 @@ const EditorContainer = styled.div`
   border-radius: 3px;
   border: 1px solid #babbbb;
   padding: 20px;
-  min-height:  ${props => (props.minHeight ? props.minHeight : '300px')};
+  min-height:  ${props => (props.minHeight ? props.minHeight : '330px')};
   margin: 0 auto 1rem;
   border-color: ${props => (props.showError ? '#f73c3c' : '')};
 

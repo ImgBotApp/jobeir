@@ -16,7 +16,9 @@ const CompanyTips = step => {
             Your mission
           </StepTipsHeader>
           <StepTipsText>
-            Every company is unique and faces exciting challenges. Let applicants know what your company mission is and what you're trying to solve.
+            Every company is unique and faces exciting challenges. Let
+            applicants know what your company mission is and what you're trying
+            to solve.
           </StepTipsText>
         </StepTipsContainer>
       );
@@ -28,10 +30,12 @@ const CompanyTips = step => {
             Contact
           </StepTipsHeader>
           <StepTipsText>
-            The contact information provided here will be availalble to applicants applying for jobs.
+            The contact information provided here will be availalble to
+            applicants applying for jobs.
           </StepTipsText>
           <StepTipsText>
-            Make sure these are safe to be publicly shared and checked frequently.
+            Make sure these are safe to be publicly shared and checked
+            frequently.
           </StepTipsText>
         </StepTipsContainer>
       );
@@ -43,10 +47,12 @@ const CompanyTips = step => {
             Location
           </StepTipsHeader>
           <StepTipsText>
-            The address you enter will be used when creating job postings. If you have multiple locations you can enter them later.
+            The address you enter will be used when creating job postings. If
+            you have multiple locations you can enter them later.
           </StepTipsText>
           <StepTipsText>
-            Job location is very important when applicants are searching for jobs, so be as accurate as possible.
+            Job location is very important when applicants are searching for
+            jobs, so be as accurate as possible.
           </StepTipsText>
         </StepTipsContainer>
       );
@@ -73,9 +79,10 @@ const StepTipsHeader = styled.h4`
   margin-top: 10px;
   font-weight: 600;
   font-size: 1.2rem;
-  line-height: 1.5;
+  line-height: 1.6;
 `;
 
 const StepTipsText = styled.p`
   margin-top: 10px;
+  line-height: 1.6;
 `;

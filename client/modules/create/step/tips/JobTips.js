@@ -18,7 +18,9 @@ const JobTips = step => {
             What do applicants look for in a job?
           </StepTipsHeader>
           <StepTipsText>
-            Applicants place great value in professional development, compensation, work enviroment, and the technology they will work with.
+            Applicants place great value in professional development,
+            compensation, work enviroment, and the technology they will work
+            with.
           </StepTipsText>
         </StepTipsContainer>
       );
@@ -30,7 +32,9 @@ const JobTips = step => {
             The working enviroment
           </StepTipsHeader>
           <StepTipsText>
-            Everyone works differently. Having flexibilty in the workplace and what is expected of employees can increase productivity and the appeal of jobs.
+            Everyone works differently. Having flexibilty in the workplace and
+            what is expected of employees can increase productivity and the
+            appeal of jobs.
           </StepTipsText>
         </StepTipsContainer>
       );
@@ -45,7 +49,8 @@ const JobTips = step => {
             Being honest upfront will save time in the long run.
           </StepTipsText>
           <StepTipsText>
-            Offering competitive salaries is a key component to attracting the best candidates.
+            Offering competitive salaries is a key component to attracting the
+            best candidates.
           </StepTipsText>
         </StepTipsContainer>
       );
@@ -57,7 +62,8 @@ const JobTips = step => {
             Receiving Applications
           </StepTipsHeader>
           <StepTipsText>
-            The emails you provide will receive applications directly. Applicants also have the option to contact you directly.
+            The emails you provide will receive applications directly.
+            Applicants also have the option to contact you directly.
           </StepTipsText>
         </StepTipsContainer>
       );
@@ -84,9 +90,10 @@ const StepTipsHeader = styled.h4`
   margin-top: 10px;
   font-weight: 600;
   font-size: 1.2rem;
-  line-height: 1.5;
+  line-height: 1.6;
 `;
 
 const StepTipsText = styled.p`
   margin-top: 10px;
+  line-height: 1.6;
 `;
