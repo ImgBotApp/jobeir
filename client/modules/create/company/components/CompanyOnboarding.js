@@ -19,8 +19,10 @@ const CompanyOnboarding = props => {
         discrimination against any applicants.
       </Text>
       <Text>
-        By continuing you agree to not to discriminate against any job applicant because of race,
-        color, religion, national origin, sex, physical or mental disability, or age
+        By continuing you agree to not to discriminate against any job applicant
+        because of race,
+        color, religion, national origin, sex, physical or mental disability, or
+        age
       </Text>
       <AgreeLink onClick={() => agreeToValues(props)}>I Agree</AgreeLink>
     </div>
@@ -49,7 +51,7 @@ const AgreeLink = styled.div`
   border-radius: 3px;
   outline: none;
   border: none;
-  background: #fb5032;
+  background: #5C6AC4;
   width: 100%;
   max-width: 200px;
   font-size: 18px;

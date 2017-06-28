@@ -59,7 +59,7 @@ const RedBall = styled.div`
   position: absolute;
   right: -30px;
   border-radius: 80px/80px;
-  border: solid 12px ${props => props.theme.colors.red};
+  border: solid 12px ${props => props.theme.colors.purple};
   width: 80px;
   height: 80px;
   opacity: 0.6;

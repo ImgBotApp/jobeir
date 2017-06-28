@@ -65,7 +65,7 @@ export class Upload extends Component {
 }
 
 const activeStyle = {
-  borderColor: '#fb5032'
+  borderColor: '#5C6AC4'
 };
 
 const StyledDropzone = styled(Dropzone)`
@@ -87,7 +87,10 @@ const StyledDropzone = styled(Dropzone)`
   
   &:active,
   &:focus {
-    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.dropzone.activeBorderColor)};
+    border-color: ${props =>
+      props.showError
+        ? props.theme.error.color
+        : props.theme.dropzone.activeBorderColor};
   }
 `;
 
@@ -104,7 +107,7 @@ const DropZoneButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${props => props.theme.colors.red};
+  background: ${props => props.theme.colors.purple};
   color: white;
   border-radius: 3px;
   height: 50px;

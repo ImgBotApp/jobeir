@@ -118,7 +118,7 @@ const DropdownNavButton = styled(Link)`
   }
 
   &.route-active {
-    color: ${props => props.theme.colors.red};
+    color: ${props => props.theme.colors.purple};
     font-weight: 600;
   }
 

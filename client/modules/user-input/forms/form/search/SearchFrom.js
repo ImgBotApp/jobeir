@@ -118,7 +118,7 @@ const SearchButton = styled.button`
   width: 180px;
   font-size: 18px;
   color: white;
-  background-color: #fb5032;
+  background-color: #5C6AC4;
   border: 0;
   border-radius: 4px;
   cursor: pointer;

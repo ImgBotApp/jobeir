@@ -4,7 +4,7 @@ export const marble = {
     borderRadius: '3px',
     outline: 'none',
     border: 'none',
-    background: '#fb5032',
+    background: '#5C6AC4',
     width: '100%',
     maxWidth: '200px',
     fontSize: '18px',
