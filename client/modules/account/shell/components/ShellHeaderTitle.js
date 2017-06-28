@@ -22,5 +22,6 @@ const ShellHeaderTitle = ({ headerText, params }) => {
 export default ShellHeaderTitle;
 
 const ShellHeaderTitleContainer = styled.h1`
-  font-size: 36px;
+  font-size: 52px;
+  font-weight: 900;
 `;

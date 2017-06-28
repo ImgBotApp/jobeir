@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import ShellHeader from '../components/ShellHeader';
-import Sidebar from '../../sidebar/containers/Sidebar';
+import ShellTopNav from './ShellTopNav';
 import UserWrapper from '../../../user/containers/UserWrapper';
 
 /**
@@ -11,17 +11,16 @@ import UserWrapper from '../../../user/containers/UserWrapper';
  * Shell wraps the sidebar navigation along with all the different
  * account sections.
  *
- *Browser view on desktop
+ * Browser view on desktop
  *_______________________________
- *     |
- *  S  |     <ShellHeader />
- *  I  |_________________________
- *  D  |  
- *  E  |     <ShellDynamic>
- *  B  |      {children}
- *  A  |     </ShellDynamic>
- *  R  |
- *     |
+ * 
+ *      <ShellHeader />
+ * ______________________________
+ *   
+ *      <ShellDynamic>
+ *        {children}
+ *      </ShellDynamic>
+ *
  */
 class Shell extends Component {
   render() {
@@ -29,8 +28,8 @@ class Shell extends Component {
 
     return (
       <ShellContainer>
-        <Sidebar />
         <ShellContent>
+          <ShellTopNav params={params} />
           <ShellHeader headerText={children.props.route.name} params={params} />
           <ShellDynamic>
             {children}
@@ -55,8 +54,6 @@ const ShellContainer = styled.div`
 `;
 
 const ShellContent = styled.div`
-  width: 100%;
-  padding: 40px 50px;
   width: 1040px;
   margin: 0 auto;
 `;

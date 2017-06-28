@@ -33,7 +33,7 @@ const JobsListItem = ({ job }) => {
 export default JobsListItem;
 
 const JobsTitle = styled.h3`
-  font-size: 24px;
+  font-size: 28px;
 `;
 
 const JobsState = styled.div`

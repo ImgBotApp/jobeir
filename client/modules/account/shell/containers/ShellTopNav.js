@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ShellDropdown from './ShellDropdown';
 import ShellHeaderNav from './ShellHeaderNav';
 import ShellLogo from '../components/ShellLogo';
+import ShellCompanyDropdown from './ShellCompanyDropdown';
 
 class ShellTopNav extends Component {
   render() {
@@ -15,8 +16,11 @@ class ShellTopNav extends Component {
           <ShellLogo />
         </ShellTopNavLeft>
         <ShellTopNavRight>
-          <ShellHeaderNav />
-          <ShellDropdown />
+          <ShellTopNavRightContent>
+            <ShellHeaderNav />
+            <ShellCompanyDropdown />
+            <ShellDropdown />
+          </ShellTopNavRightContent>
         </ShellTopNavRight>
       </ShellTopNavContainer>
     );
@@ -28,16 +32,14 @@ const mapStateToProps = state => ({});
 export default connect(mapStateToProps)(ShellTopNav);
 
 const ShellTopNavContainer = styled.div`
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 56px;
-  padding: 0 25px;
+  height: 65px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0px 1px 4px rgba(0,0,0,0.15);
   background: white;
   z-index: 100;
 `;
@@ -47,5 +49,11 @@ const ShellTopNavLeft = styled.div`
 `;
 
 const ShellTopNavRight = styled.div`
-  dispaly: flex;
+  display: flex;
+  align-items: center;
+`;
+
+const ShellTopNavRightContent = styled.div`
+  display: flex;
+  align-items: center;
 `;

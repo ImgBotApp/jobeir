@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import ShellHeaderTitle from './ShellHeaderTitle';
-import ShellDropdown from '../containers/ShellDropdown';
-import ShellHeaderNav from '../containers/ShellHeaderNav';
 
 /**
  * <ShellHeader />
@@ -12,12 +10,7 @@ import ShellHeaderNav from '../containers/ShellHeaderNav';
 const ShellHeader = ({ headerText, params }) =>
   <ShellHeaderContainer>
     <ShellHeaderTitle headerText={headerText} params={params} />
-    <ShellRightSide>
-      <ShellRightContent>
-        <ShellHeaderNav />
-        <ShellDropdown />
-      </ShellRightContent>
-    </ShellRightSide>
+    <ShellRightSide />
   </ShellHeaderContainer>;
 
 export default ShellHeader;
@@ -25,20 +18,10 @@ export default ShellHeader;
 const ShellHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 80px;
-`;
-
-const ShellHeaderHeader = styled.header`
-  font-weight: 800;
-  font-size: 30px;
+  padding: 100px 0 40px;
 `;
 
 const ShellRightSide = styled.div`
   display: flex;
   align-items: flex-start;
-`;
-
-const ShellRightContent = styled.div`
-  display: flex;
-  align-items: center;
 `;
