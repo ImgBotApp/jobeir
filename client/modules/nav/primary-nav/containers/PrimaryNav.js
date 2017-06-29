@@ -24,9 +24,7 @@ export default connect(mapStateToProps)(PrimaryNav);
 
 const Navigation = styled.nav`
   flex: 1;
-  padding: 0 20px;
   background: #fff;
-  box-shadow: ${props => (props.isAuthenticated ? '0px 1px 2px rgba(0, 0, 0, 0.16)' : 'none')};
 `;
 
 const NavigationContainer = styled.div`
@@ -34,5 +32,6 @@ const NavigationContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
+  height: 75px;
   max-width: ${props => props.theme.width.max};
 `;

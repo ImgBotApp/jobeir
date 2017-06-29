@@ -4,14 +4,11 @@ import Link from 'react-router/lib/Link';
 import HomeHeader from '../components/HomeHeader';
 import HomeBody from '../components/HomeBody';
 
-const Home = () => {
-  return (
-    <HomeContainer>
-      <HomeHeader />
-      <HomeBody />
-    </HomeContainer>
-  );
-};
+const Home = () =>
+  <HomeContainer>
+    <HomeHeader />
+    <HomeBody />
+  </HomeContainer>;
 
 export default Home;
 

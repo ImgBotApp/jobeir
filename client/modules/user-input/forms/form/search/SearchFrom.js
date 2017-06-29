@@ -83,9 +83,11 @@ const SearchFormContainer = styled.form`
 `;
 
 const SearchInput = styled.input`
+  position: relative;
+  top: -1px;
   border: 0;
   height: 100%;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 20px;
 
   &:focus {
@@ -95,7 +97,7 @@ const SearchInput = styled.input`
 
 const SearchLabel = styled.label`
   margin-top: 15px;
-  font-size: 16px;
+  font-size: 17px;
 
 `;
 
@@ -115,7 +117,7 @@ const SearchInputContainer = styled.div`
 `;
 
 const SearchButton = styled.button`
-  width: 180px;
+  width: 160px;
   font-size: 18px;
   color: white;
   background-color: #5C6AC4;
@@ -123,4 +125,5 @@ const SearchButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   margin: 15px;
+  margin-left: 0;
 `;
