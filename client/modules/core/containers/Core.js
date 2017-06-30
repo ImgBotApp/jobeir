@@ -2,11 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 import theme from '../theme';
-
 import Modal from '../../modal/containers/Modal';
 import AppHead from '../../app/components/AppHead';
 import Header from '../../header/containers/Header';
+import { asyncConnect } from 'redux-async-connect';
+import { updateJobFilter } from '../../create/job/ducks/';
 
+@asyncConnect([
+  {
+    promise: ({ store: { dispatch, getState }, helpers }) => {
+      const promises = [];
+      console.log(helpers);
+
+      promises.push(dispatch(updateJobFilter('Pending')));
+
+      return Promise.all(promises);
+    }
+  }
+])
 class Core extends Component {
   render() {
     const { children, isAuthenticated } = this.props;

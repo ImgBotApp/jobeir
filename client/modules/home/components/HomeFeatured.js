@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import { asyncConnect } from 'redux-async-connect';
+import { updateJobFilter } from '../../create/job/ducks/';
 
-const HomeFeatured = () => <HomeFeaturedContainer />;
+// @asyncConnect({
+//   lunch: (params, helpers) => Promise.resolve({ id: 1, name: 'Borsch' })
+// })
+@asyncConnect([
+  {
+    promise: ({ store: { dispatch } }) => dispatch(updateJobFilter('Pending'))
+  }
+])
+class HomeFeatured extends Component {
+  render() {
+    return <HomeFeaturedContainer />;
+  }
+}
 
 export default HomeFeatured;
 

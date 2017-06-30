@@ -7,6 +7,7 @@ import * as storage from 'redux-storage';
 
 import { reducer as form } from 'redux-form';
 import { routerReducer as routing } from 'react-router-redux';
+import { reducer as reduxAsyncConnect } from 'redux-async-connect';
 
 import auth from '../../modules/auth/ducks';
 import companies from '../../modules/create/company/ducks';
@@ -32,6 +33,7 @@ export const appReducer = combineReducers({
   form,
   intl,
   modal,
+  reduxAsyncConnect,
   routing,
   session
 });

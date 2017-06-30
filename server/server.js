@@ -36,12 +36,18 @@ if (process.env.NODE_ENV === 'development') {
 // React And Redux Setup
 import configureStore from '../client/redux/store';
 import { Provider } from 'react-redux';
+import { combineReducers } from 'redux';
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
 import { ServerStyleSheet } from 'styled-components';
 import Html from '../client/modules/html/containers/Html';
+import {
+  ReduxAsyncConnect,
+  loadOnServer,
+  reducer as reduxAsyncConnect
+} from 'redux-async-connect';
 
 // Import required modules
 import routes, { routesArray } from '../client/routes';
@@ -69,7 +75,6 @@ app.use(
   express.static(path.join(__dirname, '../public/uploads'))
 );
 app.use('/public', express.static(path.join(__dirname, '../public')));
-console.log(__dirname);
 app.use(passport.initialize());
 passportInit(passport);
 app.use(passport.session());
@@ -98,8 +103,6 @@ app.use((req, res, next) => {
   if (process.env.NODE_ENV === 'development') {
     global.webpackIsomorphicTools.refresh();
   }
-  console.log(req);
-  console.log(req.ip);
 
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
@@ -118,6 +121,7 @@ app.use((req, res, next) => {
     }
 
     const store = configureStore();
+    // const client = new ApiClient(req);
 
     /**
      * ::1 is the actual IP. It is an ipv6 loopback address (i.e. localhost).
@@ -130,14 +134,16 @@ app.use((req, res, next) => {
       req.connection.socket.remoteAddress;
     const geo = geoip.lookup(ip);
 
-    return fetchComponentData(store, renderProps.components, renderProps.params)
+    loadOnServer({ ...renderProps, store, helpers: { req } })
       .then(() => {
+        // return fetchComponentData(store, renderProps.components, renderProps.params)
+        // .then(() => {
         const sheet = new ServerStyleSheet();
         const content = renderToString(
           sheet.collectStyles(
             <Provider store={store}>
               <IntlWrapper>
-                <RouterContext {...renderProps} />
+                <ReduxAsyncConnect {...renderProps} />
               </IntlWrapper>
             </Provider>
           )
