@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'react-router/lib/Link';
 import HomeHeader from '../components/HomeHeader';
-import HomeBody from '../components/HomeBody';
+import HomeBanner from '../components/HomeBanner';
+import HomeFeatured from '../components/HomeFeatured';
 
 const Home = () =>
   <HomeContainer>
     <HomeHeader />
-    <HomeBody />
+    <HomeBanner />
+    <HomeFeatured />
   </HomeContainer>;
 
 export default Home;

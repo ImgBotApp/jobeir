@@ -68,6 +68,7 @@ app.use(
   '/public/uploads',
   express.static(path.join(__dirname, '../public/uploads'))
 );
+app.use('/public', express.static(path.join(__dirname, '../public')));
 console.log(__dirname);
 app.use(passport.initialize());
 passportInit(passport);
