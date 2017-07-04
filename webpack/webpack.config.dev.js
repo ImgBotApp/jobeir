@@ -1,7 +1,4 @@
 const webpack = require('webpack');
-const cssnext = require('postcss-cssnext');
-const postcssFocus = require('postcss-focus');
-const postcssReporter = require('postcss-reporter');
 const path = require('path');
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicToolsConfig = require('./webpack.config.isomorphic');
@@ -34,17 +31,6 @@ module.exports = {
 
   module: {
     loaders: [
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        loader:
-          'style-loader!css-loader?localIdentName=[name]__[local]__[hash:base64:5]&modules&importLoaders=1&sourceMap!postcss-loader'
-      },
-      {
-        test: /\.css$/,
-        include: /node_modules/,
-        loaders: ['style-loader', 'css-loader']
-      },
       {
         test: /\.jsx*$/,
         exclude: [/node_modules/, /.+\.config.js/],

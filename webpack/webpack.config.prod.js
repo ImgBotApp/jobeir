@@ -30,20 +30,6 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          loader:
-            'css-loader?localIdentName=[hash:base64]&modules&importLoaders=1!postcss-loader'
-        })
-      },
-      {
-        test: /\.css$/,
-        include: /node_modules/,
-        loaders: ['style-loader', 'css-loader']
-      },
-      {
         test: /\.jsx*$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
@@ -70,11 +56,6 @@ module.exports = {
       name: 'vendor',
       minChunks: Infinity,
       filename: '[name].[chunkhash].js'
-    }),
-    new ExtractTextPlugin({
-      filename: 'app.[chunkhash].css',
-      disable: false,
-      allChunks: true
     }),
     new ManifestPlugin({
       basePath: '/'

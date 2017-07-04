@@ -107,9 +107,6 @@ mongoose.connect(process.env.MONGO_URL, error => {
 
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
-  // const memoryHistory = createHistory(req.originalUrl);
-
-  // Need to configure the store outside of app.use
   const store = configureStore();
 
   if (process.env.NODE_ENV === 'development') {
