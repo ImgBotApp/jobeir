@@ -31,6 +31,8 @@ if (process.env.NODE_ENV === 'production') {
   });
 
   require('babel-polyfill');
+  require('es6-promise').polyfill();
+  require('isomorphic-fetch');
 
   global.webpackIsomorphicTools = new WebpackIsomorphicTools(
     webpackIsomorphicToolsConfig

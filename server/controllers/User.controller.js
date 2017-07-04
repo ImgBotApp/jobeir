@@ -128,7 +128,6 @@ export function loginUser(req, res) {
   })
     .select('+password')
     .exec(function(err, user) {
-      console.log(user);
       if (err) throw err;
 
       if (!user) {
@@ -231,7 +230,8 @@ export function resetPasswordRequest(req, res) {
       const protocol = req.headers.host.includes('localhost')
         ? 'http://'
         : 'https://';
-      const resetUrl = `${protocol}${req.headers.host}/password/${user.resetPasswordToken}`;
+      const resetUrl = `${protocol}${req.headers
+        .host}/password/${user.resetPasswordToken}`;
 
       // Fire off the password reset email
       send({
@@ -287,7 +287,8 @@ export function resetPassword(req, res) {
           errors: [
             {
               error: 'EXPIRED_PASSWORD_RESET_TOKEN',
-              message: 'Unable to update password. Your reset password link has timed out.'
+              message:
+                'Unable to update password. Your reset password link has timed out.'
             }
           ]
         });

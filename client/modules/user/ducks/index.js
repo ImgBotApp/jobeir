@@ -1,5 +1,9 @@
 import { browserHistory } from 'react-router';
 
+export const SERVER_GET_USER_REQUEST = 'SERVER_GET_USER_REQUEST';
+export const SERVER_GET_USER_SUCCESS = 'SERVER_GET_USER_SUCCESS';
+export const SERVER_GET_USER_FAILURE = 'SERVER_GET_USER_FAILURE';
+
 export const GET_USER_REQUEST = 'GET_USER_REQUEST';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const GET_USER_FAILURE = 'GET_USER_FAILURE';
@@ -30,6 +34,7 @@ export const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case SERVER_GET_USER_REQUEST:
     case GET_USER_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
@@ -39,6 +44,7 @@ export default (state = initialState, action = {}) => {
         isUpdating: true,
         ...action.payload.data.user
       });
+    case SERVER_GET_USER_SUCCESS:
     case GET_USER_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
@@ -50,6 +56,7 @@ export default (state = initialState, action = {}) => {
         isUpdating: false,
         ...action.payload.data.user
       });
+    case SERVER_GET_USER_FAILURE:
     case GET_USER_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
@@ -80,6 +87,21 @@ export default (state = initialState, action = {}) => {
       return state;
   }
 };
+
+export function shouldGetUser(globalState) {
+  const isLoaded =
+    globalState.session.user && globalState.session.user.isLoaded;
+  const isFetching =
+    globalState.session.user && globalState.session.user.isFetching;
+  const hasId = globalState.session.auth.id;
+
+  return hasId && !isFetching && !isLoaded;
+}
+
+export const serverGetUser = (userId, req) => ({
+  type: SERVER_GET_USER_REQUEST,
+  payload: { userId, req }
+});
 
 export const getUser = userId => ({
   type: GET_USER_REQUEST,

@@ -15,5 +15,4 @@ export default Header;
 const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
-  height: 64px;
 `;

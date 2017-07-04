@@ -35,7 +35,8 @@ describe('[Ducks Auth]', () => {
     it('should return the correct state on AUTH_SUCCESS', () => {
       const nextState = {
         isAuthenticated: true,
-        isAuthenticating: false
+        isAuthenticating: false,
+        isLoaded: true
       };
       const action = {
         payload: {
@@ -51,6 +52,7 @@ describe('[Ducks Auth]', () => {
       const nextState = {
         isAuthenticating: false,
         isAuthenticated: false,
+        isLoaded: true,
         errors: []
       };
       const action = {
@@ -66,7 +68,8 @@ describe('[Ducks Auth]', () => {
     it('should return the correct state on SIGNUP_SUCCESS', () => {
       const nextState = {
         isAuthenticated: true,
-        isAuthenticating: false
+        isAuthenticating: false,
+        isLoaded: true
       };
       const action = {
         payload: {
@@ -82,6 +85,7 @@ describe('[Ducks Auth]', () => {
       const nextState = {
         isAuthenticating: false,
         isAuthenticated: false,
+        isLoaded: true,
         errors: []
       };
       const action = {

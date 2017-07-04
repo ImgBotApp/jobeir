@@ -1,4 +1,5 @@
 import docCookies from './cookies';
+import config from '../../server/config/config';
 
 /**
  * checkStatus()
@@ -15,14 +16,37 @@ export function checkStatus(response) {
   }
 }
 
+export function formatUrl(path) {
+  const adjustedPath = path[0] !== '/' ? '/' + path : path;
+  if (__SERVER__) {
+    // Prepend host and port of the API server to the path.
+    return (
+      'http://' +
+      config.apiHost +
+      ':' +
+      config.apiPort +
+      '/api/v0' +
+      adjustedPath
+    );
+  }
+  // Prepend `/api` to relative URL, to proxy to API server.
+  return '/api/v0' + adjustedPath;
+}
+
 /**
  * reqHeaders()
  * Formats the headers for the API request. Wil take care of
  * upload formatting or making sure to indicate the correct
  * content-type for the request.
  */
-export function reqHeaders(header) {
-  const SID = docCookies.getItem('SID');
+export function reqHeaders(header, cookies = {}) {
+  let SID;
+
+  if (cookies.SID) {
+    SID = cookies.SID;
+  } else {
+    SID = docCookies.getItem('SID');
+  }
 
   const headers = {
     Accept: 'application/json'
@@ -68,12 +92,12 @@ export function reqBody(method, payload, header) {
  * asynchronous API calls to the backend. This function is mostly imported
  * into Redux Sagas.
  */
-export function fetchApi(method, endpoint, payload = {}, header) {
-  const url = `/api/v0${endpoint}`;
+export function fetchApi(method, endpoint, payload = {}, header, req = {}) {
+  const url = formatUrl(endpoint);
   const options = {};
 
   options.method = method;
-  options.headers = reqHeaders(header);
+  options.headers = reqHeaders(header, req.cookies);
   options.body = reqBody(method, payload, header);
 
   return fetch(url, options).then(checkStatus).then(res => res.json());

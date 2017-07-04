@@ -11,7 +11,7 @@ import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 import passport from 'passport';
 import serialize from 'serialize-javascript';
 import geoip from 'geoip-lite';
-
+import favicon from 'serve-favicon';
 import webpack from 'webpack';
 import config from '../webpack/webpack.config.dev.js';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -21,6 +21,10 @@ import dotenv from 'dotenv';
 dotenv.load();
 
 const app = new express();
+
+global.__CLIENT__ = false;
+global.__SERVER__ = true;
+global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(config);
@@ -40,6 +44,7 @@ import { combineReducers } from 'redux';
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import Helmet from 'react-helmet';
 import { ServerStyleSheet } from 'styled-components';
 import Html from '../client/modules/html/containers/Html';
@@ -47,7 +52,7 @@ import {
   ReduxAsyncConnect,
   loadOnServer,
   reducer as reduxAsyncConnect
-} from 'redux-async-connect';
+} from 'redux-connect';
 
 // Import required modules
 import routes, { routesArray } from '../client/routes';
@@ -59,6 +64,9 @@ import passportInit from './config/passport';
 
 // Apply body Parser and server public assets and routes
 app.use(compression());
+app.use(
+  favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico'))
+);
 app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
@@ -78,7 +86,6 @@ app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use(passport.initialize());
 passportInit(passport);
 app.use(passport.session());
-// app.use(express.static(path.resolve(__dirname, '../build/client')));
 app.use(
   '/api/v0',
   jwt({ secret: process.env.JWT }).unless({ path: routesArray }),
@@ -100,66 +107,69 @@ mongoose.connect(process.env.MONGO_URL, error => {
 
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
+  // const memoryHistory = createHistory(req.originalUrl);
+
+  // Need to configure the store outside of app.use
+  const store = configureStore();
+
   if (process.env.NODE_ENV === 'development') {
     global.webpackIsomorphicTools.refresh();
   }
 
-  match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
-    if (err) {
-      return res.status(500).end(err);
-    }
+  match(
+    { routes, location: req.originalUrl },
+    (err, redirectLocation, renderProps) => {
+      if (err) {
+        return res.status(500).end(err);
+      }
 
-    if (redirectLocation) {
-      return res.redirect(
-        302,
-        redirectLocation.pathname + redirectLocation.search
-      );
-    }
+      if (redirectLocation) {
+        return res.redirect(
+          302,
+          redirectLocation.pathname + redirectLocation.search
+        );
+      }
 
-    if (!renderProps) {
-      return next();
-    }
+      if (!renderProps) {
+        return next();
+      }
 
-    const store = configureStore();
-    // const client = new ApiClient(req);
-
-    /**
+      /**
      * ::1 is the actual IP. It is an ipv6 loopback address (i.e. localhost).
      * If you were using ipv4 it would be 127.0.0.1
      */
-    const ip =
-      req.headers['x-forwarded-for'] ||
-      req.connection.remoteAddress ||
-      req.socket.remoteAddress ||
-      req.connection.socket.remoteAddress;
-    const geo = geoip.lookup(ip);
+      // const ip =
+      //   req.headers['x-forwarded-for'] ||
+      //   req.connection.remoteAddress ||
+      //   req.socket.remoteAddress ||
+      //   req.connection.socket.remoteAddress;
+      // const geo = geoip.lookup(ip);
 
-    loadOnServer({ ...renderProps, store, helpers: { req } })
-      .then(() => {
-        // return fetchComponentData(store, renderProps.components, renderProps.params)
-        // .then(() => {
-        const sheet = new ServerStyleSheet();
-        const content = renderToString(
-          sheet.collectStyles(
-            <Provider store={store}>
-              <IntlWrapper>
-                <ReduxAsyncConnect {...renderProps} />
-              </IntlWrapper>
-            </Provider>
-          )
-        );
+      loadOnServer({ ...renderProps, store, helpers: { req } })
+        .then(() => {
+          const sheet = new ServerStyleSheet();
+          const content = renderToString(
+            sheet.collectStyles(
+              <Provider store={store} key="provider">
+                <IntlWrapper>
+                  <ReduxAsyncConnect {...renderProps} />
+                </IntlWrapper>
+              </Provider>
+            )
+          );
 
-        const css = sheet.getStyleTags();
-        const initialState = store.getState();
-        const assets = global.webpackIsomorphicTools.assets();
-        const state = `window.__INITIAL_STATE__ = ${serialize(initialState)}`;
-        const markup = <Html {...{ css, assets, state, content }} />;
-        const html = '<!doctype html>' + renderToStaticMarkup(markup);
+          const css = sheet.getStyleTags();
+          const initialState = store.getState();
+          const assets = global.webpackIsomorphicTools.assets();
+          const state = `window.__INITIAL_STATE__ = ${serialize(initialState)}`;
+          const markup = <Html {...{ css, assets, state, content }} />;
+          const html = '<!doctype html>' + renderToStaticMarkup(markup);
 
-        res.send(html);
-      })
-      .catch(error => next(error));
-  });
+          res.send(html);
+        })
+        .catch(error => next(error));
+    }
+  );
 });
 
 // start app

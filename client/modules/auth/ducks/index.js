@@ -1,5 +1,9 @@
 import { browserHistory } from 'react-router';
 
+export const SERVER_AUTH_REQUEST = 'SERVER_AUTH_REQUEST';
+export const SERVER_AUTH_SUCCESS = 'SERVER_AUTH_SUCCESS';
+export const SERVER_AUTH_FAILURE = 'SERVER_AUTH_FAILURE';
+
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILURE = 'AUTH_FAILURE';
@@ -27,6 +31,7 @@ export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const initialState = {
   isAuthenticating: false,
   isAuthenticated: false,
+  isLoaded: false,
   isResettingPassword: false,
   token: '',
   errors: []
@@ -34,6 +39,7 @@ export const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case SERVER_AUTH_REQUEST:
     case AUTH_REQUEST:
     case LOGIN_REQUEST:
     case SIGNUP_REQUEST:
@@ -41,14 +47,21 @@ export default (state = initialState, action = {}) => {
       return Object.assign({}, state, {
         isAuthenticating: true
       });
+    case SERVER_AUTH_SUCCESS:
     case AUTH_SUCCESS:
     case LOGIN_SUCCESS:
     case SIGNUP_SUCCESS:
-    case LOGOUT_FAILURE:
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: true,
+        isLoaded: true,
         ...action.payload.data
+      });
+    case LOGOUT_FAILURE:
+      return Object.assign({}, state, {
+        isAuthenticating: false,
+        isAuthenticated: false,
+        errors: action.errors.errors
       });
     case RESET_REQUEST:
     case PASSWORD_REQUEST:
@@ -66,6 +79,7 @@ export default (state = initialState, action = {}) => {
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: false,
+        isLoaded: true,
         errors: action.errors.errors
       });
     case RESET_FAILURE:
@@ -77,15 +91,38 @@ export default (state = initialState, action = {}) => {
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: false,
+        isLoaded: true,
         errors: action.errors.errors
       });
-    case 'SHOW_MODAL':
+    case SERVER_AUTH_FAILURE:
+      return Object.assign({}, state, {
+        isAuthenticating: false,
+        isAuthenticated: false,
+        isLoaded: true,
+        errors: action.payload.errors
+      });
     case LOGOUT_SUCCESS:
-      return window.__INITIAL_STATE__;
+      return Object.assign({}, initialState, {
+        isLoaded: true
+      });
     default:
       return state;
   }
 };
+
+export function shouldCheckAuth(globalState) {
+  const isLoaded =
+    globalState.session.auth && globalState.session.auth.isLoaded;
+  const isAuthenticating =
+    globalState.session.auth && globalState.session.auth.isAuthenticating;
+
+  return !isAuthenticating && !isLoaded;
+}
+
+export const serverAuth = req => ({
+  type: SERVER_AUTH_REQUEST,
+  payload: { req }
+});
 
 export const auth = redirectPathname => ({
   type: AUTH_REQUEST,

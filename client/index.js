@@ -26,9 +26,11 @@ if (module.hot) {
     // If you use Webpack 2 in ES modules mode, you can
     // use <App /> here rather than require() a <NextApp />.
     const NextApp = require('./modules/app/containers/App').default; // eslint-disable-line global-require
+    console.log('fired within the hot reloader');
+
     render(
       <AppContainer>
-        <NextApp store={store} />
+        <App store={store} />
       </AppContainer>,
       mountApp
     );

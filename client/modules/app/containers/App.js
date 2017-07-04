@@ -4,7 +4,7 @@ import { Router, browserHistory } from 'react-router';
 import IntlWrapper from '../../intl/containers/IntlWrapper';
 import routes from '../../../routes';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { ReduxAsyncConnect } from 'redux-async-connect';
+import { ReduxAsyncConnect } from 'redux-connect';
 
 export default function App(props) {
   const { store } = props;
@@ -20,7 +20,6 @@ export default function App(props) {
       <IntlWrapper>
         <Router
           render={props => <ReduxAsyncConnect {...props} />}
-          key={Math.random()}
           history={history}
           routes={routes}
         />

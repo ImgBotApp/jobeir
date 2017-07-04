@@ -5,18 +5,19 @@ import theme from '../theme';
 import Modal from '../../modal/containers/Modal';
 import AppHead from '../../app/components/AppHead';
 import Header from '../../header/containers/Header';
-import { asyncConnect } from 'redux-async-connect';
-import { updateJobFilter } from '../../create/job/ducks/';
+import { asyncConnect } from 'redux-connect';
+import { shouldCheckAuth } from '../../auth/ducks/';
+import { serverAuth } from '../../auth/thunks/';
+import { serverGetUser, shouldGetUser } from '../../user/ducks/';
 
 @asyncConnect([
   {
     promise: ({ store: { dispatch, getState }, helpers }) => {
-      const promises = [];
-      console.log(helpers);
+      const state = getState();
 
-      promises.push(dispatch(updateJobFilter('Pending')));
-
-      return Promise.all(promises);
+      if (shouldCheckAuth(state)) {
+        return dispatch(serverAuth(helpers.req));
+      }
     }
   }
 ])
@@ -28,7 +29,7 @@ class Core extends Component {
       <ThemeProvider theme={theme}>
         <div>
           <AppHead />
-          {!isAuthenticated && <Header />}
+          <Header />
           {children}
           <Modal />
         </div>
@@ -37,11 +38,11 @@ class Core extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.session.auth.isAuthenticated
-});
+// const mapStateToProps = state => ({
+//   isAuthenticated: state.session.auth.isAuthenticated
+// });
 
-export default connect(mapStateToProps)(Core);
+export default Core;
 
 injectGlobal`
   /* woff formats */

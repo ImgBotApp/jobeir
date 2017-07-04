@@ -9,14 +9,28 @@ class Company extends Component {
     return (
       <div>
         <Link to="/create/company/about">Create Company</Link>
-        <div>{company.displayName}</div>
+        <div>
+          {company.displayName}
+        </div>
         <div>
           <img src={company.logo} alt={company.displayName} />
         </div>
-        <div>{company.product}</div>
-        <div>{company.website}</div>
-        <div>{company.phone}</div>
-        <div>{company.perks.map(perk => <span key={perk}>{perk}</span>)}</div>
+        <div>
+          {company.product}
+        </div>
+        <div>
+          {company.website}
+        </div>
+        <div>
+          {company.phone}
+        </div>
+        <div>
+          {company.perks.map(perk =>
+            <span key={perk}>
+              {perk}
+            </span>
+          )}
+        </div>
       </div>
     );
   }

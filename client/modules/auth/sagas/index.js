@@ -39,7 +39,7 @@ export function* authUser(action) {
   } catch (errors) {
     yield put({ type: AUTH_FAILURE, errors });
     yield call(redirectTo, authFailedRedirectPathname);
-    // throw errors;
+    throw errors;
   }
 }
 

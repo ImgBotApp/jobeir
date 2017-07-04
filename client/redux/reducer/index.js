@@ -7,7 +7,7 @@ import * as storage from 'redux-storage';
 
 import { reducer as form } from 'redux-form';
 import { routerReducer as routing } from 'react-router-redux';
-import { reducer as reduxAsyncConnect } from 'redux-async-connect';
+import { reducer as reduxAsyncConnect } from 'redux-connect';
 
 import auth from '../../modules/auth/ducks';
 import companies from '../../modules/create/company/ducks';
@@ -15,16 +15,16 @@ import jobs from '../../modules/create/job/ducks';
 import modal from '../../modules/modal/ducks';
 import user from '../../modules/user/ducks';
 
-const session = combineReducers({
-  auth,
-  user
-});
-
 function intl(state, action) {
   return {
     locale: 'en'
   };
 }
+
+const session = combineReducers({
+  auth,
+  user
+});
 
 // creating an appReducer
 export const appReducer = combineReducers({

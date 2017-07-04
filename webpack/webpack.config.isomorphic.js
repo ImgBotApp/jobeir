@@ -5,9 +5,9 @@ module.exports = {
   assets: {
     images: {
       extensions: ['jpg', 'png', 'gif', 'svg'],
-      parser: WebpackIsomorphicToolsPlugin.url_loader_parser,
-    },
+      parser: WebpackIsomorphicToolsPlugin.url_loader_parser
+    }
   },
   modulesDirectories: ['client', 'node_modules'],
-  patch_require: true,
+  patch_require: true
 };

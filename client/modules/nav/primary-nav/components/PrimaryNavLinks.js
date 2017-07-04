@@ -74,20 +74,17 @@ class PrimaryNavLinks extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.session.auth.isAuthenticated,
-  pathname: (state.routing.locationBeforeTransitions &&
-    state.routing.locationBeforeTransitions.pathname) ||
+  pathname:
+    (state.routing.locationBeforeTransitions &&
+      state.routing.locationBeforeTransitions.pathname) ||
     ''
 });
 
 export default connect(mapStateToProps)(PrimaryNavLinks);
 
-const PrimaryNavLinksContainer = styled.div`
-  display: flex;
-`;
+const PrimaryNavLinksContainer = styled.div`display: flex;`;
 
-const NavLinkContainer = styled.div`
-  display: flex;
-`;
+const NavLinkContainer = styled.div`display: flex;`;
 
 const NavLink = styled(Link)`
   display: block;
