@@ -103,11 +103,6 @@ export function shouldGetUser(globalState) {
   return hasId && !isFetching && !isLoaded;
 }
 
-export const serverGetUser = (userId, req) => ({
-  type: SERVER_GET_USER_REQUEST,
-  payload: { userId, req }
-});
-
 export const getUser = userId => ({
   type: GET_USER_REQUEST,
   payload: { userId }

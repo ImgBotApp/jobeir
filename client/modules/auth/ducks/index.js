@@ -119,11 +119,6 @@ export function shouldCheckAuth(globalState) {
   return !isAuthenticating && !isLoaded;
 }
 
-export const serverAuth = req => ({
-  type: SERVER_AUTH_REQUEST,
-  payload: { req }
-});
-
 export const auth = redirectPathname => ({
   type: AUTH_REQUEST,
   payload: { redirectPathname }

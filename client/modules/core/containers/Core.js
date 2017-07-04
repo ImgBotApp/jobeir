@@ -7,9 +7,8 @@ import AppHead from '../../app/components/AppHead';
 import Header from '../../header/containers/Header';
 import { asyncConnect } from 'redux-connect';
 import { shouldCheckAuth } from '../../auth/ducks/';
-import { serverAuth } from '../../auth/thunks/';
-import { shouldGetUser } from '../../user/ducks/';
-import { serverGetUser } from '../../user/thunks/';
+import { serverAuth } from '../../auth/server/';
+import { serverGetUser } from '../../user/server/';
 
 @asyncConnect([
   {
