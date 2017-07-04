@@ -1,26 +1,26 @@
 import { CALL_API } from 'redux-api-middleware';
 import { fetchApi, reqHeaders } from '../../../utils/api';
 import {
-  SERVER_AUTH_REQUEST,
-  SERVER_AUTH_SUCCESS,
-  SERVER_AUTH_FAILURE
+  SERVER_GET_USER_REQUEST,
+  SERVER_GET_USER_SUCCESS,
+  SERVER_GET_USER_FAILURE
 } from '../ducks';
 
-export function serverAuth(req) {
-  const endpoint = 'http://localhost:8000/api/v0/auth';
+export function serverGetUser(userId, req) {
+  const endpoint = `http://localhost:8000/api/v0/users/${userId}`;
   return {
     [CALL_API]: {
       endpoint,
       method: 'GET',
       headers: reqHeaders('', req.cookies),
       types: [
-        SERVER_AUTH_REQUEST,
+        SERVER_GET_USER_REQUEST,
         {
-          type: SERVER_AUTH_SUCCESS,
+          type: SERVER_GET_USER_SUCCESS,
           payload: (action, state, response) => response.json().then(res => res)
         },
         {
-          type: SERVER_AUTH_FAILURE,
+          type: SERVER_GET_USER_FAILURE,
           payload: (action, state, response) => response.json().then(res => res)
         }
       ]

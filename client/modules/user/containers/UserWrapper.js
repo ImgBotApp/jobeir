@@ -16,12 +16,13 @@ export const UserWrapper = WrappedComponent => {
 
     componentDidMount() {
       const { user: { isLoaded } } = this.props;
+
       return this.handleGetUser(isLoaded);
     }
 
     componentWillReceiveProps(nextProps) {
       const { user: { isLoaded, isFetching } } = nextProps;
-      if (!isLoaded && !isFetching) {
+      if (!isFetching) {
         return this.handleGetUser(isLoaded);
       }
     }
@@ -36,7 +37,7 @@ export const UserWrapper = WrappedComponent => {
        */
       this.setState({ count: this.state.count + 1 });
 
-      if (count <= 1) {
+      if (count <= 1 && !isLoaded) {
         dispatch(getUser(auth.id));
       }
     }

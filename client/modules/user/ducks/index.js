@@ -56,12 +56,17 @@ export default (state = initialState, action = {}) => {
         isUpdating: false,
         ...action.payload.data.user
       });
-    case SERVER_GET_USER_FAILURE:
     case GET_USER_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
         errors: action.errors.errors
+      });
+    case SERVER_GET_USER_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isLoaded: true,
+        errors: action.payload.errors
       });
     case UPDATE_USER_FAILURE:
       return Object.assign({}, state, {

@@ -8,15 +8,20 @@ import Header from '../../header/containers/Header';
 import { asyncConnect } from 'redux-connect';
 import { shouldCheckAuth } from '../../auth/ducks/';
 import { serverAuth } from '../../auth/thunks/';
-import { serverGetUser, shouldGetUser } from '../../user/ducks/';
+import { shouldGetUser } from '../../user/ducks/';
+import { serverGetUser } from '../../user/thunks/';
 
 @asyncConnect([
   {
-    promise: ({ store: { dispatch, getState }, helpers }) => {
+    promise: ({ store: { dispatch, getState }, helpers: { req } }) => {
       const state = getState();
 
       if (shouldCheckAuth(state)) {
-        return dispatch(serverAuth(helpers.req));
+        return dispatch(serverAuth(req)).then(response => {
+          if (!response.payload.errors.length) {
+            return dispatch(serverGetUser(response.payload.data.id, req));
+          }
+        });
       }
     }
   }

@@ -41,6 +41,6 @@ export function* serverGetUserAfterAuth(action) {
 }
 
 export function* serverUser() {
-  yield takeEvery(SERVER_GET_USER_REQUEST, serverGetUser);
+  // yield takeEvery(SERVER_GET_USER_REQUEST, serverGetUser);
   // yield takeEvery(SERVER_AUTH_SUCCESS, serverGetUserAfterAuth);
 }
