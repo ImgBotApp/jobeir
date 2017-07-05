@@ -10,7 +10,6 @@ import session from 'express-session';
 import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 import passport from 'passport';
 import serialize from 'serialize-javascript';
-import geoip from 'geoip-lite';
 import favicon from 'serve-favicon';
 import webpack from 'webpack';
 import config from '../webpack/webpack.config.dev.js';
@@ -57,6 +56,7 @@ import {
 // Import required modules
 import routes, { routesArray } from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
+import { geoLookup } from './util/geoLookup';
 import apiRoutes from './routes/ApiRoutes.routes';
 import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
@@ -107,7 +107,8 @@ mongoose.connect(process.env.MONGO_URL, error => {
 
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
-  const store = configureStore();
+  const location = geoLookup(req);
+  const store = configureStore(location);
 
   if (process.env.NODE_ENV === 'development') {
     global.webpackIsomorphicTools.refresh();
@@ -130,17 +131,6 @@ app.use((req, res, next) => {
       if (!renderProps) {
         return next();
       }
-
-      /**
-     * ::1 is the actual IP. It is an ipv6 loopback address (i.e. localhost).
-     * If you were using ipv4 it would be 127.0.0.1
-     */
-      // const ip =
-      //   req.headers['x-forwarded-for'] ||
-      //   req.connection.remoteAddress ||
-      //   req.socket.remoteAddress ||
-      //   req.connection.socket.remoteAddress;
-      // const geo = geoip.lookup(ip);
 
       loadOnServer({ ...renderProps, store, helpers: { req } })
         .then(() => {

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { asyncConnect } from 'redux-connect';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 import theme from '../theme';
 import Modal from '../../modal/containers/Modal';
 import AppHead from '../../app/components/AppHead';
 import Header from '../../header/containers/Header';
-import { asyncConnect } from 'redux-connect';
 import { shouldCheckAuth } from '../../auth/ducks/';
 import { serverAuth } from '../../auth/server/';
 import { serverGetUser } from '../../user/server/';

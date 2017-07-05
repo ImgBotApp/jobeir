@@ -11,15 +11,11 @@ import { reducer as reduxAsyncConnect } from 'redux-connect';
 
 import auth from '../../modules/auth/ducks';
 import companies from '../../modules/create/company/ducks';
+import intl from '../intl/';
 import jobs from '../../modules/create/job/ducks';
+import location from '../location/';
 import modal from '../../modules/modal/ducks';
 import user from '../../modules/user/ducks';
-
-function intl(state, action) {
-  return {
-    locale: 'en'
-  };
-}
 
 const session = combineReducers({
   auth,
@@ -32,6 +28,7 @@ export const appReducer = combineReducers({
   jobs,
   form,
   intl,
+  location,
   modal,
   reduxAsyncConnect,
   routing,

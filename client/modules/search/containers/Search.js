@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import SearchForm from '../../user-input/forms/form/search/SearchFrom';
 import SearchSubText from '../components/SearchSubText';
 
-const Search = () =>
-  <SearchContainer>
-    <SearchForm />
-    <SearchSubText />
-  </SearchContainer>;
-
+class Search extends Component {
+  render() {
+    return (
+      <SearchContainer>
+        <SearchForm />
+        <SearchSubText />
+      </SearchContainer>
+    );
+  }
+}
 export default Search;
 
 const SearchContainer = styled.div`

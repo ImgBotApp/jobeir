@@ -12,7 +12,9 @@ const Input = props => {
 
   return (
     <SearchInputContainer>
-      <SearchLabel htmlFor={props.input.name}>{props.label}</SearchLabel>
+      <SearchLabel htmlFor={props.input.name}>
+        {props.label}
+      </SearchLabel>
       <SearchInput
         {...props.input}
         type={props.input.type || 'text'}
@@ -98,7 +100,6 @@ const SearchInput = styled.input`
 const SearchLabel = styled.label`
   margin-top: 15px;
   font-size: 17px;
-
 `;
 
 const SearchInputContainer = styled.div`
@@ -107,7 +108,6 @@ const SearchInputContainer = styled.div`
   flex-direction: column;
   margin: 0 15px;
   padding-bottom: 15px;
-
 
   &:first-child {
     margin-right: 0;
@@ -120,7 +120,7 @@ const SearchButton = styled.button`
   width: 160px;
   font-size: 18px;
   color: white;
-  background-color: #5C6AC4;
+  background-color: #5c6ac4;
   border: 0;
   border-radius: 4px;
   cursor: pointer;
