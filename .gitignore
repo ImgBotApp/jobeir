@@ -5,6 +5,6 @@ public/*
 dist
 build
 coverage/
-server/config
+server/config/config.js
 server/mail/config.js
 .env
