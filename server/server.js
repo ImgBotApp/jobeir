@@ -17,13 +17,11 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import dotenv from 'dotenv';
 
-dotenv.load();
-
-const app = new express();
-
 global.__CLIENT__ = false;
 global.__SERVER__ = true;
 global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
+dotenv.load();
+const app = new express();
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(config);
@@ -98,7 +96,7 @@ app.use(oAuthRoutes);
 mongoose.Promise = global.Promise;
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URL, error => {
+mongoose.connect(process.env.MONGO_URL, { useMongoClient: true }, error => {
   if (error) {
     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
     throw error;
@@ -109,7 +107,8 @@ mongoose.connect(process.env.MONGO_URL, error => {
 app.use((req, res, next) => {
   const location = geoLookup(req);
   const memoryHistory = createMemoryHistory(req.url);
-  const store = configureStore(Object.assign({}, memoryHistory, location));
+  const initialState = Object.assign({}, memoryHistory, location);
+  const store = configureStore(initialState);
   const history = syncHistoryWithStore(memoryHistory, store);
 
   if (process.env.NODE_ENV === 'development') {

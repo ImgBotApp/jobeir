@@ -5,10 +5,6 @@ import geoip from 'geoip-lite';
  * If you were using ipv4 it would be 127.0.0.1
  */
 export const geoLookup = req => {
-  if (req.url !== '/') {
-    return;
-  }
-
   let ip =
     req.headers['x-forwarded-for'] ||
     req.connection.remoteAddress ||
