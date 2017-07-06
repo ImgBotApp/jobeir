@@ -42,7 +42,7 @@ import { Provider } from 'react-redux';
 import { combineReducers } from 'redux';
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
-import { match, RouterContext } from 'react-router';
+import { createMemoryHistory, match, RouterContext } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import Helmet from 'react-helmet';
 import { ServerStyleSheet } from 'styled-components';
@@ -108,14 +108,16 @@ mongoose.connect(process.env.MONGO_URL, error => {
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
   const location = geoLookup(req);
-  const store = configureStore(location);
+  const memoryHistory = createMemoryHistory(req.url);
+  const store = configureStore(Object.assign({}, memoryHistory, location));
+  const history = syncHistoryWithStore(memoryHistory, store);
 
   if (process.env.NODE_ENV === 'development') {
     global.webpackIsomorphicTools.refresh();
   }
 
   match(
-    { routes, location: req.originalUrl },
+    { history, routes, location: req.originalUrl },
     (err, redirectLocation, renderProps) => {
       if (err) {
         return res.status(500).end(err);

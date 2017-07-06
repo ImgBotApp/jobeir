@@ -23,7 +23,6 @@ const PostingPreviewContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: 1000px;
 `;
 
 const PostingPreviewContent = styled.div`

@@ -6,36 +6,36 @@ import ShellHeaderNav from './ShellHeaderNav';
 import ShellLogo from '../components/ShellLogo';
 import ShellCompanyDropdown from './ShellCompanyDropdown';
 
-class ShellTopNav extends Component {
+class ShellNav extends Component {
   render() {
     const { children, params } = this.props;
 
     return (
-      <ShellTopNavContainer>
-        <ShellTopNavLeft>
+      <ShellNavContainer>
+        <ShellNavLeft>
           <ShellLogo />
-        </ShellTopNavLeft>
-        <ShellTopNavRight>
-          <ShellTopNavRightContent>
+        </ShellNavLeft>
+        <ShellNavRight>
+          <ShellNavRightContent>
             <ShellHeaderNav />
             <ShellCompanyDropdown />
             <ShellDropdown />
-          </ShellTopNavRightContent>
-        </ShellTopNavRight>
-      </ShellTopNavContainer>
+          </ShellNavRightContent>
+        </ShellNavRight>
+      </ShellNavContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({});
 
-export default connect(mapStateToProps)(ShellTopNav);
+export default connect(mapStateToProps)(ShellNav);
 
-const ShellTopNavContainer = styled.div`
+const ShellNavContainer = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  height: 65px;
+  height: 75px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -44,16 +44,14 @@ const ShellTopNavContainer = styled.div`
   z-index: 100;
 `;
 
-const ShellTopNavLeft = styled.div`
+const ShellNavLeft = styled.div``;
 
-`;
-
-const ShellTopNavRight = styled.div`
+const ShellNavRight = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const ShellTopNavRightContent = styled.div`
+const ShellNavRightContent = styled.div`
   display: flex;
   align-items: center;
 `;

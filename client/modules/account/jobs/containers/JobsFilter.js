@@ -38,7 +38,7 @@ export default connect(mapStateToProps)(JobsFilter);
 
 const JobsFilterContainer = styled.div`
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   border-top: 1px solid #f2f2f2;
 `;
 
@@ -51,9 +51,9 @@ const JobsFilterItem = styled.div`
   border-top: 1px solid transparent;
   border-color: ${props => (props.active ? 'rgba(0,0,0,.7)' : 'transparent')};
   font-weight: ${props => (props.active ? '600' : '400')};
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  
+
   &:last-child {
     margin-right: 0;
   }

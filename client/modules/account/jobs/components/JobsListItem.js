@@ -11,14 +11,21 @@ const JobsListItem = ({ job }) => {
   return (
     <div>
       <JobsMain>
-        <JobsTitle>{job.title}</JobsTitle>
-        <JobsState>{job.state}</JobsState>
+        <JobsTitle>
+          {job.title}
+        </JobsTitle>
+        <JobsState>
+          {job.state}
+        </JobsState>
       </JobsMain>
       <JobsSub>
-        <div>Created {moment(job.dateCreated).fromNow()}</div>
+        <div>
+          Created {moment(job.dateCreated).fromNow()}
+        </div>
         <JobsDot>·</JobsDot>
         <div>
-          {job.location.address.locality}{', '}
+          {job.location.address.locality}
+          {', '}
           {job.location.address.administrative_area_level_1}
         </div>
         <JobsDot>·</JobsDot>
@@ -32,13 +39,9 @@ const JobsListItem = ({ job }) => {
 
 export default JobsListItem;
 
-const JobsTitle = styled.h3`
-  font-size: 28px;
-`;
+const JobsTitle = styled.h3`font-size: 26px;`;
 
-const JobsState = styled.div`
-  font-size: 14px;
-`;
+const JobsState = styled.div`font-size: 14px;`;
 
 const JobsMain = styled.div`
   display: flex;

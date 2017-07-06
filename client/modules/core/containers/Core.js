@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 import theme from '../theme';
-import Modal from '../../modal/containers/Modal';
-import AppHead from '../../app/components/AppHead';
-import Header from '../../header/containers/Header';
 import { shouldCheckAuth } from '../../auth/ducks/';
 import { serverAuth } from '../../auth/server/';
 import { serverGetUser } from '../../user/server/';
+import Modal from '../../modal/containers/Modal';
+import AppHead from '../../app/components/AppHead';
+import Header from '../../header/containers/Header';
 
 @asyncConnect([
   {
@@ -27,13 +27,15 @@ import { serverGetUser } from '../../user/server/';
 ])
 class Core extends Component {
   render() {
-    const { children, isAuthenticated } = this.props;
+    const { children, pathname } = this.props;
+    const shouldShowHeader =
+      !pathname.includes('account') && !pathname.includes('create');
 
     return (
       <ThemeProvider theme={theme}>
         <div>
           <AppHead />
-          <Header />
+          {shouldShowHeader && <Header />}
           {children}
           <Modal />
         </div>
@@ -42,11 +44,14 @@ class Core extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   isAuthenticated: state.session.auth.isAuthenticated
-// });
+const mapStateToProps = state => ({
+  pathname:
+    (state.routing.locationBeforeTransitions &&
+      state.routing.locationBeforeTransitions.pathname) ||
+    ''
+});
 
-export default Core;
+export default connect(mapStateToProps)(Core);
 
 injectGlobal`
   /* woff formats */

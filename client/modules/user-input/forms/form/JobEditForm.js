@@ -246,18 +246,11 @@ JobEditFrom = reduxForm({
 
 export default connect(mapStateToProps)(JobEditFrom);
 
-const FormEditContainer = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-`;
+const FormEditContainer = styled.div`margin: 0 auto;`;
 
-const FormEditForm = styled.div`
-  max-width: 580px;
-`;
+const FormEditForm = styled.div`max-width: 580px;`;
 
-const FormListWrapper = styled.div`
-  padding-top: 1rem;
-`;
+const FormListWrapper = styled.div`padding-top: 1rem;`;
 
 const FormListItem = styled.div`
   position: relative;
@@ -273,7 +266,7 @@ const FormListRemoveItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(0,0,0,0.85);
+  border: 1px solid rgba(0, 0, 0, 0.85);
   border-radius: 50%;
   cursor: pointer;
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'react-router/lib/Link';
 
-const ShellLogo = () => <Logo to="/account/jobs" />;
+const ShellLogo = () => <Logo to="/" />;
 
 export default ShellLogo;
 

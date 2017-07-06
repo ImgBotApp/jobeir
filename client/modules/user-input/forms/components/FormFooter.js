@@ -30,10 +30,12 @@ class FormFooter extends Component {
       .querySelector('.FormFooter')
       .getBoundingClientRect();
 
-    const isOverlapped = !(form.right < footer.left ||
+    const isOverlapped = !(
+      form.right < footer.left ||
       form.left > footer.right ||
       form.bottom < footer.top ||
-      form.top > footer.bottom);
+      form.top > footer.bottom
+    );
 
     this.setState({ isOverlapped });
   }
@@ -76,10 +78,12 @@ const FormFooterCenter = styled.div`
   width: ${props => (props.isUpload ? '100%' : '52.5%')};
   display: flex;
   align-items: center;
-  justify-content: ${props => (props.multipleChildren ? 'space-between' : 'flex-end')};
+  justify-content: ${props =>
+    props.multipleChildren ? 'space-between' : 'flex-end'};
   padding: 25px 0 35px;
   bottom: 0;
   background: #fff;
   border-top: 1px solid #ebebeb;
-  box-shadow: ${props => (props.isOverlapped ? '0 -9px 15px -7px rgba(0,0,0,0.09)' : 'none')};
+  box-shadow: ${props =>
+    props.isOverlapped ? '0 -9px 18px -10px rgba(0,0,0,0.18)' : 'none'};
 `;

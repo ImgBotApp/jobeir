@@ -1,4 +1,7 @@
-import { GET_USER_SUCCESS } from '../../../user/ducks/';
+import {
+  GET_USER_SUCCESS,
+  SERVER_GET_USER_SUCCESS
+} from '../../../user/ducks/';
 import { SWITCH_ACTIVE_COMPANY_SUCCESS } from '../../../user/ducks/';
 
 export const CHECK_COMPANY_REQUEST = 'CHECK_COMPANY_REQUEST';
@@ -30,15 +33,17 @@ export const initialState = {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case GET_USER_SUCCESS:
+    case SERVER_GET_USER_SUCCESS:
     case SWITCH_ACTIVE_COMPANY_SUCCESS:
       /**
        * Adding in the active company id to our redux store since
        * it's not stored within the User's model on the server
        */
       const userData = action.payload.data.user;
-      const activeCompany = userData.companies.find(
-        company => company.name === userData.activeCompany.name
-      ) || {};
+      const activeCompany =
+        userData.companies.find(
+          company => company.name === userData.activeCompany.name
+        ) || {};
       return Object.assign({}, state, {
         created: userData.companies,
         activeCompany: {

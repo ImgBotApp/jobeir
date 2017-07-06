@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import ShellHeader from '../components/ShellHeader';
-import ShellTopNav from './ShellTopNav';
+import ShellNav from './ShellNav';
 import UserWrapper from '../../../user/containers/UserWrapper';
 
 /**
@@ -29,7 +29,7 @@ class Shell extends Component {
     return (
       <ShellContainer>
         <ShellContent>
-          <ShellTopNav params={params} />
+          <ShellNav params={params} />
           <ShellHeader headerText={children.props.route.name} params={params} />
           <ShellDynamic>
             {children}
@@ -58,5 +58,4 @@ const ShellContent = styled.div`
   margin: 0 auto;
 `;
 
-const ShellDynamic = styled.div`
-`;
+const ShellDynamic = styled.div``;

@@ -1,5 +1,5 @@
 import docCookies from './cookies';
-import config from '../../server/config/config';
+import host from '../../server/config/host';
 
 /**
  * checkStatus()
@@ -21,12 +21,7 @@ export function formatUrl(path) {
   if (__SERVER__) {
     // Prepend host and port of the API server to the path.
     return (
-      'http://' +
-      config.apiHost +
-      ':' +
-      config.apiPort +
-      '/api/v0' +
-      adjustedPath
+      'http://' + host.apiHost + ':' + host.apiPort + '/api/v0' + adjustedPath
     );
   }
   // Prepend `/api` to relative URL, to proxy to API server.

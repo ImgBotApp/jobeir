@@ -29,19 +29,6 @@ class PrimaryNavLinks extends Component {
   }
 
   /**
-   * buildCreateNavigation()
-   * Used when the user is creating a company or job posting. We want to keep
-   * the navigation minimal to keep the user on the correct track.
-   */
-  buildCreateNavigation() {
-    return (
-      <NavLinkContainer>
-        <NavLink to="/account/jobs">Exit</NavLink>
-      </NavLinkContainer>
-    );
-  }
-
-  /**
    * buildMainNavigation()
    * Takes care of the authenticated or not authenticated version of the
    * primary navigation.
@@ -64,9 +51,7 @@ class PrimaryNavLinks extends Component {
 
     return (
       <PrimaryNavLinksContainer>
-        {pathname.includes('create')
-          ? this.buildCreateNavigation()
-          : this.buildMainNavigation(isAuthenticated)}
+        {this.buildMainNavigation(isAuthenticated)}
       </PrimaryNavLinksContainer>
     );
   }

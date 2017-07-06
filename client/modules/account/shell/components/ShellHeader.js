@@ -18,7 +18,7 @@ export default ShellHeader;
 const ShellHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 100px 0 40px;
+  padding: 90px 0 40px;
 `;
 
 const ShellRightSide = styled.div`
