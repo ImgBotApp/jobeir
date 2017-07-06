@@ -55,6 +55,7 @@ class SearchForm extends Component {
           label="Job Title"
           validate={[required]}
           component={Input}
+          autoFocus
         />
         <Field
           name="location"
@@ -72,7 +73,13 @@ SearchForm = reduxForm({
   form: 'search-home'
 })(SearchForm);
 
-export default connect()(SearchForm);
+const mapStateToProps = state => ({
+  initialValues: {
+    location: `${state.location.city}, ${state.location.region}`
+  }
+});
+
+export default connect(mapStateToProps)(SearchForm);
 
 const SearchFormContainer = styled.form`
   display: flex;

@@ -33,15 +33,19 @@ class CompanyFormStepThree extends Component {
       const place = autocomplete.getPlace();
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
+      console.log(place);
 
       const componentForm = {
         street_number: 'short_name',
         route: 'long_name',
         locality: 'long_name',
         administrative_area_level_1: 'long_name',
+        administrative_area_level_2: 'long_name',
         country: 'long_name',
+        country: 'short_name',
         postal_code: 'short_name'
       };
+
       const location = {
         address: {
           unit: '',
@@ -49,6 +53,8 @@ class CompanyFormStepThree extends Component {
           route: '',
           locality: '',
           administrative_area_level_1: '',
+          administrative_area_level_2: '',
+          short_administrative_area_level_1: '',
           country: '',
           postal_code: ''
         },
@@ -57,6 +63,12 @@ class CompanyFormStepThree extends Component {
 
       for (let i = 0; i < place.address_components.length; i++) {
         const addressType = place.address_components[i].types[0];
+
+        if (addressType === 'administrative_area_level_1') {
+          const val = place.address_components[i].short_name;
+          location.address.short_administrative_area_level_1 = val;
+        }
+
         if (componentForm[addressType]) {
           const val = place.address_components[i][componentForm[addressType]];
           location.address[addressType] = val;
