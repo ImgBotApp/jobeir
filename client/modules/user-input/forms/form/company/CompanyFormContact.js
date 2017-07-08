@@ -39,30 +39,26 @@ class CompanyFormStepTwo extends Component {
         theme="marble"
       >
         <FormHeader text={`How can people reach out to ${companyName}?`} />
-        <FormRow>
-          <Field
-            name="website"
-            label="Company website"
-            validate={[required, url]}
-            component={Text}
-          />
-          <Field
-            name="email"
-            label="Company email"
-            validate={[email, required]}
-            component={Email}
-          />
-        </FormRow>
-        <FormRow>
-          <Field
-            name="phone"
-            label="Company phone"
-            placeholder="(555) 123-4567"
-            validate={[required, phoneNumber]}
-            parse={parsePhone}
-            component={Phone}
-          />
-        </FormRow>
+        <Field
+          name="website"
+          label="Company website"
+          validate={[required, url]}
+          component={Text}
+        />
+        <Field
+          name="email"
+          label="Company email"
+          validate={[email, required]}
+          component={Email}
+        />
+        <Field
+          name="phone"
+          label="Company phone"
+          placeholder="(555) 123-4567"
+          validate={[required, phoneNumber]}
+          parse={parsePhone}
+          component={Phone}
+        />
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
           <Field

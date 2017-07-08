@@ -98,4 +98,26 @@ injectGlobal`
     font-family: 'Avenir STD', Avenir sans-serif;
     color: rgba(0,0,0,0.85);
   }
+
+  .pac-container {
+    padding: 6px 0;
+  }
+
+  .pac-item {
+    font-family: 'Avenir STD', Avenir sans-serif;
+    padding: 6px 18px;
+    border-top: 1px solid white;
+    font-size: 14px;
+    color: #262626;
+  }
+
+  .pac-matched {
+    font-size: 14px;
+    padding-right: 6px;
+  }
+
+  .pac-icon {
+    margin-top: 6px;
+    margin-right: 16px;
+  }
 `;

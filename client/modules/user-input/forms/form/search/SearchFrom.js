@@ -55,7 +55,7 @@ class SearchForm extends Component {
           label="Job Title"
           validate={[required]}
           component={Input}
-          autoFocus
+          autoFocus={true}
         />
         <Field
           name="location"

@@ -60,7 +60,7 @@ class ModalWrapper extends Component {
 export default connect()(ModalWrapper);
 
 const FadeInPulse = keyframes`
-  0% { opacity: 0; transform: scale(0.8) translateY(15px); }
+  0% { opacity: 0; transform: scale(0.8) translateY(8px); }
   50% { opacity: 1; }
   70% { transform: scale(1) translateY(0); }
 `;
@@ -69,7 +69,8 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${props => (props.bgColor === 'white' ? '#fff' : rgba(0, 0, 0, 0.6))};
+  background-color: ${props =>
+    props.bgColor === 'white' ? '#fff' : rgba(0, 0, 0, 0.6)};
   position: fixed;
   overflow: auto;
   top: 0;
@@ -96,14 +97,17 @@ const ModalBackground = styled.div`
 
 const ModalContent = styled.div`
   transform-origin: bottom center;
-  animation: ${FadeInPulse} .3s forwards cubic-bezier(0.8, 0.02, 0.45, 0.91);
+  animation: ${FadeInPulse} .27s forwards ease;
 `;
 
 const ModalBody = styled.div`
   position: relative;
   background-color: #fff;
   border-radius: 3px;
-  box-shadow: ${props => (props.bgColor === 'white' ? '0 3px 16px 0 rgba(0,0,0,.24)' : '0 2px 6px 0 rgba(0,0,0,.44)')};
+  box-shadow: ${props =>
+    props.bgColor === 'white'
+      ? '0 3px 16px 0 rgba(0,0,0,.24)'
+      : '0 2px 6px 0 rgba(0,0,0,.44)'};
   max-width: 520px;
 `;
 

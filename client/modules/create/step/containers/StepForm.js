@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import CompanyOnboarding from '../../company/components/CompanyOnboarding';
 import CompanyForm from '../../../user-input/forms/form/company/CompanyForm';
-import CompanyUpload
-  from '../../../user-input/forms/form/company/CompanyUpload';
+import CompanyUpload from '../../../user-input/forms/form/company/CompanyUpload';
 import JobForm from '../../../user-input/forms/form/job/JobForm';
 
 /**

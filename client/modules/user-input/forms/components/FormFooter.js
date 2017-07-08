@@ -50,11 +50,12 @@ class FormFooter extends Component {
      * have space-between
      */
     return (
-      <FormFooterContainer isUpload={isUpload}>
+      <FormFooterContainer>
         <FormFooterCenter
           className="FormFooter"
           isOverlapped={this.state.isOverlapped}
           multipleChildren={Array.isArray(children)}
+          isUpload={isUpload}
         >
           {children}
         </FormFooterCenter>

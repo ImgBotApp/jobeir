@@ -33,7 +33,6 @@ class CompanyFormStepThree extends Component {
       const place = autocomplete.getPlace();
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
-      console.log(place);
 
       const componentForm = {
         street_number: 'short_name',
