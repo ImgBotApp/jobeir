@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import { Text, SubmitButton } from '../../../inputs/input';
 import { required } from '../../../validation';
+import queryString from 'query-string';
 
 const Input = props => {
   const { meta } = props;
@@ -44,7 +45,13 @@ class SearchForm extends Component {
   }
 
   formSubmit(data) {
-    console.log(data);
+    const queryData = {
+      q: data.title,
+      l: data.location
+    };
+    const query = queryString.stringify(queryData);
+
+    console.log(query);
   }
 
   render() {

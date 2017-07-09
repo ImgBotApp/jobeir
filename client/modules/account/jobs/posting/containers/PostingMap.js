@@ -25,13 +25,18 @@ class PostingMap extends Component {
     const map = new google.maps.Map(mapSelector, {
       center: new google.maps.LatLng(lat, lng),
       zoom: 13,
-      styles: lightTheme
+      styles: lightTheme,
+      scrollwheel: false
     });
     const marker = new google.maps.Marker({ map, position });
   }
 
   render() {
-    return <PostingMapContainer><div id="map" /></PostingMapContainer>;
+    return (
+      <PostingMapContainer>
+        <div id="map" />
+      </PostingMapContainer>
+    );
   }
 }
 

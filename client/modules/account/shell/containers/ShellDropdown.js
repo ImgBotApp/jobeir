@@ -142,10 +142,7 @@ const ShellHeaderDropdown = styled.nav`
   cursor: pointer;
 `;
 
-const ShellHeaderDropdownLinks = styled.div`
-  opacity: 0.7;
-  padding: 4px 0;
-`;
+const ShellHeaderDropdownLinks = styled.div`opacity: 0.7;`;
 
 const ShellDropdownContainer = styled.div`
   display: flex;
@@ -159,7 +156,7 @@ const ShellDropdownContainer = styled.div`
     0 8px 16px rgba(27, 39, 51, 0.08);
   transform: translateZ(0);
   margin-top: 5px;
-  padding: 8px 0;
+  padding: 8px 0 4px;
   z-index: 1;
   right: -100px;
   top: 45px;
@@ -172,12 +169,12 @@ const ShellDropdownContainer = styled.div`
       : 'translate3d(0px, -10px, 0px)'};
 `;
 
-const ShellDropdownList = styled.ul`padding: 8px 0;`;
+const ShellDropdownList = styled.ul`padding: 4px 0 8px;`;
 
 const ShellDropdownListItem = styled.li`
   position: relative;
   list-style: none;
-  padding: 10px 25px;
+  padding: 12px 25px 9px;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -226,5 +223,5 @@ const ShellDropdownListItemBottom = styled.div`
 const ShellDropdownListItemHr = styled.hr`
   border: none;
   height: 1px;
-  background: #f9f9f9;
+  background: #f1f0f0;
 `;
