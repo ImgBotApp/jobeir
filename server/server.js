@@ -55,6 +55,7 @@ import {
 import routes, { routesArray } from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
 import { geoLookup } from './util/geoLookup';
+import { securityHeaders } from './util/securityHeaders';
 import apiRoutes from './routes/ApiRoutes.routes';
 import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
@@ -91,6 +92,7 @@ app.use(
 );
 app.use(serverConfig.handleNoToken);
 app.use(oAuthRoutes);
+app.use(securityHeaders);
 
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
