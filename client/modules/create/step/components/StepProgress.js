@@ -34,13 +34,13 @@ const StepProgress = props => {
   return (
     <StepProgressContainer>
       <StepProgressNodeContainer>
-        {formStep.steps.map((node, index) => (
+        {formStep.steps.map((node, index) =>
           <StepProgressNode
             key={node}
             fillCircle={index <= formStep.index}
             fillLine={index < formStep.index}
           />
-        ))}
+        )}
       </StepProgressNodeContainer>
     </StepProgressContainer>
   );
@@ -64,7 +64,8 @@ const StepProgressNodeContainer = styled.div`
 `;
 
 const StepProgressNode = styled.div`
-  background: ${props => (props.fillCircle ? props.theme.colors.blue : '#e1e1e1')};
+  background: ${props =>
+    props.fillCircle ? props.theme.colors.purple : '#e1e1e1'};
   border-radius: 50%;
   height: 14px;
   width: 14px;
@@ -77,12 +78,12 @@ const StepProgressNode = styled.div`
     height: 1px;
     width: 300px;
     display: block;
-    background: ${props => (props.fillLine ? props.theme.colors.blue : '#e1e1e1')};
+    background: ${props =>
+      props.fillLine ? props.theme.colors.purple : '#e1e1e1'};
     z-index: 0;
   }
 
   &:last-child {
-    
     &::before {
       display: none;
     }

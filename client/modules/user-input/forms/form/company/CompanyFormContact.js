@@ -42,12 +42,14 @@ class CompanyFormStepTwo extends Component {
         <Field
           name="website"
           label="Company website"
+          placeholder="https://example.com"
           validate={[required, url]}
           component={Text}
         />
         <Field
           name="email"
           label="Company email"
+          placeholder="email@example.com"
           validate={[email, required]}
           component={Email}
         />

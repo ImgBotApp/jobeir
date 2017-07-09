@@ -13,10 +13,12 @@ export const FormHeader = props => {
 
 export default FormHeader;
 
-const FormHeaderContainer = styled.div`
-`;
+const FormHeaderContainer = styled.div``;
 
 const Header = styled.h2`
   font-size: 2rem;
   margin-bottom: 2rem;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

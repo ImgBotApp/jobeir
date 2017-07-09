@@ -20,9 +20,8 @@ const CompanyOnboarding = props => {
       </Text>
       <Text>
         By continuing you agree to not to discriminate against any job applicant
-        because of race,
-        color, religion, national origin, sex, physical or mental disability, or
-        age
+        because of race, color, religion, national origin, sex, physical or
+        mental disability, or age
       </Text>
       <AgreeLink onClick={() => agreeToValues(props)}>I Agree</AgreeLink>
     </div>
@@ -38,6 +37,9 @@ export default connect(mapStateToProps)(CompanyOnboarding);
 const Header = styled.h2`
   font-size: 2rem;
   margin-bottom: 2rem;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Text = styled.p`
@@ -51,7 +53,7 @@ const AgreeLink = styled.div`
   border-radius: 3px;
   outline: none;
   border: none;
-  background: #5C6AC4;
+  background: #5c6ac4;
   width: 100%;
   max-width: 200px;
   font-size: 18px;

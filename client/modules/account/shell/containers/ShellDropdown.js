@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { browserHistory } from 'react-router';
+import { switchCompany } from '../../../user/ducks/';
 import { logout } from '../../../auth/ducks';
 import docCookies from '../../../../utils/cookies';
 import moment from 'moment';
@@ -10,6 +12,8 @@ class ShellDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = { showDropdown: false };
+
+    this.switchCompanies = this.switchCompanies.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
@@ -29,6 +33,18 @@ class ShellDropdown extends Component {
   componentWillUnmount() {
     this._isMounted = false;
     document.removeEventListener('click', this.handleClickOutside, true);
+  }
+
+  switchCompanies(company) {
+    const { dispatch, user } = this.props;
+    const data = {
+      activeCompany: {
+        name: company.name,
+        displayName: company.displayName
+      }
+    };
+
+    dispatch(switchCompany(data, user._id));
   }
 
   /**
@@ -54,13 +70,14 @@ class ShellDropdown extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { companies, user } = this.props;
+    console.log(companies);
 
     return (
       <ShellHeaderDropdown>
         <ShellDropdownContainer showDropdown={this.state.showDropdown}>
           <ShellDropdownList>
-            <ShellDropdownListItem>
+            <ShellDropdownListItem top={true}>
               <ShellDropdownListItemTop>
                 {user.firstName} {user.lastName}
               </ShellDropdownListItemTop>
@@ -69,13 +86,39 @@ class ShellDropdown extends Component {
               </ShellDropdownListItemBottom>
             </ShellDropdownListItem>
             <ShellDropdownListItemHr />
-            <ShellDropdownListItem>
-              Settings
+            <ShellHeaderDropdownLinks>
+              <ShellDropdownListItem>Settings</ShellDropdownListItem>
+              <ShellDropdownListItem onClick={this.handleLogoutClick}>
+                Log out
+              </ShellDropdownListItem>
+            </ShellHeaderDropdownLinks>
+          </ShellDropdownList>
+          <ShellDropdownList>
+            <ShellDropdownListItem top={true}>
+              <ShellDropdownListItemTop>Companies</ShellDropdownListItemTop>
+              <ShellDropdownListItemBottom
+                onClick={() => browserHistory.push('/create/company/about')}
+              />
             </ShellDropdownListItem>
             <ShellDropdownListItemHr />
-            <ShellDropdownListItem onClick={this.handleLogoutClick}>
-              Log out
-            </ShellDropdownListItem>
+
+            <ShellHeaderDropdownLinks>
+              {companies.created.map(company =>
+                <div
+                  key={company._id}
+                  onClick={() => this.switchCompanies(company)}
+                >
+                  <ShellDropdownListItem
+                    isActive={company.name === companies.activeCompany.name}
+                  >
+                    {company.displayName}
+                  </ShellDropdownListItem>
+                </div>
+              )}
+              <div onClick={() => browserHistory.push('/create/company/about')}>
+                <ShellDropdownListItem>+ Create new</ShellDropdownListItem>
+              </div>
+            </ShellHeaderDropdownLinks>
           </ShellDropdownList>
         </ShellDropdownContainer>
       </ShellHeaderDropdown>
@@ -84,6 +127,7 @@ class ShellDropdown extends Component {
 }
 
 const mapStateToProps = state => ({
+  companies: state.companies,
   user: state.session.user
 });
 
@@ -98,54 +142,89 @@ const ShellHeaderDropdown = styled.nav`
   cursor: pointer;
 `;
 
+const ShellHeaderDropdownLinks = styled.div`
+  opacity: 0.7;
+  padding: 4px 0;
+`;
+
 const ShellDropdownContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   width: 240px;
   background-color: #fff;
   border-radius: 3px;
-  box-shadow: 0 0 0 1px rgba(99,114,130,0.16), 0 8px 16px rgba(27,39,51,0.08);
-  min-width: 30px;
-  -webkit-transform: translateZ(0);
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
+    0 8px 16px rgba(27, 39, 51, 0.08);
   transform: translateZ(0);
-  margin-top: -3px;
+  margin-top: 5px;
+  padding: 8px 0;
   z-index: 1;
-  right: 0;
+  right: -100px;
   top: 45px;
   transition: all 280ms ease;
   pointer-events: ${props => (props.showDropdown ? 'initial' : 'none')};
   opacity: ${props => (props.showDropdown ? '1' : '0')};
-  transform: ${props => (props.showDropdown ? 'translate3d(0px, 0px, 0px)' : 'translate3d(0px, -10px, 0px)')};
+  transform: ${props =>
+    props.showDropdown
+      ? 'translate3d(0px, 0px, 0px)'
+      : 'translate3d(0px, -10px, 0px)'};
 `;
 
-const ShellDropdownList = styled.ul`
-  padding: 8px 0px;
-`;
+const ShellDropdownList = styled.ul`padding: 8px 0;`;
 
 const ShellDropdownListItem = styled.li`
+  position: relative;
   list-style: none;
-  padding: 12px 0px 12px 20px;
+  padding: 10px 25px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: ${props => (props.isActive ? '#fff7f7' : '#fff')};
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    height: 100%;
+    background: ${props => (props.isActive ? props.theme.colors.pink : '#fff')};
+  }
 
   &:last-child {
     border: none;
   }
 
-  &:hover {
-    background: #f7f9fa;
-  }
+  // &:hover {
+  //   color: ${props => (props.top ? 'intial' : props.theme.colors.purple)};
+  // }
 `;
 
 const ShellDropdownListItemTop = styled.div`
   font-weight: 800;
   font-size: 16px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: default;
 `;
 
 const ShellDropdownListItemBottom = styled.div`
-  margin-top: 3px;
+  padding-top: 3px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: default;
 `;
 
 const ShellDropdownListItemHr = styled.hr`
-  margin-left: 20px;
   border: none;
   height: 1px;
-  background: #e6e8eb;
+  background: #f9f9f9;
 `;

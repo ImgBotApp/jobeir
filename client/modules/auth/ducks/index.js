@@ -98,8 +98,8 @@ export default (state = initialState, action = {}) => {
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: false,
-        isLoaded: true,
-        errors: action.payload.errors
+        isLoaded: true
+        // errors: action.payload.errors
       });
     case LOGOUT_SUCCESS:
       return Object.assign({}, initialState, {

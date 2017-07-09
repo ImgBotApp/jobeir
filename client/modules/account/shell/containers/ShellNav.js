@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import ShellDropdown from './ShellDropdown';
 import ShellHeaderNav from './ShellHeaderNav';
 import ShellLogo from '../components/ShellLogo';
-import ShellCompanyDropdown from './ShellCompanyDropdown';
 
 class ShellNav extends Component {
   render() {
@@ -18,7 +17,6 @@ class ShellNav extends Component {
         <ShellNavRight>
           <ShellNavRightContent>
             <ShellHeaderNav />
-            <ShellCompanyDropdown />
             <ShellDropdown />
           </ShellNavRightContent>
         </ShellNavRight>

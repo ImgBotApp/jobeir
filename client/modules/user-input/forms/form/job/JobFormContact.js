@@ -73,7 +73,7 @@ class JobFormComponesation extends Component {
         <FormHeader text="Receiving applications" />
         <Field
           name="externalLink"
-          label="Please provide the URL to job the application"
+          label="Is there a URL you'd like to link to?"
           placeholder="https://example.com/careers/job-posting"
           validate={[required, url]}
           component={Text}
@@ -105,9 +105,7 @@ JobFormComponesation = reduxForm({
 
 export default connect(mapStateToProps)(JobFormComponesation);
 
-const FormListWrapper = styled.div`
-  padding-top: 1rem;
-`;
+const FormListWrapper = styled.div`padding-top: 1rem;`;
 
 const FormListItem = styled.div`
   position: relative;
@@ -123,7 +121,7 @@ const FormListRemoveItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(0,0,0,0.85);
+  border: 1px solid rgba(0, 0, 0, 0.85);
   opacity: 0.5;
   border-radius: 50%;
   cursor: pointer;
