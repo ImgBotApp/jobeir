@@ -20,6 +20,7 @@ export function loadRoute(cb) {
 // Ned to add routes here to allow development routes to work correctly
 if (process.env.NODE_ENV === 'development') {
   require('../modules/home/containers/Home');
+  require('../modules/jobs/containers/Jobs');
   require('../modules/auth/containers/Redirect');
   require('../modules/auth/login/containers/Login');
   require('../modules/auth/signup/containers/Signup');
@@ -77,6 +78,14 @@ const routes = (
             null,
             require('../modules/auth/password/containers/Password').default
           );
+        });
+      }}
+    />
+    <Route
+      path="/jobs"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('../modules/jobs/containers/Jobs').default);
         });
       }}
     />

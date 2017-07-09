@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import { Text, SubmitButton } from '../../../inputs/input';
@@ -14,7 +15,7 @@ const Input = props => {
   return (
     <SearchInputContainer>
       <SearchLabel htmlFor={props.input.name}>
-        {props.label}
+        {props.label} {meta.error}
       </SearchLabel>
       <SearchInput
         {...props.input}
@@ -50,8 +51,7 @@ class SearchForm extends Component {
       l: data.location
     };
     const query = queryString.stringify(queryData);
-
-    console.log(query);
+    browserHistory.push(`/jobs?${query}`);
   }
 
   render() {
@@ -60,16 +60,10 @@ class SearchForm extends Component {
         <Field
           name="title"
           label="Job Title"
-          validate={[required]}
           component={Input}
           autoFocus={true}
         />
-        <Field
-          name="location"
-          label="Location"
-          validate={[required]}
-          component={Input}
-        />
+        <Field name="location" label="Location" component={Input} />
         <Field name="submitButton" component={Button} />
       </SearchFormContainer>
     );
@@ -120,8 +114,7 @@ const SearchInputContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin: 0 15px;
-  padding-bottom: 15px;
+  padding: 0 15px 15px;
 
   &:first-child {
     margin-right: 0;
