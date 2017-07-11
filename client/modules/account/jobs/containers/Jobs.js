@@ -49,12 +49,10 @@ class Jobs extends Component {
 }
 
 const mapStateToProps = state => ({
-  companies: state.companies,
-  jobs: state.jobs
+  companies: state.account.companies,
+  jobs: state.account.jobs
 });
 
 export default connect(mapStateToProps)(Jobs);
 
-const JobsContainer = styled.div`
-  max-width: 100%;
-`;
+const JobsContainer = styled.div`max-width: 100%;`;

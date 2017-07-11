@@ -68,7 +68,7 @@ class CompanyLogo extends Component {
 }
 
 const mapStateToProps = state => ({
-  companies: state.companies
+  companies: state.account.companies
 });
 
 CompanyLogo = reduxForm({

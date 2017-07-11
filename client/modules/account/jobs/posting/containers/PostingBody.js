@@ -46,7 +46,8 @@ class PostingBody extends Component {
                 {activePosting.title}
               </PostingBodyHeading>
               <PostingBodySubHeading>
-                {activePosting.location.address.locality}{', '}
+                {activePosting.location.address.locality}
+                {', '}
                 {activePosting.location.address.country}
               </PostingBodySubHeading>
             </PostingBodyHeader>
@@ -58,14 +59,14 @@ class PostingBody extends Component {
 }
 
 const mapStateToProps = state => ({
-  companies: state.companies
+  companies: state.account.companies
 });
 
 export default connect(mapStateToProps)(PostingBody);
 
 const PostingBodyContainer = styled.div`
   max-width: 570px;
-  
+
   p {
     line-height: 1.7;
     margin-bottom: 18px;
@@ -74,20 +75,25 @@ const PostingBodyContainer = styled.div`
   }
 
   a {
-    color: rgba(0,0,0,0.85);
+    color: rgba(0, 0, 0, 0.85);
     text-decoration-skip: ink;
   }
-  
-  h2, h3, h4, h5, h6 {
-    margin-bottom: 18px;
 
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 18px;
   }
 
-  h2, h3 {
+  h2,
+  h3 {
     font-size: 20px;
   }
 
-  ul, ol {
+  ul,
+  ol {
     line-height: 1.7;
     padding-left: 20px;
     margin-bottom: 18px;
@@ -102,18 +108,13 @@ const PostingBodyContainer = styled.div`
   }
 `;
 
-const PostingBodyHeader = styled.header`
-  margin: 25px auto 35px;
-`;
+const PostingBodyHeader = styled.header`margin: 25px auto 35px;`;
 
 const PostingBodyHeading = styled.h1`
   font-weight: 900;
   font-size: 42px;
 `;
 
-const PostingBodySubHeading = styled.p`
-`;
+const PostingBodySubHeading = styled.p``;
 
-const PostingBodyImg = styled.img`
-  height: 40px;
-`;
+const PostingBodyImg = styled.img`height: 40px;`;

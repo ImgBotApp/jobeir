@@ -235,8 +235,8 @@ class JobEditFrom extends Component {
 const selector = formValueSelector('job-edit');
 
 const mapStateToProps = state => ({
-  companies: state.companies,
-  jobs: state.jobs,
+  companies: state.account.companies,
+  jobs: state.account.jobs,
   offersEquity: selector(state, 'offerEquity')
 });
 

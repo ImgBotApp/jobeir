@@ -27,7 +27,7 @@ const JobsList = ({ jobs, filter }) => {
 };
 
 const mapStateToProps = state => ({
-  filter: state.jobs.filter.toLowerCase()
+  filter: state.account.jobs.filter.toLowerCase()
 });
 
 export default connect(mapStateToProps)(JobsList);

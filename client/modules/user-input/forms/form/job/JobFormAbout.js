@@ -59,8 +59,8 @@ class JobFormabout extends Component {
 }
 
 const mapStateToProps = state => ({
-  jobs: state.jobs,
-  activeCompany: state.companies.activeCompany
+  jobs: state.account.jobs,
+  activeCompany: state.account.companies.activeCompany
 });
 
 JobFormabout = reduxForm({

@@ -22,10 +22,14 @@ const session = combineReducers({
   user
 });
 
+const account = combineReducers({
+  jobs,
+  companies
+});
+
 // creating an appReducer
 export const appReducer = combineReducers({
-  companies,
-  jobs,
+  account,
   form,
   intl,
   location,

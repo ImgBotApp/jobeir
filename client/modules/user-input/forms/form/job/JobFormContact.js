@@ -93,7 +93,7 @@ class JobFormComponesation extends Component {
 }
 
 const mapStateToProps = state => ({
-  jobs: state.jobs,
+  jobs: state.account.jobs,
   auth: state.session.auth,
   user: state.session.user
 });

@@ -28,7 +28,7 @@ class ShellHeaderTitleJob extends Component {
 }
 
 const mapStateToProps = state => ({
-  jobs: state.jobs
+  jobs: state.account.jobs
 });
 
 export default connect(mapStateToProps)(ShellHeaderTitleJob);

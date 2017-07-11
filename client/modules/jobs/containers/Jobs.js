@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { asyncConnect } from 'redux-connect';
 import styled from 'styled-components';
 
-const Jobs = () => <JobsContainer>Jobs</JobsContainer>;
+@asyncConnect([
+  {
+    promise: ({ store: { dispatch, getState }, helpers: { req } }) => {
+      console.log('fire');
+    }
+  }
+])
+class Jobs extends Component {
+  render() {
+    return <JobsContainer>Jobs</JobsContainer>;
+  }
+}
 
 export default Jobs;
 

@@ -126,7 +126,7 @@ class CompanyFormStepThree extends Component {
 const selector = formValueSelector('company');
 
 const mapStateToProps = state => ({
-  companies: state.companies,
+  companies: state.account.companies,
   locations: selector(state, 'locations') || []
 });
 

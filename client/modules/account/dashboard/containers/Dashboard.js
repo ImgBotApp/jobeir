@@ -11,11 +11,10 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   user: state.session.user,
-  companies: state.companies,
-  jobs: state.jobs
+  companies: state.account.companies,
+  jobs: state.account.jobs
 });
 
 export default connect(mapStateToProps)(Dashboard);
 
-const DashboardContainer = styled.div`
-`;
+const DashboardContainer = styled.div``;

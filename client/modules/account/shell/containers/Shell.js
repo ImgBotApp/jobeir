@@ -42,8 +42,8 @@ class Shell extends Component {
 
 const mapStateToProps = state => ({
   user: state.session.user,
-  companies: state.companies,
-  jobs: state.jobs
+  companies: state.account.companies,
+  jobs: state.account.jobs
 });
 
 export default connect(mapStateToProps)(UserWrapper(Shell));

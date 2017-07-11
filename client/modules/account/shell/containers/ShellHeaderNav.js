@@ -16,14 +16,12 @@ const ShellHeaderNav = props =>
   </ShellHeaderNavContainer>;
 
 const mapStateToProps = state => ({
-  activeCompany: state.companies.activeCompany
+  activeCompany: state.account.companies.activeCompany
 });
 
 export default connect(mapStateToProps)(ShellHeaderNav);
 
-const ShellHeaderNavContainer = styled.div`
-  margin-right: 35px;
-`;
+const ShellHeaderNavContainer = styled.div`margin-right: 35px;`;
 
 const ShellHeaderNavHeader = styled.header`
   font-weight: 800;

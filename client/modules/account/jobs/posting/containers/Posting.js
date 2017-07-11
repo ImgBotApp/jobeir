@@ -64,12 +64,10 @@ class Posting extends Component {
 }
 
 const mapStateToProps = state => ({
-  companies: state.companies,
-  jobs: state.jobs
+  companies: state.account.companies,
+  jobs: state.account.jobs
 });
 
 export default connect(mapStateToProps)(Posting);
 
-const PostingContainer = styled.div`
-  margin-top: 50px;
-`;
+const PostingContainer = styled.div`margin-top: 50px;`;

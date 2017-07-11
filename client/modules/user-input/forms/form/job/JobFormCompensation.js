@@ -113,7 +113,7 @@ class JobFormComponesation extends Component {
 const selector = formValueSelector('job');
 
 const mapStateToProps = state => ({
-  jobs: state.jobs,
+  jobs: state.account.jobs,
   auth: state.session.auth,
   offersEquity: selector(state, 'offerEquity')
 });

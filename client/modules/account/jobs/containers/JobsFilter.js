@@ -31,7 +31,7 @@ class JobsFilter extends Component {
 }
 
 const mapStateToProps = state => ({
-  filter: state.jobs.filter
+  filter: state.account.jobs.filter
 });
 
 export default connect(mapStateToProps)(JobsFilter);

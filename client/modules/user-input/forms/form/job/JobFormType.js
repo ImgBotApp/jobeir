@@ -111,8 +111,8 @@ class JobFormType extends Component {
 }
 
 const mapStateToProps = state => ({
-  companies: state.companies,
-  jobs: state.jobs,
+  companies: state.account.companies,
+  jobs: state.account.jobs,
   auth: state.session.auth
 });
 

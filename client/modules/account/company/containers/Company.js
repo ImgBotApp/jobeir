@@ -37,8 +37,8 @@ class Company extends Component {
 }
 
 const mapStateToProps = state => ({
-  company: state.companies.created.find(
-    company => company.name === state.companies.activeCompany.name
+  company: state.account.companies.created.find(
+    company => company.name === state.account.companies.activeCompany.name
   )
 });
 
