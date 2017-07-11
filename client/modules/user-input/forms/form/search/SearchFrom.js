@@ -48,7 +48,9 @@ class SearchForm extends Component {
   formSubmit(data) {
     const queryData = {
       q: data.title,
-      l: data.location
+      l: data.location,
+      lat: data.coordinates[0],
+      lng: data.coordinates[1]
     };
     const query = queryString.stringify(queryData);
     browserHistory.push(`/jobs?${query}`);
@@ -76,7 +78,8 @@ SearchForm = reduxForm({
 
 const mapStateToProps = state => ({
   initialValues: {
-    location: `${state.location.city}, ${state.location.region}`
+    location: `${state.location.city}, ${state.location.region}`,
+    coordinates: state.location.ll
   }
 });
 

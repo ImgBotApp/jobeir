@@ -1,4 +1,4 @@
-import Job from '../models/Job';
+import Jobs from '../models/Jobs';
 import sanitizeHtml from 'sanitize-html';
 
 /**
@@ -8,9 +8,26 @@ import sanitizeHtml from 'sanitize-html';
  * Search by job location
  *  - based on coordinates, and city
  */
-export function getJobs(req, res) {
-  Job.find({ company: req.params.companyId })
+export function searchJobs(req, res) {
+  const coordinates = [req.query.lng, req.query.lat].map(parseFloat);
+
+  // build query based on coordinates
+  const q = {
+    location: {
+      $near: {
+        $geometry: {
+          type: 'Point',
+          coordinates
+        },
+        $maxDistance: 10000
+      }
+    }
+  };
+
+  // find Jobs based on coordinates
+  Jobs.find(q)
     .sort('-dateCreated')
+    .select('-receivingEmails ')
     .populate('company')
     .exec((err, jobs) => {
       if (err) {
@@ -19,6 +36,14 @@ export function getJobs(req, res) {
         res.json({ data: { postings: jobs }, errors: [] });
       }
     });
+
+  // Job.find({}).sort('-dateCreated').populate('company').exec((err, jobs) => {
+  //   if (err) {
+  //     return res.status(204).send({ data: {}, errors: [err] });
+  //   } else {
+  //     res.json({ data: { postings: jobs }, errors: [] });
+  //   }
+  // });
 }
 
 /**
@@ -29,7 +54,7 @@ export function getJobs(req, res) {
  */
 export function getCompanies(req, res) {
   // currently just filtering GET jobs just by date added...
-  Job.find({ company: req.params.companyId })
+  Jobs.find({ company: req.params.companyId })
     .sort('-dateCreated')
     .populate('company')
     .exec((err, jobs) => {

@@ -1,6 +1,6 @@
 import JwtStrategy from 'passport-jwt/lib/strategy';
 import ExtractJwt from 'passport-jwt/lib/extract_jwt';
-import User from '../models/User';
+import Users from '../models/Users';
 import serverConfig from '../config/config';
 import GoogleStrategy from 'passport-google-oauth20';
 import FacebookStrategy from 'passport-facebook';
@@ -15,7 +15,7 @@ const passportInit = passport => {
   // Local, regular signup
   passport.use(
     new JwtStrategy(opts, function(jwt_payload, done) {
-      User.findOne({ _id: jwt_payload._doc._id }, function(err, user) {
+      Users.findOne({ _id: jwt_payload._doc._id }, function(err, user) {
         if (err) {
           return done(err, false);
         }
@@ -71,7 +71,7 @@ const passportInit = passport => {
   });
 
   passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
+    Users.findById(id, function(err, user) {
       done(err, user);
     });
   });

@@ -1,4 +1,4 @@
-import User from '../models/User';
+import Users from '../models/Users';
 import Company from '../models/Company';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
@@ -11,7 +11,7 @@ import { send } from '../mail/mail';
  * @returns void
  */
 export function getUsers(req, res) {
-  User.find().sort('-dateAdded').exec((err, user) => {
+  Users.find().sort('-dateAdded').exec((err, user) => {
     if (err) {
       res.status(500).send(err);
     }
@@ -30,7 +30,7 @@ export function getUsers(req, res) {
  * @returns void
  */
 export function getUser(req, res) {
-  User.findOne({ _id: req.params.id })
+  Users.findOne({ _id: req.params.id })
     .populate('companies')
     .exec((err, user) => {
       if (err) {
@@ -53,7 +53,7 @@ export function getUser(req, res) {
 export function updateUser(req, res) {
   const values = req.body;
 
-  User.findOneAndUpdate({ _id: req.params.id }, { ...values }, { new: true })
+  Users.findOneAndUpdate({ _id: req.params.id }, { ...values }, { new: true })
     .populate('companies')
     .exec((err, user) => {
       if (err) return res.status(500).send({ error: err });
@@ -83,7 +83,7 @@ export function registerUser(req, res) {
       ]
     });
   } else {
-    const newUser = new User({
+    const newUser = new Users({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
@@ -123,7 +123,7 @@ export function registerUser(req, res) {
  * @returns void
  */
 export function loginUser(req, res) {
-  User.findOne({
+  Users.findOne({
     email: req.body.email
   })
     .select('+password')
@@ -206,7 +206,7 @@ export function checkAuthentication(req, res) {
  * @returns void
  */
 export function resetPasswordRequest(req, res) {
-  User.findOne({ email: req.body.email }).exec((err, user) => {
+  Users.findOne({ email: req.body.email }).exec((err, user) => {
     if (err) {
       return res.status(500).send(err);
     }
@@ -271,7 +271,7 @@ export function resetPassword(req, res) {
     });
   }
 
-  User.findOne({
+  Users.findOne({
     resetPasswordToken: req.body.resetPasswordToken,
     resetPasswordExpires: { $gt: Date.now() }
   })

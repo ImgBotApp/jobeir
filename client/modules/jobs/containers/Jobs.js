@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import styled from 'styled-components';
+import { serverGetJobs } from '../server/';
+import { shouldGetJobs } from '../ducks/';
 
 @asyncConnect([
   {
     promise: ({ store: { dispatch, getState }, helpers: { req } }) => {
-      console.log('fire');
+      const state = getState();
+
+      if (shouldGetJobs(state)) {
+        return dispatch(serverGetJobs(req.query, req));
+      }
     }
   }
 ])

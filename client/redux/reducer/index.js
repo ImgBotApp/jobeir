@@ -10,9 +10,10 @@ import { routerReducer as routing } from 'react-router-redux';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
 
 import auth from '../../modules/auth/ducks';
-import companies from '../../modules/create/company/ducks';
+import accountCompanies from '../../modules/create/company/ducks';
 import intl from '../intl/';
-import jobs from '../../modules/create/job/ducks';
+import accountJobs from '../../modules/create/job/ducks';
+import searchJobs from '../../modules/jobs/ducks';
 import location from '../location/';
 import modal from '../../modules/modal/ducks';
 import user from '../../modules/user/ducks';
@@ -23,8 +24,12 @@ const session = combineReducers({
 });
 
 const account = combineReducers({
-  jobs,
-  companies
+  jobs: accountJobs,
+  companies: accountCompanies
+});
+
+const search = combineReducers({
+  jobs: searchJobs
 });
 
 // creating an appReducer
@@ -36,6 +41,7 @@ export const appReducer = combineReducers({
   modal,
   reduxAsyncConnect,
   routing,
+  search,
   session
 });
 

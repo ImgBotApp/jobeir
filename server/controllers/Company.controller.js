@@ -1,5 +1,5 @@
 import Company from '../models/Company';
-import User from '../models/User';
+import Users from '../models/Users';
 import cuid from 'cuid';
 import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
@@ -80,7 +80,7 @@ export function createCompany(req, res) {
   newCompany.cuid = cuid();
 
   // Add the company to the current user
-  User.findOne({ _id: req.user._doc._id }, function(err, user) {
+  Users.findOne({ _id: req.user._doc._id }, function(err, user) {
     if (err) throw err;
 
     user.companies.push(newCompany._id);
@@ -98,7 +98,8 @@ export function createCompany(req, res) {
           errors: [
             {
               error: 'INTERNAL_SERVER_ERROR',
-              message: `There was an error creating the company ${req.body.name}`
+              message: `There was an error creating the company ${req.body
+                .name}`
             }
           ]
         });

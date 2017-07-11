@@ -5,14 +5,10 @@ export const SERVER_GET_JOBS_SUCCESS = 'SERVER_GET_JOBS_SUCCESS';
 export const SERVER_GET_JOBS_FAILURE = 'SERVER_GET_JOBS_FAILURE';
 
 export const initialState = {
-  companies: {
-    created: [],
-    joined: []
-  },
+  postings: [],
   isFetching: false,
   isUpdating: false,
   isLoaded: false,
-  agreedToValues: false,
   errors: []
 };
 
@@ -26,7 +22,7 @@ export default (state = initialState, action = {}) => {
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
-        ...action.payload.data.user
+        postings: action.payload.data.postings
       });
     case SERVER_GET_JOBS_FAILURE:
       return Object.assign({}, state, {
@@ -40,12 +36,10 @@ export default (state = initialState, action = {}) => {
 };
 
 export function shouldGetJobs(globalState) {
-  // const isLoaded =
-  //   globalState.session.user && globalState.session.user.isLoaded;
-  // const isFetching =
-  //   globalState.session.user && globalState.session.user.isFetching;
-  // const hasId = globalState.session.auth.id;
+  const isLoaded = globalState.search.jobs && globalState.search.jobs.isLoaded;
+  const isFetching =
+    globalState.search.jobs && globalState.search.jobs.isFetching;
 
-  // return hasId && !isFetching && !isLoaded;
+  return !isFetching && !isLoaded;
   return true;
 }

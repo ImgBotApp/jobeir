@@ -1,4 +1,4 @@
-import User from '../models/User';
+import Users from '../models/Users';
 
 /**
  * passportFindOrCreate() is used for all OAuth verification
@@ -8,16 +8,16 @@ import User from '../models/User';
  * Otherwise, we create a new user and pass that to the callback
  */
 export function passportFindOrCreate(accessToken, refreshToken, profile, done) {
-  User.findOne(
+  Users.findOne(
     {
-      email: profile.emails[0].value,
+      email: profile.emails[0].value
     },
     function(err, user) {
       if (err) {
         return done(err);
       }
       if (!user) {
-        const newUser = new User();
+        const newUser = new Users();
 
         newUser.firstName = profile.name.givenName;
         newUser.lastName = profile.name.familyName;
@@ -35,6 +35,6 @@ export function passportFindOrCreate(accessToken, refreshToken, profile, done) {
       } else {
         return done(err, user);
       }
-    },
+    }
   );
 }

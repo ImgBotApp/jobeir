@@ -7,7 +7,7 @@ const agreeToValues = props => {
   const { dispatch, user } = props;
   const data = { agreedToValues: true };
 
-  dispatch(updateUser(user.id, data, '/create/company/about'));
+  dispatch(updateUser(user._id, data, '/create/company/about'));
 };
 
 const CompanyOnboarding = props => {

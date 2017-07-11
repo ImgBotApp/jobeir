@@ -4,7 +4,7 @@ import timestamps from 'mongoose-timestamp';
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
-const Job = new Schema({
+const Jobs = new Schema({
   company: {
     type: mongoose.Schema.ObjectId,
     ref: 'Company'
@@ -75,11 +75,18 @@ const Job = new Schema({
   role: Object
 });
 
-Job.index({
-  company: 'text',
-  'address.city': 'text'
+Jobs.index({
+  company: 'text'
 });
 
-Job.plugin(timestamps);
+Jobs.index({
+  location: '2dsphere'
+});
 
-export default mongoose.model('Job', Job);
+Jobs.index({
+  title: 'text'
+});
+
+Jobs.plugin(timestamps);
+
+export default mongoose.model('Jobs', Jobs);

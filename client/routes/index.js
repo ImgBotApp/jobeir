@@ -195,6 +195,7 @@ function getRoutesArray(obj) {
     '/api/v0/reset',
     '/api/v0/password',
     '/api/v0/upload',
+    '/api/v0/search/jobs',
     '/favicon.ico'
   ];
 

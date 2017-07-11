@@ -1,4 +1,4 @@
-import Job from '../models/Job';
+import Jobs from '../models/Jobs';
 import Company from '../models/Company';
 import cuid from 'cuid';
 import slug from 'limax';
@@ -12,7 +12,7 @@ import sanitizeHtml from 'sanitize-html';
  */
 export function getJobs(req, res) {
   // currently just filtering GET jobs just by date added...
-  Job.find({ company: req.params.companyId })
+  Jobs.find({ company: req.params.companyId })
     .sort('-dateCreated')
     .populate('company')
     .exec((err, jobs) => {
@@ -31,7 +31,7 @@ export function getJobs(req, res) {
  * @returns void
  */
 export function getJob(req, res) {
-  Job.findOne({ _id: req.params.jobId })
+  Jobs.findOne({ _id: req.params.jobId })
     .populate('company')
     .exec((err, job) => {
       if (err) {
@@ -61,11 +61,25 @@ export function getJob(req, res) {
  * @returns void
  */
 export function createJob(req, res) {
+  console.log(req);
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
+  console.log('fired');
   if (!req.body.title) {
     res.status(400).end();
   }
 
-  const newJob = new Job(req.body);
+  const newJob = new Jobs(req.body);
 
   newJob.description.blocks = newJob.description.blocks;
   newJob.receivingEmails = newJob.receivingEmails;
@@ -134,7 +148,7 @@ export function createJob(req, res) {
 export function updateJob(req, res) {
   const values = req.body;
 
-  Job.findOneAndUpdate({ _id: req.params.jobId }, { ...values }, { new: true })
+  Jobs.findOneAndUpdate({ _id: req.params.jobId }, { ...values }, { new: true })
     .populate('companies')
     .exec((err, posting) => {
       if (err) return res.status(500).send({ error: err });
@@ -153,7 +167,7 @@ export function updateJob(req, res) {
  * @returns void
  */
 export function deleteJob(req, res) {
-  Job.findOne({ _id: req.params.jobId }).exec((err, job) => {
+  Jobs.findOne({ _id: req.params.jobId }).exec((err, job) => {
     if (err) {
       res.status(500).send(err);
     }
