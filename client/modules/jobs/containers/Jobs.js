@@ -4,6 +4,7 @@ import { asyncConnect } from 'redux-connect';
 import styled from 'styled-components';
 import { serverGetJobs } from '../server/';
 import { shouldGetJobs } from '../ducks/';
+import JobsList from './JobsList';
 
 @asyncConnect([
   {
@@ -18,7 +19,12 @@ import { shouldGetJobs } from '../ducks/';
 ])
 class Jobs extends Component {
   render() {
-    return <JobsContainer>Jobs</JobsContainer>;
+    return (
+      <JobsContainer>
+        Jobs
+        <JobsList />
+      </JobsContainer>
+    );
   }
 }
 
