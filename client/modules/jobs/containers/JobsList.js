@@ -24,4 +24,5 @@ export default connect(mapStateToProps)(JobsList);
 const JobsListContainer = styled.div`
   max-width: 1440px;
   margin: 0 auto;
+  padding: 50px 0 100px;
 `;

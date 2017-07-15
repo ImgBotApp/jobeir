@@ -27,7 +27,7 @@ export function searchJobs(req, res) {
   // find Jobs based on coordinates
   Jobs.find(q)
     .sort('-dateCreated')
-    .select('-receivingEmails ')
+    .select('-receivingEmails')
     .populate('company')
     .exec((err, jobs) => {
       if (err) {

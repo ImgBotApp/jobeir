@@ -21,7 +21,6 @@ class Jobs extends Component {
   render() {
     return (
       <JobsContainer>
-        Jobs
         <JobsList />
       </JobsContainer>
     );

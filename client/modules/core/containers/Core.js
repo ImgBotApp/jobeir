@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
-import { ThemeProvider, injectGlobal } from 'styled-components';
+import styled, { ThemeProvider, injectGlobal } from 'styled-components';
 import theme from '../theme';
 import { shouldCheckAuth } from '../../auth/ducks/';
 import { serverAuth } from '../../auth/server/';
@@ -33,12 +33,12 @@ class Core extends Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <div>
+        <CoreContainer pathname={pathname}>
           <AppHead />
           {shouldShowHeader && <Header />}
           {children}
           <Modal />
-        </div>
+        </CoreContainer>
       </ThemeProvider>
     );
   }
@@ -52,6 +52,13 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Core);
+
+const CoreContainer = styled.div`
+  background: ${props =>
+    props.pathname.includes('jobs') && !props.pathname.includes('account')
+      ? '#fafafa'
+      : 'transparent'};
+`;
 
 injectGlobal`
   /* woff formats */
