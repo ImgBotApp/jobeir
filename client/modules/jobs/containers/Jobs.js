@@ -5,13 +5,14 @@ import styled from 'styled-components';
 import { serverGetJobs } from '../server/';
 import { shouldGetJobs } from '../ducks/';
 import JobsList from './JobsList';
+import SearchForm from '../../user-input/forms/form/search/SearchFrom';
 
 @asyncConnect([
   {
     promise: ({ store: { dispatch, getState }, helpers: { req } }) => {
       const state = getState();
 
-      if (shouldGetJobs(state)) {
+      if (shouldGetJobs(state) && req !== undefined) {
         return dispatch(serverGetJobs(req.query, req));
       }
     }
@@ -21,6 +22,7 @@ class Jobs extends Component {
   render() {
     return (
       <JobsContainer>
+        <SearchForm />
         <JobsList />
       </JobsContainer>
     );

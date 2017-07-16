@@ -45,7 +45,7 @@ export default JobsListItem;
 const JobsListItemContainer = styled.div`
   max-width: 700px;
   margin: 0 auto;
-  padding: 25px;
+  padding: 30px;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
   border: 1px solid #e8e8e8;

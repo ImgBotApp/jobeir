@@ -78,7 +78,8 @@ SearchForm = reduxForm({
 
 const mapStateToProps = state => ({
   initialValues: {
-    location: `${state.location.city}, ${state.location.region}`,
+    location:
+      state.location && `${state.location.city}, ${state.location.region}`,
     coordinates: state.location.ll
   }
 });
@@ -88,6 +89,7 @@ export default connect(mapStateToProps)(SearchForm);
 const SearchFormContainer = styled.form`
   display: flex;
   width: 100%;
+  background: #fff;
   border: 1px solid #dce0e0;
   box-shadow: 0 1px 3px 0 #dce0e0;
   border-radius: 4px;

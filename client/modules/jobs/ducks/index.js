@@ -36,10 +36,8 @@ export default (state = initialState, action = {}) => {
 };
 
 export function shouldGetJobs(globalState) {
-  const isLoaded = globalState.search.jobs && globalState.search.jobs.isLoaded;
   const isFetching =
     globalState.search.jobs && globalState.search.jobs.isFetching;
 
-  return !isFetching && !isLoaded;
-  return true;
+  return !isFetching;
 }

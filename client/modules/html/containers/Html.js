@@ -27,7 +27,8 @@ const Html = ({ css, assets, state, content }) => {
           .map(key => <script key={key} src={assets.javascript[key]} />)}
         <script
           type="text/javascript"
-          src={`https://maps.googleapis.com/maps/api/js?key=${serverConfig.google.MAPS_API_KEY}&libraries=places`}
+          src={`https://maps.googleapis.com/maps/api/js?key=${serverConfig
+            .google.MAPS_API_KEY}&libraries=places`}
         />
       </body>
     </html>
