@@ -18,6 +18,8 @@ import { createCompany } from '../../../../create/company/ducks';
 import CompanyFormLocationEdit from './CompanyFormLocationEdit';
 import debounce from 'lodash/debounce';
 
+import InputGoogleAutocomplete from '../../../inputs/components/InputGoogleAutocomplete';
+
 class CompanyFormStepThree extends Component {
   constructor(props) {
     super(props);
@@ -45,6 +47,7 @@ class CompanyFormStepThree extends Component {
       }
 
       predictions.forEach(function(prediction) {
+        const yolo = InputGoogleAutocomplete(prediction);
         const li = document.createElement('li');
         li.addEventListener('click', () =>
           getPlaceIdDetails(prediction.place_id)
