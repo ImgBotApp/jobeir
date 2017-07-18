@@ -16,6 +16,7 @@ export const Text = props => {
         placeholder={props.placeholder}
         showError={showError}
         autoFocus={props.autoFocus}
+        autoComplete={props.autocomplete}
       />
     </InputWrapper>
   );
