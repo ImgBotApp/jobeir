@@ -109,10 +109,7 @@ const ListItem = styled.li`
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid #e8e8e8;
-  }
+  border-bottom: 1px solid #e8e8e8;
 
   &:hover {
     background: rgba(0, 0, 0, 0.05);
