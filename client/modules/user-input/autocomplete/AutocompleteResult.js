@@ -84,24 +84,17 @@ const SeperatorText = () => {
   );
 };
 
-export const InputGoogleAutocomplete = ({ prediction, fetchPlaceId }) => {
-  const {
-    main_text,
-    secondary_text,
-    main_text_matched_substrings,
-    matched_substrings
-  } = prediction.structured_formatting;
-
+export const AutocompleteResult = ({ prediction, fetchPlaceId }) => {
   return (
     <ListItem onClick={fetchPlaceId}>
       <PrimaryText prediction={prediction} />
       <SeperatorText />
-      <SecondaryText text={secondary_text} />
+      <SecondaryText text={prediction.structured_formatting.secondary_text} />
     </ListItem>
   );
 };
 
-export default InputGoogleAutocomplete;
+export default AutocompleteResult;
 
 const ListItem = styled.li`
   display: flex;
