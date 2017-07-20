@@ -14,7 +14,9 @@ class Autocomplete extends Component {
 
     this.debouncedSerach = debounce(function(input) {
       const service = new google.maps.places.AutocompleteService();
-      service.getPlacePredictions({ input }, this.displaySuggestions);
+      const { types } = this.props;
+
+      service.getPlacePredictions({ input, types }, this.displaySuggestions);
     }, 500).bind(this);
 
     this.handleTyping = this.handleTyping.bind(this);
@@ -70,7 +72,7 @@ class Autocomplete extends Component {
   }
 
   handlePlaceDetails(place, status) {
-    const { dispatch } = this.props;
+    const { dispatch, formName } = this.props;
 
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       const lat = place.geometry.location.lat();
@@ -116,10 +118,23 @@ class Autocomplete extends Component {
         }
       }
 
-      dispatch(change('company', 'fullAddress', ''));
-      dispatch(arrayPush('company', 'locations', location));
-      this.setState({ predictions: [] });
+      if (formName === 'search-form') {
+        dispatch(change('search-form', 'coordinates', location.coordinates));
+        dispatch(
+          change(
+            'search-form',
+            'location',
+            `${location.address.locality}, ${location.address
+              .short_administrative_area_level_1}`
+          )
+        );
+      } else {
+        dispatch(change('company', 'fullAddress', ''));
+        dispatch(arrayPush('company', 'locations', location));
+      }
     }
+
+    this.setState({ predictions: [] });
   }
 
   handleBlur() {
@@ -138,6 +153,7 @@ class Autocomplete extends Component {
         active={predictions.length}
         isSearching={isSearching}
         show={show}
+        style={this.props.customStyles}
       >
         {isSearching
           ? <AutocompleteSearching>Searching Address...</AutocompleteSearching>

@@ -7,6 +7,12 @@ import FormWrapper from '../../containers/FormWrapper';
 import { Text, SubmitButton } from '../../../inputs/input';
 import { required } from '../../../validation';
 import queryString from 'query-string';
+import Autocomplete from '../../../autocomplete/Autocomplete';
+
+const customStyles = {
+  top: 'calc(100% + 8px)',
+  left: '0'
+};
 
 const Input = props => {
   const { meta } = props;
@@ -25,7 +31,15 @@ const Input = props => {
         placeholder={props.placeholder}
         showError={showError}
         autoFocus={props.autoFocus}
+        autoComplete={false}
       />
+      {props.autocomplete &&
+        <Autocomplete
+          formName="search-form"
+          types={['(cities)']}
+          id={props.input.name}
+          customStyles={customStyles}
+        />}
     </SearchInputContainer>
   );
 };
@@ -65,7 +79,12 @@ class SearchForm extends Component {
           component={Input}
           autoFocus={true}
         />
-        <Field name="location" label="Location" component={Input} />
+        <Field
+          name="location"
+          label="Location"
+          component={Input}
+          autocomplete={true}
+        />
         <Field name="submitButton" component={Button} />
       </SearchFormContainer>
     );
@@ -73,7 +92,7 @@ class SearchForm extends Component {
 }
 
 SearchForm = reduxForm({
-  form: 'search-home'
+  form: 'search-form'
 })(SearchForm);
 
 const mapStateToProps = state => ({
@@ -116,6 +135,7 @@ const SearchLabel = styled.label`
 `;
 
 const SearchInputContainer = styled.div`
+  position: relative;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -139,3 +159,5 @@ const SearchButton = styled.button`
   margin: 15px;
   margin-left: 0;
 `;
+
+const AutocompleteContainer = styled.div`position: relative;`;

@@ -1,17 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 
+/**
+ * Autocomplete result builds the list item seen within the
+ * dropdown of Google's results. It handles breaking apart
+ * the matched strings and the rest. Matched strings are regular
+ * font-weight, unmatched are bold, and secondary text is a
+ * lighter grey.
+*/
 const PrimaryText = ({ prediction }) => {
   const {
     main_text,
     main_text_matched_substrings
   } = prediction.structured_formatting;
 
+  /**
+   * When there's only a single matched string the parsing is simpler
+   * since there will always be a start, matched, and end.
+   */
   if (main_text_matched_substrings.length === 1) {
     const obj = main_text_matched_substrings[0];
     const currentOffset = obj.offset;
     const currentLength = obj.offset + obj.length;
 
+    // remember, bold means unmatched/autocompleted string
     const boldStart = main_text.substring(0, currentOffset);
     const regular = main_text.substring(currentOffset, currentLength);
     const boldEnd = main_text.substring(currentOffset + currentLength);
@@ -30,6 +42,10 @@ const PrimaryText = ({ prediction }) => {
       </ListItemPrimaryText>
     );
   } else {
+    /**
+     * Where there are multiple matched strings we have to look over them
+     * and build the dropdown item accordingly
+     */
     const weights = main_text_matched_substrings.map((obj, index, array) => {
       const currentOffset = obj.offset;
       const currentLength = obj.offset + obj.length;
@@ -69,6 +85,7 @@ const PrimaryText = ({ prediction }) => {
   }
 };
 
+// Used usually to define the City, Province and Country.
 const SecondaryText = ({ text }) => {
   return (
     <ListItemSecondaryText>
@@ -76,6 +93,7 @@ const SecondaryText = ({ text }) => {
     </ListItemSecondaryText>
   );
 };
+
 const SeperatorText = () => {
   return (
     <ListItemSpace>
@@ -122,7 +140,10 @@ const ListItemButton = styled.button`
   cursor: pointer;
 `;
 
-const ListItemSpace = styled.span`font-size: 16px;`;
+const ListItemSpace = styled.span`
+  font-size: 16px;
+  white-space: nowrap;
+`;
 
 const ListItemSecondaryText = styled.div`
   font-size: 16px;
@@ -133,7 +154,10 @@ const ListItemSecondaryText = styled.div`
   text-overflow: ellipsis;
   color: #7e7c7c;
 `;
-const ListItemPrimaryText = styled.span`font-size: 16px;`;
+const ListItemPrimaryText = styled.span`
+  font-size: 16px;
+  white-space: nowrap;
+`;
 
 const ListItemPrimaryTextInner = styled.span``;
 
