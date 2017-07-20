@@ -70,7 +70,9 @@ const ModalContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${props =>
-    props.bgColor === 'white' ? '#fff' : rgba(0, 0, 0, 0.6)};
+    props.bgColor === 'white'
+      ? 'rgba(255, 255, 255, 0.94)'
+      : 'rgba(0, 0, 0, 0.6)'};
   position: fixed;
   overflow: auto;
   top: 0;

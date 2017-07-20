@@ -51,7 +51,7 @@ class CompanyFormStepThree extends Component {
           />
           <Autocomplete id="fullAddress" />
         </AutocompleteContainer>
-        {locations.length &&
+        {locations.length > 0 &&
           <MultipleLocations>
             Have more than one office? Just type in another address to add it.
           </MultipleLocations>}

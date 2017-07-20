@@ -21,7 +21,11 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(ShellHeaderNav);
 
-const ShellHeaderNavContainer = styled.div`margin-right: 35px;`;
+const ShellHeaderNavContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 35px;
+`;
 
 const ShellHeaderNavHeader = styled.header`
   font-weight: 800;

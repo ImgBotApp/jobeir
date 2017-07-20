@@ -32,6 +32,7 @@ const NavigationContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
+  padding: 0 26px;
   height: 75px;
   max-width: ${props => props.theme.width.max};
 `;

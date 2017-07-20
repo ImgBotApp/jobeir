@@ -5,7 +5,12 @@ import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { required, wysiwygLength } from '../../../validation';
-import { SelectSearch, Wysiwyg, SubmitButton } from '../../../inputs/input';
+import {
+  SelectSearch,
+  Text,
+  Wysiwyg,
+  SubmitButton
+} from '../../../inputs/input';
 import { jobOptions } from '../../options/jobs';
 
 class JobFormabout extends Component {
@@ -33,7 +38,14 @@ class JobFormabout extends Component {
         <Field
           name="title"
           label="What's the job title?"
-          placeholder="Search titles"
+          placeholder="Senior Product Designer, Backend Engineer"
+          validate={[required]}
+          component={Text}
+        />
+        <Field
+          name="role"
+          label="What's the main role of this position?"
+          placeholder="Search roles"
           validate={[required]}
           options={jobOptions}
           component={SelectSearch}

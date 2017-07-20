@@ -33,16 +33,16 @@ class Jobs extends Component {
 
     return (
       <div>
-        {hasJobPostings
-          ? <div>
-              <JobsContainer>
-                <JobsFilter />
-                <JobsList jobs={jobs.postings} />
-              </JobsContainer>
-            </div>
-          : <Link to={`/create/job/about/${companies.activeCompany._id}`}>
-              Create a job
-            </Link>}
+        <div>
+          <JobsContainer>
+            <JobsFilter />
+            {hasJobPostings
+              ? <JobsList jobs={jobs.postings} />
+              : <Link to={`/create/job/about/${companies.activeCompany._id}`}>
+                  Create a job
+                </Link>}
+          </JobsContainer>
+        </div>
       </div>
     );
   }

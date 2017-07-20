@@ -96,7 +96,7 @@ const EditorContainer = styled.div`
   border-radius: 3px;
   border: 1px solid #babbbb;
   padding: 20px;
-  min-height:  ${props => (props.minHeight ? props.minHeight : '330px')};
+  min-height: ${props => (props.minHeight ? props.minHeight : '300px')};
   margin: 0 auto 1rem;
   border-color: ${props => (props.showError ? '#f73c3c' : '')};
 
@@ -142,8 +142,8 @@ const EditorContainer = styled.div`
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     margin-bottom: 6px;
     position: relative;
   }
@@ -156,15 +156,15 @@ const EditorContainer = styled.div`
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
     width: 235px;
     height: 180px;
-    border: 1px solid #F1F1F1;
+    border: 1px solid #f1f1f1;
     padding: 15px;
     border-radius: 2px;
     z-index: 100;
     background: white;
-    box-shadow: 3px 3px 5px #BFBDBD;
+    box-shadow: 3px 3px 5px #bfbdbd;
   }
   .rdw-emoji-icon {
     margin: 2.5px;
@@ -176,10 +176,10 @@ const EditorContainer = styled.div`
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
 `;

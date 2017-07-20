@@ -133,7 +133,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(ShellDropdown);
 
-const ShellHeaderDropdown = styled.nav`
+const ShellHeaderDropdown = styled.div`
   position: relative;
   height: 36px;
   width: 36px;

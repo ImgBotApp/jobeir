@@ -28,8 +28,7 @@ import Header from '../../header/containers/Header';
 class Core extends Component {
   render() {
     const { children, pathname } = this.props;
-    const shouldShowHeader =
-      !pathname.includes('account') && !pathname.includes('create');
+    const shouldShowHeader = !pathname.includes('create');
 
     return (
       <ThemeProvider theme={theme}>

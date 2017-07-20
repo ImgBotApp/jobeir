@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PostingSidebar from './PostingSidebar';
 import PostingBody from '../containers/PostingBody';
+import PostingMap from '../containers/PostingMap';
 
 const PostingPreview = ({ activePosting }) => {
   const activePostingReady = Object.keys(activePosting).length;
@@ -9,10 +10,15 @@ const PostingPreview = ({ activePosting }) => {
   return (
     <PostingPreviewContainer>
       {activePostingReady &&
-        <PostingPreviewContent>
-          <PostingBody activePosting={activePosting} />
-          <PostingSidebar activePosting={activePosting} />
-        </PostingPreviewContent>}
+        <div>
+          <PostingPreviewContent>
+            <PostingBody activePosting={activePosting} />
+            {
+              // <PostingSidebar activePosting={activePosting} />
+            }
+          </PostingPreviewContent>
+          <PostingMap activePosting={activePosting} />
+        </div>}
     </PostingPreviewContainer>
   );
 };
@@ -21,11 +27,11 @@ export default PostingPreview;
 
 const PostingPreviewContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 auto;
 `;
 
 const PostingPreviewContent = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `;

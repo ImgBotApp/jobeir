@@ -17,6 +17,10 @@ const Jobs = new Schema({
     type: Date,
     default: Date.now
   },
+  featured: {
+    type: Boolean,
+    default: false
+  },
   externalLink: String,
   state: {
     type: String,
@@ -47,10 +51,6 @@ const Jobs = new Schema({
       type: Object,
       required: true
     },
-    hq: {
-      type: Boolean,
-      default: true
-    },
     type: {
       type: String,
       default: 'Point'
@@ -71,7 +71,7 @@ const Jobs = new Schema({
   salaryMax: Number,
   salaryMin: Number,
   // skills: String,
-  title: Object,
+  title: String,
   role: Object
 });
 

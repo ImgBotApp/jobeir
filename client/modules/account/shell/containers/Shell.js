@@ -29,7 +29,9 @@ class Shell extends Component {
     return (
       <ShellContainer>
         <ShellContent>
-          <ShellNav params={params} />
+          {
+            //<ShellNav params={params} />
+          }
           <ShellHeader headerText={children.props.route.name} params={params} />
           <ShellDynamic>
             {children}

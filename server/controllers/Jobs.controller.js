@@ -61,20 +61,6 @@ export function getJob(req, res) {
  * @returns void
  */
 export function createJob(req, res) {
-  console.log(req);
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
-  console.log('fired');
   if (!req.body.title) {
     res.status(400).end();
   }
@@ -86,7 +72,8 @@ export function createJob(req, res) {
 
   // Let's sanitize inputs
   newJob.company = sanitizeHtml(req.params.companyId);
-  newJob.title = sanitizeHtml(newJob.title.label);
+  newJob.role = sanitizeHtml(newJob.role);
+  newJob.title = sanitizeHtml(newJob.title);
   newJob.employmentType = sanitizeHtml(newJob.employmentType);
   newJob.address = newJob.address;
   newJob.remote = sanitizeHtml(newJob.remote);
@@ -126,7 +113,7 @@ export function createJob(req, res) {
         errors: [
           {
             error: 'UNABLE_TO_CREATE_JOB',
-            message: `Unable to create the job ${req.body.title.label}`
+            message: `Unable to create the job ${req.body.title}`
           }
         ]
       });

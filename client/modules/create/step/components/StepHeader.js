@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import PrimaryNavLogo from '../../../nav/primary-nav/components/PrimaryNavLogo';
 import { Link } from 'react-router';
 
-const StepHeader = () => (
+const StepHeader = () =>
   <StepHeaderContainer>
     <PrimaryNavLogo />
     <StepStyledLink to="/account/jobs">Exit</StepStyledLink>
-  </StepHeaderContainer>
-);
+  </StepHeaderContainer>;
 
 export default StepHeader;
 
@@ -17,12 +16,15 @@ const StepHeaderContainer = styled.header`
   width: 100%;
   top: 0;
   left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex: 1;
-  padding: 20px 30px;
-  box-shadow: ${props => (props.isAuthenticated ? '0px 1px 2px rgba(0, 0, 0, 0.16)' : 'none')};
+  padding: 0 26px;
+  margin: 0 auto;
+  height: 75px;
+  max-width: ${props => props.theme.width.max};
 `;
 
 const StepStyledLink = styled(Link)`

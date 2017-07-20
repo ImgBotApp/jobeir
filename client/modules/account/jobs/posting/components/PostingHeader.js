@@ -12,7 +12,10 @@ const PostingHeader = ({ handleEditClick, handleDeleteClick }) => {
 
 export default PostingHeader;
 
-const PostingHeaderContainer = styled.div`margin: 0 auto 50px;`;
+const PostingHeaderContainer = styled.div`
+  max-width: 700px;
+  margin: 0 auto 50px;
+`;
 
 const PlainButton = styled.button`
   line-height: 1.6rem;

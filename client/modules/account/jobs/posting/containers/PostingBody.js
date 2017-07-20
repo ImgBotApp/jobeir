@@ -65,7 +65,8 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(PostingBody);
 
 const PostingBodyContainer = styled.div`
-  max-width: 570px;
+  max-width: 700px;
+  margin: 0 auto;
 
   p {
     line-height: 1.7;

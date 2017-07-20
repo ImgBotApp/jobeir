@@ -6,6 +6,9 @@ import docCookies from '../../../../utils/cookies';
 import { logout } from '../../../auth/ducks';
 import { showModal } from '../../../modal/ducks';
 
+import ShellDropdown from '../../../account/shell/containers/ShellDropdown';
+import ShellHeaderNav from '../../../account/shell/containers/ShellHeaderNav';
+
 class PrimaryNavLinks extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +40,8 @@ class PrimaryNavLinks extends Component {
     return isAuthenticated
       ? <NavLinkContainer>
           <NavLink to="/account/jobs">Dashboard</NavLink>
-          <NavLink onClick={this.handleLogoutClick}>Log out</NavLink>
+          <ShellHeaderNav />
+          <ShellDropdown />
         </NavLinkContainer>
       : <NavLinkContainer>
           <NavLink onClick={this.handleSignUpClick}>Post Job / Sign up</NavLink>
@@ -68,17 +72,20 @@ export default connect(mapStateToProps)(PrimaryNavLinks);
 
 const PrimaryNavLinksContainer = styled.div`display: flex;`;
 
-const NavLinkContainer = styled.div`display: flex;`;
+const NavLinkContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const NavLink = styled(Link)`
   display: block;
   padding: 0 26px;
-  font-size: 14px;
+  font-size: 16px;
   text-decoration: none;
   cursor: pointer;
   height: 64px;
   line-height: 64px;
-  color: ${props => props.theme.colors.text}
+  color: ${props => props.theme.colors.text};
 
   &:last-child {
     padding-right: 13px;
