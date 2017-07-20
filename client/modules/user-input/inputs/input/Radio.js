@@ -41,9 +41,10 @@ export const Radio = props => {
              * option input fields. To do so, the object must be JSON (a string)
              * to be stored within the HTML elelent
              */
-            const val = typeof option.value === 'object'
-              ? JSON.stringify(option.value)
-              : option.value;
+            const val =
+              typeof option.value === 'object'
+                ? JSON.stringify(option.value)
+                : option.value;
 
             // allowing re-assignment of the value if it's address input
             let checked = val === props.input.value;
@@ -60,6 +61,7 @@ export const Radio = props => {
                 checked={checked}
                 key={val}
                 row={props.row}
+                rowWidth={props.rowWidth}
               >
                 <RadioListInput
                   {...props.input}
@@ -87,9 +89,7 @@ export const Radio = props => {
   );
 };
 
-const RadioContainer = styled.div`
-  display: flex;
-`;
+const RadioContainer = styled.div`display: flex;`;
 
 const RadioInputContainer = styled.div`
   position: relative;
@@ -103,8 +103,8 @@ const RadioInputContainer = styled.div`
   }
 
   input[type=radio]:checked {
-    background: ${props => props.theme.colors.pink};
-    border-color: ${props => props.theme.colors.pink};
+    background: ${props => props.theme.colors.palePurple};
+    border-color: ${props => props.theme.colors.palePurple};
   }
 
   input[type=radio]:checked ~ div {
@@ -121,7 +121,7 @@ const RadioInput = styled.input`
   width: ${props => props.theme.input.width};
   margin: ${props => props.theme.input.margin};
   max-width: ${props => props.theme.input.maxWidth};
-  
+
   &:active,
   &:focus {
     border-color: ${props =>
@@ -162,17 +162,24 @@ const RadioListInputContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${props => (props.row === 'full' ? '' : 'center')};
-  flex-basis: ${props => (props.row === 'full' ? '100%' : '49.5%')};
-  padding: 15px;
-  background:  ${props => (props.checked ? '#f27c5e' : '#f9f8f7')};
-  color:  ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.85)')};
+  flex-basis: ${props =>
+    props.row === 'full'
+      ? '100%'
+      : props.rowWidth ? `${props.rowWidth}%` : '49.5%'};
+  padding: 13px;
+  background:${props =>
+    props.showError
+      ? props.theme.error.color
+      : props.checked ? '#f27c5e' : '#f9f8f7'};
+  }
+  color: ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.85)')};
   border-radius: 2px;
   margin-bottom: 1%;
   cursor: pointer;
 
   input[type=radio]:checked {
-    background: ${props => props.theme.colors.pink};
-    border-color: ${props => props.theme.colors.pink};
+    background: ${props => props.theme.colors.palePurple};
+    border-color: ${props => props.theme.colors.palePurple};
   }
 
   input[type=radio]:checked ~ div {
@@ -189,13 +196,14 @@ const RadioListInput = styled.input`
   left: 0;
   height: 100%;
   width: 100%;
-  background:  ${props => (props.checked ? '#f27c5e' : '#f9f8f7')};
-  color:  ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.85)')};
+  background:${props =>
+    props.showError ? '#fee7e8' : props.checked ? '#f27c5e' : '#f9f8f7'};
+  }
+  color: ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.85)')};
   border-radius: 2px;
   margin-bottom: 1%;
   cursor: pointer;
 
-  
   &:active,
   &:focus {
     border-color: ${props =>

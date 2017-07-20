@@ -6,12 +6,17 @@ import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { required, maxLength } from '../../../validation';
-import { Select, SubmitButton, Text, Textarea } from '../../../inputs/input';
+import {
+  Radio,
+  Select,
+  SubmitButton,
+  Text,
+  Textarea
+} from '../../../inputs/input';
 import { checkCompany } from '../../../../create/company/ducks';
 import debounce from 'lodash/debounce';
 
 const companySizeOptions = [
-  { name: 'Select size', disabled: true, value: '' },
   { name: '1 - 9', value: '1 - 9' },
   { name: '10 - 49', value: '10 - 49' },
   { name: '50 - 149', value: '50 - 149' },
@@ -61,7 +66,9 @@ class CompanyFormStepOne extends Component {
           label="How many employees work at your company?"
           validate={[required]}
           options={companySizeOptions}
-          component={Select}
+          type="list"
+          rowWidth={32.6}
+          component={Radio}
         />
         <Field
           name="product"

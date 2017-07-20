@@ -10,6 +10,7 @@ const theme = {
     green: '#6eafae', // WS green #7cb7b6
     pink: '#fd898a', // old pink: #fe9591
     purple: '#5C6AC4',
+    palePurple: '#5f5f75',
     blue: '#161533',
     lightBlue: '#82a3b9', // WS blue #82a3b9
     black: '#0f0f17',

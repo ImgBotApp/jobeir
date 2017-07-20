@@ -105,42 +105,8 @@ injectGlobal`
     font-family: 'Avenir STD', Avenir sans-serif;
     color: rgba(0,0,0,0.85);
   }
-
-  .pac-container {
-    padding:  0;
-  }
-
-  .pac-item {
-    font-family: 'Avenir STD', Avenir sans-serif;
-    padding: 8px 18px;
-    border-top: 1px solid white;
-    font-size: 16px;
-    color: #7e7c7c;
-    cursor: pointer;
-    border-bottom: 1px solid #f1f1f1;
-  }
-
-  .hdpi .pac-icon {
-    display: none;
-  }
-
-  .pac-item-query {
-    font-size: 16px;
-  }
-
-  .pac-matched {
-    font-size: 16px;
-    padding-right: 6px;
-    color: #262626;
-  }
-
-  .pac-icon {
-    margin-top: 6px;
-    margin-right: 16px;
-  }
-
-  .pac-logo::after {
-    height: 48px;
-    background-position: center;
+  
+  textarea:focus, input:focus{
+      outline: none;
   }
 `;
