@@ -21,7 +21,8 @@ export function searchJobs(req, res) {
         },
         $maxDistance: 10000
       }
-    }
+    },
+    'role.value': req.query.q
   };
 
   // find Jobs based on coordinates

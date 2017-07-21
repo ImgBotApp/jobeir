@@ -72,7 +72,7 @@ export function createJob(req, res) {
 
   // Let's sanitize inputs
   newJob.company = sanitizeHtml(req.params.companyId);
-  newJob.role = sanitizeHtml(newJob.role);
+  newJob.role = newJob.role;
   newJob.title = sanitizeHtml(newJob.title);
   newJob.employmentType = sanitizeHtml(newJob.employmentType);
   newJob.address = newJob.address;
