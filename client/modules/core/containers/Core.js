@@ -55,8 +55,9 @@ export default connect(mapStateToProps)(Core);
 const CoreContainer = styled.div`
   background: ${props =>
     props.pathname.includes('jobs') && !props.pathname.includes('account')
-      ? '#ff'
-      : 'transparent'};
+      ? '#f4f6f8'
+      : '#fff'};
+  min-height: 100vh;
 `;
 
 injectGlobal`

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router';
 import moment from 'moment';
 
 const JobsListItem = ({ posting }) => {
-  console.log(posting);
   return (
     <JobsListItemContainer>
       <JobsListItemTop>
@@ -36,6 +36,7 @@ const JobsListItem = ({ posting }) => {
           {moment(posting.createdAt).fromNow()}
         </JobsListItemDate>
       </JobsListItemBottom>
+      <StyledLink to={`/jobs/${posting._id}`} />
     </JobsListItemContainer>
   );
 };
@@ -49,8 +50,19 @@ const JobsListItemContainer = styled.div`
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
   border: 1px solid #e8e8e8;
-  border-radius: 3px;
-  margin-bottom: 15px;
+  border-radius: 2px;
+  margin-bottom: 25px;
+`;
+
+const StyledLink = styled(Link)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
 `;
 
 const JobsListItemTop = styled.div`
@@ -66,9 +78,9 @@ const JobsListItemBottom = styled.div`
 `;
 
 const JobsListItemTitle = styled.h2`
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: 900;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
 `;
 
 const JobsListItemSubTitle = styled.p`

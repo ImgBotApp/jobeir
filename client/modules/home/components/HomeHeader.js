@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import Search from '../../search/containers/Search';
+import HomeSearch from '../containers/HomeSearch';
 
 const HomeHeader = () =>
   <Header>
-    <HeaderText>Find your next job<br /> Lorem inspum jonadabom</HeaderText>
-    <Search />
+    <HeaderText>
+      Find your next job<br /> Lorem inspum jonadabom
+    </HeaderText>
+    <HomeSearch />
   </Header>;
 
 export default HomeHeader;
