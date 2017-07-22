@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import { Link } from 'react-router';
 import moment from 'moment';
 
-const JobsListItem = ({ posting }) => {
+const JobsSearchListItem = ({ posting }) => {
   return (
-    <JobsListItemContainer>
-      <JobsListItemTop>
+    <JobsSearchListItemContainer>
+      <JobsSearchListItemTop>
         <div>
-          <JobsListItemTitle>
+          <JobsSearchListItemTitle>
             {posting.title}
-          </JobsListItemTitle>
-          <JobsListItemSubTitle>
+          </JobsSearchListItemTitle>
+          <JobsSearchListItemSubTitle>
             <span>
               {posting.company.displayName}
               {' in '}
@@ -21,29 +21,30 @@ const JobsListItem = ({ posting }) => {
               {posting.location.address.short_administrative_area_level_1},{' '}
               {posting.location.address.country}
             </span>
-          </JobsListItemSubTitle>
+          </JobsSearchListItemSubTitle>
         </div>
-        <JobsListItemLogo src={posting.company.logo} alt="" />
-      </JobsListItemTop>
-      <JobsListItemCompanyProduct>
+        <JobsSearchListItemLogo src={posting.company.logo} alt="" />
+      </JobsSearchListItemTop>
+      <JobsSearchListItemCompanyProduct>
         {posting.company.product}
-      </JobsListItemCompanyProduct>
-      <JobsListItemBottom>
-        <JobsListItemType>
+      </JobsSearchListItemCompanyProduct>
+      <JobsSearchListItemBottom>
+        <JobsSearchListItemType>
           {posting.employmentType}, ${posting.salaryMax / 1000}K {' - '}${posting.salaryMin / 1000}K
-        </JobsListItemType>
-        <JobsListItemDate>
+        </JobsSearchListItemType>
+        <JobsSearchListItemDate>
           {moment(posting.createdAt).fromNow()}
-        </JobsListItemDate>
-      </JobsListItemBottom>
+        </JobsSearchListItemDate>
+      </JobsSearchListItemBottom>
       <StyledLink to={`/jobs/${posting._id}`} />
-    </JobsListItemContainer>
+    </JobsSearchListItemContainer>
   );
 };
 
-export default JobsListItem;
+export default JobsSearchListItem;
 
-const JobsListItemContainer = styled.div`
+const JobsSearchListItemContainer = styled.div`
+  position: relative;
   max-width: 700px;
   margin: 0 auto;
   padding: 30px;
@@ -65,31 +66,31 @@ const StyledLink = styled(Link)`
   cursor: pointer;
 `;
 
-const JobsListItemTop = styled.div`
+const JobsSearchListItemTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
 `;
-const JobsListItemBottom = styled.div`
+const JobsSearchListItemBottom = styled.div`
   display: flex;
   justify-content: space-between;
   color: #8f8f8f;
 `;
 
-const JobsListItemTitle = styled.h2`
+const JobsSearchListItemTitle = styled.h2`
   font-size: 2rem;
   font-weight: 900;
   margin-bottom: 10px;
 `;
 
-const JobsListItemSubTitle = styled.p`
+const JobsSearchListItemSubTitle = styled.p`
   font-size: 1rem;
   font-weight: 400;
   opacity: 0.7;
 `;
 
-const JobsListItemLogo = styled.img`
+const JobsSearchListItemLogo = styled.img`
   height: 35px;
   border-radius: 100%;
   vertical-align: middle;
@@ -98,11 +99,11 @@ const JobsListItemLogo = styled.img`
   align-self: flex-start;
 `;
 
-const JobsListItemType = styled.div`display: flex;`;
+const JobsSearchListItemType = styled.div`display: flex;`;
 
-const JobsListItemDate = styled.div``;
+const JobsSearchListItemDate = styled.div``;
 
-const JobsListItemCompanyProduct = styled.p`
+const JobsSearchListItemCompanyProduct = styled.p`
   line-height: 1.5;
   margin-bottom: 20px;
   color: #6a6666;

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import JobsListItem from '../components/JobsListItem';
+import JobsSearchListItem from '../components/JobsSearchListItem';
 
-class JobsList extends Component {
+class JobsSearchList extends Component {
   render() {
     return (
-      <JobsListContainer>
+      <JobsSearchListContainer>
         {this.props.postings.map(posting =>
-          <JobsListItem key={posting._id} posting={posting} />
+          <JobsSearchListItem key={posting._id} posting={posting} />
         )}
-      </JobsListContainer>
+      </JobsSearchListContainer>
     );
   }
 }
@@ -19,9 +19,9 @@ const mapStateToProps = state => ({
   postings: state.search.jobs.postings
 });
 
-export default connect(mapStateToProps)(JobsList);
+export default connect(mapStateToProps)(JobsSearchList);
 
-const JobsListContainer = styled.div`
+const JobsSearchListContainer = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   padding: 50px 0 100px;

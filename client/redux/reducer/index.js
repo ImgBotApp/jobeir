@@ -13,7 +13,8 @@ import auth from '../../modules/auth/ducks';
 import accountCompanies from '../../modules/create/company/ducks';
 import intl from '../intl/';
 import accountJobs from '../../modules/create/job/ducks';
-import searchJobs from '../../modules/jobs/ducks';
+import searchJobs from '../../modules/jobs/search/ducks';
+import posting from '../../modules/jobs/posting/ducks/';
 import location from '../location/';
 import modal from '../../modules/modal/ducks';
 import user from '../../modules/user/ducks';
@@ -39,6 +40,7 @@ export const appReducer = combineReducers({
   intl,
   location,
   modal,
+  posting,
   reduxAsyncConnect,
   routing,
   search,

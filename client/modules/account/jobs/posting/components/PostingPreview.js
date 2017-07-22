@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import PostingSidebar from './PostingSidebar';
 import PostingBody from '../containers/PostingBody';
 import PostingMap from '../containers/PostingMap';
 
@@ -13,9 +12,6 @@ const PostingPreview = ({ activePosting }) => {
         <div>
           <PostingPreviewContent>
             <PostingBody activePosting={activePosting} />
-            {
-              // <PostingSidebar activePosting={activePosting} />
-            }
           </PostingPreviewContent>
           <PostingMap activePosting={activePosting} />
         </div>}

@@ -8,6 +8,9 @@ router.route('/company/:companyId/jobs').get(JobsController.getJobs);
 // Get one job by ID
 router.route('/company/:companyId/jobs/:jobId').get(JobsController.getJob);
 
+// Get one job by ID
+router.route('/jobs/:jobId').get(JobsController.getJob);
+
 // Create a new job
 router.route('/company/:companyId/jobs').post(JobsController.createJob);
 

@@ -1,8 +1,12 @@
 import { browserHistory } from 'react-router';
 
-export const SERVER_GET_JOBS_REQUEST = 'SERVER_GET_JOBS_REQUEST';
-export const SERVER_GET_JOBS_SUCCESS = 'SERVER_GET_JOBS_SUCCESS';
-export const SERVER_GET_JOBS_FAILURE = 'SERVER_GET_JOBS_FAILURE';
+export const SEARCH_JOBS_REQUEST = 'SEARCH_JOBS_REQUEST';
+export const SEARCH_JOBS_SUCCESS = 'SEARCH_JOBS_SUCCESS';
+export const SEARCH_JOBS_FAILURE = 'SEARCH_JOBS_FAILURE';
+
+export const SERVER_SEARCH_JOBS_REQUEST = 'SERVER_SEARCH_JOBS_REQUEST';
+export const SERVER_SEARCH_JOBS_SUCCESS = 'SERVER_SEARCH_JOBS_SUCCESS';
+export const SERVER_SEARCH_JOBS_FAILURE = 'SERVER_SEARCH_JOBS_FAILURE';
 
 export const initialState = {
   postings: [],
@@ -14,17 +18,20 @@ export const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case SERVER_GET_JOBS_REQUEST:
+    case SEARCH_JOBS_REQUEST:
+    case SERVER_SEARCH_JOBS_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
       });
-    case SERVER_GET_JOBS_SUCCESS:
+    case SEARCH_JOBS_SUCCESS:
+    case SERVER_SEARCH_JOBS_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
         postings: action.payload.data.postings
       });
-    case SERVER_GET_JOBS_FAILURE:
+    case SEARCH_JOBS_FAILURE:
+    case SERVER_SEARCH_JOBS_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
@@ -38,6 +45,12 @@ export default (state = initialState, action = {}) => {
 export function shouldGetJobs(globalState) {
   const isFetching =
     globalState.search.jobs && globalState.search.jobs.isFetching;
+  const isLoaded = globalState.session.auth.globalIsLoaded;
 
-  return !isFetching;
+  return !isFetching && !isLoaded;
 }
+
+export const searchJobs = query => ({
+  type: SEARCH_JOBS_REQUEST,
+  payload: { query }
+});

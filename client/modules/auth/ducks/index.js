@@ -32,6 +32,7 @@ export const initialState = {
   isAuthenticating: false,
   isAuthenticated: false,
   isLoaded: false,
+  globalIsLoaded: false,
   isResettingPassword: false,
   token: '',
   errors: []
@@ -105,14 +106,17 @@ export default (state = initialState, action = {}) => {
       return Object.assign({}, initialState, {
         isLoaded: true
       });
+    case 'SESSION_LOADED':
+      return Object.assign({}, initialState, {
+        globalIsLoaded: true
+      });
     default:
       return state;
   }
 };
 
 export function shouldCheckAuth(globalState) {
-  const isLoaded =
-    globalState.session.auth && globalState.session.auth.isLoaded;
+  const isLoaded = globalState.session.auth.globalIsLoaded;
   const isAuthenticating =
     globalState.session.auth && globalState.session.auth.isAuthenticating;
 

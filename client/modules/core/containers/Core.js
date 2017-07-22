@@ -26,6 +26,13 @@ import Header from '../../header/containers/Header';
   }
 ])
 class Core extends Component {
+  componentDidMount() {
+    const { dispatch, isLoaded } = this.props;
+    if (isLoaded) {
+      dispatch({ type: 'SESSION_LOADED' });
+    }
+  }
+
   render() {
     const { children, pathname } = this.props;
     const shouldShowHeader = !pathname.includes('create');
@@ -47,7 +54,8 @@ const mapStateToProps = state => ({
   pathname:
     (state.routing.locationBeforeTransitions &&
       state.routing.locationBeforeTransitions.pathname) ||
-    ''
+    '',
+  isLoaded: state.reduxAsyncConnect.loaded
 });
 
 export default connect(mapStateToProps)(Core);
@@ -55,7 +63,7 @@ export default connect(mapStateToProps)(Core);
 const CoreContainer = styled.div`
   background: ${props =>
     props.pathname.includes('jobs') && !props.pathname.includes('account')
-      ? '#f4f6f8'
+      ? '#F4F5F7'
       : '#fff'};
   min-height: 100vh;
 `;

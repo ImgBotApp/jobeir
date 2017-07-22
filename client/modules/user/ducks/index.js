@@ -94,8 +94,8 @@ export default (state = initialState, action = {}) => {
 };
 
 export function shouldGetUser(globalState) {
-  const isLoaded =
-    globalState.session.user && globalState.session.user.isLoaded;
+  const isLoaded = globalState.session.auth.globalIsLoaded;
+
   const isFetching =
     globalState.session.user && globalState.session.user.isFetching;
   const hasId = globalState.session.auth.id;

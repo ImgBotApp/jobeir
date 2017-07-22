@@ -71,7 +71,6 @@ class ShellDropdown extends Component {
 
   render() {
     const { companies, user } = this.props;
-    console.log(companies);
 
     return (
       <ShellHeaderDropdown>

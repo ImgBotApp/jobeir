@@ -1,13 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
+import { Router } from 'react-router';
 import IntlWrapper from '../../intl/containers/IntlWrapper';
 import routes from '../../../routes';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
 
 export default function App(props) {
-  const { store } = props;
+  const { browserHistory, store } = props;
   const history = syncHistoryWithStore(browserHistory, store);
 
   /**
