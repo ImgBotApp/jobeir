@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import styled from 'styled-components';
 import { serverGetJobs } from '../server/';
-import { shouldGetJobs, searchJobs } from '../ducks/';
+import { shouldGetJobs, searchJobs, resetJobs } from '../ducks/';
 import queryString from 'query-string';
 import JobsSearchList from './JobsSearchList';
 import SearchForm from '../../../user-input/forms/form/search/SearchForm';
@@ -27,6 +27,10 @@ class JobsSearch extends Component {
     if (!isLoaded) {
       dispatch(searchJobs(queryData));
     }
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(resetJobs());
   }
 
   render() {

@@ -1,6 +1,12 @@
-export const SERVER_GET_JOB_REQUEST = 'SERVER_GET_JOB_REQUEST';
-export const SERVER_GET_JOB_SUCCESS = 'SERVER_GET_JOB_SUCCESS';
-export const SERVER_GET_JOB_FAILURE = 'SERVER_GET_JOB_FAILURE';
+export const SERVER_GET_JOB_POSTING_REQUEST = 'SERVER_GET_JOB_POSTING_REQUEST';
+export const SERVER_GET_JOB_POSTING_SUCCESS = 'SERVER_GET_JOB_POSTING_SUCCESS';
+export const SERVER_GET_JOB_POSTING_FAILURE = 'SERVER_GET_JOB_POSTING_FAILURE';
+
+export const GET_JOB_POSTING_REQUEST = 'GET_JOB_POSTING_REQUEST';
+export const GET_JOB_POSTING_SUCCESS = 'GET_JOB_POSTING_SUCCESS';
+export const GET_JOB_POSTING_FAILURE = 'GET_JOB_POSTING_FAILURE';
+
+export const RESET_JOB_POSTING = 'RESET_JOB_POSTING';
 
 export const initialState = {
   isLoaded: false,
@@ -11,24 +17,31 @@ export const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SERVER_GET_JOB_REQUEST:
+    case GET_JOB_POSTING_REQUEST:
+    case SERVER_GET_JOB_POSTING_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
       });
-    case SERVER_GET_JOB_SUCCESS:
+    case GET_JOB_POSTING_SUCCESS:
+    case SERVER_GET_JOB_POSTING_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
         posting: action.payload.data.posting,
         errors: []
       });
-    case SERVER_GET_JOB_FAILURE:
+    case GET_JOB_POSTING_FAILURE:
+    case SERVER_GET_JOB_POSTING_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
         errors: action.errors.errors
       });
-
+    case RESET_JOB_POSTING:
+      return Object.assign({}, state, {
+        isLoaded: false,
+        posting: {}
+      });
     default:
       return state;
   }
@@ -42,6 +55,15 @@ export function shouldGetJob(globalState) {
 }
 
 export const serverGetJob = jobId => ({
-  type: SERVER_GET_JOB_REQUEST,
+  type: SERVER_GET_JOB_POSTING_REQUEST,
   payload: { jobId }
+});
+
+export const getJobPosting = jobId => ({
+  type: GET_JOB_POSTING_REQUEST,
+  payload: { jobId }
+});
+
+export const resetJobPosting = () => ({
+  type: RESET_JOB_POSTING
 });

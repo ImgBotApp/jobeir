@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import styled, { ThemeProvider, injectGlobal } from 'styled-components';
 import theme from '../theme';
+import { SESSION_LOADED } from '../../auth/ducks/';
 import { shouldCheckAuth } from '../../auth/ducks/';
 import { serverAuth } from '../../auth/server/';
 import { serverGetUser } from '../../user/server/';
@@ -29,7 +30,7 @@ class Core extends Component {
   componentDidMount() {
     const { dispatch, isLoaded } = this.props;
     if (isLoaded) {
-      dispatch({ type: 'SESSION_LOADED' });
+      dispatch({ type: SESSION_LOADED });
     }
   }
 
@@ -63,8 +64,9 @@ export default connect(mapStateToProps)(Core);
 const CoreContainer = styled.div`
   background: ${props =>
     props.pathname.includes('jobs') && !props.pathname.includes('account')
-      ? '#F4F5F7'
-      : '#fff'};
+      ? // ? '#F4F5F7'
+        '#fff'
+      : 'transparent'};
   min-height: 100vh;
 `;
 

@@ -8,6 +8,8 @@ export const SERVER_SEARCH_JOBS_REQUEST = 'SERVER_SEARCH_JOBS_REQUEST';
 export const SERVER_SEARCH_JOBS_SUCCESS = 'SERVER_SEARCH_JOBS_SUCCESS';
 export const SERVER_SEARCH_JOBS_FAILURE = 'SERVER_SEARCH_JOBS_FAILURE';
 
+export const RESET_JOBS = 'RESET_JOBS';
+
 export const initialState = {
   postings: [],
   isFetching: false,
@@ -37,6 +39,11 @@ export default (state = initialState, action = {}) => {
         isLoaded: true,
         errors: action.payload.errors
       });
+    case RESET_JOBS:
+      return Object.assign({}, state, {
+        isLoaded: false,
+        postings: []
+      });
     default:
       return state;
   }
@@ -53,4 +60,8 @@ export function shouldGetJobs(globalState) {
 export const searchJobs = query => ({
   type: SEARCH_JOBS_REQUEST,
   payload: { query }
+});
+
+export const resetJobs = () => ({
+  type: RESET_JOBS
 });

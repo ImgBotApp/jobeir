@@ -28,6 +28,8 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
+export const SESSION_LOADED = 'SESSION_LOADED';
+
 export const initialState = {
   isAuthenticating: false,
   isAuthenticated: false,
@@ -40,6 +42,10 @@ export const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case SESSION_LOADED:
+      return Object.assign({}, state, {
+        globalIsLoaded: true
+      });
     case SERVER_AUTH_REQUEST:
     case AUTH_REQUEST:
     case LOGIN_REQUEST:
@@ -106,10 +112,7 @@ export default (state = initialState, action = {}) => {
       return Object.assign({}, initialState, {
         isLoaded: true
       });
-    case 'SESSION_LOADED':
-      return Object.assign({}, initialState, {
-        globalIsLoaded: true
-      });
+
     default:
       return state;
   }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import styled from 'styled-components';
 import { serverGetJob } from '../server/';
-import { shouldGetJob } from '../ducks/';
+import { shouldGetJob, getJobPosting, resetJobPosting } from '../ducks/';
 import PostingPreview from '../../../account/jobs/posting/components/PostingPreview';
 
 @asyncConnect([
@@ -19,7 +19,15 @@ import PostingPreview from '../../../account/jobs/posting/components/PostingPrev
 ])
 class JobsPosting extends Component {
   componentDidMount() {
-    console.log('mounted');
+    const { dispatch, isLoaded, params } = this.props;
+
+    if (!isLoaded) {
+      dispatch(getJobPosting(params.id));
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(resetJobPosting());
   }
 
   render() {
@@ -34,7 +42,8 @@ class JobsPosting extends Component {
 }
 
 const mapStateToProps = state => ({
-  posting: state.posting.posting
+  posting: state.posting.posting,
+  isLoaded: state.posting.isLoaded
 });
 
 export default connect(mapStateToProps)(JobsPosting);

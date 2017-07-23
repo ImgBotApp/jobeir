@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
+import FormRow from '../components/FormRow';
 import { Email, Password, SubmitButton, Text } from '../../inputs/input/';
 import { email, minLength, required } from '../../validation';
 import { signup, login } from '../../../auth/ducks';
@@ -30,18 +31,20 @@ class SignupForm extends Component {
         formErrors={this.props.auth.errors}
         theme="auth"
       >
-        <Field
-          name="firstName"
-          placeholder="First name"
-          validate={[required]}
-          component={Text}
-        />
-        <Field
-          name="lastName"
-          placeholder="Last name"
-          validate={[required]}
-          component={Text}
-        />
+        <FormRow>
+          <Field
+            name="firstName"
+            placeholder="First name"
+            validate={[required]}
+            component={Text}
+          />
+          <Field
+            name="lastName"
+            placeholder="Last name"
+            validate={[required]}
+            component={Text}
+          />
+        </FormRow>
         <Field
           name="email"
           placeholder="Email address"
