@@ -39,7 +39,9 @@ class PrimaryNavLinks extends Component {
   buildMainNavigation(isAuthenticated) {
     return isAuthenticated
       ? <NavLinkContainer>
-          <NavLink to="/account/jobs">Dashboard</NavLink>
+          <NavLink to="/account/jobs">
+            {this.props.activeCompany.displayName}
+          </NavLink>
           <ShellHeaderNav />
           <ShellDropdown />
         </NavLinkContainer>
@@ -65,7 +67,8 @@ const mapStateToProps = state => ({
   pathname:
     (state.routing.locationBeforeTransitions &&
       state.routing.locationBeforeTransitions.pathname) ||
-    ''
+    '',
+  activeCompany: state.account.companies.activeCompany
 });
 
 export default connect(mapStateToProps)(PrimaryNavLinks);
@@ -79,7 +82,7 @@ const NavLinkContainer = styled.div`
 
 const NavLink = styled(Link)`
   display: block;
-  padding: 0 26px;
+  padding: 0 35px;
   font-size: 16px;
   text-decoration: none;
   cursor: pointer;

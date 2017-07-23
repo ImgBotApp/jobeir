@@ -66,13 +66,13 @@ export default connect(mapStateToProps)(PostingBody);
 
 const PostingBodyContainer = styled.div`
   position: relative;
-  max-width: 700px;
+  max-width: 670px;
   margin: 0 auto;
 
   p {
     line-height: 1.7;
-    margin-bottom: 18px;
-    font-size: 18px;
+    margin-bottom: 38px;
+    font-size: 20px;
     color: #333;
   }
 
@@ -91,7 +91,7 @@ const PostingBodyContainer = styled.div`
 
   h2,
   h3 {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   ul,

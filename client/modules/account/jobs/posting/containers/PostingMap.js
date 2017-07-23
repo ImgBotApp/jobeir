@@ -24,7 +24,7 @@ class PostingMap extends Component {
     const position = { lat, lng };
     const map = new google.maps.Map(mapSelector, {
       center: new google.maps.LatLng(lat, lng),
-      zoom: 14,
+      zoom: 15,
       styles: lightTheme,
       scrollwheel: false
     });
@@ -46,6 +46,6 @@ const PostingMapContainer = styled.div`
   margin: 55px auto;
   #map {
     height: 450px;
-    width: 1040px;
+    width: 100vw;
   }
 `;
