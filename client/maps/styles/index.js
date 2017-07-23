@@ -19,7 +19,7 @@ export const lightTheme = [
     elementType: 'labels.text.fill',
     stylers: [
       {
-        color: '#616161'
+        color: '#262626'
       }
     ]
   },
@@ -144,7 +144,7 @@ export const lightTheme = [
     elementType: 'geometry',
     stylers: [
       {
-        color: '#c9c9c9'
+        color: '#dedede'
       }
     ]
   },

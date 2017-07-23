@@ -10,7 +10,12 @@ class Autocomplete extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { predictions: [], isSearching: false, show: false };
+    this.state = {
+      predictions: [],
+      isSearching: false,
+      show: false,
+      selectedIndex: 0
+    };
 
     this.debouncedSerach = debounce(function(input) {
       const service = new google.maps.places.AutocompleteService();
@@ -32,7 +37,7 @@ class Autocomplete extends Component {
 
     inputField.addEventListener('focus', this.handleFocus);
     inputField.addEventListener('blur', this.handleBlur);
-    inputField.addEventListener('input', this.handleTyping);
+    inputField.addEventListener('keydown', this.handleTyping);
   }
 
   componentWillUnmount() {
@@ -40,13 +45,42 @@ class Autocomplete extends Component {
 
     inputField.removeEventListener('focus', this.handleFocus);
     inputField.removeEventListener('blur', this.handleBlur);
-    inputField.removeEventListener('input', this.handleTyping);
+    inputField.removeEventListener('keydown', this.handleTyping);
   }
 
   handleTyping(event) {
+    const { isSearching, predictions, selectedIndex } = this.state;
+    const lastResult = predictions.length - 1;
     const inputValue = event.target.value;
+    const upArrow = event.which === 38;
+    const downARrow = event.which === 40;
+    const enter = event.which === 13;
 
-    if (!this.state.isSearching) {
+    // move the selected list item up
+    if (upArrow) {
+      // go to the bottom if first item and press up arrow
+      if (selectedIndex === 0) {
+        return this.setState({ selectedIndex: lastResult });
+      }
+      return this.setState({ selectedIndex: selectedIndex - 1 });
+    }
+
+    // move the selected list item down
+    if (downARrow) {
+      // go back to the top if at the last item and press down arrow
+      if (selectedIndex === lastResult) {
+        return this.setState({ selectedIndex: 0 });
+      }
+      return this.setState({ selectedIndex: selectedIndex + 1 });
+    }
+
+    // enter key = fetch place data
+    if (enter) {
+      this.getDetailsByPlaceId(predictions[selectedIndex].place_id);
+      return event.preventDefault();
+    }
+
+    if (!isSearching) {
       this.setState({ isSearching: true });
     }
 
@@ -147,7 +181,7 @@ class Autocomplete extends Component {
   }
 
   render() {
-    const { isSearching, show, predictions } = this.state;
+    const { isSearching, show, predictions, selectedIndex } = this.state;
 
     return (
       <AutocompleteList
@@ -159,11 +193,12 @@ class Autocomplete extends Component {
         {isSearching
           ? <AutocompleteSearching>Searching Address...</AutocompleteSearching>
           : <div>
-              {predictions.map(prediction => {
+              {predictions.map((prediction, index) => {
                 return (
                   <AutocompleteResult
                     key={prediction.id}
                     prediction={prediction}
+                    selected={selectedIndex === index}
                     fetchPlaceId={() =>
                       this.getDetailsByPlaceId(prediction.place_id)}
                   />

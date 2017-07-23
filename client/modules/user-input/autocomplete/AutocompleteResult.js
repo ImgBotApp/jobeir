@@ -102,9 +102,9 @@ const SeperatorText = () => {
   );
 };
 
-export const AutocompleteResult = ({ prediction, fetchPlaceId }) => {
+export const AutocompleteResult = ({ prediction, fetchPlaceId, selected }) => {
   return (
-    <ListItem onClick={fetchPlaceId}>
+    <ListItem onClick={fetchPlaceId} selected={selected}>
       <PrimaryText prediction={prediction} />
       <SeperatorText />
       <SecondaryText text={prediction.structured_formatting.secondary_text} />
@@ -121,6 +121,7 @@ const ListItem = styled.li`
   overflow: hidden;
   text-overflow: ellipsis;
   border-bottom: 1px solid #e8e8e8;
+  background: ${props => (props.selected ? 'rgba(0, 0, 0, 0.05)' : '#fff')};
 
   &:hover {
     background: rgba(0, 0, 0, 0.05);

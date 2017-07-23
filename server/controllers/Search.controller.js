@@ -25,26 +25,24 @@ export function searchJobs(req, res) {
     'role.value': req.query.q
   };
 
+  const skip = parseFloat(req.query.start);
+
   // find Jobs based on coordinates
-  Jobs.find(q)
+  const postings = Jobs.find(q)
+    .skip(skip)
+    .limit(15)
     .sort('-dateCreated')
     .select('-receivingEmails')
     .populate('company')
-    .exec((err, jobs) => {
+    .exec((err, postings) => {
       if (err) {
         return res.status(204).send({ data: {}, errors: [err] });
       } else {
-        res.json({ data: { postings: jobs }, errors: [] });
+        Jobs.find(q).count((err, count) => {
+          res.json({ data: { postings, count }, errors: [] });
+        });
       }
     });
-
-  // Job.find({}).sort('-dateCreated').populate('company').exec((err, jobs) => {
-  //   if (err) {
-  //     return res.status(204).send({ data: {}, errors: [err] });
-  //   } else {
-  //     res.json({ data: { postings: jobs }, errors: [] });
-  //   }
-  // });
 }
 
 /**

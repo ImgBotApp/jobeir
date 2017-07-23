@@ -110,7 +110,7 @@ export default (state = initialState, action = {}) => {
       });
     case LOGOUT_SUCCESS:
       return Object.assign({}, initialState, {
-        isLoaded: true
+        globalIsLoaded: true
       });
 
     default:
