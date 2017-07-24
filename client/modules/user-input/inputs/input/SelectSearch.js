@@ -57,7 +57,7 @@ const SelectContainer = styled.div`
   .Select-control {
     background-color: #fff;
     border-radius: 4px;
-    color: rgba(0,0,0,0.85);
+    color: rgba(0, 0, 0, 0.85);
     cursor: default;
     display: table;
     border-spacing: 0;
@@ -84,8 +84,6 @@ const SelectContainer = styled.div`
     cursor: text;
   }
   .is-open > .Select-control {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
     background: #fff;
     border-color: ${props =>
       props.showError ? props.theme.error.color : props.theme.colors.text};
@@ -101,7 +99,8 @@ const SelectContainer = styled.div`
   .is-focused:not(.is-open) > .Select-control {
     border-color: ${props =>
       props.showError ? props.theme.error.color : props.theme.colors.text};
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 126, 255, 0.1);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 0 3px rgba(0, 126, 255, 0.1);
   }
 
   .Select-placeholder {
@@ -128,19 +127,26 @@ const SelectContainer = styled.div`
     white-space: nowrap;
   }
   .has-value.Select--single > .Select-control .Select-value .Select-value-label,
-  .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+  .has-value.is-pseudo-focused.Select--single
+    > .Select-control .Select-value .Select-value-label {
     font-weight: 600;
-    color: rgba(0,0,0,0.85);
+    color: rgba(0, 0, 0, 0.85);
   }
-  .has-value.Select--single > .Select-control .Select-value a.Select-value-label,
-  .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label {
+  .has-value.Select--single
+    > .Select-control .Select-value a.Select-value-label,
+  .has-value.is-pseudo-focused.Select--single
+    > .Select-control .Select-value a.Select-value-label {
     cursor: pointer;
     text-decoration: none;
   }
-  .has-value.Select--single > .Select-control .Select-value a.Select-value-label:hover,
-  .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:hover,
-  .has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
-  .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+  .has-value.Select--single
+    > .Select-control .Select-value a.Select-value-label:hover,
+  .has-value.is-pseudo-focused.Select--single
+    > .Select-control .Select-value a.Select-value-label:hover,
+  .has-value.Select--single
+    > .Select-control .Select-value a.Select-value-label:focus,
+  .has-value.is-pseudo-focused.Select--single
+    > .Select-control .Select-value a.Select-value-label:focus {
     color: #007eff;
     outline: none;
     text-decoration: underline;
@@ -195,7 +201,7 @@ const SelectContainer = styled.div`
     box-sizing: border-box;
     border-radius: 50%;
     border: 2px solid #ccc;
-    border-right-color: rgba(0,0,0,0.85);
+    border-right-color: rgba(0, 0, 0, 0.85);
     display: inline-block;
     position: relative;
     vertical-align: middle;
@@ -213,7 +219,7 @@ const SelectContainer = styled.div`
     width: 17px;
   }
   .Select-clear-zone:hover {
-    color: #D0021B;
+    color: #d0021b;
   }
   .Select-clear {
     display: inline-block;
@@ -274,15 +280,15 @@ const SelectContainer = styled.div`
     }
   }
   .Select-menu-outer {
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
     background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.85);
     border-top-color: #e6e6e6;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 3px;
+    z-index: 1;
+    box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
+      0 8px 16px rgba(27, 39, 51, 0.08);
     box-sizing: border-box;
-    margin-top: -1px;
-    max-height: 200px;
+    margin-top: 6px;
+    max-height: 220px;
     position: absolute;
     top: 100%;
     width: 100%;
@@ -295,27 +301,25 @@ const SelectContainer = styled.div`
   }
   .Select-option {
     box-sizing: border-box;
-    background-color: #fff;
-    color: rgba(0,0,0,0.85);
+    color: rgba(0, 0, 0, 0.85);
     cursor: pointer;
     display: block;
-    padding: 12px 18px;
+    padding: 16px 18px;
+    border-bottom: 1px solid #e8e8e8;
   }
   .Select-option:last-child {
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
   }
   .Select-option.is-selected {
-    background-color: #f5faff;
     /* Fallback color for IE 8 */
-    background-color: rgba(251, 80, 50, 0.03);
-    color: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.85);
   }
   .Select-option.is-focused {
-    background-color: #ebf5ff;
     /* Fallback color for IE 8 */
-    background-color: rgba(251, 80, 50, 0.08);
-    color: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.85);
   }
   .Select-option.is-disabled {
     color: #cccccc;
@@ -395,7 +399,7 @@ const SelectContainer = styled.div`
   .Select--multi.is-disabled .Select-value {
     background-color: #fcfcfc;
     border: 1px solid #e3e3e3;
-    color: rgba(0,0,0,0.85);
+    color: rgba(0, 0, 0, 0.85);
   }
   .Select--multi.is-disabled .Select-value-icon {
     cursor: not-allowed;

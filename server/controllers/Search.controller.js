@@ -32,7 +32,7 @@ export function searchJobs(req, res) {
     .skip(skip)
     .limit(15)
     .sort('-dateCreated')
-    .select('-receivingEmails')
+    .select('-receivingEmails -description')
     .populate('company')
     .exec((err, postings) => {
       if (err) {

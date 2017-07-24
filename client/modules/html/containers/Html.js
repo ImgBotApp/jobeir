@@ -17,6 +17,11 @@ const Html = ({ css, assets, state, content }) => {
         <style dangerouslySetInnerHTML={{ __html: css }} />
       </head>
       <body>
+        <script
+          type="text/javascript"
+          src={`https://maps.googleapis.com/maps/api/js?key=${serverConfig
+            .google.MAPS_API_KEY}&libraries=places`}
+        />
         <main
           id="app"
           dangerouslySetInnerHTML={{ __html: `<div>${content}</div>` }}
@@ -25,11 +30,6 @@ const Html = ({ css, assets, state, content }) => {
         {Object.keys(assets.javascript)
           .reverse()
           .map(key => <script key={key} src={assets.javascript[key]} />)}
-        <script
-          type="text/javascript"
-          src={`https://maps.googleapis.com/maps/api/js?key=${serverConfig
-            .google.MAPS_API_KEY}&libraries=places`}
-        />
       </body>
     </html>
   );

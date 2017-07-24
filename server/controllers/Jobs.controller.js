@@ -14,6 +14,7 @@ export function getJobs(req, res) {
   // currently just filtering GET jobs just by date added...
   Jobs.find({ company: req.params.companyId })
     .sort('-dateCreated')
+    .select('-description')
     .populate('company')
     .exec((err, jobs) => {
       if (err) {
@@ -32,6 +33,7 @@ export function getJobs(req, res) {
  */
 export function getJob(req, res) {
   Jobs.findOne({ _id: req.params.jobId })
+    .select('-description')
     .populate('company')
     .exec((err, job) => {
       if (err) {
