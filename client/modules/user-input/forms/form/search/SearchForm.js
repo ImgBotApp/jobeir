@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
@@ -16,59 +17,84 @@ const customStyles = {
   left: '0'
 };
 
-const Input = props => {
-  const { meta } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+class Input extends Component {
+  constructor(props) {
+    super(props);
+    this.handleInputContainerClick = this.handleInputContainerClick.bind(this);
+  }
 
-  return (
-    <SearchInputContainer>
-      <SearchLabel htmlFor={props.input.name}>
-        {props.label} {meta.error}
-      </SearchLabel>
-      <SearchInput
-        {...props.input}
-        type={props.input.type || 'text'}
-        id={props.input.name}
-        name={props.input.name}
-        placeholder={props.placeholder}
-        showError={showError}
-        autoFocus={props.autoFocus}
-        autoComplete={false}
-      />
-      {props.autocomplete &&
-        <Autocomplete
-          formName="search-form"
-          types={['(cities)']}
-          id={props.input.name}
-          customStyles={customStyles}
-        />}
-    </SearchInputContainer>
-  );
-};
+  handleInputContainerClick() {
+    findDOMNode(this.nameInput).focus();
+  }
 
-const SelectInput = props => {
-  const { meta } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+  render() {
+    const { meta } = this.props;
+    const showError = meta.touched && meta.error && meta.invalid;
 
-  return (
-    <SearchInputContainer>
-      <SearchLabel htmlFor={props.input.name}>
-        {props.label} {meta.error}
-      </SearchLabel>
-      <SelectContainer>
-        <Select
-          {...props.input}
-          id={props.input.name}
-          name={props.input.name}
-          options={props.options}
-          placeholder={props.placeholder}
-          onBlur={() => {}}
-          autoFocus={props.autoFocus}
+    return (
+      <SearchInputContainer onClick={this.handleInputContainerClick}>
+        <SearchLabel htmlFor={this.props.input.name}>
+          {this.props.label} {meta.error}
+        </SearchLabel>
+        <SearchInput
+          {...this.props.input}
+          type={this.props.input.type || 'text'}
+          id={this.props.input.name}
+          name={this.props.input.name}
+          placeholder={this.props.placeholder}
+          showError={showError}
+          autoFocus={this.props.autoFocus}
+          autoComplete={false}
+          ref={input => {
+            this.nameInput = input;
+          }}
         />
-      </SelectContainer>
-    </SearchInputContainer>
-  );
-};
+        {this.props.autocomplete &&
+          <Autocomplete
+            formName="search-form"
+            types={['(cities)']}
+            id={this.props.input.name}
+            customStyles={customStyles}
+          />}
+      </SearchInputContainer>
+    );
+  }
+}
+
+class SelectInput extends Component {
+  constructor(props) {
+    super(props);
+    this.handleInputContainerClick = this.handleInputContainerClick.bind(this);
+  }
+
+  handleInputContainerClick() {
+    this.refs.stateSelect.focus();
+  }
+
+  render() {
+    return (
+      <SearchInputContainer onClick={this.handleInputContainerClick}>
+        <SearchLabel htmlFor={this.props.input.name}>
+          {this.props.label} {this.props.meta.error}
+        </SearchLabel>
+        <SelectContainer>
+          <Select
+            {...this.props.input}
+            id={this.props.input.name}
+            name={this.props.input.name}
+            options={this.props.options}
+            placeholder={this.props.placeholder}
+            onBlur={() => {}}
+            autoFocus={this.props.autoFocus}
+            searchable={true}
+            openOnFocus={true}
+            ref="stateSelect"
+          />
+        </SelectContainer>
+      </SearchInputContainer>
+    );
+  }
+}
 
 const Button = props => {
   return (
@@ -106,7 +132,7 @@ class SearchForm extends Component {
 
   formSubmit(data) {
     const queryData = {
-      q: data.title,
+      q: data.title.value,
       l: data.location,
       lat: data.coordinates[0],
       lng: data.coordinates[1]
@@ -456,7 +482,7 @@ const SelectContainer = styled.div`
     box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
       0 8px 16px rgba(27, 39, 51, 0.08);
     box-sizing: border-box;
-    margin-top: 24px;
+    margin-top: 19px;
     max-height: 250px;
     position: absolute;
     left: -15px;
