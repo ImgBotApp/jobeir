@@ -112,11 +112,15 @@ injectGlobal`
 
   body {
     margin: 0;
-    font-family: 'Avenir STD', Avenir sans-serif;
+    font-family: 'Avenir STD', Avenir, sans-serif;
     color: rgba(0,0,0,0.85);
   }
   
   textarea:focus, input:focus{
-      outline: none;
+    outline: none;
+  }
+
+  input, select {
+    font-family: inherit;
   }
 `;
