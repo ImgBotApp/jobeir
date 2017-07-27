@@ -11,6 +11,7 @@ export const SERVER_SEARCH_JOBS_FAILURE = 'SERVER_SEARCH_JOBS_FAILURE';
 export const RESET_JOBS = 'RESET_JOBS';
 
 export const initialState = {
+  count: 0,
   postings: [],
   isFetching: false,
   isUpdating: false,
@@ -30,7 +31,8 @@ export default (state = initialState, action = {}) => {
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
-        postings: action.payload.data.postings
+        count: action.payload.data.count,
+        postings: [...state.postings, ...action.payload.data.postings]
       });
     case SEARCH_JOBS_FAILURE:
     case SERVER_SEARCH_JOBS_FAILURE:
