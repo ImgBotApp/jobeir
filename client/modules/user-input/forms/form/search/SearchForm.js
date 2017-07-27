@@ -132,7 +132,7 @@ class SearchForm extends Component {
 
   formSubmit(data) {
     const queryData = {
-      q: data.title.value,
+      q: data.title && data.title.value,
       l: data.location,
       lat: data.coordinates[0],
       lng: data.coordinates[1]
