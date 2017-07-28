@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import { Link } from 'react-router';
 import moment from 'moment';
 
-const JobsSearchListItem = ({ posting }) => {
+const JobsSearchPosting = ({ posting }) => {
   return (
-    <JobsSearchListItemContainer>
-      <JobsSearchListItemTop>
+    <JobsSearchPostingContainer>
+      <JobsSearchPostingTop>
         <div>
-          <JobsSearchListItemTitle>
+          <JobsSearchPostingTitle>
             {posting.title}
-          </JobsSearchListItemTitle>
-          <JobsSearchListItemSubTitle>
+          </JobsSearchPostingTitle>
+          <JobsSearchPostingSubTitle>
             <span>
               {posting.company.displayName}
               {' in '}
@@ -21,29 +21,29 @@ const JobsSearchListItem = ({ posting }) => {
               {posting.location.address.short_administrative_area_level_1},{' '}
               {posting.location.address.country}
             </span>
-          </JobsSearchListItemSubTitle>
+          </JobsSearchPostingSubTitle>
         </div>
-        <JobsSearchListItemLogo src={posting.company.logo} alt="" />
-      </JobsSearchListItemTop>
-      <JobsSearchListItemCompanyProduct>
+        <JobsSearchPostingLogo src={posting.company.logo} alt="" />
+      </JobsSearchPostingTop>
+      <JobsSearchPostingCompanyProduct>
         {posting.company.product}
-      </JobsSearchListItemCompanyProduct>
-      <JobsSearchListItemBottom>
-        <JobsSearchListItemType>
+      </JobsSearchPostingCompanyProduct>
+      <JobsSearchPostingBottom>
+        <JobsSearchPostingType>
           {posting.employmentType}, ${posting.salaryMax / 1000}K {' - '}${posting.salaryMin / 1000}K
-        </JobsSearchListItemType>
-        <JobsSearchListItemDate>
+        </JobsSearchPostingType>
+        <JobsSearchPostingDate>
           {moment(posting.createdAt).fromNow()}
-        </JobsSearchListItemDate>
-      </JobsSearchListItemBottom>
+        </JobsSearchPostingDate>
+      </JobsSearchPostingBottom>
       <StyledLink to={`/jobs/${posting._id}`} />
-    </JobsSearchListItemContainer>
+    </JobsSearchPostingContainer>
   );
 };
 
-export default JobsSearchListItem;
+export default JobsSearchPosting;
 
-const JobsSearchListItemContainer = styled.div`
+const JobsSearchPostingContainer = styled.div`
   position: relative;
   max-width: 700px;
   margin: 0 auto;
@@ -66,31 +66,31 @@ const StyledLink = styled(Link)`
   cursor: pointer;
 `;
 
-const JobsSearchListItemTop = styled.div`
+const JobsSearchPostingTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
 `;
-const JobsSearchListItemBottom = styled.div`
+const JobsSearchPostingBottom = styled.div`
   display: flex;
   justify-content: space-between;
   color: #8f8f8f;
 `;
 
-const JobsSearchListItemTitle = styled.h2`
+const JobsSearchPostingTitle = styled.h2`
   font-size: 2rem;
   font-weight: 900;
   margin-bottom: 10px;
 `;
 
-const JobsSearchListItemSubTitle = styled.p`
+const JobsSearchPostingSubTitle = styled.p`
   font-size: 1rem;
   font-weight: 400;
   opacity: 0.7;
 `;
 
-const JobsSearchListItemLogo = styled.img`
+const JobsSearchPostingLogo = styled.img`
   height: 35px;
   border-radius: 100%;
   vertical-align: middle;
@@ -99,11 +99,11 @@ const JobsSearchListItemLogo = styled.img`
   align-self: flex-start;
 `;
 
-const JobsSearchListItemType = styled.div`display: flex;`;
+const JobsSearchPostingType = styled.div`display: flex;`;
 
-const JobsSearchListItemDate = styled.div``;
+const JobsSearchPostingDate = styled.div``;
 
-const JobsSearchListItemCompanyProduct = styled.p`
+const JobsSearchPostingCompanyProduct = styled.p`
   line-height: 1.5;
   margin-bottom: 20px;
   color: #6a6666;

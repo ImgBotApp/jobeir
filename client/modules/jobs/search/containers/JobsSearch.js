@@ -8,9 +8,12 @@ import { shouldGetJobs, searchJobs, resetJobs } from '../ducks/';
 import queryString from 'query-string';
 import SearchForm from '../../../user-input/forms/form/search/SearchForm';
 import InfiniteScroll from 'react-infinite-scroller';
-import JobsSearchList from './JobsSearchList';
-import JobsSearchListItem from '../components/JobsSearchListItem';
+import JobsSearchPosting from '../components/JobsSearchPosting';
 
+/**
+ * Loading jobs from the server on initial load. This will SSR the first
+ * jobs posts and allow infinite scroll to do the rest
+ */
 @asyncConnect([
   {
     promise: ({ store: { dispatch, getState }, helpers: { req } }) => {
@@ -26,19 +29,21 @@ class JobsSearch extends Component {
   constructor(props) {
     super(props);
     this.state = { hasMore: true };
+
+    this.loadMoreJobs = this.loadMoreJobs.bind(this);
   }
 
   componentDidMount() {
     const { dispatch, jobs: { isLoaded }, query } = this.props;
     const queryData = queryString.stringify(query);
 
+    // Only load jobs on mount if the jobs haven't been rendered
     if (!isLoaded) {
       dispatch(searchJobs(queryData));
     }
   }
 
   componentWillUnmount() {
-    console.log('fired componentWillUnmount');
     this.props.dispatch(resetJobs());
   }
 
@@ -49,7 +54,7 @@ class JobsSearch extends Component {
       query
     } = this.props;
     const currentStart = parseInt(query.start, 10) || 0;
-    const queryData = queryString.stringify(query);
+    // Creating a new updated query with the correct start position
     const updatedQuery = queryString.stringify({
       l: query.l,
       q: query.q,
@@ -58,7 +63,10 @@ class JobsSearch extends Component {
       lng: query.lng
     });
 
-    console.log({ currentStart, count });
+    /**
+     * Setting state to now load more job postings if there are no more
+     * postings to retrieve from the server
+     */
     if (currentStart + 15 > count) {
       return this.setState({ hasMore: false });
     }
@@ -69,22 +77,31 @@ class JobsSearch extends Component {
     }
   }
 
-  render() {
-    var items = [];
-
+  /**
+   * buildJobPostings
+   * <InfiniteScroll /> expects an array of React elements to be passed as
+   * children so we have to create an array and push all the job postings
+   * items into it. This will render the list within the UI
+   */
+  buildJobPostings() {
+    let items = [];
     this.props.jobs.postings.map(posting => {
-      items.push(<JobsSearchListItem key={Math.random()} posting={posting} />);
+      items.push(<JobsSearchPosting key={posting._id} posting={posting} />);
     });
 
+    return items;
+  }
+
+  render() {
     return (
       <JobsSearchContainer>
         <InfiniteScroll
           pageStart={0}
-          loadMore={this.loadMoreJobs.bind(this)}
+          loadMore={this.loadMoreJobs}
           hasMore={this.state.hasMore}
           loader={<div className="loader">Loading ...</div>}
         >
-          {items}
+          {this.buildJobPostings()}
         </InfiniteScroll>
       </JobsSearchContainer>
     );
