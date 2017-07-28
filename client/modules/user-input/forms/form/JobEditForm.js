@@ -24,7 +24,7 @@ import {
 } from '../../inputs/input';
 import { jobOptions } from '../options/jobs';
 import { FormListRemoveIcon } from '../../../../icons/';
-import { updateJob } from '../../../create/job/ducks/';
+import { updateJob } from '../../../account/create/job/ducks/';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 const jobTypes = [

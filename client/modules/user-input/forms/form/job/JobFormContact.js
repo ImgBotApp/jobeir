@@ -7,7 +7,7 @@ import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { BackButton, Text, Select, SubmitButton } from '../../../inputs/input';
 import { email, required, url } from '../../../validation';
-import { createJob } from '../../../../create/job/ducks';
+import { createJob } from '../../../../account/create/job/ducks';
 import { FormListRemoveIcon } from '../../../../../icons/';
 
 const renderEmailFields = ({

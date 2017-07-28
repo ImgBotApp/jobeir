@@ -14,7 +14,7 @@ import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { BackButton, SubmitButton, Text } from '../../../inputs/input';
 import { required } from '../../../validation';
-import { createCompany } from '../../../../create/company/ducks';
+import { createCompany } from '../../../../account/create/company/ducks';
 import CompanyFormLocationEdit from './CompanyFormLocationEdit';
 import Autocomplete from '../../../autocomplete/Autocomplete';
 

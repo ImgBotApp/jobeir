@@ -28,8 +28,8 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/auth/reset/containers/Reset');
   require('../modules/auth/password/containers/Password');
   require('../modules/account/shell/containers/Shell');
-  require('../modules/create/step/containers/Step');
-  require('../modules/create/step/containers/StepComplete');
+  require('../modules/account/create/step/containers/Step');
+  require('../modules/account/create/step/containers/StepComplete');
   require('../modules/account/jobs/containers/Jobs');
   require('../modules/account/jobs/posting/containers/Posting');
   require('../modules/account/company/containers/Company');
@@ -116,7 +116,10 @@ const routes = (
       path="/create/:create/:step(/:companyId)"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('../modules/create/step/containers/Step').default);
+          cb(
+            null,
+            require('../modules/account/create/step/containers/Step').default
+          );
         });
       }}
     />
@@ -126,7 +129,8 @@ const routes = (
         require.ensure([], require => {
           cb(
             null,
-            require('../modules/create/step/containers/StepComplete').default
+            require('../modules/account/create/step/containers/StepComplete')
+              .default
           );
         });
       }}

@@ -14,7 +14,7 @@ import {
   SubmitButton
 } from '../../../inputs/input';
 import { required } from '../../../validation';
-import { createJob } from '../../../../create/job/ducks';
+import { createJob } from '../../../../account/create/job/ducks';
 
 const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
 // const parsePercent = value =>

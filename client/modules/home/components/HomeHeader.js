@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import HomeSearch from '../containers/HomeSearch';
+import HomeSearch from './HomeSearch';
 
 const HomeHeader = () =>
   <Header>

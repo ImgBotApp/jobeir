@@ -13,7 +13,7 @@ import {
   Text,
   Textarea
 } from '../../../inputs/input';
-import { checkCompany } from '../../../../create/company/ducks';
+import { checkCompany } from '../../../../account/create/company/ducks';
 import debounce from 'lodash/debounce';
 
 const companySizeOptions = [

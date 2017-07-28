@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { updateJobFilter } from '../../../create/job/ducks/';
+import { updateJobFilter } from '../../../account/create/job/ducks/';
 
 class JobsFilter extends Component {
   handleFilterClick(state) {

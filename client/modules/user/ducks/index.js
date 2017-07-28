@@ -18,7 +18,7 @@ export const SWITCH_ACTIVE_COMPANY_FAILURE = 'SWITCH_ACTIVE_COMPANY_FAILURE';
 
 import { AUTH_SUCCESS } from '../../auth/ducks';
 
-import { CREATE_COMPANY_SUCCESS } from '../../create/company/ducks';
+import { CREATE_COMPANY_SUCCESS } from '../../account/create/company/ducks';
 
 export const initialState = {
   companies: {

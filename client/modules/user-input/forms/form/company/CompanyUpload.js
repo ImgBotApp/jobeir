@@ -7,7 +7,7 @@ import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { BackButton, SubmitButton, Upload } from '../../../inputs/input';
 import { required } from '../../../validation';
-import { uploadCompanyLogo } from '../../../../create/company/ducks/';
+import { uploadCompanyLogo } from '../../../../account/create/company/ducks/';
 
 class CompanyLogo extends Component {
   constructor(props) {

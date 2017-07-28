@@ -10,9 +10,9 @@ import { routerReducer as routing } from 'react-router-redux';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
 
 import auth from '../../modules/auth/ducks';
-import accountCompanies from '../../modules/create/company/ducks';
+import accountCompanies from '../../modules/account/create/company/ducks';
 import intl from '../intl/';
-import accountJobs from '../../modules/create/job/ducks';
+import accountJobs from '../../modules/account/create/job/ducks';
 import searchJobs from '../../modules/jobs/search/ducks';
 import posting from '../../modules/jobs/posting/ducks/';
 import location from '../location/';

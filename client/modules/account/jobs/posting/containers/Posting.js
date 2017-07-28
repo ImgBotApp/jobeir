@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getJob, deleteJob } from '../../../../create/job/ducks/';
+import { getJob, deleteJob } from '../../../../account/create/job/ducks/';
 import JobEditForm from '../../../../user-input/forms/form/JobEditForm';
 import PostingPreview from '../components/PostingPreview';
 import PostingHeader from '../components/PostingHeader';

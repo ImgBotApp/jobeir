@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * /icons/index.js
+ * Used to contain all our required SVG imports. Each SVG can have its
+ * width, height, and className set for customization.
+ */
 export const BackpackIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
