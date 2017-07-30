@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
@@ -9,33 +10,23 @@ import {
   BackButton,
   Currency,
   Percentage,
-  Text,
   Radio,
   SubmitButton
 } from '../../../inputs/input';
 import { required } from '../../../validation';
-import { createJob } from '../../../../account/create/job/ducks';
 
-const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
-// const parsePercent = value =>
-// parseInt(value.toString().replace(/%/g, ''), 10) / 100;
-// const formatPercentage = value => value * 100;
+const parseNumber = (value: number): number =>
+  parseInt(value.toString().replace(/\D/g, ''), 10);
 
-const yesNoOptions = [
+const yesNoOptions: Array<{ text: string, value: string }> = [
   { text: 'Yes', value: 'Yes' },
   { text: 'No', value: 'No' }
 ];
 
 class JobFormComponesation extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  formSubmit(data) {
+  formSubmit = (): void => {
     this.props.nextPage();
-  }
+  };
 
   render() {
     const { handleSubmit, jobs, offersEquity, prevPage } = this.props;

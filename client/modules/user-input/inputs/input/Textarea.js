@@ -1,10 +1,15 @@
+// @flow
 import React from 'react';
-import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
+import InputWrapper from '../components/InputWrapper';
 
-export const Textarea = props => {
+export const Textarea = (props: {
+  input: { value: string, onChange: Function, name: string },
+  meta: { touched: boolean, error: boolean, invalid: boolean },
+  placeholder: string
+}) => {
   const { meta } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+  const showError: boolean = meta.touched && meta.error && meta.invalid;
 
   return (
     <InputWrapper {...props}>
@@ -30,10 +35,13 @@ const TextareaInput = styled.textarea`
   max-width: ${props => props.theme.textarea.maxWidth};
   min-height: ${props => props.theme.textarea.minHeight};
   line-height: 1.5;
-  
+
   &:active,
   &:focus {
-    border-color: ${props => (props.showError ? props.theme.error.color : props.theme.textarea.activeBorderColor)};
+    border-color: ${props =>
+      props.showError
+        ? props.theme.error.color
+        : props.theme.textarea.activeBorderColor};
     outline: none;
   }
 
@@ -45,13 +53,13 @@ const TextareaInput = styled.textarea`
   :-moz-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
-    opacity:  1;
+    opacity: 1;
     line-height: 1.5;
   }
   ::-moz-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
-    opacity:  1;
+    opacity: 1;
     line-height: 1.5;
   }
   :-ms-input-placeholder {

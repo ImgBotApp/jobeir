@@ -1,11 +1,16 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import MaskedInput from 'react-text-mask';
 import InputWrapper from '../components/InputWrapper';
 
-export const Phone = props => {
+export const Phone = (props: {
+  input: { value: string, onChange: Function, name: string },
+  meta: { touched: boolean, error: boolean, invalid: boolean },
+  placeholder: string
+}) => {
   const { meta } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+  const showError: boolean = meta.touched && meta.error && meta.invalid;
 
   return (
     <InputWrapper {...props}>
@@ -31,7 +36,7 @@ export const Phone = props => {
           /\d/,
           /\d/,
           /\d/,
-          /\d/,
+          /\d/
         ]}
       />
     </InputWrapper>
@@ -49,7 +54,10 @@ const StyledMaskedInput = styled(MaskedInput)`
 
   &:active,
   &:focus {
-    border-color:  ${props => (props.showError ? props.theme.error.color : props.theme.input.activeBorderColor)};
+    border-color:  ${props =>
+      props.showError
+        ? props.theme.error.color
+        : props.theme.input.activeBorderColor};
   }
 
   ::-webkit-input-placeholder {

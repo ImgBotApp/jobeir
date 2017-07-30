@@ -1,11 +1,15 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
-export const InputError = props => {
-  if (!props.meta) return null;
-
+const InputError = (props: {
+  meta: { touched: boolean, error: boolean, invalid: boolean }
+}) => {
   const { meta } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+
+  if (!meta) return null;
+
+  const showError: boolean = meta.touched && meta.error && meta.invalid;
 
   return (
     <InputErrorContainer>

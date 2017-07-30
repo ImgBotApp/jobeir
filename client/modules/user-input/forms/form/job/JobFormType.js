@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -5,11 +6,9 @@ import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { required } from '../../../validation';
-import { BackButton, Radio, Select, SubmitButton } from '../../../inputs/input';
+import { BackButton, Radio, SubmitButton } from '../../../inputs/input';
 
-const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
-
-const jobTypes = [
+const jobTypes: Array<{ name: string, value: string }> = [
   { name: 'Full-time', value: 'Full-time' },
   { name: 'Part-time', value: 'Part-time' },
   { name: 'Contractor', value: 'Contractor' },
@@ -18,23 +17,25 @@ const jobTypes = [
   { name: 'Volunteer', value: 'Volunteer' }
 ];
 
-const yesNoOptions = [
+const yesNoOptions: Array<{ text: string, value: string }> = [
   { text: 'Yes', value: 'Yes' },
   { text: 'No', value: 'No' }
 ];
 
 class JobFormType extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
   buildLocationsDropdown() {
     const { companies, params } = this.props;
-    const activeCompany = companies.created.find(
-      comp => comp._id === params.companyId
-    );
+    const activeCompany: {
+      locations: Array<{
+        address: {
+          unit: string,
+          street_number: string,
+          route: string,
+          locality: string,
+          country: string
+        }
+      }>
+    } = companies.created.find(comp => comp._id === params.companyId);
 
     return (
       activeCompany &&
@@ -57,9 +58,9 @@ class JobFormType extends Component {
     );
   }
 
-  formSubmit() {
+  formSubmit = (): void => {
     this.props.nextPage();
-  }
+  };
 
   render() {
     const { handleSubmit, jobs, prevPage } = this.props;

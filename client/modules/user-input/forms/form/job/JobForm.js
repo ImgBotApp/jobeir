@@ -1,34 +1,28 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { Field, reduxForm } from 'redux-form';
 import JobFormAbout from './JobFormAbout';
 import JobFormType from './JobFormType';
 import JobFormCompensation from './JobFormCompensation';
 import JobFormContact from './JobFormContact';
 
 class JobForm extends Component {
-  constructor(props) {
-    super(props);
-    this.nextPage = this.nextPage.bind(this);
-    this.prevPage = this.prevPage.bind(this);
-  }
-
-  nextPage(path) {
+  nextPage = (path: string): void => {
     browserHistory.push(path);
-  }
+  };
 
-  prevPage(path) {
+  prevPage = (path: string): void => {
     browserHistory.push(path);
-  }
+  };
 
   render() {
     const { params, pathname } = this.props;
     // brute coded for now, need to cleanup this logic.
-    const about = `/create/job/about/${params.companyId}`;
-    const type = `/create/job/type/${params.companyId}`;
-    const compensation = `/create/job/compensation/${params.companyId}`;
-    const contact = `/create/job/contact/${params.companyId}`;
+    const about: string = `/create/job/about/${params.companyId}`;
+    const type: string = `/create/job/type/${params.companyId}`;
+    const compensation: string = `/create/job/compensation/${params.companyId}`;
+    const contact: string = `/create/job/contact/${params.companyId}`;
 
     return (
       <div>

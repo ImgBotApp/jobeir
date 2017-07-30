@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -7,6 +8,13 @@ import AutocompleteResult from './AutocompleteResult';
 import AutocompleteLogo from './AutocompleteLogo';
 
 class Autocomplete extends Component {
+  state: {
+    predictions: Array<{}>,
+    isSearching: boolean,
+    show: boolean,
+    selectedIndex: number
+  };
+
   constructor(props) {
     super(props);
 
@@ -23,17 +31,10 @@ class Autocomplete extends Component {
 
       service.getPlacePredictions({ input, types }, this.displaySuggestions);
     }, 500).bind(this);
-
-    this.handleTyping = this.handleTyping.bind(this);
-    this.getDetailsByPlaceId = this.getDetailsByPlaceId.bind(this);
-    this.displaySuggestions = this.displaySuggestions.bind(this);
-    this.handlePlaceDetails = this.handlePlaceDetails.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
   }
 
   componentDidMount() {
-    const inputField = document.getElementById(this.props.id);
+    const inputField: HTMLElement = document.getElementById(this.props.id);
 
     inputField.addEventListener('focus', this.handleFocus);
     inputField.addEventListener('blur', this.handleBlur);
@@ -41,20 +42,31 @@ class Autocomplete extends Component {
   }
 
   componentWillUnmount() {
-    const inputField = document.getElementById(this.props.id);
+    const inputField: HTMLElement = document.getElementById(this.props.id);
 
     inputField.removeEventListener('focus', this.handleFocus);
     inputField.removeEventListener('blur', this.handleBlur);
     inputField.removeEventListener('keydown', this.handleTyping);
   }
 
-  handleTyping(event) {
+  getDetailsByPlaceId = (placeId: string) => {
+    const emptyDiv = document.createElement('div');
+    const service = new google.maps.places.PlacesService(emptyDiv);
+
+    service.getDetails({ placeId }, this.handlePlaceDetails);
+  };
+
+  handleTyping = (event: {
+    preventDefault: Function,
+    which: number,
+    target: { value: string }
+  }) => {
     const { isSearching, predictions, selectedIndex } = this.state;
-    const lastResult = predictions.length - 1;
-    const inputValue = event.target.value;
-    const upArrow = event.which === 38;
-    const downARrow = event.which === 40;
-    const enter = event.which === 13;
+    const lastResult: number = predictions.length - 1;
+    const inputValue: string = event.target.value;
+    const upArrow: boolean = event.which === 38;
+    const downARrow: boolean = event.which === 40;
+    const enter: boolean = event.which === 13;
 
     // move the selected list item up
     if (upArrow) {
@@ -87,32 +99,31 @@ class Autocomplete extends Component {
     if (inputValue) {
       this.debouncedSerach(inputValue);
     }
-  }
+  };
 
-  getDetailsByPlaceId(placeId) {
-    const emptyDiv = document.createElement('div');
-    const service = new google.maps.places.PlacesService(emptyDiv);
-
-    service.getDetails({ placeId }, this.handlePlaceDetails);
-  }
-
-  displaySuggestions(predictions, status) {
+  displaySuggestions = (predictions, status) => {
     if (status != google.maps.places.PlacesServiceStatus.OK) {
       alert(status);
       return;
     }
 
     this.setState({ predictions, isSearching: !this.state.isSearching });
-  }
+  };
 
-  handlePlaceDetails(place, status) {
+  handlePlaceDetails = (
+    place: {
+      address: { address_components: Array<string> },
+      geometry: { location: { lat: Function, lng: Function } }
+    },
+    status: string
+  ) => {
     const { dispatch, formName } = this.props;
 
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
 
-      const componentForm = {
+      const componentForm: {} = {
         street_number: 'short_name',
         route: 'long_name',
         locality: 'long_name',
@@ -122,7 +133,7 @@ class Autocomplete extends Component {
         postal_code: 'short_name'
       };
 
-      const location = {
+      const location: { address: {}, coordinates: Array<number> } = {
         address: {
           unit: '',
           street_number: '',
@@ -170,15 +181,15 @@ class Autocomplete extends Component {
     }
 
     this.setState({ predictions: [] });
-  }
+  };
 
-  handleBlur() {
+  handleBlur = () => {
     this.setState({ show: false });
-  }
+  };
 
-  handleFocus() {
+  handleFocus = () => {
     this.setState({ show: true });
-  }
+  };
 
   render() {
     const { isSearching, show, predictions, selectedIndex } = this.state;
@@ -193,17 +204,15 @@ class Autocomplete extends Component {
         {isSearching
           ? <AutocompleteSearching>Searching Address...</AutocompleteSearching>
           : <div>
-              {predictions.map((prediction, index) => {
-                return (
-                  <AutocompleteResult
-                    key={prediction.id}
-                    prediction={prediction}
-                    selected={selectedIndex === index}
-                    fetchPlaceId={() =>
-                      this.getDetailsByPlaceId(prediction.place_id)}
-                  />
-                );
-              })}
+              {predictions.map((prediction, index) =>
+                <AutocompleteResult
+                  key={prediction.id}
+                  prediction={prediction}
+                  selected={selectedIndex === index}
+                  fetchPlaceId={() =>
+                    this.getDetailsByPlaceId(prediction.place_id)}
+                />
+              )}
             </div>}
         <AutocompleteLogo />
       </AutocompleteList>

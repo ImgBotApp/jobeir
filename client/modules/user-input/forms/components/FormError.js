@@ -1,15 +1,17 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
-export const FormError = props => {
-  return (
-    <FormErrorContainer>
-      {props.formErrors.map(error => {
-        return <div key={error.error}>{error.message}</div>;
-      })}
-    </FormErrorContainer>
-  );
-};
+export const FormError = (props: {
+  formErrors: Array<{ error: string, message: string }>
+}) =>
+  <FormErrorContainer>
+    {props.formErrors.map(error =>
+      <div key={error.error}>
+        {error.message}
+      </div>
+    )}
+  </FormErrorContainer>;
 
 export default FormError;
 
@@ -21,7 +23,8 @@ const FormErrorContainer = styled.div`
   border-radius: 3px;
   text-align: center;
   margin-bottom: 1.5rem;
-  position: ${props => (props.theme.error.position === 'absolute' ? 'absolute' : 'relative')};
+  position: ${props =>
+    props.theme.error.position === 'absolute' ? 'absolute' : 'relative'};
   width: ${props => props.theme.error.width};
 `;
 

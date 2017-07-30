@@ -1,14 +1,15 @@
-export default function(minLength) {
-  return function(value) {
+// @flow
+export default function(minLength: number): Function {
+  return function validateLength(value: { blocks: Array<{}> }): string {
     if (!value) {
       return '';
     }
 
-    const totalLength = value.blocks.reduce(
-      (prev, curr) => prev + curr.text.length,
-      0,
+    const totalLength: number = value.blocks.reduce(
+      (prev: number, curr) => prev + curr.text.length,
+      0
     );
-    const thisManyMoreChars = minLength - totalLength;
+    const thisManyMoreChars: number = minLength - totalLength;
 
     return totalLength >= minLength
       ? ''

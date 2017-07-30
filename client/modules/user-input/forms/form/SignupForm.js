@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -5,23 +6,17 @@ import FormWrapper from '../containers/FormWrapper';
 import FormRow from '../components/FormRow';
 import { Email, Password, SubmitButton, Text } from '../../inputs/input/';
 import { email, minLength, required } from '../../validation';
-import { signup, login } from '../../../auth/ducks';
+import { signup } from '../../../auth/ducks';
 import { queryParams } from '../../../../utils/queryParams';
 
 class SignupForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  formSubmit(data) {
+  formSubmit = (data: {}): void => {
     const { dispatch } = this.props;
-    const nextValue = queryParams(window.location.search).next;
-    const redirectPathname = nextValue ? nextValue : '/account/jobs';
+    const nextValue: string = queryParams(window.location.search).next;
+    const redirectPathname: string = nextValue || '/account/jobs';
 
     dispatch(signup(data, redirectPathname));
-  }
+  };
 
   render() {
     return (

@@ -1,7 +1,4 @@
-export default function(errorString) {
+// @flow
+export default function(errorString: string): string {
   return errorString ? '' : 'This field is required';
-
-  return function(value) {
-    return value ? (errorString ? errorString : 'This field is required') : '';
-  };
 }

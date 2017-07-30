@@ -1,21 +1,21 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
 // check if there are any form errors
-const isDisabled = (errors = []) => {
-  return errors.length >= 1;
-};
+const isDisabled = (errors: Array<{}> = []): boolean => errors.length >= 1;
 
-export const SubmitButton = props => {
-  return (
-    <Button
-      type="submit"
-      disabled={props.disabled || isDisabled(props.formErrors)}
-    >
-      {props.buttonText || 'Submit'}
-    </Button>
-  );
-};
+export const SubmitButton = (props: {
+  disabled: boolean,
+  buttonText: string,
+  formErrors: Array<{}>
+}) =>
+  <Button
+    type="submit"
+    disabled={props.disabled || isDisabled(props.formErrors)}
+  >
+    {props.buttonText || 'Submit'}
+  </Button>;
 
 const Button = styled.button`
   border-radius: ${props => props.theme.button.borderRadius};

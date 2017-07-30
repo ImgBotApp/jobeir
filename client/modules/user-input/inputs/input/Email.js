@@ -1,9 +1,13 @@
+// @flow
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
-import styled from 'styled-components';
 import { Input } from './Input';
 
-export const Email = props => {
+export const Email = (props: {
+  input: { value: string, onChange: Function, name: string },
+  meta: { touched: boolean, error: boolean, invalid: boolean },
+  placeholder: string
+}) => {
   const { meta } = props;
   const showError = meta.touched && meta.error && meta.invalid;
 

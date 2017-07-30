@@ -1,10 +1,17 @@
+// @flow
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 import { Input } from './Input';
 
-export const Text = props => {
+export const Text = (props: {
+  input: { value: string, onChange: Function, name: string },
+  meta: { touched: boolean, error: boolean, invalid: boolean },
+  placeholder: string,
+  autoFocus?: boolean,
+  autocomplete?: boolean
+}) => {
   const { meta } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+  const showError: boolean = meta.touched && meta.error && meta.invalid;
 
   return (
     <InputWrapper {...props}>
@@ -20,4 +27,9 @@ export const Text = props => {
       />
     </InputWrapper>
   );
+};
+
+Text.defaultProps = {
+  autoFocus: false,
+  autocomplete: false
 };

@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -7,18 +8,12 @@ import { required, minLength } from '../../validation';
 import { password as passwordUpdate } from '../../../auth/ducks';
 
 class PasswordForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  formSubmit(data) {
+  formSubmit = (data: { confirmPassword: string, password: string }): void => {
     const { dispatch, resetPasswordToken } = this.props;
     const { confirmPassword, password } = data;
 
     dispatch(passwordUpdate(resetPasswordToken, confirmPassword, password));
-  }
+  };
 
   render() {
     return (

@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -7,17 +8,11 @@ import { email, required } from '../../validation';
 import { login } from '../../../auth/ducks';
 
 class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  formSubmit(data) {
+  formSubmit = (data: { email: string, password: string }): void => {
     const { email, password } = data;
 
     this.props.dispatch(login(email, password));
-  }
+  };
 
   render() {
     return (
@@ -51,11 +46,11 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.session.auth,
+  auth: state.session.auth
 });
 
 LoginForm = reduxForm({
-  form: 'login',
+  form: 'login'
 })(LoginForm);
 
 export default connect(mapStateToProps)(LoginForm);

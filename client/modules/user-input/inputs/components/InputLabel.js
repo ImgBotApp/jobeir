@@ -1,15 +1,13 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
-export const InputLabel = props => {
-  return (
-    <LabelContainer>
-      <label htmlFor={props.input.name}>
-        {props.label}
-      </label>
-    </LabelContainer>
-  );
-};
+const InputLabel = (props: { input: { name: string }, label: string }) =>
+  <LabelContainer>
+    <label htmlFor={props.input.name}>
+      {props.label}
+    </label>
+  </LabelContainer>;
 
 export default InputLabel;
 

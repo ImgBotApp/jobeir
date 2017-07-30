@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -7,15 +8,9 @@ import { email, required } from '../../validation';
 import { reset } from '../../../auth/ducks';
 
 class ResetForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  formSubmit(data) {
+  formSubmit = (data: { email: string }): void => {
     this.props.dispatch(reset(data.email));
-  }
+  };
 
   render() {
     return (

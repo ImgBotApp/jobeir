@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
@@ -8,25 +9,34 @@ import styled from 'styled-components';
  * font-weight, unmatched are bold, and secondary text is a
  * lighter grey.
 */
-const PrimaryText = ({ prediction }) => {
+const PrimaryText = (props: {
+  prediction: {
+    structured_formatting: {
+      main_text: string,
+      main_text_matched_substrings: Array<{ offset: number, length: number }>
+    }
+  }
+}) => {
   const {
     main_text,
     main_text_matched_substrings
-  } = prediction.structured_formatting;
+  } = props.prediction.structured_formatting;
 
   /**
    * When there's only a single matched string the parsing is simpler
    * since there will always be a start, matched, and end.
    */
   if (main_text_matched_substrings.length === 1) {
-    const obj = main_text_matched_substrings[0];
-    const currentOffset = obj.offset;
-    const currentLength = obj.offset + obj.length;
+    const obj: { offset: number, length: number } =
+      main_text_matched_substrings[0];
+
+    const currentOffset: number = obj.offset;
+    const currentLength: number = obj.offset + obj.length;
 
     // remember, bold means unmatched/autocompleted string
-    const boldStart = main_text.substring(0, currentOffset);
-    const regular = main_text.substring(currentOffset, currentLength);
-    const boldEnd = main_text.substring(currentOffset + currentLength);
+    const boldStart: string = main_text.substring(0, currentOffset);
+    const regular: string = main_text.substring(currentOffset, currentLength);
+    const boldEnd: string = main_text.substring(currentOffset + currentLength);
 
     return (
       <ListItemPrimaryText>
@@ -41,24 +51,25 @@ const PrimaryText = ({ prediction }) => {
         </TextBold>
       </ListItemPrimaryText>
     );
-  } else {
-    /**
-     * Where there are multiple matched strings we have to look over them
-     * and build the dropdown item accordingly
-     */
-    const weights = main_text_matched_substrings.map((obj, index, array) => {
-      const currentOffset = obj.offset;
-      const currentLength = obj.offset + obj.length;
-      const nextOffset =
+  }
+  /**
+   * Where there are multiple matched strings we have to look over them
+   * and build the dropdown item accordingly
+   */
+  const weights: Array<{
+    regular: string,
+    bold: string
+  }> = main_text_matched_substrings.map(
+    (obj: { offset: number, length: number }, index: number) => {
+      const currentOffset: number = obj.offset;
+      const currentLength: number = obj.offset + obj.length;
+      const nextOffset: number =
         main_text_matched_substrings[index + 1] &&
         main_text_matched_substrings[index + 1].offset;
-      const nextLength =
-        main_text_matched_substrings[index + 1] &&
-        main_text_matched_substrings[index + 1].length;
-      const currentNextDifference = nextOffset - currentLength;
+      const currentNextDifference: number = nextOffset - currentLength;
 
-      const regular = main_text.substring(currentOffset, currentLength);
-      const bold = Number.isNaN(currentNextDifference)
+      const regular: string = main_text.substring(currentOffset, currentLength);
+      const bold: string = Number.isNaN(currentNextDifference)
         ? main_text.substring(currentLength)
         : main_text.substring(
             currentLength + currentOffset,
@@ -66,43 +77,49 @@ const PrimaryText = ({ prediction }) => {
           );
 
       return { bold, regular };
-    });
+    }
+  );
 
-    return (
-      <ListItemPrimaryText>
-        {weights.map(weight =>
-          <ListItemPrimaryTextInner key={weight.regular}>
-            <span>
-              {weight.regular}
-            </span>
-            <TextBold>
-              {weight.bold}
-            </TextBold>
-          </ListItemPrimaryTextInner>
-        )}
-      </ListItemPrimaryText>
-    );
-  }
+  return (
+    <ListItemPrimaryText>
+      {weights.map(weight =>
+        <ListItemPrimaryTextInner key={weight.regular}>
+          <span>
+            {weight.regular}
+          </span>
+          <TextBold>
+            {weight.bold}
+          </TextBold>
+        </ListItemPrimaryTextInner>
+      )}
+    </ListItemPrimaryText>
+  );
 };
 
 // Used usually to define the City, Province and Country.
-const SecondaryText = ({ text }) => {
-  return (
-    <ListItemSecondaryText>
-      {text}
-    </ListItemSecondaryText>
-  );
-};
+const SecondaryText = (props: { text: string }) =>
+  <ListItemSecondaryText>
+    {props.text}
+  </ListItemSecondaryText>;
 
-const SeperatorText = () => {
-  return (
-    <ListItemSpace>
-      {', '}
-    </ListItemSpace>
-  );
-};
+const SeperatorText = () =>
+  <ListItemSpace>
+    {', '}
+  </ListItemSpace>;
 
-export const AutocompleteResult = ({ prediction, fetchPlaceId, selected }) => {
+/**
+ * <AutocompleteResult />
+ * Builds  the autocomplete result list item. This is looped over and creates
+ * each text list item within the dropdown of the autocomplete input
+ * @param {*} props 
+ */
+export const AutocompleteResult = (props: {
+  prediction: {},
+  fetchPlaceId: Function,
+  selected: boolean
+}) => {
+  const { prediction, fetchPlaceId, selected } = props;
+
   return (
     <ListItem onClick={fetchPlaceId} selected={selected}>
       <PrimaryText prediction={prediction} />

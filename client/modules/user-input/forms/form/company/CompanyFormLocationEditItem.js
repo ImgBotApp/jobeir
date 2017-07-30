@@ -1,50 +1,84 @@
+// @flow
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import FormThemes from '../../../themes';
-import { Field, reduxForm, change } from 'redux-form';
+import { Field } from 'redux-form';
 import FormRow from '../../components/FormRow';
 import { PostalCode, Text } from '../../../inputs/input';
 import { PencilIcon, ExIcon } from '../../../../../icons/';
 
+const AddressTheme = {
+  input: {
+    borderRadius: '3px',
+    border: 'solid 1px #babbbb',
+    padding: '10px',
+    fontSize: '14px',
+    width: '100%',
+    margin: '0 auto 0.5rem',
+    activeBorderColor: 'rgba(0,0,0,0.85)',
+    ph: {
+      color: '#afafaf'
+    }
+  },
+  inputWrapper: {
+    marginBottom: '0.5rem'
+  },
+  label: {
+    display: 'block',
+    marginBottom: '3px',
+    fontSize: '14px'
+  }
+};
+
 class CompanyFormLocationEdit extends Component {
+  state: {
+    showManualAddressInputs: boolean
+  };
+
   constructor(props) {
     super(props);
 
     this.state = { showManualAddressInputs: false };
-    this.handleEditClick = this.handleEditClick.bind(this);
-    this.handleRemoveClick = this.handleRemoveClick.bind(this);
   }
 
-  handleEditClick() {
+  handleEditClick = (): void => {
     this.setState({
       showManualAddressInputs: !this.state.showManualAddressInputs
     });
-  }
+  };
 
-  handleRemoveClick() {
+  handleRemoveClick = (): void => {
     const { index, fields } = this.props;
     fields.remove(index);
     this.handleEditClick();
-  }
+  };
 
   renderPrettyAddress() {
-    const { location, locations, index } = this.props;
-    const currentLocation = locations[index].address;
+    const { locations, index } = this.props;
+    const currentLocation: {
+      unit: string,
+      street_number: string,
+      locality: string,
+      route: string,
+      country: string,
+      postal_code: string
+    } =
+      locations[index].address;
 
     if (!currentLocation) return null;
 
     return (
       <div>
         <AddressFirstLine>
-          {currentLocation.unit && <span>{currentLocation.unit} {' - '}</span>}
-          {currentLocation.street_number}{' '}
-          {currentLocation.route},{' '}
+          {currentLocation.unit &&
+            <span>
+              {currentLocation.unit} {' - '}
+            </span>}
+          {currentLocation.street_number} {currentLocation.route},{' '}
           {currentLocation.locality}
         </AddressFirstLine>
         <AddressSecondLine>
           {currentLocation.administrative_area_level_1},{' '}
-          {currentLocation.country},{' '}
-          {currentLocation.postal_code}
+          {currentLocation.country}, {currentLocation.postal_code}
         </AddressSecondLine>
       </div>
     );
@@ -144,29 +178,6 @@ class CompanyFormLocationEdit extends Component {
 
 export default CompanyFormLocationEdit;
 
-const AddressTheme = {
-  input: {
-    borderRadius: '3px',
-    border: 'solid 1px #babbbb',
-    padding: '10px',
-    fontSize: '14px',
-    width: '100%',
-    margin: '0 auto 0.5rem',
-    activeBorderColor: 'rgba(0,0,0,0.85)',
-    ph: {
-      color: '#afafaf'
-    }
-  },
-  inputWrapper: {
-    marginBottom: '0.5rem'
-  },
-  label: {
-    display: 'block',
-    marginBottom: '3px',
-    fontSize: '14px'
-  }
-};
-
 const AddressItem = styled.li`
   position: relative;
   display: flex;
@@ -193,16 +204,13 @@ const AddressItemClick = styled.div`
   cursor: pointer;
 
   &:hover {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0, 0, 0, 0.05);
   }
 `;
 
-const AddressItemLeft = styled.div`
-  flex: 1;
-`;
+const AddressItemLeft = styled.div`flex: 1;`;
 
-const AddressItemRight = styled.div`
-`;
+const AddressItemRight = styled.div``;
 
 const AddressFirstLine = styled.div`
   font-weight: 800;
@@ -210,8 +218,7 @@ const AddressFirstLine = styled.div`
   margin-bottom: 5px;
 `;
 
-const AddressSecondLine = styled.div`
-`;
+const AddressSecondLine = styled.div``;
 
 const AddressFormTop = styled.div`
   display: flex;
@@ -236,6 +243,6 @@ const AddresRemoveButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: rgba(0,0,0,0.08);
+    background: rgba(0, 0, 0, 0.08);
   }
 `;

@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
-import InputWrapper from '../components/InputWrapper';
+// @flow
+import React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
+import InputWrapper from '../components/InputWrapper';
 
 /**
  * SelectSearch
  */
-export const SelectSearch = props => {
+export const SelectSearch = (props: {
+  input: { value: string, onChange: Function, name: string },
+  meta: { touched: boolean, error: boolean, invalid: boolean },
+  placeholder: string
+}) => {
   const { meta } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+  const showError: boolean = meta.touched && meta.error && meta.invalid;
 
   /**
    * Small workaround when integrating react-select with redux-form:

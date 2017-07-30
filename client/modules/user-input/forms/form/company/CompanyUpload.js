@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
@@ -6,33 +7,25 @@ import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { BackButton, SubmitButton, Upload } from '../../../inputs/input';
-import { required } from '../../../validation';
 import { uploadCompanyLogo } from '../../../../account/create/company/ducks/';
 
 class CompanyLogo extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-    this.handleOnDrop = this.handleOnDrop.bind(this);
-  }
-
-  formSubmit() {
+  formSubmit = (): void => {
     browserHistory.push(`/complete/company/${this.props.params.companyId}`);
-  }
+  };
 
-  handleOnDrop(files) {
+  handleOnDrop = (files: Array<{}>): void => {
     const { dispatch, params } = this.props;
-    const file = files[0];
+    const file: {} = files[0];
     const formData = new FormData();
     formData.append('logo', file);
 
     dispatch(uploadCompanyLogo(formData, params.companyId));
-  }
+  };
 
-  handleExit() {
+  handleExit = (): void => {
     browserHistory.push('/account/jobs');
-  }
+  };
 
   render() {
     const { companies, handleSubmit } = this.props;

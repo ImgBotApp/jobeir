@@ -1,34 +1,50 @@
+// @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
 import Dropzone from 'react-dropzone';
 import { UploadIcon } from '../../../../icons/';
 
+const activeStyle = {
+  borderColor: '#5C6AC4'
+};
+
+/**
+ * <Upload />
+ * Used to upload static files, specifically company logos to the backend
+ * and process all information required. Using Dropzone for better UX
+ * and easier implementation.
+ * 
+ * We are passing the handler functions down into this component instead
+ * of declaring them within this upload function. This is on purpose. It
+ * makes it more customizable depending on the form requirements.
+ */
 export class Upload extends Component {
-  constructor(props) {
+  state: {
+    preview: string,
+    name: string
+  };
+
+  constructor(props: {}) {
     super(props);
-    this.handleDropAccepted = this.handleDropAccepted.bind(this);
-    this.handleDropRejected = this.handleDropRejected.bind(this);
     this.state = {
       preview: '',
       name: ''
     };
   }
 
-  handleDropAccepted(files) {
+  handleDropAccepted = (files: Array<{ preview: string, name: string }>) => {
     this.setState({
       preview: files[0].preview,
       name: files[0].name
     });
-  }
+  };
 
-  handleDropRejected(files) {
+  handleDropRejected = (files: Array<{ preview: string, name: string }>) => {
     console.log(files);
-  }
+  };
 
   render() {
-    const files = this.props.input.value;
     const { name, preview } = this.state;
 
     return (
@@ -63,10 +79,6 @@ export class Upload extends Component {
     );
   }
 }
-
-const activeStyle = {
-  borderColor: '#5C6AC4'
-};
 
 const StyledDropzone = styled(Dropzone)`
   display: ${props => props.theme.dropzone.display};
@@ -119,9 +131,7 @@ const DropZoneButton = styled.div`
   margin-bottom: 10px;
 `;
 
-const DropZoneButtonText = styled.div`
-  margin-left: 10px;
-`;
+const DropZoneButtonText = styled.div`margin-left: 10px;`;
 
 const DropZoneImgContainer = styled.div`
   display: flex;

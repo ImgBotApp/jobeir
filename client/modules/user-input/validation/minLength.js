@@ -1,5 +1,6 @@
-export default function(minLength) {
-  return function(value) {
+// @flow
+export default function(minLength: number): Function {
+  return function validateMinLength(value: string): string {
     if (!value) {
       return '';
     }

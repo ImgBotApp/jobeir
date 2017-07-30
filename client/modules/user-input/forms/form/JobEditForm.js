@@ -1,22 +1,14 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import {
-  change,
-  Field,
-  FieldArray,
-  formValueSelector,
-  reduxForm
-} from 'redux-form';
+import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
-import FormHeader from '../components/FormHeader';
-import FormFooter from '../components/FormFooter';
 import FormRow from '../components/FormRow';
 import { email, required, wysiwygLength } from '../../validation';
 import {
   Currency,
   Radio,
-  Select,
   SelectSearch,
   Text,
   Wysiwyg,
@@ -26,8 +18,10 @@ import { jobOptions } from '../options/jobs';
 import { FormListRemoveIcon } from '../../../../icons/';
 import { updateJob } from '../../../account/create/job/ducks/';
 
-const parseNumber = value => parseInt(value.toString().replace(/\D/g, ''), 10);
-const jobTypes = [
+const parseNumber = (value: number): number =>
+  parseInt(value.toString().replace(/\D/g, ''), 10);
+
+const jobTypes: Array<{ name: string, value: string }> = [
   { name: 'Full-time', value: 'Full-time' },
   { name: 'Part-time', value: 'Part-time' },
   { name: 'Contractor', value: 'Contractor' },
@@ -35,14 +29,13 @@ const jobTypes = [
   { name: 'Intern', value: 'Intern' },
   { name: 'Volunteer', value: 'Volunteer' }
 ];
-const yesNoOptions = [
+
+const yesNoOptions: Array<{ text: string, value: string }> = [
   { text: 'Yes', value: 'Yes' },
   { text: 'No', value: 'No' }
 ];
-const renderEmailFields = ({
-  fields,
-  meta: { touched, error, submitFailed }
-}) =>
+
+const renderEmailFields = ({ fields }) =>
   <FormListWrapper>
     {fields.map(renderFields)}
     <FormListButton onClick={() => fields.push({})}>
@@ -66,14 +59,8 @@ const renderFields = (member, index, fields) =>
   </FormListItem>;
 
 class JobEditFrom extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
   buildLocationsDropdown() {
-    const { companies, params } = this.props;
+    const { companies } = this.props;
     const activeCompany = companies.created.find(
       comp => comp._id === companies.activeCompany._id
     );
@@ -99,12 +86,12 @@ class JobEditFrom extends Component {
     );
   }
 
-  formSubmit(data) {
+  formSubmit = (data): void => {
     const { dispatch, companies, params } = this.props;
-    const title = data.title.value;
-    const body = { ...data, title };
+    const title: string = data.title.value;
+    const body: {} = { ...data, title };
     dispatch(updateJob(companies.activeCompany._id, params.jobId, body));
-  }
+  };
 
   render() {
     const { handleSubmit, offersEquity, jobs } = this.props;

@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -14,15 +15,9 @@ import {
 import { jobOptions } from '../../options/jobs';
 
 class JobFormabout extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  formSubmit() {
+  formSubmit = (): void => {
     this.props.nextPage();
-  }
+  };
 
   render() {
     const { activeCompany, handleSubmit, jobs } = this.props;

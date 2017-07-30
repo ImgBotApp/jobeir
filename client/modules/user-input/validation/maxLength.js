@@ -1,5 +1,6 @@
-export default function(maxLength) {
-  return function(value) {
+// @flow
+export default function(maxLength: number): Function {
+  return function validateLength(value: string): string {
     if (!value) {
       return '';
     }

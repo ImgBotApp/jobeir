@@ -1,12 +1,13 @@
+// @flow
 import React from 'react';
-import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
+import InputWrapper from '../components/InputWrapper';
 
 /**
  * An internal error handler to make sure we always pass
  * the Select component Field an array of options
  */
-const handlePropsError = options => {
+const handlePropsError = (options: Array<{}>) => {
   if (!options && !Array.isArray(options)) {
     throw new Error(
       'Select component requires an array of options passed as an options prop'
@@ -14,9 +15,13 @@ const handlePropsError = options => {
   }
 };
 
-export const Select = props => {
+export const Select = (props: {
+  input: { value: string, onChange: Function, name: string },
+  meta: { touched: boolean, error: boolean, invalid: boolean },
+  placeholder: string
+}) => {
   const { meta } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+  const showError: boolean = meta.touched && meta.error && meta.invalid;
 
   handlePropsError(props.options);
 
@@ -36,9 +41,10 @@ export const Select = props => {
              * option input fields. To do so, the object must be JSON (a string)
              * to be stored within the HTML elelent
              */
-            const val = typeof option.value === 'object'
-              ? JSON.stringify(option.value)
-              : option.value;
+            const val =
+              typeof option.value === 'object'
+                ? JSON.stringify(option.value)
+                : option.value;
 
             return (
               <OptionInput
@@ -79,7 +85,7 @@ const SelectInput = styled.select`
   margin: ${props => props.theme.select.margin};
   max-width: ${props => props.theme.select.maxWidth};
   color: ${props => (props.visited ? 'rgba(0,0,0,0.85)' : '#989898')};
-  
+
   &:active,
   &:focus {
     border-color: ${props =>
@@ -112,5 +118,6 @@ const SelectArrow = () =>
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M7 10l5 5 5-5z" /><path d="M0 0h24v24H0z" fill="none" />
+    <path d="M7 10l5 5 5-5z" />
+    <path d="M0 0h24v24H0z" fill="none" />
   </svg>;

@@ -1,10 +1,23 @@
+// @flow
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
 
-export const Radio = props => {
+export const Radio = (props: {
+  type: string,
+  row?: string,
+  rowWidth?: number,
+  options: Array<{
+    value: string,
+    text?: string,
+    name?: string
+  }>,
+  input: { value: string, onChange: Function, name: string },
+  meta: { touched: boolean, error: boolean, invalid: boolean },
+  placeholder: string
+}) => {
   const { meta, ...rest } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+  const showError: boolean = meta.touched && meta.error && meta.invalid;
 
   if (props.type === 'yes/no') {
     return (
@@ -41,13 +54,13 @@ export const Radio = props => {
              * option input fields. To do so, the object must be JSON (a string)
              * to be stored within the HTML elelent
              */
-            const val =
+            const val: string =
               typeof option.value === 'object'
                 ? JSON.stringify(option.value)
                 : option.value;
 
             // allowing re-assignment of the value if it's address input
-            let checked = val === props.input.value;
+            let checked: boolean = val === props.input.value;
             if (
               props.meta.form === 'job-edit' &&
               props.input.name === 'address'
@@ -87,6 +100,11 @@ export const Radio = props => {
   throw new Error(
     'Remember to pass the prop "type" to Radio as list or yes/no'
   );
+};
+
+Radio.defaultProps = {
+  rowWidth: undefined,
+  row: 'full'
 };
 
 const RadioContainer = styled.div`display: flex;`;

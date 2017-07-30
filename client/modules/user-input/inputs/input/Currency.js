@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import MaskedInput from 'react-text-mask';
@@ -5,12 +6,16 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import InputWrapper from '../components/InputWrapper';
 
 const numberMask = createNumberMask({
-  prefix: '$',
+  prefix: '$'
 });
 
-export const Currency = props => {
+export const Currency = (props: {
+  input: { value: string, onChange: Function, name: string },
+  meta: { touched: boolean, error: boolean, invalid: boolean },
+  placeholder: string
+}) => {
   const { meta } = props;
-  const showError = meta.touched && meta.error && meta.invalid;
+  const showError: boolean = meta.touched && meta.error && meta.invalid;
 
   return (
     <InputWrapper {...props}>
@@ -38,7 +43,10 @@ const StyledMaskedInput = styled(MaskedInput)`
 
   &:active,
   &:focus {
-    border-color:  ${props => (props.showError ? props.theme.error.color : props.theme.input.activeBorderColor)};
+    border-color:  ${props =>
+      props.showError
+        ? props.theme.error.color
+        : props.theme.input.activeBorderColor};
   }
 
   ::-webkit-input-placeholder {

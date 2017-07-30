@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
@@ -6,11 +7,13 @@ import styled from 'styled-components';
  * back buttons within the main application forms
  */
 class FormFooter extends Component {
-  constructor(props) {
+  state: {
+    isOverlapped: boolean
+  };
+
+  constructor(props: any) {
     super(props);
     this.state = { isOverlapped: false };
-
-    this.calculateOverlap = this.calculateOverlap.bind(this);
   }
 
   componentDidMount() {
@@ -24,11 +27,19 @@ class FormFooter extends Component {
     window.removeEventListener('resize', this.calculateOverlap, true);
   }
 
-  calculateOverlap() {
-    const form = document.querySelector('.Form').getBoundingClientRect();
-    const footer = document
-      .querySelector('.FormFooter')
-      .getBoundingClientRect();
+  calculateOverlap = () => {
+    const form: {
+      top: number,
+      left: number,
+      right: number,
+      bottom: number
+    } = document.querySelector('.Form').getBoundingClientRect();
+    const footer: {
+      top: number,
+      left: number,
+      right: number,
+      bottom: number
+    } = document.querySelector('.FormFooter').getBoundingClientRect();
 
     const isOverlapped = !(
       form.right < footer.left ||
@@ -38,7 +49,7 @@ class FormFooter extends Component {
     );
 
     this.setState({ isOverlapped });
-  }
+  };
 
   render() {
     const { children, isUpload } = this.props;

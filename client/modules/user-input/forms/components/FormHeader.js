@@ -1,15 +1,13 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
-export const FormHeader = props => {
-  return (
-    <FormHeaderContainer>
-      <Header>
-        {props.text}
-      </Header>
-    </FormHeaderContainer>
-  );
-};
+const FormHeader = (props: { text: string }) =>
+  <FormHeaderContainer>
+    <Header>
+      {props.text}
+    </Header>
+  </FormHeaderContainer>;
 
 export default FormHeader;
 

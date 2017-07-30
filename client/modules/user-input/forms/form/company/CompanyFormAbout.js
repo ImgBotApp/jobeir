@@ -1,22 +1,16 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
+import debounce from 'lodash/debounce';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
-import { required, maxLength } from '../../../validation';
-import {
-  Radio,
-  Select,
-  SubmitButton,
-  Text,
-  Textarea
-} from '../../../inputs/input';
 import { checkCompany } from '../../../../account/create/company/ducks';
-import debounce from 'lodash/debounce';
+import { Radio, SubmitButton, Text, Textarea } from '../../../inputs/input';
+import { required, maxLength } from '../../../validation';
 
-const companySizeOptions = [
+const companySizeOptions: Array<{ name: string, value: string }> = [
   { name: '1 - 9', value: '1 - 9' },
   { name: '10 - 49', value: '10 - 49' },
   { name: '50 - 149', value: '50 - 149' },
@@ -26,22 +20,15 @@ const companySizeOptions = [
 ];
 
 class CompanyFormStepOne extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleCheckCompany = debounce(this.handleCheckCompany, 400).bind(this);
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  handleCheckCompany() {
+  handleCheckCompany = debounce(() => {
     const { companyName, dispatch } = this.props;
 
     if (companyName) dispatch(checkCompany(companyName));
-  }
+  }, 400);
 
-  formSubmit() {
+  formSubmit = () => {
     this.props.nextPage();
-  }
+  };
 
   render() {
     const { handleSubmit, companies } = this.props;

@@ -1,24 +1,31 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import InputWrapper from '../components/InputWrapper';
 import { change } from 'redux-form';
 import { Editor } from 'react-draft-wysiwyg';
-import {
-  EditorState,
-  ContentState,
-  convertFromRaw,
-  convertToRaw
-} from 'draft-js';
+import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import styled from 'styled-components';
+import InputWrapper from '../components/InputWrapper';
 import { wysiwig } from '../../themes/wysiwig-theme';
 
 /**
- * Wysiwyg
+ * <Wysiwyg />
  * Based on Draft JS, a third party react component pulled in to
  * be used to allow users to write a company description within
  * the job and company process.
  */
 class WysiwygForm extends Component {
+  state: {
+    editorState: {},
+    rawEditorState: string
+  };
+
+  /**
+   * Before anythign is handled we have to initiate the state with the desired
+   * values. Here is where we set the initial values from the backend or simply
+   * create the a blank form.
+   * @param {*} props 
+   */
   constructor(props) {
     super(props);
     const { input, initialValues } = props;
@@ -40,21 +47,10 @@ class WysiwygForm extends Component {
       editorState = EditorState.createEmpty();
     }
 
-    this.state = { editorState };
-
-    this.handleClick = this.handleClick.bind(this);
-    this.onEditorStateChange = this.onEditorStateChange.bind(this);
+    this.state = { editorState, rawEditorState: '' };
   }
 
-  /**
-   * Used to fake making the Editor seem bigger than it is because
-   * the styling does not play very well with styled-components
-   */
-  handleClick() {
-    this.Editor.focusEditor();
-  }
-
-  onEditorStateChange(editorState) {
+  onEditorStateChange = (editorState): void => {
     const { dispatch, meta } = this.props;
     const rawEditorState = JSON.stringify(
       convertToRaw(editorState.getCurrentContent())
@@ -62,11 +58,19 @@ class WysiwygForm extends Component {
 
     dispatch(change(meta.form, 'descriptionRaw', rawEditorState));
     this.setState({ editorState });
-  }
+  };
+
+  /**
+   * Used to fake making the Editor seem bigger than it is because
+   * the styling does not play very well with styled-components
+   */
+  handleClick = (): void => {
+    this.Editor.focusEditor();
+  };
 
   render() {
     const { meta, input } = this.props;
-    const showError = meta.touched && meta.error && meta.invalid;
+    const showError: boolean = meta.touched && meta.error && meta.invalid;
 
     return (
       <InputWrapper {...this.props}>

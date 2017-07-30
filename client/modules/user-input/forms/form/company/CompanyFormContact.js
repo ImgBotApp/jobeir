@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
@@ -10,23 +11,17 @@ import {
   Email,
   Phone,
   SubmitButton,
-  Text,
-  Upload
+  Text
 } from '../../../inputs/input';
 import { email, required, phoneNumber, url } from '../../../validation';
 
-const parsePhone = value => value.toString().replace(/\D/g, '');
+const parsePhone = (value: number): string =>
+  value.toString().replace(/\D/g, '');
 
 class CompanyFormStepTwo extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  formSubmit() {
+  formSubmit = () => {
     this.props.nextPage();
-  }
+  };
 
   render() {
     const { companies, companyName, handleSubmit, prevPage } = this.props;

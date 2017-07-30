@@ -1,33 +1,20 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import {
-  Field,
-  FieldArray,
-  formValueSelector,
-  reduxForm,
-  change,
-  arrayPush
-} from 'redux-form';
+import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { BackButton, SubmitButton, Text } from '../../../inputs/input';
-import { required } from '../../../validation';
 import { createCompany } from '../../../../account/create/company/ducks';
 import CompanyFormLocationEdit from './CompanyFormLocationEdit';
 import Autocomplete from '../../../autocomplete/Autocomplete';
 
 class CompanyFormStepThree extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  formSubmit(data) {
+  formSubmit = (data: {}): void => {
     this.props.dispatch(createCompany(data, '/create/company/upload'));
-  }
+  };
 
   render() {
     const { companies, handleSubmit, locations, prevPage } = this.props;

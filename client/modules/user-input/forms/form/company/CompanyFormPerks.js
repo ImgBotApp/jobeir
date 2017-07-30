@@ -1,12 +1,11 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
-import { required } from '../../../validation';
 import { BackButton, Checkbox, SubmitButton } from '../../../inputs/input';
-import { jobOptions } from '../../options/jobs';
 import {
   BabyFaceIcon,
   BeerGlassIcon,
@@ -53,15 +52,9 @@ const perkOptions = [
 ];
 
 class CompanyFormPerks extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  formSubmit() {
+  formSubmit = (): void => {
     this.props.nextPage();
-  }
+  };
 
   render() {
     const { handleSubmit, companies, prevPage } = this.props;

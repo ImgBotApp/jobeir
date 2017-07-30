@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import InputLabel from './InputLabel';
@@ -8,15 +9,12 @@ import InputError from './InputError';
  * a utility to enable streamlined labeling, styling,
  * and error handling
  */
-export const InputWrapper = props => {
-  return (
-    <InputWrapperContainer ui={props.ui}>
-      {props.label && <InputLabel {...props} />}
-      {props.children}
-      <InputError {...props} />
-    </InputWrapperContainer>
-  );
-};
+const InputWrapper = (props: { label: string, children: any }) =>
+  <InputWrapperContainer ui={props.ui}>
+    {props.label && <InputLabel {...props} />}
+    {props.children}
+    <InputError {...props} />
+  </InputWrapperContainer>;
 
 export default InputWrapper;
 
@@ -26,6 +24,7 @@ export default InputWrapper;
  * ui an object
  */
 const InputWrapperContainer = styled.div`
-  max-width: ${props => (props.ui && props.ui.maxWidth) || props.theme.input.maxWidth};
+  max-width: ${props =>
+    (props.ui && props.ui.maxWidth) || props.theme.input.maxWidth};
   margin-bottom: ${props => props.theme.inputWrapper.marginBottom || '1rem'};
 `;
