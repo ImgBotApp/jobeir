@@ -1,9 +1,12 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import UserWrapper from '../../../../user/containers/UserWrapper';
 
-const StepComplete = props => {
+const StepComplete = (props: {
+  params: { create: string, companyId: string }
+}) => {
   const { params } = props;
 
   return (

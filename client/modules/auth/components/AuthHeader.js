@@ -1,13 +1,13 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
-export const AuthHeader = props => (
+export const AuthHeader = (props: { text: string }) =>
   <AuthHeaderContainer>
     <AuthHeaderHeader>
       {props.text}
     </AuthHeaderHeader>
-  </AuthHeaderContainer>
-);
+  </AuthHeaderContainer>;
 
 export default AuthHeader;
 

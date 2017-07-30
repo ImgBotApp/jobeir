@@ -1,11 +1,11 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
-export const AuthPage = props => (
+export const AuthPage = (props: { children: any }) =>
   <AuthPageContainer>
     {props.children}
-  </AuthPageContainer>
-);
+  </AuthPageContainer>;
 
 export default AuthPage;
 

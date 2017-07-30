@@ -1,9 +1,16 @@
+// @flow
 /* eslint-disable react/no-danger */
 import React from 'react';
 import Helmet from 'react-helmet';
 import serverConfig from '../../../../server/config/config';
 
-const Html = ({ css, assets, state, content }) => {
+const Html = (props: {
+  css: {},
+  assets: Array<string>,
+  state: {},
+  content: string
+}) => {
+  const { css, assets, state, content } = props;
   const helmet = Helmet.rewind();
   const attrs = helmet.htmlAttributes.toComponent();
 

@@ -1,14 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StepBackground = props => {
-  return (
-    <div>
-      <StepBackgroundLeft />
-      <StepBackgroundRight />
-    </div>
-  );
-};
+const StepBackground = () =>
+  <div>
+    <StepBackgroundLeft />
+    <StepBackgroundRight />
+  </div>;
 
 // Keep these here as a todo task
 // <BlueBall>

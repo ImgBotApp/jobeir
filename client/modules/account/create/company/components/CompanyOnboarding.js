@@ -1,32 +1,30 @@
+// @flow
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { updateUser } from '../../../../user/ducks';
 
-const agreeToValues = props => {
+const agreeToValues = (props: { user: string }) => {
   const { dispatch, user } = props;
   const data = { agreedToValues: true };
 
   dispatch(updateUser(user._id, data, '/create/company/about'));
 };
 
-const CompanyOnboarding = props => {
-  return (
-    <div>
-      <Header>Our values</Header>
-      <Text>
-        At -company name- we believe in equal opportunity employment and no
-        discrimination against any applicants.
-      </Text>
-      <Text>
-        By continuing you agree to not to discriminate against any job applicant
-        because of race, color, religion, national origin, sex, physical or
-        mental disability, or age
-      </Text>
-      <AgreeLink onClick={() => agreeToValues(props)}>I Agree</AgreeLink>
-    </div>
-  );
-};
+const CompanyOnboarding = props =>
+  <div>
+    <Header>Our values</Header>
+    <Text>
+      At -company name- we believe in equal opportunity employment and no
+      discrimination against any applicants.
+    </Text>
+    <Text>
+      By continuing you agree to not to discriminate against any job applicant
+      because of race, color, religion, national origin, sex, physical or mental
+      disability, or age
+    </Text>
+    <AgreeLink onClick={() => agreeToValues(props)}>I Agree</AgreeLink>
+  </div>;
 
 const mapStateToProps = state => ({
   user: state.session.user

@@ -1,9 +1,8 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
-const StepSideBar = props => {
-  return <StepSidebarContainer>Sidebar</StepSidebarContainer>;
-};
+const StepSideBar = () => <StepSidebarContainer>Sidebar</StepSidebarContainer>;
 
 export default StepSideBar;
 

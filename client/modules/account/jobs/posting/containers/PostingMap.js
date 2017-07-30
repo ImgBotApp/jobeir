@@ -1,14 +1,16 @@
+// @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { lightTheme } from '../../../../../maps/styles/';
+import lightTheme from '../../../../../maps/styles/';
 
 class PostingMap extends Component {
   componentDidMount() {
     this.renderMap(this.props.activePosting.location.coordinates);
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate(nextProps: {
+    activePosting: { descriptionRaw: string }
+  }) {
     if (
       nextProps.activePosting.descriptionRaw !==
       this.props.activePosting.descriptionRaw
@@ -17,8 +19,8 @@ class PostingMap extends Component {
     }
   }
 
-  renderMap(coordinates) {
-    const mapSelector = document.getElementById('map');
+  renderMap(coordinates: { lng: number, lat: number }) {
+    const mapSelector: Document = document.getElementById('map');
 
     const [lng, lat] = coordinates;
     const position = { lat, lng };

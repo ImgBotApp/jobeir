@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// @flow
+import React from 'react';
 import styled from 'styled-components';
 import CompanyOnboarding from '../../company/components/CompanyOnboarding';
 import CompanyForm from '../../../../user-input/forms/form/company/CompanyForm';
@@ -12,7 +12,7 @@ import JobForm from '../../../../user-input/forms/form/job/JobForm';
  * with the current user. If not, we will ask them to create
  * a new company and then post a job
  */
-const StepForm = props => {
+const StepForm = (props: { params: { create: string, step: string } }) => {
   const { params } = props;
   const isCompany = params.create === 'company';
   const isJob = params.create === 'job';

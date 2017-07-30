@@ -1,14 +1,15 @@
+// @flow
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
-import IntlWrapper from '../../intl/containers/IntlWrapper';
-import routes from '../../../routes';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
+import IntlWrapper from '../../intl/containers/IntlWrapper';
+import routes from '../../../routes';
 
-export default function App(props) {
+export default function App(props: { store: {} }) {
   const { store } = props;
-  const history = syncHistoryWithStore(browserHistory, store);
+  const history: {} = syncHistoryWithStore(browserHistory, store);
 
   /**
    * key={Math.random()} within the Router removes the error message

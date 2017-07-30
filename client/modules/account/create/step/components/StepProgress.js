@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
@@ -11,7 +12,7 @@ const createCompany = ['about', 'contact', 'perks', 'location', 'upload'];
  * far the user has gotten through the application. This is required to
  * build the step progress indicator.
  */
-const getFormStepDetails = params => {
+const getFormStepDetails = (params: { create: string, step: string }) => {
   switch (params.create) {
     case 'job':
       return {
@@ -24,12 +25,16 @@ const getFormStepDetails = params => {
         index: createCompany.indexOf(params.step)
       };
     default:
-      return 0;
+      throw new Error(
+        'Make sure the params are named property for getFormStepDetails() '
+      );
   }
 };
 
-const StepProgress = props => {
-  const formStep = getFormStepDetails(props.params);
+const StepProgress = (props: { params: {} }) => {
+  const formStep: { steps: Array<string>, index: number } = getFormStepDetails(
+    props.params
+  );
 
   return (
     <StepProgressContainer>

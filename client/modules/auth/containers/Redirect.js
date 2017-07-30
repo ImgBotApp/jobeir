@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { browserHistory } from 'react-router';
@@ -12,8 +13,9 @@ class Redirect extends Component {
      * to redirect users using oauth
      */
     if (typeof document !== 'undefined') {
-      const redirectTo = docCookies.getItem('redirectTo');
+      const redirectTo: string = docCookies.getItem('redirectTo');
       docCookies.removeItem('redirectTo');
+
       // default redirect is /account/jobs
       browserHistory.push(redirectTo || '/account/jobs');
     }

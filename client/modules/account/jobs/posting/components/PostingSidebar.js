@@ -1,14 +1,12 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import PostingMap from '../containers/PostingMap';
 
-const PostingSidebar = ({ activePosting }) => {
-  return (
-    <PostingSidebarContainer>
-      <PostingMap activePosting={activePosting} />
-    </PostingSidebarContainer>
-  );
-};
+const PostingSidebar = (props: { activePosting: {} }) =>
+  <PostingSidebarContainer>
+    <PostingMap activePosting={props.activePosting} />
+  </PostingSidebarContainer>;
 
 export default PostingSidebar;
 

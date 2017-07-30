@@ -1,13 +1,17 @@
+// @flow
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import { signup } from '../../ducks/';
 import SignupForm from '../../../user-input/forms/form/SignupForm';
 import AuthOAuth from '../../components/AuthOAuth';
 import AuthPage from '../../components/AuthPage';
 import AuthHeader from '../../components/AuthHeader';
 
 class Signup extends Component {
+  state: {
+    signupWithEmail: boolean
+  };
+
   state = { signupWithEmail: false };
 
   render() {

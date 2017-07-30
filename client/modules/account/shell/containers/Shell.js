@@ -1,8 +1,8 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import ShellHeader from '../components/ShellHeader';
-import ShellNav from './ShellNav';
 import UserWrapper from '../../../user/containers/UserWrapper';
 
 /**
@@ -22,25 +22,20 @@ import UserWrapper from '../../../user/containers/UserWrapper';
  *      </ShellDynamic>
  *
  */
-class Shell extends Component {
-  render() {
-    const { children, params } = this.props;
+const Shell = (props: { children: any, params: {} }) => {
+  const { children, params } = props;
 
-    return (
-      <ShellContainer>
-        <ShellContent>
-          {
-            //<ShellNav params={params} />
-          }
-          <ShellHeader headerText={children.props.route.name} params={params} />
-          <ShellDynamic>
-            {children}
-          </ShellDynamic>
-        </ShellContent>
-      </ShellContainer>
-    );
-  }
-}
+  return (
+    <ShellContainer>
+      <ShellContent>
+        <ShellHeader headerText={children.props.route.name} params={params} />
+        <ShellDynamic>
+          {children}
+        </ShellDynamic>
+      </ShellContent>
+    </ShellContainer>
+  );
+};
 
 const mapStateToProps = state => ({
   user: state.session.user,

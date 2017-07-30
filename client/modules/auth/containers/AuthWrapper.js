@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../ducks';
@@ -19,7 +20,7 @@ export const AuthWrapper = WrappedComponent => {
       }
     }
 
-    handleCheckAuth(isAuthenticated) {
+    handleCheckAuth(isAuthenticated: boolean) {
       const { dispatch, location } = this.props;
 
       /**

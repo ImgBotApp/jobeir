@@ -2,13 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import PrimaryNav from '../../nav/primary-nav/containers/PrimaryNav';
 
-const Header = () => {
-  return (
-    <HeaderContainer>
-      <PrimaryNav />
-    </HeaderContainer>
-  );
-};
+const Header = () =>
+  <HeaderContainer>
+    <PrimaryNav />
+  </HeaderContainer>;
 
 export default Header;
 

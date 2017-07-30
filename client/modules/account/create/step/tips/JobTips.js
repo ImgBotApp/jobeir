@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import {
@@ -8,7 +9,7 @@ import {
   MailIcon
 } from '../../../../../icons/';
 
-const JobTips = step => {
+const JobTips = (step: string) => {
   switch (step) {
     case 'about':
       return (

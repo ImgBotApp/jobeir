@@ -1,9 +1,33 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import moment from 'moment';
 
-const JobsSearchPosting = ({ posting }) => {
+const JobsSearchPosting = (props: {
+  posting: {
+    title: string,
+    company: {
+      displayName: string,
+      product: string,
+      logo: string
+    },
+    location: {
+      address: {
+        locality: string,
+        short_administrative_area_level_1: string,
+        country: string
+      }
+    },
+    _id: string,
+    employmentType: string,
+    salaryMax: number,
+    salaryMin: number,
+    createdAt: string
+  }
+}) => {
+  const { posting } = props;
+
   return (
     <JobsSearchPostingContainer>
       <JobsSearchPostingTop>

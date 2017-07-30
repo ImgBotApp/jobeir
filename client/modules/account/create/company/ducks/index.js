@@ -1,8 +1,9 @@
+// @flow
 import {
   GET_USER_SUCCESS,
-  SERVER_GET_USER_SUCCESS
+  SERVER_GET_USER_SUCCESS,
+  SWITCH_ACTIVE_COMPANY_SUCCESS
 } from '../../../../user/ducks/';
-import { SWITCH_ACTIVE_COMPANY_SUCCESS } from '../../../../user/ducks/';
 
 export const CHECK_COMPANY_REQUEST = 'CHECK_COMPANY_REQUEST';
 export const CHECK_COMPANY_SUCCESS = 'CHECK_COMPANY_SUCCESS';
@@ -20,7 +21,15 @@ export const UPLOAD_COMPANY_LOGO_REQUEST = 'UPLOAD_COMPANY_LOGO_REQUEST';
 export const UPLOAD_COMPANY_LOGO_SUCCESS = 'UPLOAD_COMPANY_LOGO_SUCCESS';
 export const UPLOAD_COMPANY_LOGO_FAILURE = 'UPLOAD_COMPANY_LOGO_FAILURE';
 
-export const initialState = {
+export const initialState: {
+  isLoading: boolean,
+  isChecking: boolean,
+  isUploading: boolean,
+  successfulUpload: boolean,
+  activeCompany: {},
+  created: [],
+  errors: []
+} = {
   isLoading: false,
   isChecking: false,
   isUploading: false,
@@ -30,7 +39,7 @@ export const initialState = {
   errors: []
 };
 
-export default (state = initialState, action = {}) => {
+export default (state?: {} = initialState, action?: {} = {}) => {
   switch (action.type) {
     case GET_USER_SUCCESS:
     case SERVER_GET_USER_SUCCESS:
@@ -99,22 +108,22 @@ export default (state = initialState, action = {}) => {
   }
 };
 
-export const createCompany = (data, redirectPathname) => ({
+export const createCompany = (data: {}, redirectPathname: string) => ({
   type: CREATE_COMPANY_REQUEST,
   payload: { data, redirectPathname }
 });
 
-export const checkCompany = data => ({
+export const checkCompany = (data: {}) => ({
   type: CHECK_COMPANY_REQUEST,
   payload: { data }
 });
 
-export const updateCompany = data => ({
+export const updateCompany = (data: {}) => ({
   type: UPDATE_COMPANY_REQUEST,
   payload: { data }
 });
 
-export const uploadCompanyLogo = (formData, companyId) => ({
+export const uploadCompanyLogo = (formData: {}, companyId: string) => ({
   type: UPLOAD_COMPANY_LOGO_REQUEST,
   payload: { formData, companyId }
 });

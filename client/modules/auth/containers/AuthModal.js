@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import ModalWrapper from '../../modal/components/ModalWrapper';
@@ -6,13 +7,23 @@ import LoginForm from '../../user-input/forms/form/LoginForm';
 import AuthOAuth from '../components/AuthOAuth';
 
 class AuthModal extends Component {
-  state = {
-    showLoginForm: false,
-    signupWithEmail: false
+  state: {
+    showLoginForm: boolean,
+    signupWithEmail: boolean
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showLoginForm: false,
+      signupWithEmail: false
+    };
+  }
 
   renderSignup() {
     const { signupWithEmail } = this.state;
+
     return (
       <div>
         {signupWithEmail ? <SignupForm /> : <AuthOAuth />}
@@ -66,9 +77,7 @@ class AuthModal extends Component {
 
 export default AuthModal;
 
-const AuthModalBody = styled.div`
-  min-width: 500px;
-`;
+const AuthModalBody = styled.div`min-width: 500px;`;
 
 const AuthModalHeader = styled.div`
   position: relative;
@@ -80,9 +89,7 @@ const AuthModalHeader = styled.div`
   overflow: hidden;
 `;
 
-const AuthModalContent = styled.div`
-  padding: 2rem;
-`;
+const AuthModalContent = styled.div`padding: 2rem;`;
 
 const AuthModalHeaderBall = styled.div`
   border-radius: 50%;

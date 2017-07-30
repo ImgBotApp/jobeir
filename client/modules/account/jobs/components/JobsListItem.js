@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
@@ -7,7 +8,16 @@ import moment from 'moment';
  * Gets passed a single job posting and will render the list item
  * to the Jobs page within the account section.
  */
-const JobsListItem = ({ job }) => {
+const JobsListItem = (props: {
+  job: {
+    title: string,
+    location: string,
+    salaryMax: number,
+    salaryMin: number,
+    dateCreated: string
+  }
+}) => {
+  const { job } = props;
   return (
     <div>
       <JobsMain>

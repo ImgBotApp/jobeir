@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import PrimaryNavLogo from '../../../../nav/primary-nav/components/PrimaryNavLogo';
 import { Link } from 'react-router';
+import PrimaryNavLogo from '../../../../nav/primary-nav/components/PrimaryNavLogo';
 
 const StepHeader = () =>
   <StepHeaderContainer>

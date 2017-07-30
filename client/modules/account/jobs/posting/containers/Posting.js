@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -12,12 +13,13 @@ import PostingHeader from '../components/PostingHeader';
  * toggling to edit the posting.
  */
 class Posting extends Component {
+  state: {
+    renderEdit: boolean
+  };
+
   constructor(props) {
     super(props);
     this.state = { renderEdit: false };
-
-    this.handleEditClick = this.handleEditClick.bind(this);
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   componentDidMount() {
@@ -25,10 +27,21 @@ class Posting extends Component {
     dispatch(getJob(companies.activeCompany._id, params.jobId));
   }
 
+  handleEditClick = () => {
+    this.setState({ renderEdit: !this.state.renderEdit });
+  };
+
+  handleDeleteClick = () => {
+    const { companies, dispatch, params } = this.props;
+    dispatch(
+      deleteJob(companies.activeCompany._id, params.jobId, '/account/jobs')
+    );
+  };
+
   // Handles the logc either show the preview or edit components
   renderPreviewOrEdit() {
     const { jobs, params } = this.props;
-    const activePosting = jobs.postings.find(
+    const activePosting: {} = jobs.postings.find(
       posting => posting._id === params.jobId
     );
 
@@ -37,17 +50,8 @@ class Posting extends Component {
         ? <JobEditForm initialValues={activePosting} params={params} />
         : <PostingPreview activePosting={activePosting} params={params} />;
     }
-  }
 
-  handleEditClick() {
-    this.setState({ renderEdit: !this.state.renderEdit });
-  }
-
-  handleDeleteClick() {
-    const { companies, dispatch, params } = this.props;
-    dispatch(
-      deleteJob(companies.activeCompany._id, params.jobId, '/account/jobs')
-    );
+    return null;
   }
 
   render() {

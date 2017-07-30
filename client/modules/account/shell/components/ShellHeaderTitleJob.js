@@ -1,31 +1,32 @@
-import React, { Component } from 'react';
+// @flow
+import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router';
 import ShellHeaderBackButton from './ShellHeaderBackButton';
 
-class ShellHeaderTitleJob extends Component {
-  render() {
-    const { jobs, params } = this.props;
-    const activePosting = jobs.postings.find(
-      posting => posting._id === params.jobId
-    );
+const ShellHeaderTitleJob = (props: {
+  jobs: { postings: Array<{}> },
+  params: { jobId: string }
+}) => {
+  const { jobs, params } = props;
+  const activePosting: { title: string } = jobs.postings.find(
+    posting => posting._id === params.jobId
+  );
 
-    return (
-      <div>
-        {!jobs.postings.length || jobs.isFetching
-          ? null
-          : <ShellHeaderTitleHeader>
-              <ShellHeaderBackButton
-                to="/account/jobs"
-                parent="Jobs"
-                title={activePosting.title}
-              />
-            </ShellHeaderTitleHeader>}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {!jobs.postings.length || jobs.isFetching
+        ? null
+        : <ShellHeaderTitleHeader>
+            <ShellHeaderBackButton
+              to="/account/jobs"
+              parent="Jobs"
+              title={activePosting.title}
+            />
+          </ShellHeaderTitleHeader>}
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   jobs: state.account.jobs

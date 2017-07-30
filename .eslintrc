@@ -1,17 +1,58 @@
 {
+  "parser": "babel-eslint",
   "plugins": [
+    "flowtype",
+    "jsx-a11y",
     "react"
   ],
-  "extends": ["airbnb"],
-  "sourceType": "module",
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react"
+  ],
   "rules": {
-    "react/prop-types": 0,
-    "no-script-url": 0,
-    "no-else-return": 0,
-    "react/jsx-boolean-value": 0,
+    "indent": [
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    // 'href-no-hash1 replaced with 'anchor-is-valid' in the recommended and strict config
+    // a11y 6.0.0 is breaking: Known issue
+    // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/CHANGELOG.md#600--2017-06-05
+    "jsx-a11y/anchor-is-valid": 0,
+    // Turn off the href-no-hash warning for now. Eventually 'href-no-hash' will be deprecated
+    "jsx-a11y/href-no-hash": 0,
     "new-cap": 0,
-    "no-with": 0,
+    "no-else-return": 1,
     "no-nested-ternary": 0,
-    "indent": [2, 2, { "SwitchCase": 1 }]
+    "no-script-url": 0,
+    "no-with": 0,
+    "no-underscore-dangle": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/no-unused-prop-types": 0,
+    "react/prop-types": 0,
+    "react/jsx-boolean-value": 0,
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
   }
 }

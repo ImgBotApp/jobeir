@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import ShellHeaderTitle from './ShellHeaderTitle';
@@ -7,11 +8,16 @@ import ShellHeaderTitle from './ShellHeaderTitle';
  * Takes care of the dropdown on the top right of the screen
  * and dispalys the header text based on the Route name
  */
-const ShellHeader = ({ headerText, params }) =>
-  <ShellHeaderContainer>
-    <ShellHeaderTitle headerText={headerText} params={params} />
-    <ShellRightSide />
-  </ShellHeaderContainer>;
+const ShellHeader = (props: { headerText: string, params: {} }) => {
+  const { headerText, params } = props;
+
+  return (
+    <ShellHeaderContainer>
+      <ShellHeaderTitle headerText={headerText} params={params} />
+      <ShellRightSide />
+    </ShellHeaderContainer>
+  );
+};
 
 export default ShellHeader;
 

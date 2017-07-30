@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
@@ -5,10 +6,6 @@ import styled from 'styled-components';
 
 class StepRouter extends Component {
   componentDidMount() {
-    this.handleRouting();
-  }
-
-  handleRouting() {
     const { params, user } = this.props;
 
     // If new user, take them through values first
@@ -25,6 +22,8 @@ class StepRouter extends Component {
     if (params.create === 'job') {
       return browserHistory.push(`/create/job/about/${params.companyId}`);
     }
+
+    return browserHistory.push(`/account/jobs`);
   }
 
   render() {

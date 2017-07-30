@@ -1,13 +1,13 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import { browserHistory } from 'react-router';
 import styled from 'styled-components';
+import queryString from 'query-string';
+import InfiniteScroll from 'react-infinite-scroller';
 import { serverGetJobs } from '../server/';
 import { shouldGetJobs, searchJobs, resetJobs } from '../ducks/';
-import queryString from 'query-string';
-import SearchForm from '../../../user-input/forms/form/search/SearchForm';
-import InfiniteScroll from 'react-infinite-scroller';
 import JobsSearchPosting from '../components/JobsSearchPosting';
 
 /**
@@ -26,11 +26,13 @@ import JobsSearchPosting from '../components/JobsSearchPosting';
   }
 ])
 class JobsSearch extends Component {
+  state: {
+    hasMore: boolean
+  };
+
   constructor(props) {
     super(props);
     this.state = { hasMore: true };
-
-    this.loadMoreJobs = this.loadMoreJobs.bind(this);
   }
 
   componentDidMount() {
@@ -47,7 +49,7 @@ class JobsSearch extends Component {
     this.props.dispatch(resetJobs());
   }
 
-  loadMoreJobs() {
+  loadMoreJobs = () => {
     const {
       dispatch,
       jobs: { count, isFetching, isLoaded },
@@ -75,7 +77,7 @@ class JobsSearch extends Component {
       dispatch(searchJobs(updatedQuery));
       browserHistory.replace(`/jobs/?${updatedQuery}`);
     }
-  }
+  };
 
   /**
    * buildJobPostings
@@ -84,12 +86,9 @@ class JobsSearch extends Component {
    * items into it. This will render the list within the UI
    */
   buildJobPostings() {
-    let items = [];
-    this.props.jobs.postings.map(posting => {
-      items.push(<JobsSearchPosting key={posting._id} posting={posting} />);
-    });
-
-    return items;
+    return this.props.jobs.postings.map(posting =>
+      <JobsSearchPosting key={posting._id} posting={posting} />
+    );
   }
 
   render() {

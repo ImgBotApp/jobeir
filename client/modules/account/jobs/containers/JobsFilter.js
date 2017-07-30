@@ -1,10 +1,11 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { updateJobFilter } from '../../../account/create/job/ducks/';
 
 class JobsFilter extends Component {
-  handleFilterClick(state) {
+  handleFilterClick(state: string) {
     this.props.dispatch(updateJobFilter(state));
   }
 
@@ -14,7 +15,7 @@ class JobsFilter extends Component {
     return (
       <JobsFilterContainer>
         {states.map(state => {
-          const active = state === this.props.filter;
+          const active: boolean = state === this.props.filter;
           return (
             <JobsFilterItem
               active={active}

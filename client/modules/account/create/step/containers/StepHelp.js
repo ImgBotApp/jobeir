@@ -1,9 +1,10 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import StepProgress from '../components/StepProgress';
 import StepTips from '../components/StepTips';
 
-const StepHelp = props => {
+const StepHelp = (props: { params: {} }) => {
   const { params } = props;
 
   return (
@@ -21,5 +22,3 @@ const StepHelpContainer = styled.div`
   width: 33.5%;
   margin-left: 7.5rem;
 `;
-
-const StepHelpHeader = styled.div`font-weight: 600;`;

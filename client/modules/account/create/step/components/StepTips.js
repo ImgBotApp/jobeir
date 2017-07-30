@@ -1,8 +1,9 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import * as Tips from '../tips/';
 
-const StepTips = props => {
+const StepTips = (props: { params: { create: string, step: string } }) => {
   const { params } = props;
 
   return (

@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
@@ -6,38 +7,37 @@ import { browserHistory } from 'react-router';
 import { switchCompany } from '../../../user/ducks/';
 import { logout } from '../../../auth/ducks';
 import docCookies from '../../../../utils/cookies';
-import moment from 'moment';
 
 class ShellDropdown extends Component {
+  state: {
+    showDropdown: boolean
+  };
+
   constructor(props) {
     super(props);
     this.state = { showDropdown: false };
-
-    this.switchCompanies = this.switchCompanies.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentDidMount() {
     /**
-     * this._isMounted is required because setState is asynchronous and cannot
+     * this.mounted is required because setState is asynchronous and cannot
      * be called on an unmounted component. That is why we're internally
      * keeping track of isMounted. If removed there will be a lot of invariant
      * errors in the console.
      * https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
      */
-    this._isMounted = true;
+    this.mounted = true;
     document.addEventListener('click', this.handleClickOutside, true);
   }
 
   componentWillUnmount() {
-    this._isMounted = false;
+    this.mounted = false;
     document.removeEventListener('click', this.handleClickOutside, true);
   }
 
-  switchCompanies(company) {
+  switchCompanies = (company: { name: string, displayName: string }) => {
     const { dispatch, user } = this.props;
-    const data = {
+    const data: {} = {
       activeCompany: {
         name: company.name,
         displayName: company.displayName
@@ -45,20 +45,20 @@ class ShellDropdown extends Component {
     };
 
     dispatch(switchCompany(data, user._id));
-  }
+  };
 
   /**
    * handleLogoutClick()
    * Will dispatch to the server to logout the user and at the same time
    * we will remove the JWT session cookie to unauthenticate the user.
    */
-  handleLogoutClick() {
+  handleLogoutClick = () => {
     this.props.dispatch(logout());
     docCookies.removeItem('SID');
-  }
+  };
 
-  handleClickOutside(event) {
-    if (this._isMounted) {
+  handleClickOutside = event => {
+    if (this.mounted) {
       const domNode = ReactDOM.findDOMNode(this);
 
       if (!domNode || !domNode.contains(event.target)) {
@@ -67,7 +67,7 @@ class ShellDropdown extends Component {
         this.setState({ showDropdown: !this.state.showDropdown });
       }
     }
-  }
+  };
 
   render() {
     const { companies, user } = this.props;

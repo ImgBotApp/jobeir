@@ -1,19 +1,28 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import { ChevronLeft } from '../../../../icons/';
 
-const ShellHeaderBackButton = ({ to, parent, title }) =>
-  <ShellHeaderBackButtonContainer>
-    <ShellHeaderBackButtonLink to={to}>
-      <StyledChevronLeft />
-      {' '}
-      <ShellHeaderBackButtonLinkText>{parent}</ShellHeaderBackButtonLinkText>
-    </ShellHeaderBackButtonLink>
-    <ShellHeaderBackButtonTitle>
-      {title}
-    </ShellHeaderBackButtonTitle>
-  </ShellHeaderBackButtonContainer>;
+const ShellHeaderBackButton = (props: {
+  to: string,
+  parent: string,
+  title: string
+}) => {
+  const { to, parent, title } = props;
+
+  return (
+    <ShellHeaderBackButtonContainer>
+      <ShellHeaderBackButtonLink to={to}>
+        <StyledChevronLeft />{' '}
+        <ShellHeaderBackButtonLinkText>{parent}</ShellHeaderBackButtonLinkText>
+      </ShellHeaderBackButtonLink>
+      <ShellHeaderBackButtonTitle>
+        {title}
+      </ShellHeaderBackButtonTitle>
+    </ShellHeaderBackButtonContainer>
+  );
+};
 
 export default ShellHeaderBackButton;
 
@@ -54,6 +63,4 @@ const StyledChevronLeft = styled(ChevronLeft)`
   left: -4px;
 `;
 
-const ShellHeaderBackButtonTitle = styled.h1`
-  font-size: 30px;
-`;
+const ShellHeaderBackButtonTitle = styled.h1`font-size: 30px;`;

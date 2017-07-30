@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// @flow
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import styled from 'styled-components';
@@ -8,7 +9,7 @@ import styled from 'styled-components';
  * Takes care of the dropdown on the top right of the screen
  * and dispalys the header text based on the Route name
  */
-const ShellHeaderNav = props =>
+const ShellHeaderNav = (props: { activeCompany: { _id: string } }) =>
   <ShellHeaderNavContainer>
     <ShellHeaderNavLink to={`/create/job/about/${props.activeCompany._id}`}>
       Create Job

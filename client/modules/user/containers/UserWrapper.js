@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUser } from '../ducks';
-import AuthLoading from '../../auth/components/AuthLoading';
 import AuthWrapper from '../../auth/containers/AuthWrapper';
 
 /**

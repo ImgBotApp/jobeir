@@ -1,20 +1,20 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import styled, { ThemeProvider, injectGlobal } from 'styled-components';
-import theme from '../theme';
-import { SESSION_LOADED } from '../../auth/ducks/';
-import { shouldCheckAuth } from '../../auth/ducks/';
+import { shouldCheckAuth, SESSION_LOADED } from '../../auth/ducks/';
 import { serverAuth } from '../../auth/server/';
 import { serverGetUser } from '../../user/server/';
 import Modal from '../../modal/containers/Modal';
 import AppHead from '../../app/components/AppHead';
 import Header from '../../header/containers/Header';
+import theme from '../theme';
 
 @asyncConnect([
   {
     promise: ({ store: { dispatch, getState }, helpers: { req } }) => {
-      const state = getState();
+      const state: {} = getState();
 
       if (shouldCheckAuth(state)) {
         return dispatch(serverAuth(req)).then(response => {
@@ -28,6 +28,10 @@ import Header from '../../header/containers/Header';
 ])
 class Core extends Component {
   componentDidMount() {
+    /**
+     * Need to define our own internal session management flag within
+     * redux as asyncConnect is causing a few issues with resetting
+     */
     const { dispatch, isLoaded } = this.props;
     if (isLoaded) {
       dispatch({ type: SESSION_LOADED });
@@ -36,7 +40,7 @@ class Core extends Component {
 
   render() {
     const { children, pathname } = this.props;
-    const shouldShowHeader = !pathname.includes('create');
+    const shouldShowHeader: boolean = !pathname.includes('create');
 
     return (
       <ThemeProvider theme={theme}>

@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import {
@@ -6,7 +7,7 @@ import {
   PaperClipIcon
 } from '../../../../../icons/';
 
-const CompanyTips = step => {
+const CompanyTips = (step: string) => {
   switch (step) {
     case 'about':
       return (

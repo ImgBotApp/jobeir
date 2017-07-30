@@ -1,11 +1,9 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
-export const AuthLoading = () => (
-  <AuthLoadingContainer>
-    Loading...
-  </AuthLoadingContainer>
-);
+export const AuthLoading = () =>
+  <AuthLoadingContainer>Loading...</AuthLoadingContainer>;
 
 export default AuthLoading;
 

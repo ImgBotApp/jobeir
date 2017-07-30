@@ -1,9 +1,14 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import draftToHtml from 'draftjs-to-html';
 
 class PostingBody extends Component {
+  state: {
+    html: string
+  };
+
   constructor(props) {
     super(props);
     this.state = { html: '' };
@@ -13,7 +18,7 @@ class PostingBody extends Component {
     this.preparePosting(this.props.activePosting);
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate(nextProps) {
     if (
       nextProps.activePosting.descriptionRaw !==
       this.props.activePosting.descriptionRaw
@@ -22,7 +27,7 @@ class PostingBody extends Component {
     }
   }
 
-  preparePosting(activePosting) {
+  preparePosting(activePosting: { descriptionRaw: string }) {
     if (activePosting.descriptionRaw) {
       this.setState({
         html: draftToHtml(JSON.parse(activePosting.descriptionRaw))

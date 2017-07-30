@@ -1,10 +1,12 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import PostingBody from '../containers/PostingBody';
 import PostingMap from '../containers/PostingMap';
 
-const PostingPreview = ({ activePosting }) => {
-  const activePostingReady = Object.keys(activePosting).length;
+const PostingPreview = (props: { activePosting: {} }) => {
+  const { activePosting } = props;
+  const activePostingReady: number = Object.keys(activePosting).length;
 
   return (
     <PostingPreviewContainer>

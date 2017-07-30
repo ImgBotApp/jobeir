@@ -1,8 +1,9 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router';
-import { getJobs } from '../../../create/job/ducks/';
+import { getJobs } from '../../../account/create/job/ducks/';
 import JobsFilter from './JobsFilter';
 import JobsList from '../components/JobsList';
 
@@ -18,7 +19,7 @@ class Jobs extends Component {
     dispatch(getJobs(companies.activeCompany._id));
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate(nextProps) {
     const { companies, dispatch } = this.props;
 
     // If the active company gets updated we have to call get jobs again
@@ -29,7 +30,7 @@ class Jobs extends Component {
 
   render() {
     const { companies, jobs } = this.props;
-    const hasJobPostings = jobs.postings.length;
+    const hasJobPostings: number = jobs.postings.length;
 
     return (
       <div>

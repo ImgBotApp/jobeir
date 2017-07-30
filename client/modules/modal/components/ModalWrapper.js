@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
@@ -5,13 +6,6 @@ import { hideModal } from '../ducks';
 import { ExIcon } from '../../../icons/';
 
 class ModalWrapper extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleEscapeKey = this.handleEscapeKey.bind(this);
-  }
-
   componentDidMount() {
     window.addEventListener('keydown', this.handleEscapeKey, true);
   }
@@ -20,11 +14,11 @@ class ModalWrapper extends Component {
     window.removeEventListener('keydown', this.handleEscapeKey, true);
   }
 
-  handleClick() {
+  handleClick = () => {
     this.props.dispatch(hideModal());
-  }
+  };
 
-  handleEscapeKey(event) {
+  handleEscapeKey = event => {
     let isEscape = false;
 
     if ('key' in event) {
@@ -36,7 +30,7 @@ class ModalWrapper extends Component {
     if (isEscape) {
       this.props.dispatch(hideModal());
     }
-  }
+  };
 
   render() {
     const { bgColor, modalFull, modalSize, children } = this.props;

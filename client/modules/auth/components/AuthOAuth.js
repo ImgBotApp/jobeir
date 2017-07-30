@@ -1,10 +1,11 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import docCookies from '../../../utils/cookies';
 import { FacebookIcon, GoogleIcon, GithubIcon } from '../../../icons/';
 
-const buildRedirectPath = routing => {
+const buildRedirectPath = (routing: { search: 'string' }) => {
   if (routing.search) {
     return routing.search.split('=')[1];
   }
@@ -45,9 +46,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(AuthOAuth);
 
-const OAuthButtonContainer = styled.div`
-  padding-bottom: 1rem;
-`;
+const OAuthButtonContainer = styled.div`padding-bottom: 1rem;`;
 
 const OAuthButton = styled.a`
   display: flex;
@@ -59,7 +58,8 @@ const OAuthButton = styled.a`
   text-decoration: none;
   color: white;
   padding: 0 1rem;
-  transition: background-color, border-color, 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);  
+  transition: background-color, border-color,
+    0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
 `;
 
 const OAuthButtonText = styled.p`

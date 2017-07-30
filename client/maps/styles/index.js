@@ -1,4 +1,4 @@
-export const lightTheme = [
+export default [
   {
     elementType: 'geometry',
     stylers: [

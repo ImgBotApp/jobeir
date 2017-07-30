@@ -1,27 +1,31 @@
-import React, { Component } from 'react';
+// @flow
+import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import styled from 'styled-components';
 import JostListItem from './JobsListItem';
 
-const filterJobs = (job, filter) => {
+const filterJobs = (job: { state: string }, filter: string) => {
   if (filter === 'all jobs') return true;
   return job.state === filter;
 };
 
-const JobsList = ({ jobs, filter }) => {
+const JobsList = (props: {
+  jobs: { filter: Array<mixed> },
+  filter: string
+}) => {
+  const { jobs, filter } = props;
+
   return (
     <div>
-      {jobs.filter(job => filterJobs(job, filter)).map(job => {
-        return (
-          <JobsBody
-            key={job._id}
-            onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
-          >
-            <JostListItem job={job} />
-          </JobsBody>
-        );
-      })}
+      {jobs.filter(job => filterJobs(job, filter)).map(job =>
+        <JobsBody
+          key={job._id}
+          onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
+        >
+          <JostListItem job={job} />
+        </JobsBody>
+      )}
     </div>
   );
 };

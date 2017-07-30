@@ -1,7 +1,13 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
-const PostingHeader = ({ handleEditClick, handleDeleteClick }) => {
+const PostingHeader = (props: {
+  handleEditClick: Function,
+  handleDeleteClick: Function
+}) => {
+  const { handleEditClick, handleDeleteClick } = props;
+
   return (
     <PostingHeaderContainer>
       <PlainButton onClick={handleEditClick}>Edit Posting</PlainButton>

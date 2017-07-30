@@ -1,33 +1,24 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// @flow
+import React from 'react';
 import styled from 'styled-components';
 import ShellDropdown from './ShellDropdown';
 import ShellHeaderNav from './ShellHeaderNav';
 import ShellLogo from '../components/ShellLogo';
 
-class ShellNav extends Component {
-  render() {
-    const { children, params } = this.props;
+const ShellNav = () =>
+  <ShellNavContainer>
+    <ShellNavLeft>
+      <ShellLogo />
+    </ShellNavLeft>
+    <ShellNavRight>
+      <ShellNavRightContent>
+        <ShellHeaderNav />
+        <ShellDropdown />
+      </ShellNavRightContent>
+    </ShellNavRight>
+  </ShellNavContainer>;
 
-    return (
-      <ShellNavContainer>
-        <ShellNavLeft>
-          <ShellLogo />
-        </ShellNavLeft>
-        <ShellNavRight>
-          <ShellNavRightContent>
-            <ShellHeaderNav />
-            <ShellDropdown />
-          </ShellNavRightContent>
-        </ShellNavRight>
-      </ShellNavContainer>
-    );
-  }
-}
-
-const mapStateToProps = state => ({});
-
-export default connect(mapStateToProps)(ShellNav);
+export default ShellNav;
 
 const ShellNavContainer = styled.div`
   top: 0;

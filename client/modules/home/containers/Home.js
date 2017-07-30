@@ -1,6 +1,6 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'react-router/lib/Link';
 import HomeHeader from '../components/HomeHeader';
 import HomeBanner from '../components/HomeBanner';
 import HomeFeatured from '../components/HomeFeatured';

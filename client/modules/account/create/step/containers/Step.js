@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// @flow
+import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import UserWrapper from '../../../../user/containers/UserWrapper';
@@ -6,7 +7,6 @@ import StepRouter from './StepRouter';
 import StepForm from './StepForm';
 import StepHelp from './StepHelp';
 import StepHeader from '../components/StepHeader';
-import StepProgress from '../components/StepProgress';
 import StepBackground from '../components/StepBackground';
 
 /**
@@ -15,9 +15,10 @@ import StepBackground from '../components/StepBackground';
  * with the current user. If not, we will ask them to create
  * a new company and then post a job
  */
-const Step = props => {
+const Step = (props: { params: { step: string }, user: {} }) => {
   const { params, user } = props;
-  const isUpload = params.step === 'upload';
+  const isUpload: boolean = params.step === 'upload';
+
   return (
     <StepContainer>
       <StepHeader />
@@ -30,10 +31,6 @@ const Step = props => {
     </StepContainer>
   );
 };
-
-const mapStateToProps = state => ({
-  user: state.session.user
-});
 
 export default connect()(UserWrapper(Step));
 
