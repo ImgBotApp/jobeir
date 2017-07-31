@@ -49,7 +49,7 @@ export default connect(mapStateToProps)(JobsPostingHeader);
 
 const JobsPostingHeaderContainer = styled.div`
   text-align: center;
-  margin-bottom: 75px;
+  margin-bottom: 100px;
 `;
 
 const JobsPostingHeaderReturn = styled.div`
@@ -58,24 +58,20 @@ const JobsPostingHeaderReturn = styled.div`
   margin-bottom: 50px;
 `;
 
-const JobsPostingHeaderCompany = styled.div`
-  font-size: 42px;
-  font-weight: 800;
-  margin-bottom: 20px;
-`;
+const JobsPostingHeaderCompanyLogo = styled.img`height: 45px;`;
 
-const JobsPostingHeaderCompanyLogo = styled.img`height: 50px;`;
+const JobsPostingHeaderCompany = styled.div`margin-bottom: 70px;`;
 
 const JobsPostingHeaderTitle = styled.h1`
-  font-size: 42px;
-  font-weight: 800;
-  margin-bottom: 60px;
+  font-size: 46px;
+  font-weight: 900;
+  margin-bottom: 15px;
 `;
 
 const JobsPostingHeaderLocation = styled.p`
   font-size: 20px;
   font-weight: 400;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 `;
 
 const JobsPostingHeaderDate = styled.p`
