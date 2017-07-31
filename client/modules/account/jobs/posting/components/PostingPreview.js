@@ -6,7 +6,7 @@ import PostingMap from '../containers/PostingMap';
 
 const PostingPreview = (props: { activePosting: {} }) => {
   const { activePosting } = props;
-  const activePostingReady: number = Object.keys(activePosting).length;
+  const activePostingReady: boolean = Object.keys(activePosting).length > 0;
 
   return (
     <PostingPreviewContainer>

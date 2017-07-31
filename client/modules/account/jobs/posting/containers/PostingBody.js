@@ -41,23 +41,7 @@ class PostingBody extends Component {
     return (
       <PostingBodyContainer>
         {this.state.html &&
-          <div>
-            <PostingBodyImg
-              src={activePosting.company.logo}
-              alt={activePosting.company.displayName}
-            />
-            <PostingBodyHeader>
-              <PostingBodyHeading>
-                {activePosting.title}
-              </PostingBodyHeading>
-              <PostingBodySubHeading>
-                {activePosting.location.address.locality}
-                {', '}
-                {activePosting.location.address.country}
-              </PostingBodySubHeading>
-            </PostingBodyHeader>
-            <div dangerouslySetInnerHTML={{ __html: this.state.html }} />
-          </div>}
+          <div dangerouslySetInnerHTML={{ __html: this.state.html }} />}
       </PostingBodyContainer>
     );
   }

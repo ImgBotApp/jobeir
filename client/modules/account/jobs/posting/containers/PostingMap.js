@@ -45,7 +45,7 @@ class PostingMap extends Component {
 export default PostingMap;
 
 const PostingMapContainer = styled.div`
-  margin: 55px auto;
+  margin: 75px auto 55px;
   #map {
     height: 450px;
     width: 100vw;

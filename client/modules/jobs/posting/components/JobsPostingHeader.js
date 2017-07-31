@@ -1,21 +1,45 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import moment from 'moment';
 import { Link } from 'react-router';
 import { ChevronLeft } from '../../../../icons/';
 
-class JobsPostingHeader extends Component {
-  render() {
-    return (
-      <JobsPostingHeaderContainer>
-        <StyledLink to={`/jobs/?${this.props.query}`}>
-          <StyledChevronLeft />Return to jobs
-        </StyledLink>
-      </JobsPostingHeaderContainer>
-    );
-  }
-}
+const JobsPostingHeader = (props: { activePosting: {}, query: string }) => {
+  const { activePosting, query } = props;
+  const activePostingReady: boolean = Object.keys(activePosting).length > 0;
+
+  return (
+    <div>
+      {activePostingReady &&
+        <JobsPostingHeaderContainer>
+          <JobsPostingHeaderReturn>
+            <StyledLink to={`/jobs/?${query}`}>
+              <StyledChevronLeft />Return to jobs
+            </StyledLink>
+          </JobsPostingHeaderReturn>
+
+          <JobsPostingHeaderCompany>
+            <JobsPostingHeaderCompanyLogo
+              src={activePosting.company.logo}
+              alt={activePosting.company.displayName}
+            />
+          </JobsPostingHeaderCompany>
+          <JobsPostingHeaderTitle>
+            {activePosting.title}
+          </JobsPostingHeaderTitle>
+          <JobsPostingHeaderLocation>
+            Located in {activePosting.location.address.locality},{' '}
+            {activePosting.location.address.country}
+          </JobsPostingHeaderLocation>
+          <JobsPostingHeaderDate>
+            {moment(activePosting.createdAt).format('MMMM Do, YYYY')}
+          </JobsPostingHeaderDate>
+        </JobsPostingHeaderContainer>}
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   query: state.search.jobs.query
@@ -24,9 +48,39 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(JobsPostingHeader);
 
 const JobsPostingHeaderContainer = styled.div`
+  text-align: center;
+  margin-bottom: 75px;
+`;
+
+const JobsPostingHeaderReturn = styled.div`
   display: flex;
   align-items: flex-start;
   margin-bottom: 50px;
+`;
+
+const JobsPostingHeaderCompany = styled.div`
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 20px;
+`;
+
+const JobsPostingHeaderCompanyLogo = styled.img`height: 50px;`;
+
+const JobsPostingHeaderTitle = styled.h1`
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 60px;
+`;
+
+const JobsPostingHeaderLocation = styled.p`
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 15px;
+`;
+
+const JobsPostingHeaderDate = styled.p`
+  font-size: 18px;
+  font-weight: 400;
 `;
 
 const StyledChevronLeft = styled(ChevronLeft)`
