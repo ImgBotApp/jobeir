@@ -1,5 +1,3 @@
-import { browserHistory } from 'react-router';
-
 export const SEARCH_JOBS_REQUEST = 'SEARCH_JOBS_REQUEST';
 export const SEARCH_JOBS_SUCCESS = 'SEARCH_JOBS_SUCCESS';
 export const SEARCH_JOBS_FAILURE = 'SEARCH_JOBS_FAILURE';
@@ -13,6 +11,7 @@ export const RESET_JOBS = 'RESET_JOBS';
 export const initialState = {
   count: 0,
   postings: [],
+  query: '',
   isFetching: false,
   isUpdating: false,
   isLoaded: false,
@@ -24,7 +23,8 @@ export default (state = initialState, action = {}) => {
     case SEARCH_JOBS_REQUEST:
     case SERVER_SEARCH_JOBS_REQUEST:
       return Object.assign({}, state, {
-        isFetching: true
+        isFetching: true,
+        query: action.payload.query
       });
     case SEARCH_JOBS_SUCCESS:
     case SERVER_SEARCH_JOBS_SUCCESS:

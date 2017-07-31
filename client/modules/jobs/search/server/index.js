@@ -16,7 +16,10 @@ export function serverGetJobs(queryData, req) {
       method: 'GET',
       headers: reqHeaders('', req.cookies),
       types: [
-        SERVER_SEARCH_JOBS_REQUEST,
+        {
+          type: SERVER_SEARCH_JOBS_REQUEST,
+          payload: { query }
+        },
         {
           type: SERVER_SEARCH_JOBS_SUCCESS,
           payload: (action, state, response) => response.json().then(res => res)

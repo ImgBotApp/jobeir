@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { serverGetJob } from '../server/';
 import { shouldGetJob, getJobPosting, resetJobPosting } from '../ducks/';
 import PostingPreview from '../../../account/jobs/posting/components/PostingPreview';
+import JobsPostingHeader from '../components/JobsPostingHeader';
 
 @asyncConnect([
   {
@@ -36,6 +37,7 @@ class JobsPosting extends Component {
 
     return (
       <JobsPostingContainer>
+        <JobsPostingHeader activePosting={posting} />
         <PostingPreview activePosting={posting} />
       </JobsPostingContainer>
     );
@@ -50,6 +52,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(JobsPosting);
 
 const JobsPostingContainer = styled.div`
-  max-width: 1440px;
+  max-width: 670px;
   margin: 0 auto;
 `;

@@ -7,7 +7,12 @@ import styled from 'styled-components';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroller';
 import { serverGetJobs } from '../server/';
-import { shouldGetJobs, searchJobs, resetJobs } from '../ducks/';
+import {
+  shouldGetJobs,
+  searchJobs,
+  resetJobs,
+  updateSearchQuery
+} from '../ducks/';
 import JobsSearchPosting from '../components/JobsSearchPosting';
 
 /**

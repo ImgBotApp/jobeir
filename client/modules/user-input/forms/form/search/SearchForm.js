@@ -96,13 +96,10 @@ class SelectInput extends Component {
   }
 }
 
-const Button = props => {
-  return (
-    <SearchButton type="submit" disabled={props.disabled}>
-      {props.buttonText || 'Search'}
-    </SearchButton>
-  );
-};
+const Button = props =>
+  <SearchButton type="submit" disabled={props.disabled}>
+    {props.buttonText || 'Search'}
+  </SearchButton>;
 
 class SearchForm extends Component {
   constructor(props) {
@@ -164,7 +161,8 @@ class SearchForm extends Component {
 }
 
 SearchForm = reduxForm({
-  form: 'search-form'
+  form: 'search-form',
+  destroyOnUnmount: false
 })(SearchForm);
 
 const mapStateToProps = state => ({
