@@ -48,7 +48,7 @@ export default (state?: {} = initialState, action?: {} = {}) => {
        * Adding in the active company id to our redux store since
        * it's not stored within the User's model on the server
        */
-      const userData = action.payload.data.user;
+      const userData: {} = action.payload.data.user;
       const activeCompany =
         userData.companies.find(
           company => company.name === userData.activeCompany.name

@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { updateUser } from '../../../../user/ducks';
 
-const agreeToValues = (props: { user: string }) => {
+const agreeToValues = (props: {
+  dispatch: Function,
+  user: { _id: string }
+}) => {
   const { dispatch, user } = props;
-  const data = { agreedToValues: true };
+  const data: { agreedToValues: boolean } = { agreedToValues: true };
 
   dispatch(updateUser(user._id, data, '/create/company/about'));
 };

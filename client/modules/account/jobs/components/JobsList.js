@@ -10,10 +10,7 @@ const filterJobs = (job: { state: string }, filter: string) => {
   return job.state === filter;
 };
 
-const JobsList = (props: {
-  jobs: { filter: Array<mixed> },
-  filter: string
-}) => {
+const JobsList = (props: { jobs: { filter: Array<{}> }, filter: string }) => {
   const { jobs, filter } = props;
 
   return (

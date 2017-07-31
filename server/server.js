@@ -37,19 +37,13 @@ if (process.env.NODE_ENV === 'development') {
 // React And Redux Setup
 import configureStore from '../client/redux/store';
 import { Provider } from 'react-redux';
-import { combineReducers } from 'redux';
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
-import { createMemoryHistory, match, RouterContext } from 'react-router';
+import { createMemoryHistory, match } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import Helmet from 'react-helmet';
 import { ServerStyleSheet } from 'styled-components';
 import Html from '../client/modules/html/containers/Html';
-import {
-  ReduxAsyncConnect,
-  loadOnServer,
-  reducer as reduxAsyncConnect
-} from 'redux-connect';
+import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
 
 // Import required modules
 import routes, { routesArray } from '../client/routes';
@@ -153,7 +147,7 @@ app.use((req, res, next) => {
           const assets = global.webpackIsomorphicTools.assets();
           const state = `window.__INITIAL_STATE__ = ${serialize(initialState)}`;
           const markup = <Html {...{ css, assets, state, content }} />;
-          const html = '<!doctype html>' + renderToStaticMarkup(markup);
+          const html = `<!doctype html>${renderToStaticMarkup(markup)}`;
 
           res.send(html);
         })

@@ -117,7 +117,7 @@ const AuthModalHeaderRed = styled(AuthModalHeaderBall)`
   bottom: 25px;
   height: 115px;
   width: 115px;
-  background: ${props => props.theme.colors.purple};
+  background: ${props => props.theme.colors.red};
 `;
 
 const AuthModalHeaderBeige = styled(AuthModalHeaderBall)`

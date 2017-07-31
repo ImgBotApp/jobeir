@@ -104,7 +104,7 @@ export const Radio = (props: {
 
 Radio.defaultProps = {
   rowWidth: undefined,
-  row: 'full'
+  row: ''
 };
 
 const RadioContainer = styled.div`display: flex;`;

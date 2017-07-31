@@ -10,7 +10,7 @@ if (typeof require.ensure !== 'function') {
 }
 
 export function errorLoading(err) {
-  throw new Error('Dynamic page loading failed: ' + err);
+  throw new Error(`Dynamic page loading failed: ${err}`);
 }
 
 export function loadRoute(cb) {
@@ -215,12 +215,12 @@ function getRoutesArray(obj) {
     '/api/v0/password',
     '/api/v0/upload',
     '/api/v0/search/jobs',
-    '/api/v0/jobs/',
-    '/favicon.ico'
+    '/favicon.ico',
+    new RegExp('\\/api\\/v0\\/jobs\\/[^\\/]+$') // matches /api/v0/jobs/:id
   ];
 
   (function getIds(obj) {
-    for (let x in obj) {
+    for (const x in obj) {
       if (typeof obj[x] === 'object') {
         getIds(obj[x]);
       } else if (x === 'path') {

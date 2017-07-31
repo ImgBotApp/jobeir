@@ -1,3 +1,6 @@
+// @flow
+import { SWITCH_ACTIVE_COMPANY_SUCCESS } from '../../../../user/ducks/';
+
 export const CREATE_JOB_REQUEST = 'CREATE_JOB_REQUEST';
 export const CREATE_JOB_SUCCESS = 'CREATE_JOB_SUCCESS';
 export const CREATE_JOB_FAILURE = 'CREATE_JOB_FAILURE';
@@ -20,9 +23,15 @@ export const DELETE_JOB_FAILURE = 'DELETE_JOB_FAILURE';
 
 export const UPDATE_JOB_FILTER = 'UPDATE_JOB_FILTER';
 
-import { SWITCH_ACTIVE_COMPANY_SUCCESS } from '../../../../user/ducks/';
-
-export const initialState = {
+export const initialState: {
+  isLoading: boolean,
+  isFetching: boolean,
+  isUpdating: boolean,
+  isDeleting: boolean,
+  filter: string,
+  postings: Array<{}>,
+  errors: Array<{}>
+} = {
   isLoading: false,
   isFetching: false,
   isUpdating: false,
@@ -32,7 +41,7 @@ export const initialState = {
   errors: []
 };
 
-export default (state = initialState, action) => {
+export default (state: {} = initialState, action: {}): {} => {
   switch (action.type) {
     case CREATE_JOB_REQUEST:
       return Object.assign({}, state, {
@@ -89,7 +98,7 @@ export default (state = initialState, action) => {
         isFetching: true
       });
     case GET_JOB_SUCCESS:
-      const alreadyExists = state.postings.some(
+      const alreadyExists: boolean = state.postings.some(
         posting => posting._id === action.payload.data.posting._id
       );
 
@@ -104,13 +113,13 @@ export default (state = initialState, action) => {
           ),
           errors: []
         });
-      } else {
-        return Object.assign({}, state, {
-          isFetching: false,
-          postings: [...state.postings, action.payload.data.posting],
-          errors: []
-        });
       }
+      return Object.assign({}, state, {
+        isFetching: false,
+        postings: [...state.postings, action.payload.data.posting],
+        errors: []
+      });
+
     case GET_JOB_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
@@ -143,47 +152,40 @@ export default (state = initialState, action) => {
   }
 };
 
-function updateObjectInArray(array, action) {
-  return array.map((item, index) => {
-    if (index !== action.index) {
-      // This isn't the item we care about - keep it as-is
-      return item;
-    }
-
-    // Otherwise, this is the one we want - return an updated value
-    return {
-      ...item,
-      ...action.item
-    };
-  });
-}
-
-export const createJob = (companyId, data, redirectPathname) => ({
+export const createJob = (
+  companyId: string,
+  data: {},
+  redirectPathname: string
+): {} => ({
   type: CREATE_JOB_REQUEST,
   payload: { companyId, data, redirectPathname }
 });
 
-export const getJobs = companyId => ({
+export const getJobs = (companyId: string): {} => ({
   type: GET_JOBS_REQUEST,
   payload: { companyId }
 });
 
-export const getJob = (companyId, jobId) => ({
+export const getJob = (companyId: string, jobId: string): {} => ({
   type: GET_JOB_REQUEST,
   payload: { companyId, jobId }
 });
 
-export const updateJob = (companyId, jobId, data) => ({
+export const updateJob = (companyId: string, jobId: string, data: {}): {} => ({
   type: UPDATE_JOB_REQUEST,
   payload: { companyId, jobId, data }
 });
 
-export const deleteJob = (companyId, jobId, redirectPathname) => ({
+export const deleteJob = (
+  companyId: string,
+  jobId: string,
+  redirectPathname: string
+): {} => ({
   type: DELETE_JOB_REQUEST,
   payload: { companyId, jobId, redirectPathname }
 });
 
-export const updateJobFilter = filter => ({
+export const updateJobFilter = (filter: string): {} => ({
   type: UPDATE_JOB_FILTER,
   payload: { filter }
 });
