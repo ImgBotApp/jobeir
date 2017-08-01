@@ -55,10 +55,10 @@ const JobsPostingHeaderContainer = styled.div`
 const JobsPostingHeaderReturn = styled.div`
   display: flex;
   align-items: flex-start;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 `;
 
-const JobsPostingHeaderCompanyLogo = styled.img`height: 45px;`;
+const JobsPostingHeaderCompanyLogo = styled.img`height: 40px;`;
 
 const JobsPostingHeaderCompany = styled.div`margin-bottom: 70px;`;
 
