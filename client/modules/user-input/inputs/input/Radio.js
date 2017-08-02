@@ -61,12 +61,12 @@ export const Radio = (props: {
 
             // allowing re-assignment of the value if it's address input
             let checked: boolean = val === props.input.value;
+
             if (
               props.meta.form === 'job-edit' &&
               props.input.name === 'address'
             ) {
-              checked =
-                option.value.postal_code === props.input.value.postal_code;
+              checked = val === JSON.stringify(props.initialValues.address);
             }
 
             return (

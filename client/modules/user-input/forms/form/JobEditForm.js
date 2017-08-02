@@ -94,7 +94,7 @@ class JobEditFrom extends Component {
   };
 
   render() {
-    const { handleSubmit, offersEquity, jobs } = this.props;
+    const { handleSubmit, offersEquity, jobs, initialValues } = this.props;
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
@@ -103,7 +103,7 @@ class JobEditFrom extends Component {
         theme="marble"
       >
         <FormEditContainer>
-          {this.props.initialValues !== undefined
+          {initialValues !== undefined
             ? <FormEditForm>
                 <Field
                   name="title"
@@ -112,9 +112,7 @@ class JobEditFrom extends Component {
                   validate={[required]}
                   options={jobOptions}
                   component={SelectSearch}
-                  selectedValue={
-                    this.props.initialValues && this.props.initialValues.title
-                  }
+                  selectedValue={initialValues && initialValues.title}
                 />
                 <div style={{ paddingBottom: '1rem' }} />
                 <Field
@@ -122,10 +120,7 @@ class JobEditFrom extends Component {
                   name="description"
                   ui={{ maxWidth: '100%' }}
                   validate={[required, wysiwygLength(25)]}
-                  initialValues={
-                    this.props.initialValues &&
-                    this.props.initialValues.descriptionRaw
-                  }
+                  initialValues={initialValues && initialValues.descriptionRaw}
                   component={Wysiwyg}
                 />
                 <Field
@@ -141,6 +136,7 @@ class JobEditFrom extends Component {
                   label="Where will the employee be working?"
                   validate={[required]}
                   options={this.buildLocationsDropdown()}
+                  initialValues={initialValues && initialValues.location}
                   type="list"
                   row="full"
                   component={Radio}
