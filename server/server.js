@@ -11,6 +11,7 @@ import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 import passport from 'passport';
 import serialize from 'serialize-javascript';
 import favicon from 'serve-favicon';
+import delay from 'express-delay';
 import webpack from 'webpack';
 import config from '../webpack/webpack.config.dev.js';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -56,6 +57,7 @@ import serverConfig from './config/config';
 import passportInit from './config/passport';
 
 // Apply body Parser and server public assets and routes
+app.use(delay(300, 500));
 app.use(compression());
 app.use(
   favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico'))

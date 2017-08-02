@@ -14,6 +14,7 @@ import {
   updateSearchQuery
 } from '../ducks/';
 import JobsSearchPosting from '../components/JobsSearchPosting';
+import JobsSearchHeading from '../components/JobsSearchHeading';
 
 /**
  * Loading jobs from the server on initial load. This will SSR the first
@@ -99,14 +100,22 @@ class JobsSearch extends Component {
   render() {
     return (
       <JobsSearchContainer>
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={this.loadMoreJobs}
-          hasMore={this.state.hasMore}
-          loader={<div className="loader">Loading ...</div>}
-        >
-          {this.buildJobPostings()}
-        </InfiniteScroll>
+        <JobsSearchRow>
+          <JobsSearchColumn margin>
+            <JobsSearchHeading text="Search options" />
+          </JobsSearchColumn>
+          <JobsSearchColumn wide>
+            <JobsSearchHeading text="Search Results" />
+            <InfiniteScroll
+              pageStart={0}
+              loadMore={this.loadMoreJobs}
+              hasMore={this.state.hasMore}
+              loader={<div className="loader">Loading ...</div>}
+            >
+              {this.buildJobPostings()}
+            </InfiniteScroll>
+          </JobsSearchColumn>
+        </JobsSearchRow>
       </JobsSearchContainer>
     );
   }
@@ -122,6 +131,19 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(JobsSearch);
 
 const JobsSearchContainer = styled.div`
-  max-width: 1440px;
+  background: #fafafa;
+  min-height: calc(100vh - 75px);
+`;
+
+const JobsSearchRow = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 1100px;
   margin: 0 auto;
+`;
+
+const JobsSearchColumn = styled.div`
+  width: ${props => (props.wide ? '680px' : 'auto')};
+  margin-right: ${props => (props.margin ? '100px' : '0px')};
+  flex: 1;
 `;

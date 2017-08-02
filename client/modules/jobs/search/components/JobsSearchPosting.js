@@ -69,7 +69,7 @@ export default JobsSearchPosting;
 
 const JobsSearchPostingContainer = styled.div`
   position: relative;
-  max-width: 700px;
+  width: 680px;
   margin: 0 auto;
   padding: 30px;
   background: #fff;
