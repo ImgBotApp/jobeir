@@ -60,7 +60,7 @@ const PostingBodyContainer = styled.div`
 
   p {
     line-height: 1.7;
-    margin-bottom: 38px;
+    margin-bottom: 40px;
     font-size: 20px;
     color: #333;
   }
@@ -75,7 +75,7 @@ const PostingBodyContainer = styled.div`
   h4,
   h5,
   h6 {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
 
   h2,
@@ -87,7 +87,7 @@ const PostingBodyContainer = styled.div`
   ol {
     line-height: 1.7;
     padding-left: 20px;
-    margin-bottom: 18px;
+    margin-bottom: 40px;
     font-size: 18px;
     color: #333;
 

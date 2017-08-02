@@ -75,7 +75,7 @@ class JobsSearch extends Component {
      * Setting state to now load more job postings if there are no more
      * postings to retrieve from the server
      */
-    if (currentStart + 15 > count) {
+    if (currentStart + 15 > count && isLoaded) {
       return this.setState({ hasMore: false });
     }
 
@@ -143,7 +143,6 @@ const JobsSearchRow = styled.div`
 `;
 
 const JobsSearchColumn = styled.div`
-  width: ${props => (props.wide ? '680px' : 'auto')};
   margin-right: ${props => (props.margin ? '100px' : '0px')};
-  flex: 1;
+  flex: ${props => (props.wide ? '1.4' : '0.6')};
 `;
