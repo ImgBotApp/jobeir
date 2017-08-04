@@ -32,6 +32,7 @@ export default (state = initialState, action) => {
       });
     case GET_JOB_POSTING_FAILURE:
     case SERVER_GET_JOB_POSTING_FAILURE:
+      console.log(action);
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,

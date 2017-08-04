@@ -15,7 +15,8 @@ const theme = {
     lightBlue: '#82a3b9', // WS blue #82a3b9
     black: '#0f0f17',
     beige: '#faf3d5',
-    text: 'rgba(0,0,0,0.85)'
+    text: 'rgba(0,0,0,0.85)',
+    placeholder: '#f2f2f2'
   },
   width: {
     max: '1440px'

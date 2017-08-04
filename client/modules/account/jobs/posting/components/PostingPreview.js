@@ -1,8 +1,10 @@
 // @flow
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PostingBody from '../containers/PostingBody';
 import PostingMap from '../containers/PostingMap';
+import PostingPreviewPlaceholder from './PostingPreviewPlaceholder';
+import FadeIn from '../../../../../styles/components/FadeIn';
 
 const PostingPreview = (props: { activePosting: {} }) => {
   const { activePosting } = props;
@@ -10,13 +12,14 @@ const PostingPreview = (props: { activePosting: {} }) => {
 
   return (
     <PostingPreviewContainer>
-      {activePostingReady &&
-        <div>
-          <PostingPreviewContent>
-            <PostingBody activePosting={activePosting} />
-          </PostingPreviewContent>
-          <PostingMap activePosting={activePosting} />
-        </div>}
+      {activePostingReady
+        ? <FadeIn>
+            <PostingPreviewContent>
+              <PostingBody activePosting={activePosting} />
+            </PostingPreviewContent>
+            <PostingMap activePosting={activePosting} />
+          </FadeIn>
+        : <PostingPreviewPlaceholder />}
     </PostingPreviewContainer>
   );
 };

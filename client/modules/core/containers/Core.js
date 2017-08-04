@@ -39,17 +39,19 @@ class Core extends Component {
   }
 
   render() {
-    const { children, pathname } = this.props;
+    const { children, isModalOpen, pathname } = this.props;
     const shouldShowHeader: boolean = !pathname.includes('create');
 
     return (
       <ThemeProvider theme={theme}>
-        <CoreContainer pathname={pathname}>
-          <AppHead />
-          {shouldShowHeader && <Header />}
-          {children}
+        <div>
+          <CoreContainer pathname={pathname} isModalOpen={isModalOpen}>
+            <AppHead />
+            {shouldShowHeader && <Header />}
+            {children}
+          </CoreContainer>
           <Modal />
-        </CoreContainer>
+        </div>
       </ThemeProvider>
     );
   }
@@ -60,7 +62,8 @@ const mapStateToProps = state => ({
     (state.routing.locationBeforeTransitions &&
       state.routing.locationBeforeTransitions.pathname) ||
     '',
-  isLoaded: state.reduxAsyncConnect.loaded
+  isLoaded: state.reduxAsyncConnect.loaded,
+  isModalOpen: state.modal.modalType
 });
 
 export default connect(mapStateToProps)(Core);
@@ -72,6 +75,7 @@ const CoreContainer = styled.div`
         '#fff'
       : 'transparent'};
   min-height: 100vh;
+  filter: blur(${props => (props.isModalOpen ? '3px' : '0px')});
 `;
 
 injectGlobal`

@@ -82,38 +82,36 @@ export function registerUser(req, res) {
         }
       ]
     });
-  } else {
-    const newUser = new Users({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password
-    });
-
-    newUser.save(err => {
-      if (err) {
-        return res.status(409).send({
-          data: {},
-          errors: [
-            {
-              error: 'USER_ALREADY_EXISTS',
-              message: 'A user with that email already exists.'
-            }
-          ]
-        });
-      } else {
-        const token = jwt.sign(newUser, process.env.JWT);
-
-        return res.status(200).send({
-          data: {
-            token,
-            user: req.body
-          },
-          errors: []
-        });
-      }
-    });
   }
+  const newUser = new Users({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: req.body.password
+  });
+
+  newUser.save(err => {
+    if (err) {
+      return res.status(409).send({
+        data: {},
+        errors: [
+          {
+            error: 'USER_ALREADY_EXISTS',
+            message: 'A user with that email already exists.'
+          }
+        ]
+      });
+    }
+    const token = jwt.sign(newUser, process.env.JWT);
+
+    return res.status(200).send({
+      data: {
+        token,
+        user: req.body
+      },
+      errors: []
+    });
+  });
 }
 
 /**
@@ -127,7 +125,7 @@ export function loginUser(req, res) {
     email: req.body.email
   })
     .select('+password')
-    .exec(function(err, user) {
+    .exec((err, user) => {
       if (err) throw err;
 
       if (!user) {
@@ -140,32 +138,30 @@ export function loginUser(req, res) {
             }
           ]
         });
-      } else {
-        user.comparePassword(req.body.password, function(err, isMatch) {
-          if (!err && isMatch) {
-            const token = jwt.sign(user, process.env.JWT);
-
-            return res.status(200).send({
-              data: {
-                isAuthenticated: true,
-                id: user._id,
-                token
-              },
-              errors: []
-            });
-          } else {
-            return res.status(401).send({
-              data: {},
-              errors: [
-                {
-                  error: 'INVALID_EMAIL_OR_PASSWORD',
-                  message: 'Invalid email or password'
-                }
-              ]
-            });
-          }
-        });
       }
+      user.comparePassword(req.body.password, (err, isMatch) => {
+        if (!err && isMatch) {
+          const token = jwt.sign(user, process.env.JWT);
+
+          return res.status(200).send({
+            data: {
+              isAuthenticated: true,
+              id: user._id,
+              token
+            },
+            errors: []
+          });
+        }
+        return res.status(401).send({
+          data: {},
+          errors: [
+            {
+              error: 'INVALID_EMAIL_OR_PASSWORD',
+              message: 'Invalid email or password'
+            }
+          ]
+        });
+      });
     });
 }
 

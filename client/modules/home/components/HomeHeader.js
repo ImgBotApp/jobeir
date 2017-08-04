@@ -20,7 +20,7 @@ const Header = styled.div`
 `;
 
 const HeaderText = styled.h1`
-  font-size: 52px;
+  font-size: 48px;
   font-weight: 900;
   text-align: center;
 `;

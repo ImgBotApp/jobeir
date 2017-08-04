@@ -48,9 +48,9 @@ import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
 
 // Import required modules
 import routes, { routesArray } from '../client/routes';
-import { fetchComponentData } from './util/fetchData';
-import { geoLookup } from './util/geoLookup';
-import { securityHeaders } from './util/securityHeaders';
+import geoLookup from './util/geoLookup';
+import securityHeaders from './util/securityHeaders';
+import handleErrors from './util/securityHeaders';
 import apiRoutes from './routes/ApiRoutes.routes';
 import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
@@ -86,8 +86,9 @@ app.use(
   jwt({ secret: process.env.JWT }).unless({ path: routesArray }),
   apiRoutes
 );
-app.use(serverConfig.handleNoToken);
 app.use(oAuthRoutes);
+app.use(handleErrors);
+app.use(serverConfig.handleNoToken);
 app.use(securityHeaders);
 
 // Set native promises as mongoose promise

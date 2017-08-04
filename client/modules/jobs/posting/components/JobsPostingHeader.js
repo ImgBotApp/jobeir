@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Link } from 'react-router';
+import JobsPostingHeaderPlaceholder from './JostPostingHeaderPlaceholder';
 import { ChevronLeft } from '../../../../icons/';
+import FadeIn from '../../../../styles/components/FadeIn';
 
 const JobsPostingHeader = (props: { activePosting: {}, query: string }) => {
   const { activePosting, query } = props;
@@ -12,31 +14,34 @@ const JobsPostingHeader = (props: { activePosting: {}, query: string }) => {
 
   return (
     <div>
-      {activePostingReady &&
-        <JobsPostingHeaderContainer>
-          <JobsPostingHeaderReturn>
-            <StyledLink to={`/jobs/?${query}`}>
-              <StyledChevronLeft />Return to jobs
-            </StyledLink>
-          </JobsPostingHeaderReturn>
+      <JobsPostingHeaderContainer>
+        <JobsPostingHeaderReturn>
+          <StyledLink to={`/jobs/?${query}`}>
+            <StyledChevronLeft />Return to jobs
+          </StyledLink>
+        </JobsPostingHeaderReturn>
 
-          <JobsPostingHeaderCompany>
-            <JobsPostingHeaderCompanyLogo
-              src={activePosting.company.logo}
-              alt={activePosting.company.displayName}
-            />
-          </JobsPostingHeaderCompany>
-          <JobsPostingHeaderTitle>
-            {activePosting.title}
-          </JobsPostingHeaderTitle>
-          <JobsPostingHeaderLocation>
-            Located in {activePosting.location.address.locality},{' '}
-            {activePosting.location.address.country}
-          </JobsPostingHeaderLocation>
-          <JobsPostingHeaderDate>
-            {moment(activePosting.createdAt).format('MMMM Do, YYYY')}
-          </JobsPostingHeaderDate>
-        </JobsPostingHeaderContainer>}
+        {activePostingReady
+          ? <FadeIn>
+              <JobsPostingHeaderCompany>
+                <JobsPostingHeaderCompanyLogo
+                  src={activePosting.company.logo}
+                  alt={activePosting.company.displayName}
+                />
+              </JobsPostingHeaderCompany>
+              <JobsPostingHeaderTitle>
+                {activePosting.title}
+              </JobsPostingHeaderTitle>
+              <JobsPostingHeaderLocation>
+                Located in {activePosting.location.address.locality},{' '}
+                {activePosting.location.address.country}
+              </JobsPostingHeaderLocation>
+              <JobsPostingHeaderDate>
+                {moment(activePosting.createdAt).format('MMMM Do, YYYY')}
+              </JobsPostingHeaderDate>
+            </FadeIn>
+          : <JobsPostingHeaderPlaceholder />}
+      </JobsPostingHeaderContainer>
     </div>
   );
 };

@@ -2,7 +2,7 @@
 
 import Jobs from '../models/Jobs';
 import sanitizeHtml from 'sanitize-html';
-import { buildJobSearchQuery } from '../helpers/BuildSearchQuery';
+import { buildJobSearchQuery } from '../util/buildSearchQuery';
 
 /**
  * Search all jobs
