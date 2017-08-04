@@ -13,32 +13,29 @@ const JobsPostingHeadePlaceholder = () =>
 export default JobsPostingHeadePlaceholder;
 
 const PlaceholderHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  display: inline-block;
+  margin: 45px 0 40px;
 `;
 
 const PlaceholderLogo = styled.div`
   background: ${props => props.theme.colors.placeholder};
-  width: 200px;
+  width: 220px;
   height: 15px;
-  margin: 25px 0 40px;
+  margin-bottom: 20px;
 `;
 
 const PlaceholderTitle = styled.div`
   background: ${props => props.theme.colors.placeholder};
-  width: 460px;
+  width: 440px;
   height: 15px;
-  margin: 5px 0 30px;
+  margin-bottom: 20px;
 `;
 
 const PlaceholderLocation = styled.div`
   background: ${props => props.theme.colors.placeholder};
-  width: 240px;
+  width: 280px;
   height: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 `;
 
 const PlaceholderDate = styled.div`

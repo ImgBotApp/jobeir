@@ -5,43 +5,16 @@ import styled from 'styled-components';
 import draftToHtml from 'draftjs-to-html';
 
 class PostingBody extends Component {
-  state: {
-    html: string
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = { html: '' };
-  }
-
-  componentDidMount() {
-    this.preparePosting(this.props.activePosting);
-  }
-
-  componentWillUpdate(nextProps) {
-    if (
-      nextProps.activePosting.descriptionRaw !==
-      this.props.activePosting.descriptionRaw
-    ) {
-      this.preparePosting(nextProps.activePosting);
-    }
-  }
-
-  preparePosting(activePosting: { descriptionRaw: string }) {
-    if (activePosting.descriptionRaw) {
-      this.setState({
-        html: draftToHtml(JSON.parse(activePosting.descriptionRaw))
-      });
-    }
-  }
-
   render() {
-    const { activePosting } = this.props;
-
     return (
       <PostingBodyContainer>
-        {this.state.html &&
-          <div dangerouslySetInnerHTML={{ __html: this.state.html }} />}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: draftToHtml(
+              JSON.parse(this.props.activePosting.descriptionRaw)
+            )
+          }}
+        />
       </PostingBodyContainer>
     );
   }

@@ -13,12 +13,14 @@ const PostingPreview = (props: { activePosting: {} }) => {
   return (
     <PostingPreviewContainer>
       {activePostingReady
-        ? <FadeIn>
-            <PostingPreviewContent>
-              <PostingBody activePosting={activePosting} />
-            </PostingPreviewContent>
+        ? <div>
+            <FadeIn>
+              <PostingPreviewContent>
+                <PostingBody activePosting={activePosting} />
+              </PostingPreviewContent>
+            </FadeIn>
             <PostingMap activePosting={activePosting} />
-          </FadeIn>
+          </div>
         : <PostingPreviewPlaceholder />}
     </PostingPreviewContainer>
   );

@@ -51,7 +51,7 @@ class Input extends Component {
         />
         {this.props.autocomplete &&
           <Autocomplete
-            formName="search-form"
+            formName="search"
             types={['(cities)']}
             id={this.props.input.name}
             customStyles={customStyles}
@@ -161,7 +161,7 @@ class SearchForm extends Component {
 }
 
 SearchForm = reduxForm({
-  form: 'search-form',
+  form: 'search',
   destroyOnUnmount: false
 })(SearchForm);
 

@@ -108,6 +108,7 @@ class JobsSearch extends Component {
             <JobsSearchHeading text="Search Results" />
             <InfiniteScroll
               pageStart={0}
+              threshold={600}
               loadMore={this.loadMoreJobs}
               hasMore={this.state.hasMore}
               loader={<div className="loader">Loading ...</div>}

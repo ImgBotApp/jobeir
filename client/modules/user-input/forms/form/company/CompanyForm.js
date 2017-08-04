@@ -2,12 +2,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import { reset } from 'redux-form';
 import CompanyFormAbout from './CompanyFormAbout';
 import CompanyFormContact from './CompanyFormContact';
 import CompanyFormLocation from './CompanyFormLocation';
 import CompanyFormPerks from './CompanyFormPerks';
 
 class CompanyForm extends Component {
+  componentWillUnmount() {
+    this.props.dispatch(reset('company'));
+  }
+
   nextPage = (path: string) => {
     browserHistory.push(path);
   };

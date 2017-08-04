@@ -67,6 +67,7 @@ export default (state?: {} = initialState, action?: {} = {}) => {
     case CREATE_COMPANY_SUCCESS:
       return Object.assign({}, state, {
         isLoading: false,
+        activeCompany: action.payload.data.company,
         created: [...state.created, action.payload.data.company]
       });
     case CREATE_COMPANY_FAILURE:

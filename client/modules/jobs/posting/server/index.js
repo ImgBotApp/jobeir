@@ -7,7 +7,7 @@ import {
 } from '../ducks';
 
 export function serverGetJob(originalUrl, req) {
-  const endpoint = `http://localhost:8000/api/v0/${originalUrl}`;
+  const endpoint = `http://localhost:8000/api/v0${originalUrl}`;
   return {
     [CALL_API]: {
       endpoint,

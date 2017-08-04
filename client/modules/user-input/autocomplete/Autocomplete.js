@@ -162,13 +162,13 @@ class Autocomplete extends Component {
         }
       }
 
-      if (formName === 'search-form') {
+      if (formName === 'search') {
         dispatch(
-          change('search-form', 'coordinates', location.coordinates.reverse())
+          change('search', 'coordinates', location.coordinates.reverse())
         );
         dispatch(
           change(
-            'search-form',
+            'search',
             'location',
             `${location.address.locality}, ${location.address
               .short_administrative_area_level_1}`

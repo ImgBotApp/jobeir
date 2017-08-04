@@ -2,12 +2,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import { reset } from 'redux-form';
 import JobFormAbout from './JobFormAbout';
 import JobFormType from './JobFormType';
 import JobFormCompensation from './JobFormCompensation';
 import JobFormContact from './JobFormContact';
 
 class JobForm extends Component {
+  componentWillUnmount() {
+    this.props.dispatch(reset('job'));
+  }
+
   nextPage = (path: string): void => {
     browserHistory.push(path);
   };

@@ -56,7 +56,7 @@ describe('[Ducks Create Company]', () => {
     });
 
     it('should return the correct state on CREATE_COMPANY_SUCCESS', () => {
-      const nextState = { created: [{}], isLoading: false };
+      const nextState = { activeCompany: {}, created: [{}], isLoading: false };
 
       const action = {
         type: CREATE_COMPANY_SUCCESS,

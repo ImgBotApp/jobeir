@@ -188,6 +188,7 @@ const AddressItem = styled.li`
   padding: 16px 20px;
   margin-bottom: 16px;
   background: #f9f8f7;
+  border: 1px solid #dedede;
 
   svg {
     cursor: pointer;

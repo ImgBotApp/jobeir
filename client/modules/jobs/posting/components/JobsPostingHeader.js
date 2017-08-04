@@ -20,7 +20,6 @@ const JobsPostingHeader = (props: { activePosting: {}, query: string }) => {
             <StyledChevronLeft />Return to jobs
           </StyledLink>
         </JobsPostingHeaderReturn>
-
         {activePostingReady
           ? <FadeIn>
               <JobsPostingHeaderCompany>
@@ -52,10 +51,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(JobsPostingHeader);
 
-const JobsPostingHeaderContainer = styled.div`
-  text-align: center;
-  margin-bottom: 100px;
-`;
+const JobsPostingHeaderContainer = styled.div`margin-bottom: 75px;`;
 
 const JobsPostingHeaderReturn = styled.div`
   display: flex;
@@ -63,7 +59,7 @@ const JobsPostingHeaderReturn = styled.div`
   margin-bottom: 60px;
 `;
 
-const JobsPostingHeaderCompanyLogo = styled.img`height: 40px;`;
+const JobsPostingHeaderCompanyLogo = styled.img`height: 45px;`;
 
 const JobsPostingHeaderCompany = styled.div`margin-bottom: 30px;`;
 
