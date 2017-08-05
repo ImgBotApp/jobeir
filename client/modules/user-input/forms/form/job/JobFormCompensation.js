@@ -41,7 +41,7 @@ class JobFormComponesation extends Component {
         <FormHeader text="What's the compensation?" />
         <FormRow>
           <Field
-            name="salaryMin"
+            name="salary.min"
             label="Salary minimum"
             placeholder="$"
             validate={[required]}
@@ -49,7 +49,7 @@ class JobFormComponesation extends Component {
             component={Currency}
           />
           <Field
-            name="salaryMax"
+            name="salary.max"
             label="Salary maximum"
             placeholder="$"
             validate={[required]}
@@ -58,7 +58,7 @@ class JobFormComponesation extends Component {
           />
         </FormRow>
         <Field
-          name="offerEquity"
+          name="equity.offer"
           label="Do you offer equity for this job?"
           validate={[required]}
           options={yesNoOptions}
@@ -68,7 +68,7 @@ class JobFormComponesation extends Component {
         {offersEquity === 'Yes' &&
           <FormRow>
             <Field
-              name="equityMin"
+              name="equity.min"
               label="Equity minimum"
               type="number"
               placeholder="0.1%"
@@ -78,7 +78,7 @@ class JobFormComponesation extends Component {
               component={Percentage}
             />
             <Field
-              name="equityMax"
+              name="equity.max"
               label="Equity maximum"
               type="number"
               placeholder="3%"

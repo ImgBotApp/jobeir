@@ -13,10 +13,6 @@ const Jobs = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
-  dateCreated: {
-    type: Date,
-    default: Date.now
-  },
   featured: {
     type: Boolean,
     default: false
@@ -42,10 +38,11 @@ const Jobs = new Schema({
     ]
   },
   employmentType: String,
-  equityMax: Number,
-  equityMin: Number,
-  // experience: String,
-  // language: String,
+  equity: {
+    offer: String,
+    min: Number,
+    max: Number
+  },
   location: {
     address: {
       type: Object,
@@ -57,7 +54,6 @@ const Jobs = new Schema({
     },
     coordinates: [{ type: Number, required: true }]
   },
-  offerEquity: String,
   receivingEmails: [
     {
       email: {
@@ -68,9 +64,10 @@ const Jobs = new Schema({
     }
   ],
   remote: String,
-  salaryMax: Number,
-  salaryMin: Number,
-  // skills: String,
+  salary: {
+    min: Number,
+    max: Number
+  },
   title: String,
   role: Object
 });

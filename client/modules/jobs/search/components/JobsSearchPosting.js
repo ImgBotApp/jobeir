@@ -21,7 +21,10 @@ const JobsSearchPosting = (props: {
     },
     _id: string,
     employmentType: string,
-    salaryMax: number,
+    salaryMax: {
+      min: number,
+      max: number
+    },
     salaryMin: number,
     createdAt: string
   }
@@ -54,7 +57,7 @@ const JobsSearchPosting = (props: {
       </JobsSearchPostingCompanyProduct>
       <JobsSearchPostingBottom>
         <JobsSearchPostingType>
-          {posting.employmentType}, ${posting.salaryMax / 1000}K {' - '}${posting.salaryMin / 1000}K
+          {posting.employmentType}, ${posting.salary.max / 1000}K {' - '}${posting.salary.min / 1000}K
         </JobsSearchPostingType>
         <JobsSearchPostingDate>
           {moment(posting.createdAt).fromNow()}

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import { switchCompany } from '../../../user/ducks/';
 import { logout } from '../../../auth/ducks';
 import docCookies from '../../../../utils/cookies';
@@ -86,7 +86,9 @@ class ShellDropdown extends Component {
             </ShellDropdownListItem>
             <ShellDropdownListItemHr />
             <ShellHeaderDropdownLinks>
-              <ShellDropdownListItem>Settings</ShellDropdownListItem>
+              <ShellDropdownListItemLink to="/account/profile/">
+                Profile
+              </ShellDropdownListItemLink>
               <ShellDropdownListItem onClick={this.handleLogoutClick}>
                 Log out
               </ShellDropdownListItem>
@@ -194,10 +196,34 @@ const ShellDropdownListItem = styled.li`
   &:last-child {
     border: none;
   }
+`;
 
-  // &:hover {
-  //   color: ${props => (props.top ? 'intial' : props.theme.colors.purple)};
-  // }
+const ShellDropdownListItemLink = styled(Link)`
+  position: relative;
+  list-style: none;
+  padding: 12px 25px 9px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+  color: ${props => props.theme.colors.text};
+  background: ${props => (props.isActive ? '#fff7f7' : '#fff')};
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    height: 100%;
+    background: ${props => (props.isActive ? props.theme.colors.pink : '#fff')};
+  }
+
+  &:last-child {
+    border: none;
+  }
 `;
 
 const ShellDropdownListItemTop = styled.div`

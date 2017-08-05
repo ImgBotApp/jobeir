@@ -82,6 +82,7 @@ const SelectInput = styled.select`
   padding: ${props => props.theme.select.padding};
   font-size: ${props => props.theme.select.fontSize};
   width: ${props => props.theme.select.width};
+  height: ${props => props.theme.select.height};
   margin: ${props => props.theme.select.margin};
   max-width: ${props => props.theme.select.maxWidth};
   color: ${props => (props.visited ? 'rgba(0,0,0,0.85)' : '#989898')};

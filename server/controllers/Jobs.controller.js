@@ -19,9 +19,8 @@ export function getJobs(req, res) {
     .exec((err, jobs) => {
       if (err) {
         return res.status(204).send({ data: {}, errors: [err] });
-      } else {
-        res.json({ data: { postings: jobs }, errors: [] });
       }
+      res.json({ data: { postings: jobs }, errors: [] });
     });
 }
 
@@ -79,16 +78,16 @@ export function createJob(req, res) {
   newJob.employmentType = sanitizeHtml(newJob.employmentType);
   newJob.address = newJob.address;
   newJob.remote = sanitizeHtml(newJob.remote);
-  newJob.salaryMin = sanitizeHtml(newJob.salaryMin);
-  newJob.salaryMax = sanitizeHtml(newJob.salaryMax);
-  newJob.equityMin = sanitizeHtml(newJob.equityMin || 0);
-  newJob.equityMax = sanitizeHtml(newJob.equityMax || 0);
-  newJob.offerEquity = sanitizeHtml(newJob.offerEquity);
+  newJob.salary.min = sanitizeHtml(newJob.salary.min);
+  newJob.salary.max = sanitizeHtml(newJob.salary.max);
+  newJob.equity.min = sanitizeHtml(newJob.equity.min || 0);
+  newJob.equity.max = sanitizeHtml(newJob.equity.max || 0);
+  newJob.equity.offer = sanitizeHtml(newJob.equity.offer);
   newJob.slug = slug(newJob.title.toLowerCase(), { lowercase: true });
   newJob.cuid = cuid();
 
   // Add the company to the current user
-  Company.findOne({ _id: newJob.company }, function(err, company) {
+  Company.findOne({ _id: newJob.company }, (err, company) => {
     if (err) throw err;
 
     company.jobs.push(newJob._id);

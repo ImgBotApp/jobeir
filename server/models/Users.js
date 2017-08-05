@@ -58,6 +58,7 @@ const Users = new Schema({
       ref: 'Company'
     }
   ],
+  phoneNumber: String,
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });

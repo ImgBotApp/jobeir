@@ -128,7 +128,20 @@ injectGlobal`
     outline: none;
   }
 
-  input, select {
+  select, input {
     font-family: inherit;
+  }
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: white;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: white;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: white;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: white;
   }
 `;

@@ -10,12 +10,17 @@
     "transform-regenerator",
     "transform-runtime",
     "transform-es2015-modules-commonjs",
-    "transform-decorators-legacy"
+    "transform-decorators-legacy",
   ],
   "env": {
     "production": {
       "presets": [
-        ["es2015", { "modules": false }],
+        [
+          "es2015",
+          {
+            "modules": false
+          }
+        ],
         "react",
         "react-optimize",
         "stage-0"

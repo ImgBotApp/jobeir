@@ -31,11 +31,12 @@ export const marble = {
   input: {
     borderRadius: '3px',
     border: 'solid 1px #babbbb',
-    padding: '18px',
+    padding: '22px 18px 18px',
     fontSize: '16px',
     width: '100%',
     margin: '0 auto 1rem',
     activeBorderColor: 'rgba(0,0,0,0.85)',
+    height: '58px',
     ph: {
       color: '#afafaf'
     }
@@ -62,9 +63,10 @@ export const marble = {
     background: '#fff',
     borderRadius: '3px',
     border: 'solid 1px #babbbb',
-    padding: '18px',
+    padding: '22px 18px 18px',
     fontSize: '16px',
     width: '100%',
+    height: '58px',
     margin: '0 auto 1rem',
     activeBorderColor: 'rgba(0,0,0,0.85)',
     ph: {

@@ -11,13 +11,22 @@ import moment from 'moment';
 const JobsListItem = (props: {
   job: {
     title: string,
-    location: string,
-    salaryMax: number,
-    salaryMin: number,
-    dateCreated: string
+    location: {
+      address: {
+        locality: string,
+        administrative_area_level_1: string
+      }
+    },
+    salary: {
+      max: number,
+      min: number
+    },
+    state: string,
+    createdAt: string
   }
 }) => {
   const { job } = props;
+
   return (
     <div>
       <JobsMain>
@@ -30,7 +39,7 @@ const JobsListItem = (props: {
       </JobsMain>
       <JobsSub>
         <div>
-          Created {moment(job.dateCreated).fromNow()}
+          Created {moment(job.createdAt).fromNow()}
         </div>
         <JobsDot>·</JobsDot>
         <div>
@@ -40,7 +49,7 @@ const JobsListItem = (props: {
         </div>
         <JobsDot>·</JobsDot>
         <div>
-          ${job.salaryMin / 1000}K - ${job.salaryMax / 1000}K
+          ${job.salary.min / 1000}K - ${job.salary.max / 1000}K
         </div>
       </JobsSub>
     </div>
@@ -63,7 +72,7 @@ const JobsSub = styled.div`
   display: flex;
   color: #929292;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 200;
 `;
 

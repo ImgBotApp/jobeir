@@ -151,7 +151,7 @@ class JobEditFrom extends Component {
                 />
                 <FormRow>
                   <Field
-                    name="salaryMin"
+                    name="salary.min"
                     label="Salary minimum"
                     placeholder="$"
                     validate={[required]}
@@ -159,7 +159,7 @@ class JobEditFrom extends Component {
                     component={Currency}
                   />
                   <Field
-                    name="salaryMax"
+                    name="salary.max"
                     label="Salary maximum"
                     placeholder="$"
                     validate={[required]}
@@ -168,7 +168,7 @@ class JobEditFrom extends Component {
                   />
                 </FormRow>
                 <Field
-                  name="offerEquity"
+                  name="equity.offer"
                   label="Do you offer equity?"
                   validate={[required]}
                   options={yesNoOptions}
@@ -178,7 +178,7 @@ class JobEditFrom extends Component {
                 {offersEquity === 'Yes' &&
                   <FormRow>
                     <Field
-                      name="equityMin"
+                      name="equity.min"
                       label="Equity minimum"
                       type="number"
                       placeholder="%"
@@ -188,7 +188,7 @@ class JobEditFrom extends Component {
                       component={Text}
                     />
                     <Field
-                      name="equityMax"
+                      name="equity.max"
                       label="Equity maximum"
                       type="number"
                       placeholder="%"
@@ -220,7 +220,7 @@ const selector = formValueSelector('job-edit');
 const mapStateToProps = state => ({
   companies: state.account.companies,
   jobs: state.account.jobs,
-  offersEquity: selector(state, 'offerEquity')
+  offersEquity: selector(state, 'equity.offer')
 });
 
 JobEditFrom = reduxForm({

@@ -29,6 +29,7 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/auth/password/containers/Password');
   require('../modules/account/shell/containers/Shell');
   require('../modules/account/create/step/containers/Step');
+  require('../modules/account/profile/containers/Profile');
   require('../modules/account/create/step/containers/StepComplete');
   require('../modules/account/jobs/containers/Jobs');
   require('../modules/account/jobs/posting/containers/Posting');
@@ -166,6 +167,19 @@ const routes = (
             cb(
               null,
               require('../modules/account/jobs/containers/Jobs').default
+            );
+          });
+        }}
+      />
+      />
+      <Route
+        path="/account/profile"
+        name="Profile"
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(
+              null,
+              require('../modules/account/profile/containers/Profile').default
             );
           });
         }}
