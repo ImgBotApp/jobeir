@@ -15,6 +15,7 @@ import {
 } from '../ducks/';
 import JobsSearchPosting from '../components/JobsSearchPosting';
 import JobsSearchHeading from '../components/JobsSearchHeading';
+import SearchForm from '../../../user-input/forms/form/search/SearchForm';
 
 /**
  * Loading jobs from the server on initial load. This will SSR the first
@@ -48,6 +49,17 @@ class JobsSearch extends Component {
     // Only load jobs on mount if the jobs haven't been rendered
     if (!isLoaded) {
       dispatch(searchJobs(queryData));
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log(
+      prevProps.query,
+      this.props.query,
+      prevProps.query !== this.props.query
+    );
+    if (JSON.stringify(prevProps.query) !== JSON.stringify(this.props.query)) {
+      this.props.dispatch(searchJobs(queryData));
     }
   }
 
@@ -101,11 +113,13 @@ class JobsSearch extends Component {
     return (
       <JobsSearchContainer>
         <JobsSearchRow>
+          <SearchForm location="jobs" />
+        </JobsSearchRow>
+        <JobsSearchRow>
           <JobsSearchColumn margin>
             <JobsSearchHeading text="Search options" />
           </JobsSearchColumn>
           <JobsSearchColumn wide>
-            <JobsSearchHeading text="Search Results" />
             <InfiniteScroll
               pageStart={0}
               threshold={600}
@@ -145,5 +159,5 @@ const JobsSearchRow = styled.div`
 
 const JobsSearchColumn = styled.div`
   margin-right: ${props => (props.margin ? '100px' : '0px')};
-  flex: ${props => (props.wide ? '1.4' : '0.6')};
+  flex: ${props => (props.wide ? '1.3' : '0.7')};
 `;

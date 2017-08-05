@@ -74,12 +74,19 @@ const JobsSearchPostingContainer = styled.div`
   position: relative;
   width: 680px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 25px 30px;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
-  border: 1px solid #e8e8e8;
-  border-radius: 2px;
-  margin-bottom: 25px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
+
+  &:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -101,18 +108,18 @@ const JobsSearchPostingTop = styled.div`
 `;
 const JobsSearchPostingBottom = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   color: #8f8f8f;
 `;
 
 const JobsSearchPostingTitle = styled.h2`
-  font-size: 2rem;
+  font-size: 28px;
   font-weight: 900;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 `;
 
-const JobsSearchPostingSubTitle = styled.p`
-  font-size: 1rem;
+const JobsSearchPostingSubTitle = styled.div`
+  font-size: 16px;
   font-weight: 400;
   opacity: 0.7;
 `;
@@ -134,5 +141,4 @@ const JobsSearchPostingCompanyProduct = styled.p`
   line-height: 1.5;
   margin-bottom: 20px;
   color: #6a6666;
-  max-width: 540px;
 `;

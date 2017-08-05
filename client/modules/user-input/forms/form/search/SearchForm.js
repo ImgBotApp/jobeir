@@ -96,8 +96,16 @@ class SelectInput extends Component {
   }
 }
 
-const Button = props =>
-  <SearchButton type="submit" disabled={props.disabled}>
+const Button = (props: {
+  disabled: boolean,
+  buttonText: string,
+  location: string
+}) =>
+  <SearchButton
+    type="submit"
+    disabled={props.disabled}
+    location={props.location}
+  >
     {props.buttonText || 'Search'}
   </SearchButton>;
 
@@ -139,8 +147,12 @@ class SearchForm extends Component {
   }
 
   render() {
+    const { handleSubmit, location } = this.props;
     return (
-      <SearchFormContainer onSubmit={this.props.handleSubmit(this.formSubmit)}>
+      <SearchFormContainer
+        onSubmit={handleSubmit(this.formSubmit)}
+        location={location}
+      >
         <Field
           name="title"
           label="Job Title"
@@ -154,7 +166,7 @@ class SearchForm extends Component {
           component={Input}
           autocomplete={true}
         />
-        <Field name="submitButton" component={Button} />
+        <Field name="submitButton" component={Button} location={location} />
       </SearchFormContainer>
     );
   }
@@ -180,10 +192,12 @@ const SearchFormContainer = styled.form`
   width: 100%;
   background: #fff;
   border: 1px solid #dce0e0;
-  box-shadow: 0 1px 3px 0 #dce0e0;
+  box-shadow: ${props =>
+    props.location === 'jobs' ? 'none' : '0 1px 3px 0 #dce0e0'};
   border-radius: 4px;
   height: 80px;
   margin-top: 30px;
+  margin-bottom: ${props => (props.location === 'jobs' ? '50px' : '0px')};
 `;
 
 const SearchInput = styled.input`
@@ -220,7 +234,7 @@ const SearchInputContainer = styled.div`
 `;
 
 const SearchButton = styled.button`
-  width: 160px;
+  width: ${props => (props.location = 'jobs' ? '240px' : '160px')};
   font-size: 18px;
   color: white;
   background-color: #5c6ac4;

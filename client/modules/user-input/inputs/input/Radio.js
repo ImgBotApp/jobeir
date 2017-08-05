@@ -191,7 +191,6 @@ const RadioListInputContainer = styled.div`
       : props.checked ? '#f27c5e' : '#f9f8f7'};
   }
   color: ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.85)')};
-  border: 1px solid #dedede;
   border-radius: 2px;
   margin-bottom: 1%;
   cursor: pointer;
