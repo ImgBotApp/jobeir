@@ -13,9 +13,11 @@ import {
   resetJobs,
   updateSearchQuery
 } from '../ducks/';
+import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchPosting from '../components/JobsSearchPosting';
 import JobsSearchHeading from '../components/JobsSearchHeading';
 import SearchForm from '../../../user-input/forms/form/search/SearchForm';
+import FadeIn from '../../../../styles/components/FadeIn';
 
 /**
  * Loading jobs from the server on initial load. This will SSR the first
@@ -105,7 +107,9 @@ class JobsSearch extends Component {
    */
   buildJobPostings() {
     return this.props.jobs.postings.map(posting =>
-      <JobsSearchPosting key={posting._id} posting={posting} />
+      <FadeIn key={posting._id}>
+        <JobsSearchPosting posting={posting} />
+      </FadeIn>
     );
   }
 
@@ -117,7 +121,7 @@ class JobsSearch extends Component {
         </JobsSearchRow>
         <JobsSearchRow>
           <JobsSearchColumn margin>
-            <JobsSearchHeading text="Search options" />
+            <JobsSearchSidebar />
           </JobsSearchColumn>
           <JobsSearchColumn wide>
             <InfiniteScroll
