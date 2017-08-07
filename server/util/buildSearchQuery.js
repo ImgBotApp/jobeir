@@ -48,7 +48,5 @@ export function buildJobSearchQuery(query: {}): {} {
     searchQuery.employmentType = query.et;
   }
 
-  console.log(searchQuery);
-
   return searchQuery;
 }

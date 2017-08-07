@@ -110,12 +110,6 @@ const Button = (props: {
   </SearchButton>;
 
 class SearchForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
   componentDidMount() {
     /**
      * This is a hack to remove the browser's autocomplete suggestions
@@ -135,16 +129,16 @@ class SearchForm extends Component {
     this.location.setAttribute('id', 'location');
   }
 
-  formSubmit(data) {
+  formSubmit = data => {
     const queryData = {
       q: data.title && data.title.value,
       l: data.location,
-      lat: data.lat,
-      lng: data.lng
+      lat: data.lat || data.coordinates[0],
+      lng: data.lng || data.coordinates[1]
     };
     const query = queryString.stringify(queryData);
     browserHistory.push(`/jobs?${query}`);
-  }
+  };
 
   render() {
     const { handleSubmit, location } = this.props;

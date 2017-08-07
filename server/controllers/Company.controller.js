@@ -71,16 +71,16 @@ export function createCompany(req, res) {
   newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
   newCompany.displayName = sanitizeHtml(req.body.name);
   newCompany.website = sanitizeHtml(newCompany.website);
+  newCompany.size = sanitizeHtml(newCompany.size);
   newCompany.perks = newCompany.perks;
   newCompany.product = sanitizeHtml(newCompany.product);
-  // newCompany.locations.push(address);
   newCompany.phone = sanitizeHtml(newCompany.phone);
 
   newCompany.slug = slug(newCompany.name.toLowerCase(), { lowercase: true });
   newCompany.cuid = cuid();
 
   // Add the company to the current user
-  Users.findOne({ _id: req.user._doc._id }, function(err, user) {
+  Users.findOne({ _id: req.user._doc._id }, (err, user) => {
     if (err) throw err;
 
     user.companies.push(newCompany._id);
@@ -175,7 +175,7 @@ export const upload = (req, res, next) => {
       logo: req.body.path
     },
     { new: true },
-    function(err, company) {
+    (err, company) => {
       if (err) return res.status(500).send({ error: err });
 
       return res.status(200).send({

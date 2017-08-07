@@ -26,8 +26,9 @@ export function searchJobs(
   },
   res: { status: Function }
 ) {
-  const skip = parseFloat(req.query.s) || 0;
-  const query = buildJobSearchQuery(req.query);
+  const skip: number = parseFloat(req.query.s) || 0;
+  const query: {} = buildJobSearchQuery(req.query);
+  const csQuery = req.query.cs ? { 'company.size': req.query.cs } : {};
 
   Promise.all([
     Jobs.find(query)
@@ -36,13 +37,15 @@ export function searchJobs(
       .sort('-dateCreated')
       .select('-receivingEmails -description')
       .populate('company')
+      .find(csQuery)
       .exec(),
-    Jobs.find(query).count().exec()
+    Jobs.find(query).populate('company').find(csQuery).count().exec()
   ]).then(
-    (data: Array<{}>) => {
-      res
-        .status(200)
-        .send({ data: { postings: data[0], count: data[1] }, errors: [] });
+    (data: Array<{ postings: Array<{}>, count: number }>) => {
+      const postings: Array<{}> = data[0];
+      const count: number = data[1];
+
+      res.status(200).send({ data: { postings, count }, errors: [] });
     },
     err => res.status(500).send({ data: {}, errors: [err] })
   );
