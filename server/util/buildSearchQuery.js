@@ -10,10 +10,20 @@
  * - role (title)
  */
 export function buildJobSearchQuery(query: {}): {} {
-  const searchQuery: { location?: {}, 'role.value'?: {} } = {};
+  const searchQuery: {
+    location?: {},
+    'role.value'?: {},
+    featured?: boolean,
+    'equity.offer'?: string,
+    remote?: string,
+    distance?: number,
+    employmentType?: string,
+    salary?: number
+  } = {};
 
   if (query.lng && query.lat) {
     const coordinates = [query.lng, query.lat].map(parseFloat);
+    const distance = parseFloat(query.d) * 1000 || 10000;
 
     searchQuery.location = {
       $near: {
@@ -21,7 +31,7 @@ export function buildJobSearchQuery(query: {}): {} {
           type: 'Point',
           coordinates
         },
-        $maxDistance: 10000
+        $maxDistance: distance
       }
     };
   }
@@ -29,6 +39,16 @@ export function buildJobSearchQuery(query: {}): {} {
   if (query.q) {
     searchQuery['role.value'] = query.q;
   }
+
+  if (query.eq) {
+    searchQuery['equity.offer'] = query.eq;
+  }
+
+  if (query.et) {
+    searchQuery.employmentType = query.et;
+  }
+
+  console.log(searchQuery);
 
   return searchQuery;
 }

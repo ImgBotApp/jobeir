@@ -163,9 +163,8 @@ class Autocomplete extends Component {
       }
 
       if (formName === 'search') {
-        dispatch(
-          change('search', 'coordinates', location.coordinates.reverse())
-        );
+        dispatch(change('search', 'lng', location.coordinates[0]));
+        dispatch(change('search', 'lat', location.coordinates[1]));
         dispatch(
           change(
             'search',

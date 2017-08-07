@@ -11,7 +11,7 @@ import {
   shouldGetJobs,
   searchJobs,
   resetJobs,
-  updateSearchQuery
+  filterSearchJobs
 } from '../ducks/';
 import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchPosting from '../components/JobsSearchPosting';
@@ -41,7 +41,20 @@ class JobsSearch extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { hasMore: true };
+    const parsed = queryString.parse(this.props.search);
+    const initialValues = {
+      location: parsed.l,
+      title: parsed.q,
+      lat: parsed.lat,
+      lng: parsed.lng,
+      employmentType: parsed.et,
+      equity: parsed.eq,
+      distance: parsed.d,
+      remote: parsed.r,
+      companySize: parsed.cs
+    };
+
+    this.state = { hasMore: true, initialValues };
   }
 
   componentDidMount() {
@@ -55,13 +68,12 @@ class JobsSearch extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(
-      prevProps.query,
-      this.props.query,
-      prevProps.query !== this.props.query
-    );
-    if (JSON.stringify(prevProps.query) !== JSON.stringify(this.props.query)) {
-      this.props.dispatch(searchJobs(queryData));
+    const { query, dispatch } = this.props;
+    if (
+      JSON.stringify(prevProps.query) !== JSON.stringify(query) &&
+      Object.keys(query).length
+    ) {
+      dispatch(filterSearchJobs(queryString.stringify(query)));
     }
   }
 
@@ -69,18 +81,18 @@ class JobsSearch extends Component {
     this.props.dispatch(resetJobs());
   }
 
-  loadMoreJobs = () => {
+  loadMoreJobs = (): void => {
     const {
       dispatch,
       jobs: { count, isFetching, isLoaded },
       query
     } = this.props;
-    const currentStart = parseInt(query.start, 10) || 0;
+    const currentStart = parseInt(query.s, 10) || 0;
     // Creating a new updated query with the correct start position
     const updatedQuery = queryString.stringify({
       l: query.l,
       q: query.q,
-      start: currentStart + 15,
+      s: currentStart + 15,
       lat: query.lat,
       lng: query.lng
     });
@@ -114,14 +126,16 @@ class JobsSearch extends Component {
   }
 
   render() {
+    const { initialValues } = this.state;
+
     return (
       <JobsSearchContainer>
         <JobsSearchRow>
-          <SearchForm location="jobs" />
+          <SearchForm location="jobs" initialValues={initialValues} />
         </JobsSearchRow>
         <JobsSearchRow>
           <JobsSearchColumn margin>
-            <JobsSearchSidebar />
+            <JobsSearchSidebar initialValues={initialValues} />
           </JobsSearchColumn>
           <JobsSearchColumn wide>
             <InfiniteScroll
@@ -144,6 +158,9 @@ const mapStateToProps = state => ({
   query:
     state.routing.locationBeforeTransitions &&
     state.routing.locationBeforeTransitions.query,
+  search:
+    state.routing.locationBeforeTransitions &&
+    state.routing.locationBeforeTransitions.search,
   jobs: state.search.jobs
 });
 

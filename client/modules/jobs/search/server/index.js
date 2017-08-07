@@ -26,7 +26,7 @@ export function serverGetJobs(queryData, req) {
         },
         {
           type: SERVER_SEARCH_JOBS_FAILURE,
-          payload: (action, state, response) => response.json().then(res => res)
+          errors: (action, state, response) => response.json().then(res => res)
         }
       ]
     }

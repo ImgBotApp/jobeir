@@ -139,8 +139,8 @@ class SearchForm extends Component {
     const queryData = {
       q: data.title && data.title.value,
       l: data.location,
-      lat: data.coordinates[0],
-      lng: data.coordinates[1]
+      lat: data.lat,
+      lng: data.lng
     };
     const query = queryString.stringify(queryData);
     browserHistory.push(`/jobs?${query}`);
@@ -234,7 +234,7 @@ const SearchInputContainer = styled.div`
 `;
 
 const SearchButton = styled.button`
-  width: ${props => (props.location = 'jobs' ? '240px' : '160px')};
+  width: ${props => (props.location === 'jobs' ? '240px' : '160px')};
   font-size: 18px;
   color: white;
   background-color: #5c6ac4;

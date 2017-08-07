@@ -13,16 +13,20 @@ import { buildJobSearchQuery } from '../util/buildSearchQuery';
 export function searchJobs(
   req: {
     query: {
-      q?: string,
-      l?: string,
-      lng?: string,
-      lat?: string,
-      start?: string
+      q?: string, // title
+      l?: string, // location
+      lng?: string, // longitutde
+      lat?: string, // latitude
+      s?: string, // start
+      cs?: string, // companySize
+      d?: string, // distance
+      et?: string, // employmentType
+      r?: string // remote
     }
   },
   res: { status: Function }
 ) {
-  const skip = parseFloat(req.query.start) || 0;
+  const skip = parseFloat(req.query.s) || 0;
   const query = buildJobSearchQuery(req.query);
 
   Promise.all([
@@ -38,7 +42,7 @@ export function searchJobs(
     (data: Array<{}>) => {
       res
         .status(200)
-        .json(200, { data: { postings: data[0], count: data[1] }, errors: [] });
+        .send({ data: { postings: data[0], count: data[1] }, errors: [] });
     },
     err => res.status(500).send({ data: {}, errors: [err] })
   );

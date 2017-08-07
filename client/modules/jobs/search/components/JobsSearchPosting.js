@@ -77,6 +77,7 @@ const JobsSearchPostingContainer = styled.div`
   padding: 25px 30px;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
+  margin-bottom: 20px;
 
   &:first-child {
     border-top-left-radius: 4px;
