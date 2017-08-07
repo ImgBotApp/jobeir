@@ -36,7 +36,8 @@ import FadeIn from '../../../../styles/components/FadeIn';
 ])
 class JobsSearch extends Component {
   state: {
-    hasMore: boolean
+    hasMore: boolean,
+    initialValues: {}
   };
 
   constructor(props) {
@@ -69,10 +70,10 @@ class JobsSearch extends Component {
 
   componentDidUpdate(prevProps) {
     const { query, dispatch } = this.props;
-    if (
-      JSON.stringify(prevProps.query) !== JSON.stringify(query) &&
-      Object.keys(query).length
-    ) {
+    const prev = this.withoutStartQuery(prevProps.query);
+    const curr = this.withoutStartQuery(query);
+
+    if (prev !== curr && Object.keys(query).length) {
       dispatch(filterSearchJobs(queryString.stringify(query)));
     }
   }
@@ -81,6 +82,24 @@ class JobsSearch extends Component {
     this.props.dispatch(resetJobs());
   }
 
+  /**
+   * withoutStartQuery()
+   * Removes the start 's' query from the query string by default
+   * and returns a JSON stringified version for simple comparison
+   */
+  withoutStartQuery = (obj: {}, prop: string = 's'): string => {
+    const res = Object.assign({}, obj);
+    delete res[prop];
+    return JSON.stringify(res);
+  };
+
+  /**
+   * loadMoreJobs()
+   * Handles loading more jobs when the user gets to the bottom of the
+   * inifinite scroll component. It will updating the query after searching
+   * and also handle the state for keeping track of the number of jobs
+   * that are left to search for.
+   */
   loadMoreJobs = (): void => {
     const {
       dispatch,

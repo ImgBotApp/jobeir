@@ -40,18 +40,16 @@ const yesNoOptions: Array<{ text: string, value: string }> = [
 
 class JobsSearchSidebar extends Component {
   componentDidUpdate(prevProps) {
-    console.log(prevProps.search, this.props.search);
     if (
       JSON.stringify(prevProps.search) !== JSON.stringify(this.props.search)
     ) {
-      this.loadMoreJobs();
+      this.udpateSearchQuery();
     }
   }
 
-  loadMoreJobs = () => {
+  udpateSearchQuery = () => {
     const { search, jobs: { isLoaded } } = this.props;
     // Creating a new updated query with the correct start position
-    console.log(search);
     const updatedQuery = queryString.stringify({
       l: search.location,
       q: (search.title && search.title.value) || undefined,
