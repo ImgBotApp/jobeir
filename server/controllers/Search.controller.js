@@ -32,18 +32,26 @@ export function searchJobs(
 
   Promise.all([
     Jobs.find(query)
-      .skip(skip)
-      .limit(15)
-      .sort('-dateCreated')
-      .select('-receivingEmails -description')
       .populate('company')
-      .find(csQuery)
+      .skip(skip)
+      .limit(20)
+      .sort('-createdAt')
+      .select('-receivingEmails -description')
       .exec(),
-    Jobs.find(query).populate('company').find(csQuery).count().exec()
+    Jobs.find(query).populate('company').count().exec()
   ]).then(
     (data: Array<{ postings: Array<{}>, count: number }>) => {
-      const postings: Array<{}> = data[0];
-      const count: number = data[1];
+      let postings: Array<{}> = data[0];
+      let count: number = data[1];
+
+      // filter comapny size
+      if (req.query.cs) {
+        postings = postings.filter(
+          posting => posting.company.size === req.query.cs
+        );
+
+        count = postings.length;
+      }
 
       res.status(200).send({ data: { postings, count }, errors: [] });
     },

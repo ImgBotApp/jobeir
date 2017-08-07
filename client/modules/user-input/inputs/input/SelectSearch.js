@@ -76,7 +76,7 @@ const SelectContainer = styled.div`
     border-color: ${props =>
       props.showError ? props.theme.error.color : '#babbbb'};
     padding: 18px;
-    font-size: 16px;
+    font-size: 18px;
     width: 100%;
     margin: 0 auto 1rem;
   }
@@ -355,7 +355,7 @@ const SelectContainer = styled.div`
     border: 1px solid rgba(0, 126, 255, 0.24);
     color: #007eff;
     display: inline-block;
-    font-size: 0.9em;
+    font-size: 1em;
     line-height: 1.5;
     margin-left: 5px;
     margin-top: 5px;

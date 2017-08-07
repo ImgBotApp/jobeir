@@ -111,7 +111,7 @@ class JobsSearch extends Component {
     const updatedQuery = queryString.stringify({
       l: query.l,
       q: query.q,
-      s: currentStart + 15,
+      s: currentStart + 20,
       lat: query.lat,
       lng: query.lng
     });
@@ -120,7 +120,7 @@ class JobsSearch extends Component {
      * Setting state to now load more job postings if there are no more
      * postings to retrieve from the server
      */
-    if (currentStart + 15 > count && isLoaded) {
+    if (currentStart + 20 > count && isLoaded) {
       return this.setState({ hasMore: false });
     }
 

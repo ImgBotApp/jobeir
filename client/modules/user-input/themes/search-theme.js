@@ -71,6 +71,7 @@ export const search = {
     }
   },
   textarea: {
+    fontfamily: 'Avenir STD',
     background: '#fff',
     borderRadius: '3px',
     border: 'solid 1px #babbbb',

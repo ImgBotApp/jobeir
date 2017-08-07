@@ -25,6 +25,7 @@ export const Textarea = (props: {
 };
 
 const TextareaInput = styled.textarea`
+  font-family: ${props => props.theme.textarea.fontFamily};
   border-radius: ${props => props.theme.textarea.borderRadius};
   border: ${props => props.theme.textarea.border};
   border-color: ${props => (props.showError ? props.theme.error.color : '')};
