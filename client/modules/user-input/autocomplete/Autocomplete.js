@@ -103,6 +103,7 @@ class Autocomplete extends Component {
 
   displaySuggestions = (predictions, status) => {
     if (status != google.maps.places.PlacesServiceStatus.OK) {
+      // This should be changed from an alert
       alert(status);
       return;
     }
@@ -120,8 +121,8 @@ class Autocomplete extends Component {
     const { dispatch, formName } = this.props;
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-      const lat = place.geometry.location.lat();
-      const lng = place.geometry.location.lng();
+      const lat = place.geometry.location.lat().toFixed(2);
+      const lng = place.geometry.location.lng().toFixed(2);
 
       const componentForm: {} = {
         street_number: 'short_name',

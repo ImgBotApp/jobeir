@@ -50,7 +50,6 @@ const JobsSearchPosting = (props: {
             </span>
           </JobsSearchPostingSubTitle>
         </div>
-        <JobsSearchPostingLogo src={posting.company.logo} alt="" />
       </JobsSearchPostingTop>
       <JobsSearchPostingCompanyProduct>
         {posting.company.product}
@@ -58,10 +57,8 @@ const JobsSearchPosting = (props: {
       <JobsSearchPostingBottom>
         <JobsSearchPostingType>
           {posting.employmentType}, ${posting.salary.max / 1000}K {' - '}${posting.salary.min / 1000}K
+          - {moment(posting.createdAt).fromNow()}
         </JobsSearchPostingType>
-        <JobsSearchPostingDate>
-          {moment(posting.createdAt).fromNow()}
-        </JobsSearchPostingDate>
       </JobsSearchPostingBottom>
       <StyledLink to={`/jobs/${posting._id}`} />
     </JobsSearchPostingContainer>
@@ -72,22 +69,10 @@ export default JobsSearchPosting;
 
 const JobsSearchPostingContainer = styled.div`
   position: relative;
-  width: 680px;
+  width: 600px;
   margin: 0 auto;
-  padding: 25px 30px;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
-  margin-bottom: 20px;
-
-  &:first-child {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-  }
-
-  &:last-child {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
+  margin-bottom: 50px;
 `;
 
 const StyledLink = styled(Link)`
@@ -110,36 +95,24 @@ const JobsSearchPostingTop = styled.div`
 const JobsSearchPostingBottom = styled.div`
   display: flex;
   flex-direction: column;
-  color: #8f8f8f;
+  color: #6a6666;
 `;
 
 const JobsSearchPostingTitle = styled.h2`
   font-size: 28px;
   font-weight: 900;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
 `;
 
 const JobsSearchPostingSubTitle = styled.div`
   font-size: 16px;
   font-weight: 400;
-  opacity: 0.7;
-`;
-
-const JobsSearchPostingLogo = styled.img`
-  height: 35px;
-  border-radius: 100%;
-  vertical-align: middle;
-  border-radius: 4px;
-  overflow: hidden;
-  align-self: flex-start;
 `;
 
 const JobsSearchPostingType = styled.div`display: flex;`;
 
-const JobsSearchPostingDate = styled.div``;
-
 const JobsSearchPostingCompanyProduct = styled.p`
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 20px;
   color: #6a6666;
 `;

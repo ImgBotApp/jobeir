@@ -15,8 +15,6 @@ import {
 } from '../ducks/';
 import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchPosting from '../components/JobsSearchPosting';
-import JobsSearchHeading from '../components/JobsSearchHeading';
-import SearchForm from '../../../user-input/forms/form/search/SearchForm';
 import FadeIn from '../../../../styles/components/FadeIn';
 
 /**
@@ -149,9 +147,6 @@ class JobsSearch extends Component {
 
     return (
       <JobsSearchContainer>
-        <JobsSearchRow>
-          <SearchForm location="jobs" initialValues={initialValues} />
-        </JobsSearchRow>
         <JobsSearchRow>
           <JobsSearchColumn margin>
             <JobsSearchSidebar initialValues={initialValues} />

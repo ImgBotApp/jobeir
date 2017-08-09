@@ -3,6 +3,97 @@ import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
 
+const RadioYesNo = ({ props, showError }) =>
+  <InputWrapper {...props}>
+    <RadioContainer>
+      {props.options.map(option =>
+        <RadioInputContainer key={option.value}>
+          <RadioInput
+            {...props.input}
+            type="radio"
+            id={props.input.name}
+            name={props.input.name}
+            value={option.value}
+            showError={showError}
+            checked={option.value === props.input.value}
+          />
+          <RadioText showError={showError}>
+            {option.text}
+          </RadioText>
+        </RadioInputContainer>
+      )}
+    </RadioContainer>
+  </InputWrapper>;
+
+const RadioCircleList = ({ props, showError }) =>
+  <InputWrapper {...props}>
+    <RadioCircleListContainer>
+      {props.options.map(option =>
+        <RadioCircleListInputContainer key={option.value}>
+          <RadioCircleListInput
+            {...props.input}
+            type="radio"
+            id={option.value}
+            name={props.input.name}
+            value={option.value}
+            showError={showError}
+            checked={option.value === props.input.value}
+          />
+          <RadioCircleListLabel showError={showError} htmlFor={option.value}>
+            {option.text || option.name}
+          </RadioCircleListLabel>
+        </RadioCircleListInputContainer>
+      )}
+    </RadioCircleListContainer>
+  </InputWrapper>;
+
+const RadioList = ({ props, showError }) =>
+  <InputWrapper {...props}>
+    <RadioListContainer>
+      {props.options.map(option => {
+        /**
+         * We're allowing for objects to be passed in as value to these select
+         * option input fields. To do so, the object must be JSON (a string)
+         * to be stored within the HTML elelent
+         */
+        const val: string =
+          typeof option.value === 'object'
+            ? JSON.stringify(option.value)
+            : option.value;
+
+        // allowing re-assignment of the value if it's address input
+        let checked: boolean = val === props.input.value;
+
+        if (props.meta.form === 'job-edit' && props.input.name === 'address') {
+          checked = val === JSON.stringify(props.initialValues.address);
+        }
+
+        return (
+          <RadioListInputContainer
+            checked={checked}
+            key={val}
+            row={props.row}
+            rowWidth={props.rowWidth}
+          >
+            <RadioListInput
+              {...props.input}
+              type="radio"
+              id={props.input.name}
+              name={props.input.name}
+              value={val}
+              data-val={JSON.stringify(option.value)}
+              showError={showError}
+              checked={checked}
+            />
+            <RadioListText checked={checked} showError={showError}>
+              {option.name}
+            </RadioListText>
+          </RadioListInputContainer>
+        );
+      })}
+    </RadioListContainer>
+  </InputWrapper>;
+
 export const Radio = (props: {
   type: string,
   row?: string,
@@ -16,90 +107,21 @@ export const Radio = (props: {
   meta: { touched: boolean, error: boolean, invalid: boolean },
   placeholder: string
 }) => {
-  const { meta, ...rest } = props;
+  const { meta } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
 
-  if (props.type === 'yes/no') {
-    return (
-      <InputWrapper {...rest}>
-        <RadioContainer>
-          {props.options.map(option =>
-            <RadioInputContainer key={option.value}>
-              <RadioInput
-                {...props.input}
-                type="radio"
-                id={props.input.name}
-                name={props.input.name}
-                value={option.value}
-                showError={showError}
-                checked={option.value === props.input.value}
-              />
-              <RadioText showError={showError}>
-                {option.text}
-              </RadioText>
-            </RadioInputContainer>
-          )}
-        </RadioContainer>
-      </InputWrapper>
-    );
+  switch (props.type) {
+    case 'yes/no':
+      return <RadioYesNo showError={showError} props={props} />;
+    case 'list':
+      return <RadioList showError={showError} props={props} />;
+    case 'circle':
+      return <RadioCircleList showError={showError} props={props} />;
+    default:
+      throw new Error(
+        'Remember to pass the prop "type" to Radio as list or yes/no'
+      );
   }
-
-  if (props.type === 'list') {
-    return (
-      <InputWrapper {...rest}>
-        <RadioListContainer>
-          {props.options.map(option => {
-            /**
-             * We're allowing for objects to be passed in as value to these select
-             * option input fields. To do so, the object must be JSON (a string)
-             * to be stored within the HTML elelent
-             */
-            const val: string =
-              typeof option.value === 'object'
-                ? JSON.stringify(option.value)
-                : option.value;
-
-            // allowing re-assignment of the value if it's address input
-            let checked: boolean = val === props.input.value;
-
-            if (
-              props.meta.form === 'job-edit' &&
-              props.input.name === 'address'
-            ) {
-              checked = val === JSON.stringify(props.initialValues.address);
-            }
-
-            return (
-              <RadioListInputContainer
-                checked={checked}
-                key={val}
-                row={props.row}
-                rowWidth={props.rowWidth}
-              >
-                <RadioListInput
-                  {...props.input}
-                  type="radio"
-                  id={props.input.name}
-                  name={props.input.name}
-                  value={val}
-                  data-val={JSON.stringify(option.value)}
-                  showError={showError}
-                  checked={checked}
-                />
-                <RadioListText checked={checked} showError={showError}>
-                  {option.name}
-                </RadioListText>
-              </RadioListInputContainer>
-            );
-          })}
-        </RadioListContainer>
-      </InputWrapper>
-    );
-  }
-
-  throw new Error(
-    'Remember to pass the prop "type" to Radio as list or yes/no'
-  );
 };
 
 Radio.defaultProps = {
@@ -160,6 +182,20 @@ const RadioText = styled.div`
   position: relative;
   top: 2px;
   pointer-events: none;
+  color: ${props =>
+    props.showError ? props.theme.error.color : props.theme.text};
+`;
+
+/**
+ * Radio List version styles
+ */
+const RadioCircleListContainer = styled.div``;
+
+const RadioCircleListInputContainer = styled.div``;
+
+const RadioCircleListInput = styled.input``;
+
+const RadioCircleListLabel = styled.label`
   color: ${props =>
     props.showError ? props.theme.error.color : props.theme.text};
 `;

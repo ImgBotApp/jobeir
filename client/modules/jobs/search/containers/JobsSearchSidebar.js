@@ -6,7 +6,7 @@ import { Field, formValueSelector, reduxForm } from 'redux-form';
 import styled, { ThemeProvider } from 'styled-components';
 import queryString from 'query-string';
 import { Radio } from '../../../user-input/inputs/input';
-import { marble } from '../../../user-input/themes/marble-theme';
+import sidebar from '../../../user-input/themes/sidebar-theme';
 
 const jobTypes: Array<{ name: string, value: string }> = [
   { name: 'Full-time', value: 'Full-time' },
@@ -71,14 +71,14 @@ class JobsSearchSidebar extends Component {
   render() {
     return (
       <JobsSearchSidebarContainer>
-        <ThemeProvider theme={marble}>
+        <ThemeProvider theme={sidebar}>
           <div>
             <div>Salary</div>
             <div>Equity</div>
             <Field
               name="equity"
               options={yesNoOptions}
-              type="list"
+              type="circle"
               component={Radio}
             />
 
@@ -86,7 +86,7 @@ class JobsSearchSidebar extends Component {
             <Field
               name="employmentType"
               options={jobTypes}
-              type="list"
+              type="circle"
               component={Radio}
             />
             <div>Company Size</div>
@@ -94,7 +94,7 @@ class JobsSearchSidebar extends Component {
               name="companySize"
               options={jobTypes}
               options={companySizeOptions}
-              type="list"
+              type="circle"
               component={Radio}
             />
 
@@ -103,14 +103,14 @@ class JobsSearchSidebar extends Component {
             <Field
               name="distance"
               options={distanceOptions}
-              type="list"
+              type="circle"
               component={Radio}
             />
             <div>Remote</div>
             <Field
               name="remote"
               options={yesNoOptions}
-              type="list"
+              type="circle"
               component={Radio}
             />
           </div>
