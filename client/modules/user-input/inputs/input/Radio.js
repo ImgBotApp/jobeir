@@ -33,13 +33,16 @@ const RadioCircleList = ({ props, showError }) =>
           <RadioCircleListInput
             {...props.input}
             type="radio"
-            id={option.value}
+            id={props.input.name + option.value}
             name={props.input.name}
             value={option.value}
             showError={showError}
             checked={option.value === props.input.value}
           />
-          <RadioCircleListLabel showError={showError} htmlFor={option.value}>
+          <RadioCircleListLabel
+            showError={showError}
+            htmlFor={props.input.name + option.value}
+          >
             {option.text || option.name}
           </RadioCircleListLabel>
         </RadioCircleListInputContainer>
@@ -189,15 +192,75 @@ const RadioText = styled.div`
 /**
  * Radio List version styles
  */
-const RadioCircleListContainer = styled.div``;
+const RadioCircleListContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
 
-const RadioCircleListInputContainer = styled.div``;
+const RadioCircleListInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-basis: 49.5%;
+  color: #797979;
+  margin-bottom: 10px;
+`;
 
-const RadioCircleListInput = styled.input``;
+const RadioCircleListInput = styled.input`
+  opacity: 0;
+  position: absolute;
+
+  &:checked + label {
+    color: ${props => props.theme.colors.purple};
+  }
+
+  &:checked + label::before {
+    background: ${props => props.theme.colors.purple};
+    border-color: ${props => props.theme.colors.purple};
+  }
+
+  &:checked + label::after {
+    top: 4px;
+    position: absolute;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    content: "";
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: white;
+    left: 6px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+`;
 
 const RadioCircleListLabel = styled.label`
-  color: ${props =>
-    props.showError ? props.theme.error.color : props.theme.text};
+  position: relative;
+  cursor: pointer;
+  background: white;
+  transition: all 200ms ease-in-out;
+
+  &::before {
+    top: -2px;
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    content: "";
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 1px solid;
+  }
+
+  &:hover {
+    color: ${props => props.theme.colors.purple};
+  }
+
+  &:hover::before {
+    border-color: ${props => props.theme.colors.purple};
+  }
 `;
 
 /**

@@ -74,41 +74,37 @@ class JobsSearchSidebar extends Component {
         <ThemeProvider theme={sidebar}>
           <div>
             <div>Salary</div>
-            <div>Equity</div>
             <Field
               name="equity"
+              label="Equity"
               options={yesNoOptions}
               type="circle"
               component={Radio}
             />
-
-            <div>Job Type</div>
             <Field
               name="employmentType"
+              label="Job Type"
               options={jobTypes}
               type="circle"
               component={Radio}
             />
-            <div>Company Size</div>
             <Field
               name="companySize"
-              options={jobTypes}
+              label="Company Size"
               options={companySizeOptions}
               type="circle"
               component={Radio}
             />
-
-            <div>Distance</div>
-
             <Field
               name="distance"
+              label="Distance radius"
               options={distanceOptions}
               type="circle"
               component={Radio}
             />
-            <div>Remote</div>
             <Field
               name="remote"
+              label="Open to Remote"
               options={yesNoOptions}
               type="circle"
               component={Radio}
