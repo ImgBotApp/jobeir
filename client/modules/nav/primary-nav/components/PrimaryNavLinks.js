@@ -82,7 +82,7 @@ const NavLinkContainer = styled.div`
 
 const NavLink = styled(Link)`
   display: block;
-  padding: 0 35px;
+  padding: 0 40px;
   font-size: 16px;
   text-decoration: none;
   cursor: pointer;

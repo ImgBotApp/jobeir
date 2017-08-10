@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
 import styled, { ThemeProvider } from 'styled-components';
 import queryString from 'query-string';
-import { Radio } from '../../../user-input/inputs/input';
+import { Radio, Text } from '../../../user-input/inputs/input';
 import sidebar from '../../../user-input/themes/sidebar-theme';
 
 const jobTypes: Array<{ name: string, value: string }> = [
@@ -73,14 +73,6 @@ class JobsSearchSidebar extends Component {
       <JobsSearchSidebarContainer>
         <ThemeProvider theme={sidebar}>
           <div>
-            <div>Salary</div>
-            <Field
-              name="equity"
-              label="Equity"
-              options={yesNoOptions}
-              type="circle"
-              component={Radio}
-            />
             <Field
               name="employmentType"
               label="Job Type"
@@ -99,6 +91,13 @@ class JobsSearchSidebar extends Component {
               name="distance"
               label="Distance radius"
               options={distanceOptions}
+              type="circle"
+              component={Radio}
+            />
+            <Field
+              name="equity"
+              label="Equity"
+              options={yesNoOptions}
               type="circle"
               component={Radio}
             />

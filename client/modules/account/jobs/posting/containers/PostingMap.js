@@ -46,8 +46,10 @@ export default PostingMap;
 
 const PostingMapContainer = styled.div`
   margin: 75px auto 55px;
+
   #map {
-    height: 450px;
-    width: 100vw;
+    height: 550px;
+    width: 960px;
+    box-shadow: 0px 2px 14px rgba(0, 0, 0, 0.1);
   }
 `;

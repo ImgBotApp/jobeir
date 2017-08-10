@@ -59,7 +59,7 @@ const JobsPostingHeaderReturn = styled.div`
   margin-bottom: 60px;
 `;
 
-const JobsPostingHeaderCompanyLogo = styled.img`height: 45px;`;
+const JobsPostingHeaderCompanyLogo = styled.img`height: 50px;`;
 
 const JobsPostingHeaderCompany = styled.div`margin-bottom: 30px;`;
 

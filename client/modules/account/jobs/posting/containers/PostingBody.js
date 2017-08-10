@@ -56,6 +56,11 @@ const PostingBodyContainer = styled.div`
     font-size: 24px;
   }
 
+  h4,
+  h6 {
+    font-size: 20px;
+  }
+
   ul,
   ol {
     line-height: 1.7;

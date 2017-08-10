@@ -56,9 +56,11 @@ const JobsSearchPosting = (props: {
       </JobsSearchPostingCompanyProduct>
       <JobsSearchPostingBottom>
         <JobsSearchPostingType>
-          {posting.employmentType}, ${posting.salary.max / 1000}K {' - '}${posting.salary.min / 1000}K
-          - {moment(posting.createdAt).fromNow()}
+          {posting.employmentType} · ${posting.salary.max / 1000}K {' - '}${posting.salary.min / 1000}K
         </JobsSearchPostingType>
+        <span>
+          {moment(posting.createdAt).fromNow()}
+        </span>
       </JobsSearchPostingBottom>
       <StyledLink to={`/jobs/${posting._id}`} />
     </JobsSearchPostingContainer>
@@ -69,7 +71,6 @@ export default JobsSearchPosting;
 
 const JobsSearchPostingContainer = styled.div`
   position: relative;
-  width: 600px;
   margin: 0 auto;
   background: #fff;
   margin-bottom: 50px;
@@ -94,13 +95,13 @@ const JobsSearchPostingTop = styled.div`
 `;
 const JobsSearchPostingBottom = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   color: #6a6666;
 `;
 
 const JobsSearchPostingTitle = styled.h2`
-  font-size: 28px;
-  font-weight: 900;
+  font-size: 26px;
+  font-weight: 800;
   margin-bottom: 5px;
 `;
 

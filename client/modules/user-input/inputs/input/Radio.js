@@ -201,9 +201,9 @@ const RadioCircleListContainer = styled.div`
 const RadioCircleListInputContainer = styled.div`
   display: flex;
   align-items: center;
-  flex-basis: 49.5%;
+  flex-basis: 50%;
   color: #797979;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 `;
 
 const RadioCircleListInput = styled.input`
@@ -240,6 +240,7 @@ const RadioCircleListLabel = styled.label`
   cursor: pointer;
   background: white;
   transition: all 200ms ease-in-out;
+  color: #6d6d6d;
 
   &::before {
     top: -2px;
@@ -251,7 +252,9 @@ const RadioCircleListLabel = styled.label`
     vertical-align: middle;
     margin-right: 10px;
     border-radius: 50%;
-    border: 1px solid;
+    border: 1px solid #e8e8e8;
+    background: #e8e8e8;
+    transition: all 200ms ease-in-out;
   }
 
   &:hover {
@@ -260,6 +263,7 @@ const RadioCircleListLabel = styled.label`
 
   &:hover::before {
     border-color: ${props => props.theme.colors.purple};
+    background: ${props => props.theme.colors.purple};
   }
 `;
 

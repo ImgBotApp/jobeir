@@ -28,11 +28,14 @@ class Input extends Component {
   }
 
   render() {
-    const { meta } = this.props;
+    const { meta, location } = this.props;
     const showError = meta.touched && meta.error && meta.invalid;
 
     return (
-      <SearchInputContainer onClick={this.handleInputContainerClick}>
+      <SearchInputContainer
+        location={location}
+        onClick={this.handleInputContainerClick}
+      >
         <SearchLabel htmlFor={this.props.input.name}>
           {this.props.label} {meta.error}
         </SearchLabel>
@@ -142,6 +145,7 @@ class SearchForm extends Component {
 
   render() {
     const { handleSubmit, location } = this.props;
+
     return (
       <SearchFormContainer
         onSubmit={handleSubmit(this.formSubmit)}
@@ -152,15 +156,18 @@ class SearchForm extends Component {
           label="Job Title"
           component={SelectInput}
           options={jobOptions}
+          location={location}
           autoFocus={true}
         />
         <Field
           name="location"
           label="Location"
           component={Input}
+          location={location}
           autocomplete={true}
         />
-        <Field name="submitButton" component={Button} location={location} />
+        {location !== 'nav' &&
+          <Field name="submitButton" component={Button} location={location} />}
       </SearchFormContainer>
     );
   }
@@ -183,15 +190,14 @@ export default connect(mapStateToProps)(SearchForm);
 
 const SearchFormContainer = styled.form`
   display: flex;
-  width: 100%;
+  width: ${props => (props.location === 'nav' ? '820px' : '100%')};
   background: #fff;
-  border: 1px solid #dce0e0;
+  border: ${props => (props.location === 'nav' ? 'none' : '1px solid #dce0e0')};
   box-shadow: ${props =>
-    props.location === 'jobs' ? 'none' : '0 1px 3px 0 #dce0e0'};
+    props.location === 'nav' ? 'none' : '0 1px 3px 0 #dce0e0'};
   border-radius: 4px;
-  height: 80px;
-  margin-top: 30px;
-  margin-bottom: ${props => (props.location === 'jobs' ? '50px' : '0px')};
+  height: ${props => (props.location === 'nav' ? '75px' : '80px')};
+  margin-top: ${props => (props.location === 'nav' ? '0px' : '30px')};
 `;
 
 const SearchInput = styled.input`
@@ -224,11 +230,13 @@ const SearchInputContainer = styled.div`
     margin-right: 0;
     padding-right: 15px;
     border-right: 1px solid #dce0e0;
+    border-left: ${props =>
+      props.location === 'nav' ? '1px solid #dce0e0' : 'none'};
   }
 `;
 
 const SearchButton = styled.button`
-  width: ${props => (props.location === 'jobs' ? '240px' : '160px')};
+  width: 160px;
   font-size: 18px;
   color: white;
   background-color: #5c6ac4;

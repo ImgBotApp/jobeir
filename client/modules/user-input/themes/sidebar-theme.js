@@ -24,7 +24,7 @@ export default {
     }
   },
   inputWrapper: {
-    marginBottom: '25px'
+    marginBottom: '30px'
   },
   error: {
     color: '#f73c3c',
@@ -37,7 +37,7 @@ export default {
   },
   label: {
     display: 'block',
-    marginBottom: '15px',
+    marginBottom: '18px',
     fontSize: '16px',
     fontWeight: '600'
   },

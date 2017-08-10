@@ -148,10 +148,10 @@ class JobsSearch extends Component {
     return (
       <JobsSearchContainer>
         <JobsSearchRow>
-          <JobsSearchColumn margin>
+          <JobsSearchColumn pink margin>
             <JobsSearchSidebar initialValues={initialValues} />
           </JobsSearchColumn>
-          <JobsSearchColumn wide>
+          <JobsSearchColumn purple wide>
             <InfiniteScroll
               pageStart={0}
               threshold={600}
@@ -181,6 +181,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(JobsSearch);
 
 const JobsSearchContainer = styled.div`
+  padding-top: 50px;
   background: #fff;
   min-height: calc(100vh - 75px);
 `;
@@ -188,11 +189,26 @@ const JobsSearchContainer = styled.div`
 const JobsSearchRow = styled.div`
   display: flex;
   justify-content: center;
-  width: 1100px;
+  width: 1040px;
   margin: 0 auto;
 `;
 
 const JobsSearchColumn = styled.div`
-  margin-right: ${props => (props.margin ? '100px' : '0px')};
-  flex: ${props => (props.wide ? '1.3' : '0.7')};
+  position: relative;
+  padding-top: 50px;
+  border-top: 5px solid
+    ${props =>
+      props.purple ? props.theme.colors.purple : props.theme.colors.pink};
+  margin-right: ${props => (props.margin ? '80px' : '0px')};
+  flex: ${props => (props.wide ? '1.35' : '0.65')};
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: ${props => (props.purple ? '0px' : '-5px')};
+    right: 0;
+    width: 45px;
+    height: 5px;
+    background: white;
+  }
 `;
