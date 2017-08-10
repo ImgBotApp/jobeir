@@ -5,17 +5,23 @@ import PrimaryNavLogo from '../components/PrimaryNavLogo';
 import PrimaryNavLinks from '../components/PrimaryNavLinks';
 import SearchForm from '../../../user-input/forms/form/search/SearchForm';
 
-const PrimaryNav = props =>
-  <Navigation isAuthenticated={props.isAuthenticated}>
-    <NavigationContainer>
-      <PrimaryNavLogo />
-      <SearchForm location="nav" />
-      <PrimaryNavLinks />
-    </NavigationContainer>
-  </Navigation>;
+const PrimaryNav = props => {
+  const { isOnJobs } = props;
+
+  return (
+    <Navigation isOnJobs={isOnJobs}>
+      <NavigationContainer>
+        <PrimaryNavLogo />
+        {isOnJobs && <SearchForm location="nav" />}
+        <PrimaryNavLinks />
+      </NavigationContainer>
+    </Navigation>
+  );
+};
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.session.auth.isAuthenticated
+  isAuthenticated: state.session.auth.isAuthenticated,
+  isOnJobs: state.search.jobs.isFetching || state.search.jobs.isLoaded
 });
 
 export default connect(mapStateToProps)(PrimaryNav);
@@ -23,8 +29,9 @@ export default connect(mapStateToProps)(PrimaryNav);
 const Navigation = styled.nav`
   flex: 1;
   background: #fff;
-  border-bottom: 1px solid #e4e4e4;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  border-bottom: ${props => (props.isOnJobs ? '1px solid #e4e4e4' : 'none')};
+  box-shadow: ${props =>
+    props.isOnJobs ? '0 1px 5px rgba(0, 0, 0, 0.1)' : 'none'};
 `;
 
 const NavigationContainer = styled.div`
