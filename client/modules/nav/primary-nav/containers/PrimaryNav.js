@@ -9,10 +9,9 @@ const PrimaryNav = props => {
   const { isOnJobs } = props;
 
   return (
-    <Navigation isOnJobs={isOnJobs}>
+    <Navigation>
       <NavigationContainer>
         <PrimaryNavLogo />
-        {isOnJobs && <SearchForm location="nav" />}
         <PrimaryNavLinks />
       </NavigationContainer>
     </Navigation>
@@ -20,19 +19,12 @@ const PrimaryNav = props => {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.session.auth.isAuthenticated,
-  isOnJobs: state.search.jobs.isFetching || state.search.jobs.isLoaded
+  isAuthenticated: state.session.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps)(PrimaryNav);
 
-const Navigation = styled.nav`
-  flex: 1;
-  background: #fff;
-  border-bottom: ${props => (props.isOnJobs ? '1px solid #e4e4e4' : 'none')};
-  box-shadow: ${props =>
-    props.isOnJobs ? '0 1px 5px rgba(0, 0, 0, 0.1)' : 'none'};
-`;
+const Navigation = styled.nav`flex: 1;`;
 
 const NavigationContainer = styled.div`
   display: flex;

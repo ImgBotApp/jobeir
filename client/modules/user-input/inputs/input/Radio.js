@@ -238,7 +238,6 @@ const RadioCircleListInput = styled.input`
 const RadioCircleListLabel = styled.label`
   position: relative;
   cursor: pointer;
-  background: white;
   transition: all 200ms ease-in-out;
   color: #6d6d6d;
 
@@ -252,8 +251,7 @@ const RadioCircleListLabel = styled.label`
     vertical-align: middle;
     margin-right: 10px;
     border-radius: 50%;
-    border: 1px solid #e8e8e8;
-    background: #e8e8e8;
+    border: 1px solid #888888;
     transition: all 200ms ease-in-out;
   }
 

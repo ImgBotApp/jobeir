@@ -16,6 +16,7 @@ import {
 import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchPosting from '../components/JobsSearchPosting';
 import FadeIn from '../../../../styles/components/FadeIn';
+import SearchForm from '../../../user-input/forms/form/search/SearchForm';
 
 /**
  * Loading jobs from the server on initial load. This will SSR the first
@@ -147,11 +148,19 @@ class JobsSearch extends Component {
 
     return (
       <JobsSearchContainer>
+        <JobsSearchBackground>
+          <JobsSearchBackgroundGrey />
+          <JobsSearchBackgroundWhite />
+        </JobsSearchBackground>
         <JobsSearchRow>
-          <JobsSearchColumn pink margin>
+          <JobsSearchColumn margin>
+            <JobsSearchHeader>Filter options</JobsSearchHeader>
             <JobsSearchSidebar initialValues={initialValues} />
           </JobsSearchColumn>
-          <JobsSearchColumn purple wide>
+          <JobsSearchColumn wide>
+            <JobsSearchHeader wide>
+              Search results ({this.props.jobs.count})
+            </JobsSearchHeader>
             <InfiniteScroll
               pageStart={0}
               threshold={600}
@@ -181,10 +190,29 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(JobsSearch);
 
 const JobsSearchContainer = styled.div`
-  padding-top: 50px;
-  background: #fff;
+  padding-top: 30px;
   min-height: calc(100vh - 75px);
 `;
+
+const JobsSearchBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  z-index: -1;
+`;
+
+const JobsSearchBackgroundGrey = styled.div`
+  flex: 0.8;
+  background: #f9f8f7;
+  border-right: 1px solid #eceaea;
+`;
+
+const JobsSearchBackgroundWhite = styled.div`flex: 1.25;`;
 
 const JobsSearchRow = styled.div`
   display: flex;
@@ -193,22 +221,18 @@ const JobsSearchRow = styled.div`
   margin: 0 auto;
 `;
 
+const JobsSearchHeader = styled.div`
+  border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 50px;
+  width: ${props => (props.wide ? '100%' : '87%')};
+  font-size: 22px;
+  font-weight: 800;
+  padding-bottom: 15px;
+`;
+
 const JobsSearchColumn = styled.div`
   position: relative;
   padding-top: 50px;
-  border-top: 5px solid
-    ${props =>
-      props.purple ? props.theme.colors.purple : props.theme.colors.pink};
-  margin-right: ${props => (props.margin ? '80px' : '0px')};
+  margin-right: ${props => (props.margin ? '120px' : '0px')};
   flex: ${props => (props.wide ? '1.35' : '0.65')};
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: ${props => (props.purple ? '0px' : '-5px')};
-    right: 0;
-    width: 45px;
-    height: 5px;
-    background: white;
-  }
 `;
