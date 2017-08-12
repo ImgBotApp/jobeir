@@ -101,7 +101,7 @@ const JobsSearchPostingBottom = styled.div`
 
 const JobsSearchPostingTitle = styled.h2`
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 900;
   margin-bottom: 5px;
 `;
 
@@ -114,6 +114,6 @@ const JobsSearchPostingType = styled.div`display: flex;`;
 
 const JobsSearchPostingCompanyProduct = styled.p`
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   color: #6a6666;
 `;

@@ -26,10 +26,6 @@ const Users = new Schema({
     type: String,
     default: 'Local'
   },
-  dateCreated: {
-    type: Date,
-    default: Date.now
-  },
   firstName: {
     type: String,
     trim: true

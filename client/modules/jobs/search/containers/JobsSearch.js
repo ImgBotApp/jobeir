@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router';
 import styled from 'styled-components';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroller';
+import CountTo from 'react-count-to';
 import { serverGetJobs } from '../server/';
 import {
   shouldGetJobs,
@@ -17,7 +18,7 @@ import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchPosting from '../components/JobsSearchPosting';
 import FadeIn from '../../../../styles/components/FadeIn';
 import SearchForm from '../../../user-input/forms/form/search/SearchForm';
-
+import JobsSearchPostingLoader from '../components/JobsSearchPostingLoader';
 /**
  * Loading jobs from the server on initial load. This will SSR the first
  * jobs posts and allow infinite scroll to do the rest
@@ -154,19 +155,26 @@ class JobsSearch extends Component {
         </JobsSearchBackground>
         <JobsSearchRow>
           <JobsSearchColumn margin>
-            <JobsSearchHeader>Filter options</JobsSearchHeader>
+            <JobsSearchHeader>
+              <JobsSearchHeaderText>Filter options</JobsSearchHeaderText>
+            </JobsSearchHeader>
             <JobsSearchSidebar initialValues={initialValues} />
           </JobsSearchColumn>
           <JobsSearchColumn wide>
             <JobsSearchHeader wide>
-              Search results ({this.props.jobs.count})
+              <JobsSearchHeaderText>
+                Search results (<CountTo
+                  to={this.props.jobs.count}
+                  speed={500}
+                />)
+              </JobsSearchHeaderText>
             </JobsSearchHeader>
             <InfiniteScroll
               pageStart={0}
               threshold={600}
               loadMore={this.loadMoreJobs}
               hasMore={this.state.hasMore}
-              loader={<div className="loader">Loading ...</div>}
+              loader={<JobsSearchPostingLoader />}
             >
               {this.buildJobPostings()}
             </InfiniteScroll>
@@ -227,7 +235,14 @@ const JobsSearchHeader = styled.div`
   width: ${props => (props.wide ? '100%' : '87%')};
   font-size: 22px;
   font-weight: 800;
+`;
+
+const JobsSearchHeaderText = styled.div`
+  display: inline-block;
   padding-bottom: 15px;
+  border-bottom: 1px solid #212121;
+  position: relative;
+  top: 1px;
 `;
 
 const JobsSearchColumn = styled.div`

@@ -16,4 +16,5 @@ const LabelContainer = styled.div`
   font-size: ${props => props.theme.label.fontSize};
   font-weight: ${props => props.theme.label.fontWeight};
   margin-bottom: ${props => props.theme.label.marginBottom};
+  color: ${props => props.theme.label.color || 'inherit'};
 `;

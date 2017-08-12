@@ -66,6 +66,7 @@
         "query-string": "^4.3.4",
         "rapscallion": "^2.1.10",
         "react": "15.6.1",
+        "react-count-to": "^0.8.1",
         "react-dom": "15.6.1",
         "react-draft-wysiwyg": "^1.10.0",
         "react-dropzone": "^3.13.3",

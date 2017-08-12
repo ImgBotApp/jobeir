@@ -531,12 +531,6 @@ babel-plugin-jest-hoist@^20.0.3:
   version "20.0.3"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-20.0.3.tgz#afedc853bd3f8dc3548ea671fbe69d03cc2c1767"
 
-babel-plugin-styled-components@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.1.7.tgz#a92c239779cc80e7838b645c12865c61c4ca71ce"
-  dependencies:
-    stylis "^3.2.1"
-
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-async-functions/-/babel-plugin-syntax-async-functions-6.13.0.tgz#cad9cad1191b5ad634bf30ae0872391e0647be95"
@@ -5907,6 +5901,12 @@ react-base16-styling@^0.5.1:
     lodash.curry "^4.0.1"
     lodash.flow "^3.3.0"
     pure-color "^1.2.0"
+
+react-count-to@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/react-count-to/-/react-count-to-0.8.1.tgz#7314bbaec2404fac2bc31cde85379efe9370d3aa"
+  dependencies:
+    prop-types "^15.5.8"
 
 react-deep-force-update@^2.0.1:
   version "2.0.1"

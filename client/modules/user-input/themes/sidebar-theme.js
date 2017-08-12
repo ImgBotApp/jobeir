@@ -39,7 +39,8 @@ export default {
     display: 'block',
     marginBottom: '18px',
     fontSize: '16px',
-    fontWeight: '600'
+    fontWeight: '600',
+    color: '#898989'
   },
   select: {
     background: '#fff',

@@ -239,7 +239,7 @@ const RadioCircleListLabel = styled.label`
   position: relative;
   cursor: pointer;
   transition: all 200ms ease-in-out;
-  color: #6d6d6d;
+  color: #888888;
 
   &::before {
     top: -2px;

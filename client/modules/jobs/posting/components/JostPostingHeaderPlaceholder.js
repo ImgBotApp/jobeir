@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const JobsPostingHeadePlaceholder = () =>
+const JobsPostingHeaderPlaceholder = () =>
   <PlaceholderHeader>
     <PlaceholderLogo />
     <PlaceholderTitle />
@@ -10,7 +10,7 @@ const JobsPostingHeadePlaceholder = () =>
     <PlaceholderDate />
   </PlaceholderHeader>;
 
-export default JobsPostingHeadePlaceholder;
+export default JobsPostingHeaderPlaceholder;
 
 const PlaceholderHeader = styled.div`
   display: inline-block;

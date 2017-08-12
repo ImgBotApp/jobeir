@@ -50,7 +50,9 @@ const StyledMaskedInput = styled(MaskedInput)`
   padding: ${props => props.theme.input.padding};
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
+  height: ${props => props.theme.input.height};
   margin: ${props => props.theme.input.margin};
+  max-width: ${props => props.theme.input.maxWidth};
 
   &:active,
   &:focus {
