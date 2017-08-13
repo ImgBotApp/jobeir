@@ -25,7 +25,8 @@ export default connect(mapStateToProps)(ShellHeaderNav);
 const ShellHeaderNavContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 40px;
+  padding: 0 25px;
+  margin-right: 25px;
 `;
 
 const ShellHeaderNavLink = styled(Link)`

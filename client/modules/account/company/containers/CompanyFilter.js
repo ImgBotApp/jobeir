@@ -2,48 +2,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { updateJobFilter } from '../../../account/create/job/ducks/';
+import { updateCompanyFilter } from '../../../account/create/company/ducks/';
 
-class JobsFilter extends Component {
+class CompanyFilter extends Component {
   handleFilterClick(state: string) {
-    this.props.dispatch(updateJobFilter(state));
+    this.props.dispatch(updateCompanyFilter(state));
   }
 
   render() {
-    const states = ['All Jobs', 'Pending', 'Active', 'Paused'];
+    const states = ['Overview', 'About', 'Contact', 'Location', 'Logo'];
 
     return (
-      <JobsFilterContainer>
+      <CompanyFilterContainer>
         {states.map(state => {
           const active: boolean = state === this.props.filter;
+
           return (
-            <JobsFilterItem
+            <CompanyFilterItem
               active={active}
               key={state}
               onClick={() => this.handleFilterClick(state)}
             >
               {state}
-            </JobsFilterItem>
+            </CompanyFilterItem>
           );
         })}
-      </JobsFilterContainer>
+      </CompanyFilterContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  filter: state.account.jobs.filter
+  filter: state.account.companies.filter
 });
 
-export default connect(mapStateToProps)(JobsFilter);
+export default connect(mapStateToProps)(CompanyFilter);
 
-const JobsFilterContainer = styled.div`
+const CompanyFilterContainer = styled.div`
   display: flex;
   margin-bottom: 20px;
   border-top: 1px solid #f2f2f2;
 `;
 
-const JobsFilterItem = styled.div`
+const CompanyFilterItem = styled.div`
   padding: 22px 0;
   margin-right: 40px;
   position: relative;

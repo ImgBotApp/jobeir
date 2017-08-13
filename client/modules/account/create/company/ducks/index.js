@@ -21,12 +21,15 @@ export const UPLOAD_COMPANY_LOGO_REQUEST = 'UPLOAD_COMPANY_LOGO_REQUEST';
 export const UPLOAD_COMPANY_LOGO_SUCCESS = 'UPLOAD_COMPANY_LOGO_SUCCESS';
 export const UPLOAD_COMPANY_LOGO_FAILURE = 'UPLOAD_COMPANY_LOGO_FAILURE';
 
+export const UPDATE_COMPANY_FILTER = 'UPDATE_COMPANY_FILTER';
+
 export const initialState: {
   isLoading: boolean,
   isChecking: boolean,
   isUploading: boolean,
   successfulUpload: boolean,
   activeCompany: {},
+  filter: string,
   created: [],
   errors: []
 } = {
@@ -35,6 +38,7 @@ export const initialState: {
   isUploading: false,
   successfulUpload: false,
   activeCompany: {},
+  filter: 'Overview',
   created: [],
   errors: []
 };
@@ -104,6 +108,10 @@ export default (state?: {} = initialState, action?: {} = {}) => {
         isUploading: false,
         errors: action.errors.errors
       });
+    case UPDATE_COMPANY_FILTER:
+      return Object.assign({}, state, {
+        filter: action.payload.filter
+      });
     default:
       return state;
   }
@@ -127,4 +135,9 @@ export const updateCompany = (data: {}) => ({
 export const uploadCompanyLogo = (formData: {}, companyId: string) => ({
   type: UPLOAD_COMPANY_LOGO_REQUEST,
   payload: { formData, companyId }
+});
+
+export const updateCompanyFilter = (filter: string): {} => ({
+  type: UPDATE_COMPANY_FILTER,
+  payload: { filter }
 });

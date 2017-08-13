@@ -7,6 +7,7 @@ import { getJobs } from '../../../account/create/job/ducks/';
 import JobsFilter from './JobsFilter';
 import JobsList from '../components/JobsList';
 import JobsListItemPlaceholder from '../components/JobsListItemPlaceholder';
+import FadeIn from '../../../../styles/components/FadeIn';
 
 /**
  * <Jobs />
@@ -41,7 +42,9 @@ class Jobs extends Component {
             {jobs.isFetching
               ? <JobsListItemPlaceholder />
               : hasJobPostings
-                ? <JobsList jobs={jobs.postings} />
+                ? <FadeIn>
+                    <JobsList jobs={jobs.postings} />
+                  </FadeIn>
                 : <Link to={`/create/job/about/${companies.activeCompany._id}`}>
                     Create a job
                   </Link>}

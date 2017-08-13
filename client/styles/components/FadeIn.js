@@ -19,6 +19,6 @@ const FadeInAnimation = keyframes`
 `;
 
 const FadeIn = styled.div`
-  animation: ${FadeInAnimation} 600ms forwards
+  animation: ${FadeInAnimation} 400ms forwards
     cubic-bezier(0.215, 0.61, 0.355, 1);
 `;

@@ -39,9 +39,10 @@ class PrimaryNavLinks extends Component {
   buildMainNavigation(isAuthenticated) {
     return isAuthenticated
       ? <NavLinkContainer>
-          <NavLink to="/account/jobs">
+          <NavLink to="/account/company">
             {this.props.activeCompany.displayName}
           </NavLink>
+          <NavLink to="/account/jobs">Jobs</NavLink>
           <ShellHeaderNav />
           <ShellDropdown />
         </NavLinkContainer>
@@ -82,7 +83,7 @@ const NavLinkContainer = styled.div`
 
 const NavLink = styled(Link)`
   display: block;
-  padding: 0 40px;
+  padding: 0 25px;
   font-size: 16px;
   text-decoration: none;
   cursor: pointer;

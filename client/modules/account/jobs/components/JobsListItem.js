@@ -60,7 +60,10 @@ export default JobsListItem;
 
 const JobsTitle = styled.h3`font-size: 26px;`;
 
-const JobsState = styled.div`font-size: 14px;`;
+const JobsState = styled.div`
+  font-size: 16px;
+  text-transform: capitalize;
+`;
 
 const JobsMain = styled.div`
   display: flex;
