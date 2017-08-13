@@ -1,18 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, formValueSelector, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
-import FormHeader from '../../components/FormHeader';
 import FormRow from '../../components/FormRow';
-import FormFooter from '../../components/FormFooter';
-import {
-  BackButton,
-  Email,
-  Phone,
-  SubmitButton,
-  Text
-} from '../../../inputs/input';
+import { Email, Phone, SubmitButton, Text } from '../../../inputs/input';
 import { email, required, phoneNumber, url } from '../../../validation';
 
 const parsePhone = (value: number): string =>
@@ -24,7 +16,7 @@ class CompanyFormStepTwo extends Component {
   };
 
   render() {
-    const { companies, companyName, handleSubmit, prevPage } = this.props;
+    const { companies, handleSubmit } = this.props;
 
     return (
       <FormWrapper
@@ -61,11 +53,8 @@ class CompanyFormStepTwo extends Component {
   }
 }
 
-const selector = formValueSelector('company');
-
 const mapStateToProps = state => ({
-  companies: state.account.companies,
-  companyName: selector(state, 'name')
+  companies: state.account.companies
 });
 
 CompanyFormStepTwo = reduxForm({

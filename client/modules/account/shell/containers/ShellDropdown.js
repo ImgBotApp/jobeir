@@ -159,7 +159,7 @@ const ShellDropdownContainer = styled.div`
   margin-top: 5px;
   padding: 8px 0 4px;
   z-index: 1;
-  right: -100px;
+  right: 0px;
   top: 45px;
   transition: all 280ms ease;
   pointer-events: ${props => (props.showDropdown ? 'initial' : 'none')};

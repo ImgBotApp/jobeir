@@ -3,46 +3,31 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import CompanyFilter from './CompanyFilter';
+import CompanyOverview from '../components/CompanyOverview';
 import UpdateCompanyFormAbout from '../../../user-input/forms/form/update-company/UpdateCompanyFormAbout';
 import UpdateCompanyFormContact from '../../../user-input/forms/form/update-company/UpdateCompanyFormContact';
 import UpdateCompanyFormLocation from '../../../user-input/forms/form/update-company/UpdateCompanyFormLocation';
 import UpdateCompanyFormPerks from '../../../user-input/forms/form/update-company/UpdateCompanyFormPerks';
 import UpdateCompanyUpload from '../../../user-input/forms/form/update-company/UpdateCompanyUpload';
+import FadeIn from '../../../../styles/components/FadeIn';
 
 class Company extends Component {
   render() {
     const { company, filter } = this.props;
-    console.log(filter);
     return (
       <CompanyContainer>
         <CompanyFilter />
 
-        {filter === 'Overview' &&
-          <div>
-            <CompanyLogoContainer>
-              <CompanyLogo src={company.logo} alt={company.displayName} />
-            </CompanyLogoContainer>
-            <div>
-              {company.displayName}
-            </div>
-            <div>
-              {company.product}
-            </div>
-            <div>
-              {company.website}
-            </div>
-            <div>
-              {company.phone}
-            </div>
-          </div>}
-
-        <div>
-          {filter === 'About' && <UpdateCompanyFormAbout />}
-          {filter === 'Contact' && <UpdateCompanyFormContact />}
-          {filter === 'Perks' && <UpdateCompanyFormPerks />}
-          {filter === 'Location' && <UpdateCompanyFormLocation />}
-          {filter === 'Logo' && <UpdateCompanyFormLocation />}
-        </div>
+        <FadeIn>
+          <CompanyFormContainer>
+            {filter === 'Overview' && <CompanyOverview company={company} />}
+            {filter === 'About' && <UpdateCompanyFormAbout />}
+            {filter === 'Contact' && <UpdateCompanyFormContact />}
+            {filter === 'Perks' && <UpdateCompanyFormPerks />}
+            {filter === 'Location' && <UpdateCompanyFormLocation />}
+            {filter === 'Logo' && <UpdateCompanyUpload />}
+          </CompanyFormContainer>
+        </FadeIn>
       </CompanyContainer>
     );
   }
@@ -63,23 +48,4 @@ const CompanyContainer = styled.div`
   border-top: 1px solid #ececec;
 `;
 
-const CompanyHeader = styled.h2`
-  font-weight: 600;
-  padding: 20px 0 5px;
-  font-size: 22px;
-  border-top: 1px solid #ececec;
-`;
-
-const CompanySubHeader = styled.h3`
-  font-weight: 400;
-  font-size: 18px;
-  color: #9ea4a8;
-  margin-bottom: 50px;
-`;
-
-const CompanyLogoContainer = styled.div`margin: 50px 0 25px;`;
-
-const CompanyLogo = styled.img`
-  height: 40px;
-  margin: 0 auto;
-`;
+const CompanyFormContainer = styled.div`max-width: 640px;`;

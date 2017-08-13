@@ -8,6 +8,7 @@ import JobsFilter from './JobsFilter';
 import JobsList from '../components/JobsList';
 import JobsListItemPlaceholder from '../components/JobsListItemPlaceholder';
 import FadeIn from '../../../../styles/components/FadeIn';
+import JobsListEmptyState from '../components/JobsListEmptyState';
 
 /**
  * <Jobs />
@@ -17,8 +18,10 @@ import FadeIn from '../../../../styles/components/FadeIn';
  */
 class Jobs extends Component {
   componentDidMount() {
-    const { companies, dispatch } = this.props;
-    dispatch(getJobs(companies.activeCompany._id));
+    const { companies, dispatch, jobs } = this.props;
+    if (!jobs.postings.length) {
+      dispatch(getJobs(companies.activeCompany._id));
+    }
   }
 
   componentWillUpdate(nextProps) {
@@ -33,7 +36,10 @@ class Jobs extends Component {
   render() {
     const { companies, jobs } = this.props;
     const hasJobPostings: number = jobs.postings.length;
-
+    const companyId = companies.activeCompany._id;
+    const link = companyId
+      ? `/create/job/${companies.activeCompany._id}`
+      : '/create/company/about';
     return (
       <div>
         <div>
@@ -45,9 +51,7 @@ class Jobs extends Component {
                 ? <FadeIn>
                     <JobsList jobs={jobs.postings} />
                   </FadeIn>
-                : <Link to={`/create/job/about/${companies.activeCompany._id}`}>
-                    Create a job
-                  </Link>}
+                : <JobsListEmptyState link={link} />}
           </JobsContainer>
         </div>
       </div>

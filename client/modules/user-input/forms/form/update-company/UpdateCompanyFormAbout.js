@@ -1,10 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import debounce from 'lodash/debounce';
 import FormWrapper from '../../containers/FormWrapper';
-import FormHeader from '../../components/FormHeader';
 import { checkCompany } from '../../../../account/create/company/ducks';
 import { Radio, SubmitButton, Text, Textarea } from '../../../inputs/input';
 import { required, maxLength } from '../../../validation';
@@ -73,11 +72,8 @@ class UpdateCompanyFormStepOne extends Component {
   }
 }
 
-const selector = formValueSelector('company');
-
 const mapStateToProps = state => ({
-  companies: state.account.companies,
-  companyName: selector(state, 'name')
+  companies: state.account.companies
 });
 
 UpdateCompanyFormStepOne = reduxForm({
