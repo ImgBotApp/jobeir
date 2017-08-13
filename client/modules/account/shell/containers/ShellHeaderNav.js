@@ -9,12 +9,16 @@ import styled from 'styled-components';
  * Takes care of the dropdown on the top right of the screen
  * and dispalys the header text based on the Route name
  */
-const ShellHeaderNav = (props: { activeCompany: { _id: string } }) =>
-  <ShellHeaderNavContainer>
-    <ShellHeaderNavLink to={`/create/job/about/${props.activeCompany._id}`}>
-      Create Job
-    </ShellHeaderNavLink>
-  </ShellHeaderNavContainer>;
+const ShellHeaderNav = (props: { activeCompany: { _id: string } }) => {
+  const { _id } = props.activeCompany;
+  const link: string = _id ? `/create/job/${_id}` : '/create/company/about';
+
+  return (
+    <ShellHeaderNavContainer>
+      <ShellHeaderNavLink to={link}>Create Job</ShellHeaderNavLink>
+    </ShellHeaderNavContainer>
+  );
+};
 
 const mapStateToProps = state => ({
   activeCompany: state.account.companies.activeCompany

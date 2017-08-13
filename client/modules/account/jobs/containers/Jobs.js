@@ -36,10 +36,11 @@ class Jobs extends Component {
   render() {
     const { companies, jobs } = this.props;
     const hasJobPostings: number = jobs.postings.length;
-    const companyId = companies.activeCompany._id;
-    const link = companyId
-      ? `/create/job/${companies.activeCompany._id}`
+    const companyId: string = companies.activeCompany._id;
+    const link: string = companyId
+      ? `/create/job/${companyId}`
       : '/create/company/about';
+
     return (
       <div>
         <div>
