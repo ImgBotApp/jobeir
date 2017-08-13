@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import { getJobs } from '../../../account/create/job/ducks/';
 import JobsFilter from './JobsFilter';
 import JobsList from '../components/JobsList';
+import JobsListItemPlaceholder from '../components/JobsListItemPlaceholder';
 
 /**
  * <Jobs />
@@ -37,11 +38,13 @@ class Jobs extends Component {
         <div>
           <JobsContainer>
             <JobsFilter />
-            {hasJobPostings
-              ? <JobsList jobs={jobs.postings} />
-              : <Link to={`/create/job/about/${companies.activeCompany._id}`}>
-                  Create a job
-                </Link>}
+            {jobs.isFetching
+              ? <JobsListItemPlaceholder />
+              : hasJobPostings
+                ? <JobsList jobs={jobs.postings} />
+                : <Link to={`/create/job/about/${companies.activeCompany._id}`}>
+                    Create a job
+                  </Link>}
           </JobsContainer>
         </div>
       </div>

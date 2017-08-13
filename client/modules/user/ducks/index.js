@@ -16,7 +16,7 @@ export const SWITCH_ACTIVE_COMPANY_REQUEST = 'SWITCH_ACTIVE_COMPANY_REQUEST';
 export const SWITCH_ACTIVE_COMPANY_SUCCESS = 'SWITCH_ACTIVE_COMPANY_SUCCESS';
 export const SWITCH_ACTIVE_COMPANY_FAILURE = 'SWITCH_ACTIVE_COMPANY_FAILURE';
 
-import { AUTH_SUCCESS } from '../../auth/ducks';
+import { AUTH_SUCCESS, LOGIN_SUCCESS, LOGOUT_SUCCESS } from '../../auth/ducks';
 
 import { CREATE_COMPANY_SUCCESS } from '../../account/create/company/ducks';
 
@@ -88,6 +88,8 @@ export default (state = initialState, action = {}) => {
           ]
         }
       });
+    case LOGOUT_SUCCESS:
+      return initialState;
     default:
       return state;
   }

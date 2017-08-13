@@ -40,7 +40,9 @@ const JobsSearchPosting = (props: {
           </JobsSearchPostingTitle>
           <JobsSearchPostingSubTitle>
             <span>
-              {posting.company.displayName}
+              <Purple>
+                {posting.company.displayName}
+              </Purple>
               {' in '}
             </span>
             <span>
@@ -86,6 +88,8 @@ const StyledLink = styled(Link)`
   width: 100%;
   cursor: pointer;
 `;
+
+const Purple = styled.span`color: ${props => props.theme.colors.purple};`;
 
 const JobsSearchPostingTop = styled.div`
   display: flex;
