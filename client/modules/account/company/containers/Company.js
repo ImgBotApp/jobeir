@@ -11,32 +11,38 @@ import UpdateCompanyUpload from '../../../user-input/forms/form/update-company/U
 
 class Company extends Component {
   render() {
-    const { company } = this.props;
+    const { company, filter } = this.props;
+    console.log(filter);
     return (
       <CompanyContainer>
         <CompanyFilter />
-        <CompanyLogoContainer>
-          <CompanyLogo src={company.logo} alt={company.displayName} />
-        </CompanyLogoContainer>
-        <div>
-          {company.displayName}
-        </div>
+
+        {filter === 'Overview' &&
+          <div>
+            <CompanyLogoContainer>
+              <CompanyLogo src={company.logo} alt={company.displayName} />
+            </CompanyLogoContainer>
+            <div>
+              {company.displayName}
+            </div>
+            <div>
+              {company.product}
+            </div>
+            <div>
+              {company.website}
+            </div>
+            <div>
+              {company.phone}
+            </div>
+          </div>}
 
         <div>
-          {company.product}
+          {filter === 'About' && <UpdateCompanyFormAbout />}
+          {filter === 'Contact' && <UpdateCompanyFormContact />}
+          {filter === 'Perks' && <UpdateCompanyFormPerks />}
+          {filter === 'Location' && <UpdateCompanyFormLocation />}
+          {filter === 'Logo' && <UpdateCompanyFormLocation />}
         </div>
-        <div>
-          {company.website}
-        </div>
-        <div>
-          {company.phone}
-        </div>
-
-        <UpdateCompanyFormAbout />
-        <UpdateCompanyFormContact />
-        <UpdateCompanyFormLocation />
-        <UpdateCompanyFormPerks />
-        <UpdateCompanyUpload />
       </CompanyContainer>
     );
   }
@@ -45,7 +51,8 @@ class Company extends Component {
 const mapStateToProps = state => ({
   company: state.account.companies.created.find(
     company => company.name === state.account.companies.activeCompany.name
-  )
+  ),
+  filter: state.account.companies.filter
 });
 
 export default connect(mapStateToProps)(Company);
