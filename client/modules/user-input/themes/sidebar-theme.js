@@ -17,7 +17,7 @@ export default {
     fontSize: '18px',
     width: '100%',
     margin: '0 auto 1rem',
-    activeBorderColor: 'rgba(0,0,0,0.85)',
+    activeBorderColor: '#5C6AC4',
     height: '58px',
     ph: {
       color: '#afafaf'
@@ -51,7 +51,7 @@ export default {
     width: '100%',
     height: '58px',
     margin: '0 auto 1rem',
-    activeBorderColor: 'rgba(0,0,0,0.85)',
+    activeBorderColor: '#5C6AC4',
     ph: {
       color: '#afafaf'
     }

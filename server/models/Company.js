@@ -5,12 +5,10 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 const Company = new Schema({
-  // used to internally match
   creator: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
-  // used to display in UI
   displayName: {
     type: String,
     unique: true,
@@ -20,6 +18,28 @@ const Company = new Schema({
     {
       type: mongoose.Schema.ObjectId,
       ref: 'Jobs'
+    }
+  ],
+  members: [
+    {
+      dateAdded: { type: Date, default: Date.now },
+      member: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Users'
+      }
+    }
+  ],
+  invites: [
+    {
+      accepted: Boolean,
+      dateSent: Date,
+      dateAccepted: Date,
+      invitationToken: String,
+      invitationExpires: Date,
+      member: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Users'
+      }
     }
   ],
   locations: [

@@ -36,6 +36,7 @@ class PostingMap extends Component {
   render() {
     return (
       <PostingMapContainer>
+        <PostingMapHeader>Office location</PostingMapHeader>
         <div id="map" />
       </PostingMapContainer>
     );
@@ -45,11 +46,17 @@ class PostingMap extends Component {
 export default PostingMap;
 
 const PostingMapContainer = styled.div`
-  margin: 75px auto 55px;
+  margin: 20px auto 55px;
 
   #map {
     height: 550px;
     width: 960px;
     box-shadow: 0px 2px 14px rgba(0, 0, 0, 0.1);
   }
+`;
+
+const PostingMapHeader = styled.h2`
+  max-width: 670px;
+  font-size: 34px;
+  margin: 0 auto 20px;
 `;

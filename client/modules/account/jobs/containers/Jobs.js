@@ -38,7 +38,7 @@ class Jobs extends Component {
     const hasJobPostings: number = jobs.postings.length;
     const companyId: string = companies.activeCompany._id;
     const link: string = companyId
-      ? `/create/job/${companyId}`
+      ? `/create/job/about/${companyId}`
       : '/create/company/about';
 
     return (

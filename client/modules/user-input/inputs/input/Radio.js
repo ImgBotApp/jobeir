@@ -325,7 +325,7 @@ const RadioListInput = styled.input`
 
   &:active,
   &:focus {
-    border-color: ${props =>
+    border: 1px solid ${props =>
       props.showError
         ? props.theme.error.color
         : props.theme.input.activeBorderColor};

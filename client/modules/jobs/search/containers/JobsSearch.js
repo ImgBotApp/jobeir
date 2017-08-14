@@ -6,7 +6,6 @@ import { browserHistory } from 'react-router';
 import styled from 'styled-components';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroller';
-import CountTo from 'react-count-to';
 import { serverGetJobs } from '../server/';
 import {
   shouldGetJobs,
@@ -163,10 +162,7 @@ class JobsSearch extends Component {
           <JobsSearchColumn wide>
             <JobsSearchHeader wide>
               <JobsSearchHeaderText>
-                Search results (<CountTo
-                  to={this.props.jobs.count}
-                  speed={500}
-                />)
+                Search results   ({this.props.jobs.count})
               </JobsSearchHeaderText>
             </JobsSearchHeader>
             <InfiniteScroll

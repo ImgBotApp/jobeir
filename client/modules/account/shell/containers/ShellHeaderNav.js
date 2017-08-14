@@ -11,7 +11,9 @@ import styled from 'styled-components';
  */
 const ShellHeaderNav = (props: { activeCompany: { _id: string } }) => {
   const { _id } = props.activeCompany;
-  const link: string = _id ? `/create/job/${_id}` : '/create/company/about';
+  const link: string = _id
+    ? `/create/job/about/${_id}`
+    : '/create/company/about';
 
   return (
     <ShellHeaderNavContainer>

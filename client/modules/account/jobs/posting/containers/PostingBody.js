@@ -43,6 +43,10 @@ const PostingBodyContainer = styled.div`
     text-decoration-skip: ink;
   }
 
+  img {
+    width: 100%;
+  }
+
   h2,
   h3,
   h4,

@@ -1,5 +1,4 @@
 import Users from '../models/Users';
-import Company from '../models/Company';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import { send } from '../mail/mail';

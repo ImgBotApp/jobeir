@@ -3,6 +3,8 @@ import Users from '../models/Users';
 import cuid from 'cuid';
 import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
+import crypto from 'crypto';
+import { send } from '../mail/mail';
 
 /**
  * Get all Companies
@@ -68,6 +70,7 @@ export function createCompany(req, res) {
 
   // Let's sanitize inputs
   newCompany.creator = req.user._doc._id;
+  newCompany.members.push(req.user._doc._id);
   newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
   newCompany.displayName = sanitizeHtml(req.body.name);
   newCompany.website = sanitizeHtml(newCompany.website);
@@ -124,6 +127,139 @@ export function createCompany(req, res) {
         errors: []
       });
     }
+  });
+}
+
+/**
+ * Update a single Company
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function updateCompany(req, res) {
+  const values = req.body;
+
+  Company.findOneAndUpdate(
+    { _id: req.params.id },
+    { ...values },
+    { new: true }
+  ).exec((err, company) => {
+    if (err) return res.status(500).send({ error: err });
+
+    res.status(200).send({
+      data: { company },
+      errors: []
+    });
+  });
+}
+
+/**
+ * Update a single Company
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function inviteCompanyMember(req, res) {
+  // find if the member to invite exists
+  Users.findOne({ _id: req.body.userId }).exec((err, user) => {
+    if (err) {
+      return res.status(500).send({
+        data: [],
+        errors: [
+          {
+            error: 'INVALID_USER',
+            message: `A user with id ${req.body.userId} does not exist.`
+          }
+        ]
+      });
+    }
+
+    // if they don't exist, send back an error object
+    if (!user) {
+      return res.status(200).send({
+        data: [],
+        errors: [
+          {
+            error: 'INVALID_USER',
+            message: `A user with email ${req.body.email} does not exist.`
+          }
+        ]
+      });
+    }
+
+    // Find a company to update the member list
+    Company.findOne(
+      {
+        _id: req.params.id
+      },
+      (err, company) => {
+        if (err) return res.status(500).send({ error: err });
+
+        // check to see if the member has already been invited
+        const memberExists = company.members.some(
+          member => member._id === req.body.userId
+        );
+
+        console.log(memberExists);
+
+        if (memberExists) {
+          return res.status(200).send({
+            data: [],
+            errors: [
+              {
+                error: 'USER_ALREADY_ADDED',
+                message: `${req.body.email} has already joined.`
+              }
+            ]
+          });
+        }
+
+        // create the invitation
+        const invite = {
+          accepted: false,
+          dateSent: Date.now(),
+          inviteToken: crypto.randomBytes(20).toString('hex'),
+          inviteExpires: Date.now() + 3600000
+        };
+
+        // add it to the company members array
+        company.invites.push({ member: { _id: req.body.userId }, ...invite });
+
+        company.save((err, savedCompany) => {
+          if (err) {
+            return res.status(500).send({
+              data: {},
+              errors: [
+                {
+                  error: 'INTERNAL_SERVER_ERROR',
+                  message: 'There was an error updating your password'
+                }
+              ]
+            });
+          }
+
+          // changing protocol for local testing
+          const protocol = req.headers.host.includes('localhost')
+            ? 'http://'
+            : 'https://';
+          const resetUrl = `${protocol}${req.headers
+            .host}/invite/${invite.inviteToken}`;
+
+          // Fire off the password reset email
+          send({
+            subject: `Invitation to join ${company.displayName}`,
+            template: 'PasswordReset',
+            user,
+            resetUrl
+          });
+
+          return res.status(200).send({
+            data: { company: savedCompany },
+            errors: []
+          });
+        });
+      }
+    );
   });
 }
 

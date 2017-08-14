@@ -12,7 +12,15 @@ router.route('/companies').get(CompanyController.getCompanies);
 // Create a new company
 router.route('/companies').post(CompanyController.createCompany);
 
-// Get one post by company
+// Update a company
+router.route('/companies/:id').put(CompanyController.updateCompany);
+
+// Invite a member
+router
+  .route('/companies/:id/invite')
+  .post(CompanyController.inviteCompanyMember);
+
+// Get one company
 router.route('/companies/:id').get(CompanyController.getCompany);
 
 // Add a new company
