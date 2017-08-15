@@ -34,8 +34,8 @@ const Company = new Schema({
       accepted: Boolean,
       dateSent: Date,
       dateAccepted: Date,
-      invitationToken: String,
-      invitationExpires: Date,
+      inviteToken: String,
+      inviteExpires: Date,
       member: {
         type: mongoose.Schema.ObjectId,
         ref: 'Users'

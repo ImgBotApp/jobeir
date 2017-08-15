@@ -161,14 +161,14 @@ export function updateCompany(req, res) {
  */
 export function inviteCompanyMember(req, res) {
   // find if the member to invite exists
-  Users.findOne({ _id: req.body.userId }).exec((err, user) => {
+  Users.findOne({ email: req.body.email }).exec((err, user) => {
     if (err) {
       return res.status(500).send({
         data: [],
         errors: [
           {
             error: 'INVALID_USER',
-            message: `A user with id ${req.body.userId} does not exist.`
+            message: `A user with email ${req.body.email} does not exist.`
           }
         ]
       });
@@ -196,19 +196,23 @@ export function inviteCompanyMember(req, res) {
         if (err) return res.status(500).send({ error: err });
 
         // check to see if the member has already been invited
-        const memberExists = company.members.some(
-          member => member._id === req.body.userId
+        const memberExists = company.members.some(member =>
+          member._id.equals(user._id)
+        );
+        // check to see if the member has already been invited
+        const inviteExists = company.invites.some(invite =>
+          invite._id.equals(user._id)
         );
 
-        console.log(memberExists);
-
-        if (memberExists) {
+        if (memberExists || inviteExists) {
           return res.status(200).send({
             data: [],
             errors: [
               {
                 error: 'USER_ALREADY_ADDED',
-                message: `${req.body.email} has already joined.`
+                message: memberExists
+                  ? `${req.body.email} has already joined.`
+                  : `${req.body.email} has already received an invite.`
               }
             ]
           });
@@ -223,9 +227,9 @@ export function inviteCompanyMember(req, res) {
         };
 
         // add it to the company members array
-        company.invites.push({ member: { _id: req.body.userId }, ...invite });
+        company.invites.push({ _id: user._id, ...invite });
 
-        company.save((err, savedCompany) => {
+        company.save((err, company) => {
           if (err) {
             return res.status(500).send({
               data: {},
@@ -248,13 +252,14 @@ export function inviteCompanyMember(req, res) {
           // Fire off the password reset email
           send({
             subject: `Invitation to join ${company.displayName}`,
-            template: 'PasswordReset',
+            template: 'CompanyInvite',
             user,
+            company,
             resetUrl
           });
 
           return res.status(200).send({
-            data: { company: savedCompany },
+            data: { company },
             errors: []
           });
         });

@@ -15,15 +15,17 @@ export default props => {
     fontSize: '18px',
     whiteSpace: 'nowrap',
     background: '#ffffff',
-    borderColor: '#fb5032',
-    backgroundColor: '#fb5032',
+    borderColor: '#5C6AC4',
+    backgroundColor: '#5C6AC4',
     color: '#ffffff',
     borderTopWidth: '1px'
   };
 
   return (
     <div width="100%">
-      <a href={props.link} style={buttonStyle}>{props.text}</a>
+      <a href={props.link} style={buttonStyle}>
+        {props.text}
+      </a>
     </div>
   );
 };
