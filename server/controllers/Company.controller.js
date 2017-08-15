@@ -268,6 +268,54 @@ export function inviteCompanyMember(req, res) {
   });
 }
 
+export function acceptInviteCompanyMember(req, res) {
+  Users.findOne({
+    inviteToken: req.params.inviteToken,
+    inviteExpires: { $gt: Date.now() }
+  })
+    .select('+password')
+    .exec((err, user) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+
+      if (!user) {
+        return res.status(401).send({
+          data: [],
+          errors: [
+            {
+              error: 'EXPIRED_PASSWORD_RESET_TOKEN',
+              message:
+                'Unable to update password. Your reset password link has timed out.'
+            }
+          ]
+        });
+      }
+
+      user.inviteToken = undefined;
+      user.inviteExpires = undefined;
+
+      user.save((err, saved) => {
+        if (err) {
+          return res.status(500).send({
+            data: {},
+            errors: [
+              {
+                error: 'INTERNAL_SERVER_ERROR',
+                message: 'There was an error updating your password'
+              }
+            ]
+          });
+        }
+
+        return res.status(200).send({
+          data: { user: saved },
+          errors: []
+        });
+      });
+    });
+}
+
 /**
  * Get a single Company
  * @param req

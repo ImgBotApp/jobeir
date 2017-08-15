@@ -20,6 +20,11 @@ router
   .route('/companies/:id/invite')
   .post(CompanyController.inviteCompanyMember);
 
+// Invite a member
+router
+  .route('/companies/:id/invite/:inviteToken')
+  .post(CompanyController.acceptInviteCompanyMember);
+
 // Get one company
 router.route('/companies/:id').get(CompanyController.getCompany);
 

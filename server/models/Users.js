@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import timestamps from 'mongoose-timestamp';
 import bcrypt from 'bcrypt';
+import { send } from '../mail/mail';
 
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
@@ -61,6 +62,15 @@ const Users = new Schema({
 
 Users.pre('save', function(next) {
   const user = this;
+
+  if (user.isNew) {
+    send({
+      subject: `Welcome to Company`,
+      template: 'Registration',
+      user
+    });
+  }
+
   if (this.password && (this.isModified('password') || this.isNew)) {
     bcrypt.genSalt(10, (err, salt) => {
       if (err) return next(err);

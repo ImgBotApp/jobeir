@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
-import serverConfig from '../config/config';
 import querystring from 'querystring';
+import { send } from '../mail/mail';
 
 const router = new Router();
 
 // The middleware to set up the parameters for the authenticate middleware.
 function checkReturnTo(req, res, next) {
-  const returnTo = req.query['next'];
+  const returnTo = req.query.next;
   const nextPath = req.headers.referer;
 
   if (returnTo) {
@@ -33,7 +33,7 @@ router.get(
   passport.authenticate('google', {
     failureRedirect: '/login'
   }),
-  function(req, res) {
+  (req, res) => {
     const token = jwt.sign(req.user, process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
@@ -51,7 +51,7 @@ router.get(
   passport.authenticate('facebook', {
     failureRedirect: '/login'
   }),
-  function(req, res) {
+  (req, res) => {
     const token = jwt.sign(req.user, process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
@@ -70,7 +70,7 @@ router.get(
   passport.authenticate('github', {
     failureRedirect: '/login'
   }),
-  function(req, res) {
+  (req, res) => {
     const token = jwt.sign(req.user, process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');

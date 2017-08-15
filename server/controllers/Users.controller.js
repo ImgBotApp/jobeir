@@ -103,6 +103,13 @@ export function registerUser(req, res) {
     }
     const token = jwt.sign(newUser, process.env.JWT);
 
+    // Fire off the welcome email
+    send({
+      subject: `Welcome to Company`,
+      template: 'Registration',
+      user: newUser
+    });
+
     return res.status(200).send({
       data: {
         token,
