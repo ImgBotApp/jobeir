@@ -30,6 +30,22 @@ export function getUsers(req, res) {
  */
 export function getUser(req, res) {
   Users.findOne({ _id: req.params.id })
+    .populate({
+      path: 'invites',
+      model: 'Invite',
+      populate: [
+        {
+          path: 'company',
+          model: 'Company',
+          select: 'displayName logo website'
+        },
+        {
+          path: 'creator',
+          model: 'Users',
+          select: 'firstName lastName email'
+        }
+      ]
+    })
     .populate('companies')
     .exec((err, user) => {
       if (err) {
@@ -102,13 +118,6 @@ export function registerUser(req, res) {
       });
     }
     const token = jwt.sign(newUser, process.env.JWT);
-
-    // Fire off the welcome email
-    send({
-      subject: `Welcome to Company`,
-      template: 'Registration',
-      user: newUser
-    });
 
     return res.status(200).send({
       data: {

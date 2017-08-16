@@ -31,15 +31,8 @@ const Company = new Schema({
   ],
   invites: [
     {
-      accepted: Boolean,
-      dateSent: Date,
-      dateAccepted: Date,
-      inviteToken: String,
-      inviteExpires: Date,
-      member: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Users'
-      }
+      type: mongoose.Schema.ObjectId,
+      ref: 'Invite'
     }
   ],
   locations: [

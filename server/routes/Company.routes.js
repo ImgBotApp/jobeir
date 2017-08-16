@@ -17,12 +17,12 @@ router.route('/companies/:id').put(CompanyController.updateCompany);
 
 // Invite a member
 router
-  .route('/companies/:id/invite')
+  .route('/companies/:id/invites')
   .post(CompanyController.inviteCompanyMember);
 
 // Invite a member
 router
-  .route('/companies/:id/invite/:inviteToken')
+  .route('/companies/:id/invites/:inviteToken')
   .post(CompanyController.acceptInviteCompanyMember);
 
 // Get one company

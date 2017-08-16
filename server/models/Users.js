@@ -57,7 +57,13 @@ const Users = new Schema({
   ],
   phoneNumber: String,
   resetPasswordToken: String,
-  resetPasswordExpires: Date
+  resetPasswordExpires: Date,
+  invites: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Invite'
+    }
+  ]
 });
 
 Users.pre('save', function(next) {

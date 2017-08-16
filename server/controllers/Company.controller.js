@@ -1,5 +1,6 @@
 import Company from '../models/Company';
 import Users from '../models/Users';
+import Invite from '../models/Invite';
 import cuid from 'cuid';
 import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
@@ -187,21 +188,22 @@ export function inviteCompanyMember(req, res) {
       });
     }
 
-    // Find a company to update the member list
-    Company.findOne(
-      {
-        _id: req.params.id
-      },
-      (err, company) => {
-        if (err) return res.status(500).send({ error: err });
+    // create the invitation
+
+    Company.findOne({
+      _id: req.params.id
+    })
+      .populate('invites')
+      .exec((err, company) => {
+        if (err) return res.status(500).send({ data: {}, error: err });
 
         // check to see if the member has already been invited
         const memberExists = company.members.some(member =>
           member._id.equals(user._id)
         );
         // check to see if the member has already been invited
-        const inviteExists = company.invites.some(invite =>
-          invite._id.equals(user._id)
+        const inviteExists = company.invites.some(
+          invite => invite._id && invite._id.equals(user._id)
         );
 
         if (memberExists || inviteExists) {
@@ -218,16 +220,19 @@ export function inviteCompanyMember(req, res) {
           });
         }
 
-        // create the invitation
-        const invite = {
-          accepted: false,
-          dateSent: Date.now(),
-          inviteToken: crypto.randomBytes(20).toString('hex'),
-          inviteExpires: Date.now() + 3600000
-        };
+        const invite = new Invite({
+          creator: req.user._doc._id,
+          company: company._id
+        });
 
-        // add it to the company members array
-        company.invites.push({ _id: user._id, ...invite });
+        invite.save();
+
+        user.invites.push(invite._id);
+        company.invites.push(invite._id);
+
+        user.save((err, user) => {
+          if (err) return res.status(500).send({ data: {}, error: err });
+        });
 
         company.save((err, company) => {
           if (err) {
@@ -263,8 +268,7 @@ export function inviteCompanyMember(req, res) {
             errors: []
           });
         });
-      }
-    );
+      });
   });
 }
 
@@ -323,11 +327,11 @@ export function acceptInviteCompanyMember(req, res) {
  * @returns void
  */
 export function getCompany(req, res) {
-  Company.findOne({ name: req.params.name }).exec((err, company) => {
+  Company.findOne({ _id: req.params.id }).exec((err, company) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.json({ company });
+    res.json({ data: { company }, errors: [] });
   });
 }
 

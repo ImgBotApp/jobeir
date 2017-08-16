@@ -2,7 +2,6 @@ import { Router } from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import querystring from 'querystring';
-import { send } from '../mail/mail';
 
 const router = new Router();
 
