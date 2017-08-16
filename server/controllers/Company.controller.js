@@ -220,7 +220,6 @@ export function inviteCompanyMember(req, res) {
           });
         }
 
-        console.log(company._id, req.user._doc._id);
         const invite = new Invite({
           creator: req.user._doc._id,
           company: company._id
@@ -253,7 +252,7 @@ export function inviteCompanyMember(req, res) {
             ? 'http://'
             : 'https://';
           const resetUrl = `${protocol}${req.headers
-            .host}/invite/${invite.inviteToken}`;
+            .host}/invite/${invite._id}`;
 
           // Fire off the password reset email
           send({
@@ -274,51 +273,67 @@ export function inviteCompanyMember(req, res) {
 }
 
 export function acceptInviteCompanyMember(req, res) {
-  Users.findOne({
-    inviteToken: req.params.inviteToken,
-    inviteExpires: { $gt: Date.now() }
-  })
-    .select('+password')
-    .exec((err, user) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
+  Invite.findOne({
+    _id: req.params.inviteId,
+    expires: { $gt: Date.now() }
+  }).exec((err, invite) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
 
-      if (!user) {
-        return res.status(401).send({
-          data: [],
-          errors: [
-            {
-              error: 'EXPIRED_PASSWORD_RESET_TOKEN',
-              message:
-                'Unable to update password. Your reset password link has timed out.'
-            }
-          ]
-        });
-      }
+    if (!invite) {
+      return res.status(401).send({
+        data: [],
+        errors: [
+          {
+            error: 'EXPIRED_INVITE_TOKEN',
+            message:
+              'Unable to update password. Your reset password link has timed out.'
+          }
+        ]
+      });
+    }
 
-      user.inviteToken = undefined;
-      user.inviteExpires = undefined;
+    invite.accepted = true;
+    invite.dateAccepted = Date.now();
 
-      user.save((err, saved) => {
-        if (err) {
-          return res.status(500).send({
-            data: {},
-            errors: [
-              {
-                error: 'INTERNAL_SERVER_ERROR',
-                message: 'There was an error updating your password'
-              }
-            ]
-          });
+    invite.save();
+
+    Company.findOne({
+      _id: req.params.id
+    })
+      .populate()
+      .exec((err, company) => {
+        if (err) return res.status(500).send({ data: {}, error: err });
+
+        const memberExists = company.members.some(member =>
+          member._id.equals(req.user._doc._id)
+        );
+
+        if (!memberExists) {
+          company.members.push(req.user._doc._id);
         }
 
-        return res.status(200).send({
-          data: { user: saved },
-          errors: []
+        company.save((err, company) => {
+          if (err) {
+            return res.status(500).send({
+              data: {},
+              errors: [
+                {
+                  error: 'INTERNAL_SERVER_ERROR',
+                  message: 'There was an error updating your password'
+                }
+              ]
+            });
+          }
+
+          return res.status(200).send({
+            data: { company },
+            errors: []
+          });
         });
       });
-    });
+  });
 }
 
 /**

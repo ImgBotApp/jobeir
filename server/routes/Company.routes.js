@@ -22,8 +22,8 @@ router
 
 // Invite a member
 router
-  .route('/companies/:id/invites/:inviteToken')
-  .post(CompanyController.acceptInviteCompanyMember);
+  .route('/companies/:id/invites/:inviteId')
+  .put(CompanyController.acceptInviteCompanyMember);
 
 // Get one company
 router.route('/companies/:id').get(CompanyController.getCompany);

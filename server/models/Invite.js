@@ -19,10 +19,6 @@ const Invite = new Schema({
   accepted: { type: Boolean, default: false },
   dateSent: { type: Date, default: Date.now },
   dateAccepted: Date,
-  token: {
-    type: String,
-    default: crypto.randomBytes(20).toString('hex')
-  },
   expires: { type: Date, default: Date.now() + 36000000 }
 });
 
