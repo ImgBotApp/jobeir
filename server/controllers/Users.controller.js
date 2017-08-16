@@ -46,13 +46,32 @@ export function getUser(req, res) {
         }
       ]
     })
-    .populate('companies')
+    .populate({
+      path: 'companies',
+      model: 'Company',
+      populate: {
+        path: 'invites',
+        model: 'Invite',
+        populate: [
+          {
+            path: 'company',
+            model: 'Company',
+            select: 'displayName logo website'
+          },
+          {
+            path: 'creator',
+            model: 'Users',
+            select: 'firstName lastName email'
+          }
+        ]
+      }
+    })
     .exec((err, user) => {
       if (err) {
-        res.status(500).send(err);
+        return res.status(500).send(err);
       }
 
-      res.status(200).send({
+      return res.status(200).send({
         data: { user },
         errors: []
       });
@@ -73,7 +92,7 @@ export function updateUser(req, res) {
     .exec((err, user) => {
       if (err) return res.status(500).send({ error: err });
 
-      res.status(200).send({
+      return res.status(200).send({
         data: { user },
         errors: []
       });

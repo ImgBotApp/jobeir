@@ -220,6 +220,7 @@ export function inviteCompanyMember(req, res) {
           });
         }
 
+        console.log(company._id, req.user._doc._id);
         const invite = new Invite({
           creator: req.user._doc._id,
           company: company._id
