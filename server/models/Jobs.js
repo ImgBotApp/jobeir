@@ -72,6 +72,15 @@ const Jobs = new Schema({
   role: Object
 });
 
+function autopopulate(next) {
+  this.populate('company');
+  next();
+}
+
+Jobs.pre('find', autopopulate);
+Jobs.pre('findOne', autopopulate);
+Jobs.pre('findOneAndUpdate', autopopulate);
+
 Jobs.index({
   company: 'text'
 });

@@ -192,83 +192,85 @@ export function inviteCompanyMember(req, res) {
 
     Company.findOne({
       _id: req.params.id
-    })
-      .populate('invites')
-      .exec((err, company) => {
+    }).exec((err, company) => {
+      if (err) return res.status(500).send({ data: {}, error: err });
+
+      if (!company)
+        return res
+          .status(204)
+          .send({ data: {}, errors: [{ error: 'COMPANY_NOT_FOUND' }] });
+
+      // check to see if the member has already been invited
+      const memberExists = company.members.some(member =>
+        member._id.equals(user._id)
+      );
+      // check to see if the member has already been invited
+      const inviteExists = company.invites.some(
+        invite => invite._id && invite._id.equals(user._id)
+      );
+
+      if (memberExists || inviteExists) {
+        return res.status(200).send({
+          data: [],
+          errors: [
+            {
+              error: 'USER_ALREADY_ADDED',
+              message: memberExists
+                ? `${req.body.email} has already joined.`
+                : `${req.body.email} has already received an invite.`
+            }
+          ]
+        });
+      }
+
+      const invite = new Invite({
+        creator: req.user._doc._id,
+        company: company._id
+      });
+
+      invite.save();
+
+      user.invites.push(invite._id);
+      company.invites.push(invite._id);
+
+      user.save((err, user) => {
         if (err) return res.status(500).send({ data: {}, error: err });
+      });
 
-        // check to see if the member has already been invited
-        const memberExists = company.members.some(member =>
-          member._id.equals(user._id)
-        );
-        // check to see if the member has already been invited
-        const inviteExists = company.invites.some(
-          invite => invite._id && invite._id.equals(user._id)
-        );
-
-        if (memberExists || inviteExists) {
-          return res.status(200).send({
-            data: [],
+      company.save((err, company) => {
+        if (err) {
+          return res.status(500).send({
+            data: {},
             errors: [
               {
-                error: 'USER_ALREADY_ADDED',
-                message: memberExists
-                  ? `${req.body.email} has already joined.`
-                  : `${req.body.email} has already received an invite.`
+                error: 'INTERNAL_SERVER_ERROR',
+                message: 'There was an error updating your password'
               }
             ]
           });
         }
 
-        const invite = new Invite({
-          creator: req.user._doc._id,
-          company: company._id
+        // changing protocol for local testing
+        const protocol = req.headers.host.includes('localhost')
+          ? 'http://'
+          : 'https://';
+        const resetUrl = `${protocol}${req.headers.host}/invite/${invite._id}`;
+
+        // Fire off the password reset email
+        send({
+          subject: `Invitation to join ${company.displayName}`,
+          template: 'CompanyInvite',
+          user,
+          company,
+          resetUrl
         });
 
-        invite.save();
-
-        user.invites.push(invite._id);
-        company.invites.push(invite._id);
-
-        user.save((err, user) => {
-          if (err) return res.status(500).send({ data: {}, error: err });
-        });
-
-        company.save((err, company) => {
-          if (err) {
-            return res.status(500).send({
-              data: {},
-              errors: [
-                {
-                  error: 'INTERNAL_SERVER_ERROR',
-                  message: 'There was an error updating your password'
-                }
-              ]
-            });
-          }
-
-          // changing protocol for local testing
-          const protocol = req.headers.host.includes('localhost')
-            ? 'http://'
-            : 'https://';
-          const resetUrl = `${protocol}${req.headers
-            .host}/invite/${invite._id}`;
-
-          // Fire off the password reset email
-          send({
-            subject: `Invitation to join ${company.displayName}`,
-            template: 'CompanyInvite',
-            user,
-            company,
-            resetUrl
-          });
-
-          return res.status(200).send({
-            data: { company },
-            errors: []
-          });
+        return res.status(200).send({
+          data: { company },
+          errors: []
         });
       });
+    });
   });
 }
 
@@ -301,38 +303,106 @@ export function acceptInviteCompanyMember(req, res) {
 
     Company.findOne({
       _id: req.params.id
-    })
-      .populate()
-      .exec((err, company) => {
-        if (err) return res.status(500).send({ data: {}, error: err });
+    }).exec((err, company) => {
+      if (err) return res.status(500).send({ data: {}, error: err });
 
-        const memberExists = company.members.some(member =>
-          member._id.equals(req.user._doc._id)
-        );
+      const memberExists = company.members.some(member =>
+        member._id.equals(req.user._doc._id)
+      );
 
-        if (!memberExists) {
-          company.members.push(req.user._doc._id);
+      // Add the company to the current user
+      Users.findOne({ _id: req.user._doc._id }, (err, user) => {
+        if (err) throw err;
+
+        user.companies.push(company._id);
+
+        if (user.companies.length === 1) {
+          user.activeCompany = {
+            _id: company._id,
+            displayName: company.displayName,
+            name: company.name
+          };
         }
 
-        company.save((err, company) => {
-          if (err) {
-            return res.status(500).send({
-              data: {},
-              errors: [
-                {
-                  error: 'INTERNAL_SERVER_ERROR',
-                  message: 'There was an error updating your password'
-                }
-              ]
-            });
-          }
+        if (!memberExists) {
+          user.save();
+        }
+      });
 
-          return res.status(200).send({
-            data: { company },
-            errors: []
+      if (!memberExists) {
+        company.members.push(req.user._doc._id);
+      }
+
+      company.save((err, company) => {
+        if (err) {
+          return res.status(500).send({
+            data: {},
+            errors: [
+              {
+                error: 'INTERNAL_SERVER_ERROR',
+                message: 'There was an error updating your password'
+              }
+            ]
           });
+        }
+
+        return res.status(200).send({
+          data: { company },
+          errors: []
         });
       });
+    });
+  });
+}
+
+/**
+ * Get a single Company
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function removeCompanyMember(req, res) {
+  Company.findOne({ _id: req.params.id }).exec((err, company) => {
+    if (err) return res.status(500).send(err);
+
+    if (!company) return res.status(204).send(err);
+
+    Users.findOne({ _id: req.params.memberId }, (err, user) => {
+      if (err) throw err;
+
+      const index = user.companies
+        .map(company => company._id)
+        .indexOf(req.params.id);
+
+      user.companies.splice(index, 1);
+
+      user.save();
+    });
+
+    const index = company.members
+      .map(member => member._id)
+      .indexOf(req.params.memberId);
+
+    company.members.splice(index, 1);
+
+    company.save((err, saved) => {
+      if (err) {
+        return res.status(500).send({
+          data: {},
+          errors: [
+            {
+              error: 'UNABLE_TO_REMOVE_MEMBER',
+              message: `There was an error removing the member`
+            }
+          ]
+        });
+      }
+
+      return res.status(200).send({
+        data: { company: saved },
+        errors: []
+      });
+    });
   });
 }
 

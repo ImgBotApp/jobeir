@@ -67,6 +67,15 @@ const Company = new Schema({
   website: String
 });
 
+function autopopulate(next) {
+  this.populate('invites');
+  next();
+}
+
+Company.pre('find', autopopulate);
+Company.pre('findOne', autopopulate);
+Company.pre('findOneAndUpdate', autopopulate);
+
 Company.plugin(timestamps);
 
 export default mongoose.model('Company', Company);

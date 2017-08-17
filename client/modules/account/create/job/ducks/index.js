@@ -1,6 +1,8 @@
 // @flow
 import { SWITCH_ACTIVE_COMPANY_SUCCESS } from '../../../../user/ducks/';
 
+import { CREATE_COMPANY_SUCCESS } from '../../company/ducks';
+
 export const CREATE_JOB_REQUEST = 'CREATE_JOB_REQUEST';
 export const CREATE_JOB_SUCCESS = 'CREATE_JOB_SUCCESS';
 export const CREATE_JOB_FAILURE = 'CREATE_JOB_FAILURE';
@@ -146,6 +148,7 @@ export default (state: {} = initialState, action: {}): {} => {
         filter: action.payload.filter
       });
     case SWITCH_ACTIVE_COMPANY_SUCCESS:
+    case CREATE_COMPANY_SUCCESS:
       return initialState;
     default:
       return state;

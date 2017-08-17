@@ -15,7 +15,6 @@ export function getJobs(req, res) {
   Jobs.find({ company: req.params.companyId })
     .sort('-dateCreated')
     .select('-description')
-    .populate('company')
     .exec((err, jobs) => {
       if (err) {
         return res.status(204).send({ data: {}, errors: [err] });
@@ -33,7 +32,6 @@ export function getJobs(req, res) {
 export function getJob(req, res) {
   Jobs.findOne({ _id: req.params.jobId })
     .select('-description')
-    .populate('company')
     .exec((err, job) => {
       if (err) {
         return res.status(500).send(err);
@@ -136,16 +134,18 @@ export function createJob(req, res) {
 export function updateJob(req, res) {
   const values = req.body;
 
-  Jobs.findOneAndUpdate({ _id: req.params.jobId }, { ...values }, { new: true })
-    .populate('companies')
-    .exec((err, posting) => {
-      if (err) return res.status(500).send({ error: err });
+  Jobs.findOneAndUpdate(
+    { _id: req.params.jobId },
+    { ...values },
+    { new: true }
+  ).exec((err, posting) => {
+    if (err) return res.status(500).send({ error: err });
 
-      res.status(200).send({
-        data: { posting },
-        errors: []
-      });
+    res.status(200).send({
+      data: { posting },
+      errors: []
     });
+  });
 }
 
 /**

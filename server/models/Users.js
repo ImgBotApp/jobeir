@@ -66,6 +66,52 @@ const Users = new Schema({
   ]
 });
 
+function autopopulate(next) {
+  this.populate({
+    path: 'invites',
+    model: 'Invite',
+    populate: [
+      {
+        path: 'company',
+        model: 'Company',
+        select: 'displayName logo website'
+      },
+      {
+        path: 'creator',
+        model: 'Users',
+        select: 'firstName lastName email'
+      }
+    ]
+  });
+
+  this.populate({
+    path: 'companies',
+    model: 'Company',
+    populate: {
+      path: 'invites',
+      model: 'Invite',
+      populate: [
+        {
+          path: 'company',
+          model: 'Company',
+          select: 'displayName logo website'
+        },
+        {
+          path: 'creator',
+          model: 'Users',
+          select: 'firstName lastName email'
+        }
+      ]
+    }
+  });
+
+  next();
+}
+
+Users.pre('find', autopopulate);
+Users.pre('findOne', autopopulate);
+Users.pre('findOneAndUpdate', autopopulate);
+
 Users.pre('save', function(next) {
   const user = this;
 

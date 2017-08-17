@@ -29,53 +29,16 @@ export function getUsers(req, res) {
  * @returns void
  */
 export function getUser(req, res) {
-  Users.findOne({ _id: req.params.id })
-    .populate({
-      path: 'invites',
-      model: 'Invite',
-      populate: [
-        {
-          path: 'company',
-          model: 'Company',
-          select: 'displayName logo website'
-        },
-        {
-          path: 'creator',
-          model: 'Users',
-          select: 'firstName lastName email'
-        }
-      ]
-    })
-    .populate({
-      path: 'companies',
-      model: 'Company',
-      populate: {
-        path: 'invites',
-        model: 'Invite',
-        populate: [
-          {
-            path: 'company',
-            model: 'Company',
-            select: 'displayName logo website'
-          },
-          {
-            path: 'creator',
-            model: 'Users',
-            select: 'firstName lastName email'
-          }
-        ]
-      }
-    })
-    .exec((err, user) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
+  Users.findOne({ _id: req.params.id }).exec((err, user) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
 
-      return res.status(200).send({
-        data: { user },
-        errors: []
-      });
+    return res.status(200).send({
+      data: { user },
+      errors: []
     });
+  });
 }
 
 /**
@@ -87,16 +50,18 @@ export function getUser(req, res) {
 export function updateUser(req, res) {
   const values = req.body;
 
-  Users.findOneAndUpdate({ _id: req.params.id }, { ...values }, { new: true })
-    .populate('companies')
-    .exec((err, user) => {
-      if (err) return res.status(500).send({ error: err });
+  Users.findOneAndUpdate(
+    { _id: req.params.id },
+    { ...values },
+    { new: true }
+  ).exec((err, user) => {
+    if (err) return res.status(500).send({ error: err });
 
-      return res.status(200).send({
-        data: { user },
-        errors: []
-      });
+    return res.status(200).send({
+      data: { user },
+      errors: []
     });
+  });
 }
 
 /**

@@ -25,6 +25,11 @@ router
   .route('/companies/:id/invites/:inviteId')
   .put(CompanyController.acceptInviteCompanyMember);
 
+// Remove a member
+router
+  .route('/companies/:id/members/:memberId')
+  .delete(CompanyController.removeCompanyMember);
+
 // Get one company
 router.route('/companies/:id').get(CompanyController.getCompany);
 
