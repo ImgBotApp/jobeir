@@ -9,7 +9,7 @@ router.route('/register').post(catchErrors(UsersController.registerUser));
 
 router.route('/login').post(catchErrors(UsersController.loginUser));
 
-router.route('/logout').post(catchErrors(UsersController.logoutUser));
+router.route('/logout').post(UsersController.logoutUser);
 
 router.route('/users/:id').get(catchErrors(UsersController.getUser));
 
