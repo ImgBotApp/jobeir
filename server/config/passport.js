@@ -14,16 +14,12 @@ const passportInit = passport => {
 
   // Local, regular signup
   passport.use(
-    new JwtStrategy(opts, function(jwt_payload, done) {
-      Users.findOne({ _id: jwt_payload._doc._id }, function(err, user) {
-        if (err) {
-          return done(err, false);
-        }
-        if (user) {
-          done(null, user);
-        } else {
-          done(null, false);
-        }
+    new JwtStrategy(opts, (jwtUser, done) => {
+      Users.findOne({ _id: jwtUser._id }, (err, user) => {
+        if (err) return done(err, false);
+        if (user) return done(null, user);
+
+        return done(null, false);
       });
     })
   );
@@ -66,12 +62,12 @@ const passportInit = passport => {
     )
   );
 
-  passport.serializeUser(function(user, done) {
+  passport.serializeUser((user, done) => {
     done(null, user.id);
   });
 
-  passport.deserializeUser(function(id, done) {
-    Users.findById(id, function(err, user) {
+  passport.deserializeUser((id, done) => {
+    Users.findById(id, (err, user) => {
       done(err, user);
     });
   });

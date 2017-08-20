@@ -14,6 +14,7 @@ class Redirect extends Component {
      */
     if (typeof document !== 'undefined') {
       const redirectTo: string = docCookies.getItem('redirectTo');
+      console.log(redirectTo);
       docCookies.removeItem('redirectTo');
 
       // default redirect is /account/jobs

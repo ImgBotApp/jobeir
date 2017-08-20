@@ -50,7 +50,11 @@ import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
 import routes, { routesArray } from '../client/routes';
 import geoLookup from './util/geoLookup';
 import securityHeaders from './util/securityHeaders';
-import handleErrors from './util/securityHeaders';
+import {
+  notFound,
+  developmentErrors,
+  productionErrors
+} from './util/handleErrors';
 import apiRoutes from './routes/ApiRoutes.routes';
 import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
@@ -58,6 +62,8 @@ import passportInit from './config/passport';
 
 // Apply body Parser and server public assets and routes
 app.use(delay(300, 500));
+
+// General server config such as cookies, body, favicon, public, session
 app.use(compression());
 app.use(
   favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico'))
@@ -78,18 +84,28 @@ app.use(
   express.static(path.join(__dirname, '../public/uploads'))
 );
 app.use('/public', express.static(path.join(__dirname, '../public')));
+
+// Adding security headers to all requests
+app.use(securityHeaders);
+
+// initializating passport
 app.use(passport.initialize());
 passportInit(passport);
 app.use(passport.session());
+
+// handling requests without a token (returning 401)
+app.use(serverConfig.handleNoToken);
+
+// Setting up API routes, oAuth routes,
 app.use(
   '/api/v0',
   jwt({ secret: process.env.JWT }).unless({ path: routesArray }),
   apiRoutes
 );
+
 app.use(oAuthRoutes);
-app.use(handleErrors);
-app.use(serverConfig.handleNoToken);
-app.use(securityHeaders);
+
+// app.use(productionErrors);
 
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
@@ -132,6 +148,11 @@ app.use((req, res, next) => {
         return next();
       }
 
+      // handle all API requests outside of react-router
+      // if (renderProps.router.location.pathname.includes('api')) {
+      //   return next();
+      // }
+
       loadOnServer({ ...renderProps, store, helpers: { req } })
         .then(() => {
           const sheet = new ServerStyleSheet();
@@ -158,6 +179,11 @@ app.use((req, res, next) => {
     }
   );
 });
+
+// Handling any errors from API
+// app.use(productionErrors);
+
+// app.use(notFound);
 
 // start app
 app.listen(process.env.PORT, error => {

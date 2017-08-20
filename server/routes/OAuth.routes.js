@@ -6,9 +6,8 @@ import querystring from 'querystring';
 const router = new Router();
 
 // The middleware to set up the parameters for the authenticate middleware.
-function checkReturnTo(req, res, next) {
+const checkReturnTo = (req, res, next) => {
   const returnTo = req.query.next;
-  const nextPath = req.headers.referer;
 
   if (returnTo) {
     // Maybe unnecessary, but just to be sure.
@@ -18,7 +17,12 @@ function checkReturnTo(req, res, next) {
   }
 
   next();
-}
+};
+
+const buildKey = user => ({
+  email: user.email,
+  _id: user._id
+});
 
 // Google Auth
 router.get(
@@ -33,7 +37,7 @@ router.get(
     failureRedirect: '/login'
   }),
   (req, res) => {
-    const token = jwt.sign(req.user, process.env.JWT);
+    const token = jwt.sign(buildKey(req.user), process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
   }
@@ -51,7 +55,7 @@ router.get(
     failureRedirect: '/login'
   }),
   (req, res) => {
-    const token = jwt.sign(req.user, process.env.JWT);
+    const token = jwt.sign(buildKey(req.user), process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
   }
@@ -61,7 +65,7 @@ router.get(
 router.get(
   '/auth/github',
   checkReturnTo,
-  passport.authenticate('github', { scope: ['user:email'] })
+  passport.authenticate('github', { scope: ['user.email:email'] })
 );
 
 router.get(
@@ -70,7 +74,7 @@ router.get(
     failureRedirect: '/login'
   }),
   (req, res) => {
-    const token = jwt.sign(req.user, process.env.JWT);
+    const token = jwt.sign(buildKey(req.user), process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
   }

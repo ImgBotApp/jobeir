@@ -17,9 +17,9 @@ import theme from '../theme';
       const state: {} = getState();
 
       if (shouldCheckAuth(state)) {
-        return dispatch(serverAuth(req)).then(response => {
-          if (!response.payload.errors.length) {
-            return dispatch(serverGetUser(response.payload.data.id, req));
+        return dispatch(serverAuth(req)).then(res => {
+          if (!res.payload.errors.length) {
+            return dispatch(serverGetUser(res.payload.data._id, req));
           }
         });
       }

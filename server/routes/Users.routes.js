@@ -1,19 +1,19 @@
 import { Router } from 'express';
-import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import * as UsersController from '../controllers/Users.controller';
+import { catchErrors } from '../util/handleErrors';
 
 const router = new Router();
 
-router.route('/register').post(UsersController.registerUser);
+router.route('/register').post(catchErrors(UsersController.registerUser));
 
-router.route('/login').post(UsersController.loginUser);
+router.route('/login').post(catchErrors(UsersController.loginUser));
 
-router.route('/logout').post(UsersController.logoutUser);
+router.route('/logout').post(catchErrors(UsersController.logoutUser));
 
-router.route('/users/:id').get(UsersController.getUser);
+router.route('/users/:id').get(catchErrors(UsersController.getUser));
 
-router.route('/users/:id').put(UsersController.updateUser);
+router.route('/users/:id').put(catchErrors(UsersController.updateUser));
 
 // Check authentication of the current token
 router
@@ -24,8 +24,8 @@ router
   );
 
 // Password reset routes
-router.route('/reset').post(UsersController.resetPasswordRequest);
+router.route('/reset').post(catchErrors(UsersController.resetPasswordRequest));
 
-router.route('/password').post(UsersController.resetPassword);
+router.route('/password').post(catchErrors(UsersController.resetPassword));
 
 export default router;

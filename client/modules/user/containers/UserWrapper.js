@@ -38,7 +38,7 @@ export const UserWrapper = WrappedComponent => {
       this.setState({ count: this.state.count + 1 });
 
       if (count <= 1 && !isLoaded) {
-        dispatch(getUser(auth.id));
+        dispatch(getUser(auth._id));
       }
     }
 

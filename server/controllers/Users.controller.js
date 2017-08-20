@@ -9,18 +9,14 @@ import { send } from '../mail/mail';
  * @param res
  * @returns void
  */
-export function getUsers(req, res) {
-  Users.find().sort('-dateAdded').exec((err, user) => {
-    if (err) {
-      res.status(500).send(err);
-    }
+export const getUsers = async (req, res) => {
+  const users = await Users.find().sort('-dateAdded').exec();
 
-    res.status(200).send({
-      data: { user },
-      errors: []
-    });
+  res.status(200).send({
+    data: { users },
+    errors: []
   });
-}
+};
 
 /**
  * Get a single User
@@ -28,18 +24,14 @@ export function getUsers(req, res) {
  * @param res
  * @returns void
  */
-export function getUser(req, res) {
-  Users.findOne({ _id: req.params.id }).exec((err, user) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
+export const getUser = async (req, res) => {
+  const user = await Users.findOne({ _id: req.params.id }).exec();
 
-    return res.status(200).send({
-      data: { user },
-      errors: []
-    });
+  return res.status(200).send({
+    data: { user },
+    errors: []
   });
-}
+};
 
 /**
  * Update a single User
@@ -47,22 +39,20 @@ export function getUser(req, res) {
  * @param res
  * @returns void
  */
-export function updateUser(req, res) {
+export const updateUser = async (req, res) => {
   const values = req.body;
 
-  Users.findOneAndUpdate(
+  const user = await Users.findOneAndUpdate(
     { _id: req.params.id },
     { ...values },
     { new: true }
-  ).exec((err, user) => {
-    if (err) return res.status(500).send({ error: err });
+  ).exec();
 
-    return res.status(200).send({
-      data: { user },
-      errors: []
-    });
+  return res.status(200).send({
+    data: { user },
+    errors: []
   });
-}
+};
 
 /**
  * Register a single User
@@ -70,7 +60,7 @@ export function updateUser(req, res) {
  * @param res
  * @returns void
  */
-export function registerUser(req, res) {
+export const registerUser = async (req, res) => {
   if (!req.body.email || !req.body.password) {
     return res.status(202).send({
       data: {},
@@ -82,36 +72,18 @@ export function registerUser(req, res) {
       ]
     });
   }
-  const newUser = new Users({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password
-  });
 
-  newUser.save(err => {
-    if (err) {
-      return res.status(409).send({
-        data: {},
-        errors: [
-          {
-            error: 'USER_ALREADY_EXISTS',
-            message: 'A user with that email already exists.'
-          }
-        ]
-      });
-    }
-    const token = jwt.sign(newUser, process.env.JWT);
+  const user = await new Users(req.body).save();
+  const token = jwt.sign({ email: user.email, _id: user._id }, process.env.JWT);
 
-    return res.status(200).send({
-      data: {
-        token,
-        user: req.body
-      },
-      errors: []
-    });
+  return res.status(200).send({
+    data: {
+      token,
+      user
+    },
+    errors: []
   });
-}
+};
 
 /**
  * Login a single User
@@ -119,50 +91,47 @@ export function registerUser(req, res) {
  * @param res
  * @returns void
  */
-export function loginUser(req, res) {
-  Users.findOne({
-    email: req.body.email
-  })
+export const loginUser = async (req, res) => {
+  const user = await Users.findOne({ email: req.body.email })
     .select('+password')
-    .exec((err, user) => {
-      if (err) throw err;
+    .exec();
 
-      if (!user) {
-        return res.status(401).send({
-          data: {},
-          errors: [
-            {
-              error: 'INVALID_EMAIL_OR_PASSWORD',
-              message: 'Invalid email or password'
-            }
-          ]
-        });
-      }
-      user.comparePassword(req.body.password, (err, isMatch) => {
-        if (!err && isMatch) {
-          const token = jwt.sign(user, process.env.JWT);
+  if (!user) throw Error('INVALID_EMAIL_OR_PASSWORD');
 
-          return res.status(200).send({
-            data: {
-              isAuthenticated: true,
-              id: user._id,
-              token
-            },
-            errors: []
-          });
-        }
-        return res.status(401).send({
-          data: {},
-          errors: [
-            {
-              error: 'INVALID_EMAIL_OR_PASSWORD',
-              message: 'Invalid email or password'
-            }
-          ]
-        });
+  /**
+   * comparePassword() method is defined within the Users model so we're not
+   * writing out an async process here and instead using the callback already
+   * defined.
+   */
+  user.comparePassword(req.body.password, (err, isMatch) => {
+    if (!err && isMatch) {
+      const token = jwt.sign(
+        { email: user.email, _id: user._id },
+        process.env.JWT
+      );
+
+      return res.status(200).send({
+        data: {
+          isAuthenticated: true,
+          id: user._id,
+          token
+        },
+        errors: []
       });
+    }
+
+    // Have to capture there error within here because it's not an async method
+    return res.status(401).send({
+      data: {},
+      errors: [
+        {
+          error: 'INVALID_EMAIL_OR_PASSWORD',
+          message: 'Invalid email or password'
+        }
+      ]
     });
-}
+  });
+};
 
 /**
  * Logout a single User
@@ -188,7 +157,7 @@ export function checkAuthentication(req, res) {
   return res.status(200).send({
     data: {
       isAuthenticated: true,
-      id: req.user._id
+      _id: req.user._id
     },
     errors: []
   });
@@ -200,52 +169,42 @@ export function checkAuthentication(req, res) {
  * @param res
  * @returns void
  */
-export function resetPasswordRequest(req, res) {
-  Users.findOne({ email: req.body.email }).exec((err, user) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
+export const resetPasswordRequest = async (req, res) => {
+  const user = await Users.findOne({ email: req.body.email }).exec();
 
-    if (!user) {
-      return res.status(200).send({
-        data: [],
-        errors: []
-      });
-    }
-
-    user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
-    user.resetPasswordExpires = Date.now() + 3600000;
-
-    user.save((err, user) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
-
-      // changing protocol for local testing
-      const protocol = req.headers.host.includes('localhost')
-        ? 'http://'
-        : 'https://';
-      const resetUrl = `${protocol}${req.headers
-        .host}/password/${user.resetPasswordToken}`;
-
-      // Fire off the password reset email
-      send({
-        subject: 'Password Reset',
-        template: 'PasswordReset',
-        user,
-        resetUrl
-      });
-
-      // send them an email with the link
-      return res.status(200).send({
-        data: [],
-        errors: []
-      });
+  if (!user) {
+    return res.status(200).send({
+      data: [],
+      errors: []
     });
+  }
+
+  user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
+  user.resetPasswordExpires = Date.now() + 3600000;
+
+  user.save();
+
+  // changing protocol for local testing
+  const protocol = req.headers.host.includes('localhost')
+    ? 'http://'
+    : 'https://';
+  const resetUrl = `${protocol}${req.headers
+    .host}/password/${user.resetPasswordToken}`;
+
+  // Fire off the password reset email
+  send({
+    subject: 'Password Reset',
+    template: 'PasswordReset',
+    user,
+    resetUrl
   });
-  // 3. Send them an email wisth token
-  // 4. Return success
-}
+
+  // send them an email with the link
+  return res.status(200).send({
+    data: [],
+    errors: []
+  });
+};
 
 /**
  * Reset the user's password
@@ -253,7 +212,7 @@ export function resetPasswordRequest(req, res) {
  * @param res
  * @returns void
  */
-export function resetPassword(req, res) {
+export const resetPassword = async (req, res) => {
   if (req.body.password !== req.body.confirmPassword) {
     return res.status(200).send({
       data: [],
@@ -266,50 +225,34 @@ export function resetPassword(req, res) {
     });
   }
 
-  Users.findOne({
+  const user = await Users.findOne({
     resetPasswordToken: req.body.resetPasswordToken,
     resetPasswordExpires: { $gt: Date.now() }
   })
     .select('+password')
-    .exec((err, user) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
+    .exec();
 
-      if (!user) {
-        return res.status(401).send({
-          data: [],
-          errors: [
-            {
-              error: 'EXPIRED_PASSWORD_RESET_TOKEN',
-              message:
-                'Unable to update password. Your reset password link has timed out.'
-            }
-          ]
-        });
-      }
-
-      user.password = req.body.password;
-      user.resetPasswordToken = undefined;
-      user.resetPasswordExpires = undefined;
-
-      user.save((err, saved) => {
-        if (err) {
-          return res.status(500).send({
-            data: {},
-            errors: [
-              {
-                error: 'INTERNAL_SERVER_ERROR',
-                message: 'There was an error updating your password'
-              }
-            ]
-          });
+  if (!user) {
+    return res.status(401).send({
+      data: [],
+      errors: [
+        {
+          error: 'EXPIRED_PASSWORD_RESET_TOKEN',
+          message:
+            'Unable to update password. Your reset password link has timed out.'
         }
-
-        return res.status(200).send({
-          data: { user: saved },
-          errors: []
-        });
-      });
+      ]
     });
-}
+  }
+
+  user.password = req.body.password;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpires = undefined;
+
+  user.save();
+
+  return res.status(200).send({
+    data: { user },
+    errors: []
+  });
+};
