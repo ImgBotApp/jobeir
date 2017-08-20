@@ -11,6 +11,7 @@ import { send } from '../mail/mail';
  */
 export const getUsers = async (req, res) => {
   const users = await Users.find().sort('-dateAdded').exec();
+  if (!users) throw Error('ERROR_FINDING_USERS');
 
   res.status(200).send({
     data: { users },
@@ -26,6 +27,7 @@ export const getUsers = async (req, res) => {
  */
 export const getUser = async (req, res) => {
   const user = await Users.findOne({ _id: req.params.id }).exec();
+  if (!user) throw Error('ERROR_FINDING_USER');
 
   return res.status(200).send({
     data: { user },
@@ -48,6 +50,8 @@ export const updateUser = async (req, res) => {
     { new: true }
   ).exec();
 
+  if (!user) throw Error('ERROR_UPDATING_USER');
+
   return res.status(200).send({
     data: { user },
     errors: []
@@ -62,18 +66,12 @@ export const updateUser = async (req, res) => {
  */
 export const registerUser = async (req, res) => {
   if (!req.body.email || !req.body.password) {
-    return res.status(202).send({
-      data: {},
-      errors: [
-        {
-          error: 'MISSING_EMAIL_OR_PASSWORD',
-          message: 'Email and password are required'
-        }
-      ]
-    });
+    throw Error('MISSING_EMAIL_OR_PASSWORD');
   }
 
   const user = await new Users(req.body).save();
+  if (!user) throw Error('ERROR_REGISTERING_USER');
+
   const token = jwt.sign({ email: user.email, _id: user._id }, process.env.JWT);
 
   return res.status(200).send({
@@ -113,7 +111,7 @@ export const loginUser = async (req, res) => {
       return res.status(200).send({
         data: {
           isAuthenticated: true,
-          id: user._id,
+          _id: user._id,
           token
         },
         errors: []
@@ -172,12 +170,7 @@ export function checkAuthentication(req, res) {
 export const resetPasswordRequest = async (req, res) => {
   const user = await Users.findOne({ email: req.body.email }).exec();
 
-  if (!user) {
-    return res.status(200).send({
-      data: [],
-      errors: []
-    });
-  }
+  if (!user) throw Error('INVALID_USER');
 
   user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
   user.resetPasswordExpires = Date.now() + 3600000;
@@ -214,15 +207,7 @@ export const resetPasswordRequest = async (req, res) => {
  */
 export const resetPassword = async (req, res) => {
   if (req.body.password !== req.body.confirmPassword) {
-    return res.status(200).send({
-      data: [],
-      errors: [
-        {
-          error: 'PASSWORDS_DO_NOT_MATCH',
-          message: 'The provided passwords do not match. Please try again.'
-        }
-      ]
-    });
+    throw Error('PASSWORDS_DO_NOT_MATCH');
   }
 
   const user = await Users.findOne({
@@ -233,16 +218,17 @@ export const resetPassword = async (req, res) => {
     .exec();
 
   if (!user) {
-    return res.status(401).send({
-      data: [],
-      errors: [
-        {
-          error: 'EXPIRED_PASSWORD_RESET_TOKEN',
-          message:
-            'Unable to update password. Your reset password link has timed out.'
-        }
-      ]
-    });
+    throw Error('EXPIRED_PASSWORD_RESET_TOKEN');
+    // return res.status(401).send({
+    //   data: [],
+    //   errors: [
+    //     {
+    //       error: 'EXPIRED_PASSWORD_RESET_TOKEN',
+    //       message:
+    //         'Unable to update password. Your reset password link has timed out.',
+    //     },
+    //   ],
+    // });
   }
 
   user.password = req.body.password;

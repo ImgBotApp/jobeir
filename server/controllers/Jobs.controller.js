@@ -10,18 +10,17 @@ import sanitizeHtml from 'sanitize-html';
  * @param res
  * @returns void
  */
-export function getJobs(req, res) {
+export const getJobs = async (req, res) => {
   // currently just filtering GET jobs just by date added...
-  Jobs.find({ company: req.params.companyId })
+  const postings = await Jobs.find({ company: req.params.companyId })
     .sort('-dateCreated')
     .select('-description')
-    .exec((err, jobs) => {
-      if (err) {
-        return res.status(204).send({ data: {}, errors: [err] });
-      }
-      res.json({ data: { postings: jobs }, errors: [] });
-    });
-}
+    .exec();
+
+  if (!postings) throw Error('UNABLE_TO_FIND_JOBS');
+
+  res.stats(200).send({ data: { postings }, errors: [] });
+};
 
 /**
  * Get a single job
@@ -29,29 +28,15 @@ export function getJobs(req, res) {
  * @param res
  * @returns void
  */
-export function getJob(req, res) {
-  Jobs.findOne({ _id: req.params.jobId })
+export const getJob = async (req, res) => {
+  const posting = await Jobs.findOne({ _id: req.params.jobId })
     .select('-description')
-    .exec((err, job) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
+    .exec();
 
-      if (!job) {
-        res.status(204).send({
-          data: {},
-          errors: [
-            {
-              error: 'UNABLE_TO_FIND_JOB',
-              message: 'Unable to find job'
-            }
-          ]
-        });
-      } else {
-        res.json({ data: { posting: job }, errors: [] });
-      }
-    });
-}
+  if (!posting) throw Error('UNABLE_TO_FIND_JOB');
+
+  res.status(200).send({ data: { posting }, errors: [] });
+};
 
 /**
  * Create a job

@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 /*
   Catch Errors Handler
   With async/await, you need some way to catch errors
@@ -9,8 +11,8 @@ export const catchErrors = fn => (req, res, next) =>
   fn(req, res, next).catch(next);
 
 /*
-  Not Found Error Handler
-  If we hit a route that is not found, we mark it as 404 and pass it along to the next error handler to display
+Not Found Error Handler
+If we hit a route that is not found, we mark it as 404 and pass it along to the next error handler to display
 */
 export const notFound = (req, res, next) =>
   res.status(404).send({
@@ -24,8 +26,8 @@ export const notFound = (req, res, next) =>
   });
 
 /*
-  Development Error Hanlder
-  In development we show good error messages so if we hit a syntax error or any other previously un-handled error, we can show good info on what happened
+Development Error Hanlder
+In development we show good error messages so if we hit a syntax error or any other previously un-handled error, we can show good info on what happened
 */
 export const developmentErrors = (err, req, res, next) => {
   err.stack = err.stack || '';
@@ -48,8 +50,8 @@ export const developmentErrors = (err, req, res, next) => {
 };
 
 /*
-  Production Error Hanlder
-  No stacktraces are leaked to user
+Production Error Hanlder
+No stacktraces are leaked to user
 */
 export const productionErrors = (err, req, res, next) => {
   if (err.message === 'INVALID_EMAIL_OR_PASSWORD') {
@@ -63,6 +65,63 @@ export const productionErrors = (err, req, res, next) => {
       ]
     });
   }
+
+  if (err.status === 401) {
+    return res.status(401).send({
+      data: {},
+      errors: [
+        {
+          error: 'UNAUTHORIZED',
+          message: err.message
+        }
+      ]
+    });
+  }
+
+  if (err.message === 'UNABLE_TO_FIND_JOBS') {
+    res.status(200).send({
+      data: {},
+      errors: [
+        {
+          error: 'UNABLE_TO_FIND_JOBS',
+          message: 'There was an erroring finding jobs'
+        }
+      ]
+    });
+  }
+
+  if (err.name === 'CastError') {
+    return res.status(200).send({
+      data: {},
+      errors: [
+        {
+          error: 'UNABLE_TO_FIND_DATA',
+          message: 'There was an error processing your request'
+        }
+      ]
+    });
+  }
+
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log(err);
 
   next();
 

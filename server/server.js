@@ -54,7 +54,7 @@ import {
   notFound,
   developmentErrors,
   productionErrors
-} from './util/handleErrors';
+} from './errors/handleErrors';
 import apiRoutes from './routes/ApiRoutes.routes';
 import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
@@ -105,7 +105,7 @@ app.use(
 
 app.use(oAuthRoutes);
 
-// app.use(productionErrors);
+app.use(productionErrors);
 
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;

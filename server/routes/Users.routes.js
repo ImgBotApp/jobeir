@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import passport from 'passport';
 import * as UsersController from '../controllers/Users.controller';
-import { catchErrors } from '../util/handleErrors';
+import { catchErrors } from '../errors/handleErrors';
 
 const router = new Router();
 

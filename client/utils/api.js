@@ -6,26 +6,29 @@ import host from '../../server/config/host';
  * Handles responses from backend. A clean way of letting errors
  * or non-errors flow into our redux reducers.
  */
-export function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    return response.json().then(error => {
-      throw error;
-    });
-  }
-}
+export const checkStatus = async res => {
+  const body = await res.json();
+
+  /**
+   * Throughout the entire backend all errors must be accompanied with a
+   * response body of an Array of errors. If that Array contains errors
+   * we'll throw the response body.
+   */
+  const hasErrors = body.errors.length;
+
+  if (hasErrors) throw body;
+
+  return body;
+};
 
 export function formatUrl(path) {
-  const adjustedPath = path[0] !== '/' ? '/' + path : path;
+  const adjustedPath = path[0] !== '/' ? `/${path}` : path;
   if (__SERVER__) {
     // Prepend host and port of the API server to the path.
-    return (
-      'http://' + host.apiHost + ':' + host.apiPort + '/api/v0' + adjustedPath
-    );
+    return `http://${host.apiHost}:${host.apiPort}/api/v0${adjustedPath}`;
   }
   // Prepend `/api` to relative URL, to proxy to API server.
-  return '/api/v0' + adjustedPath;
+  return `/api/v0${adjustedPath}`;
 }
 
 /**
@@ -95,5 +98,5 @@ export function fetchApi(method, endpoint, payload = {}, header, req = {}) {
   options.headers = reqHeaders(header, req.cookies);
   options.body = reqBody(method, payload, header);
 
-  return fetch(url, options).then(checkStatus).then(res => res.json());
+  return fetch(url, options).then(checkStatus);
 }
