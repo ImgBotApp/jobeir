@@ -90,6 +90,30 @@ export const productionErrors = (err, req, res, next) => {
     });
   }
 
+  if (err.message === 'COMPANY_ALREADY_EXISTS') {
+    return res.status(200).send({
+      data: {},
+      errors: [
+        {
+          error: 'COMPANY_ALREADY_EXISTS',
+          message: 'The comapny name already exists'
+        }
+      ]
+    });
+  }
+
+  if (err.message === 'USER_ALREADY_ADDED') {
+    return res.status(200).send({
+      data: {},
+      errors: [
+        {
+          error: 'USER_ALREADY_ADDED',
+          message: 'The user has already been invited'
+        }
+      ]
+    });
+  }
+
   if (err.name === 'CastError') {
     return res.status(200).send({
       data: {},
@@ -101,6 +125,7 @@ export const productionErrors = (err, req, res, next) => {
       ]
     });
   }
+
   console.log('err');
   console.log('err');
   console.log('err');

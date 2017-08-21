@@ -1,7 +1,5 @@
 import Jobs from '../models/Jobs';
 import Company from '../models/Company';
-import cuid from 'cuid';
-import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
 
 /**
@@ -19,7 +17,7 @@ export const getJobs = async (req, res) => {
 
   if (!postings) throw Error('UNABLE_TO_FIND_JOBS');
 
-  res.stats(200).send({ data: { postings }, errors: [] });
+  res.status(200).send({ data: { postings }, errors: [] });
 };
 
 /**

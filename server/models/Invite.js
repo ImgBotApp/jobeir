@@ -16,6 +16,10 @@ const Invite = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Company'
   },
+  invitee: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Users'
+  },
   accepted: { type: Boolean, default: false },
   dateSent: { type: Date, default: Date.now },
   dateAccepted: Date,

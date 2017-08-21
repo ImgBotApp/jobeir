@@ -4,7 +4,6 @@ import Invite from '../models/Invite';
 import cuid from 'cuid';
 import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
-import crypto from 'crypto';
 import { send } from '../mail/mail';
 
 /**
@@ -13,48 +12,31 @@ import { send } from '../mail/mail';
  * @param res
  * @returns void
  */
-export function getCompanies(req, res) {
-  Company.find().sort('-dateAdded').exec((err, companies) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ companies });
-  });
-}
+export const getCompanies = async (req, res) => {
+  const companies = await Company.find().sort('-dateAdded').exec();
+
+  if (!companies) throw Error('ERROR_GETTING_COMPANIES');
+
+  res.status(200).send({ data: companies, errors: [] });
+};
 /**
  * Check if a company exists
  * @param req
  * @param res
  * @returns void
  */
-export function checkCompany(req, res) {
-  Company.findOne({
+export const checkCompany = async (req, res) => {
+  const company = await Company.findOne({
     name: req.params.name.toLowerCase()
-  }).exec((err, company) => {
-    if (err) {
-      res.status(500).send(err);
-    }
+  }).exec();
 
-    // if there is a company return an error
-    if (company) {
-      res.status(409).send({
-        data: {},
-        errors: [
-          {
-            error: 'COMPANY_ALREADY_EXISTS',
-            message: `The company ${req.params.name} already exists`
-          }
-        ]
-      });
-    } else {
-      // if no company exists, let the user continue
-      res.status(200).send({
-        data: {},
-        errors: []
-      });
-    }
+  if (company) throw Error('COMPANY_ALREADY_EXISTS');
+
+  res.status(200).send({
+    data: {},
+    errors: []
   });
-}
+};
 
 /**
  * Save a Company
@@ -62,74 +44,40 @@ export function checkCompany(req, res) {
  * @param res
  * @returns void
  */
-export function createCompany(req, res) {
-  if (!req.body.name || !req.body.website || !req.body.product) {
-    return res.status(403).end();
-  }
+export const createCompany = async (req, res) => {
+  const { body, user: { _id } } = req;
 
-  const newCompany = new Company(req.body);
+  const company = await new Company({
+    creator: _id,
+    members: [{ member: _id }],
+    name: sanitizeHtml(body.name.toLowerCase()),
+    displayName: sanitizeHtml(body.name),
+    website: sanitizeHtml(body.website),
+    size: sanitizeHtml(body.size),
+    perks: sanitizeHtml(body.perks),
+    product: sanitizeHtml(body.product),
+    phone: sanitizeHtml(body.phone)
+  }).save();
 
-  // Let's sanitize inputs
-  newCompany.creator = req.user._id;
-  newCompany.members.push(req.user._id);
-  newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
-  newCompany.displayName = sanitizeHtml(req.body.name);
-  newCompany.website = sanitizeHtml(newCompany.website);
-  newCompany.size = sanitizeHtml(newCompany.size);
-  newCompany.perks = newCompany.perks;
-  newCompany.product = sanitizeHtml(newCompany.product);
-  newCompany.phone = sanitizeHtml(newCompany.phone);
+  if (!company) throw Error('ERROR_CREATING_COMPANY');
 
-  newCompany.slug = slug(newCompany.name.toLowerCase(), { lowercase: true });
-  newCompany.cuid = cuid();
+  const user = await Users.findOne({ _id: req.user._id }).exec();
+  if (!user) throw Error('ERROR_CREATING_COMPANY');
 
-  // Add the company to the current user
-  Users.findOne({ _id: req.user._id }, (err, user) => {
-    if (err) throw err;
+  user.companies.push(company._id);
+  user.activeCompany = {
+    _id: company._id,
+    displayName: company.displayName,
+    name: company.name
+  };
 
-    user.companies.push(newCompany._id);
+  user.save();
 
-    user.activeCompany = {
-      _id: newCompany._id,
-      displayName: newCompany.displayName,
-      name: newCompany.name
-    };
-
-    user.save(err => {
-      if (err) {
-        res.status(500).send({
-          data: {},
-          errors: [
-            {
-              error: 'INTERNAL_SERVER_ERROR',
-              message: `There was an error creating the company ${req.body
-                .name}`
-            }
-          ]
-        });
-      }
-    });
+  res.status(200).send({
+    data: { company },
+    errors: []
   });
-
-  newCompany.save((err, saved) => {
-    if (err) {
-      res.status(409).send({
-        data: {},
-        errors: [
-          {
-            error: 'COMPANY_ALREADY_EXISTS',
-            message: `The company ${req.body.name} already exists`
-          }
-        ]
-      });
-    } else {
-      res.status(200).send({
-        data: { company: saved },
-        errors: []
-      });
-    }
-  });
-}
+};
 
 /**
  * Update a single Company
@@ -137,22 +85,22 @@ export function createCompany(req, res) {
  * @param res
  * @returns void
  */
-export function updateCompany(req, res) {
+export const updateCompany = async (req, res) => {
   const values = req.body;
 
-  Company.findOneAndUpdate(
+  const company = await Company.findOneAndUpdate(
     { _id: req.params.id },
     { ...values },
     { new: true }
-  ).exec((err, company) => {
-    if (err) return res.status(500).send({ error: err });
+  ).exec();
 
-    res.status(200).send({
-      data: { company },
-      errors: []
-    });
+  if (!company) throw Error('ERROR_UPDATING_COMPANY');
+
+  res.status(200).send({
+    data: { company },
+    errors: []
   });
-}
+};
 
 /**
  * Update a single Company
@@ -160,200 +108,119 @@ export function updateCompany(req, res) {
  * @param res
  * @returns void
  */
-export function inviteCompanyMember(req, res) {
+export const inviteCompanyMember = async (req, res) => {
   // find if the member to invite exists
-  Users.findOne({ email: req.body.email }).exec((err, user) => {
-    if (err) {
-      return res.status(500).send({
-        data: [],
-        errors: [
-          {
-            error: 'INVALID_USER',
-            message: `A user with email ${req.body.email} does not exist.`
-          }
-        ]
-      });
-    }
+  const user = await Users.findOne({ email: req.body.email }).exec();
+  if (!user) throw Error('ERROR_FINDING_USER');
 
-    // if they don't exist, send back an error object
-    if (!user) {
-      return res.status(200).send({
-        data: [],
-        errors: [
-          {
-            error: 'INVALID_USER',
-            message: `A user with email ${req.body.email} does not exist.`
-          }
-        ]
-      });
-    }
+  const company = await Company.findOne({
+    _id: req.params.id
+  }).exec();
+  if (!company) throw Error('ERROR_FINDING_COMPANY');
+  // create the invitation
 
-    // create the invitation
+  // check to see if the member has already been invited
+  const memberExists = company.members.some(member =>
+    member._id.equals(user._id)
+  );
+  // check to see if the member has already been invited
+  const inviteExists = company.invites.some(
+    invite => invite && invite.invitee.equals(user._id)
+  );
 
-    Company.findOne({
-      _id: req.params.id
-    }).exec((err, company) => {
-      if (err) return res.status(500).send({ data: {}, error: err });
+  // throw an error if either exists
+  if (memberExists) throw Error('USER_ALREADY_ADDED');
+  if (inviteExists) throw Error('USER_ALREADY_ADDED');
 
-      if (!company)
-        return res
-          .status(204)
-          .send({ data: {}, errors: [{ error: 'COMPANY_NOT_FOUND' }] });
+  const invite = await new Invite({
+    creator: req.user._id,
+    invitee: user._id,
+    company: company._id
+  }).save();
 
-      // check to see if the member has already been invited
-      const memberExists = company.members.some(member =>
-        member._id.equals(user._id)
-      );
-      // check to see if the member has already been invited
-      const inviteExists = company.invites.some(
-        invite => invite._id && invite._id.equals(user._id)
-      );
+  // Add the invite to the company and user
+  user.invites.push(invite._id);
+  company.invites.push(invite._id);
 
-      if (memberExists || inviteExists) {
-        return res.status(200).send({
-          data: [],
-          errors: [
-            {
-              error: 'USER_ALREADY_ADDED',
-              message: memberExists
-                ? `${req.body.email} has already joined.`
-                : `${req.body.email} has already received an invite.`
-            }
-          ]
-        });
-      }
+  // save the udpated user and comapny
+  user.save();
+  company.save();
 
-      const invite = new Invite({
-        creator: req.user._id,
-        company: company._id
-      });
+  // changing protocol for local testing
+  const protocol = req.headers.host.includes('localhost')
+    ? 'http://'
+    : 'https://';
+  const resetUrl = `${protocol}${req.headers.host}/invite/${invite._id}`;
 
-      invite.save();
-
-      user.invites.push(invite._id);
-      company.invites.push(invite._id);
-
-      user.save((err, user) => {
-        if (err) return res.status(500).send({ data: {}, error: err });
-      });
-
-      company.save((err, company) => {
-        if (err) {
-          return res.status(500).send({
-            data: {},
-            errors: [
-              {
-                error: 'INTERNAL_SERVER_ERROR',
-                message: 'There was an error updating your password'
-              }
-            ]
-          });
-        }
-
-        // changing protocol for local testing
-        const protocol = req.headers.host.includes('localhost')
-          ? 'http://'
-          : 'https://';
-        const resetUrl = `${protocol}${req.headers.host}/invite/${invite._id}`;
-
-        // Fire off the password reset email
-        send({
-          subject: `Invitation to join ${company.displayName}`,
-          template: 'CompanyInvite',
-          user,
-          company,
-          resetUrl
-        });
-
-        return res.status(200).send({
-          data: { company },
-          errors: []
-        });
-      });
-    });
+  // Fire off the password reset email
+  send({
+    subject: `Invitation to join ${company.displayName}`,
+    template: 'CompanyInvite',
+    user,
+    company,
+    resetUrl
   });
-}
 
-export function acceptInviteCompanyMember(req, res) {
-  Invite.findOne({
+  return res.status(200).send({
+    data: { company },
+    errors: []
+  });
+};
+
+export const acceptInviteCompanyMember = async (req, res) => {
+  const invite = await Invite.findOne({
     _id: req.params.inviteId,
     expires: { $gt: Date.now() }
-  }).exec((err, invite) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
+  }).exec();
 
-    if (!invite) {
-      return res.status(401).send({
-        data: [],
-        errors: [
-          {
-            error: 'EXPIRED_INVITE_TOKEN',
-            message:
-              'Unable to update password. Your reset password link has timed out.'
-          }
-        ]
-      });
-    }
+  if (!invite) throw Error('INVALID_INVITE_TOKEN');
 
-    invite.accepted = true;
-    invite.dateAccepted = Date.now();
+  invite.accepted = true;
+  invite.dateAccepted = Date.now();
 
-    invite.save();
+  invite.save();
 
-    Company.findOne({
-      _id: req.params.id
-    }).exec((err, company) => {
-      if (err) return res.status(500).send({ data: {}, error: err });
+  const company = await Company.findOne({
+    _id: req.params.id
+  }).exec();
 
-      const memberExists = company.members.some(member =>
-        member._id.equals(req.user._id)
-      );
+  if (!company) throw Error('ERROR_FINDING_COMPANY');
 
-      // Add the company to the current user
-      Users.findOne({ _id: req.user._id }, (err, user) => {
-        if (err) throw err;
+  const user = await Users.findOne({ _id: req.user._id }).exec();
+  if (!user) throw Error('ERROR_FINDING_USER');
 
-        user.companies.push(company._id);
+  const memberExists = company.members.some(member =>
+    member._id.equals(req.user._id)
+  );
 
-        if (user.companies.length === 1) {
-          user.activeCompany = {
-            _id: company._id,
-            displayName: company.displayName,
-            name: company.name
-          };
-        }
+  if (memberExists) {
+    throw Error('USER_ALREADY_PART_OF_COMPANY');
+  }
 
-        if (!memberExists) {
-          user.save();
-        }
-      });
+  /**
+   * We know that if the user has not been added to a company or created
+   * a company that this is their only company so we make it their active
+   * company by default
+   */
+  if (user.companies.length === 0) {
+    user.activeCompany = {
+      _id: company._id,
+      displayName: company.displayName,
+      name: company.name
+    };
+  }
 
-      if (!memberExists) {
-        company.members.push(req.user._id);
-      }
+  user.companies.push(company._id);
+  company.members.push(req.user._id);
 
-      company.save((err, company) => {
-        if (err) {
-          return res.status(500).send({
-            data: {},
-            errors: [
-              {
-                error: 'INTERNAL_SERVER_ERROR',
-                message: 'There was an error updating your password'
-              }
-            ]
-          });
-        }
+  company.save();
+  user.save();
 
-        return res.status(200).send({
-          data: { company },
-          errors: []
-        });
-      });
-    });
+  return res.status(200).send({
+    data: { company },
+    errors: []
   });
-}
+};
 
 /**
  * Get a single Company
@@ -361,50 +228,32 @@ export function acceptInviteCompanyMember(req, res) {
  * @param res
  * @returns void
  */
-export function removeCompanyMember(req, res) {
-  Company.findOne({ _id: req.params.id }).exec((err, company) => {
-    if (err) return res.status(500).send(err);
+export const removeCompanyMember = async (req, res) => {
+  const company = await Company.findOne({ _id: req.params.id }).exec();
+  if (!company) throw Error('ERROR_FINDING_COMPANY');
 
-    if (!company) return res.status(204).send(err);
+  const user = await Users.findOne({ _id: req.params.memberId }).exec();
+  if (!user) throw Error('ERROR_FINDING_USER');
 
-    Users.findOne({ _id: req.params.memberId }, (err, user) => {
-      if (err) throw err;
+  const companyIndex = user.companies
+    .map(comp => comp._id)
+    .indexOf(req.params.id);
 
-      const index = user.companies
-        .map(company => company._id)
-        .indexOf(req.params.id);
+  const userIndex = company.members
+    .map(member => member._id)
+    .indexOf(req.params.memberId);
 
-      user.companies.splice(index, 1);
+  user.companies.splice(companyIndex, 1);
+  company.members.splice(userIndex, 1);
 
-      user.save();
-    });
+  user.save();
+  company.save();
 
-    const index = company.members
-      .map(member => member._id)
-      .indexOf(req.params.memberId);
-
-    company.members.splice(index, 1);
-
-    company.save((err, saved) => {
-      if (err) {
-        return res.status(500).send({
-          data: {},
-          errors: [
-            {
-              error: 'UNABLE_TO_REMOVE_MEMBER',
-              message: `There was an error removing the member`
-            }
-          ]
-        });
-      }
-
-      return res.status(200).send({
-        data: { company: saved },
-        errors: []
-      });
-    });
+  return res.status(200).send({
+    data: { company },
+    errors: []
   });
-}
+};
 
 /**
  * Get a single Company
@@ -412,14 +261,13 @@ export function removeCompanyMember(req, res) {
  * @param res
  * @returns void
  */
-export function getCompany(req, res) {
-  Company.findOne({ _id: req.params.id }).exec((err, company) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ data: { company }, errors: [] });
-  });
-}
+export const getCompany = async (req, res) => {
+  const company = await Company.findOne({ _id: req.params.id }).exec();
+
+  if (!company) throw Error('ERROR_FINDING_COMPANY');
+
+  res.status(200).send({ data: { company }, errors: [] });
+};
 
 /**
  * Delete a Company
@@ -427,17 +275,11 @@ export function getCompany(req, res) {
  * @param res
  * @returns void
  */
-export function deleteCompany(req, res) {
-  Company.findOne({ _id: req.params.id }).exec((err, company) => {
-    if (err) {
-      res.status(500).send(err);
-    }
+export const deleteCompany = async (req, res) => {
+  const company = await Company.findOne({ _id: req.params.id }).remove();
 
-    company.remove(() => {
-      res.status(200).end();
-    });
-  });
-}
+  return res.status(200).send({ data: { company }, errors: [] });
+};
 
 /**
  * Upload an image to a Company
@@ -445,22 +287,21 @@ export function deleteCompany(req, res) {
  * @param res
  * @returns void
  */
-export const upload = (req, res, next) => {
-  Company.findOneAndUpdate(
+export const upload = async (req, res) => {
+  const company = await Company.findOneAndUpdate(
     {
       _id: req.params.id
     },
     {
       logo: req.body.path
     },
-    { new: true },
-    (err, company) => {
-      if (err) return res.status(500).send({ error: err });
-
-      return res.status(200).send({
-        data: { company },
-        errors: []
-      });
-    }
+    { new: true }
   );
+
+  if (!company) throw Error('ERROR_UPLOADING_LOGO');
+
+  return res.status(200).send({
+    data: { company },
+    errors: []
+  });
 };
