@@ -70,8 +70,8 @@ export function createCompany(req, res) {
   const newCompany = new Company(req.body);
 
   // Let's sanitize inputs
-  newCompany.creator = req.user._doc._id;
-  newCompany.members.push(req.user._doc._id);
+  newCompany.creator = req.user._id;
+  newCompany.members.push(req.user._id);
   newCompany.name = sanitizeHtml(newCompany.name.toLowerCase());
   newCompany.displayName = sanitizeHtml(req.body.name);
   newCompany.website = sanitizeHtml(newCompany.website);
@@ -84,7 +84,7 @@ export function createCompany(req, res) {
   newCompany.cuid = cuid();
 
   // Add the company to the current user
-  Users.findOne({ _id: req.user._doc._id }, (err, user) => {
+  Users.findOne({ _id: req.user._id }, (err, user) => {
     if (err) throw err;
 
     user.companies.push(newCompany._id);
@@ -224,7 +224,7 @@ export function inviteCompanyMember(req, res) {
       }
 
       const invite = new Invite({
-        creator: req.user._doc._id,
+        creator: req.user._id,
         company: company._id
       });
 
@@ -307,11 +307,11 @@ export function acceptInviteCompanyMember(req, res) {
       if (err) return res.status(500).send({ data: {}, error: err });
 
       const memberExists = company.members.some(member =>
-        member._id.equals(req.user._doc._id)
+        member._id.equals(req.user._id)
       );
 
       // Add the company to the current user
-      Users.findOne({ _id: req.user._doc._id }, (err, user) => {
+      Users.findOne({ _id: req.user._id }, (err, user) => {
         if (err) throw err;
 
         user.companies.push(company._id);
@@ -330,7 +330,7 @@ export function acceptInviteCompanyMember(req, res) {
       });
 
       if (!memberExists) {
-        company.members.push(req.user._doc._id);
+        company.members.push(req.user._id);
       }
 
       company.save((err, company) => {

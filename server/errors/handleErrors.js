@@ -101,7 +101,6 @@ export const productionErrors = (err, req, res, next) => {
       ]
     });
   }
-
   console.log('err');
   console.log('err');
   console.log('err');
@@ -123,12 +122,17 @@ export const productionErrors = (err, req, res, next) => {
   console.log('err');
   console.log(err);
 
+  if (err) {
+    return res.status(500).send({
+      data: {},
+      errors: [
+        {
+          error: 'INTERNAL_SERVER_ERROR',
+          message: 'There was an error processing your request'
+        }
+      ]
+    });
+  }
+
   next();
-
-  // res.status(err.status || 500);
-
-  // res.send('error', {
-  //   message: err.message,
-  //   error: {},
-  // });
 };
