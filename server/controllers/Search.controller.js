@@ -34,10 +34,9 @@ export const searchJobs = async (
     .skip(skip)
     .limit(20)
     .sort('-createdAt')
-    .select('-receivingEmails -description')
-    .exec();
+    .select('-receivingEmails -description');
 
-  const countPromise = Jobs.find(query).populate('company').count().exec();
+  const countPromise = Jobs.find(query).populate('company').count();
 
   let [postings, count] = await Promise.all([postingsPromise, countPromise]);
 
@@ -65,8 +64,7 @@ export const searchJobs = async (
 export const getCompanies = async (req, res) => {
   const postings = await Jobs.find({ company: req.params.companyId })
     .sort('-dateCreated')
-    .populate('company')
-    .exec();
+    .populate('company');
 
   res.status(200).send({ data: { postings }, errors: [] });
 };

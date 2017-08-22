@@ -12,8 +12,7 @@ export const getJobs = async (req, res) => {
   // currently just filtering GET jobs just by date added...
   const postings = await Jobs.find({ company: req.params.companyId })
     .sort('-dateCreated')
-    .select('-description')
-    .exec();
+    .select('-description');
 
   if (!postings) throw Error('UNABLE_TO_FIND_JOBS');
 
@@ -27,9 +26,9 @@ export const getJobs = async (req, res) => {
  * @returns void
  */
 export const getJob = async (req, res) => {
-  const posting = await Jobs.findOne({ _id: req.params.jobId })
-    .select('-description')
-    .exec();
+  const posting = await Jobs.findOne({ _id: req.params.jobId }).select(
+    '-description'
+  );
 
   if (!posting) throw Error('UNABLE_TO_FIND_JOB');
 
@@ -96,7 +95,7 @@ export const updateJob = async (req, res) => {
     { _id: req.params.jobId },
     { ...values },
     { new: true }
-  ).exec();
+  );
 
   if (!posting) throw Error('UNABLE_TO_UPDATE_JOB');
 
@@ -113,7 +112,7 @@ export const updateJob = async (req, res) => {
  * @returns void
  */
 export const deleteJob = async (req, res) => {
-  const job = await Jobs.findOne({ _id: req.params.jobId }).exec();
+  const job = await Jobs.findOne({ _id: req.params.jobId });
 
   if (!job) throw Error('UNABLE_TO_FIND_JOB');
 

@@ -10,7 +10,7 @@ import { send } from '../mail/mail';
  * @returns void
  */
 export const getUsers = async (req, res) => {
-  const users = await Users.find().sort('-dateAdded').exec();
+  const users = await Users.find().sort('-dateAdded');
   if (!users) throw Error('ERROR_FINDING_USERS');
 
   res.status(200).send({
@@ -26,7 +26,7 @@ export const getUsers = async (req, res) => {
  * @returns void
  */
 export const getUser = async (req, res) => {
-  const user = await Users.findOne({ _id: req.params.id }).exec();
+  const user = await Users.findOne({ _id: req.params.id });
   if (!user) throw Error('ERROR_FINDING_USER');
 
   return res.status(200).send({
@@ -48,7 +48,7 @@ export const updateUser = async (req, res) => {
     { _id: req.params.id },
     { ...values },
     { new: true }
-  ).exec();
+  );
 
   if (!user) throw Error('ERROR_UPDATING_USER');
 
@@ -90,9 +90,9 @@ export const registerUser = async (req, res) => {
  * @returns void
  */
 export const loginUser = async (req, res) => {
-  const user = await Users.findOne({ email: req.body.email })
-    .select('+password')
-    .exec();
+  const user = await Users.findOne({ email: req.body.email }).select(
+    '+password'
+  );
 
   if (!user) throw Error('INVALID_EMAIL_OR_PASSWORD');
 
@@ -168,7 +168,7 @@ export function checkAuthentication(req, res) {
  * @returns void
  */
 export const resetPasswordRequest = async (req, res) => {
-  const user = await Users.findOne({ email: req.body.email }).exec();
+  const user = await Users.findOne({ email: req.body.email });
 
   if (!user) throw Error('INVALID_USER');
 
@@ -213,9 +213,7 @@ export const resetPassword = async (req, res) => {
   const user = await Users.findOne({
     resetPasswordToken: req.body.resetPasswordToken,
     resetPasswordExpires: { $gt: Date.now() }
-  })
-    .select('+password')
-    .exec();
+  }).select('+password');
 
   if (!user) {
     throw Error('EXPIRED_PASSWORD_RESET_TOKEN');

@@ -54,6 +54,47 @@ Production Error Hanlder
 No stacktraces are leaked to user
 */
 export const productionErrors = (err, req, res, next) => {
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log('err');
+  console.log(err);
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log('req');
+  console.log(req);
+
   if (err.message === 'INVALID_EMAIL_OR_PASSWORD') {
     return res.status(401).send({
       data: {},
@@ -61,18 +102,6 @@ export const productionErrors = (err, req, res, next) => {
         {
           error: err.message,
           message: 'Invalid email or password'
-        }
-      ]
-    });
-  }
-
-  if (err.status === 401) {
-    return res.status(401).send({
-      data: {},
-      errors: [
-        {
-          error: 'UNAUTHORIZED',
-          message: err.message
         }
       ]
     });
@@ -126,26 +155,17 @@ export const productionErrors = (err, req, res, next) => {
     });
   }
 
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log(err);
+  if (err.status === 401) {
+    return res.status(401).send({
+      data: {},
+      errors: [
+        {
+          error: 'UNAUTHORIZED',
+          message: err.message
+        }
+      ]
+    });
+  }
 
   if (err) {
     return res.status(500).send({

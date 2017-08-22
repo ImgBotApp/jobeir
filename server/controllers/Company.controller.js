@@ -11,7 +11,7 @@ import { send } from '../mail/mail';
  * @returns void
  */
 export const getCompanies = async (req, res) => {
-  const companies = await Company.find().sort('-dateAdded').exec();
+  const companies = await Company.find().sort('-dateAdded');
 
   if (!companies) throw Error('ERROR_GETTING_COMPANIES');
 
@@ -26,7 +26,7 @@ export const getCompanies = async (req, res) => {
 export const checkCompany = async (req, res) => {
   const company = await Company.findOne({
     name: req.params.name.toLowerCase()
-  }).exec();
+  });
 
   if (company) throw Error('COMPANY_ALREADY_EXISTS');
 
@@ -59,7 +59,7 @@ export const createCompany = async (req, res) => {
 
   if (!company) throw Error('ERROR_CREATING_COMPANY');
 
-  const user = await Users.findOne({ _id: req.user._id }).exec();
+  const user = await Users.findOne({ _id: req.user._id });
   if (!user) throw Error('ERROR_CREATING_COMPANY');
 
   user.companies.push(company._id);
@@ -90,7 +90,7 @@ export const updateCompany = async (req, res) => {
     { _id: req.params.id },
     { ...values },
     { new: true }
-  ).exec();
+  );
 
   if (!company) throw Error('ERROR_UPDATING_COMPANY');
 
@@ -108,12 +108,12 @@ export const updateCompany = async (req, res) => {
  */
 export const inviteCompanyMember = async (req, res) => {
   // find if the member to invite exists
-  const user = await Users.findOne({ email: req.body.email }).exec();
+  const user = await Users.findOne({ email: req.body.email });
   if (!user) throw Error('ERROR_FINDING_USER');
 
   const company = await Company.findOne({
     _id: req.params.id
-  }).exec();
+  });
   if (!company) throw Error('ERROR_FINDING_COMPANY');
   // create the invitation
 
@@ -169,7 +169,7 @@ export const acceptInviteCompanyMember = async (req, res) => {
   const invite = await Invite.findOne({
     _id: req.params.inviteId,
     expires: { $gt: Date.now() }
-  }).exec();
+  });
 
   if (!invite) throw Error('INVALID_INVITE_TOKEN');
 
@@ -180,11 +180,11 @@ export const acceptInviteCompanyMember = async (req, res) => {
 
   const company = await Company.findOne({
     _id: req.params.id
-  }).exec();
+  });
 
   if (!company) throw Error('ERROR_FINDING_COMPANY');
 
-  const user = await Users.findOne({ _id: req.user._id }).exec();
+  const user = await Users.findOne({ _id: req.user._id });
   if (!user) throw Error('ERROR_FINDING_USER');
 
   const memberExists = company.members.some(member =>
@@ -227,10 +227,10 @@ export const acceptInviteCompanyMember = async (req, res) => {
  * @returns void
  */
 export const removeCompanyMember = async (req, res) => {
-  const company = await Company.findOne({ _id: req.params.id }).exec();
+  const company = await Company.findOne({ _id: req.params.id });
   if (!company) throw Error('ERROR_FINDING_COMPANY');
 
-  const user = await Users.findOne({ _id: req.params.memberId }).exec();
+  const user = await Users.findOne({ _id: req.params.memberId });
   if (!user) throw Error('ERROR_FINDING_USER');
 
   const companyIndex = user.companies
@@ -260,7 +260,7 @@ export const removeCompanyMember = async (req, res) => {
  * @returns void
  */
 export const getCompany = async (req, res) => {
-  const company = await Company.findOne({ _id: req.params.id }).exec();
+  const company = await Company.findOne({ _id: req.params.id });
 
   if (!company) throw Error('ERROR_FINDING_COMPANY');
 
