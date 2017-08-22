@@ -1,8 +1,6 @@
 import Company from '../models/Company';
 import Users from '../models/Users';
 import Invite from '../models/Invite';
-import cuid from 'cuid';
-import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
 import { send } from '../mail/mail';
 

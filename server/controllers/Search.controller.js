@@ -1,7 +1,6 @@
 // @flow
 
 import Jobs from '../models/Jobs';
-import sanitizeHtml from 'sanitize-html';
 import { buildJobSearchQuery } from '../util/buildSearchQuery';
 
 /**
@@ -10,7 +9,7 @@ import { buildJobSearchQuery } from '../util/buildSearchQuery';
  * @param res
  * @returns void
  */
-export function searchJobs(
+export const searchJobs = async (
   req: {
     query: {
       q?: string, // title
@@ -25,55 +24,49 @@ export function searchJobs(
     }
   },
   res: { status: Function }
-) {
+) => {
   const skip: number = parseFloat(req.query.s) || 0;
   const query: {} = buildJobSearchQuery(req.query);
-  const csQuery = req.query.cs ? { 'company.size': req.query.cs } : {};
 
-  Promise.all([
-    Jobs.find(query)
-      .populate('company')
-      .skip(skip)
-      .limit(20)
-      .sort('-createdAt')
-      .select('-receivingEmails -description')
-      .exec(),
-    Jobs.find(query).populate('company').count().exec()
-  ]).then(
-    (data: Array<{ postings: Array<{}>, count: number }>) => {
-      let postings: Array<{}> = data[0];
-      let count: number = data[1];
+  // 1. Query the database for a list of all stores
+  const postingsPromise = Jobs.find(query)
+    .populate('company')
+    .skip(skip)
+    .limit(20)
+    .sort('-createdAt')
+    .select('-receivingEmails -description')
+    .exec();
 
-      // filter comapny size
-      if (req.query.cs) {
-        postings = postings.filter(
-          posting => posting.company.size === req.query.cs
-        );
+  const countPromise = Jobs.find(query).populate('company').count().exec();
 
-        count = postings.length;
-      }
+  let [postings, count] = await Promise.all([postingsPromise, countPromise]);
 
-      res.status(200).send({ data: { postings, count }, errors: [] });
-    },
-    err => res.status(500).send({ data: {}, errors: [err] })
-  );
-}
+  /**
+   * Okay, here's the thing, this needs to be done better. We shouldn't be making
+   * a query and then applying a filter, but that's just the way it is now.
+   */
+  if (req.query.cs) {
+    postings = postings.filter(
+      posting => posting.company.size === req.query.cs
+    );
+
+    count = postings.length;
+  }
+
+  res.status(200).send({ data: { postings, count }, errors: [] });
+};
 
 /**
- * Get all jobs
+ * Get all companies
  * @param req
  * @param res
  * @returns void
  */
-export function getCompanies(req, res) {
-  // currently just filtering GET jobs just by date added...
-  Jobs.find({ company: req.params.companyId })
+export const getCompanies = async (req, res) => {
+  const postings = await Jobs.find({ company: req.params.companyId })
     .sort('-dateCreated')
     .populate('company')
-    .exec((err, jobs) => {
-      if (err) {
-        return res.status(204).send({ data: {}, errors: [err] });
-      }
-      res.json({ data: { postings: jobs }, errors: [] });
-    });
-}
+    .exec();
+
+  res.status(200).send({ data: { postings }, errors: [] });
+};
