@@ -1,7 +1,7 @@
 import Jobs from '../models/Jobs';
 import Company from '../models/Company';
 import sanitizeHtml from 'sanitize-html';
-
+import * as err from '../errors/types';
 /**
  * Get all jobs
  * @param req
@@ -14,7 +14,7 @@ export const getJobs = async (req, res) => {
     .sort('-dateCreated')
     .select('-description');
 
-  if (!postings) throw Error('UNABLE_TO_FIND_JOBS');
+  if (!postings) throw Error(err.ERROR_FINDING_JOBS);
 
   res.status(200).send({ data: { postings }, errors: [] });
 };
@@ -30,7 +30,7 @@ export const getJob = async (req, res) => {
     '-description'
   );
 
-  if (!posting) throw Error('UNABLE_TO_FIND_JOB');
+  if (!posting) throw Error(err.ERROR_FINDING_JOBS);
 
   res.status(200).send({ data: { posting }, errors: [] });
 };
@@ -67,11 +67,11 @@ export const createJob = async (req, res) => {
     }
   }).save();
 
-  if (!job) throw Error('UNABLE_TO_CREATE_JOB');
+  if (!job) throw Error(err.ERROR_CREATING_JOB);
 
   // Add the company to the current user
   const company = await Company.findOne({ _id: job.company });
-  if (!company) throw Error('UNABLE_TO_FIND_COMPANY');
+  if (!company) throw Error(err.ERROR_FINDING_COMPANY);
 
   company.jobs.push(job._id);
   company.save();
@@ -97,7 +97,7 @@ export const updateJob = async (req, res) => {
     { new: true }
   );
 
-  if (!posting) throw Error('UNABLE_TO_UPDATE_JOB');
+  if (!posting) throw Error(err.ERROR_UPDATING_JOB);
 
   res.status(200).send({
     data: { posting },
@@ -114,7 +114,7 @@ export const updateJob = async (req, res) => {
 export const deleteJob = async (req, res) => {
   const job = await Jobs.findOne({ _id: req.params.jobId });
 
-  if (!job) throw Error('UNABLE_TO_FIND_JOB');
+  if (!job) throw Error(err.ERROR_FINDING_JOB);
 
   job.remove();
 
