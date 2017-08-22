@@ -1,12 +1,10 @@
-import mongoose from 'mongoose';
+import * as errors from '../errors/types';
 
-/*
-  Catch Errors Handler
-  With async/await, you need some way to catch errors
-  Instead of using try{} catch(e) {} in each controller, we wrap the function in
-  catchErrors(), catch and errors they throw, and pass it along to our express middleware with next()
-*/
-
+/**
+ * catchErrors()
+ * Catches errors and passes them to our middleware
+ * @param {*} fn 
+ */
 export const catchErrors = fn => (req, res, next) =>
   fn(req, res, next).catch(next);
 
@@ -26,129 +24,230 @@ export const notFound = (req, res, next) =>
   });
 
 /*
-Development Error Hanlder
-In development we show good error messages so if we hit a syntax error or any other previously un-handled error, we can show good info on what happened
-*/
-export const developmentErrors = (err, req, res, next) => {
-  err.stack = err.stack || '';
-  const errorDetails = {
-    message: err.message,
-    status: err.status,
-    stackHighlighted: err.stack.replace(
-      /[a-z_-\d]+.js:\d+:\d+/gi,
-      '<mark>$&</mark>'
-    )
-  };
-  res.status(err.status || 500);
-  res.format({
-    // Based on the `Accept` http header
-    'text/html': () => {
-      res.render('error', errorDetails);
-    }, // Form Submit, Reload the page
-    'application/json': () => res.json(errorDetails) // Ajax call, send JSON back
-  });
-};
-
-/*
 Production Error Hanlder
 No stacktraces are leaked to user
 */
 export const productionErrors = (err, req, res, next) => {
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log('err');
-  console.log(err);
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log('req');
-  console.log(req);
+  switch (err.message) {
+    /**
+     * Company Errors
+     */
+    case errors.ERROR_FINDING_COMPANIES:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'Error finding the requested companies'
+          }
+        ]
+      });
+    case errors.ERROR_COMPANY_ALREADY_EXISTS:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: `The name already exists. Please try a new one.`
+          }
+        ]
+      });
+    case errors.ERROR_CREATING_COMPANY:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error creating your company'
+          }
+        ]
+      });
+    case errors.ERROR_FINDING_COMPANY:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error finding your company'
+          }
+        ]
+      });
+    case errors.ERROR_UPDATING_COMPANY:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error updating your company'
+          }
+        ]
+      });
 
-  if (err.message === 'INVALID_EMAIL_OR_PASSWORD') {
-    return res.status(401).send({
-      data: {},
-      errors: [
-        {
-          error: err.message,
-          message: 'Invalid email or password'
-        }
-      ]
-    });
+    /**
+     * Job Errors
+     */
+    case errors.ERROR_FINDING_JOBS:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error finding the requested jobs'
+          }
+        ]
+      });
+    case errors.ERROR_FINDING_JOB:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error finding the requested job'
+          }
+        ]
+      });
+    case errors.ERROR_CREATING_JOB:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error creating the requested job'
+          }
+        ]
+      });
+    case errors.ERROR_UPDATING_JOB:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error updating the requested job'
+          }
+        ]
+      });
+    case errors.ERROR_DELETING_JOB:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error deleting the requested job'
+          }
+        ]
+      });
+
+    /**
+     * User errors
+     */
+    case errors.ERROR_FINDING_USERS:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error finding the requested users'
+          }
+        ]
+      });
+    case errors.ERROR_FINDING_USER:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error finding the requested user'
+          }
+        ]
+      });
+    case errors.ERROR_CREATING_USER:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error creating the requested user'
+          }
+        ]
+      });
+    case errors.ERROR_UPDATING_USER:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error updating the requested user'
+          }
+        ]
+      });
+    case errors.ERROR_DELETING_USER:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'There was an error deleting the requested user'
+          }
+        ]
+      });
+
+    /**
+     * User & Auth Erorrs
+     */
+    case errors.ERROR_USER_ALREADY_ADDED:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'Error, user is already part of the company'
+          }
+        ]
+      });
+    case errors.ERROR_EXPIRED_PASSWORD_RESET_TOKEN:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'Password reset token has expired. Please try again'
+          }
+        ]
+      });
+    case errors.ERROR_PASSWORDS_DO_NOT_MATCH:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'Password do not match'
+          }
+        ]
+      });
+    case errors.ERROR_INVALID_EMAIL_OR_PASSWORD:
+      return res.status(200).send({
+        data: {},
+        errors: [
+          {
+            error: err.message,
+            message: 'Invalid email or password'
+          }
+        ]
+      });
+    default:
   }
 
-  if (err.message === 'UNABLE_TO_FIND_JOBS') {
-    res.status(200).send({
-      data: {},
-      errors: [
-        {
-          error: 'UNABLE_TO_FIND_JOBS',
-          message: 'There was an erroring finding jobs'
-        }
-      ]
-    });
-  }
-
-  if (err.message === 'COMPANY_ALREADY_EXISTS') {
-    return res.status(200).send({
-      data: {},
-      errors: [
-        {
-          error: 'COMPANY_ALREADY_EXISTS',
-          message: 'The comapny name already exists'
-        }
-      ]
-    });
-  }
-
-  if (err.message === 'USER_ALREADY_ADDED') {
-    return res.status(200).send({
-      data: {},
-      errors: [
-        {
-          error: 'USER_ALREADY_ADDED',
-          message: 'The user has already been invited'
-        }
-      ]
-    });
-  }
+  /**
+   * If nothing gets matched within the switch statement we move on
+   * to more generic errors handlers
+   */
 
   if (err.name === 'CastError') {
     return res.status(200).send({
       data: {},
       errors: [
         {
-          error: 'UNABLE_TO_FIND_DATA',
+          error: errors.ERROR_FINDING_DATA,
           message: 'There was an error processing your request'
         }
       ]
@@ -160,7 +259,7 @@ export const productionErrors = (err, req, res, next) => {
       data: {},
       errors: [
         {
-          error: 'UNAUTHORIZED',
+          error: errors.ERROR_UNAUTHORIZED,
           message: err.message
         }
       ]
@@ -172,8 +271,9 @@ export const productionErrors = (err, req, res, next) => {
       data: {},
       errors: [
         {
-          error: 'INTERNAL_SERVER_ERROR',
-          message: 'There was an error processing your request'
+          error: errors.ERROR_INTERNAL_SERVER,
+          message: 'There was an error processing your request',
+          details: err
         }
       ]
     });

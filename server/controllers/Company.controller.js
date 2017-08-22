@@ -3,6 +3,7 @@ import Users from '../models/Users';
 import Invite from '../models/Invite';
 import sanitizeHtml from 'sanitize-html';
 import { send } from '../mail/mail';
+import * as err from '../errors/types';
 
 /**
  * Get all Companies
@@ -13,7 +14,7 @@ import { send } from '../mail/mail';
 export const getCompanies = async (req, res) => {
   const companies = await Company.find().sort('-dateAdded');
 
-  if (!companies) throw Error('ERROR_GETTING_COMPANIES');
+  if (!companies) throw Error(err.ERROR_FINDING_COMPANIES);
 
   res.status(200).send({ data: companies, errors: [] });
 };
@@ -27,8 +28,7 @@ export const checkCompany = async (req, res) => {
   const company = await Company.findOne({
     name: req.params.name.toLowerCase()
   });
-
-  if (company) throw Error('COMPANY_ALREADY_EXISTS');
+  if (company) throw Error(err.ERROR_COMPANY_ALREADY_EXISTS);
 
   res.status(200).send({
     data: {},
@@ -57,10 +57,10 @@ export const createCompany = async (req, res) => {
     phone: sanitizeHtml(body.phone)
   }).save();
 
-  if (!company) throw Error('ERROR_CREATING_COMPANY');
+  if (!company) throw Error(err.ERROR_CREATING_COMPANY);
 
   const user = await Users.findOne({ _id: req.user._id });
-  if (!user) throw Error('ERROR_CREATING_COMPANY');
+  if (!user) throw Error(err.ERROR_CREATING_COMPANY);
 
   user.companies.push(company._id);
   user.activeCompany = {
@@ -92,7 +92,7 @@ export const updateCompany = async (req, res) => {
     { new: true }
   );
 
-  if (!company) throw Error('ERROR_UPDATING_COMPANY');
+  if (!company) throw Error(err.ERROR_UPDATING_COMPANY);
 
   res.status(200).send({
     data: { company },
@@ -109,12 +109,12 @@ export const updateCompany = async (req, res) => {
 export const inviteCompanyMember = async (req, res) => {
   // find if the member to invite exists
   const user = await Users.findOne({ email: req.body.email });
-  if (!user) throw Error('ERROR_FINDING_USER');
+  if (!user) throw Error(err.ERROR_FINDING_USER);
 
   const company = await Company.findOne({
     _id: req.params.id
   });
-  if (!company) throw Error('ERROR_FINDING_COMPANY');
+  if (!company) throw Error(err.ERROR_FINDING_COMPANY);
   // create the invitation
 
   // check to see if the member has already been invited
@@ -127,8 +127,8 @@ export const inviteCompanyMember = async (req, res) => {
   );
 
   // throw an error if either exists
-  if (memberExists) throw Error('USER_ALREADY_ADDED');
-  if (inviteExists) throw Error('USER_ALREADY_ADDED');
+  if (memberExists) throw Error(err.ERROR_USER_ALREADY_ADDED);
+  if (inviteExists) throw Error(err.ERROR_USER_ALREADY_ADDED);
 
   const invite = await new Invite({
     creator: req.user._id,
@@ -170,8 +170,7 @@ export const acceptInviteCompanyMember = async (req, res) => {
     _id: req.params.inviteId,
     expires: { $gt: Date.now() }
   });
-
-  if (!invite) throw Error('INVALID_INVITE_TOKEN');
+  if (!invite) throw Error(err.ERROR_INVALID_INVITE_TOKEN);
 
   invite.accepted = true;
   invite.dateAccepted = Date.now();
@@ -182,17 +181,17 @@ export const acceptInviteCompanyMember = async (req, res) => {
     _id: req.params.id
   });
 
-  if (!company) throw Error('ERROR_FINDING_COMPANY');
+  if (!company) throw Error(err.ERROR_FINDING_COMPANY);
 
   const user = await Users.findOne({ _id: req.user._id });
-  if (!user) throw Error('ERROR_FINDING_USER');
+  if (!user) throw Error(err.ERROR_FINDING_USER);
 
   const memberExists = company.members.some(member =>
     member._id.equals(req.user._id)
   );
 
   if (memberExists) {
-    throw Error('USER_ALREADY_PART_OF_COMPANY');
+    throw Error(err.ERROR_USER_ALREADY_ADDED);
   }
 
   /**
@@ -228,10 +227,10 @@ export const acceptInviteCompanyMember = async (req, res) => {
  */
 export const removeCompanyMember = async (req, res) => {
   const company = await Company.findOne({ _id: req.params.id });
-  if (!company) throw Error('ERROR_FINDING_COMPANY');
+  if (!company) throw Error(err.ERROR_FINDING_COMPANY);
 
   const user = await Users.findOne({ _id: req.params.memberId });
-  if (!user) throw Error('ERROR_FINDING_USER');
+  if (!user) throw Error(err.ERROR_FINDING_USER);
 
   const companyIndex = user.companies
     .map(comp => comp._id)
@@ -262,7 +261,7 @@ export const removeCompanyMember = async (req, res) => {
 export const getCompany = async (req, res) => {
   const company = await Company.findOne({ _id: req.params.id });
 
-  if (!company) throw Error('ERROR_FINDING_COMPANY');
+  if (!company) throw Error(err.ERROR_FINDING_COMPANY);
 
   res.status(200).send({ data: { company }, errors: [] });
 };
@@ -296,7 +295,7 @@ export const upload = async (req, res) => {
     { new: true }
   );
 
-  if (!company) throw Error('ERROR_UPLOADING_LOGO');
+  if (!company) throw Error(err.ERROR_UPLOADING_LOGO);
 
   return res.status(200).send({
     data: { company },
