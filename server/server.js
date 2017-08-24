@@ -50,11 +50,7 @@ import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
 import routes, { routesArray } from '../client/routes';
 import geoLookup from './util/geoLookup';
 import securityHeaders from './util/securityHeaders';
-import {
-  notFound,
-  developmentErrors,
-  productionErrors
-} from './errors/handleErrors';
+import { notFound, errorHandler } from './errors/handleErrors';
 import apiRoutes from './routes/ApiRoutes.routes';
 import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
@@ -105,7 +101,7 @@ app.use(
 
 app.use(oAuthRoutes);
 
-app.use(productionErrors);
+app.use(errorHandler);
 
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;

@@ -5,6 +5,7 @@ import { Field } from 'redux-form';
 import FormRow from '../../components/FormRow';
 import { PostalCode, Text } from '../../../inputs/input';
 import { PencilIcon, ExIcon } from '../../../../../icons/';
+import FadeIn from '../../../../../styles/components/FadeIn';
 
 const AddressTheme = {
   input: {
@@ -159,19 +160,21 @@ class CompanyFormLocationEdit extends Component {
 
   render() {
     return (
-      <AddressItem>
-        <AddressItemLeft>
-          {this.state.showManualAddressInputs
-            ? this.renderAddressForm()
-            : this.renderPrettyAddress()}
-        </AddressItemLeft>
-        {!this.state.showManualAddressInputs &&
-          <AddressItemRight>
-            <PencilIcon height={20} width={20} />
-          </AddressItemRight>}
-        {!this.state.showManualAddressInputs &&
-          <AddressItemClick onClick={this.handleEditClick} />}
-      </AddressItem>
+      <FadeIn>
+        <AddressItem>
+          <AddressItemLeft>
+            {this.state.showManualAddressInputs
+              ? this.renderAddressForm()
+              : this.renderPrettyAddress()}
+          </AddressItemLeft>
+          {!this.state.showManualAddressInputs &&
+            <AddressItemRight>
+              <PencilIcon height={20} width={20} />
+            </AddressItemRight>}
+          {!this.state.showManualAddressInputs &&
+            <AddressItemClick onClick={this.handleEditClick} />}
+        </AddressItem>
+      </FadeIn>
     );
   }
 }

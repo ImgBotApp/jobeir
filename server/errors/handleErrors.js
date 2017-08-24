@@ -27,7 +27,7 @@ export const notFound = (req, res, next) =>
 Production Error Hanlder
 No stacktraces are leaked to user
 */
-export const productionErrors = (err, req, res, next) => {
+export const errorHandler = (err, req, res, next) => {
   switch (err.message) {
     /**
      * Company Errors

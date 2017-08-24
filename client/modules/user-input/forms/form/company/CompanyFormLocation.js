@@ -47,7 +47,6 @@ class CompanyFormStepThree extends Component {
           locations={locations}
           component={CompanyFormLocationEdit}
         />
-
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
           <Field

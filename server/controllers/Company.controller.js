@@ -48,6 +48,7 @@ export const createCompany = async (req, res) => {
   const company = await new Company({
     creator: _id,
     members: [{ member: _id }],
+    locations: req.body.locations,
     name: sanitizeHtml(body.name.toLowerCase()),
     displayName: sanitizeHtml(body.name),
     website: sanitizeHtml(body.website),
