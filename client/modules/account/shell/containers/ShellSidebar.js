@@ -51,7 +51,7 @@ class ShellSidebar extends Component {
 export default connect()(ShellSidebar);
 
 const ShellSidebarContainer = styled.nav`
-  width: 250px;
+  width: 245px;
   position: fixed;
   background: #f9f8f7;
   border-right: 1px solid #eceaea;
@@ -73,5 +73,5 @@ const ShellSidebarNavLink = styled(Link)`
   text-decoration: none;
   color: ${props => props.theme.colors.grey.mid};
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 `;

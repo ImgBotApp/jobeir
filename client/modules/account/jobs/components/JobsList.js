@@ -34,8 +34,8 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(JobsList);
 
 const JobsBody = styled.ul`
-  padding-bottom: 25px;
-  margin-bottom: 25px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
   border-bottom: 1px solid #f2f2f2;
   cursor: pointer;
 

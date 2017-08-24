@@ -157,7 +157,7 @@ const ShellDropdownContainer = styled.div`
     0 8px 16px rgba(27, 39, 51, 0.08);
   transform: translateZ(0);
   margin-top: 5px;
-  padding: 8px 0 4px;
+  padding: 4px 0;
   z-index: 1;
   right: 0px;
   top: 45px;
@@ -170,7 +170,7 @@ const ShellDropdownContainer = styled.div`
       : 'translate3d(0px, -10px, 0px)'};
 `;
 
-const ShellDropdownList = styled.ul`padding: 4px 0 8px;`;
+const ShellDropdownList = styled.ul`padding: 4px 0;`;
 
 const ShellDropdownListItem = styled.li`
   position: relative;

@@ -53,7 +53,7 @@ const ShellContainer = styled.div`
 `;
 
 const ShellContent = styled.main`
-  padding-left: 250px;
+  padding-left: 245px;
   margin: 0 40px 0 60px;
   width: 100%;
 `;
