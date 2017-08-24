@@ -1,8 +1,9 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import ShellHeader from '../components/ShellHeader';
+import ShellSidebar from './ShellSidebar';
 import UserWrapper from '../../../user/containers/UserWrapper';
 
 /**
@@ -27,6 +28,7 @@ const Shell = (props: { children: any, params: {} }) => {
 
   return (
     <ShellContainer>
+      <ShellSidebar />
       <ShellContent>
         <ShellHeader headerText={children.props.route.name} params={params} />
         <ShellDynamic>
@@ -50,9 +52,10 @@ const ShellContainer = styled.div`
   min-height: 100vh;
 `;
 
-const ShellContent = styled.div`
-  width: 1040px;
-  margin: 0 auto;
+const ShellContent = styled.main`
+  padding-left: 250px;
+  margin: 0 40px 0 60px;
+  width: 100%;
 `;
 
 const ShellDynamic = styled.div``;

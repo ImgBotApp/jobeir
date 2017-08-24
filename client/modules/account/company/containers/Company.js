@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router';
 import CompanyFilter from './CompanyFilter';
-import CompanyOverview from '../components/CompanyOverview';
-import UpdateCompanyFormAbout from '../../../user-input/forms/form/update-company/UpdateCompanyFormAbout';
-import UpdateCompanyFormContact from '../../../user-input/forms/form/update-company/UpdateCompanyFormContact';
-import UpdateCompanyFormLocation from '../../../user-input/forms/form/update-company/UpdateCompanyFormLocation';
-import UpdateCompanyFormPerks from '../../../user-input/forms/form/update-company/UpdateCompanyFormPerks';
-import UpdateCompanyUpload from '../../../user-input/forms/form/update-company/UpdateCompanyUpload';
+// import CompanyOverview from '../components/CompanyOverview';
+// import UpdateCompanyFormAbout from '../../../user-input/forms/form/update-company/UpdateCompanyFormAbout';
+// import UpdateCompanyFormContact from '../../../user-input/forms/form/update-company/UpdateCompanyFormContact';
+// import UpdateCompanyFormLocation from '../../../user-input/forms/form/update-company/UpdateCompanyFormLocation';
+// import UpdateCompanyFormPerks from '../../../user-input/forms/form/update-company/UpdateCompanyFormPerks';
+// import UpdateCompanyUpload from '../../../user-input/forms/form/update-company/UpdateCompanyUpload';
 import FadeIn from '../../../../styles/components/FadeIn';
 
 class Company extends Component {
@@ -20,12 +19,12 @@ class Company extends Component {
 
         <FadeIn>
           <CompanyFormContainer>
-            {filter === 'Overview' && <CompanyOverview company={company} />}
+            {/* {filter === 'Overview' && <CompanyOverview company={company} />}
             {filter === 'About' && <UpdateCompanyFormAbout />}
             {filter === 'Contact' && <UpdateCompanyFormContact />}
             {filter === 'Perks' && <UpdateCompanyFormPerks />}
             {filter === 'Location' && <UpdateCompanyFormLocation />}
-            {filter === 'Logo' && <UpdateCompanyUpload />}
+            {filter === 'Logo' && <UpdateCompanyUpload />} */}
           </CompanyFormContainer>
         </FadeIn>
       </CompanyContainer>

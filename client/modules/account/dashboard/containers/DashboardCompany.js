@@ -7,6 +7,10 @@ class DashboardCompany extends Component {
   render() {
     const { company } = this.props;
 
+    if (!company._id) {
+      return null;
+    }
+
     return (
       <DashboardCompanyContainer>
         <div
@@ -23,28 +27,26 @@ class DashboardCompany extends Component {
             {company.phone}
           </div>
           <div>
-            {company.locations.map(location => {
-              return (
-                <div key={location._id}>
-                  <h2>Location</h2>
-                  <div>
-                    {location.street}
-                  </div>
-                  <div>
-                    {location.city}
-                  </div>
-                  <div>
-                    {location.province}
-                  </div>
-                  <div>
-                    {location.postalCode}
-                  </div>
-                  <div>
-                    {location.country}
-                  </div>
+            {company.locations.map(location =>
+              <div key={location._id}>
+                <h2>Location</h2>
+                <div>
+                  {location.street}
                 </div>
-              );
-            })}
+                <div>
+                  {location.city}
+                </div>
+                <div>
+                  {location.province}
+                </div>
+                <div>
+                  {location.postalCode}
+                </div>
+                <div>
+                  {location.country}
+                </div>
+              </div>
+            )}
           </div>
           <h3>
             <Link to={`/create/job/about/${company._id}`}>Post a job</Link>
