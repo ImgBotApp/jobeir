@@ -7,6 +7,11 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 const Users = new Schema({
+  avatar: {
+    type: String,
+    trim: true,
+    unique: true
+  },
   email: {
     type: String,
     lowercase: true,

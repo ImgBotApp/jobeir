@@ -12,18 +12,25 @@ export function passportFindOrCreate(accessToken, refreshToken, profile, done) {
     {
       email: profile.emails[0].value
     },
-    function(err, user) {
+    (err, user) => {
       if (err) {
         return done(err);
       }
       if (!user) {
-        const newUser = new Users();
+        console.log(profile);
+        const newUser = new Users({
+          email: profile.emails[0].value,
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+          provider: profile.provider,
+          id: profile.id
+        });
 
-        newUser.firstName = profile.name.givenName;
-        newUser.lastName = profile.name.familyName;
-        newUser.email = profile.emails[0].value;
-        newUser.provider = profile.provider;
-        newUser.id = profile.id;
+        if (profile.provider === 'facebook')
+          newUser.avatar = `https://graph.facebook.com/${profile.id}/picture`;
+
+        if (profile.provider === 'google')
+          newUser.avatar = profile.photos[0].value;
 
         newUser.save(err => {
           if (err) {
