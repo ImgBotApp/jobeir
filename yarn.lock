@@ -3031,6 +3031,10 @@ function-bind@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
 
+fuse.js@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-3.0.5.tgz#b58d85878802321de94461654947b93af1086727"
+
 gauge@~2.7.1:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.3.tgz#1c23855f962f17b3ad3d0dc7443f304542edfe09"
@@ -5901,12 +5905,6 @@ react-base16-styling@^0.5.1:
     lodash.curry "^4.0.1"
     lodash.flow "^3.3.0"
     pure-color "^1.2.0"
-
-react-count-to@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/react-count-to/-/react-count-to-0.8.1.tgz#7314bbaec2404fac2bc31cde85379efe9370d3aa"
-  dependencies:
-    prop-types "^15.5.8"
 
 react-deep-force-update@^2.0.1:
   version "2.0.1"

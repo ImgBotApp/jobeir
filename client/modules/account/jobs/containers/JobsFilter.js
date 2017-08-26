@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { updateJobFilter } from '../../../account/create/job/ducks/';
+import JobsSearchFilterForm from '../../../user-input/forms/form/JobsSearchFilterForm';
 
 class JobsFilter extends Component {
   handleFilterClick(state: string) {
@@ -26,6 +27,7 @@ class JobsFilter extends Component {
             </JobsFilterItem>
           );
         })}
+        <JobsSearchFilterForm />
       </JobsFilterContainer>
     );
   }
@@ -52,7 +54,7 @@ const JobsFilterItem = styled.div`
   border-top: 1px solid transparent;
   border-color: ${props => (props.active ? 'rgba(0,0,0,.7)' : 'transparent')};
   font-weight: ${props => (props.active ? '600' : '400')};
-  font-size: 15px;
+  font-size: 16px;
   cursor: pointer;
 
   &:last-child {
