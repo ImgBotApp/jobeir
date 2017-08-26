@@ -37,5 +37,5 @@ export default connect()(UserWrapper(Step));
 const StepContainer = styled.div`
   display: flex;
   max-width: 1280px;
-  margin: 70px auto 0;
+  margin: 46px auto 0;
 `;

@@ -114,14 +114,15 @@ const ShellHeaderDropdown = styled.div`position: relative;`;
 const ShellSidebarCompany = styled.div`
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 70px;
   color: ${props => props.theme.colors.purple};
   cursor: pointer;
 `;
 
 const StlyedChevronDown = styled(ChevronDown)`
-fill: ${props => props.theme.colors.purple};
+  fill: ${props => props.theme.colors.purple};
+  height: 18px;
 `;
 
 const ShellHeaderDropdownLinks = styled.div`opacity: 0.7;`;

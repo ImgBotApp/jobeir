@@ -1,54 +1,48 @@
 // @flow
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import ShellLogo from '../components/ShellLogo';
 import ShellDropdownCompany from './ShellDropdownCompany';
 
-class ShellSidebar extends Component {
-  render() {
-    return (
-      <ShellSidebarContainer>
-        <ShellSidebarSpace>
-          <ShellLogo />
-          <ShellSidebarNavContainer>
-            <ShellDropdownCompany />
+const ShellSidebar = () =>
+  <ShellSidebarContainer>
+    <ShellSidebarSpace>
+      <ShellLogo />
+      <ShellSidebarNavContainer>
+        <ShellDropdownCompany />
 
-            <ShellSidebarNav>
-              <ShellSidebarNavItem>
-                <ShellSidebarNavLink
-                  activeStyle={{ color: '#5C6AC4' }}
-                  to="/account/jobs"
-                >
-                  Jobs
-                </ShellSidebarNavLink>
-              </ShellSidebarNavItem>
-              <ShellSidebarNavItem>
-                <ShellSidebarNavLink
-                  activeStyle={{ color: '#5C6AC4' }}
-                  to="/account/company"
-                >
-                  Company
-                </ShellSidebarNavLink>
-              </ShellSidebarNavItem>
-              <ShellSidebarNavItem>
-                <ShellSidebarNavLink
-                  activeStyle={{ color: '#5C6AC4' }}
-                  to="/account/profile"
-                >
-                  Profile
-                </ShellSidebarNavLink>
-              </ShellSidebarNavItem>
-            </ShellSidebarNav>
-          </ShellSidebarNavContainer>
-        </ShellSidebarSpace>
-      </ShellSidebarContainer>
-    );
-  }
-}
+        <ShellSidebarNav>
+          <ShellSidebarNavItem>
+            <ShellSidebarNavLink
+              activeStyle={{ color: '#5C6AC4' }}
+              to="/account/jobs"
+            >
+              Jobs
+            </ShellSidebarNavLink>
+          </ShellSidebarNavItem>
+          <ShellSidebarNavItem>
+            <ShellSidebarNavLink
+              activeStyle={{ color: '#5C6AC4' }}
+              to="/account/company"
+            >
+              Company
+            </ShellSidebarNavLink>
+          </ShellSidebarNavItem>
+          <ShellSidebarNavItem>
+            <ShellSidebarNavLink
+              activeStyle={{ color: '#5C6AC4' }}
+              to="/account/profile"
+            >
+              Profile
+            </ShellSidebarNavLink>
+          </ShellSidebarNavItem>
+        </ShellSidebarNav>
+      </ShellSidebarNavContainer>
+    </ShellSidebarSpace>
+  </ShellSidebarContainer>;
 
-export default connect()(ShellSidebar);
+export default ShellSidebar;
 
 const ShellSidebarContainer = styled.nav`
   width: 245px;

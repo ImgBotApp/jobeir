@@ -13,7 +13,6 @@ export default StepHeader;
 
 const StepHeaderContainer = styled.header`
   position: fixed;
-  width: 100%;
   top: 0;
   left: 0;
   right: 0;
@@ -21,10 +20,9 @@ const StepHeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
   flex: 1;
-  padding: 0 26px;
-  margin: 0 auto;
-  height: 75px;
-  max-width: ${props => props.theme.width.max};
+  padding-top: 45px;
+  margin: 0 50px;
+  height: 70px;
 `;
 
 const StepStyledLink = styled(Link)`

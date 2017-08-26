@@ -5,7 +5,6 @@ import Link from 'react-router/lib/Link';
 import docCookies from '../../../../utils/cookies';
 import { logout } from '../../../auth/ducks';
 import { showModal } from '../../../modal/ducks';
-
 import ShellDropdown from '../../../account/shell/containers/ShellDropdown';
 import ShellHeaderNav from '../../../account/shell/containers/ShellHeaderNav';
 
