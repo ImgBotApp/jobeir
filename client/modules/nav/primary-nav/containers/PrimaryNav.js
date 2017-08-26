@@ -1,25 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PrimaryNavAccount from './PrimaryNavAccount';
 import PrimaryNavLogo from '../components/PrimaryNavLogo';
 import PrimaryNavLinks from '../components/PrimaryNavLinks';
-import SearchForm from '../../../user-input/forms/form/search/SearchForm';
 
 const PrimaryNav = props => {
-  const { isOnJobs } = props;
+  const { isInAccount } = props;
+  console.log(isInAccount);
 
   return (
     <Navigation>
-      <NavigationContainer>
-        <PrimaryNavLogo />
-        <PrimaryNavLinks />
-      </NavigationContainer>
+      {isInAccount
+        ? <PrimaryNavAccount />
+        : <NavigationContainer>
+            <PrimaryNavLogo />
+            <PrimaryNavLinks />
+          </NavigationContainer>}
     </Navigation>
   );
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.session.auth.isAuthenticated
+  isAuthenticated: state.session.auth.isAuthenticated,
+  isInAccount:
+    state.routing.locationBeforeTransitions &&
+    state.routing.locationBeforeTransitions.pathname.includes('account')
 });
 
 export default connect(mapStateToProps)(PrimaryNav);

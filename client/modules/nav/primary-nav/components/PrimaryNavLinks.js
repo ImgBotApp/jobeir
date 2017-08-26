@@ -32,17 +32,16 @@ class PrimaryNavLinks extends Component {
   }
 
   /**
-   * buildMainNavigation()
+   * buildPublicNavigation()
    * Takes care of the authenticated or not authenticated version of the
    * primary navigation.
    */
-  buildMainNavigation(isAuthenticated) {
+  buildPublicNavigation(isAuthenticated) {
     return isAuthenticated
       ? <NavLinkContainer>
           <NavLink to="/account/company">
             {this.props.activeCompany.displayName}
           </NavLink>
-          <NavLink to="/account/jobs">Jobs</NavLink>
           <ShellHeaderNav />
           <ShellDropdown />
         </NavLinkContainer>
@@ -52,12 +51,32 @@ class PrimaryNavLinks extends Component {
         </NavLinkContainer>;
   }
 
+  /**
+   * buildPublicNavigation()
+   * Takes care of the authenticated or not authenticated version of the
+   * primary navigation.
+   */
+  buildAccountNavigation() {
+    return (
+      <NavLinkContainer>
+        <NavLink to="/account/company">
+          {this.props.activeCompany.displayName}
+        </NavLink>
+        <ShellHeaderNav />
+        <ShellDropdown />
+      </NavLinkContainer>
+    );
+  }
+
   render() {
     const { pathname, isAuthenticated } = this.props;
+    const isAccount = pathname.includes('account');
 
     return (
-      <PrimaryNavLinksContainer>
-        {this.buildMainNavigation(isAuthenticated)}
+      <PrimaryNavLinksContainer isAccount={isAccount}>
+        {isAccount
+          ? this.buildAccountNavigation()
+          : this.buildPublicNavigation(isAuthenticated)}
       </PrimaryNavLinksContainer>
     );
   }

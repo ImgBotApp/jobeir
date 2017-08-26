@@ -4,10 +4,10 @@ export const filter = {
     border: 'solid 1px #dcdcdc',
     padding: '4px 23px 0px 40px',
     fontSize: '16px',
-    width: '330px',
+    width: '300px',
     margin: '0',
     activeBorderColor: '#5C6AC4',
-    height: '40px',
+    height: '36px',
     ph: {
       color: '#afafaf'
     }

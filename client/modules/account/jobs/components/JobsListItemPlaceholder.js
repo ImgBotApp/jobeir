@@ -3,17 +3,26 @@ import React from 'react';
 import styled from 'styled-components';
 
 const JobsListItemPlaceholder = () =>
-  <PlaceholderContainer>
-    <PlaceholderTop>
-      <PlaceholderTitle />
-      <PlaceholderState />
-    </PlaceholderTop>
-    <PlaceholderDetails />
-  </PlaceholderContainer>;
+  <div>
+    <PlaceholderContainer>
+      <PlaceholderTop>
+        <PlaceholderTitle />
+        <PlaceholderState />
+      </PlaceholderTop>
+      <PlaceholderDetails />
+    </PlaceholderContainer>
+    <PlaceholderContainer>
+      <PlaceholderTop>
+        <PlaceholderTitle />
+        <PlaceholderState />
+      </PlaceholderTop>
+      <PlaceholderDetails />
+    </PlaceholderContainer>
+  </div>;
 
 export default JobsListItemPlaceholder;
 
-const PlaceholderContainer = styled.div``;
+const PlaceholderContainer = styled.div`margin-bottom: 70px;`;
 
 const PlaceholderTop = styled.div`
   display: flex;

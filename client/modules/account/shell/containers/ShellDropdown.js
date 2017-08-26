@@ -71,9 +71,11 @@ class ShellDropdown extends Component {
 
   render() {
     const { companies, user } = this.props;
+    console.log(user.avatar);
 
     return (
       <ShellHeaderDropdown>
+        {user.avatar ? <ShellHeaderAvatar src={user.avatar} /> : null}
         <ShellDropdownContainer showDropdown={this.state.showDropdown}>
           <ShellDropdownList>
             <ShellDropdownListItem top={true}>
@@ -140,6 +142,14 @@ const ShellHeaderDropdown = styled.div`
   width: 36px;
   border-radius: 50%;
   background: ${props => props.theme.colors.pink};
+  cursor: pointer;
+`;
+
+const ShellHeaderAvatar = styled.img`
+  position: relative;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
   cursor: pointer;
 `;
 
