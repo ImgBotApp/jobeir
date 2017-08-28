@@ -54,7 +54,7 @@ const ShellContainer = styled.div`
 
 const ShellContent = styled.main`
   padding-left: 245px;
-  margin: 0 50px;
+  margin: 0 50px 0 80px;
   width: 100%;
 `;
 
