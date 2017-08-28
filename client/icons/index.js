@@ -416,6 +416,53 @@ export const LightBulbIcon = ({ width = 24, height = 24, className = '' }) =>
     />
   </svg>;
 
+export const LogoIcon = ({ width = 24, height = 24, className = '' }) =>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 48 48"
+  >
+    <rect
+      x="2"
+      y="2"
+      fill="none"
+      stroke="#444444"
+      strokeWidth="2"
+      strokeLinecap="square"
+      strokeMiterlimit="10"
+      width="44"
+      height="44"
+      strokeLinejoin="miter"
+    />
+    <polyline
+      data-color="color-2"
+      fill="none"
+      stroke="#444444"
+      strokeWidth="2"
+      strokeLinecap="square"
+      strokeMiterlimit="10"
+      points="
+	9,37 18,26 28,33 39,21 "
+      strokeLinejoin="miter"
+    />
+    <circle
+      data-color="color-2"
+      fill="none"
+      stroke="#444444"
+      strokeWidth="2"
+      strokeLinecap="square"
+      strokeMiterlimit="10"
+      cx="20"
+      cy="14"
+      r="4"
+      strokeLinejoin="miter"
+    />
+  </svg>;
+
 export const MailIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"

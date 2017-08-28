@@ -116,12 +116,12 @@ const ShellSidebarCompany = styled.div`
   align-items: center;
   font-size: 18px;
   margin-bottom: 70px;
-  color: ${props => props.theme.colors.purple};
+  color: ${props => props.theme.colors.grey.mid};
   cursor: pointer;
 `;
 
 const StlyedChevronDown = styled(ChevronDown)`
-  fill: ${props => props.theme.colors.purple};
+  fill: ${props => props.theme.colors.grey.mid};
   height: 18px;
 `;
 
@@ -162,7 +162,8 @@ const ShellDropdownListItem = styled.li`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  background: ${props => (props.isActive ? '#fff7f7' : '#fff')};
+  cursor: pointer;
+  background: ${props => (props.isActive ? 'rgba(92, 106, 196, 0.1)' : '#fff')};
 
   &::before {
     content: '';
@@ -172,35 +173,8 @@ const ShellDropdownListItem = styled.li`
     bottom: 0;
     width: 3px;
     height: 100%;
-    background: ${props => (props.isActive ? props.theme.colors.pink : '#fff')};
-  }
-
-  &:last-child {
-    border: none;
-  }
-`;
-
-const ShellDropdownListItemLink = styled(Link)`
-  position: relative;
-  list-style: none;
-  padding: 12px 25px 9px;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-decoration: none;
-  color: ${props => props.theme.colors.text};
-  background: ${props => (props.isActive ? '#fff7f7' : '#fff')};
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    height: 100%;
-    background: ${props => (props.isActive ? props.theme.colors.pink : '#fff')};
+    background: ${props =>
+      props.isActive ? props.theme.colors.purple : '#fff'};
   }
 
   &:last-child {

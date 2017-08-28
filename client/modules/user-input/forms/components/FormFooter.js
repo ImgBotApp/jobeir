@@ -66,7 +66,6 @@ class FormFooter extends Component {
           className="FormFooter"
           isOverlapped={this.state.isOverlapped}
           multipleChildren={Array.isArray(children)}
-          isUpload={isUpload}
         >
           {children}
         </FormFooterCenter>
@@ -87,7 +86,7 @@ const FormFooterContainer = styled.div`
 `;
 
 const FormFooterCenter = styled.div`
-  width: ${props => (props.isUpload ? '100%' : '52.5%')};
+  width: 52.5%;
   display: flex;
   align-items: center;
   justify-content: ${props =>

@@ -8,7 +8,7 @@ const theme = {
   colors: {
     red: '#fb5032', // WS red #f27c5e // #fb7857
     green: '#6eafae', // WS green #7cb7b6
-    pink: '#fd898a', // old pink: #fe9591
+    pink: '#ff9493', // old pink: #fe9591
     purple: '#5C6AC4',
     palePurple: '#5f5f75',
     blue: '#161533',

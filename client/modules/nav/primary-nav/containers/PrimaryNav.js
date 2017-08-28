@@ -7,7 +7,6 @@ import PrimaryNavLinks from '../components/PrimaryNavLinks';
 
 const PrimaryNav = props => {
   const { isInAccount } = props;
-  console.log(isInAccount);
 
   return (
     <Navigation>

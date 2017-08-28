@@ -10,7 +10,7 @@ import AuthLoading from '../../auth/components/AuthLoading';
  * throughout the application. UserWrapper also has wraps AuthWrapper
  * which takes care of authentication throughout the application.
  */
-export const UserWrapper = WrappedComponent => {
+const UserWrapper = WrappedComponent => {
   class UserComponent extends Component {
     state = { count: 1 };
 

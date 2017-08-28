@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {
   EarthPointIcon,
   LightBulbIcon,
+  LogoIcon,
   PaperClipIcon
 } from '../../../../../icons/';
 
@@ -48,6 +49,21 @@ const CompanyTips = (step: string) => {
           <StepTipsText>
             Job location is very important when applicants are searching for
             jobs, so be as accurate as possible.
+          </StepTipsText>
+        </StepTipsContainer>
+      );
+    case 'upload':
+      return (
+        <StepTipsContainer>
+          <LogoIcon height={40} width={40} />
+          <StepTipsHeader>Upload Logo</StepTipsHeader>
+          <StepTipsText>
+            Your logo will be used on all job postings and within your account
+          </StepTipsText>
+          <StepTipsText>
+            Make sure your logo has a transaprent background, is under 2Mb, and
+            is at least 100px by 100px in size. It is important to have a
+            non-pixelated logo on all your job postings.
           </StepTipsText>
         </StepTipsContainer>
       );

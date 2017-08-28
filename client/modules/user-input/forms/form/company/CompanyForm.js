@@ -6,7 +6,7 @@ import { reset } from 'redux-form';
 import CompanyFormAbout from './CompanyFormAbout';
 import CompanyFormContact from './CompanyFormContact';
 import CompanyFormLocation from './CompanyFormLocation';
-import CompanyFormPerks from './CompanyFormPerks';
+import CompanyFormUpload from './CompanyFormUpload';
 
 class CompanyForm extends Component {
   componentWillUnmount() {
@@ -26,7 +26,7 @@ class CompanyForm extends Component {
     const about: string = '/create/company/about';
     const contact: string = '/create/company/contact';
     const location: string = '/create/company/location';
-    const perks: string = '/create/company/perks';
+    const upload: string = '/create/company/upload';
 
     return (
       <div>
@@ -35,15 +35,11 @@ class CompanyForm extends Component {
         {pathname === contact &&
           <CompanyFormContact
             prevPage={() => this.prevPage(about)}
-            nextPage={() => this.nextPage(perks)}
-          />}
-        {pathname === perks &&
-          <CompanyFormPerks
-            prevPage={() => this.prevPage(contact)}
             nextPage={() => this.nextPage(location)}
           />}
         {pathname === location &&
-          <CompanyFormLocation prevPage={() => this.prevPage(perks)} />}
+          <CompanyFormLocation prevPage={() => this.prevPage(contact)} />}
+        {pathname.includes(upload) && <CompanyFormUpload />}
       </div>
     );
   }

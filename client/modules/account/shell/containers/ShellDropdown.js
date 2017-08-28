@@ -71,7 +71,6 @@ class ShellDropdown extends Component {
 
   render() {
     const { companies, user } = this.props;
-    console.log(user.avatar);
 
     return (
       <ShellHeaderDropdown>
@@ -190,7 +189,7 @@ const ShellDropdownListItem = styled.li`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  background: ${props => (props.isActive ? '#fff7f7' : '#fff')};
+  background: ${props => (props.isActive ? 'rgba(92, 106, 196, 0.1)' : '#fff')};
 
   &::before {
     content: '';
@@ -200,7 +199,8 @@ const ShellDropdownListItem = styled.li`
     bottom: 0;
     width: 3px;
     height: 100%;
-    background: ${props => (props.isActive ? props.theme.colors.pink : '#fff')};
+    background: ${props =>
+      props.isActive ? props.theme.colors.purple : '#fff'};
   }
 
   &:last-child {
@@ -218,7 +218,7 @@ const ShellDropdownListItemLink = styled(Link)`
   white-space: nowrap;
   text-decoration: none;
   color: ${props => props.theme.colors.text};
-  background: ${props => (props.isActive ? '#fff7f7' : '#fff')};
+  background: ${props => (props.isActive ? 'rgba(92, 106, 196, 0.1)' : '#fff')};
 
   &::before {
     content: '';
@@ -228,7 +228,8 @@ const ShellDropdownListItemLink = styled(Link)`
     bottom: 0;
     width: 3px;
     height: 100%;
-    background: ${props => (props.isActive ? props.theme.colors.pink : '#fff')};
+    background: ${props =>
+      props.isActive ? props.theme.colors.purple : '#fff'};
   }
 
   &:last-child {

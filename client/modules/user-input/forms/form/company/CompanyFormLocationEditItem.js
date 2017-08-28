@@ -15,7 +15,7 @@ const AddressTheme = {
     fontSize: '14px',
     width: '100%',
     margin: '0 auto 0.5rem',
-    activeBorderColor: 'rgba(0,0,0,0.85)',
+    activeBorderColor: '#5C6AC4',
     ph: {
       color: '#afafaf'
     }
@@ -191,6 +191,7 @@ const AddressItem = styled.li`
   padding: 16px 20px;
   margin-bottom: 16px;
   background: #f9f8f7;
+  cursor: pointer;
 
   svg {
     cursor: pointer;

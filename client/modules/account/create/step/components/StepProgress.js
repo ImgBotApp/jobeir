@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 // The steps required (in order) for each creation option
 const createJob = ['about', 'type', 'compensation', 'contact'];
-const createCompany = ['about', 'contact', 'perks', 'location', 'upload'];
+const createCompany = ['about', 'contact', 'location', 'upload'];
 
 /**
  * getFormStepDetails()

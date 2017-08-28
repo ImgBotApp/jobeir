@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import styled from 'styled-components';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
@@ -37,7 +38,7 @@ class CompanyLogo extends Component {
         formErrors={companies.errors}
         theme="marble"
       >
-        <FormHeader text="Add your company logo to attract the best applicants" />
+        <FormHeader text="Upload your company logo" />
         <Field
           name="logo"
           label="Company logo"
@@ -46,7 +47,14 @@ class CompanyLogo extends Component {
           component={Upload}
           buttonText="Upload Logo"
         />
-        <FormFooter isUpload={true}>
+        <UploadedList>
+          <UploadedListItem>
+            Logos with a transparent backgrounds in PNG format provide the best
+            results
+          </UploadedListItem>
+          <UploadedListItem>Max size file size 2Mb</UploadedListItem>
+        </UploadedList>
+        <FormFooter>
           <BackButton action={this.handleExit} buttonText="Exit" />
           <Field
             name="submitButton"
@@ -70,3 +78,11 @@ CompanyLogo = reduxForm({
 })(CompanyLogo);
 
 export default connect(mapStateToProps)(CompanyLogo);
+
+const UploadedList = styled.ul`
+  display: inline-block;
+  margin-top: 15px;
+  padding-left: 20px;
+`;
+
+const UploadedListItem = styled.li`margin-bottom: 15px;`;

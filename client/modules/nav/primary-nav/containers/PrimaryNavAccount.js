@@ -20,7 +20,6 @@ const PrimaryNavAccountNavigationContainer = styled.div`
   justify-content: flex-end;
   margin: 0 auto;
   height: 70px;
-
   padding-top: 45px;
   margin-right: 50px;
 `;

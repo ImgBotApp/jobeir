@@ -2,9 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import UserWrapper from '../../../user/containers/UserWrapper';
 import ShellHeader from '../components/ShellHeader';
 import ShellSidebar from './ShellSidebar';
-import UserWrapper from '../../../user/containers/UserWrapper';
 
 /**
  * <Shell />
@@ -54,7 +54,7 @@ const ShellContainer = styled.div`
 
 const ShellContent = styled.main`
   padding-left: 245px;
-  margin: 0 50px 0 90px;
+  margin: 0 50px;
   width: 100%;
 `;
 

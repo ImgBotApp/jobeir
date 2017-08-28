@@ -17,16 +17,15 @@ import StepBackground from '../components/StepBackground';
  */
 const Step = (props: { params: { step: string }, user: {} }) => {
   const { params, user } = props;
-  const isUpload: boolean = params.step === 'upload';
 
   return (
     <StepContainer>
       <StepHeader />
-      {!isUpload && <StepBackground />}
+      <StepBackground />
       {user.isLoaded &&
-        <StepRouter params={props.params}>
-          <StepForm params={props.params} />
-          {!isUpload && <StepHelp params={props.params} />}
+        <StepRouter params={params}>
+          <StepForm params={params} />
+          <StepHelp params={params} />
         </StepRouter>}
     </StepContainer>
   );
