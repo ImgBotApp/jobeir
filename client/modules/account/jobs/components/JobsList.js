@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { formValueSelector } from 'redux-form';
 import styled from 'styled-components';
-import JostListItem from './JobsListItem';
+import JobsListItem from './JobsListItem';
 import fuse from 'fuse.js';
 
 const filterJobs = (job: { state: string }, filter: string) => {
@@ -36,7 +36,7 @@ class JobsList extends Component {
             key={job._id}
             onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
           >
-            <JostListItem job={job} />
+            <JobsListItem job={job} />
           </JobsBody>
         )}
       </div>

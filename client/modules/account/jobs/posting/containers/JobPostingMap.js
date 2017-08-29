@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import lightTheme from '../../../../../maps/styles/';
 
-class PostingMap extends Component {
+class JobPostingMap extends Component {
   componentDidMount() {
     this.renderMap(this.props.activePosting.location.coordinates);
   }
@@ -35,17 +35,17 @@ class PostingMap extends Component {
 
   render() {
     return (
-      <PostingMapContainer>
-        <PostingMapHeader>Office location</PostingMapHeader>
+      <JobPostingMapContainer>
+        <JobPostingMapHeader>Office location</JobPostingMapHeader>
         <div id="map" />
-      </PostingMapContainer>
+      </JobPostingMapContainer>
     );
   }
 }
 
-export default PostingMap;
+export default JobPostingMap;
 
-const PostingMapContainer = styled.div`
+const JobPostingMapContainer = styled.div`
   margin: 20px auto 55px;
 
   #map {
@@ -54,7 +54,7 @@ const PostingMapContainer = styled.div`
   }
 `;
 
-const PostingMapHeader = styled.h2`
+const JobPostingMapHeader = styled.h2`
   max-width: 670px;
   font-size: 34px;
   margin: 0 auto 20px;

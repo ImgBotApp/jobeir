@@ -5,8 +5,8 @@ import { asyncConnect } from 'redux-connect';
 import styled from 'styled-components';
 import { serverGetJob } from '../server/';
 import { shouldGetJob, getJobPosting, resetJobPosting } from '../ducks/';
-import PostingPreview from '../../../account/jobs/posting/components/PostingPreview';
-import JobsPostingHeader from '../components/JobsPostingHeader';
+import JobPosting from '../../../account/jobs/posting/containers/JobPosting';
+import JobsPostingReturn from '../components/JobsPostingReturn';
 
 @asyncConnect([
   {
@@ -33,12 +33,12 @@ class JobsPosting extends Component {
   }
 
   render() {
-    const { posting } = this.props;
+    const { params, posting } = this.props;
 
     return (
       <JobsPostingContainer>
-        <JobsPostingHeader activePosting={posting} />
-        <PostingPreview activePosting={posting} />
+        <JobsPostingReturn />
+        <JobPosting activePosting={posting} params={params} />
       </JobsPostingContainer>
     );
   }

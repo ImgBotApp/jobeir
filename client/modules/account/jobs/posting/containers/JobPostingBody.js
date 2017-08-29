@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import draftToHtml from 'draftjs-to-html';
 
-class PostingBody extends Component {
+class JobPostingBody extends Component {
   render() {
     return (
-      <PostingBodyContainer>
+      <JobPostingBodyContainer>
         <div
           dangerouslySetInnerHTML={{
             __html: draftToHtml(
@@ -15,7 +15,7 @@ class PostingBody extends Component {
             )
           }}
         />
-      </PostingBodyContainer>
+      </JobPostingBodyContainer>
     );
   }
 }
@@ -24,9 +24,9 @@ const mapStateToProps = state => ({
   companies: state.account.companies
 });
 
-export default connect(mapStateToProps)(PostingBody);
+export default connect(mapStateToProps)(JobPostingBody);
 
-const PostingBodyContainer = styled.div`
+const JobPostingBodyContainer = styled.div`
   position: relative;
   max-width: 670px;
   margin: 0 auto;
@@ -81,13 +81,13 @@ const PostingBodyContainer = styled.div`
   }
 `;
 
-const PostingBodyHeader = styled.header`margin: 25px auto 35px;`;
+const JobPostingBodyHeader = styled.header`margin: 25px auto 35px;`;
 
-const PostingBodyHeading = styled.h1`
+const JobPostingBodyHeading = styled.h1`
   font-weight: 900;
   font-size: 42px;
 `;
 
-const PostingBodySubHeading = styled.p``;
+const JobPostingBodySubHeading = styled.p``;
 
-const PostingBodyImg = styled.img`height: 40px;`;
+const JobPostingBodyImg = styled.img`height: 40px;`;

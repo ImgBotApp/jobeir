@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { getJob, deleteJob } from '../../../../account/create/job/ducks/';
 import JobEditForm from '../../../../user-input/forms/form/JobEditForm';
-import PostingPreview from '../components/PostingPreview';
-import PostingHeader from '../components/PostingHeader';
+import JobPostingPreview from '../components/JobPostingPreview';
+import JobPostingHeaderEdit from '../components/JobPostingHeaderEdit';
 
 /**
  * <Posting />
  * Provides the UI for previewing the posting within the Admin or
  * toggling to edit the posting.
  */
-class Posting extends Component {
+class JobPosting extends Component {
   state: {
     renderEdit: boolean
   };
@@ -48,7 +48,7 @@ class Posting extends Component {
     if (activePosting) {
       return this.state.renderEdit
         ? <JobEditForm initialValues={activePosting} params={params} />
-        : <PostingPreview activePosting={activePosting} params={params} />;
+        : <JobPostingPreview activePosting={activePosting} params={params} />;
     }
 
     return null;
@@ -56,13 +56,13 @@ class Posting extends Component {
 
   render() {
     return (
-      <PostingContainer>
-        <PostingHeader
+      <JobPostingContainer>
+        <JobPostingHeaderEdit
           handleEditClick={this.handleEditClick}
           handleDeleteClick={this.handleDeleteClick}
         />
         {!this.props.jobs.isFetching && this.renderPreviewOrEdit()}
-      </PostingContainer>
+      </JobPostingContainer>
     );
   }
 }
@@ -72,6 +72,6 @@ const mapStateToProps = state => ({
   jobs: state.account.jobs
 });
 
-export default connect(mapStateToProps)(Posting);
+export default connect(mapStateToProps)(JobPosting);
 
-const PostingContainer = styled.div`margin-top: 50px;`;
+const JobPostingContainer = styled.div`margin-top: 50px;`;

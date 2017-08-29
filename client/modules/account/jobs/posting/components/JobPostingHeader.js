@@ -1,25 +1,17 @@
 // @flow
 import React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
-import { Link } from 'react-router';
-import JobsPostingHeaderPlaceholder from './JostPostingHeaderPlaceholder';
-import { ChevronLeft } from '../../../../icons/';
-import FadeIn from '../../../../styles/components/FadeIn';
+import JobsPostingHeaderPlaceholder from './JobPostingHeaderPlaceholder';
+import FadeIn from '../../../../../styles/components/FadeIn';
 
-const JobsPostingHeader = (props: { activePosting: {}, query: string }) => {
-  const { activePosting, query } = props;
+const JobsPostingHeader = (props: { activePosting: {} }) => {
+  const { activePosting } = props;
   const activePostingReady: boolean = Object.keys(activePosting).length > 0;
 
   return (
     <div>
       <JobsPostingHeaderContainer>
-        <JobsPostingHeaderReturn>
-          <StyledLink to={`/jobs/?${query}`}>
-            <StyledChevronLeft />Return to jobs
-          </StyledLink>
-        </JobsPostingHeaderReturn>
         {activePostingReady
           ? <FadeIn>
               <JobsPostingHeaderCompany>
@@ -45,18 +37,11 @@ const JobsPostingHeader = (props: { activePosting: {}, query: string }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  query: state.search.jobs.query
-});
+export default JobsPostingHeader;
 
-export default connect(mapStateToProps)(JobsPostingHeader);
-
-const JobsPostingHeaderContainer = styled.div`margin-bottom: 75px;`;
-
-const JobsPostingHeaderReturn = styled.div`
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 60px;
+const JobsPostingHeaderContainer = styled.div`
+  max-width: 670px;
+  margin: 0 auto 75px;
 `;
 
 const JobsPostingHeaderCompanyLogo = styled.img`height: 50px;`;
@@ -78,29 +63,4 @@ const JobsPostingHeaderLocation = styled.p`
 const JobsPostingHeaderDate = styled.p`
   font-size: 18px;
   font-weight: 400;
-`;
-
-const StyledChevronLeft = styled(ChevronLeft)`
-  fill: rgba(0,0,0,0.85);
-  position: relative;
-  top: -1px;
-  left: -4px;
-`;
-
-const StyledLink = styled(Link)`
-  position: relative;
-  left: -3px;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 600;
-  text-decoration: none;
-  color: rgba(0,0,0,0.85);
-  padding: 3px 6px 2px 3px;
-  border-radius: 3px;
-  transition: background 280ms ease;
-
-  &:hover {
-    background: rgba(0,0,0,0.08);
-  }
 `;

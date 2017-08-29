@@ -19,7 +19,13 @@ import JobsListEmptyState from '../components/JobsListEmptyState';
 class Jobs extends Component {
   componentDidMount() {
     const { companies, dispatch, jobs } = this.props;
-    if (!jobs.postings.length) {
+
+    /**
+     * This is not "< 0" because it's possible to have a single job posting
+     * within redux by previewing a job post before going to the jobs admin
+     * view
+     */
+    if (!jobs.postings.length <= 1) {
       dispatch(getJobs(companies.activeCompany._id));
     }
   }

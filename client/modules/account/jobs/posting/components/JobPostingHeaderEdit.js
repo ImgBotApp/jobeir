@@ -2,23 +2,23 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PostingHeader = (props: {
+const JobPostingHeader = (props: {
   handleEditClick: Function,
   handleDeleteClick: Function
 }) => {
   const { handleEditClick, handleDeleteClick } = props;
 
   return (
-    <PostingHeaderContainer>
+    <JobPostingHeaderContainer>
       <PlainButton onClick={handleEditClick}>Edit Posting</PlainButton>
       <PlainButton onClick={handleDeleteClick}>Delete Posting</PlainButton>
-    </PostingHeaderContainer>
+    </JobPostingHeaderContainer>
   );
 };
 
-export default PostingHeader;
+export default JobPostingHeader;
 
-const PostingHeaderContainer = styled.div`
+const JobPostingHeaderContainer = styled.div`
   max-width: 700px;
   margin: 0 auto 50px;
 `;

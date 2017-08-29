@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/account/profile/containers/Profile');
   require('../modules/account/create/step/containers/StepComplete');
   require('../modules/account/jobs/containers/Jobs');
-  require('../modules/account/jobs/posting/containers/Posting');
+  require('../modules/account/jobs/posting/containers/JobPosting');
   require('../modules/account/company/containers/Company');
   require('../modules/account/people/containers/People');
   require('../modules/not-found/components/NotFound');
@@ -95,7 +95,7 @@ const routes = (
       }}
     />
     <Route
-      path="/jobs/:id"
+      path="/jobs/:jobId"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(
@@ -191,7 +191,7 @@ const routes = (
           require.ensure([], require => {
             cb(
               null,
-              require('../modules/account/jobs/posting/containers/Posting')
+              require('../modules/account/jobs/posting/containers/JobPosting')
                 .default
             );
           });
