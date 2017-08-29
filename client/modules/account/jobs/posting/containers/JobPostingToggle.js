@@ -4,22 +4,22 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { getJob, deleteJob } from '../../../../account/create/job/ducks/';
 import JobEditForm from '../../../../user-input/forms/form/JobEditForm';
-import JobPostingPreview from '../components/JobPostingPreview';
-import JobPostingHeaderEdit from '../components/JobPostingHeaderEdit';
+import JobPosting from './JobPosting';
+import JobPostingToggleControls from '../components/JobPostingToggleControls';
 
 /**
  * <Posting />
  * Provides the UI for previewing the posting within the Admin or
  * toggling to edit the posting.
  */
-class JobPosting extends Component {
+class JobPostingToggle extends Component {
   state: {
-    renderEdit: boolean
+    showJobForm: boolean
   };
 
   constructor(props) {
     super(props);
-    this.state = { renderEdit: false };
+    this.state = { showJobForm: false };
   }
 
   componentDidMount() {
@@ -28,7 +28,7 @@ class JobPosting extends Component {
   }
 
   handleEditClick = () => {
-    this.setState({ renderEdit: !this.state.renderEdit });
+    this.setState({ showJobForm: !this.state.showJobForm });
   };
 
   handleDeleteClick = () => {
@@ -38,30 +38,20 @@ class JobPosting extends Component {
     );
   };
 
-  // Handles the logc either show the preview or edit components
-  renderPreviewOrEdit() {
-    const { jobs, params } = this.props;
-    const activePosting: {} = jobs.postings.find(
-      posting => posting._id === params.jobId
-    );
-
-    if (activePosting) {
-      return this.state.renderEdit
-        ? <JobEditForm initialValues={activePosting} params={params} />
-        : <JobPostingPreview activePosting={activePosting} params={params} />;
-    }
-
-    return null;
-  }
-
   render() {
+    const { jobs, params } = this.props;
+    const activePosting: {} =
+      jobs.postings.find(posting => posting._id === params.jobId) || {};
+
     return (
       <JobPostingContainer>
-        <JobPostingHeaderEdit
+        <JobPostingToggleControls
           handleEditClick={this.handleEditClick}
           handleDeleteClick={this.handleDeleteClick}
         />
-        {!this.props.jobs.isFetching && this.renderPreviewOrEdit()}
+        {this.state.showJobForm
+          ? <JobEditForm initialValues={activePosting} params={params} />
+          : <JobPosting activePosting={activePosting} params={params} />}
       </JobPostingContainer>
     );
   }
@@ -72,6 +62,6 @@ const mapStateToProps = state => ({
   jobs: state.account.jobs
 });
 
-export default connect(mapStateToProps)(JobPosting);
+export default connect(mapStateToProps)(JobPostingToggle);
 
 const JobPostingContainer = styled.div`margin-top: 50px;`;

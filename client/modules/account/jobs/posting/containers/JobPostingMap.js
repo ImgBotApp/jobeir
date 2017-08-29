@@ -36,7 +36,6 @@ class JobPostingMap extends Component {
   render() {
     return (
       <JobPostingMapContainer>
-        <JobPostingMapHeader>Office location</JobPostingMapHeader>
         <div id="map" />
       </JobPostingMapContainer>
     );
@@ -49,13 +48,8 @@ const JobPostingMapContainer = styled.div`
   margin: 20px auto 55px;
 
   #map {
+    margin: 0 auto;
     height: 550px;
     width: 960px;
   }
-`;
-
-const JobPostingMapHeader = styled.h2`
-  max-width: 670px;
-  font-size: 34px;
-  margin: 0 auto 20px;
 `;

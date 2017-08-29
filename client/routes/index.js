@@ -191,7 +191,7 @@ const routes = (
           require.ensure([], require => {
             cb(
               null,
-              require('../modules/account/jobs/posting/containers/JobPosting')
+              require('../modules/account/jobs/posting/containers/JobPostingToggle')
                 .default
             );
           });

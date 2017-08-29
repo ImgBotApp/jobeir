@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router';
 import { getJobs } from '../../../account/create/job/ducks/';
 import JobsFilter from './JobsFilter';
 import JobsList from '../components/JobsList';
@@ -25,7 +24,7 @@ class Jobs extends Component {
      * within redux by previewing a job post before going to the jobs admin
      * view
      */
-    if (!jobs.postings.length <= 1) {
+    if (jobs.postings.length <= 1) {
       dispatch(getJobs(companies.activeCompany._id));
     }
   }

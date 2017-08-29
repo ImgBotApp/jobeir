@@ -23,14 +23,19 @@ import ShellSidebar from './ShellSidebar';
  *      </ShellDynamic>
  *
  */
-const Shell = (props: { children: any, params: {} }) => {
-  const { children, params } = props;
+const Shell = (props: { children: any, params: {}, pathname: string }) => {
+  const { children, params, pathname } = props;
+  const showShellHeader: boolean = !pathname.includes('/account/jobs/');
 
   return (
     <ShellContainer>
       <ShellSidebar />
-      <ShellContent>
-        <ShellHeader headerText={children.props.route.name} params={params} />
+      <ShellContent equalMargin={!showShellHeader}>
+        {showShellHeader &&
+          <ShellHeader
+            headerText={children.props.route.name}
+            params={params}
+          />}
         <ShellDynamic>
           {children}
         </ShellDynamic>
@@ -40,9 +45,7 @@ const Shell = (props: { children: any, params: {} }) => {
 };
 
 const mapStateToProps = state => ({
-  user: state.session.user,
-  companies: state.account.companies,
-  jobs: state.account.jobs
+  pathname: state.routing.locationBeforeTransitions.pathname
 });
 
 export default connect(mapStateToProps)(UserWrapper(Shell));
@@ -54,7 +57,7 @@ const ShellContainer = styled.div`
 
 const ShellContent = styled.main`
   padding-left: 245px;
-  margin: 0 50px 0 80px;
+  margin: ${props => (props.equalMargin ? '0 50px' : '0 50px 0 80px')};
   width: 100%;
 `;
 

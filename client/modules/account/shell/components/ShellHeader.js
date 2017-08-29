@@ -14,7 +14,6 @@ const ShellHeader = (props: { headerText: string, params: {} }) => {
   return (
     <ShellHeaderContainer>
       <ShellHeaderTitle headerText={headerText} params={params} />
-      <ShellRightSide />
     </ShellHeaderContainer>
   );
 };
@@ -25,9 +24,4 @@ const ShellHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 60px 0 40px;
-`;
-
-const ShellRightSide = styled.div`
-  display: flex;
-  align-items: flex-start;
 `;

@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import ShellHeaderTitleJob from './ShellHeaderTitleJob';
 
 /**
  * <ShellHeaderTitle />
@@ -9,20 +8,10 @@ import ShellHeaderTitleJob from './ShellHeaderTitleJob';
  * the appropriate header title depending on it. This component is
  * used like a router for the correct header.
  */
-const ShellHeaderTitle = (props: { headerText: string, params: {} }) => {
-  const { headerText, params } = props;
-
-  switch (headerText) {
-    case 'Job':
-      return <ShellHeaderTitleJob params={params} />;
-    default:
-      return (
-        <ShellHeaderTitleContainer>
-          {headerText}
-        </ShellHeaderTitleContainer>
-      );
-  }
-};
+const ShellHeaderTitle = (props: { headerText: string }) =>
+  <ShellHeaderTitleContainer>
+    {props.headerText}
+  </ShellHeaderTitleContainer>;
 
 export default ShellHeaderTitle;
 

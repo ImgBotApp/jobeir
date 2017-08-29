@@ -5,8 +5,8 @@ import moment from 'moment';
 import JobsPostingHeaderPlaceholder from './JobPostingHeaderPlaceholder';
 import FadeIn from '../../../../../styles/components/FadeIn';
 
-const JobsPostingHeader = (props: { activePosting: {} }) => {
-  const { activePosting } = props;
+const JobsPostingHeader = (props: { activePosting: {}, hideLogo: boolean }) => {
+  const { activePosting, hideLogo } = props;
   const activePostingReady: boolean = Object.keys(activePosting).length > 0;
 
   return (
@@ -15,10 +15,11 @@ const JobsPostingHeader = (props: { activePosting: {} }) => {
         {activePostingReady
           ? <FadeIn>
               <JobsPostingHeaderCompany>
-                <JobsPostingHeaderCompanyLogo
-                  src={activePosting.company.logo}
-                  alt={activePosting.company.displayName}
-                />
+                {hideLogo &&
+                  <JobsPostingHeaderCompanyLogo
+                    src={activePosting.company.logo}
+                    alt={activePosting.company.displayName}
+                  />}
               </JobsPostingHeaderCompany>
               <JobsPostingHeaderTitle>
                 {activePosting.title}
