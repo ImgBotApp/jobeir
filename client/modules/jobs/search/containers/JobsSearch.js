@@ -162,7 +162,7 @@ class JobsSearch extends Component {
           <JobsSearchColumn wide>
             <JobsSearchHeader wide>
               <JobsSearchHeaderText>
-                Search results   ({this.props.jobs.count})
+                Search results ({this.props.jobs.count})
               </JobsSearchHeaderText>
             </JobsSearchHeader>
             <InfiniteScroll

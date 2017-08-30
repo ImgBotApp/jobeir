@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { Field, formValueSelector, reduxForm } from 'redux-form';
+import { Field, initialize, reduxForm } from 'redux-form';
 import styled, { ThemeProvider } from 'styled-components';
 import queryString from 'query-string';
 import { Radio, Text } from '../../../user-input/inputs/input';
@@ -39,6 +39,29 @@ const yesNoOptions: Array<{ text: string, value: string }> = [
 ];
 
 class JobsSearchSidebar extends Component {
+  constructor(props) {
+    super(props);
+    const { search = {} } = this.props;
+
+    /**
+     * Using this to reset the job filters. We want to keep the values from
+     * the original search such as title and location/lat/long
+     */
+    this.reset = {
+      location: search.location,
+      lat: search.lat,
+      long: search.long,
+      title: {
+        value: search.title && search.title.value
+      },
+      companySize: undefined,
+      distance: undefined,
+      employmentType: undefined,
+      equity: undefined,
+      remote: undefined
+    };
+  }
+
   componentDidUpdate(prevProps) {
     if (
       JSON.stringify(prevProps.search) !== JSON.stringify(this.props.search)
@@ -71,6 +94,11 @@ class JobsSearchSidebar extends Component {
   render() {
     return (
       <JobsSearchSidebarContainer>
+        <div
+          onClick={() => this.props.dispatch(initialize('search', this.reset))}
+        >
+          Reset
+        </div>
         <ThemeProvider theme={sidebar}>
           <div>
             <Field

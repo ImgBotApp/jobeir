@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { fetchApi, reqHeaders } from '../../../../utils/api';
+import { formatUrl, reqHeaders } from '../../../../utils/api';
 import {
   SERVER_SEARCH_JOBS_REQUEST,
   SERVER_SEARCH_JOBS_SUCCESS,
@@ -9,7 +9,8 @@ import queryString from 'query-string';
 
 export function serverGetJobs(queryData, req) {
   const query = queryString.stringify(queryData);
-  const endpoint = `http://localhost:8000/api/v0/search/jobs?${query}`;
+  const endpoint = formatUrl(`/search/jobs?${query}`);
+
   return {
     [CALL_API]: {
       endpoint,
@@ -26,7 +27,7 @@ export function serverGetJobs(queryData, req) {
         },
         {
           type: SERVER_SEARCH_JOBS_FAILURE,
-          errors: (action, state, response) => response.json().then(res => res)
+          payload: (action, state, response) => response.json().then(res => res)
         }
       ]
     }

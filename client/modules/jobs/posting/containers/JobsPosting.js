@@ -24,7 +24,7 @@ class JobsPosting extends Component {
     const { dispatch, isLoaded, params } = this.props;
 
     if (!isLoaded) {
-      dispatch(getJobPosting(params.id));
+      dispatch(getJobPosting(params.jobId));
     }
   }
 
@@ -38,7 +38,7 @@ class JobsPosting extends Component {
     return (
       <JobsPostingContainer>
         <JobsPostingReturn />
-        <JobPosting activePosting={posting} params={params} />
+        <JobPosting hideLogo={false} activePosting={posting} params={params} />
       </JobsPostingContainer>
     );
   }

@@ -15,7 +15,7 @@ const JobsPostingHeader = (props: { activePosting: {}, hideLogo: boolean }) => {
         {activePostingReady
           ? <FadeIn>
               <JobsPostingHeaderCompany>
-                {hideLogo &&
+                {!hideLogo &&
                   <JobsPostingHeaderCompanyLogo
                     src={activePosting.company.logo}
                     alt={activePosting.company.displayName}

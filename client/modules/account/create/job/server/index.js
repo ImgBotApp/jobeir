@@ -7,7 +7,9 @@ import {
 } from '../ducks';
 
 export function serverGetUser(userId, req) {
-  const endpoint = `http://localhost:8000/api/v0/users/${userId}`;
+  console.log(process.env);
+  console.log(process.env.APIHOST);
+  const endpoint = `${process.env.APIHOST}/users/${userId}`;
   return {
     [CALL_API]: {
       endpoint,

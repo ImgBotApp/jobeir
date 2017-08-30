@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { fetchApi, reqHeaders } from '../../../utils/api';
+import { formatUrl, reqHeaders } from '../../../utils/api';
 import {
   SERVER_GET_USER_REQUEST,
   SERVER_GET_USER_SUCCESS,
@@ -7,7 +7,8 @@ import {
 } from '../ducks';
 
 export function serverGetUser(userId, req) {
-  const endpoint = `http://localhost:8000/api/v0/users/${userId}`;
+  const endpoint = formatUrl(`/users/${userId}`);
+
   return {
     [CALL_API]: {
       endpoint,

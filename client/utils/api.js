@@ -1,5 +1,4 @@
 import docCookies from './cookies';
-import host from '../../server/config/host';
 
 /**
  * checkStatus()
@@ -23,11 +22,13 @@ export const checkStatus = async res => {
 
 export function formatUrl(path) {
   const adjustedPath = path[0] !== '/' ? `/${path}` : path;
+
   if (__SERVER__) {
     // Prepend host and port of the API server to the path.
-    return `http://${host.apiHost}:${host.apiPort}/api/v0${adjustedPath}`;
+    return `${process.env.PROTOCOL}://${process.env.APIHOST}:${process.env
+      .PORT}/api/v0${adjustedPath}`;
   }
-  // Prepend `/api` to relative URL, to proxy to API server.
+  // Prepend `/api/v0` to relative URL, to proxy to API server.
   return `/api/v0${adjustedPath}`;
 }
 

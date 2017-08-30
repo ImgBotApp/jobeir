@@ -231,7 +231,10 @@ export default connect(mapStateToProps)(JobEditFrom);
 
 const FormEditContainer = styled.div`margin: 0 auto;`;
 
-const FormEditForm = styled.div`max-width: 580px;`;
+const FormEditForm = styled.div`
+  max-width: 670px;
+  margin: 75px auto 0;
+`;
 
 const FormListWrapper = styled.div`padding-top: 1rem;`;
 

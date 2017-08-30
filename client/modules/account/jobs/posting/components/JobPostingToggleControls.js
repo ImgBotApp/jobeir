@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import JobPostingBackButton from './JobPostingBackButton';
+import JobPostingOptionsButton from './JobPostingOptionsButton';
 import { ChevronDown } from '../../../../../icons/';
 
 const JobPostingToggleControls = (props: {
@@ -17,9 +18,7 @@ const JobPostingToggleControls = (props: {
           <JobPostingBackButton />
           <JobPostingToggleFlex>
             <PlainButton onClick={handleEditClick}>Edit</PlainButton>
-            <PlainButton onClick={handleDeleteClick}>
-              Options<StyledChevronDown />
-            </PlainButton>
+            <JobPostingOptionsButton />
           </JobPostingToggleFlex>
         </JobPostingToggleFlex>
       </JobPostingToggleControlsInlineBlock>
@@ -49,13 +48,7 @@ const PlainButton = styled.div`
   display: flex;
   align-items: center;
   font-size: 16px;
-  margin-left: 40px;
+  margin-right: 40px;
   font-weight: 600;
-`;
-
-const StyledChevronDown = styled(ChevronDown)`
-  fill: ${props => props.theme.colors.black};
-  height: 18px;
-  position: relative;
-  top: -2px;
+  cursor: pointer;
 `;

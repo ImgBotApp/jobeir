@@ -30,7 +30,7 @@ const Shell = (props: { children: any, params: {}, pathname: string }) => {
   return (
     <ShellContainer>
       <ShellSidebar />
-      <ShellContent equalMargin={!showShellHeader}>
+      <ShellContent>
         {showShellHeader &&
           <ShellHeader
             headerText={children.props.route.name}
@@ -56,8 +56,8 @@ const ShellContainer = styled.div`
 `;
 
 const ShellContent = styled.main`
-  padding-left: 245px;
-  margin: ${props => (props.equalMargin ? '0 50px' : '0 50px 0 80px')};
+  padding-left: 250px;
+  margin: 0 50px;
   width: 100%;
 `;
 

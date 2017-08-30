@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { fetchApi, reqHeaders } from '../../../utils/api';
+import { formatUrl, reqHeaders } from '../../../utils/api';
 import {
   SERVER_AUTH_REQUEST,
   SERVER_AUTH_SUCCESS,
@@ -7,7 +7,8 @@ import {
 } from '../ducks';
 
 export function serverAuth(req) {
-  const endpoint = 'http://localhost:8000/api/v0/auth';
+  const endpoint = formatUrl('/auth');
+
   return {
     [CALL_API]: {
       endpoint,

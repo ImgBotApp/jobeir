@@ -45,10 +45,10 @@ const ShellSidebar = () =>
 export default ShellSidebar;
 
 const ShellSidebarContainer = styled.nav`
-  width: 245px;
+  width: 250px;
   position: fixed;
   background: #f9f8f7;
-  border-right: 1px solid #eceaea;
+  // border-right: 1px solid #eceaea;
   left: 0;
   bottom: 0;
   top: 0;
