@@ -1,9 +1,7 @@
 // @flow
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import CompanyOnboarding from '../../company/components/CompanyOnboarding';
-import CompanyForm from '../../../../user-input/forms/form/company/CompanyForm';
-import JobForm from '../../../../user-input/forms/form/job/JobForm';
 
 /**
  * The process for posting a new job
@@ -11,19 +9,70 @@ import JobForm from '../../../../user-input/forms/form/job/JobForm';
  * with the current user. If not, we will ask them to create
  * a new company and then post a job
  */
-const StepForm = (props: { params: { create: string, step: string } }) => {
-  const { params } = props;
-  const isCompany = params.create === 'company';
-  const isJob = params.create === 'job';
+class StepForm extends Component {
+  state: {
+    asyncComponent: ''
+  };
 
-  return (
-    <StepFormContainer>
-      {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
-      {isJob && <JobForm params={params} />}
-      {isCompany && <CompanyForm />}
-    </StepFormContainer>
-  );
-};
+  constructor(props) {
+    super(props);
+    this.state = { asyncComponent: '' };
+  }
+
+  componentDidMount() {
+    this.importUtil(this.props.params.create);
+  }
+
+  /* *
+ * When a new tab is clicked on run asyncLoadComponetTab() to
+ * asynchronously import the correct component.
+ */
+  componentWillUpdate(nextProps) {
+    const { params } = this.props;
+    if (nextProps.params.create !== params.create) {
+      this.importUtil(nextProps.params.create);
+    }
+  }
+
+  importUtil(create) {
+    if (create === 'job') {
+      require.ensure(
+        [`../../../../user-input/forms/form/job/JobForm`],
+        require => {
+          // Now require it "sync"
+          const asyncComponent = require(`../../../../user-input/forms/form/job/JobForm`)
+            .default;
+          this.setState({ asyncComponent });
+        },
+        'job-form'
+      );
+    } else {
+      require.ensure(
+        [`../../../../user-input/forms/form/company/CompanyForm`],
+        require => {
+          // Now require it "sync"
+          const asyncComponent = require(`../../../../user-input/forms/form/company/CompanyForm`)
+            .default;
+          this.setState({ asyncComponent });
+        },
+        'company-form'
+      );
+    }
+  }
+
+  render() {
+    const { params } = this.props;
+    const isCompany = params.create === 'company';
+    const AsyncComponent = this.state.asyncComponent;
+
+    return (
+      <StepFormContainer>
+        {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
+        {AsyncComponent && <AsyncComponent params={params} />}
+      </StepFormContainer>
+    );
+  }
+}
 
 export default StepForm;
 

@@ -1,26 +1,26 @@
-var fs = require('fs');
-var path = require('path');
-var nodeExternals = require('webpack-node-externals');
+const fs = require('fs');
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: path.join(__dirname, '../server/server.js'),
 
   output: {
     path: path.join(__dirname, '../build/server'),
-    filename: 'index.[hash].js',
+    filename: 'server.[hash].js'
   },
 
   target: 'node', // in order to ignore built-in modules like path, fs, etc.
 
   node: {
     __filename: true,
-    __dirname: true,
+    __dirname: true
   },
 
   externals: [
     nodeExternals({
-      importType: 'commonjs',
-    }),
+      importType: 'commonjs'
+    })
   ], // in order to ignore all modules in node_modules folder
 
   module: {
@@ -33,19 +33,21 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-0'],
           plugins: [
             [
+              'transform-decorators-legacy',
               'babel-plugin-webpack-loaders',
+              'syntax-dynamic-import',
               {
                 config: './webpack/webpack.config.babel.js',
-                verbose: false,
-              },
-            ],
-          ],
-        },
+                verbose: false
+              }
+            ]
+          ]
+        }
       },
       {
         test: /\.json$/,
-        loader: 'json-loader',
-      },
-    ],
-  },
+        loader: 'json-loader'
+      }
+    ]
+  }
 };

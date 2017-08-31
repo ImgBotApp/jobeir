@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { fetchApi, reqHeaders } from '../../../utils/api';
+import { reqHeaders } from '../../../utils/api';
 import {
   SERVER_GET_JOB_REQUEST,
   SERVER_GET_JOB_SUCCESS,
@@ -7,8 +7,6 @@ import {
 } from '../ducks';
 
 export function serverGetUser(userId, req) {
-  console.log(process.env);
-  console.log(process.env.APIHOST);
   const endpoint = `${process.env.APIHOST}/users/${userId}`;
   return {
     [CALL_API]: {

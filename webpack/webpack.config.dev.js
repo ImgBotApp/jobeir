@@ -2,9 +2,9 @@ const webpack = require('webpack');
 const path = require('path');
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicToolsConfig = require('./webpack.config.isomorphic');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 
-const ip = process.env.IP || '0.0.0.0';
-const port = 8000;
 const PUBLIC_PATH = `/${process.env.PUBLIC_PATH || ''}/`.replace('//', '/');
 
 module.exports = {
@@ -20,12 +20,13 @@ module.exports = {
       'isomorphic-fetch',
       path.join(__dirname, '../client/index.js')
     ],
-    vendor: ['react', 'react-dom']
+    vendor: ['react', 'react-dom', 'draft-js', 'react-draft-wysiwyg']
   },
 
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: '[name].[hash].js',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
     publicPath: process.env.NODE_ENV !== 'production' ? `/` : PUBLIC_PATH
   },
 
@@ -50,6 +51,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.IgnorePlugin(/\/iconv-loader$/),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
@@ -65,6 +67,15 @@ module.exports = {
       __SERVER__: false,
       __DEVELOPMENT__: true
     }),
-    new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development()
+    new WebpackIsomorphicToolsPlugin(
+      webpackIsomorphicToolsConfig
+    ).development(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'server',
+      analyzerPort: 8888,
+      defaultSizes: 'parsed',
+      openAnalyzer: true,
+      generateStatsFile: false
+    })
   ]
 };

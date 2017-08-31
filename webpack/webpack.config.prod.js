@@ -11,12 +11,13 @@ module.exports = {
 
   entry: {
     app: [path.join(__dirname, '../client/index.js')],
-    vendor: ['react', 'react-dom']
+    vendor: ['react', 'react-dom', 'draft-js', 'react-draft-wysiwyg']
   },
 
   output: {
     path: path.join(__dirname, '../build/client'),
     filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
     publicPath: '/'
   },
 
@@ -47,6 +48,7 @@ module.exports = {
 
   plugins: [
     new webpack.IgnorePlugin(/\/iconv-loader$/),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
