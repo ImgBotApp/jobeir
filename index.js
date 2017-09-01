@@ -5,6 +5,7 @@
 const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 const webpackIsomorphicToolsConfig = require('./webpack/webpack.config.isomorphic');
 
+// prettier-ignore
 if (process.env.NODE_ENV === 'production') {
   process.env.webpackAssets = JSON.stringify(
     require('./build/client/manifest.json')
@@ -22,12 +23,11 @@ if (process.env.NODE_ENV === 'production') {
         'babel-plugin-webpack-loaders',
         {
           config: './webpack/webpack.config.babel.js',
-          verbose: true
-        }
+          verbose: true,
+        },
       ],
       'transform-es2015-modules-commonjs',
-      'syntax-dynamic-import'
-    ]
+    ],
   });
 
   require('babel-polyfill');

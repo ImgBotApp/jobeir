@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import CompanyOnboarding from '../../company/components/CompanyOnboarding';
+import FadeIn from '../../../../../styles/components/FadeIn';
 
 /**
  * The process for posting a new job
@@ -23,10 +24,6 @@ class StepForm extends Component {
     this.importUtil(this.props.params.create);
   }
 
-  /* *
- * When a new tab is clicked on run asyncLoadComponetTab() to
- * asynchronously import the correct component.
- */
   componentWillUpdate(nextProps) {
     const { params } = this.props;
     if (nextProps.params.create !== params.create) {
@@ -34,41 +31,34 @@ class StepForm extends Component {
     }
   }
 
-  importUtil(create) {
-    if (create === 'job') {
-      require.ensure(
-        [`../../../../user-input/forms/form/job/JobForm`],
-        require => {
-          // Now require it "sync"
-          const asyncComponent = require(`../../../../user-input/forms/form/job/JobForm`)
-            .default;
-          this.setState({ asyncComponent });
-        },
-        'job-form'
-      );
-    } else {
-      require.ensure(
-        [`../../../../user-input/forms/form/company/CompanyForm`],
-        require => {
-          // Now require it "sync"
-          const asyncComponent = require(`../../../../user-input/forms/form/company/CompanyForm`)
-            .default;
-          this.setState({ asyncComponent });
-        },
-        'company-form'
-      );
-    }
+  importUtil(create: string) {
+    const fileName: string = create === 'job' ? 'JobForm' : 'CompanyForm';
+
+    /**
+     * Using System.import here because babel dynamic-import is not working and
+     * this solution is creating the solutions 
+     */
+    System.import(
+      `../../../../user-input/forms/form/${create}/${fileName}.js`
+    ).then(response => {
+      if (response.default) {
+        this.setState({ asyncComponent: response.default });
+      }
+    });
   }
 
   render() {
     const { params } = this.props;
-    const isCompany = params.create === 'company';
+    const isCompany: boolean = params.create === 'company';
     const AsyncComponent = this.state.asyncComponent;
 
     return (
       <StepFormContainer>
         {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
-        {AsyncComponent && <AsyncComponent params={params} />}
+        {AsyncComponent &&
+          <FadeIn>
+            <AsyncComponent params={params} />
+          </FadeIn>}
       </StepFormContainer>
     );
   }

@@ -35,7 +35,6 @@ module.exports = {
             [
               'transform-decorators-legacy',
               'babel-plugin-webpack-loaders',
-              'syntax-dynamic-import',
               {
                 config: './webpack/webpack.config.babel.js',
                 verbose: false

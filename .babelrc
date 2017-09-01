@@ -3,7 +3,7 @@
   "presets": [
     {
       "plugins": [
-        "transform-runtime"
+        "transform-runtime",
       ]
     },
     {
@@ -21,7 +21,6 @@
     }
   ],
   "plugins": [
-    "syntax-dynamic-import",
     "react-hot-loader/babel",
     "transform-decorators-legacy",
     "transform-regenerator",

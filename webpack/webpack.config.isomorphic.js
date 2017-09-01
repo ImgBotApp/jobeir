@@ -8,6 +8,6 @@ module.exports = {
       parser: WebpackIsomorphicToolsPlugin.url_loader_parser
     }
   },
-  modulesDirectories: ['client', 'node_modules'],
-  patch_require: true
+  modulesDirectories: ['node_modules'],
+  patch_require: false
 };

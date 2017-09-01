@@ -1,10 +1,7 @@
 {
   "javascript": {
-    "company-form": "/company-form.970eeb1bb1e6a9e42f7c.js",
-    "job-form": "/job-form.3736033035cfd93fb093.js",
-    "account-job-posting": "/account-job-posting.8e9da5fa99310546404a.js",
-    "app": "/app.f96c267fc210e59e64c2.js",
-    "vendor": "/vendor.02fcecd79d2a184ef517.js"
+    "app": "/app.189b45c57a60c59db0fd.js",
+    "vendor": "/vendor.b123258ed1df4f2afe42.js"
   },
   "styles": {},
   "assets": {},

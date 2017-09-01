@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'development') {
   require('../modules/account/profile/containers/Profile');
   require('../modules/account/create/step/containers/StepComplete');
   require('../modules/account/jobs/containers/Jobs');
-  require('../modules/account/jobs/posting/containers/JobPosting');
+  require('../modules/account/jobs/posting/containers/JobPostingToggle');
   require('../modules/account/company/containers/Company');
   require('../modules/account/people/containers/People');
   require('../modules/not-found/components/NotFound');
