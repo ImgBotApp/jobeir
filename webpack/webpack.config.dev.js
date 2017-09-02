@@ -74,7 +74,7 @@ module.exports = {
       analyzerMode: 'server',
       analyzerPort: 8888,
       defaultSizes: 'parsed',
-      openAnalyzer: true,
+      openAnalyzer: false,
       generateStatsFile: false
     })
   ]
