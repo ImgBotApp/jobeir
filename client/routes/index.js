@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Core from '../modules/core/containers/Core';
@@ -17,8 +18,11 @@ export function loadRoute(cb) {
   return module => cb(null, module.default);
 }
 
-// Ned to add routes here to allow development routes to work correctly
-// if (process.env.NODE_ENV === 'development') {
+/**
+ * So this used to only be done in development mode but also needs to be added
+ * to production or else every file gets rendered into the bottom of the served
+ * HTML file. Will have to figure this out and clean it up.
+ */
 require('../modules/home/containers/Home');
 require('../modules/jobs/search/containers/JobsSearch');
 require('../modules/jobs/posting/containers/JobsPosting');
@@ -38,7 +42,6 @@ require('../modules/account/people/containers/People');
 require('../modules/not-found/components/NotFound');
 require('../modules/user-input/forms/form/job/JobForm');
 require('../modules/user-input/forms/form/company/CompanyForm');
-// }
 
 // React router setup with code splitting
 const routes = (
@@ -293,7 +296,12 @@ const routes = (
   </Route>
 );
 
-function getRoutesArray(obj) {
+/**
+ * Used within the server.js file to allow for API calls to be handled properly
+ * instead of rendering a server rendered react file.
+ * @param {*} obj 
+ */
+function getRoutesArray(obj: {}) {
   const arr = [
     '/api/v0/login',
     '/api/v0/register',
@@ -305,7 +313,7 @@ function getRoutesArray(obj) {
     new RegExp('\\/api\\/v0\\/jobs\\/[^\\/]+$') // matches /api/v0/jobs/:id
   ];
 
-  (function getIds(obj) {
+  (function getIds(obj: {}) {
     for (const x in obj) {
       if (typeof obj[x] === 'object') {
         getIds(obj[x]);

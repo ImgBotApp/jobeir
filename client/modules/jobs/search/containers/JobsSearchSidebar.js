@@ -42,15 +42,14 @@ class JobsSearchSidebar extends Component {
   constructor(props) {
     super(props);
     const { search = {} } = this.props;
-
     /**
      * Using this to reset the job filters. We want to keep the values from
      * the original search such as title and location/lat/long
      */
     this.reset = {
       location: search.location,
-      lat: search.lat,
-      long: search.long,
+      lat: search.lat || search.coordinates[0],
+      lng: search.lng || search.coordinates[1],
       title: {
         value: search.title && search.title.value
       },
@@ -87,18 +86,18 @@ class JobsSearchSidebar extends Component {
     });
 
     if (isLoaded) {
-      browserHistory.replace(`/jobs/?${updatedQuery}`);
+      browserHistory.replace(`/jobs?${updatedQuery}`);
     }
+  };
+
+  handleResetClick = () => {
+    this.props.dispatch(initialize('search', this.reset));
   };
 
   render() {
     return (
       <JobsSearchSidebarContainer>
-        <div
-          onClick={() => this.props.dispatch(initialize('search', this.reset))}
-        >
-          Reset
-        </div>
+        <div onClick={this.handleResetClick}>Reset</div>
         <ThemeProvider theme={sidebar}>
           <div>
             <Field
