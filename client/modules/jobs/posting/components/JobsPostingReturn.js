@@ -23,7 +23,8 @@ export default connect(mapStateToProps)(JobsPostingReturn);
 const JobsPostingReturnContainer = styled.div`
   display: flex;
   align-items: flex-start;
-  margin-bottom: 60px;
+  max-width: 670px;
+  margin: 0 auto 60px;
 `;
 
 const StyledChevronLeft = styled(ChevronLeft)`

@@ -36,10 +36,10 @@ class JobsPosting extends Component {
     const { params, posting } = this.props;
 
     return (
-      <JobsPostingContainer>
+      <div>
         <JobsPostingReturn />
         <JobPosting hideLogo={false} activePosting={posting} params={params} />
-      </JobsPostingContainer>
+      </div>
     );
   }
 }
@@ -50,8 +50,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(JobsPosting);
-
-const JobsPostingContainer = styled.div`
-  max-width: 670px;
-  margin: 0 auto;
-`;
