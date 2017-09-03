@@ -18,25 +18,27 @@ export function loadRoute(cb) {
 }
 
 // Ned to add routes here to allow development routes to work correctly
-if (process.env.NODE_ENV === 'development') {
-  require('../modules/home/containers/Home');
-  require('../modules/jobs/search/containers/JobsSearch');
-  require('../modules/jobs/posting/containers/JobsPosting');
-  require('../modules/auth/containers/Redirect');
-  require('../modules/auth/login/containers/Login');
-  require('../modules/auth/signup/containers/Signup');
-  require('../modules/auth/reset/containers/Reset');
-  require('../modules/auth/password/containers/Password');
-  require('../modules/account/shell/containers/Shell');
-  require('../modules/account/create/step/containers/Step');
-  require('../modules/account/profile/containers/Profile');
-  require('../modules/account/create/step/containers/StepComplete');
-  require('../modules/account/jobs/containers/Jobs');
-  require('../modules/account/jobs/posting/containers/JobPostingToggle');
-  require('../modules/account/company/containers/Company');
-  require('../modules/account/people/containers/People');
-  require('../modules/not-found/components/NotFound');
-}
+// if (process.env.NODE_ENV === 'development') {
+require('../modules/home/containers/Home');
+require('../modules/jobs/search/containers/JobsSearch');
+require('../modules/jobs/posting/containers/JobsPosting');
+require('../modules/auth/containers/Redirect');
+require('../modules/auth/login/containers/Login');
+require('../modules/auth/signup/containers/Signup');
+require('../modules/auth/reset/containers/Reset');
+require('../modules/auth/password/containers/Password');
+require('../modules/account/shell/containers/Shell');
+require('../modules/account/create/step/containers/Step');
+require('../modules/account/profile/containers/Profile');
+require('../modules/account/create/step/containers/StepComplete');
+require('../modules/account/jobs/containers/Jobs');
+require('../modules/account/jobs/posting/containers/JobPostingToggle');
+require('../modules/account/company/containers/Company');
+require('../modules/account/people/containers/People');
+require('../modules/not-found/components/NotFound');
+require('../modules/user-input/forms/form/job/JobForm');
+require('../modules/user-input/forms/form/company/CompanyForm');
+// }
 
 // React router setup with code splitting
 const routes = (

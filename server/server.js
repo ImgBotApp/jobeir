@@ -56,11 +56,14 @@ import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
 import passportInit from './config/passport';
 
-// Apply body Parser and server public assets and routes
-app.use(delay(300, 500));
+if (process.env.NODE_ENV === 'development') {
+  // Apply request delay for mroe realistic local test
+  app.use(delay(300, 500));
+}
 
 // General server config such as cookies, body, favicon, public, session
 app.use(compression());
+app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use(
   favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico'))
 );
@@ -75,11 +78,6 @@ app.use(
     saveUninitialized: true
   })
 );
-app.use(
-  '/public/uploads',
-  express.static(path.join(__dirname, '../public/uploads'))
-);
-app.use('/public', express.static(path.join(__dirname, '../public')));
 
 // Adding security headers to all requests
 app.use(securityHeaders);
@@ -144,11 +142,6 @@ app.use((req, res, next) => {
         return next();
       }
 
-      // handle all API requests outside of react-router
-      // if (renderProps.router.location.pathname.includes('api')) {
-      //   return next();
-      // }
-
       loadOnServer({ ...renderProps, store, helpers: { req } })
         .then(() => {
           const sheet = new ServerStyleSheet();
@@ -175,9 +168,6 @@ app.use((req, res, next) => {
     }
   );
 });
-
-// Handling any errors from API
-// app.use(productionErrors);
 
 // app.use(notFound);
 

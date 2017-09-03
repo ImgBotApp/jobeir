@@ -4,39 +4,37 @@
 
 const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 const webpackIsomorphicToolsConfig = require('./webpack/webpack.config.isomorphic');
+const projectBasePath = require('path').resolve(__dirname, './');
+
+require('babel-register')({
+  plugins: [
+    [
+      'babel-plugin-webpack-loaders',
+      {
+        config: './webpack/webpack.config.babel.js',
+        verbose: true
+      }
+    ],
+    'transform-es2015-modules-commonjs'
+  ]
+});
+
+require('babel-polyfill');
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 // prettier-ignore
 if (process.env.NODE_ENV === 'production') {
-  process.env.webpackAssets = JSON.stringify(
-    require('./build/client/manifest.json')
-  );
-  process.env.webpackChunkAssets = JSON.stringify(
-    require('./build/client/chunk-manifest.json')
-  );
-  // In production, serve the webpacked server file.
-  require('./build/server/server.bundle.js');
-} else {
-  // Babel polyfill to convert ES6 code in runtime
-  require('babel-register')({
-    plugins: [
-      [
-        'babel-plugin-webpack-loaders',
-        {
-          config: './webpack/webpack.config.babel.js',
-          verbose: true,
-        },
-      ],
-      'transform-es2015-modules-commonjs',
-    ],
-  });
-
-  require('babel-polyfill');
-  require('es6-promise').polyfill();
-  require('isomorphic-fetch');
-
   global.webpackIsomorphicTools = new WebpackIsomorphicTools(
     webpackIsomorphicToolsConfig
-  ).server('./', () => {
+  ).server(projectBasePath, () => {
+    require('./build/server/server.bundle');
+  });
+} else {
+// Babel polyfill to convert ES6 code in runtime
+  global.webpackIsomorphicTools = new WebpackIsomorphicTools(
+    webpackIsomorphicToolsConfig
+  ).server(projectBasePath, () => {
     require('./server/server');
   });
 }

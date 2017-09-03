@@ -1,4 +1,4 @@
-var cssModulesIdentName = '[name]__[local]__[hash:base64:5]';
+let cssModulesIdentName = '[name]__[local]__[hash:base64:5]';
 if (process.env.NODE_ENV === 'production') {
   cssModulesIdentName = '[hash:base64]';
 }

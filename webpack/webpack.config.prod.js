@@ -1,7 +1,8 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+
+// prettier-ignore
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicToolsConfig = require('./webpack.config.isomorphic');
 const path = require('path');
@@ -10,18 +11,23 @@ module.exports = {
   devtool: 'hidden-source-map',
 
   entry: {
-    app: [path.join(__dirname, '../client/index.js')],
+    app: [
+      'eventsource-polyfill',
+      'babel-polyfill',
+      'isomorphic-fetch',
+      path.join(__dirname, '../client/index.js')
+    ],
     vendor: ['react', 'react-dom', 'draft-js', 'react-draft-wysiwyg']
   },
 
   output: {
-    path: path.join(__dirname, '../build/client'),
+    path: path.join(__dirname, '../public/static/dist/client'),
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
-    publicPath: '/'
+    publicPath: '/public/static/dist/client/'
   },
 
-  target: 'node',
+  // target: 'node',
 
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -51,9 +57,18 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production'),
+        CLIENT: JSON.stringify(true)
+      },
+      global: {
+        __CLIENT__: true,
+        __SERVER__: false,
+        __DEVELOPMENT__: false,
+        __DEVTOOLS__: false
       }
     }),
+    new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
@@ -70,7 +85,6 @@ module.exports = {
       compressor: {
         warnings: false
       }
-    }),
-    new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig)
+    })
   ]
 };

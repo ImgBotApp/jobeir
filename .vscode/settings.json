@@ -21,7 +21,7 @@
   "prettier.parser": "flow",
   "prettier.singleQuote": true,
   "prettier.tabWidth": 2,
-  "prettier.trailingComma": "all",
+  "prettier.trailingComma": "none",
   "scss.validate": true,
   "search.exclude": {
     "**/node_modules": true,

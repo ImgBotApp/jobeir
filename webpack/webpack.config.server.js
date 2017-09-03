@@ -1,3 +1,4 @@
+// prettier-ignore
 const fs = require('fs');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
@@ -7,7 +8,8 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, '../build/server'),
-    filename: 'server.[hash].js'
+    filename: 'server.bundle.js',
+    publicPath: '/build/server/'
   },
 
   target: 'node', // in order to ignore built-in modules like path, fs, etc.
@@ -30,7 +32,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015', 'stage-0'],
+          presets: ['react', ['es2015', { modules: false }], 'stage-0'],
           plugins: [
             [
               'transform-decorators-legacy',
