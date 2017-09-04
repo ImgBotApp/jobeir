@@ -6,6 +6,7 @@ import geoip from 'geoip-lite';
  */
 export default function geoLookup(req) {
   let ip =
+    req.headers['X-Real-IP'] ||
     req.headers['x-forwarded-for'] ||
     req.connection.remoteAddress ||
     req.socket.remoteAddress ||
