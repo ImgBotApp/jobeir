@@ -24,11 +24,6 @@ global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
 
 dotenv.config();
 
-console.log(process.env.NODE_ENV);
-console.log(process.env.PROTOCOL);
-console.log(process.env.HOST);
-console.log(process.env.PORT);
-
 const app = new express();
 
 if (process.env.NODE_ENV === 'development') {

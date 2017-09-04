@@ -6,6 +6,9 @@ import GoogleStrategy from 'passport-google-oauth20';
 import FacebookStrategy from 'passport-facebook';
 import GitHubStrategy from 'passport-github2';
 import { passportFindOrCreate } from '../util/passportFindOrCreate';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const passportInit = passport => {
   const opts = {};
@@ -67,9 +70,7 @@ const passportInit = passport => {
   });
 
   passport.deserializeUser((id, done) => {
-    Users.findById(id, (err, user) => {
-      done(err, user);
-    });
+    Users.findById(id).then(user => done(null, user)).catch(done);
   });
 };
 

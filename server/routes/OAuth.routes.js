@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
-import querystring from 'querystring';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -24,10 +23,7 @@ router.get(
     failureRedirect: '/login'
   }),
   (req, res) => {
-    console.log(req.user);
-    console.log(process.env.JWT);
     const token = jwt.sign(buildKey(req.user), process.env.JWT);
-    console.log(token);
 
     res.cookie('SID', token).redirect('/redirect');
   }
