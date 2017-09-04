@@ -2,22 +2,10 @@ import { Router } from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import querystring from 'querystring';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const router = new Router();
-
-// The middleware to set up the parameters for the authenticate middleware.
-const checkReturnTo = (req, res, next) => {
-  const returnTo = req.query.next;
-
-  if (returnTo) {
-    // Maybe unnecessary, but just to be sure.
-    req.session = req.session || {};
-
-    req.session.returnTo = querystring.unescape(returnTo);
-  }
-
-  next();
-};
 
 const buildKey = user => ({
   email: user.email,
@@ -27,7 +15,6 @@ const buildKey = user => ({
 // Google Auth
 router.get(
   '/auth/google',
-  checkReturnTo,
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
@@ -64,7 +51,6 @@ router.get(
 // Github Auth
 router.get(
   '/auth/github',
-  checkReturnTo,
   passport.authenticate('github', { scope: ['user.email:email'] })
 );
 
