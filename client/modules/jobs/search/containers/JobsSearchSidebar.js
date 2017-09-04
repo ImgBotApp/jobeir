@@ -46,6 +46,9 @@ class JobsSearchSidebar extends Component {
      * Using this to reset the job filters. We want to keep the values from
      * the original search such as title and location/lat/long
      */
+
+    // TypeError: Cannot read property '0' of undefined
+    // at new JobsSearchSidebar (/home/brotzky/opt/gost-zvuk/build/server/server.bundle.js:18513:26)
     this.reset = {
       location: search.location,
       lat: search.lat || search.coordinates[0],

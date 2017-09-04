@@ -190,9 +190,7 @@ const SearchFormContainer = styled.form`
   display: flex;
   width: ${props => (props.location === 'nav' ? '820px' : '100%')};
   background: #fff;
-  border: ${props => (props.location === 'nav' ? 'none' : '1px solid #dce0e0')};
-  box-shadow: ${props =>
-    props.location === 'nav' ? 'none' : '0 1px 3px 0 #dce0e0'};
+  border: ${props => (props.location === 'nav' ? 'none' : '1px solid #cdced0')};
   border-radius: 4px;
   height: ${props => (props.location === 'nav' ? '75px' : '80px')};
   margin-top: ${props => (props.location === 'nav' ? '0px' : '30px')};
@@ -227,9 +225,9 @@ const SearchInputContainer = styled.div`
   &:first-child {
     margin-right: 0;
     padding-right: 15px;
-    border-right: 1px solid #dce0e0;
+    border-right: 1px solid #cdced0;
     border-left: ${props =>
-      props.location === 'nav' ? '1px solid #dce0e0' : 'none'};
+      props.location === 'nav' ? '1px solid #cdced0' : 'none'};
   }
 `;
 

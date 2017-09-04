@@ -22,7 +22,7 @@ const theme = {
     }
   },
   width: {
-    max: '1440px'
+    max: '1120px'
   }
 };
 

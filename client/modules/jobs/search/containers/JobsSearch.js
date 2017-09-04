@@ -221,7 +221,7 @@ const JobsSearchBackgroundWhite = styled.div`flex: 1.25;`;
 const JobsSearchRow = styled.div`
   display: flex;
   justify-content: center;
-  width: 1040px;
+  width: 1120px;
   margin: 0 auto;
 `;
 
