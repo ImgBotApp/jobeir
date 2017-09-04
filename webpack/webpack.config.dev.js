@@ -7,6 +7,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 
 const PUBLIC_PATH = `/${process.env.PUBLIC_PATH || ''}/`.replace('//', '/');
 
+// pretier-ignore
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
 
@@ -61,7 +62,10 @@ module.exports = {
       'process.env': {
         CLIENT: JSON.stringify(true),
         NODE_ENV: JSON.stringify('development'),
-        PUBLIC_PATH: JSON.stringify(PUBLIC_PATH)
+        PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
+        HOST: JSON.stringify('localhost'),
+        PROTOCOL: JSON.stringify('http'),
+        PORT: JSON.stringify('8000')
       },
       __CLIENT__: true,
       __SERVER__: false,

@@ -21,7 +21,14 @@ import dotenv from 'dotenv';
 global.__CLIENT__ = false;
 global.__SERVER__ = true;
 global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
-dotenv.load();
+
+dotenv.config();
+
+console.log(process.env.NODE_ENV);
+console.log(process.env.PROTOCOL);
+console.log(process.env.HOST);
+console.log(process.env.PORT);
+
 const app = new express();
 
 if (process.env.NODE_ENV === 'development') {
