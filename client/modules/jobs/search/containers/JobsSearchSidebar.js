@@ -41,7 +41,7 @@ const yesNoOptions: Array<{ text: string, value: string }> = [
 class JobsSearchSidebar extends Component {
   constructor(props) {
     super(props);
-    const { search = {} } = this.props;
+    const { search = { coordinates: [] } } = this.props;
     /**
      * Using this to reset the job filters. We want to keep the values from
      * the original search such as title and location/lat/long
@@ -51,8 +51,8 @@ class JobsSearchSidebar extends Component {
     // at new JobsSearchSidebar (/home/brotzky/opt/gost-zvuk/build/server/server.bundle.js:18513:26)
     this.reset = {
       location: search.location,
-      lat: search.lat || search.coordinates[0],
-      lng: search.lng || search.coordinates[1],
+      lat: search.lat || (search.coordinates && search.coordinates[0]),
+      lng: search.lng || (search.coordinates && search.coordinates[1]),
       title: {
         value: search.title && search.title.value
       },
