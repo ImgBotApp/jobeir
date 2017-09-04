@@ -180,7 +180,7 @@ const mapStateToProps = state => ({
   initialValues: {
     location:
       state.location && `${state.location.city}, ${state.location.region}`,
-    coordinates: state.location.ll
+    coordinates: state.location && state.location.ll
   }
 });
 

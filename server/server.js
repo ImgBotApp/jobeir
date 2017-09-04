@@ -116,7 +116,7 @@ mongoose.connect(process.env.MONGO_URL, { useMongoClient: true }, error => {
 app.use((req, res, next) => {
   const location = geoLookup(req);
   const memoryHistory = createMemoryHistory(req.url);
-  const initialState = Object.assign({}, memoryHistory, location);
+  const initialState = Object.assign({}, location);
   const store = configureStore(initialState);
   const history = syncHistoryWithStore(memoryHistory, store);
 
