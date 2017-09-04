@@ -17,7 +17,6 @@ export function passportFindOrCreate(accessToken, refreshToken, profile, done) {
         return done(err);
       }
       if (!user) {
-        console.log(profile);
         const newUser = new Users({
           email: profile.emails[0].value,
           firstName: profile.name.givenName,

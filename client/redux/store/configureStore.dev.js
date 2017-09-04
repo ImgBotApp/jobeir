@@ -1,7 +1,6 @@
 // @flow
 import { applyMiddleware, compose, createStore } from 'redux';
 import throttle from 'lodash/throttle';
-import { persistState } from 'redux-devtools';
 import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 import { apiMiddleware } from 'redux-api-middleware';

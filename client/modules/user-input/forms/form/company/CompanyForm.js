@@ -39,7 +39,7 @@ class CompanyForm extends Component {
           />}
         {pathname === location &&
           <CompanyFormLocation prevPage={() => this.prevPage(contact)} />}
-        {pathname.includes(upload) && <CompanyFormUpload />}
+        {pathname.includes(upload) && <CompanyFormUpload {...this.props} />}
       </div>
     );
   }
