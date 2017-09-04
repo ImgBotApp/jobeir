@@ -4,7 +4,6 @@ import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
-import { Text, SubmitButton } from '../../../inputs/input';
 import queryString from 'query-string';
 import Autocomplete from '../../../autocomplete/Autocomplete';
 import Select from 'react-select';
@@ -44,7 +43,6 @@ class Input extends Component {
           name={this.props.input.name}
           placeholder={this.props.placeholder}
           showError={showError}
-          autoFocus={this.props.autoFocus}
           autoComplete={false}
           ref={input => {
             this.nameInput = input;
@@ -188,12 +186,12 @@ export default connect(mapStateToProps)(SearchForm);
 
 const SearchFormContainer = styled.form`
   display: flex;
-  width: ${props => (props.location === 'nav' ? '820px' : '100%')};
+  width: 100%;
   background: #fff;
-  border: ${props => (props.location === 'nav' ? 'none' : '1px solid #cdced0')};
+  border: 1px solid #d9d9d9;
   border-radius: 4px;
-  height: ${props => (props.location === 'nav' ? '75px' : '80px')};
-  margin-top: ${props => (props.location === 'nav' ? '0px' : '30px')};
+  height: 80px;
+  margin-top: 30px;
 `;
 
 const SearchInput = styled.input`
@@ -225,9 +223,7 @@ const SearchInputContainer = styled.div`
   &:first-child {
     margin-right: 0;
     padding-right: 15px;
-    border-right: 1px solid #cdced0;
-    border-left: ${props =>
-      props.location === 'nav' ? '1px solid #cdced0' : 'none'};
+    border-right: 1px solid #d9d9d9;
   }
 `;
 
@@ -242,8 +238,6 @@ const SearchButton = styled.button`
   margin: 15px;
   margin-left: 0;
 `;
-
-const AutocompleteContainer = styled.div`position: relative;`;
 
 const SelectContainer = styled.div`
   .Select {
