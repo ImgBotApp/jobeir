@@ -1,9 +1,9 @@
 {
   "apps": [
     {
-      "name": "gost",
-      "script": "npm",
-      "args": "start:prod",
+      "name": "app",
+      "script": "yarn",
+      "args": "start-prod",
       "autorestart": false,
     }
   ]
