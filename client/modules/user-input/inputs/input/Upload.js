@@ -6,7 +6,8 @@ import Dropzone from 'react-dropzone';
 import { UploadIcon } from '../../../../icons/';
 
 const activeStyle = {
-  borderColor: '#5C6AC4'
+  borderColor: '#5C6AC4',
+  background: 'rgba(92, 106, 196, 0.04)'
 };
 
 /**

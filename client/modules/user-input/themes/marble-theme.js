@@ -19,9 +19,10 @@ export const marble = {
     padding: '18px',
     fontSize: '18px',
     width: '100%',
-    minHeight: '300px',
+    minHeight: '250px',
     margin: '0 auto 1rem',
     activeBorderColor: '#5C6AC4',
+    activeBackground: 'rgba(92, 106, 196, 0.04)',
     background: '#f9f8f7',
     cursor: 'pointer',
     ph: {
