@@ -1,0 +1,3 @@
+apps:
+  - script :  pm2 start npm -- start:prod
+    watch  : true
