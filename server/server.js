@@ -107,10 +107,8 @@ app.use(errorHandler);
 mongoose.Promise = global.Promise;
 const mongooseOptions = {
   useMongoClient: true,
-  keepAlive: 1,
-  connectTimeoutMS: 30000,
-  reconnectTries: 30,
-  reconnectInterval: 5000
+  server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 300000 } },
+  replset: { socketOptions: { keepAlive: 1, connectTimeoutMS: 300000 } }
 };
 
 // MongoDB Connection
