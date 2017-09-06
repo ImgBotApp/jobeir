@@ -105,9 +105,16 @@ app.use(errorHandler);
 
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
+const mongooseOptions = {
+  useMongoClient: true,
+  keepAlive: 1,
+  connectTimeoutMS: 30000,
+  reconnectTries: 30,
+  reconnectInterval: 5000
+};
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URL, { useMongoClient: true }, error => {
+mongoose.connect(process.env.MONGO_URL, mongooseOptions, error => {
   if (error) {
     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
     throw error;
