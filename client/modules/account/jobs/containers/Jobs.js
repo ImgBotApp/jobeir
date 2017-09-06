@@ -9,6 +9,9 @@ import JobsListItemPlaceholder from '../components/JobsListItemPlaceholder';
 import FadeIn from '../../../../styles/components/FadeIn';
 import JobsListEmptyState from '../components/JobsListEmptyState';
 
+const byEarliestFirst = (a, b) =>
+  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+
 /**
  * <Jobs />
  * Currently this jobs container serves as the main dashboard for the
@@ -55,7 +58,7 @@ class Jobs extends Component {
               ? <JobsListItemPlaceholder />
               : hasJobPostings
                 ? <FadeIn>
-                    <JobsList jobs={jobs.postings} />
+                    <JobsList jobs={jobs.postings.sort(byEarliestFirst)} />
                   </FadeIn>
                 : <JobsListEmptyState link={link} />}
           </JobsContainer>

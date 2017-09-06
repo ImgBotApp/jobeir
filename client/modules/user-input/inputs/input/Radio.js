@@ -77,6 +77,7 @@ const RadioList = ({ props, showError }) =>
             key={val}
             row={props.row}
             rowWidth={props.rowWidth}
+            showError={showError}
           >
             <RadioListInput
               {...props.input}
@@ -156,14 +157,22 @@ const RadioInputContainer = styled.div`
 `;
 
 const RadioInput = styled.input`
-  border-radius: ${props => props.theme.input.borderRadius};
-  border: ${props => props.theme.input.border};
-  border-color: ${props => (props.showError ? props.theme.error.color : '')};
+  border: solid 1px;
+  border-color: ${props =>
+    props.showError ? props.theme.error.color : '#eceaea'};
   padding: ${props => props.theme.input.padding};
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
   margin: ${props => props.theme.input.margin};
   max-width: ${props => props.theme.input.maxWidth};
+  background: ${props => (props.showError ? '#fee7e8' : '#f9f8f7')};
+
+  position: absolute;
+  -webkit-appearance: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
 
   &:active,
   &:focus {
@@ -172,13 +181,6 @@ const RadioInput = styled.input`
         ? props.theme.error.color
         : props.theme.input.activeBorderColor};
   }
-
-  position: absolute;
-  -webkit-appearance: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
 `;
 
 const RadioText = styled.div`
@@ -285,7 +287,9 @@ const RadioListInputContainer = styled.div`
     props.row === 'full'
       ? '100%'
       : props.rowWidth ? `${props.rowWidth}%` : '49.5%'};
-  padding: 13px;
+  border: solid 1px;
+  border-color: ${props => (props.showError ? '#f27c5e' : '#eceaea')};
+  padding: 15px;
   background:${props =>
     props.showError
       ? props.theme.error.color

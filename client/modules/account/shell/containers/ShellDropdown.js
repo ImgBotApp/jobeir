@@ -86,7 +86,7 @@ class ShellDropdown extends Component {
               </ShellDropdownListItemBottom>
             </ShellDropdownListItem>
             <ShellDropdownListItemHr />
-            <ShellHeaderDropdownLinks>
+            <ShellHeaderDropdownLinks top>
               <ShellDropdownListItemLink to="/account/profile/">
                 Profile
               </ShellDropdownListItemLink>
@@ -152,7 +152,10 @@ const ShellHeaderAvatar = styled.img`
   cursor: pointer;
 `;
 
-const ShellHeaderDropdownLinks = styled.div`opacity: 0.7;`;
+const ShellHeaderDropdownLinks = styled.div`
+  margin: ${props => (props.top ? '5px 0 -5px' : '0 auto')};
+  opacity: 0.7;
+`;
 
 const ShellDropdownContainer = styled.div`
   display: flex;

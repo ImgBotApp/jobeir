@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import { Link } from 'react-router';
 import moment from 'moment';
 
+const trunc = (str: string, length: number): string =>
+  str.length > length ? `${str.substr(0, length - 1)}...` : str;
+
 const JobsSearchPosting = (props: {
   posting: {
     title: string,
@@ -54,7 +57,7 @@ const JobsSearchPosting = (props: {
         </div>
       </JobsSearchPostingTop>
       <JobsSearchPostingCompanyProduct>
-        {posting.company.product}
+        {trunc(posting.company.product, 185)}
       </JobsSearchPostingCompanyProduct>
       <JobsSearchPostingBottom>
         <JobsSearchPostingType>

@@ -21,11 +21,12 @@ class Autocomplete extends Component {
     this.state = {
       predictions: [],
       isSearching: false,
+      noResults: false,
       show: false,
       selectedIndex: 0
     };
 
-    this.debouncedSerach = debounce(function(input) {
+    this.debouncedSearch = debounce(function(input) {
       const service = new google.maps.places.AutocompleteService();
       const { types } = this.props;
 
@@ -38,7 +39,7 @@ class Autocomplete extends Component {
 
     inputField.addEventListener('focus', this.handleFocus);
     inputField.addEventListener('blur', this.handleBlur);
-    inputField.addEventListener('keydown', this.handleTyping);
+    inputField.addEventListener('keyup', this.handleTyping);
   }
 
   componentWillUnmount() {
@@ -46,7 +47,7 @@ class Autocomplete extends Component {
 
     inputField.removeEventListener('focus', this.handleFocus);
     inputField.removeEventListener('blur', this.handleBlur);
-    inputField.removeEventListener('keydown', this.handleTyping);
+    inputField.removeEventListener('keyup', this.handleTyping);
   }
 
   getDetailsByPlaceId = (placeId: string) => {
@@ -67,6 +68,8 @@ class Autocomplete extends Component {
     const upArrow: boolean = event.which === 38;
     const downARrow: boolean = event.which === 40;
     const enter: boolean = event.which === 13;
+
+    this.setState({ noResults: false });
 
     // move the selected list item up
     if (upArrow) {
@@ -97,15 +100,14 @@ class Autocomplete extends Component {
     }
 
     if (inputValue) {
-      this.debouncedSerach(inputValue);
+      this.debouncedSearch(inputValue);
     }
   };
 
   displaySuggestions = (predictions, status) => {
     if (status != google.maps.places.PlacesServiceStatus.OK) {
       // This should be changed from an alert
-      alert(status);
-      return;
+      return this.setState({ noResults: true });
     }
 
     this.setState({ predictions, isSearching: !this.state.isSearching });
@@ -192,7 +194,13 @@ class Autocomplete extends Component {
   };
 
   render() {
-    const { isSearching, show, predictions, selectedIndex } = this.state;
+    const {
+      isSearching,
+      noResults,
+      show,
+      predictions,
+      selectedIndex
+    } = this.state;
 
     return (
       <AutocompleteList
@@ -202,7 +210,11 @@ class Autocomplete extends Component {
         style={this.props.customStyles}
       >
         {isSearching
-          ? <AutocompleteSearching>Searching Address...</AutocompleteSearching>
+          ? <AutocompleteSearching>
+              {noResults
+                ? 'No address found. Try a different address.'
+                : 'Searching Address...'}
+            </AutocompleteSearching>
           : <div>
               {predictions.map((prediction, index) =>
                 <AutocompleteResult

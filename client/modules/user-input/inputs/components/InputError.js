@@ -5,11 +5,14 @@ import styled from 'styled-components';
 const InputError = (props: {
   meta: { touched: boolean, error: boolean, invalid: boolean }
 }) => {
-  const { meta } = props;
+  const { meta, options } = props;
 
   if (!meta) return null;
 
-  const showError: boolean = meta.touched && meta.error && meta.invalid;
+  // We don't want to show the classic field errors for radio inputs
+  const isRadioOption: boolean = options && props.type;
+  const showError: boolean =
+    meta.touched && meta.error && meta.invalid && !isRadioOption;
 
   return (
     <InputErrorContainer>
