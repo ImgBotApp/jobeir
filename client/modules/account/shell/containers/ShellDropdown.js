@@ -87,6 +87,9 @@ class ShellDropdown extends Component {
             </ShellDropdownListItem>
             <ShellDropdownListItemHr />
             <ShellHeaderDropdownLinks top>
+              <ShellDropdownListItemLink to="/account/jobs/">
+                Jobs
+              </ShellDropdownListItemLink>
               <ShellDropdownListItemLink to="/account/profile/">
                 Profile
               </ShellDropdownListItemLink>

@@ -18,6 +18,10 @@ const JobsListEmptyStateContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 380px;
+  text-align: center;
+  margin: 70px auto 0;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledLink = styled(Link)`
@@ -40,7 +44,7 @@ const StyledLink = styled(Link)`
 
 const EmptyStateHeader = styled.h2`
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 800;
   margin-bottom: 15px;
 `;
 

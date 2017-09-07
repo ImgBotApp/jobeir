@@ -30,7 +30,7 @@ class JobsList extends Component {
     }
 
     return (
-      <div>
+      <JobsBodyList>
         {jobs.filter(job => filterJobs(job, filter)).map(job =>
           <JobsBody
             key={job._id}
@@ -39,7 +39,7 @@ class JobsList extends Component {
             <JobsListItem job={job} />
           </JobsBody>
         )}
-      </div>
+      </JobsBodyList>
     );
   }
 }
@@ -53,13 +53,23 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(JobsList);
 
-const JobsBody = styled.ul`
-  padding-bottom: 30px;
-  margin-bottom: 30px;
+const JobsBodyList = styled.ul`
+  // background: white;
+  // border-radius: 3px;
+  // border: 1px solid #eceaea;
+  // padding: 25px;
+  list-style: none;
+`;
+
+const JobsBody = styled.li`
+  padding-bottom: 25px;
+  margin-bottom: 25px;
   border-bottom: 1px solid #f2f2f2;
   cursor: pointer;
 
   &:last-child {
     border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 `;

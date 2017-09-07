@@ -10,12 +10,10 @@ const PrimaryNav = props => {
 
   return (
     <Navigation>
-      {isInAccount
-        ? <PrimaryNavAccount />
-        : <NavigationContainer>
-            <PrimaryNavLogo />
-            <PrimaryNavLinks />
-          </NavigationContainer>}
+      <NavigationContainer>
+        <PrimaryNavLogo />
+        <PrimaryNavLinks />
+      </NavigationContainer>
     </Navigation>
   );
 };

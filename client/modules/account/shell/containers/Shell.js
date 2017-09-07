@@ -25,11 +25,10 @@ import ShellSidebar from './ShellSidebar';
  */
 const Shell = (props: { children: any, params: {}, pathname: string }) => {
   const { children, params, pathname } = props;
-  const showShellHeader: boolean = !pathname.includes('/account/jobs/');
+  const showShellHeader: boolean = !params.jobId;
 
   return (
     <ShellContainer>
-      <ShellSidebar />
       <ShellContent>
         {showShellHeader &&
           <ShellHeader
@@ -51,13 +50,13 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(UserWrapper(Shell));
 
 const ShellContainer = styled.div`
-  display: flex;
+  padding-bottom: 80px;
   min-height: 100vh;
 `;
 
 const ShellContent = styled.main`
-  padding-left: 250px;
-  margin: 0 50px;
+  margin: 0 auto;
+  max-width: 1080px;
   width: 100%;
 `;
 
