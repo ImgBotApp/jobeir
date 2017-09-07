@@ -84,7 +84,6 @@ class SelectInput extends Component {
             options={this.props.options}
             placeholder={this.props.placeholder}
             onBlur={() => {}}
-            autoFocus={this.props.autoFocus}
             searchable={true}
             openOnFocus={true}
             ref="stateSelect"
@@ -381,78 +380,37 @@ const SelectContainer = styled.div`
   .Select-control:not(.is-searchable) > .Select-input {
     outline: none;
   }
-  .Select-loading-zone {
+
+  .Select-clear-zone {
+    transition: opacity 200ms ease;
+    opacity: 0;
+    color: #212121;
     cursor: pointer;
     display: table-cell;
     position: relative;
     text-align: center;
     vertical-align: middle;
-    width: 16px;
-  }
-  .Select-loading {
-    -webkit-animation: Select-animation-spin 400ms infinite linear;
-    -o-animation: Select-animation-spin 400ms infinite linear;
-    animation: Select-animation-spin 400ms infinite linear;
-    width: 16px;
-    height: 16px;
-    box-sizing: border-box;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-    border-right-color: rgba(0, 0, 0, 0.85);
-    display: inline-block;
-    position: relative;
-    vertical-align: middle;
-  }
-  .Select-clear-zone {
-    display: none;
-    -webkit-animation: Select-animation-fadeIn 200ms;
-    -o-animation: Select-animation-fadeIn 200ms;
-    animation: Select-animation-fadeIn 200ms;
-    color: #676767;
-    cursor: pointer;
-    // display: table-cell;
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
+    font-weight: 100;
     width: 17px;
   }
   .Select-clear-zone:hover {
-    color: #d0021b;
+    color: #676767;
   }
   .Select-clear {
     display: inline-block;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1;
   }
-  .Select--multi .Select-clear-zone {
-    width: 17px;
-  }
-  .Select-arrow-zone {
-    display: none;
-    cursor: pointer;
-    // display: table-cell;
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
-    width: 25px;
-    padding-right: 5px;
-  }
-  .Select-arrow {
-    border-color: #676767 transparent transparent;
-    border-style: solid;
-    border-width: 5px 5px 2.5px;
-    display: inline-block;
-    height: 0;
-    width: 0;
-    position: relative;
-  }
+
   .is-open .Select-arrow,
   .Select-arrow-zone:hover > .Select-arrow {
     border-top-color: #666;
   }
-  .Select--multi .Select-multi-value-wrapper {
-    display: inline-block;
+
+  .Select.has-value .Select-clear-zone {
+    opacity: 1;
   }
+
   .Select .Select-aria-only {
     display: inline-block;
     height: 1px;
@@ -531,72 +489,6 @@ const SelectContainer = styled.div`
     cursor: default;
     display: block;
     padding: 8px 10px;
-  }
-  .Select--multi .Select-input {
-    vertical-align: middle;
-    margin-left: 10px;
-    padding: 0;
-  }
-  .Select--multi.has-value .Select-input {
-    margin-left: 5px;
-  }
-  .Select--multi .Select-value {
-    background-color: #ebf5ff;
-    /* Fallback color for IE 8 */
-    background-color: rgba(0, 126, 255, 0.08);
-    border-radius: 2px;
-    border: 1px solid #c2e0ff;
-    /* Fallback color for IE 8 */
-    border: 1px solid rgba(0, 126, 255, 0.24);
-    color: #007eff;
-    display: inline-block;
-    font-size: 0.9em;
-    line-height: 1.5;
-    margin-left: 5px;
-    margin-top: 5px;
-    vertical-align: top;
-  }
-  .Select--multi .Select-value-icon,
-  .Select--multi .Select-value-label {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .Select--multi .Select-value-label {
-    border-bottom-right-radius: 2px;
-    border-top-right-radius: 2px;
-    cursor: default;
-    padding: 2px 5px;
-  }
-  .Select--multi a.Select-value-label {
-    color: #007eff;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .Select--multi a.Select-value-label:hover {
-    text-decoration: underline;
-  }
-  .Select--multi .Select-value-icon {
-    cursor: pointer;
-    border-bottom-left-radius: 2px;
-    border-top-left-radius: 2px;
-    border-right: 1px solid #c2e0ff;
-    /* Fallback color for IE 8 */
-    border-right: 1px solid rgba(0, 126, 255, 0.24);
-    padding: 1px 5px 3px;
-  }
-  .Select--multi.is-disabled .Select-value {
-    background-color: #fcfcfc;
-    border: 1px solid #e3e3e3;
-    color: rgba(0, 0, 0, 0.85);
-  }
-  .Select--multi.is-disabled .Select-value-icon {
-    cursor: not-allowed;
-    border-right: 1px solid #e3e3e3;
-  }
-  .Select--multi.is-disabled .Select-value-icon:hover,
-  .Select--multi.is-disabled .Select-value-icon:focus,
-  .Select--multi.is-disabled .Select-value-icon:active {
-    background-color: #fcfcfc;
   }
   @keyframes Select-animation-spin {
     to {

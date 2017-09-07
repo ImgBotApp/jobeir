@@ -8,10 +8,9 @@ const Html = (props: {
   css: {},
   assets: Array<string>,
   state: {},
-  content: string,
-  url: string
+  content: string
 }) => {
-  const { css, assets, state, content, url } = props;
+  const { css, assets, state, content } = props;
   const helmet = Helmet.rewind();
   const attrs = helmet.htmlAttributes.toComponent();
 

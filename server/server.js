@@ -164,11 +164,10 @@ app.use((req, res, next) => {
           );
 
           const css = sheet.getStyleTags();
-          const url = req._parsedUrl.pathname;
           const initialState = store.getState();
           const assets = global.webpackIsomorphicTools.assets();
           const state = `window.__INITIAL_STATE__ = ${serialize(initialState)}`;
-          const markup = <Html {...{ css, assets, state, content, url }} />;
+          const markup = <Html {...{ css, assets, state, content }} />;
           const html = `<!doctype html>${renderToStaticMarkup(markup)}`;
 
           res.send(html);
