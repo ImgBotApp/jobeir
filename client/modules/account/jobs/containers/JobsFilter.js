@@ -41,7 +41,7 @@ export default connect(mapStateToProps)(JobsFilter);
 
 const JobsFilterContainer = styled.div`
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   border-top: 1px solid #f2f2f2;
 `;
 
