@@ -1,0 +1,10 @@
+{
+    "apps": [
+        {
+            "name": "gost",
+            "script": "npm",
+            "args" : "start:prod"
+        }
+    ]
+}
+
