@@ -36,7 +36,6 @@ const HomeBannerContainer = styled.div`
 
 const HomeBannerImage = styled.img`
   width: 85%;
-  min-height: 620px;
   display: block;
 `;
 

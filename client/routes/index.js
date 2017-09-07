@@ -23,25 +23,25 @@ export function loadRoute(cb) {
  * to production or else every file gets rendered into the bottom of the served
  * HTML file. Will have to figure this out and clean it up.
  */
-require('../modules/home/containers/Home');
-require('../modules/jobs/search/containers/JobsSearch');
-require('../modules/jobs/posting/containers/JobsPosting');
-require('../modules/auth/containers/Redirect');
-require('../modules/auth/login/containers/Login');
-require('../modules/auth/signup/containers/Signup');
-require('../modules/auth/reset/containers/Reset');
-require('../modules/auth/password/containers/Password');
-require('../modules/account/shell/containers/Shell');
-require('../modules/account/create/step/containers/Step');
-require('../modules/account/profile/containers/Profile');
-require('../modules/account/create/step/containers/StepComplete');
-require('../modules/account/jobs/containers/Jobs');
-require('../modules/account/jobs/posting/containers/JobPostingToggle');
-require('../modules/account/company/containers/Company');
-require('../modules/account/people/containers/People');
-require('../modules/not-found/components/NotFound');
-require('../modules/user-input/forms/form/job/JobForm');
-require('../modules/user-input/forms/form/company/CompanyForm');
+// require('../modules/home/containers/Home');
+// require('../modules/jobs/search/containers/JobsSearch');
+// require('../modules/jobs/posting/containers/JobsPosting');
+// require('../modules/auth/containers/Redirect');
+// require('../modules/auth/login/containers/Login');
+// require('../modules/auth/signup/containers/Signup');
+// require('../modules/auth/reset/containers/Reset');
+// require('../modules/auth/password/containers/Password');
+// require('../modules/account/shell/containers/Shell');
+// require('../modules/account/create/step/containers/Step');
+// require('../modules/account/profile/containers/Profile');
+// require('../modules/account/create/step/containers/StepComplete');
+// require('../modules/account/jobs/containers/Jobs');
+// require('../modules/account/jobs/posting/containers/JobPostingToggle');
+// require('../modules/account/company/containers/Company');
+// require('../modules/account/people/containers/People');
+// require('../modules/not-found/components/NotFound');
+// require('../modules/user-input/forms/form/job/JobForm');
+// require('../modules/user-input/forms/form/company/CompanyForm');
 
 // React router setup with code splitting
 const routes = (
@@ -53,7 +53,7 @@ const routes = (
           require => {
             cb(null, require('../modules/home/containers/Home').default);
           },
-          'home'
+          '-home'
         );
       }}
     />
@@ -65,7 +65,7 @@ const routes = (
           require => {
             cb(null, require('../modules/auth/login/containers/Login').default);
           },
-          'login'
+          '-login'
         );
       }}
     />
@@ -80,7 +80,7 @@ const routes = (
               require('../modules/auth/signup/containers/Signup').default
             );
           },
-          'signup'
+          '-signup'
         );
       }}
     />
@@ -92,7 +92,7 @@ const routes = (
           require => {
             cb(null, require('../modules/auth/reset/containers/Reset').default);
           },
-          'reset'
+          '-reset'
         );
       }}
     />
@@ -107,7 +107,7 @@ const routes = (
               require('../modules/auth/password/containers/Password').default
             );
           },
-          'reset-token'
+          '-password-'
         );
       }}
     />
@@ -122,7 +122,7 @@ const routes = (
               require('../modules/jobs/search/containers/JobsSearch').default
             );
           },
-          'jobs'
+          '-jobs'
         );
       }}
     />
@@ -137,7 +137,7 @@ const routes = (
               require('../modules/jobs/posting/containers/JobsPosting').default
             );
           },
-          'job-post'
+          '-jobs-'
         );
       }}
     />
@@ -149,7 +149,7 @@ const routes = (
           require => {
             cb(null, require('../modules/auth/containers/Redirect').default);
           },
-          'redirect'
+          '-redirect'
         );
       }}
     />
@@ -164,20 +164,8 @@ const routes = (
               require('../modules/account/create/step/containers/Step').default
             );
           },
-          'step'
+          '-create-'
         );
-      }}
-    />
-    <Route
-      path="/complete/:create(/:companyId)"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(
-            null,
-            require('../modules/account/create/step/containers/StepComplete')
-              .default
-          );
-        });
       }}
     />
     <Route
@@ -191,13 +179,12 @@ const routes = (
               require('../modules/account/shell/containers/Shell').default
             );
           },
-          'account'
+          '-account'
         );
       }}
     >
       <Route
         path="/account/company"
-        name="Company"
         getComponent={(nextState, cb) => {
           require.ensure(
             [],
@@ -207,7 +194,7 @@ const routes = (
                 require('../modules/account/company/containers/Company').default
               );
             },
-            'account-company'
+            '-account-company'
           );
         }}
       />
@@ -223,7 +210,7 @@ const routes = (
                 require('../modules/account/jobs/containers/Jobs').default
               );
             },
-            'account-jobs'
+            '-account-jobs'
           );
         }}
       />
@@ -240,7 +227,7 @@ const routes = (
                 require('../modules/account/profile/containers/Profile').default
               );
             },
-            'account-profile'
+            '-account-profile'
           );
         }}
       />
@@ -257,13 +244,12 @@ const routes = (
                   .default
               );
             },
-            'account-job-posting'
+            '-account-job-'
           );
         }}
       />
       <Route
         path="/account/people"
-        name="People"
         getComponent={(nextState, cb) => {
           require.ensure(
             [],
@@ -273,7 +259,7 @@ const routes = (
                 require('../modules/account/people/containers/People').default
               );
             },
-            'account-people'
+            '-account-people'
           );
         }}
       />
@@ -289,7 +275,7 @@ const routes = (
               require('../modules/not-found/components/NotFound').default
             );
           },
-          'not-found'
+          '-not-found'
         );
       }}
     />

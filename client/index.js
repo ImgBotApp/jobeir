@@ -7,6 +7,8 @@ import configureStore from './redux/store';
 import { AppContainer } from 'react-hot-loader';
 import App from './modules/app/containers/App';
 import initServiceWorker from './sw';
+import { match } from 'react-router';
+import routes from './routes';
 
 // Initialize store
 const store = configureStore(window.__INITIAL_STATE__);
@@ -16,12 +18,17 @@ const mountApp = document.getElementById('app');
 // Initialize Servicie Worker register code
 // initServiceWorker();
 
-render(
-  <AppContainer>
-    <App store={store} />
-  </AppContainer>,
-  mountApp
-);
+const { pathname, search, hash } = window.location;
+const location = `${pathname}${search}${hash}`;
+
+match({ routes, location }, () => {
+  render(
+    <AppContainer>
+      <App store={store} />
+    </AppContainer>,
+    mountApp
+  );
+});
 
 // For hot reloading of react components
 if (module.hot) {

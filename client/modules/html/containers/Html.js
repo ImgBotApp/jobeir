@@ -8,11 +8,24 @@ const Html = (props: {
   css: {},
   assets: Array<string>,
   state: {},
-  content: string
+  content: string,
+  url: string
 }) => {
-  const { css, assets, state, content } = props;
+  const { css, assets, state, content, url } = props;
   const helmet = Helmet.rewind();
   const attrs = helmet.htmlAttributes.toComponent();
+  const paths = Object.keys(assets.javascript)
+    .reverse()
+    .map(key => key.replace(new RegExp('-', 'g'), '/'))
+    .filter(
+      key => key.includes('app') || key.includes('vendor')
+      // url.indexOf(key) !== -1,
+    )
+    .map(key => key.replace(new RegExp('/', 'g'), '-'));
+
+  console.log(assets.javascript);
+  console.log(paths);
+  console.log(url);
 
   return (
     <html {...attrs}>
@@ -34,9 +47,7 @@ const Html = (props: {
           dangerouslySetInnerHTML={{ __html: `<div>${content}</div>` }}
         />
         <script dangerouslySetInnerHTML={{ __html: state }} />
-        {Object.keys(assets.javascript)
-          .reverse()
-          .map(key => <script key={key} src={assets.javascript[key]} />)}
+        {paths.map(key => <script key={key} src={assets.javascript[key]} />)}
       </body>
     </html>
   );

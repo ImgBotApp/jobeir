@@ -10,9 +10,18 @@ const MODAL_COMPONENTS = {
 const Modal = ({ modalType, modalProps }) => {
   const SpecificModal = MODAL_COMPONENTS[modalType];
 
-  return modalType ? <SpecificModal {...modalProps} /> : null;
+  /**
+   * If there is modalType, we want to remove scroll on the body
+   * and render the modal. Otherwise, remove all styles from body.
+   */
+  if (modalType) {
+    document.body.style.overflow = 'hidden';
+    return <SpecificModal {...modalProps} />;
+  }
+
+  document.body.removeAttribute('style');
+  // expects something to be returned, null or a component
+  return null;
 };
 
-const mapStateToProps = state => state.modal;
-
-export default connect(mapStateToProps)(Modal);
+export default connect(state => state.modal)(Modal);

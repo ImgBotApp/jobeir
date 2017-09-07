@@ -39,18 +39,18 @@ class Core extends Component {
   }
 
   render() {
-    const { children, isModalOpen, pathname } = this.props;
+    const { children, isModalOpen, globalIsLoaded, pathname } = this.props;
     const shouldShowHeader: boolean = !pathname.includes('create');
 
     return (
       <ThemeProvider theme={theme}>
         <div>
+          {globalIsLoaded && <Modal />}
           <CoreContainer pathname={pathname} isModalOpen={isModalOpen}>
             <AppHead />
             {shouldShowHeader && <Header />}
             {children}
           </CoreContainer>
-          <Modal />
         </div>
       </ThemeProvider>
     );
@@ -63,7 +63,8 @@ const mapStateToProps = state => ({
       state.routing.locationBeforeTransitions.pathname) ||
     '',
   isLoaded: state.reduxAsyncConnect.loaded,
-  isModalOpen: state.modal.modalType
+  isModalOpen: state.modal.modalType,
+  globalIsLoaded: state.session.auth.globalIsLoaded
 });
 
 export default connect(mapStateToProps)(Core);

@@ -1,7 +1,23 @@
 {
   "javascript": {
-    "app": "/app.88d55a00207f89300af7.js",
-    "vendor": "/vendor.66ae2d8a19564dd1762a.js"
+    "-jobs": "/-jobs.9b708d37af78dc7bdd19.js",
+    "-create-": "/-create-.6dc7e736fd7715f1a5f5.js",
+    "-account-job-": "/-account-job-.b72a988d5a0468201565.js",
+    "-home": "/-home.9b469f8dd592bfb64b79.js",
+    "-jobs-": "/-jobs-.fedfcca82fa01dadf6c8.js",
+    "-account-jobs": "/-account-jobs.d382f00e038163f71f21.js",
+    "-account": "/-account.99a66b91c4afb80f8b6d.js",
+    "-reset": "/-reset.5147d7aebca223999878.js",
+    "-password-": "/-password-.4166e36dc0a76b8d09a9.js",
+    "-login": "/-login.7a712584a9d29bc396b2.js",
+    "-signup": "/-signup.748959f7611c348ab71d.js",
+    "-account-profile": "/-account-profile.dcab382aea4f5979ddd2.js",
+    "-account-company": "/-account-company.181071a6a720a7118386.js",
+    "-not-found": "/-not-found.4a554e58cdb0f005fcef.js",
+    "-redirect": "/-redirect.539b01501ef7c34aa5a1.js",
+    "-account-people": "/-account-people.39634d99857dd0b03da4.js",
+    "app": "/app.26348eac08f6f38d3d5b.js",
+    "vendor": "/vendor.848793ed3fadd72bc33b.js"
   },
   "styles": {},
   "assets": {},

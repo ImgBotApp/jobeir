@@ -107,8 +107,9 @@ app.use(errorHandler);
 mongoose.Promise = global.Promise;
 const mongooseOptions = {
   useMongoClient: true,
-  server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 300000 } },
-  replset: { socketOptions: { keepAlive: 1, connectTimeoutMS: 300000 } }
+  autoReconnect: true,
+  keepAlive: 1,
+  connectTimeoutMS: 300000
 };
 
 // MongoDB Connection
@@ -132,7 +133,7 @@ app.use((req, res, next) => {
   }
 
   match(
-    { history, routes, location: req.originalUrl },
+    { history, routes, location: req.url },
     (error, redirectLocation, renderProps) => {
       if (error) {
         return res.status(500).end(error);
@@ -149,7 +150,7 @@ app.use((req, res, next) => {
         return next();
       }
 
-      loadOnServer({ ...renderProps, store, helpers: { req } })
+      loadOnServer({ ...renderProps, store, helpers: { req }, routes })
         .then(() => {
           const sheet = new ServerStyleSheet();
           const content = renderToString(
@@ -163,10 +164,11 @@ app.use((req, res, next) => {
           );
 
           const css = sheet.getStyleTags();
+          const url = req._parsedUrl.pathname;
           const initialState = store.getState();
           const assets = global.webpackIsomorphicTools.assets();
           const state = `window.__INITIAL_STATE__ = ${serialize(initialState)}`;
-          const markup = <Html {...{ css, assets, state, content }} />;
+          const markup = <Html {...{ css, assets, state, content, url }} />;
           const html = `<!doctype html>${renderToStaticMarkup(markup)}`;
 
           res.send(html);
