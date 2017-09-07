@@ -21,6 +21,11 @@ const mountApp = document.getElementById('app');
 const { pathname, search, hash } = window.location;
 const location = `${pathname}${search}${hash}`;
 
+/**
+ * Wrapping rendering in react-router's match to avoid a flash of content
+ * as the JavaScript code gets loaded in after the server rendered code
+ * https://github.com/ryanflorence/example-react-router-server-rendering-lazy-routes
+ */
 match({ routes, location }, () => {
   render(
     <AppContainer>
