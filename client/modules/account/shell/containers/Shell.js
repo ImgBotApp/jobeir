@@ -25,7 +25,7 @@ import ShellSidebar from './ShellSidebar';
  */
 const Shell = (props: { children: any, params: {}, pathname: string }) => {
   const { children, params, pathname } = props;
-  const showShellHeader: boolean = !pathname.includes('/account/jobs/');
+  const showShellHeader: boolean = !params.jobId;
 
   return (
     <ShellContainer>
