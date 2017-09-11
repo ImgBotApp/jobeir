@@ -23,27 +23,27 @@ export function loadRoute(cb) {
  * to production or else every file gets rendered into the bottom of the served
  * HTML file. Will have to figure this out and clean it up.
  */
-if (process.env.ENV === 'development') {
-  // require('../modules/home/containers/Home');
-  // require('../modules/jobs/search/containers/JobsSearch');
-  // require('../modules/jobs/posting/containers/JobsPosting');
-  // require('../modules/auth/containers/Redirect');
-  // require('../modules/auth/login/containers/Login');
-  // require('../modules/auth/signup/containers/Signup');
-  // require('../modules/auth/reset/containers/Reset');
-  // require('../modules/auth/password/containers/Password');
-  // require('../modules/account/shell/containers/Shell');
-  // require('../modules/account/create/step/containers/Step');
-  // require('../modules/account/profile/containers/Profile');
-  // require('../modules/account/create/step/containers/StepComplete');
-  // require('../modules/account/jobs/containers/Jobs');
-  // require('../modules/account/jobs/posting/containers/JobPostingToggle');
-  // require('../modules/account/company/containers/Company');
-  // require('../modules/account/people/containers/People');
-  // require('../modules/not-found/components/NotFound');
-  // require('../modules/user-input/forms/form/job/JobForm');
-  // require('../modules/user-input/forms/form/company/CompanyForm');
-}
+// if (process.env.ENV === 'development') {
+require('../modules/home/containers/Home');
+require('../modules/jobs/search/containers/JobsSearch');
+require('../modules/jobs/posting/containers/JobsPosting');
+require('../modules/auth/containers/Redirect');
+require('../modules/auth/login/containers/Login');
+require('../modules/auth/signup/containers/Signup');
+require('../modules/auth/reset/containers/Reset');
+require('../modules/auth/password/containers/Password');
+require('../modules/account/shell/containers/Shell');
+require('../modules/account/create/step/containers/Step');
+require('../modules/account/profile/containers/Profile');
+require('../modules/account/create/step/containers/StepComplete');
+require('../modules/account/jobs/containers/Jobs');
+require('../modules/account/jobs/posting/containers/JobPostingToggle');
+require('../modules/account/company/containers/Company');
+require('../modules/account/people/containers/People');
+require('../modules/not-found/components/NotFound');
+require('../modules/user-input/forms/form/job/JobForm');
+require('../modules/user-input/forms/form/company/CompanyForm');
+// }
 
 // React router setup with code splitting
 const routes = (
