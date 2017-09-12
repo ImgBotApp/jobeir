@@ -3,7 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { initialize } from 'redux-form';
 import styled from 'styled-components';
+import queryString from 'query-string';
 import FadeIn from '../../../../styles/components/FadeIn';
+
 /**
  * Pass in the current search form values to see if the user has applied
  * and filters. This is used to toggle the visbility of the reset button
@@ -16,6 +18,8 @@ const showResetButton = (search = {}) => {
 
 const JobSearchFilterReset = (props: { isFiltering: boolean, search: {} }) => {
   const { dispatch, isFiltering, search = { coordinates: [] } } = props;
+  const parsed = queryString.parse(location.search);
+
   /**
    * Using this to reset the job filters. We want to keep the values from
    * the original search such as title and location/lat/long
@@ -25,7 +29,8 @@ const JobSearchFilterReset = (props: { isFiltering: boolean, search: {} }) => {
     lat: search.lat || (search.coordinates && search.coordinates[0]),
     lng: search.lng || (search.coordinates && search.coordinates[1]),
     title: {
-      value: search.title && search.title.value
+      label: (search.title && search.title.value) || parsed.q,
+      value: (search.title && search.title.value) || parsed.q
     },
     companySize: undefined,
     distance: undefined,

@@ -49,7 +49,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(UserWrapper(Shell));
 
-const ShellContainer = styled.div`min-height: 100vh;`;
+const ShellContainer = styled.div``;
 
 const ShellContent = styled.main`
   margin: 0 auto;

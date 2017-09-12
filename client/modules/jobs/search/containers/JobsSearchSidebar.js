@@ -7,6 +7,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import queryString from 'query-string';
 import { Radio } from '../../../user-input/inputs/input';
 import sidebar from '../../../user-input/themes/sidebar-theme';
+import SidebarSearchForm from '../../../user-input/forms/form/search/SidebarSearchForm';
 
 const jobTypes: Array<{ name: string, value: string }> = [
   { name: 'Full-time', value: 'Full-time' },
@@ -40,22 +41,25 @@ const yesNoOptions: Array<{ text: string, value: string }> = [
 
 class JobsSearchSidebar extends Component {
   componentDidUpdate(prevProps) {
+    const updatedLocation = prevProps.search.lat !== this.props.search.lat;
+
     if (
       JSON.stringify(prevProps.search) !== JSON.stringify(this.props.search)
     ) {
-      this.udpateSearchQuery();
+      this.udpateSearchQuery(updatedLocation);
     }
   }
 
-  udpateSearchQuery = () => {
+  udpateSearchQuery = updatedLocation => {
     const { search, jobs: { isLoaded } } = this.props;
+    const parsed = queryString.parse(location.search);
     // Creating a new updated query with the correct start position
     const updatedQuery = queryString.stringify({
-      l: search.location,
-      q: (search.title && search.title.value) || undefined,
+      l: updatedLocation ? search.location : parsed.l,
+      q: (search.title && search.title.value) || parsed.q,
       s: search.start,
-      lat: search.lat,
-      lng: search.lng,
+      lat: updatedLocation ? search.lat : parsed.lat,
+      lng: updatedLocation ? search.lng : parsed.lng,
       et: search.employmentType,
       eq: search.equity,
       d: search.distance,
@@ -71,6 +75,7 @@ class JobsSearchSidebar extends Component {
   render() {
     return (
       <JobsSearchSidebarContainer>
+        <SidebarSearchForm />
         <ThemeProvider theme={sidebar}>
           <div>
             <Field
@@ -88,9 +93,9 @@ class JobsSearchSidebar extends Component {
               component={Radio}
             />
             <Field
-              name="distance"
-              label="Distance radius"
-              options={distanceOptions}
+              name="remote"
+              label="Open to Remote"
+              options={yesNoOptions}
               type="circle"
               component={Radio}
             />
@@ -102,9 +107,9 @@ class JobsSearchSidebar extends Component {
               component={Radio}
             />
             <Field
-              name="remote"
-              label="Open to Remote"
-              options={yesNoOptions}
+              name="distance"
+              label="Distance radius"
+              options={distanceOptions}
               type="circle"
               component={Radio}
             />

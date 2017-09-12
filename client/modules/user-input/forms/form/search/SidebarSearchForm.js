@@ -4,9 +4,9 @@ import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
-import queryString from 'query-string';
 import Autocomplete from '../../../autocomplete/Autocomplete';
 import Select from 'react-select';
+import queryString from 'query-string';
 import { jobOptions } from '../../options/jobs';
 
 const customStyles = {
@@ -94,20 +94,7 @@ class SelectInput extends Component {
   }
 }
 
-const Button = (props: {
-  disabled: boolean,
-  buttonText: string,
-  location: string
-}) =>
-  <SearchButton
-    type="submit"
-    disabled={props.disabled}
-    location={props.location}
-  >
-    {props.buttonText || 'Search'}
-  </SearchButton>;
-
-class SearchForm extends Component {
+class SidebarSearchForm extends Component {
   componentDidMount() {
     /**
      * This is a hack to remove the browser's autocomplete suggestions
@@ -142,13 +129,14 @@ class SearchForm extends Component {
     const { handleSubmit, location } = this.props;
 
     return (
-      <SearchFormContainer
+      <SidebarSearchFormContainer
         onSubmit={handleSubmit(this.formSubmit)}
         location={location}
       >
         <Field
           name="title"
           label="Job Title"
+          placeholder="Any"
           component={SelectInput}
           options={jobOptions}
           location={location}
@@ -157,20 +145,20 @@ class SearchForm extends Component {
         <Field
           name="location"
           label="Location"
+          placeholder="Any"
           component={Input}
           location={location}
           autocomplete={true}
         />
-        <Field name="submitButton" component={Button} location={location} />
-      </SearchFormContainer>
+      </SidebarSearchFormContainer>
     );
   }
 }
 
-SearchForm = reduxForm({
+SidebarSearchForm = reduxForm({
   form: 'search',
   destroyOnUnmount: false
-})(SearchForm);
+})(SidebarSearchForm);
 
 const mapStateToProps = state => ({
   initialValues: {
@@ -180,16 +168,21 @@ const mapStateToProps = state => ({
   }
 });
 
-export default connect(mapStateToProps)(SearchForm);
+export default connect(mapStateToProps)(SidebarSearchForm);
 
-const SearchFormContainer = styled.form`
+const SidebarSearchFormContainer = styled.form``;
+
+const SearchInputContainer = styled.div`
+  position: relative;
   display: flex;
-  width: 100%;
-  background: #fff;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  height: 80px;
-  margin-top: 30px;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 40px 15px 0px;
+  margin-bottom: 23px;
+
+  &:first-child {
+    margin-bottom: 15px;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -200,6 +193,22 @@ const SearchInput = styled.input`
   font-weight: 800;
   padding-top: 5px;
   font-size: 20px;
+  background: transparent;
+
+  ::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.85);
+  }
+  :-moz-placeholder {
+    color: rgba(0, 0, 0, 0.85);
+    opacity: 1;
+  }
+  ::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.85);
+    opacity: 1;
+  }
+  :-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.85);
+  }
 
   &:focus {
     outline: none;
@@ -207,34 +216,11 @@ const SearchInput = styled.input`
 `;
 
 const SearchLabel = styled.label`
-  margin-top: 15px;
-  font-size: 17px;
-`;
-
-const SearchInputContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  padding: 0 15px 15px;
-
-  &:first-child {
-    margin-right: 0;
-    padding-right: 15px;
-    border-right: 1px solid #d9d9d9;
-  }
-`;
-
-const SearchButton = styled.button`
-  width: 160px;
-  font-size: 18px;
-  color: white;
-  background-color: #5c6ac4;
-  border: 0;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 15px;
-  margin-left: 0;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #898989;
+  margin-bottom: 3px;
 `;
 
 const SelectContainer = styled.div`
@@ -264,7 +250,7 @@ const SelectContainer = styled.div`
     opacity: 0.35;
   }
   .Select-control {
-    background-color: #fff;
+    background-color: transparent;
     color: rgba(0, 0, 0, 0.85);
     cursor: default;
     display: table;
@@ -285,7 +271,7 @@ const SelectContainer = styled.div`
     cursor: text;
   }
   .is-open > .Select-control {
-    background: #fff;
+    background: transparent;
     border-color: ${props =>
       props.showError ? props.theme.error.color : props.theme.colors.text};
   }
@@ -308,7 +294,7 @@ const SelectContainer = styled.div`
     display: flex;
     align-items: center;
     bottom: 0;
-    color: #fff;
+    color: rgba(0, 0, 0, 0.85);
     left: 0;
     line-height: 1.5;
     padding-left: 0;
@@ -443,10 +429,10 @@ const SelectContainer = styled.div`
     box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
       0 8px 16px rgba(27, 39, 51, 0.08);
     box-sizing: border-box;
-    margin-top: 19px;
+    margin-top: 10px;
     max-height: 250px;
     position: absolute;
-    left: -15px;
+    left: 0px;
     top: 100%;
     width: 362px;
     z-index: 1;

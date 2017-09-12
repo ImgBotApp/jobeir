@@ -62,6 +62,10 @@ const JobsBodyList = styled.ul`
   width: 1080px;
   margin: 40px auto 0;
   padding-bottom: 80px;
+  padding: 25px;
+  border: 1px solid #eceaea;
+  border-radius: 3px;
+  background: #fff;
 `;
 
 const JobsBody = styled.li`

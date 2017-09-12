@@ -18,6 +18,7 @@ import JobsSearchPosting from '../components/JobsSearchPosting';
 import JobsSearchFilterReset from '../components/JobsSearchFilterReset';
 import FadeIn from '../../../../styles/components/FadeIn';
 import JobsSearchPostingLoader from '../components/JobsSearchPostingLoader';
+
 /**
  * Loading jobs from the server on initial load. This will SSR the first
  * jobs posts and allow infinite scroll to do the rest

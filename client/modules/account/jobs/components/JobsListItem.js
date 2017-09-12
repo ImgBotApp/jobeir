@@ -58,7 +58,7 @@ const JobsListItem = (props: {
 
 export default JobsListItem;
 
-const JobsTitle = styled.h3`font-size: 22px;`;
+const JobsTitle = styled.h3`font-size: 20px;`;
 
 const JobsState = styled.div`
   font-size: 14px;
