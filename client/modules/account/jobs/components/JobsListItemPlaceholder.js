@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const JobsListItemPlaceholder = () =>
-  <div>
+  <JobsListItemPlaceholderContainer>
     <PlaceholderContainer>
       <PlaceholderTop>
         <PlaceholderTitle />
@@ -18,11 +18,16 @@ const JobsListItemPlaceholder = () =>
       </PlaceholderTop>
       <PlaceholderDetails />
     </PlaceholderContainer>
-  </div>;
+  </JobsListItemPlaceholderContainer>;
 
 export default JobsListItemPlaceholder;
 
-const PlaceholderContainer = styled.div`margin-bottom: 70px;`;
+const JobsListItemPlaceholderContainer = styled.div`margin-top: 40px;`;
+
+const PlaceholderContainer = styled.div`
+  max-width: 1080px;
+  margin: 0 auto 70px;
+`;
 
 const PlaceholderTop = styled.div`
   display: flex;

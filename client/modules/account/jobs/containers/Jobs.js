@@ -50,20 +50,18 @@ class Jobs extends Component {
       : '/create/company/about';
 
     return (
-      <div>
-        <div>
-          <JobsContainer>
-            <JobsFilter />
-            {jobs.isFetching
-              ? <JobsListItemPlaceholder />
-              : hasJobPostings
-                ? <FadeIn>
-                    <JobsList jobs={jobs.postings.sort(byEarliestFirst)} />
-                  </FadeIn>
-                : <JobsListEmptyState link={link} />}
-          </JobsContainer>
-        </div>
-      </div>
+      <JobsContainer>
+        <JobsFilter />
+        <JobsContent>
+          {jobs.isFetching
+            ? <JobsListItemPlaceholder />
+            : hasJobPostings
+              ? <FadeIn>
+                  <JobsList jobs={jobs.postings.sort(byEarliestFirst)} />
+                </FadeIn>
+              : <JobsListEmptyState link={link} />}
+        </JobsContent>
+      </JobsContainer>
     );
   }
 }
@@ -76,3 +74,9 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Jobs);
 
 const JobsContainer = styled.div`max-width: 100%;`;
+
+const JobsContent = styled.div`
+  border-top: 1px solid #eceaea;
+  background: #f9f8f7;
+  min-height: calc(100vh - 300px);
+`;

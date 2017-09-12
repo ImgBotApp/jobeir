@@ -8,11 +8,13 @@ class Profile extends Component {
   render() {
     const { user } = this.props;
     return (
-      <ProfileContainer>
-        <ProfileHeader>Profile info</ProfileHeader>
-        <ProfileSubHeader>Edit your profile info</ProfileSubHeader>
-        <ProfileEditForm />
-      </ProfileContainer>
+      <ProfileDarkBackground>
+        <ProfileContainer>
+          <ProfileHeader>Profile info</ProfileHeader>
+          <ProfileSubHeader>Edit your profile info</ProfileSubHeader>
+          <ProfileEditForm />
+        </ProfileContainer>
+      </ProfileDarkBackground>
     );
   }
 }
@@ -23,13 +25,21 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(Profile);
 
-const ProfileContainer = styled.div``;
+const ProfileDarkBackground = styled.div`
+  border-top: 1px solid #eceaea;
+  background: #f9f8f7;
+  min-height: calc(100vh - 300px);
+`;
+
+const ProfileContainer = styled.div`
+  width: 1080px;
+  margin: 0 auto;
+`;
 
 const ProfileHeader = styled.h2`
   font-weight: 600;
   padding: 20px 0 5px;
   font-size: 22px;
-  border-top: 1px solid #ececec;
 `;
 
 const ProfileSubHeader = styled.h3`

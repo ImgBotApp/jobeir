@@ -41,17 +41,16 @@ export default connect(mapStateToProps)(JobsFilter);
 
 const JobsFilterContainer = styled.div`
   display: flex;
-  margin-bottom: 20px;
-  border-top: 1px solid #f2f2f2;
+  margin: 0 auto;
+  width: 1080px;
 `;
 
 const JobsFilterItem = styled.div`
   padding: 22px 0;
   margin-right: 40px;
   position: relative;
-  bottom: 1px;
   color: ${props => (props.active ? '#333' : '#8f8f8f')};
-  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
   border-color: ${props => (props.active ? 'rgba(0,0,0,.7)' : 'transparent')};
   font-weight: ${props => (props.active ? '600' : '400')};
   font-size: 16px;

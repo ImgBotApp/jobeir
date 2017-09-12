@@ -202,7 +202,7 @@ const routes = (
       />
       <Route
         path="/account/jobs"
-        name="Jobs"
+        name="Job postings"
         getComponent={(nextState, cb) => {
           require.ensure(
             [],

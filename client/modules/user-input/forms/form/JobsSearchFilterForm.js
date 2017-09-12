@@ -28,6 +28,7 @@ export default connect(mapStateToProps)(JobsSearchFilterForm);
 
 const JobsSearchFilterFormContainer = styled.div`
   position: relative;
+  top: -5px;
   display: flex;
   align-items: center;
   margin-left: auto;

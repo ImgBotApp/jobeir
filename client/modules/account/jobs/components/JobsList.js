@@ -30,16 +30,18 @@ class JobsList extends Component {
     }
 
     return (
-      <JobsBodyList>
-        {jobs.filter(job => filterJobs(job, filter)).map(job =>
-          <JobsBody
-            key={job._id}
-            onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
-          >
-            <JobsListItem job={job} />
-          </JobsBody>
-        )}
-      </JobsBodyList>
+      <JobsListContainer>
+        <JobsBodyList>
+          {jobs.filter(job => filterJobs(job, filter)).map(job =>
+            <JobsBody
+              key={job._id}
+              onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
+            >
+              <JobsListItem job={job} />
+            </JobsBody>
+          )}
+        </JobsBodyList>
+      </JobsListContainer>
     );
   }
 }
@@ -53,12 +55,13 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(JobsList);
 
+const JobsListContainer = styled.div``;
+
 const JobsBodyList = styled.ul`
-  // background: white;
-  // border-radius: 3px;
-  // border: 1px solid #eceaea;
-  // padding: 25px;
   list-style: none;
+  width: 1080px;
+  margin: 40px auto 0;
+  padding-bottom: 80px;
 `;
 
 const JobsBody = styled.li`

@@ -37,5 +37,5 @@ const ShellHeaderNavContainer = styled.div`
 
 const ShellHeaderNavLink = styled(Link)`
   text-decoration: none;
-  color: rgba(0,0,0,0.8);
+  color: ${props => props.theme.colors.purple};
 `;

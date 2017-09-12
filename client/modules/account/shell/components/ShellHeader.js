@@ -24,4 +24,6 @@ const ShellHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 70px 0 30px;
+  max-width: 1080px;
+  margin: 0 auto;
 `;
