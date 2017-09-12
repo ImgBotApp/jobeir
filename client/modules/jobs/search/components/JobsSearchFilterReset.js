@@ -60,6 +60,8 @@ export default connect(mapStateToProps)(JobSearchFilterReset);
 const JobSearchFilterResetContainer = styled.div`
   display: flex;
   cursor: pointer;
+  position: relative;
+  top: 1px;
 
   &:hover > div:first-child {
     background: ${props => props.theme.colors.purple};

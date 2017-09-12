@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { Field, initialize, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import styled, { ThemeProvider } from 'styled-components';
 import queryString from 'query-string';
-import { Radio, Text } from '../../../user-input/inputs/input';
+import { Radio } from '../../../user-input/inputs/input';
 import sidebar from '../../../user-input/themes/sidebar-theme';
 
 const jobTypes: Array<{ name: string, value: string }> = [

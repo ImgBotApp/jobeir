@@ -10,7 +10,6 @@ export const SERVER_SEARCH_JOBS_REQUEST = 'SERVER_SEARCH_JOBS_REQUEST';
 export const SERVER_SEARCH_JOBS_SUCCESS = 'SERVER_SEARCH_JOBS_SUCCESS';
 export const SERVER_SEARCH_JOBS_FAILURE = 'SERVER_SEARCH_JOBS_FAILURE';
 
-export const RESET_FILTERS = 'RESET_FILTERS';
 export const RESET_JOBS = 'RESET_JOBS';
 
 export const initialState = {
@@ -66,10 +65,6 @@ export default (state = initialState, action = {}) => {
         isLoaded: true,
         errors: action.errors.errors
       });
-    case RESET_FILTERS:
-      return Object.assign({}, state, {
-        isFiltering: false
-      });
     case RESET_JOBS:
       return Object.assign({}, state, {
         isLoaded: false,
@@ -96,10 +91,6 @@ export const searchJobs = query => ({
 export const filterSearchJobs = query => ({
   type: FILTER_SEARCH_JOBS_REQUEST,
   payload: { query }
-});
-
-export const resetFilterSearchJobs = () => ({
-  type: RESET_FILTERS
 });
 
 export const resetJobs = () => ({

@@ -17,7 +17,6 @@ import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchPosting from '../components/JobsSearchPosting';
 import JobsSearchFilterReset from '../components/JobsSearchFilterReset';
 import FadeIn from '../../../../styles/components/FadeIn';
-import SearchForm from '../../../user-input/forms/form/search/SearchForm';
 import JobsSearchPostingLoader from '../components/JobsSearchPostingLoader';
 /**
  * Loading jobs from the server on initial load. This will SSR the first
