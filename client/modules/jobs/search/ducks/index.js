@@ -10,6 +10,7 @@ export const SERVER_SEARCH_JOBS_REQUEST = 'SERVER_SEARCH_JOBS_REQUEST';
 export const SERVER_SEARCH_JOBS_SUCCESS = 'SERVER_SEARCH_JOBS_SUCCESS';
 export const SERVER_SEARCH_JOBS_FAILURE = 'SERVER_SEARCH_JOBS_FAILURE';
 
+export const RESET_FILTERS = 'RESET_FILTERS';
 export const RESET_JOBS = 'RESET_JOBS';
 
 export const initialState = {
@@ -17,6 +18,7 @@ export const initialState = {
   postings: [],
   query: '',
   isFetching: false,
+  isFiltering: false,
   isLoaded: false,
   errors: []
 };
@@ -32,6 +34,7 @@ export default (state = initialState, action = {}) => {
     case FILTER_SEARCH_JOBS_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
+        isFiltering: true,
         query: action.payload.query,
         postings: []
       });
@@ -45,10 +48,10 @@ export default (state = initialState, action = {}) => {
       });
     case FILTER_SEARCH_JOBS_SUCCESS:
       /**
-     *  When updating the filter we don't want to add the new jobs to
-     * the list of current postings. It should be updated with a fresh set
-     * of job postings
-     */
+       *  When updating the filter we don't want to add the new jobs to
+       * the list of current postings. It should be updated with a fresh set
+       * of job postings
+       */
       return Object.assign({}, state, {
         isFetching: false,
         isLoaded: true,
@@ -62,6 +65,10 @@ export default (state = initialState, action = {}) => {
         isFetching: false,
         isLoaded: true,
         errors: action.errors.errors
+      });
+    case RESET_FILTERS:
+      return Object.assign({}, state, {
+        isFiltering: false
       });
     case RESET_JOBS:
       return Object.assign({}, state, {
@@ -89,6 +96,10 @@ export const searchJobs = query => ({
 export const filterSearchJobs = query => ({
   type: FILTER_SEARCH_JOBS_REQUEST,
   payload: { query }
+});
+
+export const resetFilterSearchJobs = () => ({
+  type: RESET_FILTERS
 });
 
 export const resetJobs = () => ({

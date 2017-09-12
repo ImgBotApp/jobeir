@@ -15,6 +15,7 @@ import {
 } from '../ducks/';
 import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchPosting from '../components/JobsSearchPosting';
+import JobsSearchFilterReset from '../components/JobsSearchFilterReset';
 import FadeIn from '../../../../styles/components/FadeIn';
 import SearchForm from '../../../user-input/forms/form/search/SearchForm';
 import JobsSearchPostingLoader from '../components/JobsSearchPostingLoader';
@@ -156,6 +157,7 @@ class JobsSearch extends Component {
           <JobsSearchColumn margin>
             <JobsSearchHeader>
               <JobsSearchHeaderText>Filter options</JobsSearchHeaderText>
+              <JobsSearchFilterReset />
             </JobsSearchHeader>
             <JobsSearchSidebar initialValues={initialValues} />
           </JobsSearchColumn>
@@ -226,6 +228,8 @@ const JobsSearchRow = styled.div`
 `;
 
 const JobsSearchHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid #d9d9d9;
   margin-bottom: 50px;
   width: ${props => (props.wide ? '100%' : '87%')};

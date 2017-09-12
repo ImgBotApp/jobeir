@@ -39,31 +39,6 @@ const yesNoOptions: Array<{ text: string, value: string }> = [
 ];
 
 class JobsSearchSidebar extends Component {
-  constructor(props) {
-    super(props);
-    const { search = { coordinates: [] } } = this.props;
-    /**
-     * Using this to reset the job filters. We want to keep the values from
-     * the original search such as title and location/lat/long
-     */
-
-    // TypeError: Cannot read property '0' of undefined
-    // at new JobsSearchSidebar (/home/brotzky/opt/gost-zvuk/build/server/server.bundle.js:18513:26)
-    this.reset = {
-      location: search.location,
-      lat: search.lat || (search.coordinates && search.coordinates[0]),
-      lng: search.lng || (search.coordinates && search.coordinates[1]),
-      title: {
-        value: search.title && search.title.value
-      },
-      companySize: undefined,
-      distance: undefined,
-      employmentType: undefined,
-      equity: undefined,
-      remote: undefined
-    };
-  }
-
   componentDidUpdate(prevProps) {
     if (
       JSON.stringify(prevProps.search) !== JSON.stringify(this.props.search)
@@ -93,14 +68,9 @@ class JobsSearchSidebar extends Component {
     }
   };
 
-  handleResetClick = () => {
-    this.props.dispatch(initialize('search', this.reset));
-  };
-
   render() {
     return (
       <JobsSearchSidebarContainer>
-        <div onClick={this.handleResetClick}>Reset</div>
         <ThemeProvider theme={sidebar}>
           <div>
             <Field
