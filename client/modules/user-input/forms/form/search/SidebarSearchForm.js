@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import { browserHistory } from 'react-router';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, change } from 'redux-form';
 import Autocomplete from '../../../autocomplete/Autocomplete';
 import Select from 'react-select';
 import queryString from 'query-string';
@@ -15,14 +15,16 @@ const customStyles = {
 };
 
 class Input extends Component {
-  constructor(props) {
-    super(props);
-    this.handleInputContainerClick = this.handleInputContainerClick.bind(this);
-  }
-
-  handleInputContainerClick() {
+  handleInputContainerClick = () => {
     findDOMNode(this.nameInput).focus();
-  }
+  };
+
+  handleClearClick = () => {
+    const { dispatch } = this.props.meta;
+    dispatch(change('search', 'location', ''));
+    dispatch(change('search', 'lat', ''));
+    dispatch(change('search', 'lng', ''));
+  };
 
   render() {
     const { meta, location } = this.props;
@@ -48,6 +50,13 @@ class Input extends Component {
             this.nameInput = input;
           }}
         />
+
+        <SearchInputClear
+          hasValue={this.props.input.value}
+          onClick={this.handleClearClick}
+        >
+          ×
+        </SearchInputClear>
         {this.props.autocomplete &&
           <Autocomplete
             formName="search"
@@ -61,14 +70,9 @@ class Input extends Component {
 }
 
 class SelectInput extends Component {
-  constructor(props) {
-    super(props);
-    this.handleInputContainerClick = this.handleInputContainerClick.bind(this);
-  }
-
-  handleInputContainerClick() {
+  handleInputContainerClick = () => {
     this.refs.stateSelect.focus();
-  }
+  };
 
   render() {
     return (
@@ -126,7 +130,7 @@ class SidebarSearchForm extends Component {
   };
 
   render() {
-    const { handleSubmit, location } = this.props;
+    const { handleSubmit, location, dispatch } = this.props;
 
     return (
       <SidebarSearchFormContainer
@@ -185,6 +189,28 @@ const SearchInputContainer = styled.div`
   }
 `;
 
+const SearchInputClear = styled.div`
+  transition: all 200ms ease;
+  opacity: ${props => (props.hasValue ? '1' : '0')};
+  color: #898989;
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  -webkit-text-align: center;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 200;
+  width: 17px;
+  position: absolute;
+  bottom: 16px;
+  right: 40px;
+  font-size: 20px;
+
+  &:hover {
+    color: #212121;
+  }
+`;
+
 const SearchInput = styled.input`
   position: relative;
   top: -1px;
@@ -197,17 +223,21 @@ const SearchInput = styled.input`
 
   ::-webkit-input-placeholder {
     color: rgba(0, 0, 0, 0.85);
+    font-weight: 200;
   }
   :-moz-placeholder {
     color: rgba(0, 0, 0, 0.85);
+    font-weight: 200;
     opacity: 1;
   }
   ::-moz-placeholder {
     color: rgba(0, 0, 0, 0.85);
+    font-weight: 200;
     opacity: 1;
   }
   :-ms-input-placeholder {
     color: rgba(0, 0, 0, 0.85);
+    font-weight: 200;
   }
 
   &:focus {
@@ -251,7 +281,7 @@ const SelectContainer = styled.div`
   }
   .Select-control {
     background-color: transparent;
-    color: rgba(0, 0, 0, 0.85);
+    color: #898989;
     cursor: default;
     display: table;
     border-spacing: 0;
@@ -287,6 +317,7 @@ const SelectContainer = styled.div`
   .Select-placeholder {
     display: flex;
     align-items: center;
+    font-weight: 200;
   }
 
   .Select-placeholder,
@@ -369,7 +400,7 @@ const SelectContainer = styled.div`
   .Select-clear-zone {
     transition: opacity 200ms ease;
     opacity: 0;
-    color: #212121;
+    color: #898989;
     cursor: pointer;
     display: table-cell;
     position: relative;
@@ -378,8 +409,9 @@ const SelectContainer = styled.div`
     font-weight: 100;
     width: 17px;
   }
+
   .Select-clear-zone:hover {
-    color: #676767;
+    color: #212121;
   }
   .Select-clear {
     display: inline-block;
