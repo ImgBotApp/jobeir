@@ -22,7 +22,6 @@ const JobSearchFilterReset = (props: { isFiltering: boolean, search: {} }) => {
    * Using this to reset the job filters. We want to keep the values from
    * the original search such as title and location/lat/long
    */
-  console.log(search);
   const reset = {
     location: search.location,
     lat: search.lat || (search.coordinates && search.coordinates[0]),

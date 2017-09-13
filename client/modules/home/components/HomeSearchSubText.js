@@ -13,7 +13,7 @@ export default HomeSerachSubText;
 
 const HomeSerachSubTextContainer = styled.div`
   text-align: center;
-  margin: 25px auto 0;
+  margin: 40px auto 0;
 `;
 
 const HomeSerachSubTextText = styled.p`color: #95989a;`;

@@ -18,6 +18,7 @@ import JobsSearchPosting from '../components/JobsSearchPosting';
 import JobsSearchFilterReset from '../components/JobsSearchFilterReset';
 import FadeIn from '../../../../styles/components/FadeIn';
 import JobsSearchPostingLoader from '../components/JobsSearchPostingLoader';
+import { BoxIcon } from '../../../../icons';
 
 /**
  * Loading jobs from the server on initial load. This will SSR the first
@@ -137,11 +138,24 @@ class JobsSearch extends Component {
    * items into it. This will render the list within the UI
    */
   buildJobPostings() {
-    return this.props.jobs.postings.map(posting =>
-      <FadeIn key={posting._id}>
-        <JobsSearchPosting posting={posting} />
-      </FadeIn>
-    );
+    const { jobs: { postings, count, isFetching } } = this.props;
+
+    if (count) {
+      return postings.map(posting =>
+        <FadeIn key={posting._id}>
+          <JobsSearchPosting posting={posting} />
+        </FadeIn>
+      );
+    }
+
+    return isFetching
+      ? null
+      : <JobSearchEmptyState>
+          <BoxIcon />
+          <JobSearchEmptyStateHeader>
+            No job postings found
+          </JobSearchEmptyStateHeader>
+        </JobSearchEmptyState>;
   }
 
   render() {
@@ -250,4 +264,25 @@ const JobsSearchColumn = styled.div`
   padding-top: 30px;
   margin-right: ${props => (props.margin ? '120px' : '0px')};
   flex: ${props => (props.wide ? '1.35' : '0.65')};
+`;
+
+const JobSearchEmptyState = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 50px;
+`;
+
+const JobSearchEmptyStateHeader = styled.h4`
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 400;
+`;
+
+const JobSearchEmptyStateShadow = styled.div`
+  height: 20px;
+  width: 70px;
+  border-radius: 7px;
+  background: red;
 `;

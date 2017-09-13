@@ -186,10 +186,11 @@ const SearchFormContainer = styled.form`
   display: flex;
   width: 100%;
   background: #fff;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
   height: 80px;
   margin-top: 30px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
+    0 8px 16px rgba(27, 39, 51, 0.08);
 `;
 
 const SearchInput = styled.input`
@@ -221,7 +222,7 @@ const SearchInputContainer = styled.div`
   &:first-child {
     margin-right: 0;
     padding-right: 15px;
-    border-right: 1px solid #d9d9d9;
+    border-right: 1px solid #e5e7ea;
   }
 `;
 

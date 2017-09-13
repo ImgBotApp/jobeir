@@ -96,6 +96,49 @@ export const BackpackIcon = ({ width = 24, height = 24, className = '' }) =>
     </g>
   </svg>;
 
+export const BoxIcon = ({ width = 48, height = 48, className = '' }) =>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 48 48"
+  >
+    <polyline
+      data-cap="butt"
+      fill="none"
+      stroke="#444444"
+      strokeWidth="2"
+      strokeMiterlimit="10"
+      points="4,12 24,21 44,12 "
+      strokeLinejoin="miter"
+      strokeLinecap="butt"
+    />
+    <line
+      data-cap="butt"
+      fill="none"
+      stroke="#444444"
+      strokeWidth="2"
+      strokeMiterlimit="10"
+      x1="24"
+      y1="21"
+      x2="24"
+      y2="45"
+      strokeLinejoin="miter"
+      strokeLinecap="butt"
+    />
+    <polygon
+      fill="none"
+      stroke="#444444"
+      strokeWidth="2"
+      strokeLinecap="square"
+      strokeMiterlimit="10"
+      points="44,36 24,45 4,36 
+    4,12 24,3 44,12 "
+      strokeLinejoin="miter"
+    />
+  </svg>;
+
 export const BoxGraphIcon = ({ width = 24, height = 24, className = '' }) =>
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -439,7 +482,6 @@ export const LogoIcon = ({ width = 24, height = 24, className = '' }) =>
       strokeLinejoin="miter"
     />
     <polyline
-      data-color="color-2"
       fill="none"
       stroke="#444444"
       strokeWidth="2"
@@ -450,7 +492,6 @@ export const LogoIcon = ({ width = 24, height = 24, className = '' }) =>
       strokeLinejoin="miter"
     />
     <circle
-      data-color="color-2"
       fill="none"
       stroke="#444444"
       strokeWidth="2"
@@ -523,7 +564,6 @@ export const MailIcon = ({ width = 24, height = 24, className = '' }) =>
         strokeLinecap="butt"
       />
       <line
-        data-color="color-2"
         fill="none"
         stroke="#444444"
         strokeWidth="2"
@@ -536,7 +576,6 @@ export const MailIcon = ({ width = 24, height = 24, className = '' }) =>
         strokeLinejoin="miter"
       />
       <line
-        data-color="color-2"
         fill="none"
         stroke="#444444"
         strokeWidth="2"
@@ -644,7 +683,6 @@ export const UploadIcon = ({ width = 24, height = 24, className = '' }) =>
         strokeLinejoin="miter"
       />
       <path
-        data-color="color-2"
         fill="none"
         stroke="#fff"
         strokeWidth="2"
