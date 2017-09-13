@@ -247,7 +247,7 @@ const JobsSearchHeaderText = styled.div`
 
 const JobsSearchColumn = styled.div`
   position: relative;
-  padding-top: 50px;
+  padding-top: 30px;
   margin-right: ${props => (props.margin ? '120px' : '0px')};
   flex: ${props => (props.wide ? '1.35' : '0.65')};
 `;
