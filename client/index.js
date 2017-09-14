@@ -3,13 +3,16 @@
  */
 import React from 'react';
 import { render } from 'react-dom';
-import configureStore from './redux/store';
+import { match, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
-import App from './modules/app/containers/App';
+import configureStore from './redux/store';
+import routes from './routes';
 import initServiceWorker from './sw';
+import App from './modules/app/containers/App';
 
 // Initialize store
-const store = configureStore(window.__INITIAL_STATE__);
+// const store = configureStore(window.__INITIAL_STATE__);
 // Mount into #app
 const mountApp = document.getElementById('app');
 
@@ -21,11 +24,26 @@ const mountApp = document.getElementById('app');
  * as the JavaScript code gets loaded in after the server rendered code
  * https://github.com/ryanflorence/example-react-router-server-rendering-lazy-routes
  */
-render(
-  <AppContainer>
-    <App store={store} />
-  </AppContainer>,
-  mountApp
+// render(
+//   <AppContainer>
+//     <App store={store} />
+//   </AppContainer>,
+//   mountApp
+// );
+
+const store = configureStore(browserHistory, window.__INITIAL_STATE__);
+const history = syncHistoryWithStore(browserHistory, store);
+
+const renderApp = renderProps =>
+  render(
+    <AppContainer>
+      <App {...{ store, history, ...renderProps }} />
+    </AppContainer>,
+    mountApp
+  );
+
+match({ history, routes }, (error, redirectLocation, renderProps) =>
+  renderApp(renderProps)
 );
 
 // For hot reloading of react components

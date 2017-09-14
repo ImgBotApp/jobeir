@@ -56,7 +56,7 @@ class JobsSearch extends Component {
       companySize: parsed.cs
     };
 
-    this.state = { hasMore: true, initialValues };
+    this.state = { hasMore: false, initialValues };
   }
 
   componentDidMount() {
@@ -139,11 +139,17 @@ class JobsSearch extends Component {
    */
   buildJobPostings() {
     const { jobs: { postings, count, isFetching } } = this.props;
+    const { hasMore } = this.state;
 
     if (count) {
-      return postings.map(posting =>
-        <FadeIn key={posting._id}>
-          <JobsSearchPosting posting={posting} />
+      return (
+        <FadeIn>
+          {postings.map(posting =>
+            <JobsSearchPosting key={posting._id} posting={posting} />
+          )}
+          {!hasMore &&
+            !isFetching &&
+            <JobSearchResultsEnd>No more search results</JobSearchResultsEnd>}
         </FadeIn>
       );
     }
@@ -153,7 +159,7 @@ class JobsSearch extends Component {
       : <JobSearchEmptyState>
           <BoxIcon />
           <JobSearchEmptyStateHeader>
-            No job postings found
+            We couldn't find any job posts
           </JobSearchEmptyStateHeader>
         </JobSearchEmptyState>;
   }
@@ -183,7 +189,6 @@ class JobsSearch extends Component {
             </JobsSearchHeader>
             <InfiniteScroll
               pageStart={0}
-              threshold={600}
               loadMore={this.loadMoreJobs}
               hasMore={this.state.hasMore}
               loader={<JobsSearchPostingLoader />}
@@ -285,4 +290,9 @@ const JobSearchEmptyStateShadow = styled.div`
   width: 70px;
   border-radius: 7px;
   background: red;
+`;
+
+const JobSearchResultsEnd = styled.div`
+  padding: 60px 0 80px;
+  text-align: center;
 `;

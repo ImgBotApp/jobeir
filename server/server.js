@@ -125,7 +125,7 @@ app.use((req, res, next) => {
   const location = geoLookup(req);
   const memoryHistory = createMemoryHistory(req.url);
   const initialState = Object.assign({}, location);
-  const store = configureStore(initialState);
+  const store = configureStore(memoryHistory, initialState);
   const history = syncHistoryWithStore(memoryHistory, store);
 
   if (process.env.NODE_ENV === 'development') {

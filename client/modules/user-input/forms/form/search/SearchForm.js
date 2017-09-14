@@ -131,8 +131,8 @@ class SearchForm extends Component {
     const queryData = {
       q: data.title && data.title.value,
       l: data.location,
-      lat: data.lat || data.coordinates[0],
-      lng: data.lng || data.coordinates[1]
+      lat: data.lat || (data.coordinates && data.coordinates[0]),
+      lng: data.lng || (data.coordinates && data.coordinates[1])
     };
     const query = queryString.stringify(queryData);
     browserHistory.push(`/jobs?${query}`);
