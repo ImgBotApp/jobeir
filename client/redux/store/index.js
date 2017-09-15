@@ -22,6 +22,10 @@ const logger = createLogger();
 export default function configureStore(history: {}, state: {} = {}) {
   let middleware;
 
+  /**
+   * Here we want to remove redux logger and any other middleware from
+   * production to keep things more private and possibly quicker.
+   */
   if (process.env.NODE_ENV === 'production') {
     middleware = [apiMiddleware, sagaMiddleware, routerMiddleware(history)];
   } else {
