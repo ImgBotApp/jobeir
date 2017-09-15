@@ -10,6 +10,7 @@ export const SERVER_SEARCH_JOBS_REQUEST = 'SERVER_SEARCH_JOBS_REQUEST';
 export const SERVER_SEARCH_JOBS_SUCCESS = 'SERVER_SEARCH_JOBS_SUCCESS';
 export const SERVER_SEARCH_JOBS_FAILURE = 'SERVER_SEARCH_JOBS_FAILURE';
 
+export const AUTOCOMPLETE_PREDICTIONS = 'AUTOCOMPLETE_PREDICTIONS';
 export const RESET_JOBS = 'RESET_JOBS';
 
 export const initialState = {
@@ -19,6 +20,7 @@ export const initialState = {
   isFetching: false,
   isFiltering: false,
   isLoaded: false,
+  isOpen: false,
   errors: []
 };
 
@@ -65,11 +67,16 @@ export default (state = initialState, action = {}) => {
         isLoaded: true,
         errors: action.errors.errors
       });
+    case AUTOCOMPLETE_PREDICTIONS:
+      return Object.assign({}, state, {
+        isOpen: !state.isOpen
+      });
     case RESET_JOBS:
       return Object.assign({}, state, {
         isLoaded: false,
         postings: []
       });
+
     default:
       return state;
   }
@@ -95,4 +102,8 @@ export const filterSearchJobs = query => ({
 
 export const resetJobs = () => ({
   type: RESET_JOBS
+});
+
+export const autocompletePredictions = () => ({
+  type: AUTOCOMPLETE_PREDICTIONS
 });

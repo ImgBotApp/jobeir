@@ -33,7 +33,7 @@ const JobPostingBodyContainer = styled.div`
 
   p {
     line-height: 1.7;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     font-size: 20px;
     color: #333;
   }
@@ -69,12 +69,13 @@ const JobPostingBodyContainer = styled.div`
   ol {
     line-height: 1.7;
     padding-left: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     font-size: 18px;
     color: #333;
 
     & > li {
-      margin-bottom: 8px;
+      display: inline-block;
+      margin-bottom: 15px;
       font-size: 18px;
       color: #333;
     }

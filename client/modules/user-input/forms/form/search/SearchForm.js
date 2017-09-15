@@ -10,19 +10,14 @@ import Select from 'react-select';
 import { jobOptions } from '../../options/jobs';
 
 const customStyles = {
-  top: 'calc(100% + 8px)',
+  top: 'calc(100% + 6px)',
   left: '0'
 };
 
 class Input extends Component {
-  constructor(props) {
-    super(props);
-    this.handleInputContainerClick = this.handleInputContainerClick.bind(this);
-  }
-
-  handleInputContainerClick() {
+  handleInputContainerClick = () => {
     findDOMNode(this.nameInput).focus();
-  }
+  };
 
   render() {
     const { meta, location } = this.props;
@@ -61,14 +56,9 @@ class Input extends Component {
 }
 
 class SelectInput extends Component {
-  constructor(props) {
-    super(props);
-    this.handleInputContainerClick = this.handleInputContainerClick.bind(this);
-  }
-
-  handleInputContainerClick() {
+  handleInputContainerClick = () => {
     this.refs.stateSelect.focus();
-  }
+  };
 
   render() {
     return (
@@ -135,7 +125,14 @@ class SearchForm extends Component {
       lng: data.lng || (data.coordinates && data.coordinates[1])
     };
     const query = queryString.stringify(queryData);
-    browserHistory.push(`/jobs?${query}`);
+
+    /**
+     * We don't want to submit to the next page if the autocomplete
+     * predictions are open in the location search input field.
+     */
+    if (!this.props.isOpen) {
+      browserHistory.push(`/jobs?${query}`);
+    }
   };
 
   render() {
@@ -152,7 +149,6 @@ class SearchForm extends Component {
           component={SelectInput}
           options={jobOptions}
           location={location}
-          autoFocus={true}
         />
         <Field
           name="location"
@@ -177,7 +173,8 @@ const mapStateToProps = state => ({
     location:
       state.location && `${state.location.city}, ${state.location.region}`,
     coordinates: state.location && state.location.ll
-  }
+  },
+  isOpen: state.search.jobs.isOpen
 });
 
 export default connect(mapStateToProps)(SearchForm);

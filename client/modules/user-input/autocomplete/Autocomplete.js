@@ -6,6 +6,7 @@ import { change, arrayPush } from 'redux-form';
 import debounce from 'lodash/debounce';
 import AutocompleteResult from './AutocompleteResult';
 import AutocompleteLogo from './AutocompleteLogo';
+import { autocompletePredictions } from '../../jobs/search/ducks';
 
 class Autocomplete extends Component {
   state: {
@@ -31,7 +32,7 @@ class Autocomplete extends Component {
       const { types } = this.props;
 
       service.getPlacePredictions({ input, types }, this.displaySuggestions);
-    }, 500).bind(this);
+    }, 400).bind(this);
   }
 
   componentDidMount() {
@@ -90,7 +91,7 @@ class Autocomplete extends Component {
     }
 
     // enter key = fetch place data
-    if (enter) {
+    if (enter && predictions[selectedIndex]) {
       this.getDetailsByPlaceId(predictions[selectedIndex].place_id);
       return event.preventDefault();
     }
@@ -106,7 +107,6 @@ class Autocomplete extends Component {
 
   displaySuggestions = (predictions, status) => {
     if (status != google.maps.places.PlacesServiceStatus.OK) {
-      // This should be changed from an alert
       return this.setState({ noResults: true });
     }
 
@@ -183,14 +183,18 @@ class Autocomplete extends Component {
     }
 
     this.setState({ predictions: [] });
+    dispatch(autocompletePredictions());
   };
 
   handleBlur = () => {
     this.setState({ show: false });
+    this.props.dispatch(autocompletePredictions());
   };
 
   handleFocus = () => {
     this.setState({ show: true });
+
+    this.props.dispatch(autocompletePredictions());
   };
 
   render() {
@@ -235,12 +239,11 @@ class Autocomplete extends Component {
 export default connect()(Autocomplete);
 
 const AutocompleteList = styled.ul`
-  opacity: ${props =>
-    (props.active && props.show) || props.isSearching ? 1 : 0};
+  opacity: ${props => (props.active && props.show ? 1 : 0)};
   position: absolute;
   background: #fff;
   width: 100%;
-  top: calc(100% - 4px);
+  top: calc(100% - 2px);
   border-radius: 3px;
   z-index: 1;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
