@@ -16,6 +16,7 @@ import {
 import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchPosting from '../components/JobsSearchPosting';
 import JobsSearchFilterReset from '../components/JobsSearchFilterReset';
+import JobsSearchNoMoreResults from '../components/JobsSearchNoMoreResults';
 import FadeIn from '../../../../styles/components/FadeIn';
 import JobsSearchPostingLoader from '../components/JobsSearchPostingLoader';
 import { SearchIcon } from '../../../../icons';
@@ -56,7 +57,7 @@ class JobsSearch extends Component {
       companySize: parsed.cs
     };
 
-    this.state = { hasMore: false, initialValues };
+    this.state = { hasMore: true, initialValues };
   }
 
   componentDidMount() {
@@ -147,9 +148,7 @@ class JobsSearch extends Component {
           {postings.map(posting =>
             <JobsSearchPosting key={posting._id} posting={posting} />
           )}
-          {!hasMore &&
-            !isFetching &&
-            <JobSearchResultsEnd>No more search results</JobSearchResultsEnd>}
+          {!hasMore && !isFetching && <JobsSearchNoMoreResults />}
         </FadeIn>
       );
     }
@@ -290,9 +289,4 @@ const JobSearchEmptyStateShadow = styled.div`
   width: 70px;
   border-radius: 7px;
   background: red;
-`;
-
-const JobSearchResultsEnd = styled.div`
-  padding: 60px 0 80px;
-  text-align: center;
 `;

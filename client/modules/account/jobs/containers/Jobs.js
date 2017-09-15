@@ -42,7 +42,7 @@ class Jobs extends Component {
   }
 
   render() {
-    const { companies, jobs } = this.props;
+    const { companies, jobs, globalIsLoaded } = this.props;
     const hasJobPostings: number = jobs.postings.length;
     const companyId: string = companies.activeCompany._id;
     const link: string = companyId
@@ -59,7 +59,7 @@ class Jobs extends Component {
               ? <FadeIn>
                   <JobsList jobs={jobs.postings.sort(byEarliestFirst)} />
                 </FadeIn>
-              : <JobsListEmptyState link={link} />}
+              : globalIsLoaded && <JobsListEmptyState link={link} />}
         </JobsContent>
       </JobsContainer>
     );
@@ -68,7 +68,8 @@ class Jobs extends Component {
 
 const mapStateToProps = state => ({
   companies: state.account.companies,
-  jobs: state.account.jobs
+  jobs: state.account.jobs,
+  globalIsLoaded: state.session.auth.globalIsLoaded
 });
 
 export default connect(mapStateToProps)(Jobs);
@@ -76,7 +77,7 @@ export default connect(mapStateToProps)(Jobs);
 const JobsContainer = styled.div`max-width: 100%;`;
 
 const JobsContent = styled.div`
-  border-top: 1px solid #eceaea;
-  background: #f9f8f7;
-  min-height: calc(100vh - 300px);
+  // border-top: 1px solid #eceaea;
+  // background: #f9f8f7;
+  // min-height: calc(100vh - 300px);
 `;

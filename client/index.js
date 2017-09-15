@@ -24,12 +24,6 @@ const mountApp = document.getElementById('app');
  * as the JavaScript code gets loaded in after the server rendered code
  * https://github.com/ryanflorence/example-react-router-server-rendering-lazy-routes
  */
-// render(
-//   <AppContainer>
-//     <App store={store} />
-//   </AppContainer>,
-//   mountApp
-// );
 
 const store = configureStore(browserHistory, window.__INITIAL_STATE__);
 const history = syncHistoryWithStore(browserHistory, store);
@@ -46,18 +40,26 @@ match({ history, routes }, (error, redirectLocation, renderProps) =>
   renderApp(renderProps)
 );
 
+// if (module.hot) {
+//   module.hot.accept('../app/routes', () => {
+//     const nextRoutes = require('../app/routes');
+//     renderApp({ routes: nextRoutes() });
+//   });
+// }
+
 // For hot reloading of react components
 if (module.hot) {
-  module.hot.accept('./modules/app/containers/App', () => {
+  module.hot.accept('./routes', () => {
     // If you use Webpack 2 in ES modules mode, you can
     // use <App /> here rather than require() a <NextApp />.
-    const NextApp = require('./modules/app/containers/App').default; // eslint-disable-line global-require
+    const nextRoutes = require('./routes').default; // eslint-disable-line global-require
 
-    render(
-      <AppContainer>
-        <App store={store} />
-      </AppContainer>,
-      mountApp
-    );
+    renderApp({ routes: nextRoutes });
+    // render(
+    //   <AppContainer>
+    //     <App store={store} />
+    //   </AppContainer>,
+    //   mountApp
+    // );
   });
 }

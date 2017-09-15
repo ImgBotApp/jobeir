@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import moment from 'moment';
+import FadeIn from '../../../../styles/components/FadeIn';
 
 const trunc = (str: string, length: number): string =>
   str.length > length ? `${str.substr(0, length - 1)}...` : str;
@@ -35,40 +36,42 @@ const JobsSearchPosting = (props: {
   const { posting } = props;
 
   return (
-    <JobsSearchPostingContainer>
-      <JobsSearchPostingTop>
-        <div>
-          <JobsSearchPostingTitle>
-            {posting.title}
-          </JobsSearchPostingTitle>
-          <JobsSearchPostingSubTitle>
-            <span>
-              <Purple>
-                {posting.company.displayName}
-              </Purple>
-              {' in '}
-            </span>
-            <span>
-              {posting.location.address.locality},{' '}
-              {posting.location.address.short_administrative_area_level_1},{' '}
-              {posting.location.address.country}
-            </span>
-          </JobsSearchPostingSubTitle>
-        </div>
-      </JobsSearchPostingTop>
-      <JobsSearchPostingCompanyProduct>
-        {trunc(posting.company.product, 175)}
-      </JobsSearchPostingCompanyProduct>
-      <JobsSearchPostingBottom>
-        <JobsSearchPostingType>
-          {posting.employmentType} · ${posting.salary.max / 1000}K {' - '}${posting.salary.min / 1000}K
-        </JobsSearchPostingType>
-        <span>
-          {moment(posting.createdAt).fromNow()}
-        </span>
-      </JobsSearchPostingBottom>
-      <StyledLink to={`/jobs/${posting._id}`} />
-    </JobsSearchPostingContainer>
+    <FadeIn>
+      <JobsSearchPostingContainer>
+        <JobsSearchPostingTop>
+          <div>
+            <JobsSearchPostingTitle>
+              {posting.title}
+            </JobsSearchPostingTitle>
+            <JobsSearchPostingSubTitle>
+              <span>
+                <Purple>
+                  {posting.company.displayName}
+                </Purple>
+                {' in '}
+              </span>
+              <span>
+                {posting.location.address.locality},{' '}
+                {posting.location.address.short_administrative_area_level_1},{' '}
+                {posting.location.address.country}
+              </span>
+            </JobsSearchPostingSubTitle>
+          </div>
+        </JobsSearchPostingTop>
+        <JobsSearchPostingCompanyProduct>
+          {trunc(posting.company.product, 175)}
+        </JobsSearchPostingCompanyProduct>
+        <JobsSearchPostingBottom>
+          <JobsSearchPostingType>
+            {posting.employmentType} · ${posting.salary.max / 1000}K {' - '}${posting.salary.min / 1000}K
+          </JobsSearchPostingType>
+          <span>
+            {moment(posting.createdAt).fromNow()}
+          </span>
+        </JobsSearchPostingBottom>
+        <StyledLink to={`/jobs/${posting._id}`} />
+      </JobsSearchPostingContainer>
+    </FadeIn>
   );
 };
 

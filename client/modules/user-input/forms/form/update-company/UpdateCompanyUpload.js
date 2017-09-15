@@ -4,14 +4,12 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
-import FormHeader from '../../components/FormHeader';
-import FormFooter from '../../components/FormFooter';
-import { BackButton, SubmitButton, Upload } from '../../../inputs/input';
+import { SubmitButton, Upload } from '../../../inputs/input';
 import { uploadCompanyLogo } from '../../../../account/create/company/ducks/';
 
 class UpdateCompanyLogo extends Component {
   formSubmit = (): void => {
-    browserHistory.push(`/complete/company/${this.props.params.companyId}`);
+    browserHistory.push(`/account/jobs`);
   };
 
   handleOnDrop = (files: Array<{}>): void => {

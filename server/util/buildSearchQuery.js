@@ -48,5 +48,9 @@ export function buildJobSearchQuery(query: {}): {} {
     searchQuery.employmentType = query.et;
   }
 
+  if (query.r) {
+    searchQuery.remote = query.r;
+  }
+
   return searchQuery;
 }
