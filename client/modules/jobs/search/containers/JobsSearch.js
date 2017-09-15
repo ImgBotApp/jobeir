@@ -18,7 +18,7 @@ import JobsSearchPosting from '../components/JobsSearchPosting';
 import JobsSearchFilterReset from '../components/JobsSearchFilterReset';
 import FadeIn from '../../../../styles/components/FadeIn';
 import JobsSearchPostingLoader from '../components/JobsSearchPostingLoader';
-import { BoxIcon } from '../../../../icons';
+import { SearchIcon } from '../../../../icons';
 
 /**
  * Loading jobs from the server on initial load. This will SSR the first
@@ -157,7 +157,7 @@ class JobsSearch extends Component {
     return isFetching
       ? null
       : <JobSearchEmptyState>
-          <BoxIcon />
+          <SearchIcon height="50" width="50" />
           <JobSearchEmptyStateHeader>
             We couldn't find any job posts
           </JobSearchEmptyStateHeader>
