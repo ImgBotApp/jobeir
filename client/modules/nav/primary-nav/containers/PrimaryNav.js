@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import PrimaryNavLogo from '../components/PrimaryNavLogo';
 import PrimaryNavLinks from '../components/PrimaryNavLinks';
 
@@ -31,4 +32,8 @@ const NavigationContainer = styled.div`
   height: 75px;
   max-width: 1120px;
   padding: 0 20px;
+
+  ${media.tablet`
+    height: 65px;
+  `};
 `;

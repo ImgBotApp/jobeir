@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 /**
  * <ShellHeaderNav />
@@ -33,6 +34,11 @@ const ShellHeaderNavContainer = styled.div`
   align-items: center;
   padding: 0 25px;
   margin-right: 25px;
+
+  ${media.tablet`
+    padding: 0 10px;
+    margin-right: 10px;
+  `};
 `;
 
 const ShellHeaderNavLink = styled(Link)`

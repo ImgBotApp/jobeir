@@ -190,9 +190,14 @@ const SearchFormContainer = styled.form`
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
     0 8px 16px rgba(27, 39, 51, 0.08);
 
-  ${media.phablet`
+  ${media.tablet`
     height: auto;
     flex-direction: column;
+    margin-top: 20px;
+  `};
+
+  ${media.tablet`
+    margin-top: 15px;
   `};
 `;
 
@@ -213,6 +218,10 @@ const SearchInput = styled.input`
 const SearchLabel = styled.label`
   margin-top: 15px;
   font-size: 17px;
+
+  ${media.tablet`
+    font-size: 16px;
+  `};
 `;
 
 const SearchInputContainer = styled.div`
@@ -220,7 +229,18 @@ const SearchInputContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-width: 206px;
   padding: 0 15px 15px;
+
+  ${media.tablet`
+    padding: 0 0px 15px 15px;
+  `};
+
+  ${media.phablet`
+    border-bottom: 1px solid #e5e7ea;
+    padding: 0 0px 10px 15px;
+    
+  `};
 
   &:first-child {
     margin-right: 0;
@@ -231,10 +251,6 @@ const SearchInputContainer = styled.div`
       border-right: 0;
     `};
   }
-
-  ${media.phablet`
-    border-bottom: 1px solid #e5e7ea;
-  `};
 `;
 
 const SearchButton = styled.button`
@@ -250,6 +266,7 @@ const SearchButton = styled.button`
 
   ${media.tablet`
     width: 120px;
+    font-size: 16px;
   `};
 
   ${media.phablet`

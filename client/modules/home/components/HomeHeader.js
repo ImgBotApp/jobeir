@@ -24,7 +24,7 @@ const Header = styled.div`
   `};
 
   ${media.tablet`
-    padding: 20 10px;
+    padding: 20px;
   `};
 `;
 
@@ -39,6 +39,10 @@ const HeaderText = styled.h1`
 
   ${media.tablet`
     font-size: 36px;
+  `};
+
+  ${media.phablet`
+    font-size: 30px;
   `};
 
   ${media.phone`
