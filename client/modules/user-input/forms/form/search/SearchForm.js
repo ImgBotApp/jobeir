@@ -190,14 +190,10 @@ const SearchFormContainer = styled.form`
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
     0 8px 16px rgba(27, 39, 51, 0.08);
 
-  ${media.tablet`
-    height: auto;
+  ${media.phablet`
     flex-direction: column;
+    height: auto;
     margin-top: 20px;
-  `};
-
-  ${media.tablet`
-    margin-top: 15px;
   `};
 `;
 
@@ -213,6 +209,10 @@ const SearchInput = styled.input`
   &:focus {
     outline: none;
   }
+
+  ${media.phone`
+    font-size: 18px;
+  `};
 `;
 
 const SearchLabel = styled.label`
@@ -221,6 +221,10 @@ const SearchLabel = styled.label`
 
   ${media.tablet`
     font-size: 16px;
+  `};
+
+  ${media.phone`
+    font-size: 14px;
   `};
 `;
 
@@ -238,8 +242,10 @@ const SearchInputContainer = styled.div`
 
   ${media.phablet`
     border-bottom: 1px solid #e5e7ea;
+  `};
+
+  ${media.phone`
     padding: 0 0px 10px 15px;
-    
   `};
 
   &:first-child {
@@ -272,7 +278,11 @@ const SearchButton = styled.button`
   ${media.phablet`
     height: 50px;
     margin: 15px;
-    width: auto;
+    width: auto
+  `};
+
+  ${media.phone`
+    height: 44px;
   `};
 `;
 
@@ -312,7 +322,6 @@ const SelectContainer = styled.div`
     height: 28px;
     overflow: hidden;
     position: relative;
-    width: 100%;
     font-size: 20px;
     font-weight: 800;
     width: 100%;
@@ -488,8 +497,15 @@ const SelectContainer = styled.div`
     left: -15px;
     top: 100%;
     width: 362px;
+
     z-index: 1;
     -webkit-overflow-scrolling: touch;
+
+    ${media.tablet`
+      margin-top: 10px;
+      width: 110%;
+      right: 0;
+    `};
   }
   .Select-menu {
     max-height: 198px;

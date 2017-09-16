@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import { browserHistory } from 'react-router';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroller';
 import { serverGetJobs } from '../server/';
@@ -216,6 +217,10 @@ export default connect(mapStateToProps)(JobsSearch);
 const JobsSearchContainer = styled.div`
   padding-top: 30px;
   min-height: calc(100vh - 75px);
+
+  ${media.tablet`
+    padding-top: 0px;
+  `};
 `;
 
 const JobsSearchBackground = styled.div`
@@ -228,12 +233,24 @@ const JobsSearchBackground = styled.div`
   display: flex;
   justify-content: center;
   z-index: -1;
+
+  ${media.tablet`
+    display: none;
+  `};
 `;
 
 const JobsSearchBackgroundGrey = styled.div`
   flex: 0.8;
   background: #f9f8f7;
   border-right: 1px solid #eceaea;
+
+  ${media.retina`
+    flex: 0.725;
+  `};
+
+  ${media.hd`
+    flex: 0.62;
+  `};
 `;
 
 const JobsSearchBackgroundWhite = styled.div`flex: 1.25;`;
@@ -241,8 +258,10 @@ const JobsSearchBackgroundWhite = styled.div`flex: 1.25;`;
 const JobsSearchRow = styled.div`
   display: flex;
   justify-content: center;
-  width: 1080px;
+  max-width: 1120px;
+  width: 100%;
   margin: 0 auto;
+  padding: 0 20px;
 `;
 
 const JobsSearchHeader = styled.div`
@@ -253,6 +272,11 @@ const JobsSearchHeader = styled.div`
   width: ${props => (props.wide ? '100%' : '87%')};
   font-size: 22px;
   font-weight: 800;
+
+  ${media.tablet`
+    font-size: 18px;
+    margin-bottom: 30px;
+  `};
 `;
 
 const JobsSearchHeaderText = styled.div`
@@ -261,6 +285,10 @@ const JobsSearchHeaderText = styled.div`
   border-bottom: 1px solid #212121;
   position: relative;
   top: 1px;
+
+  ${media.phablet`
+    padding-bottom: 10px;
+  `};
 `;
 
 const JobsSearchColumn = styled.div`
@@ -268,6 +296,19 @@ const JobsSearchColumn = styled.div`
   padding-top: 30px;
   margin-right: ${props => (props.margin ? '120px' : '0px')};
   flex: ${props => (props.wide ? '1.35' : '0.65')};
+
+  ${media.hd`
+    margin-right: ${props => (props.margin ? '70px' : '0px')};
+  `};
+
+  ${media.desktop`
+    margin-right: ${props => (props.margin ? '60px' : '0px')};
+  `};
+
+  ${media.tablet`
+    display: ${props => (props.margin ? 'none' : 'block')};
+    width: ${props => (props.wide ? '100%' : 'auto')};
+  `};
 `;
 
 const JobSearchEmptyState = styled.div`

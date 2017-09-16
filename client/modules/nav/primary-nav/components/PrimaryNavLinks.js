@@ -118,6 +118,14 @@ const NavLink = styled(Link)`
 
   ${media.tablet`
     padding: 0 15px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  `};
+
+  ${media.phablet`
+    font-size: 14px;
   `};
 `;
 

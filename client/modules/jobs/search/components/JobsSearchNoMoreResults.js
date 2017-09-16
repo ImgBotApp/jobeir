@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 const handleBackToTopClick = () => {
   document.body.scrollTop = 0;
@@ -22,6 +23,10 @@ export default JobsSearchNoMoreResults;
 const JobsSearchNoMoreResultsContainer = styled.div`
   padding: 60px 0 80px;
   text-align: center;
+
+  ${media.tablet`
+    padding: 30px 0 50px;
+  `};
 `;
 
 const JobsSearchNoMoreResultsTop = styled.div`margin-bottom: 15px;`;

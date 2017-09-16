@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import { Link } from 'react-router';
 import moment from 'moment';
 import { FadeIn } from '../../../../styles/animate/';
@@ -82,6 +83,10 @@ const JobsSearchPostingContainer = styled.div`
   margin: 0 auto;
   background: #fff;
   margin-bottom: 50px;
+
+  ${media.phablet`
+    margin-bottom: 44px;
+  `};
 `;
 
 const StyledLink = styled(Link)`
@@ -95,24 +100,48 @@ const StyledLink = styled(Link)`
   cursor: pointer;
 `;
 
-const Purple = styled.span`color: ${props => props.theme.colors.purple};`;
+const Purple = styled.span`
+  color: ${props => props.theme.colors.purple};
+  font-weight: 600;
+`;
 
 const JobsSearchPostingTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
+
+  ${media.tablet`
+    margin-bottom: 12px;
+  `};
+
+  ${media.phablet`
+    margin-bottom: 10px;
+  `};
 `;
+
 const JobsSearchPostingBottom = styled.div`
   display: flex;
   justify-content: space-between;
   color: #6a6666;
+
+  ${media.phablet`
+    font-size: 14px;
+  `};
 `;
 
 const JobsSearchPostingTitle = styled.h2`
   font-size: 24px;
   font-weight: 900;
   margin-bottom: 5px;
+
+  ${media.tablet`
+    font-size: 20px;
+  `};
+
+  ${media.phablet`
+    font-weight: 800;
+  `};
 `;
 
 const JobsSearchPostingSubTitle = styled.div`
@@ -126,4 +155,8 @@ const JobsSearchPostingCompanyProduct = styled.p`
   line-height: 1.6;
   margin-bottom: 15px;
   color: #6a6666;
+
+  ${media.phablet`
+    font-size: 14px;
+  `};
 `;
