@@ -6,8 +6,7 @@ import JobPostingPreviewPlaceholder from '../components/JobPostingPreviewPlaceho
 import JobPostingHeader from '../components/JobPostingHeader';
 import JobPostingBody from './JobPostingBody';
 import JobPostingMap from './JobPostingMap';
-import FadeIn from '../../../../../styles/components/FadeIn';
-
+import { FadeIn } from '../../../../../styles/animate/';
 /**
  * <JobPosting />
  * Provides the UI for previewing the posting within the Admin or

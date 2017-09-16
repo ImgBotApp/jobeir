@@ -17,8 +17,8 @@ import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchPosting from '../components/JobsSearchPosting';
 import JobsSearchFilterReset from '../components/JobsSearchFilterReset';
 import JobsSearchNoMoreResults from '../components/JobsSearchNoMoreResults';
-import FadeIn from '../../../../styles/components/FadeIn';
 import JobsSearchPostingLoader from '../components/JobsSearchPostingLoader';
+import { FadeIn } from '../../../../styles/animate';
 import { SearchIcon } from '../../../../icons';
 
 /**

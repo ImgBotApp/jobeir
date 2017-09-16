@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import Link from 'react-router/lib/Link';
 import docCookies from '../../../../utils/cookies';
 import { logout } from '../../../auth/ducks';
@@ -38,14 +39,16 @@ class PrimaryNavLinks extends Component {
   buildPublicNavigation(isAuthenticated) {
     return isAuthenticated
       ? <NavLinkContainer>
-          <NavLink to="/account/company">
-            {this.props.activeCompany.displayName}
-          </NavLink>
+          <DesktopOnly>
+            <NavLink to="/account/company">
+              {this.props.activeCompany.displayName}
+            </NavLink>
+          </DesktopOnly>
           <ShellHeaderNav />
           <ShellDropdown />
         </NavLinkContainer>
       : <NavLinkContainer>
-          <NavLink onClick={this.handleSignUpClick}>Post Job / Sign up</NavLink>
+          <NavLink onClick={this.handleSignUpClick}>Post Job</NavLink>
           <NavLink to="/login">Log In</NavLink>
         </NavLinkContainer>;
   }
@@ -112,4 +115,14 @@ const NavLink = styled(Link)`
   &:last-child {
     padding-right: 13px;
   }
+
+  ${media.tablet`
+    padding: 0 15px;
+  `};
+`;
+
+const DesktopOnly = styled.span`
+  ${media.tablet`
+    display: none;
+  `};
 `;

@@ -6,8 +6,8 @@ import { getJobs } from '../../../account/create/job/ducks/';
 import JobsFilter from './JobsFilter';
 import JobsList from '../components/JobsList';
 import JobsListItemPlaceholder from '../components/JobsListItemPlaceholder';
-import FadeIn from '../../../../styles/components/FadeIn';
 import JobsListEmptyState from '../components/JobsListEmptyState';
+import { FadeIn } from '../../../../styles/animate/';
 
 const byEarliestFirst = (a, b) =>
   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();

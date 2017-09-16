@@ -1,3 +1,4 @@
+// @flow
 export const SEARCH_JOBS_REQUEST = 'SEARCH_JOBS_REQUEST';
 export const SEARCH_JOBS_SUCCESS = 'SEARCH_JOBS_SUCCESS';
 export const SEARCH_JOBS_FAILURE = 'SEARCH_JOBS_FAILURE';
@@ -69,7 +70,7 @@ export default (state = initialState, action = {}) => {
       });
     case AUTOCOMPLETE_PREDICTIONS:
       return Object.assign({}, state, {
-        isOpen: !state.isOpen
+        isOpen: action.payload
       });
     case RESET_JOBS:
       return Object.assign({}, state, {
@@ -104,6 +105,7 @@ export const resetJobs = () => ({
   type: RESET_JOBS
 });
 
-export const autocompletePredictions = () => ({
-  type: AUTOCOMPLETE_PREDICTIONS
+export const autocompletePredictions = (paylaod: boolean) => ({
+  type: AUTOCOMPLETE_PREDICTIONS,
+  paylaod
 });

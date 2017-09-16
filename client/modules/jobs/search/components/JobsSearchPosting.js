@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import moment from 'moment';
-import FadeIn from '../../../../styles/components/FadeIn';
+import { FadeIn } from '../../../../styles/animate/';
 
 const trunc = (str: string, length: number): string =>
   str.length > length ? `${str.substr(0, length - 1)}...` : str;

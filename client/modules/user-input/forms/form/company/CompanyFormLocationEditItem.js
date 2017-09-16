@@ -5,7 +5,7 @@ import { Field } from 'redux-form';
 import FormRow from '../../components/FormRow';
 import { PostalCode, Text } from '../../../inputs/input';
 import { PencilIcon, ExIcon } from '../../../../../icons/';
-import FadeIn from '../../../../../styles/components/FadeIn';
+import { FadeIn } from '../../../../../styles/animate/';
 
 const AddressTheme = {
   input: {

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import CompanyOnboarding from '../../company/components/CompanyOnboarding';
-import FadeIn from '../../../../../styles/components/FadeIn';
+import { FadeIn } from '../../../../../styles/animate/';
 
 /**
  * The process for posting a new job

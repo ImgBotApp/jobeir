@@ -12,7 +12,4 @@ const HomeSearch = () =>
 
 export default HomeSearch;
 
-const HomeSearchContainer = styled.div`
-  max-width: 900px;
-  margin: 0 auto;
-`;
+const HomeSearchContainer = styled.div`margin: 0 auto;`;

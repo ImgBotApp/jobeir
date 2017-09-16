@@ -8,7 +8,7 @@ import CompanyFilter from './CompanyFilter';
 // import UpdateCompanyFormLocation from '../../../user-input/forms/form/update-company/UpdateCompanyFormLocation';
 // import UpdateCompanyFormPerks from '../../../user-input/forms/form/update-company/UpdateCompanyFormPerks';
 // import UpdateCompanyUpload from '../../../user-input/forms/form/update-company/UpdateCompanyUpload';
-import FadeIn from '../../../../styles/components/FadeIn';
+import { FadeIn } from '../../../../styles/animate/';
 
 class Company extends Component {
   render() {

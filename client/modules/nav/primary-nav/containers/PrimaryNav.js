@@ -1,22 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import PrimaryNavAccount from './PrimaryNavAccount';
 import PrimaryNavLogo from '../components/PrimaryNavLogo';
 import PrimaryNavLinks from '../components/PrimaryNavLinks';
 
-const PrimaryNav = props => {
-  const { isInAccount } = props;
-
-  return (
-    <Navigation>
-      <NavigationContainer>
-        <PrimaryNavLogo />
-        <PrimaryNavLinks />
-      </NavigationContainer>
-    </Navigation>
-  );
-};
+const PrimaryNav = () =>
+  <Navigation>
+    <NavigationContainer>
+      <PrimaryNavLogo />
+      <PrimaryNavLinks />
+    </NavigationContainer>
+  </Navigation>;
 
 const mapStateToProps = state => ({
   isAuthenticated: state.session.auth.isAuthenticated,
@@ -35,5 +29,6 @@ const NavigationContainer = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   height: 75px;
-  max-width: ${props => props.theme.width.max};
+  max-width: 1120px;
+  padding: 0 20px;
 `;

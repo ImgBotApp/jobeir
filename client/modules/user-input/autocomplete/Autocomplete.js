@@ -183,18 +183,18 @@ class Autocomplete extends Component {
     }
 
     this.setState({ predictions: [] });
-    dispatch(autocompletePredictions());
+    dispatch(autocompletePredictions(false));
   };
 
   handleBlur = () => {
     this.setState({ show: false });
-    this.props.dispatch(autocompletePredictions());
+    this.props.dispatch(autocompletePredictions(false));
   };
 
   handleFocus = () => {
     this.setState({ show: true });
 
-    this.props.dispatch(autocompletePredictions());
+    this.props.dispatch(autocompletePredictions(true));
   };
 
   render() {
@@ -240,6 +240,7 @@ export default connect()(Autocomplete);
 
 const AutocompleteList = styled.ul`
   opacity: ${props => (props.active && props.show ? 1 : 0)};
+  pointer-events: ${props => (props.active ? 'initial' : 'none')};
   position: absolute;
   background: #fff;
   width: 100%;

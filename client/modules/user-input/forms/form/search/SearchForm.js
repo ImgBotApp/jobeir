@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import queryString from 'query-string';
@@ -188,6 +189,11 @@ const SearchFormContainer = styled.form`
   border-radius: 3px;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
     0 8px 16px rgba(27, 39, 51, 0.08);
+
+  ${media.phablet`
+    height: auto;
+    flex-direction: column;
+  `};
 `;
 
 const SearchInput = styled.input`
@@ -220,7 +226,15 @@ const SearchInputContainer = styled.div`
     margin-right: 0;
     padding-right: 15px;
     border-right: 1px solid #e5e7ea;
+
+    ${media.phablet`
+      border-right: 0;
+    `};
   }
+
+  ${media.phablet`
+    border-bottom: 1px solid #e5e7ea;
+  `};
 `;
 
 const SearchButton = styled.button`
@@ -233,6 +247,16 @@ const SearchButton = styled.button`
   cursor: pointer;
   margin: 15px;
   margin-left: 0;
+
+  ${media.tablet`
+    width: 120px;
+  `};
+
+  ${media.phablet`
+    height: 50px;
+    margin: 15px;
+    width: auto;
+  `};
 `;
 
 const SelectContainer = styled.div`

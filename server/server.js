@@ -60,7 +60,7 @@ import passportInit from './config/passport';
 
 if (process.env.NODE_ENV === 'development') {
   // Apply request delay for mroe realistic local test
-  app.use(delay(300, 500));
+  app.use(delay(200, 300));
 }
 
 // General server config such as cookies, body, favicon, public, session

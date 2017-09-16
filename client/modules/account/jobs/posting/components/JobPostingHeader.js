@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import JobsPostingHeaderPlaceholder from './JobPostingHeaderPlaceholder';
-import FadeIn from '../../../../../styles/components/FadeIn';
+import { FadeIn } from '../../../../../styles/animate/';
 
 const JobsPostingHeader = (props: { activePosting: {}, hideLogo: boolean }) => {
   const { activePosting, hideLogo } = props;

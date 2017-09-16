@@ -3,8 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { initialize } from 'redux-form';
 import styled from 'styled-components';
-import FadeIn from '../../../../styles/components/FadeIn';
-
+import { FadeIn } from '../../../../styles/animate/';
 /**
  * Pass in the current search form values to see if the user has applied
  * and filters. This is used to toggle the visbility of the reset button
