@@ -31,7 +31,7 @@ const NavigationContainer = styled.div`
   margin: 0 auto;
   height: 75px;
   max-width: 1120px;
-  padding: 0 20px;
+  padding: 0 24px;
 
   ${media.tablet`
     height: 65px;

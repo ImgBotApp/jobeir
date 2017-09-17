@@ -26,6 +26,7 @@ const JobsPostingReturnContainer = styled.div`
   align-items: flex-start;
   max-width: 670px;
   margin: 0 auto 60px;
+  padding: 30px 24px 0px;
 
   ${media.phablet`
     margin-bottom: 20px;

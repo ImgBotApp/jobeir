@@ -13,7 +13,10 @@ const JobPostingHeaderPlaceholder = () =>
 
 export default JobPostingHeaderPlaceholder;
 
-const PlaceholderHeader = styled.div`margin: 45px 0 40px;`;
+const PlaceholderHeader = styled.div`
+  margin: 45px 0 40px;
+  padding: 0 24px;
+`;
 
 const PlaceholderLogo = styled.div`
   background: ${props => props.theme.colors.placeholder};

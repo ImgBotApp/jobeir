@@ -20,11 +20,11 @@ const Header = styled.div`
   padding: 50px 0;
 
   ${media.desktop`
-    padding: 30px 20px;
+    padding: 30px 24px;
   `};
 
   ${media.tablet`
-    padding: 20px;
+    padding: 24px;
   `};
 `;
 

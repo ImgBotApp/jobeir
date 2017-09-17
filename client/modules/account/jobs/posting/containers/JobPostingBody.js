@@ -31,6 +31,7 @@ const JobPostingBodyContainer = styled.div`
   position: relative;
   max-width: 670px;
   margin: 0 auto;
+  padding: 0 24px;
 
   p {
     line-height: 1.7;
@@ -65,8 +66,12 @@ const JobPostingBodyContainer = styled.div`
   h6 {
     margin-bottom: 20px;
 
-    ${media.phablet`
+    ${media.tablet`
       margin-bottom: 15px;
+    `};
+
+    ${media.phablet`
+      margin-bottom: 10px;
     `};
   }
 
@@ -74,7 +79,7 @@ const JobPostingBodyContainer = styled.div`
     font-size: 26px;
 
     ${media.phablet`
-      font-size: 22px;
+      font-size: 20px;
     `};
   }
 
@@ -82,7 +87,7 @@ const JobPostingBodyContainer = styled.div`
     font-size: 24px;
 
     ${media.phablet`
-      font-size: 20px;
+      font-size: 18px;
     `};
   }
 

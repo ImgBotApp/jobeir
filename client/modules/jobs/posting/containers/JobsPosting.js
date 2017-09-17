@@ -51,4 +51,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(JobsPosting);
 
-const JobPostingContainer = styled.div`padding: 20px;`;
+const JobPostingContainer = styled.div``;

@@ -44,6 +44,7 @@ export default JobsPostingHeader;
 const JobsPostingHeaderContainer = styled.div`
   max-width: 670px;
   margin: 0 auto 75px;
+  padding: 0 24px;
 
   ${media.tablet`
     margin-bottom: 40px;
@@ -89,7 +90,8 @@ const JobsPostingHeaderLocation = styled.p`
   margin-bottom: 10px;
 
   ${media.tablet`
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 5px;
   `};
 `;
 
@@ -98,6 +100,6 @@ const JobsPostingHeaderDate = styled.p`
   font-weight: 400;
 
   ${media.tablet`
-    font-size: 18px;
+    font-size: 16px;
   `};
 `;

@@ -261,7 +261,7 @@ const JobsSearchRow = styled.div`
   max-width: 1120px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 `;
 
 const JobsSearchHeader = styled.div`

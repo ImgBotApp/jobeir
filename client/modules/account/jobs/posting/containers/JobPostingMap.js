@@ -54,16 +54,16 @@ const JobPostingMapContainer = styled.div`
     width: 960px;
 
     ${media.desktop`
-      height: 400px;
+      height: 500px;
       width: 100%
     `};
 
     ${media.phablet`
-      height: 300px;
+      height: 400px;
     `};
 
     ${media.phone`
-      height: 250px;
+      height: 375px;
     `};
   }
 `;

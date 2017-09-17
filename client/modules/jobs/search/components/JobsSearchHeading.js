@@ -14,7 +14,7 @@ export default JobsSearchHeading;
 const JobsSearchHeadingContainer = styled.div`
   width: 100%;
   border-bottom: 1px solid #dddee0;
-  padding: 0px 0 20px;
+  padding-bottom 20px;
   margin-bottom: 50px;
 `;
 
