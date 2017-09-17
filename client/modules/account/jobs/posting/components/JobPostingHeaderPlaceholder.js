@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 
 const JobPostingHeaderPlaceholder = () =>
   <PlaceholderHeader>
@@ -12,16 +13,17 @@ const JobPostingHeaderPlaceholder = () =>
 
 export default JobPostingHeaderPlaceholder;
 
-const PlaceholderHeader = styled.div`
-  display: inline-block;
-  margin: 45px 0 40px;
-`;
+const PlaceholderHeader = styled.div`margin: 45px 0 40px;`;
 
 const PlaceholderLogo = styled.div`
   background: ${props => props.theme.colors.placeholder};
   width: 220px;
   height: 15px;
   margin-bottom: 20px;
+
+  ${media.tablet`
+    width: 45%
+  `};
 `;
 
 const PlaceholderTitle = styled.div`
@@ -29,6 +31,10 @@ const PlaceholderTitle = styled.div`
   width: 440px;
   height: 15px;
   margin-bottom: 20px;
+
+  ${media.tablet`
+    width: 100%
+  `};
 `;
 
 const PlaceholderLocation = styled.div`
@@ -36,10 +42,18 @@ const PlaceholderLocation = styled.div`
   width: 280px;
   height: 15px;
   margin-bottom: 20px;
+
+  ${media.tablet`
+    width: 75%
+  `};
 `;
 
 const PlaceholderDate = styled.div`
   background: ${props => props.theme.colors.placeholder};
   width: 200px;
   height: 15px;
+
+  ${media.tablet`
+    width: 60%
+  `};
 `;

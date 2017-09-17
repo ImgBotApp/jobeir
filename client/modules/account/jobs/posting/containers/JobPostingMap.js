@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import lightTheme from '../../../../../maps/styles/';
 
 class JobPostingMap extends Component {
@@ -45,11 +46,24 @@ class JobPostingMap extends Component {
 export default JobPostingMap;
 
 const JobPostingMapContainer = styled.div`
-  margin: 20px auto 55px;
+  margin: 40px auto 0;
 
   #map {
     margin: 0 auto;
     height: 550px;
     width: 960px;
+
+    ${media.desktop`
+      height: 400px;
+      width: 100%
+    `};
+
+    ${media.phablet`
+      height: 300px;
+    `};
+
+    ${media.phone`
+      height: 250px;
+    `};
   }
 `;

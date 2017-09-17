@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import JobPostingHeaderPlaceholder from '../components/JobPostingHeaderPlaceholder';
 import JobPostingPreviewPlaceholder from '../components/JobPostingPreviewPlaceholder';
 import JobPostingHeader from '../components/JobPostingHeader';
@@ -37,7 +38,13 @@ const JobPosting = (props: { activePosting: {}, hideLogo: boolean }) => {
 
 export default JobPosting;
 
-const JobPostingContainer = styled.div`margin-top: 50px;`;
+const JobPostingContainer = styled.div`
+  margin-top: 50px;
+
+  ${media.phablet`
+    margin-top: 30px;
+  `};
+`;
 
 const JobPostingPlaceholderContainer = styled.div`
   max-width: 670px;

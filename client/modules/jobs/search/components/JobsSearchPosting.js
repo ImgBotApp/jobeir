@@ -123,7 +123,7 @@ const JobsSearchPostingTop = styled.div`
 const JobsSearchPostingBottom = styled.div`
   display: flex;
   justify-content: space-between;
-  color: #6a6666;
+  color: ##5a5a5a;
 
   ${media.phablet`
     font-size: 14px;
@@ -154,7 +154,7 @@ const JobsSearchPostingType = styled.div`display: flex;`;
 const JobsSearchPostingCompanyProduct = styled.p`
   line-height: 1.6;
   margin-bottom: 15px;
-  color: #6a6666;
+  color: ##5a5a5a;
 
   ${media.phablet`
     font-size: 14px;

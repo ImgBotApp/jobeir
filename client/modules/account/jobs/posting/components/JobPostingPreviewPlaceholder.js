@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 
 const JobPostingPreviewPlaceholder = () =>
   <JobPostingPreviewPlaceholderContainer>
@@ -15,6 +16,10 @@ const JobPostingPreviewPlaceholderContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  ${media.tablet`
+    display: none;
+  `};
 `;
 
 const JobPostingPreviewPlaceholderRow = styled.div`

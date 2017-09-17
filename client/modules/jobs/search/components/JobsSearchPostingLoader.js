@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 const JobSearchPostingLoader = () =>
   <PlaceholderContainer>
@@ -30,6 +31,10 @@ const PlaceholderContainer = styled.div`
 const PlaceholderRow = styled.div`
   display: block;
   margin-bottom: 60px;
+
+  ${media.tablet`
+    margin-bottom: 44px;
+  `};
 `;
 
 const PlaceholderLogo = styled.div`
@@ -37,6 +42,10 @@ const PlaceholderLogo = styled.div`
   width: 450px;
   height: 14px;
   margin-bottom: 14px;
+
+  ${media.tablet`
+    width: 90%;
+  `};
 `;
 
 const PlaceholderTitle = styled.div`
@@ -44,6 +53,11 @@ const PlaceholderTitle = styled.div`
   width: 320px;
   height: 14px;
   margin-bottom: 30px;
+
+  ${media.tablet`
+    width: 60%;
+    margin-bottom: 14px;
+  `};
 `;
 
 const PlaceholderText1 = styled.div`

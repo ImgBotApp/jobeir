@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import draftToHtml from 'draftjs-to-html';
 
 class JobPostingBody extends Component {
@@ -36,6 +37,16 @@ const JobPostingBodyContainer = styled.div`
     margin-bottom: 50px;
     font-size: 20px;
     color: #333;
+
+    ${media.desktop`
+      margin-bottom: 40px;
+      font-size: 18px;
+    `};
+
+    ${media.phablet`
+      margin-bottom: 30px;
+      font-size: 16px;
+    `};
   }
 
   a {
@@ -53,16 +64,35 @@ const JobPostingBodyContainer = styled.div`
   h5,
   h6 {
     margin-bottom: 20px;
+
+    ${media.phablet`
+      margin-bottom: 15px;
+    `};
   }
 
-  h2,
+  h2 {
+    font-size: 26px;
+
+    ${media.phablet`
+      font-size: 22px;
+    `};
+  }
+
   h3 {
     font-size: 24px;
+
+    ${media.phablet`
+      font-size: 20px;
+    `};
   }
 
   h4,
   h6 {
     font-size: 20px;
+
+    ${media.phablet`
+      font-size: 18px;
+    `};
   }
 
   ul,
@@ -73,22 +103,20 @@ const JobPostingBodyContainer = styled.div`
     font-size: 18px;
     color: #333;
 
+    ${media.tablet`
+      margin-bottom: 30px;
+      font-size: 16px;
+    `};
+
     & > li {
-      display: inline-block;
       margin-bottom: 15px;
       font-size: 18px;
       color: #333;
+
+      ${media.tablet`
+      margin-bottom: 10px;
+      font-size: 16px;
+    `};
     }
   }
 `;
-
-const JobPostingBodyHeader = styled.header`margin: 25px auto 35px;`;
-
-const JobPostingBodyHeading = styled.h1`
-  font-weight: 900;
-  font-size: 42px;
-`;
-
-const JobPostingBodySubHeading = styled.p``;
-
-const JobPostingBodyImg = styled.img`height: 40px;`;

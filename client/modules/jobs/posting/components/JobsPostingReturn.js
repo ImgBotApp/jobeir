@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import { Link } from 'react-router';
 import { ChevronLeft } from '../../../../icons/';
 
@@ -25,6 +26,10 @@ const JobsPostingReturnContainer = styled.div`
   align-items: flex-start;
   max-width: 670px;
   margin: 0 auto 60px;
+
+  ${media.phablet`
+    margin-bottom: 20px;
+  `};
 `;
 
 const StyledChevronLeft = styled(ChevronLeft)`
@@ -50,4 +55,8 @@ const StyledLink = styled(Link)`
   &:hover {
     background: rgba(0,0,0,0.08);
   }
+
+  ${media.phablet`
+    font-size: 16px;
+  `};
 `;
