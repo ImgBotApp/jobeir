@@ -275,7 +275,7 @@ const JobsSearchHeader = styled.div`
 
   ${media.tablet`
     font-size: 18px;
-    margin-bottom: 30px;
+    margin-bottom: 44px;
   `};
 `;
 
@@ -285,10 +285,6 @@ const JobsSearchHeaderText = styled.div`
   border-bottom: 1px solid #212121;
   position: relative;
   top: 1px;
-
-  ${media.phablet`
-    padding-bottom: 10px;
-  `};
 `;
 
 const JobsSearchColumn = styled.div`
@@ -306,6 +302,7 @@ const JobsSearchColumn = styled.div`
   `};
 
   ${media.tablet`
+    padding-top: 20px;
     display: ${props => (props.margin ? 'none' : 'block')};
     width: ${props => (props.wide ? '100%' : 'auto')};
   `};
