@@ -118,6 +118,10 @@ const JobsSearchPostingTop = styled.div`
   ${media.phablet`
     margin-bottom: 10px;
   `};
+
+  ${media.phonePlus`
+    margin-bottom: 6px;
+  `};
 `;
 
 const JobsSearchPostingBottom = styled.div`
@@ -137,6 +141,7 @@ const JobsSearchPostingTitle = styled.h2`
 
   ${media.tablet`
     font-size: 21px;
+    margin-bottom: 4px;
   `};
 
   ${media.phablet`
@@ -158,5 +163,6 @@ const JobsSearchPostingCompanyProduct = styled.p`
 
   ${media.phablet`
     font-size: 14px;
+    margin-bottom: 10px;
   `};
 `;

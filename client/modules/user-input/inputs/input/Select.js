@@ -75,6 +75,7 @@ const SelectContainer = styled.div`
 `;
 
 const SelectInput = styled.select`
+  appearance: none;
   background: ${props => props.theme.select.background};
   border-radius: ${props => props.theme.select.borderRadius};
   border: ${props => props.theme.select.border};
