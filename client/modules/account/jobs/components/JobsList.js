@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { formValueSelector } from 'redux-form';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import JobsListItem from './JobsListItem';
 import fuse from 'fuse.js';
 
@@ -59,13 +60,10 @@ const JobsListContainer = styled.div``;
 
 const JobsBodyList = styled.ul`
   list-style: none;
-  width: 1080px;
+  max-width: 1080px;
+  width: 100%;
   margin: 40px auto 0;
   padding-bottom: 80px;
-  // padding: 25px;
-  // border: 1px solid #eceaea;
-  // border-radius: 3px;
-  // background: #fff;
 `;
 
 const JobsBody = styled.li`

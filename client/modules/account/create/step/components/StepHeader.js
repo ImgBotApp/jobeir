@@ -32,8 +32,27 @@ const StepHeaderContainer = styled.header`
   }
 
   ${media.desktop`
-    max-width: 900px;
+   max-width: 900px;
     padding: 0 50px;
+  `};
+
+  ${media.tablet`
+    position: relative;
+    width: 100%;
+    padding: 0 104px;
+  `};
+
+  ${media.phablet`
+    max-width: 900px;
+    padding: 0 74px;
+  `};
+
+  ${media.phonePlus`
+    padding: 12px 44px;
+  `};
+
+  ${media.phone`
+    padding: 12px 30px;
   `};
 `;
 

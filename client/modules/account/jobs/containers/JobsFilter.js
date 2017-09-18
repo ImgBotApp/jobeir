@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import { updateJobFilter } from '../../../account/create/job/ducks/';
 import JobsSearchFilterForm from '../../../user-input/forms/form/JobsSearchFilterForm';
 
@@ -15,18 +16,20 @@ class JobsFilter extends Component {
 
     return (
       <JobsFilterContainer>
-        {states.map(state => {
-          const active: boolean = state === this.props.filter;
-          return (
-            <JobsFilterItem
-              active={active}
-              key={state}
-              onClick={() => this.handleFilterClick(state)}
-            >
-              {state}
-            </JobsFilterItem>
-          );
-        })}
+        <JobsFilterList>
+          {states.map(state => {
+            const active: boolean = state === this.props.filter;
+            return (
+              <JobsFilterItem
+                active={active}
+                key={state}
+                onClick={() => this.handleFilterClick(state)}
+              >
+                {state}
+              </JobsFilterItem>
+            );
+          })}
+        </JobsFilterList>
         <JobsSearchFilterForm />
       </JobsFilterContainer>
     );
@@ -42,10 +45,29 @@ export default connect(mapStateToProps)(JobsFilter);
 const JobsFilterContainer = styled.div`
   display: flex;
   margin: 0 auto;
-  width: 1080px;
+  max-width: 1080px;
+  width: 100%;
+  border-bottom: 1px solid #eceaea;
+
+  ${media.tablet`
+    flex-direction: column;
+  `};
 `;
 
-const JobsFilterItem = styled.div`
+const JobsFilterList = styled.ul`
+  display: flex;
+  list-style: none;
+
+  ${media.tablet`
+    width: 100%;
+  `};
+
+  ${media.phablet`
+    justify-content: space-between;
+  `};
+`;
+
+const JobsFilterItem = styled.li`
   padding: 22px 0;
   margin-right: 40px;
   position: relative;
@@ -59,4 +81,19 @@ const JobsFilterItem = styled.div`
   &:last-child {
     margin-right: 0;
   }
+
+  ${media.tablet`
+    font-size: 16px;
+    margin-right: 30px;
+    padding: 18px 0;
+  `};
+
+  ${media.phablet`
+    margin-right: 25px;
+    padding: 14px 0;
+  `};
+
+  ${media.phonePlus`
+    font-size: 14px;
+  `};
 `;

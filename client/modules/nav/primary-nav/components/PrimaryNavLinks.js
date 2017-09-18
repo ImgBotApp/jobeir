@@ -39,11 +39,6 @@ class PrimaryNavLinks extends Component {
   buildPublicNavigation(isAuthenticated) {
     return isAuthenticated
       ? <NavLinkContainer>
-          <DesktopOnly>
-            <NavLink to="/account/company">
-              {this.props.activeCompany.displayName}
-            </NavLink>
-          </DesktopOnly>
           <ShellHeaderNav />
           <ShellDropdown />
         </NavLinkContainer>
@@ -61,9 +56,6 @@ class PrimaryNavLinks extends Component {
   buildAccountNavigation() {
     return (
       <NavLinkContainer>
-        <NavLink to="/account/company">
-          {this.props.activeCompany.displayName}
-        </NavLink>
         <ShellHeaderNav />
         <ShellDropdown />
       </NavLinkContainer>
@@ -126,11 +118,5 @@ const NavLink = styled(Link)`
 
   ${media.phablet`
     font-size: 14px;
-  `};
-`;
-
-const DesktopOnly = styled.span`
-  ${media.tablet`
-    display: none;
   `};
 `;

@@ -2,9 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import UserWrapper from '../../../user/containers/UserWrapper';
 import ShellHeader from '../components/ShellHeader';
-import ShellSidebar from './ShellSidebar';
 
 /**
  * <Shell />
@@ -54,6 +54,10 @@ const ShellContainer = styled.div``;
 const ShellContent = styled.main`
   margin: 0 auto;
   width: 100%;
+
+  ${media.desktop`
+    padding: 0 24px;
+  `};
 `;
 
 const ShellDynamic = styled.div``;

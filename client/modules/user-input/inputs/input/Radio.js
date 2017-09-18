@@ -304,6 +304,11 @@ const RadioListInputContainer = styled.div`
   border-radius: 2px;
   margin-bottom: 1%;
   cursor: pointer;
+  
+  ${media.tablet`
+    padding: 14px 8px;
+    font-size: 14px;
+  `};
 
   input[type=radio]:checked {
     background: ${props => props.theme.colors.pink};

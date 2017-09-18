@@ -59,7 +59,8 @@ const StepRouterContainer = styled.div`
   `};
 
   ${media.tablet`
-    width; 100%;
+    width: 100%;
     padding: 0 24px;
+    margin-top: 24px;
   `};
 `;

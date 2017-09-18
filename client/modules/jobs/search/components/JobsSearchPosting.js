@@ -131,12 +131,12 @@ const JobsSearchPostingBottom = styled.div`
 `;
 
 const JobsSearchPostingTitle = styled.h2`
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 900;
   margin-bottom: 5px;
 
   ${media.tablet`
-    font-size: 20px;
+    font-size: 21px;
   `};
 
   ${media.phablet`

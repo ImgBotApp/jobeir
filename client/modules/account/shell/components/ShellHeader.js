@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import ShellHeaderTitle from './ShellHeaderTitle';
 
 /**
@@ -26,4 +27,12 @@ const ShellHeaderContainer = styled.div`
   padding: 70px 0 30px;
   max-width: 1080px;
   margin: 0 auto;
+
+  ${media.tablet`
+    padding: 50px 0 25px;
+  `};
+
+  ${media.phonePlus`
+    padding: 40px 0 20px;
+  `};
 `;

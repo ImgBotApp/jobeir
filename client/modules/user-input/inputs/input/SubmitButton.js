@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 // check if there are any form errors
 const isDisabled = (errors: Array<{}> = []): boolean => errors.length >= 1;
@@ -29,4 +30,9 @@ const Button = styled.button`
   max-width: ${props => props.theme.button.maxWidth};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   opacity: ${props => (props.disabled ? '0.55' : '1')};
+
+  ${media.tablet`
+    max-width: ${props => props.theme.button.tablet.maxWidth};
+    font-size: ${props => props.theme.button.tablet.fontSize};
+  `};
 `;

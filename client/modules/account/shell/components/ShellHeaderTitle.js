@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 /**
  * <ShellHeaderTitle />
@@ -18,4 +19,16 @@ export default ShellHeaderTitle;
 const ShellHeaderTitleContainer = styled.h1`
   font-size: 52px;
   font-weight: 900;
+
+  ${media.desktop`
+    font-size: 48px;
+  `};
+
+  ${media.tablet`
+    font-size: 42px;
+  `};
+
+  ${media.phonePlus`
+    font-size: 38px;
+  `};
 `;

@@ -80,6 +80,10 @@ const StepFormContainer = styled.div`
     padding: 0 50px;
   `};
 
+  ${media.phonePlus`
+    padding: 0 20px;
+  `};
+
   ${media.phone`
     width: 100%;
     padding: 0 6px;

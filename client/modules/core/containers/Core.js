@@ -121,7 +121,20 @@ injectGlobal`
 
   body {
     margin: 0;
-    font-family: 'Avenir STD', Avenir, sans-serif;
+    font-family: 
+      'Avenir STD',
+      Avenir,
+      -apple-system,
+      BlinkMacSystemFont,
+      San Francisco,
+      Helvetica Neue,
+      Helvetica,
+      Ubuntu,
+      Roboto,
+      Noto,
+      Segoe UI,
+      Arial,
+      sans-serif;
     color: rgba(0,0,0,0.85);
   }
   

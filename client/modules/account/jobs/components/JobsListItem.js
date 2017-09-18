@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import moment from 'moment';
 
 /**
@@ -48,9 +49,9 @@ const JobsListItem = (props: {
           {job.location.address.administrative_area_level_1}
         </div>
         <JobsDot>·</JobsDot>
-        <div>
+        <HideOnMobile>
           ${job.salary.min / 1000}K - ${job.salary.max / 1000}K
-        </div>
+        </HideOnMobile>
       </JobsSub>
     </div>
   );
@@ -58,7 +59,7 @@ const JobsListItem = (props: {
 
 export default JobsListItem;
 
-const JobsTitle = styled.h3`font-size: 20px;`;
+const JobsTitle = styled.h3`font-size: 22px;`;
 
 const JobsState = styled.div`
   font-size: 14px;
@@ -77,9 +78,25 @@ const JobsSub = styled.div`
   margin-top: 10px;
   font-size: 14px;
   font-weight: 200;
+
+  ${media.phablet`
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin-top: 5px;
+  `};
 `;
 
 const JobsDot = styled.span`
   display: inline-block;
   padding: 0 5px;
+
+  ${media.phablet`
+    display: none;
+  `};
+`;
+
+const HideOnMobile = styled.div`
+  ${media.phablet`
+    display: none;
+  `};
 `;

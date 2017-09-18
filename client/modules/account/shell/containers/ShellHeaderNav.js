@@ -37,6 +37,10 @@ const ShellHeaderNavContainer = styled.div`
 
   ${media.tablet`
     padding: 0 10px;
+    margin-right: 20px;
+  `};
+
+  ${media.phonePlus`
     margin-right: 10px;
   `};
 `;

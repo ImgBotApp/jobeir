@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import InputWrapper from '../components/InputWrapper';
 
 export const Textarea = (props: {
@@ -46,26 +47,41 @@ const TextareaInput = styled.textarea`
     outline: none;
   }
 
-  ::-webkit-input-placeholder {
+  ${media.tablet`
+    font-size: 16px;
+    padding: 14px;
+  `} ::-webkit-input-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     line-height: 1.5;
+    ${media.tablet`
+      font-size: 16px;
+    `};
   }
   :-moz-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     opacity: 1;
     line-height: 1.5;
+    ${media.tablet`
+      font-size: 16px;
+    `};
   }
   ::-moz-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     opacity: 1;
     line-height: 1.5;
+    ${media.tablet`
+      font-size: 16px;
+    `};
   }
   :-ms-input-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     line-height: 1.5;
+    ${media.tablet`
+      font-size: 16px;
+    `};
   }
 `;

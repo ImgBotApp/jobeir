@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import { Field, reduxForm } from 'redux-form';
 import { Text } from '../../inputs/input';
 import { SearchIcon } from '../../../../icons/';
@@ -32,6 +33,12 @@ const JobsSearchFilterFormContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
+
+  ${media.tablet`
+    top: 24px;
+    margin: 0 auto;
+    width: 100%;
+  `};
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`

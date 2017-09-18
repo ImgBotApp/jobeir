@@ -8,7 +8,11 @@ export const marble = {
     width: '100%',
     maxWidth: '200px',
     fontSize: '18px',
-    color: '#fff'
+    color: '#fff',
+    tablet: {
+      maxWidth: '150px',
+      fontSize: '16px'
+    }
   },
   dropzone: {
     display: 'flex',

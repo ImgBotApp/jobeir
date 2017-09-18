@@ -6,6 +6,7 @@ const sizes = {
   desktop: 1040,
   tablet: 768,
   phablet: 600,
+  phonePlus: 480,
   phone: 376
 };
 

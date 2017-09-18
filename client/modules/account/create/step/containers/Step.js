@@ -2,11 +2,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import UserWrapper from '../../../../user/containers/UserWrapper';
 import StepRouter from './StepRouter';
 import StepForm from './StepForm';
 import StepHelp from './StepHelp';
 import StepHeader from '../components/StepHeader';
+import StepProgressBar from '../components/StepProgressBar';
 import StepBackground from '../components/StepBackground';
 
 /**
@@ -20,6 +22,7 @@ const Step = (props: { params: { step: string }, user: {} }) => {
 
   return (
     <StepContainer>
+      <StepProgressBar params={params} />
       <StepHeader />
       <StepBackground />
       {user.isLoaded &&
@@ -37,4 +40,9 @@ const StepContainer = styled.div`
   display: flex;
   max-width: 1280px;
   margin: 46px auto 0;
+
+  ${media.tablet`
+    flex-direction: column;
+    margin-top: 0;
+  `};
 `;
