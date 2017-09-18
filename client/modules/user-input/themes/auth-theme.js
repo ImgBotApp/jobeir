@@ -9,7 +9,11 @@ export const auth = {
     maxWidth: '500px',
     marginBottom: '2rem',
     fontSize: '18px',
-    color: '#fff'
+    color: '#fff',
+    tablet: {
+      fontSize: '16px',
+      maxWidth: '500px'
+    }
   },
   error: {
     color: '#f73c3c',
