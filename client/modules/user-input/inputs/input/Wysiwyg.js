@@ -5,6 +5,7 @@ import { change } from 'redux-form';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import InputWrapper from '../components/InputWrapper';
 import { wysiwig } from '../../themes/wysiwig-theme';
 
@@ -104,6 +105,11 @@ const EditorContainer = styled.div`
   margin: 0 auto 1rem;
   border-color: ${props => (props.showError ? '#f73c3c' : '')};
 
+  ${media.tablet`
+    min-height: 200px;
+    padding: 14px;
+  `};
+
   .rdw-editor-toolbar {
     margin: -8px 0 0 -10px;
   }
@@ -135,6 +141,10 @@ const EditorContainer = styled.div`
 
   .public-DraftStyleDefault-block {
     margin: 0.5em 0;
+
+    ${media.tablet`
+      margin: 4px 0;
+    `};
   }
 
   .public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR {

@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
+import { media } from '../../../../styles/breakpoints';
 /**
  * Used as a container around the Next, Create, and
  * back buttons within the main application forms
@@ -83,6 +83,14 @@ const FormFooterContainer = styled.div`
   right: 0;
   bottom: 0;
   margin: 0 auto;
+
+  ${media.desktop`
+    width: 900px;
+  `};
+
+  ${media.tablet`
+    width: 100%;
+  `};
 `;
 
 const FormFooterCenter = styled.div`
@@ -97,4 +105,9 @@ const FormFooterCenter = styled.div`
   border-top: 1px solid #ebebeb;
   box-shadow: ${props =>
     props.isOverlapped ? '0 -9px 18px -10px rgba(0,0,0,0.18)' : 'none'};
+
+  ${media.tablet`
+    width: 100%;
+    padding: 12px;
+  `};
 `;

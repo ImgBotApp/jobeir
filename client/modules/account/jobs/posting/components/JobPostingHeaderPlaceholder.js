@@ -2,14 +2,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../../styles/breakpoints';
+import { Glow } from '../../../../../styles/animate';
 
 const JobPostingHeaderPlaceholder = () =>
-  <PlaceholderHeader>
-    <PlaceholderLogo />
-    <PlaceholderTitle />
-    <PlaceholderLocation />
-    <PlaceholderDate />
-  </PlaceholderHeader>;
+  <Glow>
+    <PlaceholderHeader>
+      <PlaceholderLogo />
+      <PlaceholderTitle />
+      <PlaceholderLocation />
+      <PlaceholderDate />
+    </PlaceholderHeader>
+  </Glow>;
 
 export default JobPostingHeaderPlaceholder;
 

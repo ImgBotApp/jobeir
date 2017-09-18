@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import CompanyOnboarding from '../../company/components/CompanyOnboarding';
 import { FadeIn } from '../../../../../styles/animate/';
 
@@ -66,4 +67,21 @@ class StepForm extends Component {
 
 export default StepForm;
 
-const StepFormContainer = styled.div`width: 52.5%;`;
+const StepFormContainer = styled.div`
+  width: 52.5%;
+
+  ${media.tablet`
+    width: 100%;
+    padding: 0 80px;
+  `};
+
+  ${media.phablet`
+    width: 100%;
+    padding: 0 50px;
+  `};
+
+  ${media.phone`
+    width: 100%;
+    padding: 0 6px;
+  `};
+`;

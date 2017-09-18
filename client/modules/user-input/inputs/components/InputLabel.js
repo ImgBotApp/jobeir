@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 const InputLabel = (props: { input: { name: string }, label: string }) =>
   <LabelContainer>
@@ -17,4 +18,9 @@ const LabelContainer = styled.div`
   font-weight: ${props => props.theme.label.fontWeight};
   margin-bottom: ${props => props.theme.label.marginBottom};
   color: ${props => props.theme.label.color || 'inherit'};
+
+  ${media.phablet`
+    font-size: 16px;
+    margin-bottom: 5px;
+  `};
 `;

@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 const FormHeader = (props: { text: string }) =>
   <FormHeaderContainer>
@@ -14,9 +15,18 @@ export default FormHeader;
 const FormHeaderContainer = styled.div``;
 
 const Header = styled.h2`
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: 36px;
+  margin-bottom: 36px;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  ${media.tablet`
+    font-size: 30px;
+    margin-bottom: 30px;
+  `};
+
+  ${media.phablet`
+    font-size: 26px;
+  `};
 `;

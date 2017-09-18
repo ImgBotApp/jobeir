@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import MaskedInput from 'react-text-mask';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import InputWrapper from '../components/InputWrapper';
+import { media } from '../../../../styles/breakpoints';
 
 const numberMask = createNumberMask({
   prefix: '$'
@@ -49,6 +50,12 @@ const StyledMaskedInput = styled(MaskedInput)`
         ? props.theme.error.color
         : props.theme.input.activeBorderColor};
   }
+
+  ${media.tablet`
+    font-size: 16px;
+    height: 48px;
+    padding: 16px 14px 12px;
+  `};
 
   ::-webkit-input-placeholder {
     font-size: ${props => props.theme.input.fontSize};

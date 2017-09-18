@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 export const Input = styled.input`
   border-radius: ${props => props.theme.input.borderRadius};
@@ -42,4 +43,10 @@ export const Input = styled.input`
     color: ${props => props.theme.input.ph.color};
     line-height: 2;
   }
+
+  ${media.tablet`
+    font-size: 16px;
+    height: 48px;
+    padding: 16px 14px 12px;
+  `};
 `;

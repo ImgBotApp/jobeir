@@ -3,6 +3,7 @@ import React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
 import InputWrapper from '../components/InputWrapper';
+import { media } from '../../../../styles/breakpoints';
 
 /**
  * SelectSearch
@@ -79,6 +80,11 @@ const SelectContainer = styled.div`
     font-size: 18px;
     width: 100%;
     margin: 0 auto 1rem;
+
+    ${media.tablet`
+      font-size: 16px;
+      padding: 14px;
+    `};
   }
   .Select-control:hover {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
@@ -134,7 +140,7 @@ const SelectContainer = styled.div`
   .has-value.Select--single > .Select-control .Select-value .Select-value-label,
   .has-value.is-pseudo-focused.Select--single
     > .Select-control .Select-value .Select-value-label {
-    font-weight: 600;
+    font-weight: 400;
     color: rgba(0, 0, 0, 0.85);
   }
   .has-value.Select--single

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 
 class StepRouter extends Component {
   componentDidMount() {
@@ -47,4 +48,18 @@ const StepRouterContainer = styled.div`
   margin: 0 auto;
   display: flex;
   min-height: calc(100vh - 175px);
+
+  @media (max-width: 1280px) {
+    margin-top: 50px;
+  }
+
+  ${media.desktop`
+    width: 900px;
+    padding: 0 50px;
+  `};
+
+  ${media.tablet`
+    width; 100%;
+    padding: 0 24px;
+  `};
 `;

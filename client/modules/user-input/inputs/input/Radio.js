@@ -2,6 +2,7 @@
 import React from 'react';
 import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 const RadioYesNo = ({ props, showError }) =>
   <InputWrapper {...props}>
@@ -276,6 +277,10 @@ const RadioListContainer = styled.div`
   justify-content: space-between;
   margin: 20px auto;
   border-radius: 3px;
+
+  ${media.tablet`
+    margin: 5px auto 25px;
+  `};
 `;
 
 const RadioListInputContainer = styled.div`

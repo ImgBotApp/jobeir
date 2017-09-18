@@ -2,13 +2,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../../styles/breakpoints';
+import { Glow } from '../../../../../styles/animate';
 
 const JobPostingPreviewPlaceholder = () =>
-  <JobPostingPreviewPlaceholderContainer>
-    <JobPostingPreviewPlaceholderRow />
-    <JobPostingPreviewPlaceholderRow />
-    <JobPostingPreviewPlaceholderRow width="80" />
-  </JobPostingPreviewPlaceholderContainer>;
+  <Glow>
+    <JobPostingPreviewPlaceholderContainer>
+      <JobPostingPreviewPlaceholderRow />
+      <JobPostingPreviewPlaceholderRow />
+      <JobPostingPreviewPlaceholderRow width="80" />
+    </JobPostingPreviewPlaceholderContainer>
+  </Glow>;
 
 export default JobPostingPreviewPlaceholder;
 

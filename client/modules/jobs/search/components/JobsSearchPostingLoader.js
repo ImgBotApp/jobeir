@@ -2,24 +2,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
+import { Glow } from '../../../../styles/animate';
 
 const JobSearchPostingLoader = () =>
-  <PlaceholderContainer>
-    <PlaceholderRow>
-      <PlaceholderLogo />
-      <PlaceholderTitle />
-      <PlaceholderText1 />
-      <PlaceholderText2 />
-      <PlaceholderText3 />
-    </PlaceholderRow>
-    <PlaceholderRow>
-      <PlaceholderLogo />
-      <PlaceholderTitle />
-      <PlaceholderText1 />
-      <PlaceholderText2 />
-      <PlaceholderText3 />
-    </PlaceholderRow>
-  </PlaceholderContainer>;
+  <Glow>
+    <PlaceholderContainer>
+      <PlaceholderRow>
+        <PlaceholderLogo />
+        <PlaceholderTitle />
+        <PlaceholderText1 />
+        <PlaceholderText2 />
+        <PlaceholderText3 />
+      </PlaceholderRow>
+      <PlaceholderRow>
+        <PlaceholderLogo />
+        <PlaceholderTitle />
+        <PlaceholderText1 />
+        <PlaceholderText2 />
+        <PlaceholderText3 />
+      </PlaceholderRow>
+    </PlaceholderContainer>
+  </Glow>;
 
 export default JobSearchPostingLoader;
 

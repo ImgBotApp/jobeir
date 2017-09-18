@@ -1,24 +1,27 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { Glow } from '../../../../styles/animate';
 
 const JobsListItemPlaceholder = () =>
-  <JobsListItemPlaceholderContainer>
-    <PlaceholderContainer>
-      <PlaceholderTop>
-        <PlaceholderTitle />
-        <PlaceholderState />
-      </PlaceholderTop>
-      <PlaceholderDetails />
-    </PlaceholderContainer>
-    <PlaceholderContainer>
-      <PlaceholderTop>
-        <PlaceholderTitle />
-        <PlaceholderState />
-      </PlaceholderTop>
-      <PlaceholderDetails />
-    </PlaceholderContainer>
-  </JobsListItemPlaceholderContainer>;
+  <Glow>
+    <JobsListItemPlaceholderContainer>
+      <PlaceholderContainer>
+        <PlaceholderTop>
+          <PlaceholderTitle />
+          <PlaceholderState />
+        </PlaceholderTop>
+        <PlaceholderDetails />
+      </PlaceholderContainer>
+      <PlaceholderContainer>
+        <PlaceholderTop>
+          <PlaceholderTitle />
+          <PlaceholderState />
+        </PlaceholderTop>
+        <PlaceholderDetails />
+      </PlaceholderContainer>
+    </JobsListItemPlaceholderContainer>
+  </Glow>;
 
 export default JobsListItemPlaceholder;
 

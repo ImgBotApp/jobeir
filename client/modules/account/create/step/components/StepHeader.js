@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import { Link } from 'react-router';
 import PrimaryNavLogo from '../../../../nav/primary-nav/components/PrimaryNavLogo';
 
@@ -23,6 +24,17 @@ const StepHeaderContainer = styled.header`
   padding-top: 45px;
   margin: 0 50px;
   height: 70px;
+
+  @media (max-width: 1280px) {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 0;
+  }
+
+  ${media.desktop`
+    max-width: 900px;
+    padding: 0 50px;
+  `};
 `;
 
 const StepStyledLink = styled(Link)`
