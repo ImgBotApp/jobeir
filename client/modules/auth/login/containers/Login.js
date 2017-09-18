@@ -9,7 +9,7 @@ import AuthFooter from '../../components/AuthFooter';
 const Login = () =>
   <AuthPage>
     <Helmet title="Login" />
-    <AuthHeader text="Log into This Application" />
+    <AuthHeader text="Log into Lorem Impsum" />
     <AuthOAuth />
     <LoginForm />
     <AuthFooter link="/reset" text="Forgot Password?" />

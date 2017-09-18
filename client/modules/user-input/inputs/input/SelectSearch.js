@@ -2,8 +2,8 @@
 import React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
-import InputWrapper from '../components/InputWrapper';
 import { media } from '../../../../styles/breakpoints';
+import InputWrapper from '../components/InputWrapper';
 
 /**
  * SelectSearch

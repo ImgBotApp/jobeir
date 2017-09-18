@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 import { hideModal } from '../ducks';
 import { ExIcon } from '../../../icons/';
 
@@ -78,6 +79,14 @@ const ModalContainer = styled.div`
   padding: 0;
   margin: 0;
   border: 0;
+
+  ${media.tablet`
+    padding: 50px;
+  `};
+
+  ${media.phablet`
+    padding: 24px;
+  `};
 `;
 
 const ModalBackground = styled.div`
@@ -94,6 +103,7 @@ const ModalBackground = styled.div`
 const ModalContent = styled.div`
   transform-origin: bottom center;
   animation: ${FadeInPulse} .27s forwards ease;
+  width: 100%;
 `;
 
 const ModalBody = styled.div`
@@ -104,7 +114,8 @@ const ModalBody = styled.div`
     props.bgColor === 'white'
       ? '0 3px 16px 0 rgba(0,0,0,.24)'
       : '0 2px 6px 0 rgba(0,0,0,.44)'};
-  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const ModalAction = styled.div`

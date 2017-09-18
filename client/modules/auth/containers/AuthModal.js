@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 import ModalWrapper from '../../modal/components/ModalWrapper';
 import SignupForm from '../../user-input/forms/form/SignupForm';
 import LoginForm from '../../user-input/forms/form/LoginForm';
@@ -77,7 +78,11 @@ class AuthModal extends Component {
 
 export default AuthModal;
 
-const AuthModalBody = styled.div`min-width: 500px;`;
+const AuthModalBody = styled.div`
+  max-width: 500px;
+  width: 100%;
+  margin: 0 50px;
+`;
 
 const AuthModalHeader = styled.div`
   position: relative;

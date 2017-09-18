@@ -61,10 +61,6 @@ const JobsPostingHeaderCompanyLogo = styled.img`
   ${media.phablet`
     height: 35px;
   `};
-
-  ${media.phone`
-    height: 30px;
-  `};
 `;
 
 const JobsPostingHeaderCompany = styled.div`margin-bottom: 30px;`;

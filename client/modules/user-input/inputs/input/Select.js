@@ -80,6 +80,7 @@ const SelectInput = styled.select`
   border: ${props => props.theme.select.border};
   border-color: ${props => (props.showError ? props.theme.error.color : '')};
   padding: ${props => props.theme.select.padding};
+  line-height: ${props => props.theme.select.lineHeight};
   font-size: ${props => props.theme.select.fontSize};
   width: ${props => props.theme.select.width};
   height: ${props => props.theme.select.height};

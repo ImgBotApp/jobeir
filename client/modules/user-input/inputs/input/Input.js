@@ -11,6 +11,8 @@ export const Input = styled.input`
   height: ${props => props.theme.input.height};
   margin: ${props => props.theme.input.margin};
   max-width: ${props => props.theme.input.maxWidth};
+  line-height: ${props => props.theme.input.lineHeight};
+  box-shadow: none;
 
   &:hover: {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
@@ -47,6 +49,6 @@ export const Input = styled.input`
   ${media.tablet`
     font-size: 16px;
     height: 48px;
-    padding: 16px 14px 12px;
+    padding: 0 14px;
   `};
 `;

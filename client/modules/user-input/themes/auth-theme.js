@@ -23,7 +23,7 @@ export const auth = {
   input: {
     borderRadius: '3px',
     border: 'solid 1px #babbbb',
-    padding: '18px',
+    padding: '0 18px',
     fontSize: '16px',
     width: '100%',
     margin: '0 auto 1rem',

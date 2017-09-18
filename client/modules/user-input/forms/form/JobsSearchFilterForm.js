@@ -35,6 +35,7 @@ const JobsSearchFilterFormContainer = styled.div`
   margin-left: auto;
 
   ${media.tablet`
+    display: none;
     top: 24px;
     margin: 0 auto;
     width: 100%;

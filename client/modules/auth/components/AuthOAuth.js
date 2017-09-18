@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 import docCookies from '../../../utils/cookies';
 import { FacebookIcon, GoogleIcon, GithubIcon } from '../../../icons/';
 
@@ -51,7 +52,7 @@ const OAuthButtonContainer = styled.div`padding-bottom: 1rem;`;
 const OAuthButton = styled.a`
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   height: 60px;
   border-radius: 2px;
   max-width: 456px;
@@ -60,12 +61,21 @@ const OAuthButton = styled.a`
   padding: 0 1rem;
   transition: background-color, border-color,
     0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+  ${media.phablet`
+    height: 54px;
+    margin-bottom: 10px;
+  `};
 `;
 
 const OAuthButtonText = styled.p`
   position: relative;
   top: 2px;
   padding-left: 1rem;
+
+  ${media.phablet`
+    font-size: 14px;
+  `};
 `;
 
 const GoogleButton = styled(OAuthButton)`
@@ -76,6 +86,12 @@ const GoogleButton = styled(OAuthButton)`
   &:hover {
     background-color: #f7f7f7;
   }
+
+  svg {
+    ${media.phablet`
+      width: 22px;
+    `};
+  }
 `;
 
 const FacebookButton = styled(OAuthButton)`
@@ -84,6 +100,12 @@ const FacebookButton = styled(OAuthButton)`
   &:hover {
     background-color: #344e84;
   }
+
+  svg {
+    ${media.phablet`
+      width: 22px;
+    `};
+  }
 `;
 
 const GithubButton = styled(OAuthButton)`
@@ -91,5 +113,11 @@ const GithubButton = styled(OAuthButton)`
 
   &:hover {
     background-color: #1b2025;
+  }
+
+  svg {
+    ${media.phablet`
+      width: 22px;
+    `};
   }
 `;

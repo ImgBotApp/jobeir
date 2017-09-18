@@ -40,7 +40,7 @@ const JobsListItem = (props: {
       </JobsMain>
       <JobsSub>
         <div>
-          Created {moment(job.createdAt).fromNow()}
+          <HideOnMobile>Created</HideOnMobile> {moment(job.createdAt).fromNow()}
         </div>
         <JobsDot>·</JobsDot>
         <div>
@@ -59,7 +59,13 @@ const JobsListItem = (props: {
 
 export default JobsListItem;
 
-const JobsTitle = styled.h3`font-size: 22px;`;
+const JobsTitle = styled.h3`
+  font-size: 22px;
+
+  ${media.phablet`
+  font-size: 18px;
+  `};
+`;
 
 const JobsState = styled.div`
   font-size: 14px;

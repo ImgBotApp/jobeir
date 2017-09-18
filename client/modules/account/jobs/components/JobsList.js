@@ -77,4 +77,14 @@ const JobsBody = styled.li`
     margin-bottom: 0;
     padding-bottom: 0;
   }
+
+  ${media.tablet`
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  `};
+
+  ${media.phablet`
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+  `};
 `;

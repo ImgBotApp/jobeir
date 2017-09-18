@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import { Glow } from '../../../../styles/animate';
 
 const JobsListItemPlaceholder = () =>
@@ -30,29 +31,45 @@ const JobsListItemPlaceholderContainer = styled.div`margin-top: 40px;`;
 const PlaceholderContainer = styled.div`
   max-width: 1080px;
   margin: 0 auto 70px;
+
+  ${media.tablet`
+    margin: 0 auto 40px;
+  `};
 `;
 
 const PlaceholderTop = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 `;
 
 const PlaceholderTitle = styled.div`
   background: ${props => props.theme.colors.placeholder};
   width: 40%;
-  height: 15px;
+  height: 12px;
+
+  ${media.tablet`
+    width: 60%:
+  `};
 `;
 
 const PlaceholderState = styled.div`
   background: ${props => props.theme.colors.placeholder};
   width: 8%;
-  height: 15px;
+  height: 12px;
+
+  ${media.tablet`
+    width: 10%:
+  `};
 `;
 
 const PlaceholderDetails = styled.div`
   background: ${props => props.theme.colors.placeholder};
-  width: 60%;
-  height: 15px;
-  margin-bottom: 20px;
+  width: 70%;
+  height: 12px;
+  margin-bottom: 15px;
+
+  ${media.tablet`
+    width: 25%:
+  `};
 `;
