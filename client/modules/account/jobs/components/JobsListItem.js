@@ -42,7 +42,6 @@ const JobsListItem = (props: {
         <div>
           <HideOnMobile>Created</HideOnMobile> {moment(job.createdAt).fromNow()}
         </div>
-        <JobsDot>·</JobsDot>
         <div>
           {job.location.address.locality}
           {', '}
@@ -101,7 +100,7 @@ const JobsDot = styled.span`
   `};
 `;
 
-const HideOnMobile = styled.div`
+const HideOnMobile = styled.span`
   ${media.phablet`
     display: none;
   `};

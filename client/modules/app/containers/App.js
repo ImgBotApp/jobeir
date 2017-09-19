@@ -6,6 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
 import IntlWrapper from '../../intl/containers/IntlWrapper';
 import routes from '../../../routes';
+import css from '../../../styles/fonts/fonts.css';
 
 export default function App(props: { store: {} }) {
   const { store } = props;

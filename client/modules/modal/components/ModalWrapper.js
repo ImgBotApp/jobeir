@@ -104,6 +104,8 @@ const ModalContent = styled.div`
   transform-origin: bottom center;
   animation: ${FadeInPulse} .27s forwards ease;
   width: 100%;
+
+  max-width: ${props => (props.size === 'full' ? '100%' : '480px')};
 `;
 
 const ModalBody = styled.div`

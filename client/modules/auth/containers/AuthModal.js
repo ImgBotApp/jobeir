@@ -63,7 +63,6 @@ class AuthModal extends Component {
           <AuthModalHeader>
             <AuthModalHeaderBlue />
             <AuthModalHeaderRed />
-            <AuthModalHeaderBeige />
           </AuthModalHeader>
           <AuthModalContent>
             {this.state.showLoginForm
@@ -81,7 +80,6 @@ export default AuthModal;
 const AuthModalBody = styled.div`
   max-width: 500px;
   width: 100%;
-  margin: 0 50px;
 `;
 
 const AuthModalHeader = styled.div`
@@ -92,21 +90,21 @@ const AuthModalHeader = styled.div`
   background: ${props => props.theme.colors.pink};
   min-height: 175px;
   overflow: hidden;
+
+  ${media.tablet`min-height: 160px;`};
+  ${media.phonePlus`min-height: 140px;`};
+  ${media.phone`min-height: 120px;`};
 `;
 
-const AuthModalContent = styled.div`padding: 2rem;`;
+const AuthModalContent = styled.div`
+  padding: 36px;
+
+  ${media.tablet`padding: 24px`};
+`;
 
 const AuthModalHeaderBall = styled.div`
   border-radius: 50%;
   position: absolute;
-`;
-
-const AuthModalHeaderBlack = styled(AuthModalHeaderBall)`
-  right: 325px;
-  top: -500px;
-  height: 800px;
-  width: 800px;
-  background: ${props => props.theme.colors.black};
 `;
 
 const AuthModalHeaderBlue = styled(AuthModalHeaderBall)`
@@ -122,15 +120,13 @@ const AuthModalHeaderRed = styled(AuthModalHeaderBall)`
   bottom: 25px;
   height: 115px;
   width: 115px;
-  background: ${props => props.theme.colors.red};
-`;
+  background: linear-gradient(rgba(255,255,255,0.7), rgba(0,0,0,0.3));
 
-const AuthModalHeaderBeige = styled(AuthModalHeaderBall)`
-  top: 107px;
-  left: -487px;
-  height: 1000px;
-  width: 1000px;
-  background: ${props => props.theme.colors.beige};
+  ${media.tablet`
+    height: 100px;
+    width: 100px;
+  `};
+  
 `;
 
 const AuthModalFooter = styled.div`

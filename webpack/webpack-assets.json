@@ -1,9 +1,11 @@
 {
   "javascript": {
-    "app": "/app.47a3c11d1281fa70e436.js",
-    "vendor": "/vendor.6ee3dbb1f3a6db307391.js"
+    "app": "/public/static/dist/client/app.914d9a205103efc083b1.js",
+    "vendor": "/public/static/dist/client/vendor.d525c19f8ddd0452236e.js"
   },
-  "styles": {},
+  "styles": {
+    "app": "/public/static/dist/client/app.914d9a205103efc083b1.css"
+  },
   "assets": {},
   "webpack": {
     "version": "3.0.0"

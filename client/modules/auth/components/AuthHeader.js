@@ -18,7 +18,7 @@ const AuthHeaderContainer = styled.div`
 
   ${media.phablet`
     font-size: 22px;
-    margin-bottom: 12px;    
+    margin-bottom: 24px;    
   `};
 `;
 
