@@ -1,13 +1,1 @@
-{
-  "javascript": {
-    "app": "/public/static/dist/client/app.914d9a205103efc083b1.js",
-    "vendor": "/public/static/dist/client/vendor.d525c19f8ddd0452236e.js"
-  },
-  "styles": {
-    "app": "/public/static/dist/client/app.914d9a205103efc083b1.css"
-  },
-  "assets": {},
-  "webpack": {
-    "version": "3.0.0"
-  }
-}
+{"javascript":{"app":"/public/static/dist/client/app.92f18e24ad2ca3af89c2.js","vendor":"/public/static/dist/client/vendor.4d64bf5bef233eb53480.js"},"styles":{"app":"/public/static/dist/client/app.font.92f18e24ad2ca3af89c2.css"},"assets":{},"webpack":{"version":"3.6.0"}}

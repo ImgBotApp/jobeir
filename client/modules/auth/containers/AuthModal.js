@@ -120,13 +120,18 @@ const AuthModalHeaderRed = styled(AuthModalHeaderBall)`
   bottom: 25px;
   height: 115px;
   width: 115px;
-  background: linear-gradient(rgba(255,255,255,0.7), rgba(0,0,0,0.3));
+  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.3));
 
   ${media.tablet`
     height: 100px;
     width: 100px;
   `};
-  
+
+  ${media.phonePlus`
+    height: 90px;
+    width: 90px;
+    bottom: 15px;
+  `};
 `;
 
 const AuthModalFooter = styled.div`

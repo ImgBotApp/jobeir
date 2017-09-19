@@ -24,11 +24,7 @@ export default function App(props: { store: {} }) {
           render={props => <ReduxAsyncConnect {...props} />}
           history={history}
           routes={routes}
-          onChange={(prevState, nextState) => {
-            if (nextState.location.action !== 'POP') {
-              window.scrollTo(0, 0);
-            }
-          }}
+          onChange={() => window.scrollTo(0, 0)}
         />
       </IntlWrapper>
     </Provider>

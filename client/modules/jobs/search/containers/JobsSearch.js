@@ -146,22 +146,22 @@ class JobsSearch extends Component {
     if (count) {
       return (
         <FadeIn>
-          {postings.map(posting =>
+          {postings.map(posting => (
             <JobsSearchPosting key={posting._id} posting={posting} />
-          )}
+          ))}
           {!hasMore && !isFetching && <JobsSearchNoMoreResults />}
         </FadeIn>
       );
     }
 
-    return isFetching
-      ? null
-      : <JobSearchEmptyState>
-          <SearchIcon height="50" width="50" />
-          <JobSearchEmptyStateHeader>
-            We couldn't find any job posts
-          </JobSearchEmptyStateHeader>
-        </JobSearchEmptyState>;
+    return isFetching ? null : (
+      <JobSearchEmptyState>
+        <SearchIcon height="50" width="50" />
+        <JobSearchEmptyStateHeader>
+          We couldn't find any job posts
+        </JobSearchEmptyStateHeader>
+      </JobSearchEmptyState>
+    );
   }
 
   render() {
@@ -275,7 +275,7 @@ const JobsSearchHeader = styled.div`
 
   ${media.tablet`
     font-size: 18px;
-    margin-bottom: 44px;
+    margin-bottom: 36px;
   `};
 `;
 
@@ -285,6 +285,8 @@ const JobsSearchHeaderText = styled.div`
   border-bottom: 1px solid #212121;
   position: relative;
   top: 1px;
+
+  ${media.phablet`padding-bottom: 8px`};
 `;
 
 const JobsSearchColumn = styled.div`

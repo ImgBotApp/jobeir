@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 // prettier-ignore
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
@@ -54,7 +55,7 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader']
+          use: ['css-loader?minimize']
         })
       }
     ]
@@ -82,7 +83,7 @@ module.exports = {
     }),
     new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig),
     new ExtractTextPlugin({
-      filename: 'fonts.[chunkhash].css'
+      filename: '[name].font.[chunkhash].css'
     }),
     new ManifestPlugin({
       basePath: '/'
