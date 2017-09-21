@@ -48,6 +48,10 @@ const JobPostingBodyContainer = styled.div`
       margin-bottom: 30px;
       font-size: 16px;
     `};
+
+    ${media.phonePlus`
+      margin-bottom: 20px;
+    `};
   }
 
   a {
@@ -80,6 +84,10 @@ const JobPostingBodyContainer = styled.div`
 
     ${media.phablet`
       font-size: 20px;
+    `};
+
+    ${media.phonePlus`
+      margin-bottom: 15px;
     `};
   }
 

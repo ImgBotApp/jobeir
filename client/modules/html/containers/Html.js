@@ -21,7 +21,7 @@ const Html = (props: {
         {helmet.meta.toComponent()}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {helmet.link.toComponent()}
-        {Object.keys(assets.styles).length &&
+        {Object.keys(assets.styles).length > 0 &&
           Object.keys(assets.styles)
             .reverse()
             .map(key => (

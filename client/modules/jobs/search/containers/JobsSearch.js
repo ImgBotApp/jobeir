@@ -16,6 +16,7 @@ import {
 } from '../ducks/';
 import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchPosting from '../components/JobsSearchPosting';
+import JobsSearchFilterButton from '../components/JobsSearchFilterButton';
 import JobsSearchFilterReset from '../components/JobsSearchFilterReset';
 import JobsSearchNoMoreResults from '../components/JobsSearchNoMoreResults';
 import JobsSearchPostingLoader from '../components/JobsSearchPostingLoader';
@@ -197,6 +198,7 @@ class JobsSearch extends Component {
             </InfiniteScroll>
           </JobsSearchColumn>
         </JobsSearchRow>
+        <JobsSearchFilterButton />
       </JobsSearchContainer>
     );
   }
@@ -274,8 +276,8 @@ const JobsSearchHeader = styled.div`
   font-weight: 800;
 
   ${media.tablet`
-    font-size: 18px;
-    margin-bottom: 36px;
+    font-size: 20px;
+    margin-bottom: 24px;
   `};
 `;
 
@@ -305,9 +307,26 @@ const JobsSearchColumn = styled.div`
 
   ${media.tablet`
     padding-top: 20px;
-    display: ${props => (props.margin ? 'none' : 'block')};
     width: ${props => (props.wide ? '100%' : 'auto')};
   `};
+
+  ${props =>
+    props.margin
+      ? media.phablet`
+      // position: fixed;
+      // top: 0;
+      // left: 0;
+      // right: 0;
+      // bottom: 0;
+      // background: white;
+      display: none;
+      // z-index: 999;
+      // width: 100%;
+      // padding: 24px;
+      // overflow-y: scroll;
+      // height: auto;
+  `
+      : ''};
 `;
 
 const JobSearchEmptyState = styled.div`

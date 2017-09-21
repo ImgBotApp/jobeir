@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import { Glow } from '../../../../styles/animate';
 
-const JobSearchPostingLoader = () =>
+const JobSearchPostingLoader = () => (
   <Glow>
     <PlaceholderContainer>
       <PlaceholderRow>
@@ -22,13 +22,15 @@ const JobSearchPostingLoader = () =>
         <PlaceholderText3 />
       </PlaceholderRow>
     </PlaceholderContainer>
-  </Glow>;
+  </Glow>
+);
 
 export default JobSearchPostingLoader;
 
 const PlaceholderContainer = styled.div`
   display: block;
   margin-bottom: 400px;
+  margin-top: 20px;
 `;
 
 const PlaceholderRow = styled.div`

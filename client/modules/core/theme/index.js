@@ -16,7 +16,7 @@ const theme = {
     black: '#0f0f17',
     beige: '#faf3d5',
     text: 'rgba(0,0,0,0.85)',
-    placeholder: '#f2f2f2',
+    placeholder: '#f3f3f3',
     grey: {
       mid: '#8F8F8F'
     }

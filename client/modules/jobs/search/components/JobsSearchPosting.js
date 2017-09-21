@@ -41,14 +41,10 @@ const JobsSearchPosting = (props: {
       <JobsSearchPostingContainer>
         <JobsSearchPostingTop>
           <div>
-            <JobsSearchPostingTitle>
-              {posting.title}
-            </JobsSearchPostingTitle>
+            <JobsSearchPostingTitle>{posting.title}</JobsSearchPostingTitle>
             <JobsSearchPostingSubTitle>
               <span>
-                <Purple>
-                  {posting.company.displayName}
-                </Purple>
+                <Purple>{posting.company.displayName}</Purple>
                 {' in '}
               </span>
               <span>
@@ -66,9 +62,7 @@ const JobsSearchPosting = (props: {
           <JobsSearchPostingType>
             {posting.employmentType} · ${posting.salary.max / 1000}K {' - '}${posting.salary.min / 1000}K
           </JobsSearchPostingType>
-          <span>
-            {moment(posting.createdAt).fromNow()}
-          </span>
+          <span>{moment(posting.createdAt).fromNow()}</span>
         </JobsSearchPostingBottom>
         <StyledLink to={`/jobs/${posting._id}`} />
       </JobsSearchPostingContainer>
@@ -85,7 +79,7 @@ const JobsSearchPostingContainer = styled.div`
   margin-bottom: 50px;
 
   ${media.phablet`
-    margin-bottom: 44px;
+    margin-bottom: 30px;
   `};
 `;
 
@@ -146,6 +140,7 @@ const JobsSearchPostingTitle = styled.h2`
 
   ${media.phablet`
     font-weight: 800;
+    margin-bottom: 2px;
   `};
 `;
 
@@ -159,7 +154,7 @@ const JobsSearchPostingType = styled.div`display: flex;`;
 const JobsSearchPostingCompanyProduct = styled.p`
   line-height: 1.6;
   margin-bottom: 15px;
-  color: #545454;
+  color: #828282;
 
   ${media.phablet`
     font-size: 14px;

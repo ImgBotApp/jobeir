@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import styled, { ThemeProvider } from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import queryString from 'query-string';
 import { Radio } from '../../../user-input/inputs/input';
 import sidebar from '../../../user-input/themes/sidebar-theme';

@@ -7,16 +7,18 @@ const handleBackToTopClick = () => {
   document.body.scrollTop = 0;
 };
 
-const JobsSearchNoMoreResults = () =>
+const JobsSearchNoMoreResults = () => (
   <JobsSearchNoMoreResultsContainer>
     <JobsSearchNoMoreResultsTop>
       No more search results
     </JobsSearchNoMoreResultsTop>
-    {window.pageYOffset > 1000 &&
+    {window.pageYOffset > 1000 && (
       <JobsSearchNoMoreResultsBack onClick={handleBackToTopClick}>
         Back to top
-      </JobsSearchNoMoreResultsBack>}
-  </JobsSearchNoMoreResultsContainer>;
+      </JobsSearchNoMoreResultsBack>
+    )}
+  </JobsSearchNoMoreResultsContainer>
+);
 
 export default JobsSearchNoMoreResults;
 
@@ -26,6 +28,7 @@ const JobsSearchNoMoreResultsContainer = styled.div`
 
   ${media.tablet`
     padding: 30px 0 50px;
+    margin-bottom: 40px;
   `};
 `;
 

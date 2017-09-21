@@ -13,27 +13,30 @@ const JobsPostingHeader = (props: { activePosting: {}, hideLogo: boolean }) => {
   return (
     <div>
       <JobsPostingHeaderContainer>
-        {activePostingReady
-          ? <FadeIn>
-              <JobsPostingHeaderCompany>
-                {!hideLogo &&
-                  <JobsPostingHeaderCompanyLogo
-                    src={activePosting.company.logo}
-                    alt={activePosting.company.displayName}
-                  />}
-              </JobsPostingHeaderCompany>
-              <JobsPostingHeaderTitle>
-                {activePosting.title}
-              </JobsPostingHeaderTitle>
-              <JobsPostingHeaderLocation>
-                Located in {activePosting.location.address.locality},{' '}
-                {activePosting.location.address.country}
-              </JobsPostingHeaderLocation>
-              <JobsPostingHeaderDate>
-                {moment(activePosting.createdAt).format('MMMM Do, YYYY')}
-              </JobsPostingHeaderDate>
-            </FadeIn>
-          : <JobsPostingHeaderPlaceholder />}
+        {activePostingReady ? (
+          <FadeIn>
+            <JobsPostingHeaderCompany>
+              {!hideLogo && (
+                <JobsPostingHeaderCompanyLogo
+                  src={activePosting.company.logo}
+                  alt={activePosting.company.displayName}
+                />
+              )}
+            </JobsPostingHeaderCompany>
+            <JobsPostingHeaderTitle>
+              {activePosting.title}
+            </JobsPostingHeaderTitle>
+            <JobsPostingHeaderLocation>
+              Located in {activePosting.location.address.locality},{' '}
+              {activePosting.location.address.country}
+            </JobsPostingHeaderLocation>
+            <JobsPostingHeaderDate>
+              {moment(activePosting.createdAt).format('MMMM Do, YYYY')}
+            </JobsPostingHeaderDate>
+          </FadeIn>
+        ) : (
+          <JobsPostingHeaderPlaceholder />
+        )}
       </JobsPostingHeaderContainer>
     </div>
   );
@@ -63,7 +66,12 @@ const JobsPostingHeaderCompanyLogo = styled.img`
   `};
 `;
 
-const JobsPostingHeaderCompany = styled.div`margin-bottom: 30px;`;
+const JobsPostingHeaderCompany = styled.div`
+  margin-bottom: 30px;
+  ${media.phablet`
+    margin-bottom: 20px;
+  `};
+`;
 
 const JobsPostingHeaderTitle = styled.h1`
   font-size: 46px;
