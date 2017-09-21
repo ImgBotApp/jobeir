@@ -134,7 +134,7 @@ const JobsSearchPostingTitle = styled.h2`
   margin-bottom: 5px;
 
   ${media.tablet`
-    font-size: 21px;
+    font-size: 20px;
     margin-bottom: 4px;
   `};
 
