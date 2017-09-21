@@ -25,12 +25,7 @@ const Html = (props: {
           Object.keys(assets.styles)
             .reverse()
             .map(key => (
-              <link
-                rel="preload"
-                type="text/css"
-                key={key}
-                href={assets.styles[key]}
-              />
+              <link type="text/css" key={key} href={assets.styles[key]} />
             ))}
         <style dangerouslySetInnerHTML={{ __html: css }} />
       </head>
