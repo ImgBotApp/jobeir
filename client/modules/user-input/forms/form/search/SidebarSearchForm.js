@@ -27,43 +27,55 @@ class Input extends Component {
   };
 
   render() {
-    const { meta, location } = this.props;
+    const {
+      autocomplete,
+      input,
+      location,
+      meta,
+      label,
+      placeholder,
+      isMobileFilter
+    } = this.props;
     const showError = meta.touched && meta.error && meta.invalid;
 
     return (
       <SearchInputContainer
         location={location}
         onClick={this.handleInputContainerClick}
+        isMobileFilter={isMobileFilter}
       >
-        <SearchLabel htmlFor={this.props.input.name}>
-          {this.props.label} {meta.error}
+        <SearchLabel htmlFor={input.name}>
+          {label} {meta.error}
         </SearchLabel>
         <SearchInput
-          {...this.props.input}
-          type={this.props.input.type || 'text'}
-          id={this.props.input.name}
-          name={this.props.input.name}
-          placeholder={this.props.placeholder}
+          {...input}
+          type={input.type || 'text'}
+          id={input.name}
+          name={input.name}
+          placeholder={placeholder}
           showError={showError}
+          isMobileFilter={isMobileFilter}
           autoComplete={false}
-          ref={input => {
-            this.nameInput = input;
+          ref={inputName => {
+            this.nameInput = inputName;
           }}
         />
 
         <SearchInputClear
-          hasValue={this.props.input.value}
+          hasValue={input.value}
           onClick={this.handleClearClick}
+          isMobileFilter={isMobileFilter}
         >
           ×
         </SearchInputClear>
-        {this.props.autocomplete &&
+        {autocomplete && (
           <Autocomplete
             formName="search"
             types={['(cities)']}
-            id={this.props.input.name}
+            id={input.name}
             customStyles={customStyles}
-          />}
+          />
+        )}
       </SearchInputContainer>
     );
   }
@@ -75,21 +87,34 @@ class SelectInput extends Component {
   };
 
   render() {
+    const {
+      input,
+      meta,
+      label,
+      options,
+      placeholder,
+      isMobileFilter
+    } = this.props;
+
     return (
-      <SearchInputContainer onClick={this.handleInputContainerClick}>
-        <SearchLabel htmlFor={this.props.input.name}>
-          {this.props.label} {this.props.meta.error}
+      <SearchInputContainer
+        onClick={this.handleInputContainerClick}
+        isMobileFilter={isMobileFilter}
+      >
+        <SearchLabel htmlFor={input.name}>
+          {label} {meta.error}
         </SearchLabel>
         <SelectContainer>
           <Select
-            {...this.props.input}
-            id={this.props.input.name}
-            name={this.props.input.name}
-            options={this.props.options}
-            placeholder={this.props.placeholder}
+            {...input}
+            id={input.name}
+            name={input.name}
+            options={options}
+            placeholder={placeholder}
             onBlur={() => {}}
             searchable={true}
             openOnFocus={true}
+            isMobileFilter={isMobileFilter}
             ref="stateSelect"
           />
         </SelectContainer>
@@ -130,8 +155,7 @@ class SidebarSearchForm extends Component {
   };
 
   render() {
-    const { handleSubmit, location, dispatch } = this.props;
-
+    const { handleSubmit, location, isMobileFilter } = this.props;
     return (
       <SidebarSearchFormContainer
         onSubmit={handleSubmit(this.formSubmit)}
@@ -144,6 +168,7 @@ class SidebarSearchForm extends Component {
           component={SelectInput}
           options={jobOptions}
           location={location}
+          isMobileFilter={isMobileFilter}
           autoFocus={true}
         />
         <Field
@@ -152,6 +177,7 @@ class SidebarSearchForm extends Component {
           placeholder="Any"
           component={Input}
           location={location}
+          isMobileFilter={isMobileFilter}
           autocomplete={true}
         />
       </SidebarSearchFormContainer>
@@ -181,7 +207,8 @@ const SearchInputContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 0 40px 15px 0px;
+  padding: ${props =>
+    props.isMobileFilter ? ' 0 0 10px 0' : '0 40px 15px 0px'};
   margin-bottom: 23px;
 
   &:first-child {
@@ -202,8 +229,8 @@ const SearchInputClear = styled.div`
   font-weight: 200;
   width: 17px;
   position: absolute;
-  bottom: 16px;
-  right: 40px;
+  bottom: ${props => (props.isMobileFilter ? ' 12px' : '16px')};
+  right: ${props => (props.isMobileFilter ? ' 0px' : '40px')};
   font-size: 20px;
 
   &:hover {
@@ -340,25 +367,39 @@ const SelectContainer = styled.div`
   }
   .has-value.Select--single > .Select-control .Select-value .Select-value-label,
   .has-value.is-pseudo-focused.Select--single
-    > .Select-control .Select-value .Select-value-label {
+    > .Select-control
+    .Select-value
+    .Select-value-label {
     font-weight: 800;
     color: rgba(0, 0, 0, 0.85);
   }
   .has-value.Select--single
-    > .Select-control .Select-value a.Select-value-label,
+    > .Select-control
+    .Select-value
+    a.Select-value-label,
   .has-value.is-pseudo-focused.Select--single
-    > .Select-control .Select-value a.Select-value-label {
+    > .Select-control
+    .Select-value
+    a.Select-value-label {
     cursor: pointer;
     text-decoration: none;
   }
   .has-value.Select--single
-    > .Select-control .Select-value a.Select-value-label:hover,
+    > .Select-control
+    .Select-value
+    a.Select-value-label:hover,
   .has-value.is-pseudo-focused.Select--single
-    > .Select-control .Select-value a.Select-value-label:hover,
+    > .Select-control
+    .Select-value
+    a.Select-value-label:hover,
   .has-value.Select--single
-    > .Select-control .Select-value a.Select-value-label:focus,
+    > .Select-control
+    .Select-value
+    a.Select-value-label:focus,
   .has-value.is-pseudo-focused.Select--single
-    > .Select-control .Select-value a.Select-value-label:focus {
+    > .Select-control
+    .Select-value
+    a.Select-value-label:focus {
     color: #007eff;
     outline: none;
     text-decoration: underline;

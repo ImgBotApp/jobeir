@@ -15,6 +15,7 @@ import {
   filterSearchJobs
 } from '../ducks/';
 import JobsSearchSidebar from './JobsSearchSidebar';
+import JobsSearchFilterMobile from './JobsSearchFilterMobile';
 import JobsSearchPosting from '../components/JobsSearchPosting';
 import JobsSearchFilterButton from '../components/JobsSearchFilterButton';
 import JobsSearchFilterReset from '../components/JobsSearchFilterReset';
@@ -199,6 +200,7 @@ class JobsSearch extends Component {
           </JobsSearchColumn>
         </JobsSearchRow>
         <JobsSearchFilterButton />
+        <JobsSearchFilterMobile />
       </JobsSearchContainer>
     );
   }

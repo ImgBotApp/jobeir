@@ -3,12 +3,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 
-const InputLabel = (props: { input: { name: string }, label: string }) =>
+const InputLabel = (props: { input: { name: string }, label: string }) => (
   <LabelContainer>
-    <label htmlFor={props.input.name}>
-      {props.label}
-    </label>
-  </LabelContainer>;
+    <label htmlFor={props.input.name}>{props.label}</label>
+  </LabelContainer>
+);
 
 export default InputLabel;
 
@@ -20,7 +19,11 @@ const LabelContainer = styled.div`
   color: ${props => props.theme.label.color || 'inherit'};
 
   ${media.phablet`
-    font-size: 16px;
-    margin-bottom: 5px;
+    font-size:  ${props =>
+      (props.theme.label.phablet && props.theme.label.phablet.fontSize) ||
+      '16px'};
+    margin-bottom:  ${props =>
+      (props.theme.label.phablet && props.theme.label.phablet.marginBottom) ||
+      '5px'};
   `};
 `;
