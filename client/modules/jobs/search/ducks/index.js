@@ -11,6 +11,7 @@ export const SERVER_SEARCH_JOBS_REQUEST = 'SERVER_SEARCH_JOBS_REQUEST';
 export const SERVER_SEARCH_JOBS_SUCCESS = 'SERVER_SEARCH_JOBS_SUCCESS';
 export const SERVER_SEARCH_JOBS_FAILURE = 'SERVER_SEARCH_JOBS_FAILURE';
 
+export const TOGGLE_MOBILE_FILTERS = 'TOGGLE_MOBILE_FILTERS';
 export const AUTOCOMPLETE_PREDICTIONS = 'AUTOCOMPLETE_PREDICTIONS';
 export const RESET_JOBS = 'RESET_JOBS';
 
@@ -22,6 +23,7 @@ export const initialState = {
   isFiltering: false,
   isLoaded: false,
   isOpen: false,
+  showMobileFilters: false,
   errors: []
 };
 
@@ -72,6 +74,10 @@ export default (state = initialState, action = {}) => {
       return Object.assign({}, state, {
         isOpen: action.payload
       });
+    case TOGGLE_MOBILE_FILTERS:
+      return Object.assign({}, state, {
+        showMobileFilters: !state.showMobileFilters
+      });
     case RESET_JOBS:
       return Object.assign({}, state, {
         isLoaded: false,
@@ -108,4 +114,8 @@ export const resetJobs = () => ({
 export const autocompletePredictions = (paylaod: boolean) => ({
   type: AUTOCOMPLETE_PREDICTIONS,
   paylaod
+});
+
+export const toggleMobileFilters = () => ({
+  type: TOGGLE_MOBILE_FILTERS
 });

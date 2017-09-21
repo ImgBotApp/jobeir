@@ -279,7 +279,7 @@ const JobsSearchHeader = styled.div`
 
   ${media.tablet`
     font-size: 20px;
-    margin-bottom: 24px;
+    margin-bottom: 30px;
   `};
 `;
 

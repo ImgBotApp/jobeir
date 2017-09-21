@@ -139,7 +139,6 @@ const JobsSearchPostingTitle = styled.h2`
   `};
 
   ${media.phablet`
-    font-weight: 800;
     margin-bottom: 2px;
   `};
 `;

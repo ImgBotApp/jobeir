@@ -6,10 +6,10 @@ import { Field, reduxForm } from 'redux-form';
 import styled, { ThemeProvider } from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import queryString from 'query-string';
-// import { Radio } from '../../../user-input/inputs/input';
 import InputWrapper from '../../../user-input/inputs/components/InputWrapper';
 import mobile from '../../../user-input/themes/mobile-filter-theme';
 import SidebarSearchForm from '../../../user-input/forms/form/search/SidebarSearchForm';
+import { toggleMobileFilters } from '../ducks';
 
 const jobTypes: Array<{ name: string, value: string }> = [
   { name: 'Full-time', value: 'Full-time' },
@@ -76,7 +76,10 @@ class JobsSearchFilterMobile extends Component {
 
   render() {
     return (
-      <JobsSearchFilterMobileContainer>
+      <JobsSearchFilterMobileContainer
+        showMobileFilters={this.props.jobs.showMobileFilters}
+        onClick={() => this.props.dispatch(toggleMobileFilters())}
+      >
         <SidebarSearchForm isMobileFilter={true} />
         <ThemeProvider theme={mobile}>
           <div>
@@ -150,9 +153,9 @@ const JobsSearchFilterMobileContainer = styled.div`
   padding: 24px 24px 60px;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
     0 8px 16px rgba(27, 39, 51, 0.08);
-  transform: translateY(100vh);
+  transform: translateY(${props => (props.showMobileFilters ? '0' : '100')}vh);
   will-change: transform;
-  transition: transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 260ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 `;
 
 const Radio = (props: {

@@ -4,19 +4,22 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { FadeIn } from '../../../../styles/animate/';
 import { FilterIcon } from '../../../../icons';
+import { toggleMobileFilters } from '../ducks';
 
-const JobSearchFilterButton = () => (
+const JobSearchFilterButton = ({ dispatch, showMobileFilters }) => (
   <FadeIn>
-    <JobSearchFilterButtonContainer>
-      <FilterIcon height={16} />
+    <JobSearchFilterButtonContainer
+      showMobileFilters={showMobileFilters}
+      onClick={() => dispatch(toggleMobileFilters())}
+    >
+      <FilterIcon height={14} />
       <JobSearchFilterButtonText>Filter Search</JobSearchFilterButtonText>
     </JobSearchFilterButtonContainer>
   </FadeIn>
 );
 
 const mapStateToProps = state => ({
-  search: (state.form.search && state.form.search.values) || {},
-  isFiltering: state.search.jobs.isFiltering
+  showMobileFilters: state.search.jobs.showMobileFilters
 });
 
 export default connect(mapStateToProps)(JobSearchFilterButton);
@@ -36,8 +39,12 @@ const JobSearchFilterButtonContainer = styled.div`
   right: 0;
   margin: 0 auto;
   max-width: 150px;
-  padding: 11px;
+  padding: 10px;
   font-size: 14px;
+  z-index: 2000;
+  transform: translateY(${props => (props.showMobileFilters ? '150' : '0')}px);
+  will-change: transform;
+  transition: transform 260ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
   svg {
     position: relative;
