@@ -9,7 +9,8 @@ import queryString from 'query-string';
 import InputWrapper from '../../../user-input/inputs/components/InputWrapper';
 import mobile from '../../../user-input/themes/mobile-filter-theme';
 import SidebarSearchForm from '../../../user-input/forms/form/search/SidebarSearchForm';
-import { toggleMobileFilters } from '../ducks';
+import JobsSearchFilterMobileHeader from '../components/JobsSearchFilterMobileHeader';
+import JobsSearchFilterMobileButton from '../components/JobsSearchFilterMobileButton';
 
 const jobTypes: Array<{ name: string, value: string }> = [
   { name: 'Full-time', value: 'Full-time' },
@@ -75,49 +76,53 @@ class JobsSearchFilterMobile extends Component {
   };
 
   render() {
+    const { dispatch, jobs: { showMobileFilters } } = this.props;
     return (
-      <JobsSearchFilterMobileContainer
-        showMobileFilters={this.props.jobs.showMobileFilters}
-        onClick={() => this.props.dispatch(toggleMobileFilters())}
-      >
-        <SidebarSearchForm isMobileFilter={true} />
+      <JobsSearchFilterMobileContainer showMobileFilters={showMobileFilters}>
         <ThemeProvider theme={mobile}>
           <div>
-            <Field
-              name="employmentType"
-              label="Job Type"
-              options={jobTypes}
-              type="circle"
-              component={Radio}
-            />
-            <Field
-              name="companySize"
-              label="Company Size"
-              options={companySizeOptions}
-              type="circle"
-              component={Radio}
-            />
-            <Field
-              name="remote"
-              label="Open to Remote"
-              options={yesNoOptions}
-              type="circle"
-              component={Radio}
-            />
-            <Field
-              name="equity"
-              label="Equity"
-              options={yesNoOptions}
-              type="circle"
-              component={Radio}
-            />
-            <Field
-              name="distance"
-              label="Distance radius"
-              options={distanceOptions}
-              type="circle"
-              component={Radio}
-            />
+            <JobsSearchFilterMobileHeader dispatch={dispatch} />
+            <JobsSearchFilterMobilePadding>
+              <ListBorder>
+                <SidebarSearchForm isMobileFilter={true} />
+              </ListBorder>
+              <Field
+                name="employmentType"
+                label="Job Type"
+                options={jobTypes}
+                type="circle"
+                component={Radio}
+              />
+              <Field
+                name="companySize"
+                label="Company Size"
+                options={companySizeOptions}
+                type="circle"
+                component={Radio}
+              />
+              <Field
+                name="remote"
+                label="Open to Remote"
+                options={yesNoOptions}
+                type="circle"
+                component={Radio}
+              />
+              <Field
+                name="equity"
+                label="Equity"
+                options={yesNoOptions}
+                type="circle"
+                component={Radio}
+              />
+              <Field
+                name="distance"
+                label="Distance radius"
+                options={distanceOptions}
+                type="circle"
+                component={Radio}
+              />
+            </JobsSearchFilterMobilePadding>
+            <JobsSearchFilterMobileButton dispatch={dispatch} />
           </div>
         </ThemeProvider>
       </JobsSearchFilterMobileContainer>
@@ -148,14 +153,27 @@ const JobsSearchFilterMobileContainer = styled.div`
   bottom: 0;
   left: 0;
   height: initial;
-  overflow-y: auto;
+  overflow-y: hidden;
   background: white;
-  padding: 24px 24px 60px;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
     0 8px 16px rgba(27, 39, 51, 0.08);
   transform: translateY(${props => (props.showMobileFilters ? '0' : '100')}vh);
   will-change: transform;
-  transition: transform 260ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: transform 350ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+`;
+
+const JobsSearchFilterMobilePadding = styled.div`
+  padding: 24px;
+  overflow-y: auto;
+  top: 59px;
+  bottom: 77px;
+  width: 100%;
+  position: absolute;
+`;
+
+const ListBorder = styled.div`
+  border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 20px;
 `;
 
 const Radio = (props: {
@@ -218,6 +236,11 @@ const RadioCircleListContainer = styled.div`
 const RadioCircleListBorder = styled.div`
   border-bottom: 1px solid #dbdbdb;
   padding-bottom: 10px;
+
+  &:last-child {
+    border: none;
+    padding-bottom: 0;
+  }
 `;
 
 const RadioCircleListInputContainer = styled.div`

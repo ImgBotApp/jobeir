@@ -104,7 +104,7 @@ class SelectInput extends Component {
         <SearchLabel htmlFor={input.name}>
           {label} {meta.error}
         </SearchLabel>
-        <SelectContainer>
+        <SelectContainer isMobileFilter={isMobileFilter}>
           <Select
             {...input}
             id={input.name}
@@ -114,7 +114,6 @@ class SelectInput extends Component {
             onBlur={() => {}}
             searchable={true}
             openOnFocus={true}
-            isMobileFilter={isMobileFilter}
             ref="stateSelect"
           />
         </SelectContainer>
@@ -209,10 +208,10 @@ const SearchInputContainer = styled.div`
   flex-direction: column;
   padding: ${props =>
     props.isMobileFilter ? ' 0 0 10px 0' : '0 40px 15px 0px'};
-  margin-bottom: 23px;
+  margin-bottom: ${props => (props.isMobileFilter ? ' 10px' : '23px')};
 
   &:first-child {
-    margin-bottom: 15px;
+    margin-bottom: ${props => (props.isMobileFilter ? ' 10px' : '15px')};
   }
 `;
 
@@ -245,7 +244,7 @@ const SearchInput = styled.input`
   height: 100%;
   font-weight: 800;
   padding-top: 5px;
-  font-size: 20px;
+  font-size: ${props => (props.isMobileFilter ? ' 18px' : '20px')};
   background: transparent;
 
   ::-webkit-input-placeholder {
@@ -317,7 +316,7 @@ const SelectContainer = styled.div`
     overflow: hidden;
     position: relative;
     width: 100%;
-    font-size: 20px;
+    font-size: ${props => (props.isMobileFilter ? ' 18px' : '20px')};
     font-weight: 800;
     width: 100%;
     margin: 0 auto;
@@ -357,6 +356,7 @@ const SelectContainer = styled.div`
     line-height: 1.5;
     padding-left: 0;
     padding-right: 18px;
+    font-size: ${props => (props.isMobileFilter ? ' 18px' : '20px')};
     position: absolute;
     right: 0;
     top: 0;
