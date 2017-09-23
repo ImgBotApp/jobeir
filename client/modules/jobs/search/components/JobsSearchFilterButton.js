@@ -14,7 +14,7 @@ const JobSearchFilterButton = ({ dispatch, showMobileFilters }) => (
       onClick={() => dispatch(toggleMobileFilters())}
     >
       <FilterIcon height={14} />
-      <JobSearchFilterButtonText>Filter Search</JobSearchFilterButtonText>
+      <JobSearchFilterButtonText>Search & Filter</JobSearchFilterButtonText>
     </JobSearchFilterButtonContainer>
   </FadeIn>
 );
@@ -45,7 +45,7 @@ const JobSearchFilterButtonContainer = styled.div`
   z-index: 2000;
   transform: translateY(${props => (props.showMobileFilters ? '150' : '0')}px);
   will-change: transform;
-  transition: transform 350ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: transform 400ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
   ${media.tablet`
     display: flex;

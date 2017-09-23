@@ -160,7 +160,8 @@ const JobsSearchFilterMobileContainer = styled.div`
     0 8px 16px rgba(27, 39, 51, 0.08);
   transform: translateY(${props => (props.showMobileFilters ? '0' : '100')}vh);
   will-change: transform;
-  transition: transform 350ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  // This cubic-bezier took a lot of fine tuning :')
+  transition: transform 400ms cubic-bezier(0.21, 0.96, 0.38, 1.03);
 `;
 
 const JobsSearchFilterMobilePadding = styled.div`

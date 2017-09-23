@@ -50,7 +50,10 @@ class JobsSearch extends Component {
     const parsed = queryString.parse(this.props.search);
     const initialValues = {
       location: parsed.l,
-      title: parsed.q,
+      title: {
+        title: parsed.q,
+        value: parsed.q
+      },
       lat: parsed.lat,
       lng: parsed.lng,
       employmentType: parsed.et,
@@ -158,7 +161,7 @@ class JobsSearch extends Component {
 
     return isFetching ? null : (
       <JobSearchEmptyState>
-        <SearchIcon height="50" width="50" />
+        <StyledSearchIcon />
         <JobSearchEmptyStateHeader>
           We couldn't find any job posts
         </JobSearchEmptyStateHeader>
@@ -341,5 +344,15 @@ const JobSearchEmptyStateHeader = styled.h4`
 
   ${media.phone`
     font-size: 14px;
+  `};
+`;
+
+const StyledSearchIcon = styled(SearchIcon)`
+  height: 50px;
+  width: 50px;
+
+  ${media.phablet`
+    height: 40px;
+    width: 40px;
   `};
 `;
