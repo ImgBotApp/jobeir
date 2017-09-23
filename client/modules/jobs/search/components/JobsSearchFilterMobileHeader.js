@@ -55,7 +55,6 @@ const JobSearchFilterMobileHeaderContainer = styled.div`
   padding: 14px 24px;
   background: #fff;
   z-index: 200;
-  box-shadow: 0 2px 8px rgba(27, 39, 51, 0.08);
 
   svg {
     fill: #212121;

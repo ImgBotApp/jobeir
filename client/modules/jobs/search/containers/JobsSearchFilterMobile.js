@@ -154,7 +154,6 @@ const JobsSearchFilterMobileContainer = styled.div`
   bottom: 0;
   left: 0;
   height: initial;
-  overflow-y: hidden;
   background: white;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
     0 8px 16px rgba(27, 39, 51, 0.08);
@@ -167,6 +166,7 @@ const JobsSearchFilterMobileContainer = styled.div`
 const JobsSearchFilterMobilePadding = styled.div`
   padding: 32px 24px 0;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   top: 59px;
   bottom: 77px;
   width: 100%;
