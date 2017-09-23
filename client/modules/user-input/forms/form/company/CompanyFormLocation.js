@@ -30,7 +30,16 @@ class CompanyFormStepThree extends Component {
         <AutocompleteContainer>
           <Field
             name="fullAddress"
-            label="Start typing full address"
+            label={
+              <div>
+                <span>Start typing full address</span>
+                <span
+                  style={{ opacity: 0.4, display: 'block', margin: '7px 0' }}
+                >
+                  The address you enter is used when creating jobs
+                </span>
+              </div>
+            }
             placeholder="123 Main Street"
             component={Text}
             autocomplete={false}

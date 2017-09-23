@@ -13,6 +13,7 @@ class Autocomplete extends Component {
     predictions: Array<{}>,
     isSearching: boolean,
     show: boolean,
+    hasTyped: boolean,
     selectedIndex: number
   };
 
@@ -24,6 +25,7 @@ class Autocomplete extends Component {
       isSearching: false,
       noResults: false,
       show: false,
+      hasTyped: false,
       selectedIndex: 0
     };
 
@@ -48,7 +50,7 @@ class Autocomplete extends Component {
 
     this.location.addEventListener('focus', this.handleFocus);
     this.location.addEventListener('blur', this.handleBlur);
-    this.location.addEventListener('keyup', this.handleTyping);
+    this.location.addEventListener('keydown', this.handleTyping);
   }
 
   componentWillUnmount() {
@@ -57,7 +59,7 @@ class Autocomplete extends Component {
 
     this.location.removeEventListener('focus', this.handleFocus);
     this.location.removeEventListener('blur', this.handleBlur);
-    this.location.removeEventListener('keyup', this.handleTyping);
+    this.location.removeEventListener('keydown', this.handleTyping);
   }
 
   getDetailsByPlaceId = (placeId: string) => {
@@ -217,7 +219,7 @@ class Autocomplete extends Component {
 
     return (
       <AutocompleteList
-        active={predictions.length}
+        active={predictions.length || isSearching}
         isSearching={isSearching}
         show={show}
         style={this.props.customStyles}
@@ -255,7 +257,7 @@ const AutocompleteList = styled.ul`
   position: absolute;
   background: #fff;
   width: 100%;
-  top: calc(100% - 2px);
+  top: calc(100% - 0px);
   border-radius: 3px;
   z-index: 1;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
