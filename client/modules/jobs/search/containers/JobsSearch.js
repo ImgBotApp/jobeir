@@ -159,7 +159,9 @@ class JobsSearch extends Component {
       );
     }
 
-    return isFetching ? null : (
+    return isFetching ? (
+      <div />
+    ) : (
       <JobSearchEmptyState>
         <StyledSearchIcon />
         <JobSearchEmptyStateHeader>

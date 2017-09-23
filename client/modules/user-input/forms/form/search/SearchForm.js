@@ -63,18 +63,20 @@ class SelectInput extends Component {
   };
 
   render() {
+    const { input, meta, label, placeholder, options } = this.props;
     return (
       <SearchInputContainer onClick={this.handleInputContainerClick}>
-        <SearchLabel htmlFor={this.props.input.name}>
-          {this.props.label} {this.props.meta.error}
+        <SearchLabel htmlFor={input.name}>
+          {label} {meta.error}
         </SearchLabel>
         <SelectContainer>
           <Select
-            {...this.props.input}
-            id={this.props.input.name}
-            name={this.props.input.name}
-            options={this.props.options}
-            placeholder={this.props.placeholder}
+            {...input}
+            id={input.name}
+            name={input.name}
+            options={options}
+            value={input.value.value}
+            placeholder={placeholder}
             onBlur={() => {}}
             searchable={true}
             openOnFocus={true}

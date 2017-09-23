@@ -59,8 +59,15 @@ class CompanyFormStepOne extends Component {
         />
         <Field
           name="product"
-          label="Briefly describe your company"
-          placeholder="What is your company mission? Let applicants know what your company does and what it’s like to work there."
+          label={
+            <div>
+              <span>Briefly describe your company.</span>
+              <span style={{ opacity: 0.4, display: 'block', margin: '7px 0' }}>
+                This will appear in search results previews.
+              </span>
+            </div>
+          }
+          placeholder="Explain your company values and mission! Let applicants know what your company does and what it’s like to work there."
           validate={[required, maxLength(1000)]}
           component={Textarea}
         />

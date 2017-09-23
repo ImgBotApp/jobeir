@@ -46,10 +46,6 @@ const CompanyTips = (step: string) => {
             The address you enter will be used when creating job postings. If
             you have multiple locations you can enter them later.
           </StepTipsText>
-          <StepTipsText>
-            Job location is very important when applicants are searching for
-            jobs, so be as accurate as possible.
-          </StepTipsText>
         </StepTipsContainer>
       );
     case 'upload':

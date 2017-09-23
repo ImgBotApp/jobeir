@@ -109,6 +109,7 @@ class SelectInput extends Component {
             {...input}
             id={input.name}
             name={input.name}
+            value={input.value.value}
             options={options}
             placeholder={placeholder}
             onBlur={() => {}}

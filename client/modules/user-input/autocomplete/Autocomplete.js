@@ -38,6 +38,11 @@ class Autocomplete extends Component {
   componentDidMount() {
     const inputField: HTMLElement = document.getElementById(this.props.id);
 
+    this.location = document.getElementById('fullAddress');
+
+    this.location.removeAttribute('name');
+    this.location.removeAttribute('id');
+
     inputField.addEventListener('focus', this.handleFocus);
     inputField.addEventListener('blur', this.handleBlur);
     inputField.addEventListener('keyup', this.handleTyping);
@@ -49,6 +54,9 @@ class Autocomplete extends Component {
     inputField.removeEventListener('focus', this.handleFocus);
     inputField.removeEventListener('blur', this.handleBlur);
     inputField.removeEventListener('keyup', this.handleTyping);
+
+    this.location.setAttribute('name', 'location');
+    this.location.setAttribute('id', 'location');
   }
 
   getDetailsByPlaceId = (placeId: string) => {
