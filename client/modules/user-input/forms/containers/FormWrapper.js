@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import FormError from '../components/FormError';
 import FormThemes from '../../themes';
 
@@ -45,4 +46,8 @@ export default FormWrapper;
 const StyledForm = styled.form`
   margin-bottom: ${props => props.theme.form.marginBottom};
   padding-bottom: ${props => props.theme.form.paddingBottom};
+
+  ${media.tablet`
+    margin-bottom: 90px;
+  `};
 `;

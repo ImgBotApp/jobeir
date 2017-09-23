@@ -161,7 +161,7 @@ const RadioInputContainer = styled.div`
 const RadioInput = styled.input`
   border: solid 1px;
   border-color: ${props =>
-    props.showError ? props.theme.error.color : '#eceaea'};
+    props.showError ? props.theme.error.color : '#f5f4f4'};
   padding: ${props => props.theme.input.padding};
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
@@ -298,7 +298,7 @@ const RadioListInputContainer = styled.div`
       ? '100%'
       : props.rowWidth ? `${props.rowWidth}%` : '49.5%'};
   border: solid 1px;
-  border-color: ${props => (props.showError ? '#f27c5e' : '#eceaea')};
+  border-color: ${props => (props.showError ? '#f27c5e' : '#f5f4f4')};
   padding: 15px;
   background:${props =>
     props.showError
