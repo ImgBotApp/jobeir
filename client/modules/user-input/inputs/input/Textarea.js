@@ -37,6 +37,9 @@ const TextareaInput = styled.textarea`
   max-width: ${props => props.theme.textarea.maxWidth};
   min-height: ${props => props.theme.textarea.minHeight};
   line-height: 1.5;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
 
   &:active,
   &:focus {

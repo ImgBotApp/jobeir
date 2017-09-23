@@ -2,13 +2,9 @@ import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
 
-export function IntlWrapper(props) {
-  return (
-    <IntlProvider {...props.intl}>
-      {props.children}
-    </IntlProvider>
-  );
-}
+const IntlWrapper = props => (
+  <IntlProvider {...props.intl}>{props.children}</IntlProvider>
+);
 
 // Retrieve data from store as props
 function mapStateToProps(store) {

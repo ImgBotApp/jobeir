@@ -127,9 +127,9 @@ const JobPostingBodyContainer = styled.div`
       color: #333;
 
       ${media.tablet`
-      margin-bottom: 10px;
-      font-size: 16px;
-    `};
+        margin-bottom: 10px;
+        font-size: 16px;
+      `};
     }
   }
 `;

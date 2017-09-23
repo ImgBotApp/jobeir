@@ -195,7 +195,6 @@ class JobsSearch extends Component {
               </JobsSearchHeaderText>
             </JobsSearchHeader>
             <InfiniteScroll
-              pageStart={0}
               loadMore={this.loadMoreJobs}
               hasMore={this.state.hasMore}
               loader={<JobsSearchPostingLoader />}

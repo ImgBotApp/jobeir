@@ -55,14 +55,10 @@ const JobsPostingHeaderContainer = styled.div`
 `;
 
 const JobsPostingHeaderCompanyLogo = styled.img`
-  height: 50px;
+  height: 60px;
 
   ${media.tablet`
-    height: 40px;
-  `};
-
-  ${media.phablet`
-    height: 35px;
+    height: 50px;
   `};
 `;
 
@@ -74,16 +70,16 @@ const JobsPostingHeaderCompany = styled.div`
 `;
 
 const JobsPostingHeaderTitle = styled.h1`
-  font-size: 46px;
+  font-size: 48px;
   font-weight: 900;
   margin-bottom: 15px;
 
   ${media.tablet`
-    font-size: 40px;
+    font-size: 44px;
   `};
 
   ${media.phablet`
-    font-size: 34px;
+    font-size: 38px;
     margin-bottom: 10px;
   `};
 `;

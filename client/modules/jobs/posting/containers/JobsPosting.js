@@ -7,6 +7,7 @@ import { serverGetJob } from '../server/';
 import { shouldGetJob, getJobPosting, resetJobPosting } from '../ducks/';
 import JobPosting from '../../../account/jobs/posting/containers/JobPosting';
 import JobsPostingReturn from '../components/JobsPostingReturn';
+import JobsPostingCompany from '../components/JobsPostingCompany';
 
 @asyncConnect([
   {
@@ -37,8 +38,9 @@ class JobsPosting extends Component {
 
     return (
       <JobPostingContainer>
-        <JobsPostingReturn />
+        <JobsPostingReturn externalLink={posting.externalLink} />
         <JobPosting hideLogo={false} activePosting={posting} params={params} />
+        <JobsPostingCompany activePosting={posting} />
       </JobPostingContainer>
     );
   }
