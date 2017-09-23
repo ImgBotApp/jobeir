@@ -28,5 +28,6 @@ const Header = styled.h2`
 
   ${media.phablet`
     font-size: 26px;
+    margin-bottom: 24px;
   `};
 `;

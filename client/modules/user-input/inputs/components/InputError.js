@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 const InputError = (props: {
   meta: { touched: boolean, error: boolean, invalid: boolean }
@@ -16,10 +17,7 @@ const InputError = (props: {
 
   return (
     <InputErrorContainer>
-      {showError &&
-        <InputErrorRed>
-          {meta.error}
-        </InputErrorRed>}
+      {showError && <InputErrorRed>{meta.error}</InputErrorRed>}
     </InputErrorContainer>
   );
 };
@@ -41,4 +39,9 @@ const InputErrorRed = styled.div`
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
   overflow: hidden;
+
+  ${media.phablet`
+    padding: 7px 12px 5px;
+    font-size: 13px;
+  `};
 `;

@@ -120,6 +120,6 @@ const FormFooterCenter = styled.div`
   `};
 
   ${media.phonePlus`
-    padding: 12px 30px;
+    padding: 10px 24px;
   `};
 `;

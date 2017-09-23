@@ -53,7 +53,9 @@ const TextareaInput = styled.textarea`
   ${media.tablet`
     font-size: 16px;
     padding: 14px;
-  `} ::-webkit-input-placeholder {
+  `};
+
+  ::-webkit-input-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     line-height: 1.5;

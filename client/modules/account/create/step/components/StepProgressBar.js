@@ -48,17 +48,17 @@ const StepProgressBarContainer = styled.div`
   display: none;
 
   ${media.tablet`
+    position: absolute;
     display: block;
     width: 100%;
-    height: 8px;
+    height: 4px;
     background: #f9f8f7;
-    margin-bottom: 5px;
   `};
 `;
 
 const StepProgressBarProgress = styled.div`
   width: ${props => props.width}%;
-  height: 8px;
+  height: 4px;
   background: ${props => props.theme.colors.purple};
   transition: width 280ms cubic-bezier(0.39, 0.575, 0.565, 1);
 `;

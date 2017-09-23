@@ -28,11 +28,7 @@ class StepRouter extends Component {
   }
 
   render() {
-    return (
-      <StepRouterContainer>
-        {this.props.children}
-      </StepRouterContainer>
-    );
+    return <StepRouterContainer>{this.props.children}</StepRouterContainer>;
   }
 }
 
@@ -62,5 +58,9 @@ const StepRouterContainer = styled.div`
     width: 100%;
     padding: 0 24px;
     margin-top: 24px;
+  `};
+
+  ${media.phablet`
+    margin-top: 16px;
   `};
 `;

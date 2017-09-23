@@ -4,11 +4,12 @@ import { media } from '../../../../../styles/breakpoints';
 import { Link } from 'react-router';
 import PrimaryNavLogo from '../../../../nav/primary-nav/components/PrimaryNavLogo';
 
-const StepHeader = () =>
+const StepHeader = () => (
   <StepHeaderContainer>
     <PrimaryNavLogo />
     <StepStyledLink to="/account/jobs">Exit</StepStyledLink>
-  </StepHeaderContainer>;
+  </StepHeaderContainer>
+);
 
 export default StepHeader;
 
@@ -45,6 +46,7 @@ const StepHeaderContainer = styled.header`
   ${media.phablet`
     max-width: 900px;
     padding: 0 74px;
+    height: 65px;
   `};
 
   ${media.phonePlus`
@@ -52,7 +54,7 @@ const StepHeaderContainer = styled.header`
   `};
 
   ${media.phone`
-    padding: 12px 30px;
+    padding: 12px 24px;
   `};
 `;
 

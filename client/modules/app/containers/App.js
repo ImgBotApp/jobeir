@@ -7,11 +7,7 @@ import { ReduxAsyncConnect } from 'redux-connect';
 import IntlWrapper from '../../intl/containers/IntlWrapper';
 import routes from '../../../routes';
 import css from '../../../styles/fonts/fonts.css';
-
-const goToTopOfPage = () => {
-  const shouldGoToTop = !window.location.pathname.includes('/jobs/');
-  if (shouldGoToTop) window.scrollTo(0, 0);
-};
+import { goToTopOfPage } from '../../../utils/scrolling';
 
 export default function App(props: { store: {} }) {
   const { store } = props;

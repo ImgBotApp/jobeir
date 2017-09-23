@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 
 export const Input = styled.input`
-  appearance: none;
   border-radius: ${props => props.theme.input.borderRadius};
   border: ${props => props.theme.input.border};
   border-color: ${props => (props.showError ? props.theme.error.color : '')};
@@ -13,6 +12,7 @@ export const Input = styled.input`
   margin: ${props => props.theme.input.margin};
   max-width: ${props => props.theme.input.maxWidth};
   line-height: ${props => props.theme.input.lineHeight};
+  appearance: none;
   box-shadow: none;
 
   &:hover: {
