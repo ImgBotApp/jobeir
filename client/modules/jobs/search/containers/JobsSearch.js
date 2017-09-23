@@ -315,19 +315,8 @@ const JobsSearchColumn = styled.div`
 
   ${props =>
     props.margin
-      ? media.phablet`
-      // position: fixed;
-      // top: 0;
-      // left: 0;
-      // right: 0;
-      // bottom: 0;
-      // background: white;
+      ? media.tablet`
       display: none;
-      // z-index: 999;
-      // width: 100%;
-      // padding: 24px;
-      // overflow-y: scroll;
-      // height: auto;
   `
       : ''};
 `;
@@ -344,11 +333,13 @@ const JobSearchEmptyStateHeader = styled.h4`
   margin-top: 20px;
   font-size: 18px;
   font-weight: 400;
-`;
 
-const JobSearchEmptyStateShadow = styled.div`
-  height: 20px;
-  width: 70px;
-  border-radius: 7px;
-  background: red;
+  ${media.phablet`
+    margin-top: 10px;
+    font-size: 16px;
+  `};
+
+  ${media.phone`
+    font-size: 14px;
+  `};
 `;

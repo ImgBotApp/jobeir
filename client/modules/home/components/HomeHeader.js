@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import { media } from '../../../styles/breakpoints';
 import HomeSearch from './HomeSearch';
 
-const HomeHeader = () =>
+const HomeHeader = () => (
   <Header>
     <HeaderText>
       Find your next job<br /> Lorem inspum jonadabom
     </HeaderText>
     <HomeSearch />
-  </Header>;
+  </Header>
+);
 
 export default HomeHeader;
 
@@ -46,10 +47,9 @@ const HeaderText = styled.h1`
   `};
 
   ${media.phone`
-    font-size: 24px;
-    font-weight: 800;
+    font-size: 26px;
     text-align: left;
     margin: 15px auto 30px;
-    line-height: 1.4;
+    line-height: 1.3;
   `};
 `;

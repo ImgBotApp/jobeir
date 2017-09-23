@@ -53,13 +53,15 @@ class Jobs extends Component {
       <JobsContainer>
         <JobsFilter />
         <JobsContent>
-          {jobs.isFetching
-            ? <JobsListItemPlaceholder />
-            : hasJobPostings
-              ? <FadeIn>
-                  <JobsList jobs={jobs.postings.sort(byEarliestFirst)} />
-                </FadeIn>
-              : globalIsLoaded && <JobsListEmptyState link={link} />}
+          {jobs.isFetching ? (
+            <JobsListItemPlaceholder />
+          ) : hasJobPostings ? (
+            <FadeIn>
+              <JobsList jobs={jobs.postings.sort(byEarliestFirst)} />
+            </FadeIn>
+          ) : (
+            globalIsLoaded && <JobsListEmptyState link={link} />
+          )}
         </JobsContent>
       </JobsContainer>
     );
@@ -76,8 +78,4 @@ export default connect(mapStateToProps)(Jobs);
 
 const JobsContainer = styled.div`max-width: 100%;`;
 
-const JobsContent = styled.div`
-  // border-top: 1px solid #eceaea;
-  // background: #f9f8f7;
-  // min-height: calc(100vh - 300px);
-`;
+const JobsContent = styled.div``;

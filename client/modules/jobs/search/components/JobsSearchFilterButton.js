@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import { FadeIn } from '../../../../styles/animate/';
 import { FilterIcon } from '../../../../icons';
 import { toggleMobileFilters } from '../ducks';
@@ -26,7 +27,7 @@ export default connect(mapStateToProps)(JobSearchFilterButton);
 
 const JobSearchFilterButtonContainer = styled.div`
   position: fixed;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   border-radius: 50px;
@@ -45,6 +46,10 @@ const JobSearchFilterButtonContainer = styled.div`
   transform: translateY(${props => (props.showMobileFilters ? '150' : '0')}px);
   will-change: transform;
   transition: transform 350ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+  ${media.tablet`
+    display: flex;
+  `};
 
   svg {
     position: relative;

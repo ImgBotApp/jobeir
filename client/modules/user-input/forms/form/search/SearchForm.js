@@ -44,13 +44,14 @@ class Input extends Component {
             this.nameInput = input;
           }}
         />
-        {this.props.autocomplete &&
+        {this.props.autocomplete && (
           <Autocomplete
             formName="search"
             types={['(cities)']}
             id={this.props.input.name}
             customStyles={customStyles}
-          />}
+          />
+        )}
       </SearchInputContainer>
     );
   }
@@ -89,14 +90,15 @@ const Button = (props: {
   disabled: boolean,
   buttonText: string,
   location: string
-}) =>
+}) => (
   <SearchButton
     type="submit"
     disabled={props.disabled}
     location={props.location}
   >
     {props.buttonText || 'Search'}
-  </SearchButton>;
+  </SearchButton>
+);
 
 class SearchForm extends Component {
   componentDidMount() {
@@ -172,7 +174,9 @@ SearchForm = reduxForm({
 const mapStateToProps = state => ({
   initialValues: {
     location:
-      state.location && `${state.location.city}, ${state.location.region}`,
+      state.location &&
+      state.location.city &&
+      `${state.location.city}, ${state.location.region}`,
     coordinates: state.location && state.location.ll
   },
   isOpen: state.search.jobs.isOpen
@@ -364,32 +368,46 @@ const SelectContainer = styled.div`
     position: absolute;
     right: 0;
     top: 0;
-    max-width: 100%;
+    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
   .has-value.Select--single > .Select-control .Select-value .Select-value-label,
   .has-value.is-pseudo-focused.Select--single
-    > .Select-control .Select-value .Select-value-label {
+    > .Select-control
+    .Select-value
+    .Select-value-label {
     font-weight: 800;
     color: rgba(0, 0, 0, 0.85);
   }
   .has-value.Select--single
-    > .Select-control .Select-value a.Select-value-label,
+    > .Select-control
+    .Select-value
+    a.Select-value-label,
   .has-value.is-pseudo-focused.Select--single
-    > .Select-control .Select-value a.Select-value-label {
+    > .Select-control
+    .Select-value
+    a.Select-value-label {
     cursor: pointer;
     text-decoration: none;
   }
   .has-value.Select--single
-    > .Select-control .Select-value a.Select-value-label:hover,
+    > .Select-control
+    .Select-value
+    a.Select-value-label:hover,
   .has-value.is-pseudo-focused.Select--single
-    > .Select-control .Select-value a.Select-value-label:hover,
+    > .Select-control
+    .Select-value
+    a.Select-value-label:hover,
   .has-value.Select--single
-    > .Select-control .Select-value a.Select-value-label:focus,
+    > .Select-control
+    .Select-value
+    a.Select-value-label:focus,
   .has-value.is-pseudo-focused.Select--single
-    > .Select-control .Select-value a.Select-value-label:focus {
+    > .Select-control
+    .Select-value
+    a.Select-value-label:focus {
     color: #007eff;
     outline: none;
     text-decoration: underline;

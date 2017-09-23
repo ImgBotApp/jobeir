@@ -120,6 +120,7 @@ class JobsSearchFilterMobile extends Component {
                 options={distanceOptions}
                 type="circle"
                 component={Radio}
+                last={true}
               />
             </JobsSearchFilterMobilePadding>
             <JobsSearchFilterMobileButton dispatch={dispatch} />
@@ -163,8 +164,8 @@ const JobsSearchFilterMobileContainer = styled.div`
 `;
 
 const JobsSearchFilterMobilePadding = styled.div`
-  padding: 24px;
-  overflow-y: auto;
+  padding: 32px 24px 0;
+  overflow-y: scroll;
   top: 59px;
   bottom: 77px;
   width: 100%;
@@ -173,13 +174,14 @@ const JobsSearchFilterMobilePadding = styled.div`
 
 const ListBorder = styled.div`
   border-bottom: 1px solid #dbdbdb;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const Radio = (props: {
   type: string,
   row?: string,
   rowWidth?: number,
+  last?: boolean,
   options: Array<{
     value: string,
     text?: string,
@@ -194,7 +196,7 @@ const Radio = (props: {
 
   return (
     <InputWrapper {...props}>
-      <RadioCircleListBorder>
+      <RadioCircleListBorder last={props.last}>
         <RadioCircleListContainer>
           {props.options.map(option => (
             <RadioCircleListInputContainer key={option.value}>
@@ -234,13 +236,12 @@ const RadioCircleListContainer = styled.div`
 `;
 
 const RadioCircleListBorder = styled.div`
+  ${props =>
+    !props.last
+      ? `
   border-bottom: 1px solid #dbdbdb;
-  padding-bottom: 10px;
-
-  &:last-child {
-    border: none;
-    padding-bottom: 0;
-  }
+  padding-bottom: 10px;`
+      : ''};
 `;
 
 const RadioCircleListInputContainer = styled.div`

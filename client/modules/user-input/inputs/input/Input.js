@@ -50,6 +50,6 @@ export const Input = styled.input`
   ${media.tablet`
     font-size: 16px;
     height: 48px;
-    padding: 0 14px;
+    padding: 3px 14px 0 14px;
   `};
 `;

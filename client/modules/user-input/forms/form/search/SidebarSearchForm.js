@@ -507,7 +507,7 @@ const SelectContainer = styled.div`
     position: absolute;
     left: 0px;
     top: 100%;
-    width: 362px;
+    width: 100%;
     z-index: 1;
     -webkit-overflow-scrolling: touch;
   }

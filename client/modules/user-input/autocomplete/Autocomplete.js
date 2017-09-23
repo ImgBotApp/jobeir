@@ -32,7 +32,7 @@ class Autocomplete extends Component {
       const { types } = this.props;
 
       service.getPlacePredictions({ input, types }, this.displaySuggestions);
-    }, 400).bind(this);
+    }, 250).bind(this);
   }
 
   componentDidMount() {
@@ -213,23 +213,25 @@ class Autocomplete extends Component {
         show={show}
         style={this.props.customStyles}
       >
-        {isSearching
-          ? <AutocompleteSearching>
-              {noResults
-                ? 'No address found. Try a different address.'
-                : 'Searching Address...'}
-            </AutocompleteSearching>
-          : <div>
-              {predictions.map((prediction, index) =>
-                <AutocompleteResult
-                  key={prediction.id}
-                  prediction={prediction}
-                  selected={selectedIndex === index}
-                  fetchPlaceId={() =>
-                    this.getDetailsByPlaceId(prediction.place_id)}
-                />
-              )}
-            </div>}
+        {isSearching ? (
+          <AutocompleteSearching>
+            {noResults
+              ? 'No address found. Try a different address.'
+              : 'Searching Address...'}
+          </AutocompleteSearching>
+        ) : (
+          <div>
+            {predictions.map((prediction, index) => (
+              <AutocompleteResult
+                key={prediction.id}
+                prediction={prediction}
+                selected={selectedIndex === index}
+                fetchPlaceId={() =>
+                  this.getDetailsByPlaceId(prediction.place_id)}
+              />
+            ))}
+          </div>
+        )}
         <AutocompleteLogo />
       </AutocompleteList>
     );

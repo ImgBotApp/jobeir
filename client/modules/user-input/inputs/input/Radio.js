@@ -4,10 +4,10 @@ import InputWrapper from '../components/InputWrapper';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 
-const RadioYesNo = ({ props, showError }) =>
+const RadioYesNo = ({ props, showError }) => (
   <InputWrapper {...props}>
     <RadioContainer>
-      {props.options.map(option =>
+      {props.options.map(option => (
         <RadioInputContainer key={option.value}>
           <RadioInput
             {...props.input}
@@ -18,18 +18,17 @@ const RadioYesNo = ({ props, showError }) =>
             showError={showError}
             checked={option.value === props.input.value}
           />
-          <RadioText showError={showError}>
-            {option.text}
-          </RadioText>
+          <RadioText showError={showError}>{option.text}</RadioText>
         </RadioInputContainer>
-      )}
+      ))}
     </RadioContainer>
-  </InputWrapper>;
+  </InputWrapper>
+);
 
-const RadioCircleList = ({ props, showError }) =>
+const RadioCircleList = ({ props, showError }) => (
   <InputWrapper {...props}>
     <RadioCircleListContainer>
-      {props.options.map(option =>
+      {props.options.map(option => (
         <RadioCircleListInputContainer key={option.value}>
           <RadioCircleListInput
             {...props.input}
@@ -47,11 +46,12 @@ const RadioCircleList = ({ props, showError }) =>
             {option.text || option.name}
           </RadioCircleListLabel>
         </RadioCircleListInputContainer>
-      )}
+      ))}
     </RadioCircleListContainer>
-  </InputWrapper>;
+  </InputWrapper>
+);
 
-const RadioList = ({ props, showError }) =>
+const RadioList = ({ props, showError }) => (
   <InputWrapper {...props}>
     <RadioListContainer>
       {props.options.map(option => {
@@ -97,7 +97,8 @@ const RadioList = ({ props, showError }) =>
         );
       })}
     </RadioListContainer>
-  </InputWrapper>;
+  </InputWrapper>
+);
 
 export const Radio = (props: {
   type: string,
@@ -147,12 +148,12 @@ const RadioInputContainer = styled.div`
     margin-left: 2rem;
   }
 
-  input[type=radio]:checked {
+  input[type='radio']:checked {
     background: ${props => props.theme.colors.pink};
     border-color: ${props => props.theme.colors.pink};
   }
 
-  input[type=radio]:checked ~ div {
+  input[type='radio']:checked ~ div {
     color: white;
   }
 `;
@@ -169,7 +170,7 @@ const RadioInput = styled.input`
   background: ${props => (props.showError ? '#fee7e8' : '#f9f8f7')};
 
   position: absolute;
-  -webkit-appearance: none;
+  appearance: none;
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -182,6 +183,10 @@ const RadioInput = styled.input`
         ? props.theme.error.color
         : props.theme.input.activeBorderColor};
   }
+
+  ${media.tablet`
+    border: none;
+  `};
 `;
 
 const RadioText = styled.div`
@@ -228,7 +233,7 @@ const RadioCircleListInput = styled.input`
     display: inline-block;
     width: 10px;
     height: 10px;
-    content: "";
+    content: '';
     vertical-align: middle;
     margin-right: 10px;
     border-radius: 50%;
@@ -250,7 +255,7 @@ const RadioCircleListLabel = styled.label`
     display: inline-block;
     width: 20px;
     height: 20px;
-    content: "";
+    content: '';
     vertical-align: middle;
     margin-right: 10px;
     border-radius: 50%;
@@ -306,8 +311,9 @@ const RadioListInputContainer = styled.div`
   cursor: pointer;
   
   ${media.tablet`
-    padding: 14px 8px;
+    padding: 14px;
     font-size: 14px;
+    border: none;
   `};
 
   input[type=radio]:checked {

@@ -56,10 +56,11 @@ class StepForm extends Component {
     return (
       <StepFormContainer>
         {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
-        {AsyncComponent &&
+        {AsyncComponent && (
           <FadeIn>
             <AsyncComponent params={params} />
-          </FadeIn>}
+          </FadeIn>
+        )}
       </StepFormContainer>
     );
   }
@@ -81,11 +82,11 @@ const StepFormContainer = styled.div`
   `};
 
   ${media.phonePlus`
-    padding: 0 20px;
+    padding: 0 10px;
   `};
 
   ${media.phone`
     width: 100%;
-    padding: 0 6px;
+    padding: 0;
   `};
 `;
