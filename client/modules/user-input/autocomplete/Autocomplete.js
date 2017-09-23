@@ -36,27 +36,28 @@ class Autocomplete extends Component {
   }
 
   componentDidMount() {
-    const inputField: HTMLElement = document.getElementById(this.props.id);
-
-    this.location = document.getElementById('fullAddress');
-
+    this.location = document.getElementById(this.props.id);
+    /**
+     * This is a hack to remove the browser's autocomplete suggestions
+     * for the input fields in the search bar. If there's an id and
+     * title attribute the browser will be able to show the suggestion
+     * which covers our own autocomplete suggestions
+     */
     this.location.removeAttribute('name');
     this.location.removeAttribute('id');
 
-    inputField.addEventListener('focus', this.handleFocus);
-    inputField.addEventListener('blur', this.handleBlur);
-    inputField.addEventListener('keyup', this.handleTyping);
+    this.location.addEventListener('focus', this.handleFocus);
+    this.location.addEventListener('blur', this.handleBlur);
+    this.location.addEventListener('keyup', this.handleTyping);
   }
 
   componentWillUnmount() {
-    const inputField: HTMLElement = document.getElementById(this.props.id);
+    this.location.setAttribute('name', this.props.id);
+    this.location.setAttribute('id', this.props.id);
 
-    inputField.removeEventListener('focus', this.handleFocus);
-    inputField.removeEventListener('blur', this.handleBlur);
-    inputField.removeEventListener('keyup', this.handleTyping);
-
-    this.location.setAttribute('name', 'location');
-    this.location.setAttribute('id', 'location');
+    this.location.removeEventListener('focus', this.handleFocus);
+    this.location.removeEventListener('blur', this.handleBlur);
+    this.location.removeEventListener('keyup', this.handleTyping);
   }
 
   getDetailsByPlaceId = (placeId: string) => {

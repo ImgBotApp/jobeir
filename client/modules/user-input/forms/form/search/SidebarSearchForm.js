@@ -37,7 +37,7 @@ class Input extends Component {
       isMobileFilter
     } = this.props;
     const showError = meta.touched && meta.error && meta.invalid;
-
+    console.log(input.name);
     return (
       <SearchInputContainer
         location={location}
@@ -124,25 +124,6 @@ class SelectInput extends Component {
 }
 
 class SidebarSearchForm extends Component {
-  componentDidMount() {
-    /**
-     * This is a hack to remove the browser's autocomplete suggestions
-     * for the input fields in the search bar. If there's an id and
-     * title attribute the browser will be able to show the suggestion
-     * which covers our own autocomplete suggestions
-     */
-    this.location = document.getElementById('location');
-
-    this.location.removeAttribute('name');
-    this.location.removeAttribute('id');
-  }
-
-  componentWillUnmount() {
-    // have to add them back before unmounting
-    this.location.setAttribute('name', 'location');
-    this.location.setAttribute('id', 'location');
-  }
-
   formSubmit = data => {
     const queryData = {
       q: data.title && data.title.value,

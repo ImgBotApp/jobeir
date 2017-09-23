@@ -5,12 +5,13 @@ import HomeHeader from '../components/HomeHeader';
 import HomeBanner from '../components/HomeBanner';
 import HomeFeatured from '../components/HomeFeatured';
 
-const Home = () =>
+const Home = () => (
   <HomeContainer>
     <HomeHeader />
     <HomeBanner />
     <HomeFeatured />
-  </HomeContainer>;
+  </HomeContainer>
+);
 
 export default Home;
 
