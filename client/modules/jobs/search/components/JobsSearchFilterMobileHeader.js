@@ -9,7 +9,6 @@ import { toggleMobileFilters } from '../ducks';
 const JobSearchFilterMobileHeader = props => {
   const { dispatch, isFiltering, search = { coordinates: [] } } = props;
 
-  console.log(search);
   const reset = {
     location: search.location,
     lat: search.lat || (search.coordinates && search.coordinates[0]),

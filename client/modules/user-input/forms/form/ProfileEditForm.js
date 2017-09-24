@@ -15,7 +15,6 @@ const parsePhone = (value: number): string =>
 class ProfileEditForm extends Component {
   formSubmit = (data: {}): void => {
     const { dispatch, user } = this.props;
-    console.log(data);
     dispatch(updateUser(user._id, data));
   };
   render() {
