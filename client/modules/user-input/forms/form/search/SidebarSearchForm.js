@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm, change } from 'redux-form';
 import Autocomplete from '../../../autocomplete/Autocomplete';
@@ -259,6 +260,10 @@ const SearchLabel = styled.label`
   font-weight: 600;
   color: #898989;
   margin-bottom: 3px;
+
+  ${media.phablet`
+    margin-bottom: 0;
+  `};
 `;
 
 const SelectContainer = styled.div`
@@ -431,6 +436,8 @@ const SelectContainer = styled.div`
     vertical-align: middle;
     font-weight: 100;
     width: 17px;
+    position: absolute;
+    right: 0;
   }
 
   .Select-clear-zone:hover {

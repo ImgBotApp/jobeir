@@ -440,6 +440,8 @@ const SelectContainer = styled.div`
     vertical-align: middle;
     font-weight: 100;
     width: 17px;
+    position: absolute;
+    right: 0;
   }
   .Select-clear-zone:hover {
     color: #676767;
