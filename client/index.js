@@ -15,7 +15,7 @@ import App from './modules/app/containers/App';
 const mountApp = document.getElementById('app');
 
 // Initialize Servicie Worker register code
-// initServiceWorker();
+initServiceWorker();
 
 // Initialize store
 const store = configureStore(browserHistory, window.__INITIAL_STATE__);

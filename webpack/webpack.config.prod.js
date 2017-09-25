@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 // prettier-ignore
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
@@ -89,6 +90,19 @@ module.exports = {
       compressor: {
         warnings: false
       }
+    }),
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'gost',
+      filename: 'sw.js',
+      staticFileGlobs: [
+        `${path.join(
+          __dirname,
+          '../puclic/static/dist/client'
+        )}/**/*.{html,js,css,svg}`
+      ],
+      stripPrefix: path.join(__dirname, '../puclic/static/dist/client'),
+      maximumFileSizeToCacheInBytes: 4194304,
+      navigateFallback: 'index.html'
     })
   ]
 };
