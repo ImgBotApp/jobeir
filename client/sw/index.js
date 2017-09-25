@@ -7,11 +7,11 @@ const initServiceWorker = () => {
       .register('/public/static/dist/client/sw.js')
       .then(registration => {
         // Registration was successful
-        console.log('🌝', registration.scope); // eslint-disable-line no-console
+        console.log('👋 service worker'); // eslint-disable-line no-console
       })
       .catch(err => {
         // registration failed :(
-        console.log('🌚', err); // eslint-disable-line no-console
+        console.log('😔', err); // eslint-disable-line no-console
       });
   }
 };
