@@ -98,7 +98,7 @@ module.exports = {
         `${path.join(
           __dirname,
           '../puclic/static/dist/client'
-        )}/**/*.{html,js,css,svg}`
+        )}/*.{html,js,css,svg}`
       ],
       stripPrefix: path.join(__dirname, '../puclic/static/dist/client'),
       maximumFileSizeToCacheInBytes: 4194304,
