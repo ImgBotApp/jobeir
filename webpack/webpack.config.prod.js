@@ -94,6 +94,7 @@ module.exports = {
     new SWPrecacheWebpackPlugin({
       cacheId: 'gost',
       filename: 'sw.js',
+      staticFileGlobs: [path.join(__dirname, '../public/static/dist/**/*')],
       staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
       maximumFileSizeToCacheInBytes: 4194304,
       navigateFallback: 'index.html'
