@@ -4,7 +4,7 @@ const initServiceWorker = () => {
     !window.location.host.includes('localhost')
   ) {
     navigator.serviceWorker
-      .register('/public/sw.js')
+      .register('/sw.js')
       .then(() => {
         // Registration was successful
         console.log('👋 service worker'); // eslint-disable-line no-console
