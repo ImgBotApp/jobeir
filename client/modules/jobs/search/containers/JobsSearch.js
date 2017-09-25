@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroller';
+import throttle from 'lodash/throttle';
 import { serverGetJobs } from '../server/';
 import {
   shouldGetJobs,
@@ -42,7 +43,8 @@ import { SearchIcon } from '../../../../icons';
 class JobsSearch extends Component {
   state: {
     hasMore: boolean,
-    initialValues: {}
+    initialValues: {},
+    screenWidth: number
   };
 
   constructor(props) {
@@ -63,7 +65,7 @@ class JobsSearch extends Component {
       companySize: parsed.cs
     };
 
-    this.state = { hasMore: true, initialValues };
+    this.state = { hasMore: true, initialValues, screenWidth: 1200 };
   }
 
   componentDidMount() {
@@ -74,6 +76,14 @@ class JobsSearch extends Component {
     if (!isLoaded) {
       dispatch(searchJobs(queryData));
     }
+
+    this.calculateScreenWidth();
+
+    window.addEventListener(
+      'resize',
+      throttle(this.calculateScreenWidth, 300),
+      true
+    );
   }
 
   componentDidUpdate(prevProps) {
@@ -88,7 +98,21 @@ class JobsSearch extends Component {
 
   componentWillUnmount() {
     this.props.dispatch(resetJobs());
+    window.removeEventListener(
+      'resize',
+      throttle(this.calculateScreenWidth, 300),
+      true
+    );
   }
+
+  calculateScreenWidth = () => {
+    const screenWidth =
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+
+    this.setState({ screenWidth });
+  };
 
   /**
    * withoutStartQuery()
@@ -172,7 +196,7 @@ class JobsSearch extends Component {
   }
 
   render() {
-    const { initialValues } = this.state;
+    const { initialValues, screenWidth } = this.state;
 
     return (
       <JobsSearchContainer>
@@ -186,7 +210,11 @@ class JobsSearch extends Component {
               <JobsSearchHeaderText>Filter options</JobsSearchHeaderText>
               <JobsSearchFilterReset />
             </JobsSearchHeader>
-            <JobsSearchSidebar initialValues={initialValues} />
+            {screenWidth > 768 && (
+              <FadeIn>
+                <JobsSearchSidebar initialValues={initialValues} />
+              </FadeIn>
+            )}
           </JobsSearchColumn>
           <JobsSearchColumn wide>
             <JobsSearchHeader wide>
@@ -204,7 +232,9 @@ class JobsSearch extends Component {
           </JobsSearchColumn>
         </JobsSearchRow>
         <JobsSearchFilterButton />
-        <JobsSearchFilterMobile />
+        {screenWidth <= 768 && (
+          <JobsSearchFilterMobile initialValues={initialValues} />
+        )}
       </JobsSearchContainer>
     );
   }
@@ -248,7 +278,7 @@ const JobsSearchBackground = styled.div`
 `;
 
 const JobsSearchBackgroundGrey = styled.div`
-  flex: 0.8;
+  flex: 0.77;
   background: #f9f8f7;
   border-right: 1px solid #eceaea;
 
@@ -266,7 +296,7 @@ const JobsSearchBackgroundWhite = styled.div`flex: 1.25;`;
 const JobsSearchRow = styled.div`
   display: flex;
   justify-content: center;
-  max-width: 1120px;
+  max-width: 1100px;
   width: 100%;
   margin: 0 auto;
   padding: 0 24px;

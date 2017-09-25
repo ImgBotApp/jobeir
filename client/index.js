@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { render } from 'react-dom';
-import { match, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
 import configureStore from './redux/store';
@@ -21,17 +21,17 @@ const mountApp = document.getElementById('app');
 const store = configureStore(browserHistory, window.__INITIAL_STATE__);
 const history = syncHistoryWithStore(browserHistory, store);
 
-const renderApp = renderProps =>
+const renderApp = () =>
   render(
     <AppContainer>
-      <App {...{ store, history, ...renderProps }} />
+      <App {...{ store, history }} />
     </AppContainer>,
     mountApp
   );
 
-match({ history, routes }, (error, redirectLocation, renderProps) =>
-  renderApp(renderProps)
-);
+// match({ history, routes }, (error, redirectLocation, renderProps) =>
+// renderApp(renderProps)
+// );
 
 // For hot reloading of react components
 if (module.hot) {
@@ -41,3 +41,5 @@ if (module.hot) {
     renderApp({ routes: nextRoutes });
   });
 }
+
+renderApp();

@@ -37,7 +37,6 @@ class JobPostingMap extends Component {
   render() {
     return (
       <JobPostingMapContainer>
-        <JobPostingMapHeader>Job location</JobPostingMapHeader>
         <div id="map" />
       </JobPostingMapContainer>
     );

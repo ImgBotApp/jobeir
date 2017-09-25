@@ -79,7 +79,7 @@ const StepTipsContainer = styled.div``;
 
 const StepTipsHeader = styled.h4`
   margin-top: 10px;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 1.2rem;
   line-height: 1.6;
 `;

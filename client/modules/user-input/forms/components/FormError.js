@@ -1,17 +1,20 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
+import { FadeIn } from '../../../../styles/animate';
 
 export const FormError = (props: {
   formErrors: Array<{ error: string, message: string }>
-}) =>
+}) => (
   <FormErrorContainer>
-    {props.formErrors.map(error =>
-      <div key={error.error}>
-        {error.message}
-      </div>
-    )}
-  </FormErrorContainer>;
+    <FadeIn>
+      {props.formErrors.map(error => (
+        <div key={error.error}>{error.message}</div>
+      ))}
+    </FadeIn>
+  </FormErrorContainer>
+);
 
 export default FormError;
 
@@ -23,9 +26,11 @@ const FormErrorContainer = styled.div`
   border-radius: 3px;
   text-align: center;
   margin-bottom: 1.5rem;
-  position: ${props =>
-    props.theme.error.position === 'absolute' ? 'absolute' : 'relative'};
+  position: relative
+  border: 1px solid #f5c2c2;
   width: ${props => props.theme.error.width};
-`;
 
-// border: 1px solid #f73c3c;
+  ${media.phablet`
+    width: 100%
+  `};
+`;

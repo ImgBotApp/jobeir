@@ -42,7 +42,8 @@ import configureStore from '../client/redux/store';
 import { Provider } from 'react-redux';
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
-import { createMemoryHistory, match } from 'react-router';
+import { match } from 'react-router';
+import createHistory from 'react-router/lib/createMemoryHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ServerStyleSheet } from 'styled-components';
 import Html from '../client/modules/html/containers/Html';
@@ -123,7 +124,7 @@ mongoose.connect(process.env.MONGO_URL, mongooseOptions, error => {
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
   const location = geoLookup(req);
-  const memoryHistory = createMemoryHistory(req.url);
+  const memoryHistory = createHistory(req.url);
   const initialState = Object.assign({}, location);
   const store = configureStore(memoryHistory, initialState);
   const history = syncHistoryWithStore(memoryHistory, store);

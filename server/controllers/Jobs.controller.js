@@ -2,6 +2,13 @@ import Jobs from '../models/Jobs';
 import Company from '../models/Company';
 import sanitizeHtml from 'sanitize-html';
 import * as err from '../errors/types';
+
+const parsePercentage = value => {
+  if (typeof value === 'string') {
+    return parseInt(value.toString().replace(/\D/g, ''), 10) / 100;
+  }
+};
+
 /**
  * Get all jobs
  * @param req
@@ -54,6 +61,7 @@ export const createJob = async (req, res) => {
     role: body.role,
     title: body.title,
     employmentType: body.employmentType,
+    externalLink: body.externalLink,
     location: body.location,
     remote: body.remote,
     salary: {
@@ -61,8 +69,8 @@ export const createJob = async (req, res) => {
       min: body.salary.min
     },
     equity: {
-      max: body.equity.max || 0,
-      min: body.equity.min || 0,
+      max: parsePercentage(body.equity.max) || 0,
+      min: parsePercentage(body.equity.min) || 0,
       offer: body.equity.offer
     }
   }).save();

@@ -7,10 +7,11 @@ import { media } from '../../../../styles/breakpoints';
  * Will for the children to go on a single row
  * and apply a width of 48% to each child div
  */
-const FormRow = (props: { children: any }) =>
-  <FormRowContainer>
+const FormRow = (props: { children: any, alwaysRow: boolean }) => (
+  <FormRowContainer alwaysRow={props.alwaysRow}>
     {props.children}
-  </FormRowContainer>;
+  </FormRowContainer>
+);
 
 export default FormRow;
 
@@ -19,7 +20,7 @@ const FormRowContainer = styled.div`
   justify-content: space-between;
 
   ${media.phablet`
-    flex-direction: column;
+    flex-direction: ${props => (props.alwaysRow ? 'row' : 'column')};
     width: 100%;
   `};
 
@@ -27,7 +28,7 @@ const FormRowContainer = styled.div`
     width: 48%;
 
     ${media.phablet`
-      width: 100%;
+      width: ${props => (props.alwaysRow ? '48%' : '100%')};
     `};
   }
 `;

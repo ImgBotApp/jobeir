@@ -103,6 +103,7 @@ injectGlobal`
       Arial,
       sans-serif;
     color: rgba(0,0,0,0.85);
+    -webkit-font-smoothing: subpixel-antialiased;
   }
   
   textarea:focus, input:focus{

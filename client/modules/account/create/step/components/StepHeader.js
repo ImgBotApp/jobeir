@@ -50,7 +50,7 @@ const StepHeaderContainer = styled.header`
   `};
 
   ${media.phonePlus`
-    padding: 12px 44px;
+    padding: 12px 36px;
   `};
 
   ${media.phone`

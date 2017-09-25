@@ -3,50 +3,48 @@ import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../../styles/breakpoints';
 import moment from 'moment';
-import JobsPostingHeaderPlaceholder from './JobPostingHeaderPlaceholder';
+import JobPostingHeaderPlaceholder from './JobPostingHeaderPlaceholder';
 import { FadeIn } from '../../../../../styles/animate/';
 
-const JobsPostingHeader = (props: { activePosting: {}, hideLogo: boolean }) => {
+const JobPostingHeader = (props: { activePosting: {}, hideLogo: boolean }) => {
   const { activePosting, hideLogo } = props;
   const activePostingReady: boolean = Object.keys(activePosting).length > 0;
 
   return (
     <div>
-      <JobsPostingHeaderContainer>
+      <JobPostingHeaderContainer>
         {activePostingReady ? (
           <FadeIn>
-            <JobsPostingHeaderCompany>
+            <JobPostingHeaderCompany>
               {!hideLogo && (
-                <JobsPostingHeaderCompanyLogo
+                <JobPostingHeaderCompanyLogo
                   src={activePosting.company.logo}
                   alt={activePosting.company.displayName}
                 />
               )}
-            </JobsPostingHeaderCompany>
-            <JobsPostingHeaderTitle>
-              {activePosting.title}
-            </JobsPostingHeaderTitle>
-            <JobsPostingHeaderLocation>
+            </JobPostingHeaderCompany>
+            <JobPostingHeaderTitle>{activePosting.title}</JobPostingHeaderTitle>
+            <JobPostingHeaderLocation>
               Located in {activePosting.location.address.locality},{' '}
               {activePosting.location.address.country}
-            </JobsPostingHeaderLocation>
-            <JobsPostingHeaderDate>
+            </JobPostingHeaderLocation>
+            <JobPostingHeaderDate>
               {moment(activePosting.createdAt).format('MMMM Do, YYYY')}
-            </JobsPostingHeaderDate>
+            </JobPostingHeaderDate>
           </FadeIn>
         ) : (
-          <JobsPostingHeaderPlaceholder />
+          <JobPostingHeaderPlaceholder />
         )}
-      </JobsPostingHeaderContainer>
+      </JobPostingHeaderContainer>
     </div>
   );
 };
 
-export default JobsPostingHeader;
+export default JobPostingHeader;
 
-const JobsPostingHeaderContainer = styled.div`
+const JobPostingHeaderContainer = styled.div`
   max-width: 670px;
-  margin: 0 auto 75px;
+  margin: 0 auto 60px;
   padding: 0 24px;
 
   ${media.tablet`
@@ -54,22 +52,23 @@ const JobsPostingHeaderContainer = styled.div`
   `};
 `;
 
-const JobsPostingHeaderCompanyLogo = styled.img`
-  height: 60px;
+const JobPostingHeaderCompanyLogo = styled.img`
+  height: 50px;
 
-  ${media.tablet`
-    height: 50px;
-  `};
-`;
-
-const JobsPostingHeaderCompany = styled.div`
-  margin-bottom: 30px;
   ${media.phablet`
-    margin-bottom: 20px;
+    height: 40px;
   `};
 `;
 
-const JobsPostingHeaderTitle = styled.h1`
+const JobPostingHeaderCompany = styled.div`
+  margin-bottom: 40px;
+
+  ${media.phablet`
+    margin-bottom: 25px;
+  `};
+`;
+
+const JobPostingHeaderTitle = styled.h1`
   font-size: 48px;
   font-weight: 900;
   margin-bottom: 15px;
@@ -79,12 +78,12 @@ const JobsPostingHeaderTitle = styled.h1`
   `};
 
   ${media.phablet`
-    font-size: 38px;
+    font-size: 36px;
     margin-bottom: 10px;
   `};
 `;
 
-const JobsPostingHeaderLocation = styled.p`
+const JobPostingHeaderLocation = styled.p`
   font-size: 20px;
   font-weight: 400;
   margin-bottom: 10px;
@@ -95,7 +94,7 @@ const JobsPostingHeaderLocation = styled.p`
   `};
 `;
 
-const JobsPostingHeaderDate = styled.p`
+const JobPostingHeaderDate = styled.p`
   font-size: 18px;
   font-weight: 400;
 

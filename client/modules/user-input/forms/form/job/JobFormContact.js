@@ -11,12 +11,13 @@ import { email, required, url } from '../../../validation';
 import { createJob } from '../../../../account/create/job/ducks';
 import { FormListRemoveIcon } from '../../../../../icons/';
 
-const renderFields = (member: string, index: number, fields: Array<{}>) =>
+const renderFields = (member: string, index: number, fields: Array<{}>) => (
   <FormListItem key={member}>
-    {index > 0 &&
+    {index > 0 && (
       <FormListRemoveItem onClick={() => fields.remove(index)}>
         <FormListRemoveIcon />
-      </FormListRemoveItem>}
+      </FormListRemoveItem>
+    )}
     <Field
       name={`${member}.email`}
       label={`${index === 0
@@ -25,7 +26,8 @@ const renderFields = (member: string, index: number, fields: Array<{}>) =>
       validate={[email, required]}
       component={Text}
     />
-  </FormListItem>;
+  </FormListItem>
+);
 
 const renderEmailFields = (props: { fields: Array<{}> }) => {
   const { fields } = props;

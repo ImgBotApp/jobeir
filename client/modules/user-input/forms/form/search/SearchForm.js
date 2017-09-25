@@ -175,12 +175,14 @@ const SearchFormContainer = styled.form`
   margin-top: 30px;
   border-radius: 3px;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
-    0 8px 16px rgba(27, 39, 51, 0.08);
+    0 2px 8px rgba(27, 39, 51, 0.1);
 
   ${media.phablet`
     flex-direction: column;
     height: auto;
     margin-top: 20px;
+    box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
+    0 4px 16px rgba(27, 39, 51, 0.14);
   `};
 `;
 

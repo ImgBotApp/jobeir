@@ -8,6 +8,7 @@ import JobPostingHeader from '../components/JobPostingHeader';
 import JobPostingBody from './JobPostingBody';
 import JobPostingMap from './JobPostingMap';
 import { FadeIn } from '../../../../../styles/animate/';
+
 /**
  * <JobPosting />
  * Provides the UI for previewing the posting within the Admin or
@@ -19,19 +20,18 @@ const JobPosting = (props: { activePosting: {}, hideLogo: boolean }) => {
 
   return (
     <JobPostingContainer>
-      {activePostingReady
-        ? <FadeIn>
-            <JobPostingHeader
-              activePosting={activePosting}
-              hideLogo={hideLogo}
-            />
-            <JobPostingBody activePosting={activePosting} />
-            <JobPostingMap activePosting={activePosting} />
-          </FadeIn>
-        : <JobPostingPlaceholderContainer>
-            <JobPostingHeaderPlaceholder />
-            <JobPostingPreviewPlaceholder />
-          </JobPostingPlaceholderContainer>}
+      {activePostingReady ? (
+        <FadeIn>
+          <JobPostingHeader activePosting={activePosting} hideLogo={hideLogo} />
+          <JobPostingBody activePosting={activePosting} />
+          <JobPostingMap activePosting={activePosting} />
+        </FadeIn>
+      ) : (
+        <JobPostingPlaceholderContainer>
+          <JobPostingHeaderPlaceholder />
+          <JobPostingPreviewPlaceholder />
+        </JobPostingPlaceholderContainer>
+      )}
     </JobPostingContainer>
   );
 };

@@ -1,9 +1,3 @@
-// if (process.env.NODE_ENV === 'production') {
-//   module.exports = require('./configureStore.prod.js');
-// } else {
-//   module.exports = require('./configureStore.dev.js');
-// }
-
 // @flow
 import { applyMiddleware, compose, createStore } from 'redux';
 import throttle from 'lodash/throttle';
@@ -20,6 +14,7 @@ const sagaMiddleware = createSagaMiddleware();
 const logger = createLogger();
 
 export default function configureStore(history: {}, state: {} = {}) {
+  const reduxRouterMiddleware = routerMiddleware(history);
   let middleware;
 
   /**
@@ -27,14 +22,9 @@ export default function configureStore(history: {}, state: {} = {}) {
    * production to keep things more private and possibly quicker.
    */
   if (process.env.NODE_ENV === 'production') {
-    middleware = [apiMiddleware, sagaMiddleware, routerMiddleware(history)];
+    middleware = [apiMiddleware, sagaMiddleware, reduxRouterMiddleware];
   } else {
-    middleware = [
-      apiMiddleware,
-      sagaMiddleware,
-      routerMiddleware(history),
-      logger
-    ];
+    middleware = [apiMiddleware, sagaMiddleware, reduxRouterMiddleware, logger];
   }
 
   const enhancer = compose(applyMiddleware(...middleware));

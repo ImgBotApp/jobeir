@@ -15,16 +15,16 @@ export const Currency = (props: {
   meta: { touched: boolean, error: boolean, invalid: boolean },
   placeholder: string
 }) => {
-  const { meta } = props;
+  const { meta, input, placeholder } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
 
   return (
     <InputWrapper {...props}>
       <StyledMaskedInput
-        {...props.input}
-        id={props.input.name}
-        name={props.input.name}
-        placeholder={props.placeholder}
+        {...input}
+        id={input.name}
+        name={input.name}
+        placeholder={placeholder}
         showError={showError}
         mask={numberMask}
         guide={false}

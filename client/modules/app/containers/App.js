@@ -1,28 +1,21 @@
 // @flow
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { Router } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-connect';
 import IntlWrapper from '../../intl/containers/IntlWrapper';
 import routes from '../../../routes';
 import css from '../../../styles/fonts/fonts.css';
 import { goToTopOfPage } from '../../../utils/scrolling';
 
-export default function App(props: { store: {} }) {
-  const { store } = props;
-  const history: {} = syncHistoryWithStore(browserHistory, store);
+export default function App(props: { store: {}, history: {} }) {
+  const { store, history } = props;
 
-  /**
-   * key={Math.random()} within the Router removes the error message
-   * within the console, but also has side effects like changing
-   * the redux state to initial. Be careful!
-   */
   return (
     <Provider store={store}>
       <IntlWrapper>
         <Router
-          render={props => <ReduxAsyncConnect {...props} />}
+          render={renderProps => <ReduxAsyncConnect {...renderProps} />}
           history={history}
           routes={routes}
           onUpdate={goToTopOfPage}

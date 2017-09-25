@@ -29,7 +29,7 @@ class JobFormComponesation extends Component {
   };
 
   render() {
-    const { handleSubmit, jobs, offersEquity, prevPage } = this.props;
+    const { handleSubmit, jobs, equity, prevPage } = this.props;
 
     return (
       <FormWrapper
@@ -39,7 +39,7 @@ class JobFormComponesation extends Component {
         theme="marble"
       >
         <FormHeader text="What's the compensation?" />
-        <FormRow>
+        <FormRow alwaysRow={true}>
           <Field
             name="salary.min"
             label="Salary minimum"
@@ -65,29 +65,27 @@ class JobFormComponesation extends Component {
           type="yes/no"
           component={Radio}
         />
-        {offersEquity === 'Yes' &&
-          <FormRow>
-            <Field
-              name="equity.min"
-              label="Equity minimum"
-              type="number"
-              placeholder="0.1%"
-              // parse={parsePercent}
-              // format={formatPercentage}
-              validate={[required]}
-              component={Percentage}
-            />
-            <Field
-              name="equity.max"
-              label="Equity maximum"
-              type="number"
-              placeholder="3%"
-              // parse={parsePercent}
-              // format={formatPercentage}
-              validate={[required]}
-              component={Percentage}
-            />
-          </FormRow>}
+        {equity &&
+          equity.offer === 'Yes' && (
+            <FormRow alwaysRow={true}>
+              <Field
+                name="equity.min"
+                label="Equity minimum"
+                type="number"
+                placeholder="0.1%"
+                validate={[required]}
+                component={Percentage}
+              />
+              <Field
+                name="equity.max"
+                label="Equity maximum"
+                type="number"
+                placeholder="3%"
+                validate={[required]}
+                component={Percentage}
+              />
+            </FormRow>
+          )}
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
           <Field
@@ -106,7 +104,7 @@ const selector = formValueSelector('job');
 const mapStateToProps = state => ({
   jobs: state.account.jobs,
   auth: state.session.auth,
-  offersEquity: selector(state, 'offerEquity')
+  equity: selector(state, 'equity')
 });
 
 JobFormComponesation = reduxForm({

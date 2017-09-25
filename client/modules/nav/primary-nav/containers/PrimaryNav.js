@@ -5,13 +5,14 @@ import { media } from '../../../../styles/breakpoints';
 import PrimaryNavLogo from '../components/PrimaryNavLogo';
 import PrimaryNavLinks from '../components/PrimaryNavLinks';
 
-const PrimaryNav = () =>
+const PrimaryNav = () => (
   <Navigation>
     <NavigationContainer>
       <PrimaryNavLogo />
       <PrimaryNavLinks />
     </NavigationContainer>
-  </Navigation>;
+  </Navigation>
+);
 
 const mapStateToProps = state => ({
   isAuthenticated: state.session.auth.isAuthenticated,
@@ -30,7 +31,7 @@ const NavigationContainer = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   height: 75px;
-  max-width: 1120px;
+  max-width: 1100px;
   padding: 0 24px;
 
   ${media.tablet`

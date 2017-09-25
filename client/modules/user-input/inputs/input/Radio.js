@@ -146,6 +146,10 @@ const RadioInputContainer = styled.div`
 
   &:last-child {
     margin-left: 2rem;
+
+    ${media.phablet`
+      margin-left: 1.5rem;
+    `};
   }
 
   input[type='radio']:checked {
@@ -161,7 +165,7 @@ const RadioInputContainer = styled.div`
 const RadioInput = styled.input`
   border: solid 1px;
   border-color: ${props =>
-    props.showError ? props.theme.error.color : '#f5f4f4'};
+    props.showError ? props.theme.error.color : '#efefef'};
   padding: ${props => props.theme.input.padding};
   font-size: ${props => props.theme.input.fontSize};
   width: ${props => props.theme.input.width};
@@ -176,6 +180,11 @@ const RadioInput = styled.input`
   height: 60px;
   cursor: pointer;
 
+  ${media.phablet`
+    width: 56px;
+    height: 56px;
+  `};
+
   &:active,
   &:focus {
     border-color: ${props =>
@@ -183,10 +192,6 @@ const RadioInput = styled.input`
         ? props.theme.error.color
         : props.theme.input.activeBorderColor};
   }
-
-  ${media.tablet`
-    border: none;
-  `};
 `;
 
 const RadioText = styled.div`
@@ -298,7 +303,7 @@ const RadioListInputContainer = styled.div`
       ? '100%'
       : props.rowWidth ? `${props.rowWidth}%` : '49.5%'};
   border: solid 1px;
-  border-color: ${props => (props.showError ? '#f27c5e' : '#f5f4f4')};
+  border-color: ${props => (props.showError ? '#f27c5e' : '#efefef')};
   padding: 15px;
   background:${props =>
     props.showError
@@ -313,7 +318,6 @@ const RadioListInputContainer = styled.div`
   ${media.tablet`
     padding: 14px;
     font-size: 14px;
-    border: none;
   `};
 
   input[type=radio]:checked {

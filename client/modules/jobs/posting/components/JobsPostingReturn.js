@@ -10,10 +10,13 @@ const JobsPostingReturn = (props: { query: string, externalLink: string }) => (
   <div>
     <JobsPostingReturnContainer>
       <StyledLink to={`/jobs/?${props.query}`}>
-        <StyledChevronLeft />Return to jobs
+        <StyledChevronLeft />Return to Job Search
       </StyledLink>
-      <StyledExternalLink href={props.externalLink} target="_blank">
-        Apply now
+      <StyledExternalLink
+        href={`${props.externalLink}?ref=gost`}
+        target="_blank"
+      >
+        Apply
       </StyledExternalLink>
     </JobsPostingReturnContainer>
   </div>
@@ -26,11 +29,12 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(JobsPostingReturn);
 
 const JobsPostingReturnContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   max-width: 670px;
-  margin: 0 auto 60px;
+  margin: 20px auto 0;
   padding: 30px 24px 20px;
 
   ${media.phablet`
@@ -50,7 +54,7 @@ const StyledLink = styled(Link)`
   left: -3px;
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.85);
@@ -64,32 +68,40 @@ const StyledLink = styled(Link)`
 
   ${media.phablet`
     font-size: 16px;
+    font-weight: 400;
   `};
 `;
 
 const StyledExternalLink = styled.a`
-  width: 144px;
+  position: absolute;
+  right: 34px;
+  top: 34px;
+  width: 90px;
+  height: 90px;
   font-size: 16px;
-  color: white;
-  background-color: ${props => props.theme.colors.purple};
-  border: 0;
-  border-radius: 4px;
+  font-weight: 600;
+  color: ${props => props.theme.colors.purple};
+  background: ${props => props.theme.colors.purple};
+  border: 2px solid ${props => props.theme.colors.purple};
+  border-radius: 50%;
   cursor: pointer;
-  padding: 12px 10px;
-  margin-left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+  transition: all 300ms ease;
+
+  &:hover {
+    background: ${props => props.theme.colors.purple};
+    color: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.22);
+  }
+
+  background: transparent;
+  border: 2px solid ${props => props.theme.colors.purple};
 
   ${media.tablet`
-    width: 120px;
-    padding: 11px 10px;
-  `};
-
-  ${media.phonePlus`
-    width: 100px;
-    font-size: 14px;
-    padding: 10px;
+    display: none;
   `};
 `;

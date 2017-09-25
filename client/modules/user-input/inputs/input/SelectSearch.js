@@ -312,7 +312,7 @@ const SelectContainer = styled.div`
     box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
       0 8px 16px rgba(27, 39, 51, 0.08);
     box-sizing: border-box;
-    margin-top: 6px;
+    margin-top: 4px;
     max-height: 220px;
     position: absolute;
     top: 100%;
@@ -331,6 +331,14 @@ const SelectContainer = styled.div`
     display: block;
     padding: 16px 18px;
     border-bottom: 1px solid #e8e8e8;
+
+    ${media.tablet`
+      padding: 14px;
+    `};
+
+    ${media.phonePlus`
+      padding: 12px;
+    `};
   }
   .Select-option:last-child {
     border-bottom-right-radius: 3px;

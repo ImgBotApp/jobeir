@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
+import throttle from 'lodash/throttle';
+
 /**
  * Used as a container around the Next, Create, and
  * back buttons within the main application forms
@@ -18,13 +20,29 @@ class FormFooter extends Component {
 
   componentDidMount() {
     this.calculateOverlap();
-    document.addEventListener('scroll', this.calculateOverlap, true);
-    window.addEventListener('resize', this.calculateOverlap, true);
+    document.addEventListener(
+      'scroll',
+      throttle(this.calculateOverlap, 300),
+      true
+    );
+    window.addEventListener(
+      'resize',
+      throttle(this.calculateOverlap, 300),
+      true
+    );
   }
 
   componentWillUnmount() {
-    document.removeEventListener('scroll', this.calculateOverlap, true);
-    window.removeEventListener('resize', this.calculateOverlap, true);
+    document.removeEventListener(
+      'scroll',
+      throttle(this.calculateOverlap, 300),
+      true
+    );
+    window.removeEventListener(
+      'resize',
+      throttle(this.calculateOverlap, 300),
+      true
+    );
   }
 
   calculateOverlap = () => {
@@ -120,6 +138,10 @@ const FormFooterCenter = styled.div`
   `};
 
   ${media.phonePlus`
+    padding: 10px 34px;
+  `};
+
+  ${media.phone`
     padding: 10px 24px;
   `};
 `;

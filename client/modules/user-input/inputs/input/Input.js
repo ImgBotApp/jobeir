@@ -15,6 +15,12 @@ export const Input = styled.input`
   appearance: none;
   box-shadow: none;
 
+  ${media.tablet`
+    font-size: 16px;
+    height: 48px;
+    padding: 16px 14px 12px;
+  `};
+
   &:hover: {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
   }
@@ -46,10 +52,4 @@ export const Input = styled.input`
     color: ${props => props.theme.input.ph.color};
     line-height: 2;
   }
-
-  ${media.tablet`
-    font-size: 16px;
-    height: 48px;
-    padding: 0 14px;
-  `};
 `;

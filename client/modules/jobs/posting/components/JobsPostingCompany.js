@@ -5,23 +5,25 @@ import { media } from '../../../../styles/breakpoints';
 import { FadeIn } from '../../../../styles/animate';
 
 const JobsPostingCompany = (props: { activePosting: {} }) => {
-  const { activePosting: { company = {} } } = props;
-  const activePostingReady: boolean = Object.keys(company).length > 0;
+  const { activePosting } = props;
+  const activePostingReady: boolean = Object.keys(activePosting).length > 0;
 
   return (
     <JobsPostingCompanyContainer>
       {activePostingReady && (
         <FadeIn>
           <JobsPostingCompanyHeader>
-            About {company.displayName}
+            About {activePosting.company.displayName}
           </JobsPostingCompanyHeader>
-          <JobsPostingCompanyText>{company.product}</JobsPostingCompanyText>
+          <JobsPostingCompanyText>
+            {activePosting.company.product}
+          </JobsPostingCompanyText>
           <JobsPostingCompanyInfo>
             <JobsPostingCompanyInfoHeader>
               Locations
             </JobsPostingCompanyInfoHeader>
             <JobsPostingCompanyText>
-              {company.locations.map(location => (
+              {activePosting.company.locations.map(location => (
                 <JobsPostingCompanyLocation key={location._id}>
                   {location.address.street_number} {location.address.route},{' '}
                   {location.address.locality}, {location.address.country}
@@ -29,12 +31,12 @@ const JobsPostingCompany = (props: { activePosting: {} }) => {
               ))}
             </JobsPostingCompanyText>
           </JobsPostingCompanyInfo>
-          <JobsPostingCompanyInfo>
-            <JobsPostingCompanyInfoHeader>
-              Size
-            </JobsPostingCompanyInfoHeader>{' '}
-            <JobsPostingCompanyText>{company.size}</JobsPostingCompanyText>
-          </JobsPostingCompanyInfo>
+          <JobsPostingCompanyLink
+            href={`${activePosting.externalLink}?ref=gost`}
+            target="_blank"
+          >
+            Apply Now
+          </JobsPostingCompanyLink>
         </FadeIn>
       )}
     </JobsPostingCompanyContainer>
@@ -92,3 +94,22 @@ const JobsPostingCompanyInfo = styled.div`
 `;
 
 const JobsPostingCompanyLocation = styled.div`margin-bottom: 10px;`;
+
+const JobsPostingCompanyLink = styled.a`
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  padding: 18px;
+  color: white;
+  background-color: ${props => props.theme.colors.purple};
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 50px auto 100px;
+  text-align: center;
+  text-decoration: none;
+
+  ${media.phablet`
+    padding: 16px;
+    margin: 30px auto;
+  `};
+`;
