@@ -25,8 +25,8 @@ export function formatUrl(path) {
 
   if (typeof window === 'undefined') {
     // Prepend host and port of the API server to the path.
-    return `${process.env.PROTOCOL}://${process.env.APIHOST}:${process.env
-      .PORT}/api/v0${adjustedPath}`;
+    return `${process.env.PROTOCOL}://${process.env
+      .APIHOST}/api/v0${adjustedPath}`;
   }
   // Prepend `/api/v0` to relative URL, to proxy to API server.
   return `/api/v0${adjustedPath}`;
