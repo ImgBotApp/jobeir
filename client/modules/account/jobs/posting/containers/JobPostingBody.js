@@ -34,18 +34,16 @@ const JobPostingBodyContainer = styled.div`
   padding: 0 24px;
 
   p {
-    line-height: 1.7;
-    margin-bottom: 50px;
+    line-height: 1.5;
+    margin-bottom: 30px;
     font-size: 20px;
     color: #333;
 
     ${media.desktop`
-      margin-bottom: 40px;
       font-size: 18px;
     `};
 
     ${media.phablet`
-      margin-bottom: 30px;
       font-size: 16px;
     `};
 
@@ -110,7 +108,7 @@ const JobPostingBodyContainer = styled.div`
 
   ul,
   ol {
-    line-height: 1.7;
+    line-height: 1.5;
     padding-left: 20px;
     margin-bottom: 50px;
     font-size: 18px;

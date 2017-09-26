@@ -63,6 +63,8 @@ class Autocomplete extends Component {
   }
 
   getDetailsByPlaceId = (placeId: string) => {
+    this.setState({ predictions: [] });
+
     const emptyDiv = document.createElement('div');
     const service = new google.maps.places.PlacesService(emptyDiv);
 
@@ -193,7 +195,6 @@ class Autocomplete extends Component {
       }
     }
 
-    this.setState({ predictions: [] });
     dispatch(autocompletePredictions(false));
   };
 

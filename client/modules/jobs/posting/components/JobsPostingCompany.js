@@ -63,7 +63,7 @@ const JobsPostingCompanyHeader = styled.h3`
 `;
 
 const JobsPostingCompanyText = styled.p`
-  line-height: 1.7;
+  line-height: 1.5;
   margin-bottom: 20px;
   font-size: 20px;
 
@@ -81,14 +81,14 @@ const JobsPostingCompanyText = styled.p`
 `;
 
 const JobsPostingCompanyInfoHeader = styled.h4`
-  line-height: 1.7;
+  line-height: 1.5;
   margin-bottom: 0px;
   font-size: 20px;
   font-weight: 800;
 `;
 
 const JobsPostingCompanyInfo = styled.div`
-  line-height: 1.7;
+  line-height: 1.5;
   margin-bottom: 15px;
   font-size: 20px;
 `;

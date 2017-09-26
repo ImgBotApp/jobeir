@@ -26,6 +26,7 @@ export const auth = {
     padding: '0 18px',
     fontSize: '16px',
     width: '100%',
+    height: '58px',
     margin: '0 auto 1rem',
     activeBorderColor: 'rgba(0,0,0,0.85)',
     ph: {

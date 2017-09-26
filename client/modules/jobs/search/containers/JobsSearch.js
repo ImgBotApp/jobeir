@@ -211,9 +211,7 @@ class JobsSearch extends Component {
               <JobsSearchFilterReset />
             </JobsSearchHeader>
             {screenWidth > 768 && (
-              <FadeIn>
-                <JobsSearchSidebar initialValues={initialValues} />
-              </FadeIn>
+              <JobsSearchSidebar initialValues={initialValues} />
             )}
           </JobsSearchColumn>
           <JobsSearchColumn wide>

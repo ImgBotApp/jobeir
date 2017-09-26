@@ -29,8 +29,6 @@ module.exports = {
     publicPath: '/public/static/dist/client/'
   },
 
-  // target: 'node',
-
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: ['client', 'node_modules']
