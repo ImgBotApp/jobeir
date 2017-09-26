@@ -23,7 +23,7 @@ export const checkStatus = async res => {
 export function formatUrl(path) {
   const adjustedPath = path[0] !== '/' ? `/${path}` : path;
 
-  if (!process.env.CLIENT) {
+  if (typeof window === 'undefined') {
     // Prepend host and port of the API server to the path.
     return `${process.env.PROTOCOL}://${process.env.APIHOST}:${process.env
       .PORT}/api/v0${adjustedPath}`;
