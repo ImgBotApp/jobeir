@@ -10,12 +10,13 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-const seoURL = path => `https://brotzky.tech/${path}`;
+const seoURL = path => `https://brotzky.tech${path}`;
 
 const getMetaTags = ({
   title,
   description,
   url,
+  image,
   contentType,
   published,
   updated,
@@ -33,25 +34,25 @@ const getMetaTags = ({
       name: 'viewport',
       content: 'width=device-width, initial-scale=1'
     },
-    { itemprop: 'name', content: title },
+    { itemprop: 'name', content: `{title} | Gost Zvuk` },
     { itemprop: 'description', content: description },
-    // { itemprop: 'image', content: seoImageURL(_.sample(seoImages.google)) },
+    { itemprop: 'image', content: seoURL(image) },
     { name: 'description', content: description },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:site', content: '@{_brotzky}' },
+    { name: 'twitter:site', content: '@_brotzky' },
     { name: 'twitter:title', content: `${title} | Gost Zvuk` },
     { name: 'twitter:description', content: description },
     { name: 'twitter:creator', content: twitter || '@_brotzky' },
-    // {
-    //   name: 'twitter:image:src',
-    //   content: seoImageURL(_.sample(seoImages.twitter)),
-    // },
-    { name: 'og:title', content: `${title} | The Meteor Chef` },
+    {
+      name: 'twitter:image:src',
+      content: seoURL(image)
+    },
+    { name: 'og:title', content: `${title} | Gost Zvuk` },
     { name: 'og:type', content: contentType },
     { name: 'og:url', content: url },
-    // { name: 'og:image', content: seoImageURL(_.sample(seoImages.openGraph)) },
+    { name: 'og:image', content: seoURL(image) },
     { name: 'og:description', content: description },
-    { name: 'og:site_name', content: '{Site Name}' },
+    { name: 'og:site_name', content: 'Gost Zvuk' },
     { name: 'fb:app_id', content: '1271809326248448' }
   ];
 
@@ -69,6 +70,7 @@ const AppHead = ({
   title,
   description,
   path,
+  image,
   contentType,
   published,
   updated,
@@ -87,6 +89,7 @@ const AppHead = ({
       description,
       contentType,
       url: seoURL(path),
+      image,
       published,
       updated,
       category,

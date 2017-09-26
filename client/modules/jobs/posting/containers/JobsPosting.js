@@ -42,10 +42,11 @@ class JobsPosting extends Component {
         <AppHead
           title={`${posting.title} at ${posting.company.displayName}`}
           description={posting.company.product}
-          path={`{/jobs/${posting._id}`}
+          path={`/jobs/${posting._id}`}
           contentType="article"
           published={posting.createdAt}
           updated={posting.updatedAt}
+          image={posting.company.logo}
         />
         <JobsPostingReturn externalLink={posting.externalLink} />
         <JobPosting hideLogo={false} activePosting={posting} params={params} />

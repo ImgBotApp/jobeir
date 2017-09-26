@@ -1,31 +1,22 @@
 // @flow
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../../styles/breakpoints';
 import draftToHtml from 'draftjs-to-html';
 
-class JobPostingBody extends Component {
-  render() {
-    return (
-      <JobPostingBodyContainer>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: draftToHtml(
-              JSON.parse(this.props.activePosting.descriptionRaw)
-            )
-          }}
-        />
-      </JobPostingBodyContainer>
-    );
-  }
-}
+const JobPostingBody = ({ activePosting }) => (
+  <JobPostingBodyContainer>
+    <div
+      dangerouslySetInnerHTML={{
+        __html: draftToHtml(
+          JSON.parse(activePosting.descriptionRaw || JSON.stringify({}))
+        )
+      }}
+    />
+  </JobPostingBodyContainer>
+);
 
-const mapStateToProps = state => ({
-  companies: state.account.companies
-});
-
-export default connect(mapStateToProps)(JobPostingBody);
+export default JobPostingBody;
 
 const JobPostingBodyContainer = styled.div`
   position: relative;

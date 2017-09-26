@@ -34,11 +34,12 @@ const JobsPostingReturnContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   max-width: 670px;
-  margin: 20px auto 0;
-  padding: 30px 24px 20px;
+  margin: 20px auto 30px;
+  padding: 30px 24px;
 
   ${media.phablet`
     margin-bottom: 20px;
+    padding: 20px 24px;
   `};
 `;
 

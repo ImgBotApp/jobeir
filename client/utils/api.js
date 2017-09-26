@@ -22,11 +22,21 @@ export const checkStatus = async res => {
 
 export function formatUrl(path) {
   const adjustedPath = path[0] !== '/' ? `/${path}` : path;
+  const baseUrl = `${process.env.PROTOCOL}://${process.env.APIHOST}`;
+  const endpoint = `/api/v0${adjustedPath}`;
 
+  /**
+   * On the server for node it's required to provide absolute paths for all
+   * API calls. Also, when it's localhost we want to include the PORT, such as
+   * 3000, 8080, 8000. But on the server there's no need to specify the PORT
+   */
   if (typeof window === 'undefined') {
-    // Prepend host and port of the API server to the path.
-    return `${process.env.PROTOCOL}://${process.env
-      .APIHOST}/api/v0${adjustedPath}`;
+    const localAbsolutePath = `${baseUrl}:${process.env.PORT}${endpoint}`;
+    const absolutePath = `${baseUrl}${endpoint}`;
+
+    return process.env.APIHOST === 'localhost'
+      ? localAbsolutePath
+      : absolutePath;
   }
   // Prepend `/api/v0` to relative URL, to proxy to API server.
   return `/api/v0${adjustedPath}`;

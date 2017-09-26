@@ -31,7 +31,7 @@ function scrollToTop(scrollDuration) {
 export const goToTopOfPage = props => {
   const shouldGoToTop = !window.location.pathname.includes('/jobs');
   const isOnCreateFlow = window.location.pathname.includes('/create/');
-  const isOnPostingPage = window.location.pathname.lenth !== 30;
+  const isOnPostingPage = window.location.pathname.lenth === 30;
 
   if (isOnCreateFlow) return scrollToTop(600);
   if (shouldGoToTop) return window.scrollTo(0, 0);

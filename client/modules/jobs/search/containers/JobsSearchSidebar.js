@@ -126,7 +126,7 @@ const mapStateToProps = state => ({
     state.routing.locationBeforeTransitions &&
     state.routing.locationBeforeTransitions.query,
   jobs: state.search.jobs,
-  search: state.form.search && state.form.search.values
+  search: (state.form.search && state.form.search.values) || {}
 });
 
 JobsSearchSidebar = reduxForm({

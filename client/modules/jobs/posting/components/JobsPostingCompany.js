@@ -19,19 +19,6 @@ const JobsPostingCompany = (props: { activePosting: {} }) => {
           <JobsPostingCompanyText>
             {activePosting.company.product}
           </JobsPostingCompanyText>
-          <JobsPostingCompanyInfo>
-            <JobsPostingCompanyInfoHeader>
-              Locations
-            </JobsPostingCompanyInfoHeader>
-            <JobsPostingCompanyText>
-              {activePosting.company.locations.map(location => (
-                <JobsPostingCompanyLocation key={location._id}>
-                  {location.address.street_number} {location.address.route},{' '}
-                  {location.address.locality}, {location.address.country}
-                </JobsPostingCompanyLocation>
-              ))}
-            </JobsPostingCompanyText>
-          </JobsPostingCompanyInfo>
           <JobsPostingCompanyLink
             href={`${activePosting.externalLink}?ref=gost`}
             target="_blank"
@@ -94,7 +81,7 @@ const JobsPostingCompanyInfo = styled.div`
   font-size: 20px;
 `;
 
-const JobsPostingCompanyLocation = styled.div`margin-bottom: 10px;`;
+const JobsPostingCompanyLocation = styled.div`margin-bottom: 20px;`;
 
 const JobsPostingCompanyLink = styled.a`
   display: block;
