@@ -11,7 +11,9 @@ export const RESET_JOB_POSTING = 'RESET_JOB_POSTING';
 export const initialState = {
   isLoaded: false,
   isFetching: false,
-  posting: {},
+  posting: {
+    company: {}
+  },
   errors: []
 };
 
@@ -38,10 +40,7 @@ export default (state = initialState, action) => {
         errors: action.payload.errors
       });
     case RESET_JOB_POSTING:
-      return Object.assign({}, state, {
-        isLoaded: false,
-        posting: {}
-      });
+      return initialState;
     default:
       return state;
   }

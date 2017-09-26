@@ -8,7 +8,6 @@ import {
 
 export function serverAuth(req) {
   const endpoint = formatUrl('/auth');
-  console.log(endpoint, req.cookies);
   return {
     [CALL_API]: {
       endpoint,

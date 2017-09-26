@@ -8,6 +8,7 @@ import { shouldGetJob, getJobPosting, resetJobPosting } from '../ducks/';
 import JobPosting from '../../../account/jobs/posting/containers/JobPosting';
 import JobsPostingReturn from '../components/JobsPostingReturn';
 import JobsPostingCompany from '../components/JobsPostingCompany';
+import AppHead from '../../../app/components/AppHead';
 
 @asyncConnect([
   {
@@ -38,6 +39,14 @@ class JobsPosting extends Component {
 
     return (
       <JobPostingContainer>
+        <AppHead
+          title={`${posting.title} at ${posting.company.displayName}`}
+          description={posting.company.product}
+          path={`{/jobs/${posting._id}`}
+          contentType="article"
+          published={posting.createdAt}
+          updated={posting.updatedAt}
+        />
         <JobsPostingReturn externalLink={posting.externalLink} />
         <JobPosting hideLogo={false} activePosting={posting} params={params} />
         <JobsPostingCompany activePosting={posting} />

@@ -6,7 +6,8 @@ import { FadeIn } from '../../../../styles/animate';
 
 const JobsPostingCompany = (props: { activePosting: {} }) => {
   const { activePosting } = props;
-  const activePostingReady: boolean = Object.keys(activePosting).length > 0;
+  const activePostingReady: boolean =
+    Object.keys(activePosting.company).length > 0;
 
   return (
     <JobsPostingCompanyContainer>
