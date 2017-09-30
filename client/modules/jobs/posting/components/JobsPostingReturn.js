@@ -91,7 +91,7 @@ const StyledExternalLink = styled.a`
   justify-content: center;
   text-decoration: none;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
-  transition: all 300ms ease;
+  transition: all 200ms ease;
 
   &:hover {
     background: ${props => props.theme.colors.purple};
