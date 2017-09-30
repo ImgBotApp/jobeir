@@ -26,14 +26,13 @@ const StepHeaderContainer = styled.header`
   margin: 0 50px;
   height: 70px;
 
-  @media (max-width: 1280px) {
-    max-width: 960px;
+  ${media.hd`
+    max-width: 900px;
     margin: 0 auto;
     padding: 24px 0;
-  }
+  `};
 
   ${media.desktop`
-   max-width: 900px;
     padding: 0 50px;
   `};
 

@@ -15,6 +15,7 @@ import {
   resetJobs,
   filterSearchJobs
 } from '../ducks/';
+import AppHead from '../../../app/components/AppHead';
 import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchFilterMobile from './JobsSearchFilterMobile';
 import JobsSearchPosting from '../components/JobsSearchPosting';
@@ -200,6 +201,7 @@ class JobsSearch extends Component {
 
     return (
       <JobsSearchContainer>
+        <AppHead title="Job Search Results" />
         <JobsSearchBackground>
           <JobsSearchBackgroundGrey />
           <JobsSearchBackgroundWhite />

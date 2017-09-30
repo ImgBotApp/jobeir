@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import UserWrapper from '../../../user/containers/UserWrapper';
+import AppHead from '../../../app/components/AppHead';
 import ShellHeader from '../components/ShellHeader';
 
 /**
@@ -29,15 +30,12 @@ const Shell = (props: { children: any, params: {}, pathname: string }) => {
 
   return (
     <ShellContainer>
+      <AppHead title="Account" />
       <ShellContent>
-        {showShellHeader &&
-          <ShellHeader
-            headerText={children.props.route.name}
-            params={params}
-          />}
-        <ShellDynamic>
-          {children}
-        </ShellDynamic>
+        {showShellHeader && (
+          <ShellHeader headerText={children.props.route.name} params={params} />
+        )}
+        <ShellDynamic>{children}</ShellDynamic>
       </ShellContent>
     </ShellContainer>
   );

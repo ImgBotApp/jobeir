@@ -7,7 +7,7 @@ import { media } from '../../../../../styles/breakpoints';
 
 class StepRouter extends Component {
   componentDidMount() {
-    const { params, user } = this.props;
+    const { activeCompany, params, user } = this.props;
 
     // If new user, take them through values first
     if (!user.agreedToValues) {
@@ -21,7 +21,9 @@ class StepRouter extends Component {
 
     // If user refreshes on job company take them back
     if (params.create === 'job') {
-      return browserHistory.push(`/create/job/about/${params.companyId}`);
+      return browserHistory.push(
+        `/create/job/about/${params.companyId || activeCompany._id}`
+      );
     }
 
     return browserHistory.push(`/account/jobs`);
@@ -33,7 +35,8 @@ class StepRouter extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.session.user
+  user: state.session.user,
+  activeCompany: state.account.companies.activeCompany
 });
 
 export default connect(mapStateToProps)(StepRouter);
@@ -49,8 +52,11 @@ const StepRouterContainer = styled.div`
     margin-top: 50px;
   }
 
-  ${media.desktop`
+  ${media.retina`
     width: 900px;
+  `};
+
+  ${media.desktop`
     padding: 0 50px;
   `};
 

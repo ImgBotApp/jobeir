@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../../styles/breakpoints';
+import AppHead from '../../../../app/components/AppHead';
 import CompanyOnboarding from '../../company/components/CompanyOnboarding';
 import { FadeIn } from '../../../../../styles/animate/';
 
@@ -55,6 +56,7 @@ class StepForm extends Component {
 
     return (
       <StepFormContainer>
+        <AppHead title={`Create ${params.create}`} />
         {isCompany && params.step === 'onboarding' && <CompanyOnboarding />}
         {AsyncComponent && (
           <FadeIn>

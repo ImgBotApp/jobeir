@@ -31,16 +31,15 @@ const JobsListItem = (props: {
   return (
     <div>
       <JobsMain>
-        <JobsTitle>
-          {job.title}
-        </JobsTitle>
-        <JobsState>
-          {job.state}
-        </JobsState>
+        <JobsTitle>{job.title}</JobsTitle>
+        <JobsState>{job.state}</JobsState>
       </JobsMain>
       <JobsSub>
         <div>
           <HideOnMobile>Created</HideOnMobile> {moment(job.createdAt).fromNow()}
+          <HideOnMobile>
+            <JobsDot>·</JobsDot>
+          </HideOnMobile>
         </div>
         <div>
           {job.location.address.locality}

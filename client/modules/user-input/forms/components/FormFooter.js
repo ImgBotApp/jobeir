@@ -102,7 +102,7 @@ const FormFooterContainer = styled.div`
   bottom: 0;
   margin: 0 auto;
 
-  ${media.desktop`
+  ${media.retina`
     width: 900px;
   `};
 

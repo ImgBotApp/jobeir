@@ -34,7 +34,7 @@ const getMetaTags = ({
       name: 'viewport',
       content: 'width=device-width, initial-scale=1'
     },
-    { itemprop: 'name', content: `{title} | Gost Zvuk` },
+    { itemprop: 'name', content: `${title} | Gost Zvuk` },
     { itemprop: 'description', content: description },
     { itemprop: 'image', content: seoURL(image) },
     { name: 'description', content: description },
@@ -82,7 +82,7 @@ const AppHead = ({
     htmlAttributes={{
       lang: 'en'
     }}
-    title={title}
+    title={`${title} | Gost Svuk`}
     link={[{ rel: 'canonical', href: seoURL(path) }]}
     meta={getMetaTags({
       title,

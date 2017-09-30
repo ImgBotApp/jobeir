@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import styled, { keyframes } from 'styled-components';
 import { media } from '../../../styles/breakpoints';
 import { hideModal } from '../ducks';
@@ -16,7 +17,7 @@ class ModalWrapper extends Component {
   }
 
   handleClick = () => {
-    this.props.dispatch(hideModal());
+    this.closeModal();
   };
 
   handleEscapeKey = event => {
@@ -29,8 +30,14 @@ class ModalWrapper extends Component {
     }
 
     if (isEscape) {
-      this.props.dispatch(hideModal());
+      this.closeModal();
     }
+  };
+
+  closeModal = () => {
+    const { dispatch, pathname } = this.props;
+    browserHistory.replace(pathname);
+    dispatch(hideModal());
   };
 
   render() {
@@ -43,16 +50,21 @@ class ModalWrapper extends Component {
           <ExIcon fill={bgColor === 'white' ? '#fe9591' : ''} />
         </ModalAction>
         <ModalContent size={modalSize}>
-          <ModalBody bgColor={bgColor}>
-            {children || null}
-          </ModalBody>
+          <ModalBody bgColor={bgColor}>{children || null}</ModalBody>
         </ModalContent>
       </ModalContainer>
     );
   }
 }
 
-export default connect()(ModalWrapper);
+const mapStateToProps = state => ({
+  pathname:
+    (state.routing.locationBeforeTransitions &&
+      state.routing.locationBeforeTransitions.pathname) ||
+    ''
+});
+
+export default connect(mapStateToProps)(ModalWrapper);
 
 const FadeInPulse = keyframes`
   0% { opacity: 0; transform: scale(0.8) translateY(8px); }
@@ -102,7 +114,7 @@ const ModalBackground = styled.div`
 
 const ModalContent = styled.div`
   transform-origin: bottom center;
-  animation: ${FadeInPulse} .27s forwards ease;
+  animation: ${FadeInPulse} 0.27s forwards ease;
   width: 100%;
 
   max-width: ${props => (props.size === 'full' ? '100%' : '480px')};

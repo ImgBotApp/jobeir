@@ -5,10 +5,10 @@ import { asyncConnect } from 'redux-connect';
 import styled from 'styled-components';
 import { serverGetJob } from '../server/';
 import { shouldGetJob, getJobPosting, resetJobPosting } from '../ducks/';
+import AppHead from '../../../app/components/AppHead';
 import JobPosting from '../../../account/jobs/posting/containers/JobPosting';
 import JobsPostingReturn from '../components/JobsPostingReturn';
 import JobsPostingCompany from '../components/JobsPostingCompany';
-import AppHead from '../../../app/components/AppHead';
 
 @asyncConnect([
   {

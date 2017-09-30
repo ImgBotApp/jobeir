@@ -1,8 +1,10 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import Link from 'react-router/lib/Link';
+import { browserHistory } from 'react-router';
 import docCookies from '../../../../utils/cookies';
 import { logout } from '../../../auth/ducks';
 import { showModal } from '../../../modal/ducks';
@@ -10,54 +12,37 @@ import ShellDropdown from '../../../account/shell/containers/ShellDropdown';
 import ShellHeaderNav from '../../../account/shell/containers/ShellHeaderNav';
 
 class PrimaryNavLinks extends Component {
-  constructor(props) {
-    super(props);
-    this.handleSignUpClick = this.handleSignUpClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-  }
-
-  handleSignUpClick() {
-    const { dispatch } = this.props;
+  handleSignUpClick = () => {
+    const { dispatch, pathname } = this.props;
+    browserHistory.replace(`${pathname}?next=/create/job/about/`);
     dispatch(showModal('AUTH_MODAL', { dispatch }));
-  }
+  };
 
   /**
    * handleLogoutClick()
    * Will dispatch to the server to logout the user and at the same time
    * we will remove the JWT session cookie to unauthenticate the user.
    */
-  handleLogoutClick() {
+  handleLogoutClick = () => {
     this.props.dispatch(logout());
     docCookies.removeItem('SID');
-  }
+  };
 
   /**
    * buildPublicNavigation()
    * Takes care of the authenticated or not authenticated version of the
    * primary navigation.
    */
-  buildPublicNavigation(isAuthenticated) {
-    return isAuthenticated
-      ? <NavLinkContainer>
-          <ShellHeaderNav />
-          <ShellDropdown />
-        </NavLinkContainer>
-      : <NavLinkContainer>
-          <NavLink onClick={this.handleSignUpClick}>Post Job</NavLink>
-          <NavLink to="/login">Log In</NavLink>
-        </NavLinkContainer>;
-  }
-
-  /**
-   * buildPublicNavigation()
-   * Takes care of the authenticated or not authenticated version of the
-   * primary navigation.
-   */
-  buildAccountNavigation() {
-    return (
+  buildPublicNavigation(isAuthenticated: boolean) {
+    return isAuthenticated ? (
       <NavLinkContainer>
         <ShellHeaderNav />
         <ShellDropdown />
+      </NavLinkContainer>
+    ) : (
+      <NavLinkContainer>
+        <NavLink onClick={this.handleSignUpClick}>Post Job</NavLink>
+        <NavLink to="/login">Log In</NavLink>
       </NavLinkContainer>
     );
   }
@@ -68,9 +53,14 @@ class PrimaryNavLinks extends Component {
 
     return (
       <PrimaryNavLinksContainer isAccount={isAccount}>
-        {isAccount
-          ? this.buildAccountNavigation()
-          : this.buildPublicNavigation(isAuthenticated)}
+        {isAccount ? (
+          <NavLinkContainer>
+            <ShellHeaderNav />
+            <ShellDropdown />
+          </NavLinkContainer>
+        ) : (
+          this.buildPublicNavigation(isAuthenticated)
+        )}
       </PrimaryNavLinksContainer>
     );
   }
