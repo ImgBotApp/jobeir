@@ -125,23 +125,7 @@ const FormFooterCenter = styled.div`
     props.isOverlapped ? '0 -9px 18px -10px rgba(0,0,0,0.18)' : 'none'};
 
   ${media.tablet`
-    padding: 12px;
-  `};
-
-  ${media.tablet`
     width: 100%;
-    padding: 12px 104px;
-  `};
-
-  ${media.phablet`
-    padding: 12px 74px;
-  `};
-
-  ${media.phonePlus`
-    padding: 10px 34px;
-  `};
-
-  ${media.phone`
-    padding: 10px 24px;
+    padding: 0;
   `};
 `;

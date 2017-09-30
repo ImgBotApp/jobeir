@@ -10,7 +10,9 @@ export const marble = {
     fontSize: '18px',
     color: '#fff',
     tablet: {
-      maxWidth: '150px',
+      height: '60px',
+      borderRadius: '0px',
+      maxWidth: '50%',
       fontSize: '16px'
     }
   },

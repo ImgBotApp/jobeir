@@ -10,13 +10,14 @@ export const SubmitButton = (props: {
   disabled: boolean,
   buttonText: string,
   formErrors: Array<{}>
-}) =>
+}) => (
   <Button
     type="submit"
     disabled={props.disabled || isDisabled(props.formErrors)}
   >
     {props.buttonText || 'Submit'}
-  </Button>;
+  </Button>
+);
 
 const Button = styled.button`
   border-radius: ${props => props.theme.button.borderRadius};
@@ -32,6 +33,8 @@ const Button = styled.button`
   opacity: ${props => (props.disabled ? '0.55' : '1')};
 
   ${media.tablet`
+    height: ${props => props.theme.button.tablet.height};
+    border-radius: ${props => props.theme.button.tablet.borderRadius};
     max-width: ${props => props.theme.button.tablet.maxWidth};
     font-size: ${props => props.theme.button.tablet.fontSize};
   `};
