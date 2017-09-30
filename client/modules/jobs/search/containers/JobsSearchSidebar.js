@@ -9,6 +9,8 @@ import queryString from 'query-string';
 import { Radio } from '../../../user-input/inputs/input';
 import sidebar from '../../../user-input/themes/sidebar-theme';
 import SidebarSearchForm from '../../../user-input/forms/form/search/SidebarSearchForm';
+import pickBy from 'lodash/pickBy';
+import identity from 'lodash/identity';
 
 const jobTypes: Array<{ name: string, value: string }> = [
   { name: 'Full-time', value: 'Full-time' },
@@ -54,8 +56,9 @@ class JobsSearchSidebar extends Component {
   udpateSearchQuery = updatedLocation => {
     const { search, jobs: { isLoaded } } = this.props;
     const parsed = queryString.parse(location.search);
+
     // Creating a new updated query with the correct start position
-    const updatedQuery = queryString.stringify({
+    const objectQuery = {
       l: updatedLocation ? search.location : parsed.l,
       q: (search.title && search.title.value) || parsed.q,
       s: search.start,
@@ -66,7 +69,11 @@ class JobsSearchSidebar extends Component {
       d: search.distance,
       r: search.remote,
       cs: search.companySize
-    });
+    };
+
+    // Removing false values from obj
+    const cleanedQuery = pickBy(objectQuery, identity);
+    const updatedQuery = queryString.stringify(cleanedQuery);
 
     if (isLoaded) {
       browserHistory.replace(`/jobs?${updatedQuery}`);

@@ -36,7 +36,7 @@ export function buildJobSearchQuery(query: {}): {} {
     };
   }
 
-  if (query.q) {
+  if (query.q && query.q !== 'any') {
     searchQuery['role.value'] = query.q;
   }
 

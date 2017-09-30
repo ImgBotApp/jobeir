@@ -114,7 +114,7 @@ class ShellDropdown extends Component {
             <ShellDropdownListItemHr />
 
             <ShellHeaderDropdownLinks>
-              {companies.created.map(company =>
+              {companies.created.map(company => (
                 <div
                   key={company._id}
                   onClick={() => this.switchCompanies(company)}
@@ -125,7 +125,7 @@ class ShellDropdown extends Component {
                     {company.displayName}
                   </ShellDropdownListItem>
                 </div>
-              )}
+              ))}
               <div onClick={() => browserHistory.push('/create/company/about')}>
                 <ShellDropdownListItem>+ Create new</ShellDropdownListItem>
               </div>
@@ -183,7 +183,7 @@ const ShellDropdownContainer = styled.div`
   transform: translateZ(0);
   margin-top: 5px;
   padding: 4px 0;
-  z-index: 1;
+  z-index: 10000;
   right: 0px;
   top: 45px;
   transition: all 280ms ease;

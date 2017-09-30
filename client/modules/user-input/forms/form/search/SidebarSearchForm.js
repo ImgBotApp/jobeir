@@ -86,6 +86,11 @@ class SelectInput extends Component {
     this.refs.stateSelect.focus();
   };
 
+  onHandleChange = val => {
+    console.log(val);
+    this.props.meta.dispatch(change('search', 'title', val));
+  };
+
   render() {
     const {
       input,
@@ -113,6 +118,8 @@ class SelectInput extends Component {
             options={options}
             placeholder={placeholder}
             onBlur={() => {}}
+            onChange={this.onHandleChange}
+            resetValue={{ title: '', value: 'any' }}
             searchable={true}
             openOnFocus={true}
             ref="stateSelect"
