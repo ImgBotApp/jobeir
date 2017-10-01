@@ -93,7 +93,10 @@ module.exports = {
       cacheId: 'gost',
       filename: 'sw.js',
       filepath: path.join(__dirname, '../dist/sw.js'),
-      staticFileGlobs: [path.join(__dirname, '../public/static/dist/**/*')],
+      staticFileGlobs: [
+        path.join(__dirname, '../public/static/dist/**/*'),
+        path.join(__dirname, '../public/static/**/*')
+      ],
       staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
       maximumFileSizeToCacheInBytes: 4194304,
       navigateFallback: 'index.html'

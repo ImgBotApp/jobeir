@@ -87,7 +87,6 @@ class SelectInput extends Component {
   };
 
   onHandleChange = val => {
-    console.log(val);
     this.props.meta.dispatch(change('search', 'title', val));
   };
 
