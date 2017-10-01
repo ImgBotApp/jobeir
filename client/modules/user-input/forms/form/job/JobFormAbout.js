@@ -12,7 +12,7 @@ import {
   Wysiwyg,
   SubmitButton
 } from '../../../inputs/input';
-import { jobOptions } from '../../options/jobs';
+import { jobOptions } from '../../../options/';
 
 class JobFormabout extends Component {
   formSubmit = (): void => {

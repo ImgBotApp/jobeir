@@ -6,9 +6,7 @@ import FormWrapper from '../../containers/FormWrapper';
 import FormRow from '../../components/FormRow';
 import { Email, Phone, SubmitButton, Text } from '../../../inputs/input';
 import { email, required, phoneNumber, url } from '../../../validation';
-
-const parsePhone = (value: number): string =>
-  value.toString().replace(/\D/g, '');
+import { parsePhone } from '../../../parse';
 
 class CompanyFormStepTwo extends Component {
   formSubmit = () => {

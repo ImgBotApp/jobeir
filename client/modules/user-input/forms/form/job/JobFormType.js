@@ -7,20 +7,7 @@ import FormHeader from '../../components/FormHeader';
 import FormFooter from '../../components/FormFooter';
 import { required } from '../../../validation';
 import { BackButton, Radio, SubmitButton } from '../../../inputs/input';
-
-const jobTypes: Array<{ name: string, value: string }> = [
-  { name: 'Full-time', value: 'Full-time' },
-  { name: 'Part-time', value: 'Part-time' },
-  { name: 'Contractor', value: 'Contractor' },
-  { name: 'Freelance', value: 'Freelance' },
-  { name: 'Intern', value: 'Intern' },
-  { name: 'Volunteer', value: 'Volunteer' }
-];
-
-const yesNoOptions: Array<{ text: string, value: string }> = [
-  { text: 'Yes', value: 'Yes' },
-  { text: 'No', value: 'No' }
-];
+import { jobTypeOptions, yesNoOptions } from '../../../options';
 
 class JobFormType extends Component {
   buildLocationsDropdown() {
@@ -77,7 +64,7 @@ class JobFormType extends Component {
           name="employmentType"
           label="Select the type"
           validate={[required]}
-          options={jobTypes}
+          options={jobTypeOptions}
           type="list"
           component={Radio}
         />

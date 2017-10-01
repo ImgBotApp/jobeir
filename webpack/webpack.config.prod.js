@@ -29,6 +29,8 @@ module.exports = {
     publicPath: '/public/static/dist/client/'
   },
 
+  // target: 'node',
+
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: ['client', 'node_modules']
@@ -93,10 +95,7 @@ module.exports = {
       cacheId: 'gost',
       filename: 'sw.js',
       filepath: path.join(__dirname, '../dist/sw.js'),
-      staticFileGlobs: [
-        path.join(__dirname, '../public/static/dist/**/*'),
-        path.join(__dirname, '../public/static/**/*')
-      ],
+      staticFileGlobs: [path.join(__dirname, '../public/static/dist/**/*')],
       staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
       maximumFileSizeToCacheInBytes: 4194304,
       navigateFallback: 'index.html'

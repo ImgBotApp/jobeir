@@ -14,9 +14,7 @@ import {
   Text
 } from '../../../inputs/input';
 import { email, required, phoneNumber, url } from '../../../validation';
-
-const parsePhone = (value: number): string =>
-  value.toString().replace(/\D/g, '');
+import { parsePhone } from '../../../parse';
 
 class CompanyFormStepTwo extends Component {
   formSubmit = () => {

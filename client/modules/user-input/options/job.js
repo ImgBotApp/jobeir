@@ -72,3 +72,5 @@ export const jobOptions = [
   { label: 'Product Manager', value: 'Product Manager' },
   { label: 'Project Manager', value: 'Project Manager' }
 ];
+
+export default jobOptions;

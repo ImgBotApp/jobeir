@@ -4,43 +4,18 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import styled, { ThemeProvider } from 'styled-components';
-import { media } from '../../../../styles/breakpoints';
 import queryString from 'query-string';
-import { Radio } from '../../../user-input/inputs/input';
-import sidebar from '../../../user-input/themes/sidebar-theme';
-import SidebarSearchForm from '../../../user-input/forms/form/search/SidebarSearchForm';
 import pickBy from 'lodash/pickBy';
 import identity from 'lodash/identity';
-
-const jobTypes: Array<{ name: string, value: string }> = [
-  { name: 'Full-time', value: 'Full-time' },
-  { name: 'Part-time', value: 'Part-time' },
-  { name: 'Contractor', value: 'Contractor' },
-  { name: 'Freelance', value: 'Freelance' },
-  { name: 'Intern', value: 'Intern' },
-  { name: 'Volunteer', value: 'Volunteer' }
-];
-
-const distanceOptions: Array<{ name: string, value: string }> = [
-  { name: '10 km', value: '10' },
-  { name: '50 km', value: '50' },
-  { name: '100 km', value: '100' },
-  { name: '200 km', value: '200' }
-];
-
-const companySizeOptions: Array<{ name: string, value: string }> = [
-  { name: '1 - 9', value: '1-9' },
-  { name: '10 - 49', value: '10-49' },
-  { name: '50 - 149', value: '50-149' },
-  { name: '150 - 499', value: '150-499' },
-  { name: '500 - 999', value: '500-999' },
-  { name: '1000 +', value: '1000+' }
-];
-
-const yesNoOptions: Array<{ text: string, value: string }> = [
-  { name: 'Yes', value: 'Yes' },
-  { name: 'No', value: 'No' }
-];
+import {
+  jobTypeOptions,
+  distanceOptions,
+  companySizeOptions,
+  yesNoOptions
+} from '../../../user-input/options';
+import sidebar from '../../../user-input/themes/sidebar-theme';
+import { Radio } from '../../../user-input/inputs/input';
+import SidebarSearchForm from '../../../user-input/forms/form/search/SidebarSearchForm';
 
 class JobsSearchSidebar extends Component {
   componentDidUpdate(prevProps) {
@@ -89,7 +64,7 @@ class JobsSearchSidebar extends Component {
             <Field
               name="employmentType"
               label="Job Type"
-              options={jobTypes}
+              options={jobTypeOptions}
               type="circle"
               component={Radio}
             />

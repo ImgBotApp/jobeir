@@ -7,8 +7,7 @@ export const Text = (props: {
   input: { value: string, onChange: Function, name: string },
   meta: { touched: boolean, error: boolean, invalid: boolean },
   placeholder: string,
-  autoFocus?: boolean,
-  autocomplete?: boolean
+  autoFocus?: boolean
 }) => {
   const { meta } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
@@ -23,13 +22,11 @@ export const Text = (props: {
         placeholder={props.placeholder}
         showError={showError}
         autoFocus={props.autoFocus}
-        autoComplete={props.autocomplete}
       />
     </InputWrapper>
   );
 };
 
 Text.defaultProps = {
-  autoFocus: false,
-  autocomplete: false
+  autoFocus: false
 };

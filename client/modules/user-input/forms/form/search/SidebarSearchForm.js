@@ -8,7 +8,7 @@ import { Field, reduxForm, change } from 'redux-form';
 import Autocomplete from '../../../autocomplete/Autocomplete';
 import Select from 'react-select';
 import queryString from 'query-string';
-import { jobOptions } from '../../options/jobs';
+import { jobOptions } from '../../../options';
 
 const customStyles = {
   top: 'calc(100% + 8px)',

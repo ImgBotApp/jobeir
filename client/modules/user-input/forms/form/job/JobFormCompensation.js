@@ -14,14 +14,8 @@ import {
   SubmitButton
 } from '../../../inputs/input';
 import { required } from '../../../validation';
-
-const parseNumber = (value: number): number =>
-  parseInt(value.toString().replace(/\D/g, ''), 10);
-
-const yesNoOptions: Array<{ text: string, value: string }> = [
-  { text: 'Yes', value: 'Yes' },
-  { text: 'No', value: 'No' }
-];
+import { yesNoOptions } from '../../../options';
+import { parseNumber } from '../../../parse';
 
 class JobFormComponesation extends Component {
   formSubmit = (): void => {

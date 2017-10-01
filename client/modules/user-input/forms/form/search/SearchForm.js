@@ -8,7 +8,7 @@ import { Field, reduxForm } from 'redux-form';
 import queryString from 'query-string';
 import Autocomplete from '../../../autocomplete/Autocomplete';
 import Select from 'react-select';
-import { jobOptions } from '../../options/jobs';
+import { jobOptions } from '../../../options';
 
 const customStyles = {
   top: 'calc(100% + 6px)',
@@ -39,7 +39,6 @@ class Input extends Component {
           name={this.props.input.name}
           placeholder={this.props.placeholder}
           showError={showError}
-          autoComplete={false}
           ref={input => {
             this.nameInput = input;
           }}

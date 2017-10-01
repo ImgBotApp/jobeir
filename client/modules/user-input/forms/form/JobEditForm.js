@@ -14,40 +14,26 @@ import {
   Wysiwyg,
   SubmitButton
 } from '../../inputs/input';
-import { jobOptions } from '../options/jobs';
+import { jobOptions, jobTypeOptions, yesNoOptions } from '../../options/';
 import { FormListRemoveIcon } from '../../../../icons/';
 import { updateJob } from '../../../account/create/job/ducks/';
+import { parseNumber } from '../../parse';
 
-const parseNumber = (value: number): number =>
-  parseInt(value.toString().replace(/\D/g, ''), 10);
-
-const jobTypes: Array<{ name: string, value: string }> = [
-  { name: 'Full-time', value: 'Full-time' },
-  { name: 'Part-time', value: 'Part-time' },
-  { name: 'Contractor', value: 'Contractor' },
-  { name: 'Freelance', value: 'Freelance' },
-  { name: 'Intern', value: 'Intern' },
-  { name: 'Volunteer', value: 'Volunteer' }
-];
-
-const yesNoOptions: Array<{ text: string, value: string }> = [
-  { text: 'Yes', value: 'Yes' },
-  { text: 'No', value: 'No' }
-];
-
-const renderEmailFields = ({ fields }) =>
+const renderEmailFields = ({ fields }) => (
   <FormListWrapper>
     {fields.map(renderFields)}
     <FormListButton onClick={() => fields.push({})}>
       Add additional email
     </FormListButton>
-  </FormListWrapper>;
-const renderFields = (member, index, fields) =>
+  </FormListWrapper>
+);
+const renderFields = (member, index, fields) => (
   <FormListItem key={member}>
-    {index > 0 &&
+    {index > 0 && (
       <FormListRemoveItem onClick={() => fields.remove(index)}>
         <FormListRemoveIcon />
-      </FormListRemoveItem>}
+      </FormListRemoveItem>
+    )}
     <Field
       name={`${member}.email`}
       label={`${index === 0
@@ -56,7 +42,8 @@ const renderFields = (member, index, fields) =>
       validate={[email, required]}
       component={Text}
     />
-  </FormListItem>;
+  </FormListItem>
+);
 
 class JobEditFrom extends Component {
   buildLocationsDropdown() {
@@ -103,112 +90,113 @@ class JobEditFrom extends Component {
         theme="marble"
       >
         <FormEditContainer>
-          {initialValues !== undefined
-            ? <FormEditForm>
+          {initialValues !== undefined ? (
+            <FormEditForm>
+              <Field
+                name="title"
+                label="What's the job title?"
+                placeholder="Search titles"
+                validate={[required]}
+                options={jobOptions}
+                component={SelectSearch}
+                selectedValue={initialValues && initialValues.title}
+              />
+              <div style={{ paddingBottom: '1rem' }} />
+              <Field
+                label="Describe the role"
+                name="description"
+                ui={{ maxWidth: '100%' }}
+                validate={[required, wysiwygLength(25)]}
+                initialValues={initialValues && initialValues.descriptionRaw}
+                component={Wysiwyg}
+              />
+              <Field
+                name="employmentType"
+                label="Employment Type"
+                validate={[required]}
+                options={jobTypeOptions}
+                type="list"
+                component={Radio}
+              />
+              <Field
+                name="address"
+                label="Where will the employee be working?"
+                validate={[required]}
+                options={this.buildLocationsDropdown()}
+                initialValues={initialValues && initialValues.location}
+                type="list"
+                row="full"
+                component={Radio}
+              />
+              <Field
+                name="remote"
+                label="Is this a remote position?"
+                validate={[required]}
+                options={yesNoOptions}
+                type="yes/no"
+                component={Radio}
+              />
+              <FormRow>
                 <Field
-                  name="title"
-                  label="What's the job title?"
-                  placeholder="Search titles"
+                  name="salary.min"
+                  label="Salary minimum"
+                  placeholder="$"
                   validate={[required]}
-                  options={jobOptions}
-                  component={SelectSearch}
-                  selectedValue={initialValues && initialValues.title}
-                />
-                <div style={{ paddingBottom: '1rem' }} />
-                <Field
-                  label="Describe the role"
-                  name="description"
-                  ui={{ maxWidth: '100%' }}
-                  validate={[required, wysiwygLength(25)]}
-                  initialValues={initialValues && initialValues.descriptionRaw}
-                  component={Wysiwyg}
+                  parse={parseNumber}
+                  component={Currency}
                 />
                 <Field
-                  name="employmentType"
-                  label="Employment Type"
+                  name="salary.max"
+                  label="Salary maximum"
+                  placeholder="$"
                   validate={[required]}
-                  options={jobTypes}
-                  type="list"
-                  component={Radio}
+                  parse={parseNumber}
+                  component={Currency}
                 />
-                <Field
-                  name="address"
-                  label="Where will the employee be working?"
-                  validate={[required]}
-                  options={this.buildLocationsDropdown()}
-                  initialValues={initialValues && initialValues.location}
-                  type="list"
-                  row="full"
-                  component={Radio}
-                />
-                <Field
-                  name="remote"
-                  label="Is this a remote position?"
-                  validate={[required]}
-                  options={yesNoOptions}
-                  type="yes/no"
-                  component={Radio}
-                />
+              </FormRow>
+              <Field
+                name="equity.offer"
+                label="Do you offer equity?"
+                validate={[required]}
+                options={yesNoOptions}
+                type="yes/no"
+                component={Radio}
+              />
+              {offersEquity === 'Yes' && (
                 <FormRow>
                   <Field
-                    name="salary.min"
-                    label="Salary minimum"
-                    placeholder="$"
+                    name="equity.min"
+                    label="Equity minimum"
+                    type="number"
+                    placeholder="%"
                     validate={[required]}
-                    parse={parseNumber}
-                    component={Currency}
+                    format={formatPercentage}
+                    parse={parsePercentage}
+                    component={Text}
                   />
                   <Field
-                    name="salary.max"
-                    label="Salary maximum"
-                    placeholder="$"
+                    name="equity.max"
+                    label="Equity maximum"
+                    type="number"
+                    placeholder="%"
                     validate={[required]}
-                    parse={parseNumber}
-                    component={Currency}
+                    format={formatPercentage}
+                    parse={parsePercentage}
+                    component={Text}
                   />
                 </FormRow>
-                <Field
-                  name="equity.offer"
-                  label="Do you offer equity?"
-                  validate={[required]}
-                  options={yesNoOptions}
-                  type="yes/no"
-                  component={Radio}
-                />
-                {offersEquity === 'Yes' &&
-                  <FormRow>
-                    <Field
-                      name="equity.min"
-                      label="Equity minimum"
-                      type="number"
-                      placeholder="%"
-                      validate={[required]}
-                      format={formatPercentage}
-                      parse={parsePercentage}
-                      component={Text}
-                    />
-                    <Field
-                      name="equity.max"
-                      label="Equity maximum"
-                      type="number"
-                      placeholder="%"
-                      validate={[required]}
-                      format={formatPercentage}
-                      parse={parsePercentage}
-                      component={Text}
-                    />
-                  </FormRow>}
-                <FieldArray
-                  name="receivingEmails"
-                  component={renderEmailFields}
-                />
-                <Field
-                  name="submitButton"
-                  buttonText="Update"
-                  component={SubmitButton}
-                />
-              </FormEditForm>
-            : null}
+              )}
+              <FieldArray
+                name="receivingEmails"
+                component={renderEmailFields}
+              />
+              <Field
+                name="submitButton"
+                buttonText="Update"
+                component={SubmitButton}
+              />
+            </FormEditForm>
+          ) : null}
         </FormEditContainer>
       </FormWrapper>
     );

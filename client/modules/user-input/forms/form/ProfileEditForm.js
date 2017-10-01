@@ -7,9 +7,7 @@ import FormRow from '../components/FormRow';
 import { required, phoneNumber } from '../../validation';
 import { Text, Phone, SubmitButton } from '../../inputs/input';
 import { updateUser } from '../../../user/ducks/';
-
-const parsePhone = (value: number): string =>
-  value.toString().replace(/\D/g, '');
+import { parsePhone } from '../../../user-input/parse';
 
 class ProfileEditForm extends Component {
   formSubmit = (data: {}): void => {

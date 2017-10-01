@@ -2,10 +2,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const HomeBanner = () =>
+const HomeBanner = () => (
   <HomeBannerContainer>
     <HomeBannerImage
-      src="/public/static/home/home-man-looking-at-phone-subway.jpg"
+      src="/public/static/imgs/home/home-man-looking-at-phone-subway.jpg"
       alt="Man looking at cellphone in subway"
     />
     <HomeBannerHeader>
@@ -24,7 +24,8 @@ const HomeBanner = () =>
         </HomeBannerCardContent>
       </HomeBannerCard>
     </HomeBannerHeader>
-  </HomeBannerContainer>;
+  </HomeBannerContainer>
+);
 
 export default HomeBanner;
 
@@ -48,7 +49,7 @@ const HomeBannerHeader = styled.div`
 
 const HomeBannerCard = styled.div`
   background: #fff;
-  box-shadow: 0 4px 25px 0 rgba(0, 0, 0, .1);
+  box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
   width: 65%;
   z-index: 1;
   position: relative;
