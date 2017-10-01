@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import ShellFormSection from '../../shell/components/ShellFormSection';
 import UpdateCompanyFormAbout from '../../../user-input/forms/form/update-company/UpdateCompanyFormAbout';
 import UpdateCompanyFormContact from '../../../user-input/forms/form/update-company/UpdateCompanyFormContact';
@@ -39,4 +40,12 @@ const CompanyContainer = styled.div`
   max-width: 1080px;
   width: 100%;
   margin: 0 auto 150px;
+
+  ${media.tablet`
+    margin-bottom: 80px
+  `};
+
+  ${media.phonePlus`
+    margin-bottom: 40px
+  `};
 `;

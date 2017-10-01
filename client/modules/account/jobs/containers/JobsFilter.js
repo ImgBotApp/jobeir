@@ -61,10 +61,6 @@ const JobsFilterList = styled.ul`
   ${media.tablet`
     width: 100%;
   `};
-
-  ${media.phablet`
-    justify-content: space-between;
-  `};
 `;
 
 const JobsFilterItem = styled.li`

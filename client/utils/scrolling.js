@@ -1,3 +1,5 @@
+// @flow
+
 /**
  * scorlling utilities
  * This is mainly used when route changes within our application.
@@ -10,9 +12,9 @@
  */
 
 function scrollToTop(scrollDuration) {
-  const cosParameter = window.scrollY / 2;
-  let scrollCount = 0;
-  let oldTimestamp = performance.now();
+  const cosParameter: number = window.scrollY / 2;
+  let scrollCount: number = 0;
+  let oldTimestamp: number = performance.now();
 
   function step(newTimestamp) {
     scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
@@ -28,14 +30,14 @@ function scrollToTop(scrollDuration) {
   window.requestAnimationFrame(step);
 }
 
-export const goToTopOfPage = props => {
-  const shouldGoToTop = !window.location.pathname.includes('/jobs');
-  const isOnCreateFlow = window.location.pathname.includes('/create/');
-  const isOnPostingPage = window.location.pathname.lenth === 30;
+export const goToTopOfPage = () => {
+  const isOnPostingPage: boolean = window.location.pathname.length === 30;
+  const shouldGoToTop: boolean = !window.location.pathname.includes('/jobs');
+  const isOnCreateFlow: boolean = window.location.pathname.includes('/create/');
 
-  if (isOnCreateFlow) return scrollToTop(600);
-  if (shouldGoToTop) return window.scrollTo(0, 0);
   if (isOnPostingPage) return window.scrollTo(0, 0);
+  if (isOnCreateFlow) return scrollToTop(400);
+  if (shouldGoToTop) return window.scrollTo(0, 0);
 
   return null;
 };
