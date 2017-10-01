@@ -86,7 +86,10 @@ class ShellDropdown extends Component {
         {user.avatar ? <ShellHeaderAvatar src={user.avatar} /> : null}
         <ShellDropdownContainer showDropdown={this.state.showDropdown}>
           <ShellDropdownList>
-            <ShellDropdownListItem top={true}>
+            <ShellDropdownListItem
+              onClick={() => browserHistory.push('/account/profile')}
+              top={true}
+            >
               <ShellDropdownListItemTop>
                 {user.firstName} {user.lastName}
               </ShellDropdownListItemTop>
@@ -97,7 +100,10 @@ class ShellDropdown extends Component {
             <ShellDropdownListItemHr />
             <ShellHeaderDropdownLinks top>
               <ShellDropdownListItemLink to="/account/jobs/">
-                {companies.activeCompany.displayName} Jobs
+                Jobs
+              </ShellDropdownListItemLink>
+              <ShellDropdownListItemLink to="/account/company/">
+                Company
               </ShellDropdownListItemLink>
               <ShellDropdownListItemLink to="/account/profile/">
                 Profile
@@ -276,7 +282,6 @@ const ShellDropdownListItemTop = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  cursor: default;
 
   ${media.tablet`
     font-size: 20px;

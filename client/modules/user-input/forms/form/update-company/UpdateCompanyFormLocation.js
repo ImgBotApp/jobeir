@@ -23,12 +23,13 @@ class CompanyFormStepThree extends Component {
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
         formErrors={companies.errors}
-        theme="marble"
+        theme="account"
       >
         <AutocompleteContainer>
           <Field
             name="fullAddress"
             label="Start typing full address"
+            placeholder="123 Main Street"
             component={Text}
             autocomplete={false}
             onBlur={this.handleBlur}
@@ -36,27 +37,35 @@ class CompanyFormStepThree extends Component {
           />
           <Autocomplete id="fullAddress" />
         </AutocompleteContainer>
-        {locations.length > 0 &&
+        {locations.length > 0 && (
           <MultipleLocations>
             Have more than one office? Just type in another address to add it.
-          </MultipleLocations>}
+          </MultipleLocations>
+        )}
         <FieldArray
           name="locations"
           locations={locations}
           component={UpdateCompanyFormLocationEdit}
         />
-        <Field
-          name="submitButton"
-          buttonText="Save"
-          disabled={locations.length === 0}
-          component={SubmitButton}
-        />
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginTop: '50px'
+          }}
+        >
+          <Field
+            name="submitButton"
+            buttonText="Save"
+            component={SubmitButton}
+          />
+        </div>
       </FormWrapper>
     );
   }
 }
 
-const selector = formValueSelector('company');
+const selector = formValueSelector('company-edit');
 
 const mapStateToProps = state => ({
   companies: state.account.companies,
@@ -64,7 +73,7 @@ const mapStateToProps = state => ({
 });
 
 CompanyFormStepThree = reduxForm({
-  form: 'company',
+  form: 'company-edit',
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true
 })(CompanyFormStepThree);

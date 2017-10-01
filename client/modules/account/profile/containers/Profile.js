@@ -1,43 +1,21 @@
 // @flow
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
 import ProfileEditForm from '../../../user-input/forms/form/ProfileEditForm';
+import ShellFormSection from '../../shell/components/ShellFormSection';
 
-class Profile extends Component {
-  render() {
-    const { user } = this.props;
-    return (
-      <ProfileContainer>
-        <ProfileHeader>Profile info</ProfileHeader>
-        <ProfileSubHeader>Edit your profile info</ProfileSubHeader>
-        <ProfileEditForm />
-      </ProfileContainer>
-    );
-  }
-}
+const Profile = () => (
+  <ProfileContainer>
+    <ShellFormSection text="Edit your profile info">
+      <ProfileEditForm />
+    </ShellFormSection>
+  </ProfileContainer>
+);
 
-const mapStateToProps = state => ({
-  user: state.session.user
-});
-
-export default connect(mapStateToProps)(Profile);
+export default Profile;
 
 const ProfileContainer = styled.div`
   max-width: 1080px;
   width: 100%;
-  margin: 0 auto;
-`;
-
-const ProfileHeader = styled.h2`
-  font-weight: 600;
-  padding: 20px 0 5px;
-  font-size: 22px;
-`;
-
-const ProfileSubHeader = styled.h3`
-  font-weight: 400;
-  font-size: 18px;
-  color: #9ea4a8;
-  margin-bottom: 50px;
+  margin: 0 auto 150px;
 `;

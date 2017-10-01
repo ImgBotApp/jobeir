@@ -9,6 +9,10 @@ const Company = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
+  email: {
+    type: String,
+    required: true
+  },
   displayName: {
     type: String,
     unique: true,
@@ -59,7 +63,6 @@ const Company = new Schema({
     required: true,
     lowercase: true
   },
-  perks: Array,
   phone: Number,
   product: String,
 

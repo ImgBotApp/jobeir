@@ -33,7 +33,7 @@ class UpdateCompanyLogo extends Component {
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
         formErrors={companies.errors}
-        theme="marble"
+        theme="account"
       >
         <Field
           name="logo"
@@ -42,12 +42,6 @@ class UpdateCompanyLogo extends Component {
           isUploading={companies.isUploading}
           component={Upload}
           buttonText="Upload Logo"
-        />
-        <Field
-          name="submitButton"
-          buttonText="Save"
-          component={SubmitButton}
-          disabled={!companies.successfulUpload}
         />
       </FormWrapper>
     );

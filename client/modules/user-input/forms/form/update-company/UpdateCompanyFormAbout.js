@@ -2,28 +2,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import debounce from 'lodash/debounce';
 import FormWrapper from '../../containers/FormWrapper';
-import { checkCompany } from '../../../../account/create/company/ducks';
-import { Radio, SubmitButton, Text, Textarea } from '../../../inputs/input';
+import { Textarea } from '../../../inputs/input';
 import { required, maxLength } from '../../../validation';
 
-const companySizeOptions: Array<{ name: string, value: string }> = [
-  { name: '1 - 9', value: '1-9' },
-  { name: '10 - 49', value: '10-49' },
-  { name: '50 - 149', value: '50-149' },
-  { name: '150 - 499', value: '150-499' },
-  { name: '500 - 999', value: '500-999' },
-  { name: '1000 +', value: '1000+' }
-];
-
 class UpdateCompanyFormStepOne extends Component {
-  handleCheckCompany = debounce(() => {
-    const { companyName, dispatch } = this.props;
-
-    if (companyName) dispatch(checkCompany(companyName));
-  }, 400);
-
   formSubmit = () => {
     this.props.nextPage();
   };
@@ -36,24 +19,8 @@ class UpdateCompanyFormStepOne extends Component {
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
         formErrors={companies.errors}
-        theme="marble"
+        theme="account"
       >
-        <Field
-          name="name"
-          label="What's your company name?"
-          validate={[required]}
-          component={Text}
-          onChange={this.handleCheckCompany}
-        />
-        <Field
-          name="size"
-          label="How many employees work at your company?"
-          validate={[required]}
-          options={companySizeOptions}
-          type="list"
-          rowWidth={32.6}
-          component={Radio}
-        />
         <Field
           name="product"
           label="Briefly describe your company"
@@ -61,23 +28,30 @@ class UpdateCompanyFormStepOne extends Component {
           validate={[required, maxLength(1000)]}
           component={Textarea}
         />
-        <Field
-          name="submitButton"
-          buttonText="Save"
-          formErrors={companies.errors}
-          component={SubmitButton}
-        />
       </FormWrapper>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  companies: state.account.companies
-});
+const mapStateToProps = state => {
+  const init = state.session.user.companies.find(
+    company => company._id === state.account.companies.activeCompany._id
+  );
+
+  return {
+    companies: state.account.companies,
+    initialValues: {
+      product: init.product,
+      phone: init.phone.toString(),
+      website: init.website,
+      size: init.size,
+      locations: init.locations
+    }
+  };
+};
 
 UpdateCompanyFormStepOne = reduxForm({
-  form: 'company',
+  form: 'company-edit',
   destroyOnUnmount: false
 })(UpdateCompanyFormStepOne);
 

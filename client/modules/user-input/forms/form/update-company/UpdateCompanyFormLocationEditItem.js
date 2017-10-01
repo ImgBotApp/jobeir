@@ -1,9 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import { Field } from 'redux-form';
 import FormRow from '../../components/FormRow';
-import { PostalCode, Text } from '../../../inputs/input';
+import { Text } from '../../../inputs/input';
 import { PencilIcon, ExIcon } from '../../../../../icons/';
 
 const AddressTheme = {
@@ -62,17 +63,18 @@ class UpdateCompanyFormLocationEdit extends Component {
       country: string,
       postal_code: string
     } =
-      locations[index].address;
+      locations[index] && locations[index].address;
 
     if (!currentLocation) return null;
 
     return (
       <div>
         <AddressFirstLine>
-          {currentLocation.unit &&
+          {currentLocation.unit && (
             <span>
               {currentLocation.unit} {' - '}
-            </span>}
+            </span>
+          )}
           {currentLocation.street_number} {currentLocation.route},{' '}
           {currentLocation.locality}
         </AddressFirstLine>
@@ -165,12 +167,14 @@ class UpdateCompanyFormLocationEdit extends Component {
             ? this.renderAddressForm()
             : this.renderPrettyAddress()}
         </AddressItemLeft>
-        {!this.state.showManualAddressInputs &&
+        {!this.state.showManualAddressInputs && (
           <AddressItemRight>
             <PencilIcon height={20} width={20} />
-          </AddressItemRight>}
-        {!this.state.showManualAddressInputs &&
-          <AddressItemClick onClick={this.handleEditClick} />}
+          </AddressItemRight>
+        )}
+        {!this.state.showManualAddressInputs && (
+          <AddressItemClick onClick={this.handleEditClick} />
+        )}
       </AddressItem>
     );
   }
@@ -188,6 +192,7 @@ const AddressItem = styled.li`
   padding: 16px 20px;
   margin-bottom: 16px;
   background: #f9f8f7;
+  border: 1px solid #f7f5f5;
 
   svg {
     cursor: pointer;
@@ -216,9 +221,17 @@ const AddressFirstLine = styled.div`
   font-weight: 800;
   font-size: 18px;
   margin-bottom: 5px;
+
+  ${media.tablet`
+    font-size: 16px;
+  `};
 `;
 
-const AddressSecondLine = styled.div``;
+const AddressSecondLine = styled.div`
+  ${media.tablet`
+    font-size: 14px;
+  `};
+`;
 
 const AddressFormTop = styled.div`
   display: flex;
@@ -233,7 +246,7 @@ const AddresRemoveButton = styled.button`
   border: none;
   background: #f9f8f7;
   width: 100%;
-  maxWidth: 200px;
+  maxwidth: 200px;
   font-size: 14px;
   color: #333;
   width: auto;

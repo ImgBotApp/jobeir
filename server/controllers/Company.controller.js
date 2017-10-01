@@ -53,7 +53,6 @@ export const createCompany = async (req, res) => {
     displayName: sanitizeHtml(body.name),
     website: sanitizeHtml(body.website),
     size: sanitizeHtml(body.size),
-    perks: sanitizeHtml(body.perks),
     product: sanitizeHtml(body.product),
     phone: sanitizeHtml(body.phone)
   }).save();

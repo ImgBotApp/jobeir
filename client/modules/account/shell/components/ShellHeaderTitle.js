@@ -9,15 +9,14 @@ import { media } from '../../../../styles/breakpoints';
  * the appropriate header title depending on it. This component is
  * used like a router for the correct header.
  */
-const ShellHeaderTitle = (props: { headerText: string }) =>
-  <ShellHeaderTitleContainer>
-    {props.headerText}
-  </ShellHeaderTitleContainer>;
+const ShellHeaderTitle = (props: { headerText: string }) => (
+  <ShellHeaderTitleContainer>{props.headerText}</ShellHeaderTitleContainer>
+);
 
 export default ShellHeaderTitle;
 
 const ShellHeaderTitleContainer = styled.h1`
-  font-size: 52px;
+  font-size: 56px;
   font-weight: 900;
 
   ${media.desktop`

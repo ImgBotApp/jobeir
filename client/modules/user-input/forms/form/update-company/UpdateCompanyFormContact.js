@@ -23,22 +23,24 @@ class CompanyFormStepTwo extends Component {
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
         formErrors={companies.errors}
-        theme="marble"
+        theme="account"
       >
-        <Field
-          name="website"
-          label="Company website"
-          placeholder="https://example.com"
-          validate={[required, url]}
-          component={Text}
-        />
-        <Field
-          name="email"
-          label="Company email"
-          placeholder="email@example.com"
-          validate={[email, required]}
-          component={Email}
-        />
+        <FormRow>
+          <Field
+            name="website"
+            label="Company website"
+            placeholder="https://example.com"
+            validate={[required, url]}
+            component={Text}
+          />
+          <Field
+            name="email"
+            label="Company email"
+            placeholder="email@example.com"
+            validate={[email, required]}
+            component={Email}
+          />
+        </FormRow>
         <Field
           name="phone"
           label="Company phone"
@@ -47,7 +49,6 @@ class CompanyFormStepTwo extends Component {
           parse={parsePhone}
           component={Phone}
         />
-        <Field name="submitButton" buttonText="Save" component={SubmitButton} />
       </FormWrapper>
     );
   }
@@ -58,7 +59,7 @@ const mapStateToProps = state => ({
 });
 
 CompanyFormStepTwo = reduxForm({
-  form: 'company',
+  form: 'company-edit',
   destroyOnUnmount: false
 })(CompanyFormStepTwo);
 

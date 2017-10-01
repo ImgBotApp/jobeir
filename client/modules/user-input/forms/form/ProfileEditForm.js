@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../containers/FormWrapper';
-import FormFooter from '../components/FormFooter';
 import FormRow from '../components/FormRow';
 import { required, phoneNumber } from '../../validation';
 import { Text, Phone, SubmitButton } from '../../inputs/input';
@@ -25,7 +24,7 @@ class ProfileEditForm extends Component {
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
         formErrors={user.errors}
-        theme="marble"
+        theme="account"
       >
         <FormRow>
           <Field
@@ -43,22 +42,22 @@ class ProfileEditForm extends Component {
             component={Text}
           />
         </FormRow>
-        <FormRow>
-          <Field
-            name="phone"
-            label="Your phone number"
-            placeholder="(555) 123-4567"
-            validate={[phoneNumber]}
-            parse={parsePhone}
-            component={Phone}
-          />
-        </FormRow>
         <Field
-          name="submitButton"
-          buttonText="Save"
-          isSubmitting={user.isUpdating}
-          component={SubmitButton}
+          name="phone"
+          label="Phone number"
+          placeholder="(555) 123-4567"
+          validate={[phoneNumber]}
+          parse={parsePhone}
+          component={Phone}
         />
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Field
+            name="submitButton"
+            buttonText="Save"
+            isSubmitting={user.isUpdating}
+            component={SubmitButton}
+          />
+        </div>
       </FormWrapper>
     );
   }

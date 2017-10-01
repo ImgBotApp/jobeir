@@ -187,6 +187,7 @@ const routes = (
     >
       <Route
         path="/account/company"
+        name="Company"
         getComponent={(nextState, cb) => {
           require.ensure(
             [],

@@ -18,7 +18,7 @@ const theme = {
     text: 'rgba(0,0,0,0.85)',
     placeholder: '#f3f3f3',
     grey: {
-      mid: '#8F8F8F'
+      mid: '#95989a'
     }
   },
   width: {

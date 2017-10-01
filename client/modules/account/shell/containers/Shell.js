@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import UserWrapper from '../../../user/containers/UserWrapper';
@@ -25,7 +24,7 @@ import ShellHeader from '../components/ShellHeader';
  *
  */
 const Shell = (props: { children: any, params: {}, pathname: string }) => {
-  const { children, params, pathname } = props;
+  const { children, params } = props;
   const showShellHeader: boolean = !params.jobId;
 
   return (
@@ -41,11 +40,7 @@ const Shell = (props: { children: any, params: {}, pathname: string }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  pathname: state.routing.locationBeforeTransitions.pathname
-});
-
-export default connect(mapStateToProps)(UserWrapper(Shell));
+export default UserWrapper(Shell);
 
 const ShellContainer = styled.div``;
 
@@ -53,7 +48,7 @@ const ShellContent = styled.main`
   margin: 0 auto;
   width: 100%;
 
-  ${media.desktop`
+  ${media.hd`
     padding: 0 24px;
   `};
 `;

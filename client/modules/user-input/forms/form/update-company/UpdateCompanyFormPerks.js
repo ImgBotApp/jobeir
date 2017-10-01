@@ -63,7 +63,7 @@ class UpdateCompanyFormPerks extends Component {
         handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
         formErrors={companies.errors}
-        theme="marble"
+        theme="account"
       >
         <FormHeader text="The perks and benefits" />
         <Field
@@ -72,7 +72,6 @@ class UpdateCompanyFormPerks extends Component {
           options={perkOptions}
           component={Checkbox}
         />
-        <Field name="submitButton" buttonText="Save" component={SubmitButton} />
       </FormWrapper>
     );
   }

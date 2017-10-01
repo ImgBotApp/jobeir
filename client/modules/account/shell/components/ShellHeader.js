@@ -24,7 +24,7 @@ export default ShellHeader;
 const ShellHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 70px 0 30px;
+  padding: 70px 0 40px;
   max-width: 1080px;
   margin: 0 auto;
 

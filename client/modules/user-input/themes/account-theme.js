@@ -1,18 +1,18 @@
-export const marble = {
+export const account = {
   button: {
-    height: '50px',
+    height: '44px',
     borderRadius: '3px',
     outline: 'none',
     border: 'none',
     background: '#5C6AC4',
     width: '100%',
-    maxWidth: '200px',
-    fontSize: '18px',
+    maxWidth: '140px',
+    fontSize: '16px',
     color: '#fff',
     tablet: {
-      height: '60px',
-      borderRadius: '0px',
-      maxWidth: '50%',
+      height: '44px',
+      borderRadius: '3px',
+      maxWidth: '100%',
       fontSize: '16px'
     }
   },
@@ -38,36 +38,36 @@ export const marble = {
   input: {
     borderRadius: '3px',
     border: 'solid 1px #babbbb',
-    padding: '0 18px',
-    fontSize: '18px',
+    padding: '0 16px',
+    fontSize: '16px',
     width: '100%',
     margin: '0 auto 1rem',
     activeBorderColor: '#5C6AC4',
-    height: '58px',
+    height: '44px',
     lineHeight: '1.5',
     ph: {
       color: '#afafaf'
     }
   },
   inputWrapper: {
-    marginBottom: '1rem'
+    marginBottom: '0'
   },
   error: {
     color: '#f73c3c',
     position: 'absolute',
-    width: '100%'
+    width: '53%'
   },
   form: {
-    marginBottom: '160px',
+    marginBottom: '0px',
     paddingBottom: '10px',
     tablet: {
-      marginBottom: '90px'
+      marginBottom: '0'
     }
   },
   label: {
     display: 'block',
     marginBottom: '6px',
-    fontSize: '18px',
+    fontSize: '16px',
     fontWeight: '600'
   },
   select: {
@@ -94,7 +94,7 @@ export const marble = {
     fontSize: '18px',
     width: '100%',
     margin: '0 auto 0.6rem',
-    minHeight: '225px',
+    minHeight: '180px',
     activeBorderColor: '#5C6AC4'
   }
 };

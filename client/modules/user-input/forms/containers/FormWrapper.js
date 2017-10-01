@@ -48,6 +48,6 @@ const StyledForm = styled.form`
   padding-bottom: ${props => props.theme.form.paddingBottom};
 
   ${media.tablet`
-    margin-bottom: 90px;
+    margin-bottom: ${props => props.theme.form.tablet.marginBottom};
   `};
 `;
