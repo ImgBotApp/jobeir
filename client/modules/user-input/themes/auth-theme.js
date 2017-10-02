@@ -38,7 +38,10 @@ export const auth = {
   },
   form: {
     marginBottom: '0',
-    paddingBottom: '0'
+    paddingBottom: '0',
+    tablet: {
+      marginBottom: '0'
+    }
   },
   error: {
     color: '#f73c3c'

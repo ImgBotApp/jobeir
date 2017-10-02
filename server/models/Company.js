@@ -65,7 +65,6 @@ const Company = new Schema({
   },
   phone: Number,
   product: String,
-
   size: String,
   website: String
 });

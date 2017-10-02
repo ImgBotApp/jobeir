@@ -171,6 +171,22 @@ const routes = (
       }}
     />
     <Route
+      path="/create/progress"
+      getComponent={(nextState, cb) => {
+        require.ensure(
+          [],
+          require => {
+            cb(
+              null,
+              require('../modules/account/create/step/containers/StepComplete')
+                .default
+            );
+          },
+          'progress'
+        );
+      }}
+    />
+    <Route
       path="/account"
       getComponent={(nextState, cb) => {
         require.ensure(

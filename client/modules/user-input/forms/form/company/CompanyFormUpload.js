@@ -12,7 +12,7 @@ import { uploadCompanyLogo } from '../../../../account/create/company/ducks/';
 
 class CompanyLogo extends Component {
   formSubmit = (): void => {
-    browserHistory.push(`/account/jobs`);
+    browserHistory.push(`/create/progress`);
   };
 
   handleOnDrop = (files: Array<{}>): void => {
