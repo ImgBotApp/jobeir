@@ -37,9 +37,11 @@ export const AuthWrapper = WrappedComponent => {
     render() {
       return (
         <div className="AuthWrapper">
-          {this.props.auth.isAuthenticated
-            ? <WrappedComponent {...this.props} />
-            : <AuthLoading />}
+          {this.props.auth.isAuthenticated ? (
+            <WrappedComponent {...this.props} />
+          ) : (
+            <AuthLoading />
+          )}
         </div>
       );
     }

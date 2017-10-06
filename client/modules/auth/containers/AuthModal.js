@@ -61,8 +61,7 @@ class AuthModal extends Component {
       <ModalWrapper bgColor="white">
         <AuthModalBody>
           <AuthModalHeader>
-            <AuthModalHeaderBlue />
-            <AuthModalHeaderRed />
+            <AuthModalHeaderText>Lorem Ipmsun</AuthModalHeaderText>
           </AuthModalHeader>
           <AuthModalContent>
             {this.state.showLoginForm
@@ -87,51 +86,29 @@ const AuthModalHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${props => props.theme.colors.pink};
-  min-height: 175px;
+  background: ${props => props.theme.colors.blue};
+  min-height: 130px;
   overflow: hidden;
 
-  ${media.tablet`min-height: 160px;`};
-  ${media.phonePlus`min-height: 140px;`};
-  ${media.phone`min-height: 120px;`};
+  ${media.tablet`min-height: 120px;`};
+  ${media.phonePlus`min-height: 100px;`};
+  ${media.phone`min-height: 80px;`};
+`;
+
+const AuthModalHeaderText = styled.h2`
+  font-size: 42px;
+  color: #fff;
+  font-weight: 900;
+
+  ${media.tablet`font-size: 34px;`};
+  ${media.phonePlus`font-size: 30px;`};
+  ${media.phone`font-size: 28px;`};
 `;
 
 const AuthModalContent = styled.div`
   padding: 36px;
 
   ${media.tablet`padding: 24px`};
-`;
-
-const AuthModalHeaderBall = styled.div`
-  border-radius: 50%;
-  position: absolute;
-`;
-
-const AuthModalHeaderBlue = styled(AuthModalHeaderBall)`
-  right: 125px;
-  top: -500px;
-  height: 800px;
-  width: 800px;
-  background: ${props => props.theme.colors.blue};
-`;
-
-const AuthModalHeaderRed = styled(AuthModalHeaderBall)`
-  right: 120px;
-  bottom: 25px;
-  height: 115px;
-  width: 115px;
-  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.3));
-
-  ${media.tablet`
-    height: 100px;
-    width: 100px;
-  `};
-
-  ${media.phonePlus`
-    height: 90px;
-    width: 90px;
-    bottom: 15px;
-  `};
 `;
 
 const AuthModalFooter = styled.div`

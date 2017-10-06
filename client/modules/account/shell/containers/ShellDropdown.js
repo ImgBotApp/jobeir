@@ -55,6 +55,7 @@ class ShellDropdown extends Component {
    */
   handleLogoutClick = () => {
     this.props.dispatch(logout());
+    browserHistory.push('/');
     docCookies.removeItem('SID');
   };
 

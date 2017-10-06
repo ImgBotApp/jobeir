@@ -1,6 +1,5 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import { fetchApi } from '../../../utils/api';
-import { hideModal } from '../../modal/ducks';
 import fireEscapeKeypress from '../../../utils/fireEscapeKeypress';
 import queryParams from '../../../utils/queryParams';
 import authRedirect from '../../../utils/authRedirect';

@@ -1,4 +1,6 @@
 import { browserHistory } from 'react-router';
+import { AUTH_SUCCESS, LOGIN_SUCCESS, LOGOUT_SUCCESS } from '../../auth/ducks';
+import { CREATE_COMPANY_SUCCESS } from '../../account/create/company/ducks';
 
 export const SERVER_GET_USER_REQUEST = 'SERVER_GET_USER_REQUEST';
 export const SERVER_GET_USER_SUCCESS = 'SERVER_GET_USER_SUCCESS';
@@ -15,10 +17,6 @@ export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 export const SWITCH_ACTIVE_COMPANY_REQUEST = 'SWITCH_ACTIVE_COMPANY_REQUEST';
 export const SWITCH_ACTIVE_COMPANY_SUCCESS = 'SWITCH_ACTIVE_COMPANY_SUCCESS';
 export const SWITCH_ACTIVE_COMPANY_FAILURE = 'SWITCH_ACTIVE_COMPANY_FAILURE';
-
-import { AUTH_SUCCESS, LOGIN_SUCCESS, LOGOUT_SUCCESS } from '../../auth/ducks';
-
-import { CREATE_COMPANY_SUCCESS } from '../../account/create/company/ducks';
 
 export const initialState = {
   companies: {

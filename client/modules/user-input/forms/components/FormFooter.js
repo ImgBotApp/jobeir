@@ -16,33 +16,19 @@ class FormFooter extends Component {
   constructor(props: any) {
     super(props);
     this.state = { isOverlapped: false };
+
+    this.throttled = throttle(this.calculateOverlap, 300);
   }
 
   componentDidMount() {
     this.calculateOverlap();
-    document.addEventListener(
-      'scroll',
-      throttle(this.calculateOverlap, 300),
-      true
-    );
-    window.addEventListener(
-      'resize',
-      throttle(this.calculateOverlap, 300),
-      true
-    );
+    document.addEventListener('scroll', this.throttled, true);
+    window.addEventListener('resize', this.throttled, true);
   }
 
   componentWillUnmount() {
-    document.removeEventListener(
-      'scroll',
-      throttle(this.calculateOverlap, 300),
-      true
-    );
-    window.removeEventListener(
-      'resize',
-      throttle(this.calculateOverlap, 300),
-      true
-    );
+    document.removeEventListener('scroll', this.throttled, true);
+    window.removeEventListener('resize', this.throttled, true);
   }
 
   calculateOverlap = () => {
