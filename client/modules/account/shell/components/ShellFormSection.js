@@ -27,6 +27,7 @@ const ShellFormSectionSubHeader = styled.h3`
 const ShellFormSectionRow = styled.div`
   display: flex;
   padding: 40px 0 20px;
+  margin-bottom: 25px;
   border-top: 1px solid #eceaea;
 
   ${media.tablet`

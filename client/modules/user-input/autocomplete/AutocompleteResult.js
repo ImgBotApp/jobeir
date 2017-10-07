@@ -40,15 +40,9 @@ const PrimaryText = (props: {
 
     return (
       <ListItemPrimaryText>
-        <TextBold>
-          {boldStart}
-        </TextBold>
-        <span>
-          {regular}
-        </span>
-        <TextBold>
-          {boldEnd}
-        </TextBold>
+        <TextBold>{boldStart}</TextBold>
+        <span>{regular}</span>
+        <TextBold>{boldEnd}</TextBold>
       </ListItemPrimaryText>
     );
   }
@@ -82,30 +76,22 @@ const PrimaryText = (props: {
 
   return (
     <ListItemPrimaryText>
-      {weights.map(weight =>
+      {weights.map(weight => (
         <ListItemPrimaryTextInner key={weight.regular}>
-          <span>
-            {weight.regular}
-          </span>
-          <TextBold>
-            {weight.bold}
-          </TextBold>
+          <span>{weight.regular}</span>
+          <TextBold>{weight.bold}</TextBold>
         </ListItemPrimaryTextInner>
-      )}
+      ))}
     </ListItemPrimaryText>
   );
 };
 
 // Used usually to define the City, Province and Country.
-const SecondaryText = (props: { text: string }) =>
-  <ListItemSecondaryText>
-    {props.text}
-  </ListItemSecondaryText>;
+const SecondaryText = (props: { text: string }) => (
+  <ListItemSecondaryText>{props.text}</ListItemSecondaryText>
+);
 
-const SeperatorText = () =>
-  <ListItemSpace>
-    {', '}
-  </ListItemSpace>;
+const SeperatorText = () => <ListItemSpace>{', '}</ListItemSpace>;
 
 /**
  * <AutocompleteResult />
@@ -145,19 +131,6 @@ const ListItem = styled.li`
   }
 `;
 
-const ListItemButton = styled.button`
-  display: flex;
-  padding: 1rem;
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  padding: 0;
-  touch-callout: none;
-  user-select: none;
-  cursor: pointer;
-`;
-
 const ListItemSpace = styled.span`
   font-size: 16px;
   white-space: nowrap;
@@ -172,6 +145,7 @@ const ListItemSecondaryText = styled.div`
   text-overflow: ellipsis;
   color: #7e7c7c;
 `;
+
 const ListItemPrimaryText = styled.span`
   font-size: 16px;
   white-space: nowrap;

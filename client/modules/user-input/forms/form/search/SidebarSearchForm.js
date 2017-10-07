@@ -230,7 +230,7 @@ const SearchInput = styled.input`
   top: -1px;
   border: 0;
   height: 100%;
-  font-weight: 800;
+  font-weight: 600;
   padding-top: 5px;
   font-size: ${props => (props.isMobileFilter ? ' 18px' : '20px')};
   background: transparent;
@@ -309,7 +309,7 @@ const SelectContainer = styled.div`
     position: relative;
     width: 100%;
     font-size: ${props => (props.isMobileFilter ? ' 18px' : '20px')};
-    font-weight: 800;
+    font-weight: 600;
     width: 100%;
     margin: 0 auto;
   }
@@ -362,7 +362,7 @@ const SelectContainer = styled.div`
     > .Select-control
     .Select-value
     .Select-value-label {
-    font-weight: 800;
+    font-weight: 600;
     color: rgba(0, 0, 0, 0.85);
   }
   .has-value.Select--single

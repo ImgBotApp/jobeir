@@ -16,9 +16,10 @@ const HomeHeader = () => (
 export default HomeHeader;
 
 const Header = styled.div`
-  max-width: 900px;
+  max-width: 840px;
   margin: 0 auto;
   padding: 50px 0;
+  line-height: 1.1;
 
   ${media.desktop`
     padding: 30px 24px;

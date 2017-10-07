@@ -76,10 +76,10 @@ const JobsSearchPostingContainer = styled.div`
   position: relative;
   margin: 0 auto;
   background: #fff;
-  margin-bottom: 40px;
+  margin-bottom: 46px;
 
   ${media.phablet`
-    margin-bottom: 30px;
+    margin-bottom: 34px;
   `};
 `;
 

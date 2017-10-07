@@ -61,7 +61,11 @@ class AuthModal extends Component {
       <ModalWrapper bgColor="white">
         <AuthModalBody>
           <AuthModalHeader>
-            <AuthModalHeaderText>Lorem Ipmsun</AuthModalHeaderText>
+            <AuthModalSolidBallPurpleLeft />
+            <AuthModalSolidBallPurpleRight />
+            <AuthModalHollowBallLeftTop />
+            <AuthModalHollowBallLeftBottom />
+            <AuthModalHollowBallRightTop />
           </AuthModalHeader>
           <AuthModalContent>
             {this.state.showLoginForm
@@ -87,22 +91,12 @@ const AuthModalHeader = styled.div`
   align-items: center;
   justify-content: center;
   background: ${props => props.theme.colors.blue};
-  min-height: 130px;
+  min-height: 170px;
   overflow: hidden;
 
   ${media.tablet`min-height: 120px;`};
   ${media.phonePlus`min-height: 100px;`};
   ${media.phone`min-height: 80px;`};
-`;
-
-const AuthModalHeaderText = styled.h2`
-  font-size: 42px;
-  color: #fff;
-  font-weight: 900;
-
-  ${media.tablet`font-size: 34px;`};
-  ${media.phonePlus`font-size: 30px;`};
-  ${media.phone`font-size: 28px;`};
 `;
 
 const AuthModalContent = styled.div`
@@ -122,4 +116,88 @@ const AuthModalSignupEmail = styled.div`
   text-align: center;
   cursor: pointer;
   padding-bottom: 1.5rem;
+`;
+
+const AuthModalSolidBall = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  background: ${props => props.theme.colors.purple};
+`;
+
+const AuthModalSolidBallPurpleLeft = AuthModalSolidBall.extend`
+  left: -144px;
+  top: -201px;
+  height: 340px;
+  width: 340px;
+`;
+
+const AuthModalSolidBallPurpleRight = AuthModalSolidBall.extend`
+  right: 20px;
+  height: 220px;
+  width: 220px;
+`;
+
+const AuthModalHollowBallLeftTop = styled.div`
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  left: 79px;
+  top: -126px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    box-shadow: 0px 0px 0px 2000px ${props => props.theme.colors.pink};
+  }
+`;
+const AuthModalHollowBallRightTop = styled.div`
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  right: -45px;
+  top: -22px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    box-shadow: 0px 0px 0px 2000px ${props => props.theme.colors.pink};
+  }
+`;
+
+const AuthModalHollowBallLeftBottom = styled.div`
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  left: 114px;
+  bottom: -57px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0px 0px 0px 2000px ${props => props.theme.colors.pink};
+  }
 `;

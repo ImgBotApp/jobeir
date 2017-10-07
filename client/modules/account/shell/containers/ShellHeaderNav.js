@@ -18,7 +18,11 @@ const ShellHeaderNav = (props: { activeCompany: { _id: string } }) => {
 
   return (
     <ShellHeaderNavContainer>
-      <ShellHeaderNavLink to={link}>Create Job</ShellHeaderNavLink>
+      <ShellHeaderNavLink purple to={link}>
+        Create Job
+      </ShellHeaderNavLink>
+      <ShellHeaderNavLink to="/account/jobs">Jobs</ShellHeaderNavLink>
+      <ShellHeaderNavLink to="/account/company">Company</ShellHeaderNavLink>
     </ShellHeaderNavContainer>
   );
 };
@@ -32,8 +36,6 @@ export default connect(mapStateToProps)(ShellHeaderNav);
 const ShellHeaderNavContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 25px;
-  margin-right: 25px;
 
   ${media.tablet`
     padding: 0 10px;
@@ -46,6 +48,9 @@ const ShellHeaderNavContainer = styled.div`
 `;
 
 const ShellHeaderNavLink = styled(Link)`
+  display: inline-block;
   text-decoration: none;
-  color: ${props => props.theme.colors.black};
+  color: ${props =>
+    props.purple ? props.theme.colors.purple : props.theme.colors.black};
+  margin-right: 30px;
 `;
