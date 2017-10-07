@@ -22,6 +22,7 @@ class FormFooter extends Component {
 
   componentDidMount() {
     this.calculateOverlap();
+
     document.addEventListener('scroll', this.throttled, true);
     window.addEventListener('resize', this.throttled, true);
   }
@@ -56,7 +57,7 @@ class FormFooter extends Component {
   };
 
   render() {
-    const { children, isUpload } = this.props;
+    const { children } = this.props;
 
     /**
      * We are checking to see if props.children is an array

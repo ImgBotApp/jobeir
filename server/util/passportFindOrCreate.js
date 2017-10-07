@@ -17,10 +17,16 @@ export function passportFindOrCreate(accessToken, refreshToken, profile, done) {
         return done(err);
       }
       if (!user) {
+        // Logic needed to handle non-standardized auth info :\
+        const fullName =
+          (profile.displayName && profile.displayName.split[' ']) || [];
+        const firstName = fullName[0] || profile.name.givenName;
+        const lastName = fullName[1] || profile.name.familyName;
+
         const newUser = new Users({
           email: profile.emails[0].value,
-          firstName: profile.name.givenName,
-          lastName: profile.name.familyName,
+          firstName,
+          lastName,
           provider: profile.provider,
           id: profile.id
         });
@@ -30,6 +36,9 @@ export function passportFindOrCreate(accessToken, refreshToken, profile, done) {
 
         if (profile.provider === 'google')
           newUser.avatar = profile.photos[0].value;
+
+        if (profile.provider === 'github')
+          newUser.avatar = profile._json.avatar_url;
 
         newUser.save(err => {
           if (err) {

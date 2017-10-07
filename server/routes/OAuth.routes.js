@@ -47,11 +47,9 @@ router.get(
   }
 );
 
-// Github Auth
-router.get(
-  '/auth/github',
-  passport.authenticate('github', { scope: ['user.email:email'] })
-);
+// Github Auth with no scope
+// https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/about-scopes-for-oauth-apps/
+router.get('/auth/github', passport.authenticate('github'));
 
 router.get(
   '/auth/github/callback',
