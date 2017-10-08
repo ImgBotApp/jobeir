@@ -90,7 +90,6 @@ const StyledExternalLink = styled.a`
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
   transition: all 200ms ease;
 
   &:hover {

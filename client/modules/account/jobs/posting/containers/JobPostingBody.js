@@ -39,7 +39,7 @@ const JobPostingBodyContainer = styled.div`
     `};
 
     ${media.phonePlus`
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     `};
   }
 
@@ -52,12 +52,11 @@ const JobPostingBodyContainer = styled.div`
     width: 100%;
   }
 
-  h2,
   h3,
   h4,
   h5,
   h6 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
     ${media.tablet`
       margin-bottom: 15px;
@@ -70,6 +69,7 @@ const JobPostingBodyContainer = styled.div`
 
   h2 {
     font-size: 26px;
+    margin-bottom: 20px;
 
     ${media.phablet`
       font-size: 20px;

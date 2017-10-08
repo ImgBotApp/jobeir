@@ -16,7 +16,7 @@ const HomeHeader = () => (
 export default HomeHeader;
 
 const Header = styled.div`
-  max-width: 840px;
+  max-width: 860px;
   margin: 0 auto;
   padding: 50px 0;
   line-height: 1.1;

@@ -43,7 +43,7 @@ export const marble = {
     width: '100%',
     margin: '0 auto 1rem',
     activeBorderColor: '#5C6AC4',
-    height: '52px',
+    height: '54px',
     lineHeight: '1.5',
     ph: {
       color: '#afafaf'
@@ -77,7 +77,7 @@ export const marble = {
     padding: '0 18px',
     fontSize: '18px',
     width: '100%',
-    height: '52px',
+    height: '54px',
     margin: '0 auto 1rem',
     activeBorderColor: '#5C6AC4',
     lineHeight: '1.5',

@@ -76,7 +76,7 @@ const SelectContainer = styled.div`
     border: solid 1px;
     border-color: ${props =>
       props.showError ? props.theme.error.color : '#babbbb'};
-    padding: 18px;
+    padding: 16px 18px;
     font-size: 18px;
     width: 100%;
     margin: 0 auto 1rem;

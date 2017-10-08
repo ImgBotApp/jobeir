@@ -21,8 +21,12 @@ const ShellHeaderNav = (props: { activeCompany: { _id: string } }) => {
       <ShellHeaderNavLink purple to={link}>
         Create Job
       </ShellHeaderNavLink>
-      <ShellHeaderNavLink to="/account/jobs">Jobs</ShellHeaderNavLink>
-      <ShellHeaderNavLink to="/account/company">Company</ShellHeaderNavLink>
+      <ShellHeaderNavLink hideMobile to="/account/jobs">
+        Jobs
+      </ShellHeaderNavLink>
+      <ShellHeaderNavLink hideMobile to="/account/company">
+        Company
+      </ShellHeaderNavLink>
     </ShellHeaderNavContainer>
   );
 };
@@ -38,12 +42,7 @@ const ShellHeaderNavContainer = styled.div`
   align-items: center;
 
   ${media.tablet`
-    padding: 0 10px;
-    margin-right: 20px;
-  `};
-
-  ${media.phonePlus`
-    margin-right: 10px;
+    padding: 0 20px;
   `};
 `;
 
@@ -53,4 +52,10 @@ const ShellHeaderNavLink = styled(Link)`
   color: ${props =>
     props.purple ? props.theme.colors.purple : props.theme.colors.black};
   margin-right: 30px;
+
+  ${media.tablet`
+    display: ${props => (props.hideMobile ? 'none' : 'inline-block')};
+    margin-right: 0px;
+    color: ${props => props.theme.colors.black};
+  `};
 `;
