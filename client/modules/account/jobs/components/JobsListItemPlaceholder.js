@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import { Glow } from '../../../../styles/animate';
 
-const JobsListItemPlaceholder = () =>
+const JobsListItemPlaceholder = () => (
   <Glow>
     <JobsListItemPlaceholderContainer>
       <PlaceholderContainer>
@@ -22,18 +22,19 @@ const JobsListItemPlaceholder = () =>
         <PlaceholderDetails />
       </PlaceholderContainer>
     </JobsListItemPlaceholderContainer>
-  </Glow>;
+  </Glow>
+);
 
 export default JobsListItemPlaceholder;
 
 const JobsListItemPlaceholderContainer = styled.div`margin-top: 40px;`;
 
 const PlaceholderContainer = styled.div`
-  max-width: 1080px;
+  max-width: 1062px;
   margin: 0 auto 70px;
 
   ${media.tablet`
-    margin: 0 auto 40px;
+    margin: 0 auto 30px;
   `};
 `;
 

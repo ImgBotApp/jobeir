@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Company);
 
 const CompanyContainer = styled.div`
-  max-width: 1080px;
+  max-width: 1062px;
   width: 100%;
   margin: 0 auto 150px;
 

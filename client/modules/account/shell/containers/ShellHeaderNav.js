@@ -52,6 +52,7 @@ const ShellHeaderNavLink = styled(Link)`
   color: ${props =>
     props.purple ? props.theme.colors.purple : props.theme.colors.black};
   margin-right: 30px;
+  font-size: 14px;
 
   ${media.tablet`
     display: ${props => (props.hideMobile ? 'none' : 'inline-block')};

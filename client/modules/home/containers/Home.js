@@ -4,14 +4,15 @@ import styled from 'styled-components';
 import AppHead from '../../app/components/AppHead';
 import HomeHeader from '../components/HomeHeader';
 import HomeBanner from '../components/HomeBanner';
-import HomeFeatured from '../components/HomeFeatured';
+import HomeFeaturedJobs from '../components/HomeFeaturedJobs';
 
 const Home = () => (
   <HomeContainer>
     <AppHead title="The Best Jobs in Tech" />
     <HomeHeader />
     <HomeBanner />
-    <HomeFeatured />
+    <HomeFeaturedJobs />
+    <HomeHeader />
   </HomeContainer>
 );
 

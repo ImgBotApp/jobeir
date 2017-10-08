@@ -79,7 +79,7 @@ const JobsMain = styled.div`
 const JobsSub = styled.div`
   display: flex;
   color: #929292;
-  margin-top: 10px;
+  margin-top: 8px;
   font-size: 14px;
   font-weight: 200;
 

@@ -16,7 +16,7 @@ const Profile = () => (
 export default Profile;
 
 const ProfileContainer = styled.div`
-  max-width: 1080px;
+  max-width: 1062px;
   width: 100%;
   margin: 0 auto 150px;
 

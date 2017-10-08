@@ -3,18 +3,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../styles/breakpoints';
 
-const HomeSerachSubText = () =>
+const HomeSerachSubText = () => (
   <HomeSerachSubTextContainer>
     <HomeSerachSubTextText>
       all job postings have agreed to our diversity and inclusion policy
     </HomeSerachSubTextText>
-  </HomeSerachSubTextContainer>;
+  </HomeSerachSubTextContainer>
+);
 
 export default HomeSerachSubText;
 
 const HomeSerachSubTextContainer = styled.div`
   text-align: center;
-  margin: 40px auto 0;
+  margin: 30px auto 0;
 
   ${media.tablet`margin: 30px 12px 0;`};
 `;
