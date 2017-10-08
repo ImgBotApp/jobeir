@@ -36,20 +36,16 @@ export const Input = styled.input`
   ::-webkit-input-placeholder {
     color: ${props => props.theme.input.ph.color};
     opacity: 1;
-    line-height: 2;
   }
   :-moz-placeholder {
     color: ${props => props.theme.input.ph.color};
-    line-height: 2;
     opacity: 1;
   }
   ::-moz-placeholder {
     color: ${props => props.theme.input.ph.color};
-    line-height: 2;
     opacity: 1;
   }
   :-ms-input-placeholder {
     color: ${props => props.theme.input.ph.color};
-    line-height: 2;
   }
 `;

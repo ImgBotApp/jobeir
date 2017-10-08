@@ -6,7 +6,7 @@ import jwt from 'express-jwt';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import path from 'path';
-import session from 'express-session';
+import cookieSession from 'cookie-session';
 import IntlWrapper from '../client/modules/intl/containers/IntlWrapper';
 import passport from 'passport';
 import serialize from 'serialize-javascript';
@@ -59,6 +59,8 @@ import oAuthRoutes from './routes/OAuth.routes';
 import serverConfig from './config/config';
 import passportInit from './config/passport';
 
+app.set('trust proxy', 1);
+
 if (process.env.NODE_ENV === 'development') {
   // Apply request delay for mroe realistic local test
   app.use(delay(200, 300));
@@ -76,7 +78,7 @@ app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(cookieParser());
 app.use(
-  session({
+  cookieSession({
     secret: process.env.JWT,
     resave: false,
     saveUninitialized: true

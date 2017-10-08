@@ -31,7 +31,12 @@ const ShellFormSectionRow = styled.div`
   border-top: 1px solid #eceaea;
 
   ${media.tablet`
-  padding: 40px 0 20px;
+    padding: 40px 0 20px;
+    margin-bottom: 0;
+  `};
+
+  ${media.phablet`
+    padding: 20px 0 10px;
   `};
 `;
 

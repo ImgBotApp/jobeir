@@ -331,7 +331,7 @@ const RadioListInputContainer = styled.div`
 `;
 
 const RadioListInput = styled.input`
-  -webkit-appearance: none;
+  appearance: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -345,6 +345,7 @@ const RadioListInput = styled.input`
   color: ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.85)')};
   border-radius: 2px;
   margin-bottom: 1%;
+  border-color: #f9f8f7;
   cursor: pointer;
 
   &:active,

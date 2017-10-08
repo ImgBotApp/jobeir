@@ -182,10 +182,11 @@ const ShellHeaderDropdownLetters = styled.span`
 
 const ShellHeaderAvatar = styled.img`
   position: relative;
-  height: 36px;
-  width: 36px;
+  height: 37px;
+  width: 37px;
   border-radius: 50%;
   cursor: pointer;
+  left: -9px;
 `;
 
 const ShellHeaderDropdownLinks = styled.div`

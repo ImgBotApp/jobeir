@@ -33,14 +33,14 @@ class JobsList extends Component {
     return (
       <JobsListContainer>
         <JobsBodyList>
-          {jobs.filter(job => filterJobs(job, filter)).map(job =>
+          {jobs.filter(job => filterJobs(job, filter)).map(job => (
             <JobsBody
               key={job._id}
               onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
             >
               <JobsListItem job={job} />
             </JobsBody>
-          )}
+          ))}
         </JobsBodyList>
       </JobsListContainer>
     );
@@ -64,6 +64,14 @@ const JobsBodyList = styled.ul`
   width: 100%;
   margin: 40px auto 0;
   padding-bottom: 80px;
+
+  ${media.tablet`
+    margin: 30px auto 0;
+  `};
+
+  ${media.phonePlus`
+    margin: 20px auto 0;
+  `};
 `;
 
 const JobsBody = styled.li`
@@ -84,7 +92,7 @@ const JobsBody = styled.li`
   `};
 
   ${media.phablet`
-    margin-bottom: 18px;
-    padding-bottom: 18px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
   `};
 `;

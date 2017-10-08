@@ -53,10 +53,11 @@ const StyledMaskedInput = styled(MaskedInput)`
   height: ${props => props.theme.input.height};
   margin: ${props => props.theme.input.margin};
   max-width: ${props => props.theme.input.maxWidth};
+  appearance: none;
 
   &:active,
   &:focus {
-    border-color:  ${props =>
+    border-color: ${props =>
       props.showError
         ? props.theme.error.color
         : props.theme.input.activeBorderColor};
@@ -69,12 +70,12 @@ const StyledMaskedInput = styled(MaskedInput)`
   :-moz-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
-    opacity:  1;
+    opacity: 1;
   }
   ::-moz-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
-    opacity:  1;
+    opacity: 1;
   }
   :-ms-input-placeholder {
     font-size: ${props => props.theme.input.fontSize};
