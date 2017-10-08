@@ -66,6 +66,8 @@ class WysiwygForm extends Component {
    * the styling does not play very well with styled-components
    */
   handleClick = (): void => {
+    console.log('fired in here');
+    console.log(this.Editor);
     this.Editor.focusEditor();
   };
 
