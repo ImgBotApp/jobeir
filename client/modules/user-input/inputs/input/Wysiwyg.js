@@ -85,9 +85,7 @@ class WysiwygForm extends Component {
             toolbar={wysiwig}
             editorState={this.state.editorState}
             onEditorStateChange={this.onEditorStateChange}
-            ref={editor => {
-              this.Editor = editor;
-            }}
+            ref={editor => (this.Editor = editor)}
           />
         </EditorContainer>
       </InputWrapper>
