@@ -66,8 +66,6 @@ class WysiwygForm extends Component {
    * the styling does not play very well with styled-components
    */
   handleClick = (): void => {
-    console.log('fired in here');
-    console.log(this.Editor);
     this.Editor.focusEditor();
   };
 
@@ -114,14 +112,6 @@ const EditorContainer = styled.div`
     margin: -8px 0 0 -10px;
   }
 
-  .rdw-editor-wrapper {
-    min-height: 260px;
-
-    ${media.tablet`
-      min-height: 160px;
-    `};
-  }
-
   .rdw-editor-toolbar,
   .rdw-inline-wrapper,
   .rdw-list-wrapper {
@@ -149,9 +139,11 @@ const EditorContainer = styled.div`
 
   .public-DraftStyleDefault-block {
     margin: 0.5em 0;
+    min-height: 210px;
 
     ${media.tablet`
       margin: 4px 0;
+      min-height: 110px;
     `};
   }
 
