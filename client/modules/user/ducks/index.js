@@ -23,6 +23,8 @@ export const initialState = {
     created: [],
     joined: []
   },
+  firstName: '',
+  lastName: '',
   isFetching: false,
   isUpdating: false,
   isLoaded: false,

@@ -84,6 +84,9 @@ class ShellDropdown extends Component {
 
     return (
       <ShellHeaderDropdown>
+        <ShellHeaderDropdownLetters>{`${user.firstName.charAt(
+          0
+        )}${user.lastName.charAt(0)}`}</ShellHeaderDropdownLetters>
         {user.avatar ? <ShellHeaderAvatar src={user.avatar} /> : null}
         <ShellDropdownContainer showDropdown={this.state.showDropdown}>
           <ShellDropdownList>
@@ -156,12 +159,25 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(ShellDropdown);
 
 const ShellHeaderDropdown = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   height: 36px;
   width: 36px;
   border-radius: 50%;
-  background: ${props => props.theme.colors.pink};
+  background: ${props => props.theme.colors.purple};
   cursor: pointer;
+`;
+
+const ShellHeaderDropdownLetters = styled.span`
+  position: relative;
+  top: 1px;
+  left: 1px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: white;
 `;
 
 const ShellHeaderAvatar = styled.img`

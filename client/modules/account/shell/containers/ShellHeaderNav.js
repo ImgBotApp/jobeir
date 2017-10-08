@@ -18,13 +18,13 @@ const ShellHeaderNav = (props: { activeCompany: { _id: string } }) => {
 
   return (
     <ShellHeaderNavContainer>
-      <ShellHeaderNavLink purple to={link}>
+      <ShellHeaderNavLink purple={true} to={link}>
         Create Job
       </ShellHeaderNavLink>
-      <ShellHeaderNavLink hideMobile to="/account/jobs">
+      <ShellHeaderNavLink hideMobile={true} to="/account/jobs">
         Jobs
       </ShellHeaderNavLink>
-      <ShellHeaderNavLink hideMobile to="/account/company">
+      <ShellHeaderNavLink hideMobile={true} to="/account/company">
         Company
       </ShellHeaderNavLink>
     </ShellHeaderNavContainer>

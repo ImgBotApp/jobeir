@@ -34,8 +34,8 @@ require('../modules/auth/reset/containers/Reset');
 require('../modules/auth/password/containers/Password');
 require('../modules/account/shell/containers/Shell');
 require('../modules/account/create/step/containers/Step');
-require('../modules/account/profile/containers/Profile');
 require('../modules/account/create/step/containers/StepComplete');
+require('../modules/account/profile/containers/Profile');
 require('../modules/account/jobs/containers/Jobs');
 require('../modules/account/jobs/posting/containers/JobPostingToggle');
 require('../modules/account/company/containers/Company');
@@ -171,7 +171,7 @@ const routes = (
       }}
     />
     <Route
-      path="/create/progress"
+      path="/create/:companyId"
       getComponent={(nextState, cb) => {
         require.ensure(
           [],

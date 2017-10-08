@@ -9,45 +9,41 @@ import { FadeIn } from '../../../../../styles/animate';
 
 const StepComplete = (props: {
   params: { create: string, companyId: string }
-}) => {
-  const { params } = props;
+}) => (
+  <StepCompleteContainer>
+    <StepHeader />
+    <StepCompleteContent>
+      <div>
+        <StepCompleteHeader>Next step, create jobs!</StepCompleteHeader>
+        <List>
+          <ListItem>
+            <ListNumber complete>1</ListNumber> Agree to posting policy
+          </ListItem>
+          <ListItem>
+            <ListNumber complete>2</ListNumber> Create a company
+          </ListItem>
+          <ListItem>
+            <ListNumber>3</ListNumber> Create jobs
+          </ListItem>
+        </List>
 
-  return (
-    <StepCompleteContainer>
-      <StepHeader />
-      <StepCompleteContent>
-        <div>
-          <StepCompleteHeader>Next step, create jobs!</StepCompleteHeader>
-          <List>
-            <ListItem>
-              <ListNumber complete>1</ListNumber> Agree to posting policy
-            </ListItem>
-            <ListItem>
-              <ListNumber complete>2</ListNumber> Create a company
-            </ListItem>
-            <ListItem>
-              <ListNumber>3</ListNumber> Create jobs
-            </ListItem>
-          </List>
-
-          <StyledLink to={`/create/job/about/${params.companyId}`}>
-            Continue
-          </StyledLink>
-        </div>
-        <FadeIn>
-          <ArtContainer>
-            <SolidBallPurpleLeft />
-            <SolidBallPurpleRight />
-            <SolidBallPurpleBottom />
-            <HollowBallRightTop />
-            <HollowBallLeftTop />
-            <HollowBallLeftBottom />
-          </ArtContainer>
-        </FadeIn>
-      </StepCompleteContent>
-    </StepCompleteContainer>
-  );
-};
+        <StyledLink to={`/create/job/about/${props.params.companyId}`}>
+          Continue
+        </StyledLink>
+      </div>
+      <FadeIn>
+        <ArtContainer>
+          <SolidBallPurpleLeft />
+          <SolidBallPurpleRight />
+          <SolidBallPurpleBottom />
+          <HollowBallRightTop />
+          <HollowBallLeftTop />
+          <HollowBallLeftBottom />
+        </ArtContainer>
+      </FadeIn>
+    </StepCompleteContent>
+  </StepCompleteContainer>
+);
 
 export default UserWrapper(StepComplete);
 
