@@ -1,8 +1,10 @@
 .DS_Store
 node_modules/
 npm-debug.log
-public/*
-dist
+public/static/dist
+public/uploads
+public/sw.js
+dist/
 build
 coverage/
 server/config/config.js
