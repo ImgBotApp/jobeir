@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { media } from '../../../../../styles/breakpoints';
 import { Link } from 'react-router';
 import UserWrapper from '../../../../user/containers/UserWrapper';
+import AppHead from '../../../../app/components/AppHead';
 import StepHeader from '../components/StepHeader';
 import { FadeIn } from '../../../../../styles/animate';
 
@@ -11,6 +12,7 @@ const StepComplete = (props: {
   params: { create: string, companyId: string }
 }) => (
   <StepCompleteContainer>
+    <AppHead title="Create jobs" />
     <StepHeader />
     <StepCompleteContent>
       <div>

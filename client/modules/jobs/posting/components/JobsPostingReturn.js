@@ -77,8 +77,8 @@ const StyledExternalLink = styled.a`
   position: absolute;
   right: 34px;
   top: 34px;
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   font-size: 16px;
   font-weight: 600;
   color: ${props => props.theme.colors.purple};

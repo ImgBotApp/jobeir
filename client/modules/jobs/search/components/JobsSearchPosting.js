@@ -94,10 +94,7 @@ const StyledLink = styled(Link)`
   cursor: pointer;
 `;
 
-const Purple = styled.span`
-  color: ${props => props.theme.colors.purple};
-  font-weight: 600;
-`;
+const Purple = styled.span`color: ${props => props.theme.colors.purple};`;
 
 const JobsSearchPostingTop = styled.div`
   display: flex;
@@ -141,7 +138,7 @@ const JobsSearchPostingTitle = styled.h2`
 
 const JobsSearchPostingSubTitle = styled.div`
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
 `;
 
 const JobsSearchPostingType = styled.div`display: flex;`;
