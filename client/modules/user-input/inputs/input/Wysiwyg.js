@@ -112,6 +112,14 @@ const EditorContainer = styled.div`
     margin: -8px 0 0 -10px;
   }
 
+  .rdw-editor-wrapper {
+    min-height: 260px;
+
+    ${media.tablet`
+      min-height: 160px;
+    `};
+  }
+
   .rdw-editor-toolbar,
   .rdw-inline-wrapper,
   .rdw-list-wrapper {
