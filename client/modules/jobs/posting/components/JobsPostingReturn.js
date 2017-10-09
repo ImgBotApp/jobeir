@@ -15,6 +15,7 @@ const JobsPostingReturn = (props: { query: string, externalLink: string }) => (
       <StyledExternalLink
         href={`${props.externalLink}?ref=gost`}
         target="_blank"
+        rel="noopener noreferrer"
       >
         Apply
       </StyledExternalLink>

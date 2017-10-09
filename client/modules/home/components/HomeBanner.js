@@ -32,7 +32,7 @@ export default HomeBanner;
 const HomeBannerContainer = styled.div`
   width: 100%;
   display: block;
-  padding: 75px 0 0;
+  padding: 25px 0 0;
 `;
 
 const HomeBannerImage = styled.img`
@@ -44,7 +44,7 @@ const HomeBannerHeader = styled.div`
   overflow: hidden;
   margin-top: -13%;
   padding-bottom: 30px;
-  background: #fafafa;
+  background: #f9f8f7;
 `;
 
 const HomeBannerCard = styled.div`

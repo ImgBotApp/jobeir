@@ -5,6 +5,7 @@ import AppHead from '../../app/components/AppHead';
 import HomeHeader from '../components/HomeHeader';
 import HomeBanner from '../components/HomeBanner';
 import HomeFeaturedJobs from '../components/HomeFeaturedJobs';
+import HomeHalfCopy from '../components/HomeHalfCopy';
 
 const Home = () => (
   <HomeContainer>
@@ -12,6 +13,7 @@ const Home = () => (
     <HomeHeader />
     <HomeBanner />
     <HomeFeaturedJobs />
+    <HomeHalfCopy />
     <HomeHeader />
   </HomeContainer>
 );

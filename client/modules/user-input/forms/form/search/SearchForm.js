@@ -191,7 +191,7 @@ const SearchInput = styled.input`
   border: 0;
   height: 100%;
   font-weight: 800;
-  padding-top: 5px;
+  padding-top: 8px;
   font-size: 20px;
 
   &:focus {
@@ -278,7 +278,7 @@ const SelectContainer = styled.div`
   .Select {
     position: relative;
     top: -1px;
-    padding-top: 5px;
+    padding-top: 8px;
   }
 
   .Select,
@@ -432,8 +432,9 @@ const SelectContainer = styled.div`
 
   .Select-clear-zone {
     transition: opacity 200ms ease;
+    font-family: Avenir;
     opacity: 0;
-    color: #212121;
+    color: #bfbfbf;
     cursor: pointer;
     display: table-cell;
     position: relative;

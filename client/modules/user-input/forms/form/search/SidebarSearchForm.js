@@ -205,15 +205,16 @@ const SearchInputContainer = styled.div`
 
 const SearchInputClear = styled.div`
   transition: all 200ms ease;
+  font-family: Avenir;
   opacity: ${props => (props.hasValue ? '1' : '0')};
-  color: #898989;
+  color: #bfbfbf;
   cursor: pointer;
   display: table-cell;
   position: relative;
   -webkit-text-align: center;
   text-align: center;
   vertical-align: middle;
-  font-weight: 200;
+  font-weight: 100;
   width: 17px;
   position: absolute;
   bottom: ${props => (props.isMobileFilter ? ' 12px' : '16px')};
@@ -431,9 +432,10 @@ const SelectContainer = styled.div`
   }
 
   .Select-clear-zone {
+    font-family: Avenir;
     transition: opacity 200ms ease;
     opacity: 0;
-    color: #898989;
+    color: #bfbfbf;
     cursor: pointer;
     display: table-cell;
     position: relative;

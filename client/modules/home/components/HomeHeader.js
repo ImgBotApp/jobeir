@@ -7,7 +7,7 @@ import HomeSearch from './HomeSearch';
 const HomeHeader = () => (
   <Header>
     <HeaderText>
-      Find your next job<br /> Lorem inspum jonadabom
+      Find the best jobs<br />in the global tech industry
     </HeaderText>
     <HomeSearch />
   </Header>
@@ -17,7 +17,7 @@ export default HomeHeader;
 
 const Header = styled.div`
   max-width: 860px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
   padding: 50px 0;
   line-height: 1.1;
 
@@ -31,9 +31,10 @@ const Header = styled.div`
 `;
 
 const HeaderText = styled.h1`
-  font-size: 46px;
+  font-size: 50px;
   font-weight: 900;
   text-align: center;
+  line-height: 1.2;
 
   ${media.desktop`
     font-size: 40px;

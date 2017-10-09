@@ -22,6 +22,7 @@ const JobsPostingCompany = (props: { activePosting: {} }) => {
           <JobsPostingCompanyLink
             href={`${activePosting.externalLink}?ref=gost`}
             target="_blank"
+            rel="noopener noreferrer"
           >
             Apply Now
           </JobsPostingCompanyLink>
