@@ -16,15 +16,13 @@ const agreeToValues = (props: {
 
 const CompanyOnboarding = props => (
   <div>
+    <Header>First things first</Header>
     <List>
       <ListItem>
-        <ListNumber>1</ListNumber> Agree to posting policy
+        <ListNumber>1</ListNumber> Create a company
       </ListItem>
       <ListItem>
-        <ListNumber>2</ListNumber> Create a company
-      </ListItem>
-      <ListItem>
-        <ListNumber>3</ListNumber> Create jobs
+        <ListNumber>2</ListNumber> Create jobs
       </ListItem>
     </List>
     <Header>Posting policy</Header>
@@ -65,14 +63,15 @@ const List = styled.ul`
   font-size: 20px;
   line-height: 1.6;
   list-style: none;
-  margin-bottom: 50px;
+  margin: 20px auto 50px;
 `;
 
 const ListItem = styled.li`
   display: flex;
   align-items: center;
   line-height: 1.6;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+  font-weight: 600;
 `;
 
 const AgreeLink = styled.div`

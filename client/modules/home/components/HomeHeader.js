@@ -4,11 +4,13 @@ import styled from 'styled-components';
 import { media } from '../../../styles/breakpoints';
 import HomeSearch from './HomeSearch';
 
-const HomeHeader = () => (
+const HomeHeader = (props: { showHeaderText: true }) => (
   <Header>
-    <HeaderText>
-      Find the best jobs<br />in the global tech industry
-    </HeaderText>
+    {props.showHeaderText && (
+      <HeaderText>
+        Find the best jobs<br />in the global tech industry
+      </HeaderText>
+    )}
     <HomeSearch />
   </Header>
 );

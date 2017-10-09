@@ -137,13 +137,19 @@ const EditorContainer = styled.div`
     line-height: 1.5;
   }
 
-  .public-DraftStyleDefault-block {
-    margin: 0.5em 0;
+  .rdw-editor-main {
     min-height: 210px;
 
     ${media.tablet`
-      margin: 4px 0;
       min-height: 110px;
+    `};
+  }
+
+  .public-DraftStyleDefault-block {
+    margin: 0.5em 0;
+
+    ${media.tablet`
+      margin: 4px 0;
     `};
   }
 

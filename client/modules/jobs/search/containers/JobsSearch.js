@@ -70,6 +70,11 @@ class JobsSearch extends Component {
   }
 
   componentDidMount() {
+    /**
+     * One of the few components that we manually want to set to the top of
+     * the page because there's a search bar at the bottom of the home page.
+     */
+    window.scrollTo(0, 0);
     const { dispatch, jobs: { isLoaded }, query } = this.props;
     const queryData = queryString.stringify(query);
 

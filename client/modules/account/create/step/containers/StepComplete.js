@@ -19,13 +19,10 @@ const StepComplete = (props: {
         <StepCompleteHeader>Next step, create jobs!</StepCompleteHeader>
         <List>
           <ListItem>
-            <ListNumber complete>1</ListNumber> Agree to posting policy
+            <ListNumber complete>1</ListNumber> Create a company
           </ListItem>
           <ListItem>
-            <ListNumber complete>2</ListNumber> Create a company
-          </ListItem>
-          <ListItem>
-            <ListNumber>3</ListNumber> Create jobs
+            <ListNumber>2</ListNumber> Create jobs
           </ListItem>
         </List>
 
@@ -114,7 +111,8 @@ const ListItem = styled.li`
   display: flex;
   align-items: center;
   line-height: 1.6;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  font-weight: 600;
 `;
 
 const ListNumber = styled.div`

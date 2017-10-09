@@ -121,7 +121,7 @@ const AuthModalSignupEmail = styled.div`
 const AuthModalSolidBall = styled.div`
   position: absolute;
   border-radius: 50%;
-  background: ${props => props.theme.colors.purple};
+  background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
 `;
 
 const AuthModalSolidBallPurpleLeft = AuthModalSolidBall.extend`
@@ -146,6 +146,7 @@ const AuthModalHollowBallLeftTop = styled.div`
   border-radius: 50%;
   left: 79px;
   top: -126px;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
 
   &::before {
     content: '';
@@ -155,7 +156,7 @@ const AuthModalHollowBallLeftTop = styled.div`
     border-radius: 50%;
     width: 140px;
     height: 140px;
-    box-shadow: 0px 0px 0px 2000px ${props => props.theme.colors.pink};
+    box-shadow: 0px 0px 0px 2000px ${props => props.theme.colors.purple};
   }
 `;
 const AuthModalHollowBallRightTop = styled.div`
@@ -167,6 +168,7 @@ const AuthModalHollowBallRightTop = styled.div`
   border-radius: 50%;
   right: -45px;
   top: -22px;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
 
   &::before {
     content: '';
@@ -176,7 +178,7 @@ const AuthModalHollowBallRightTop = styled.div`
     border-radius: 50%;
     width: 120px;
     height: 120px;
-    box-shadow: 0px 0px 0px 2000px ${props => props.theme.colors.pink};
+    box-shadow: 0px 0px 0px 2000px ${props => props.theme.colors.purple};
   }
 `;
 
@@ -189,6 +191,7 @@ const AuthModalHollowBallLeftBottom = styled.div`
   border-radius: 50%;
   left: 114px;
   bottom: -57px;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
 
   &::before {
     content: '';
@@ -198,6 +201,6 @@ const AuthModalHollowBallLeftBottom = styled.div`
     border-radius: 50%;
     width: 100px;
     height: 100px;
-    box-shadow: 0px 0px 0px 2000px ${props => props.theme.colors.pink};
+    box-shadow: 0px 0px 0px 2000px ${props => props.theme.colors.purple};
   }
 `;

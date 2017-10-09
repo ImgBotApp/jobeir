@@ -10,11 +10,13 @@ import HomeHalfCopy from '../components/HomeHalfCopy';
 const Home = () => (
   <HomeContainer>
     <AppHead title="The Best Jobs in Tech" />
-    <HomeHeader />
+    <HomeHeader showHeaderText={true} />
     <HomeBanner />
     <HomeFeaturedJobs />
     <HomeHalfCopy />
-    <HomeHeader />
+    <HomeFooter>
+      <HomeHeader />
+    </HomeFooter>
   </HomeContainer>
 );
 
@@ -23,4 +25,11 @@ export default Home;
 const HomeContainer = styled.div`
   max-width: 1440px;
   margin: 0 auto;
+`;
+
+const HomeFooter = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px 0;
+  background: #f9f8f7;
 `;

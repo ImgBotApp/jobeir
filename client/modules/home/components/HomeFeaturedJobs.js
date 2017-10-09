@@ -136,7 +136,7 @@ const FeaturedJobSubtitle = styled.p`
 `;
 
 const FeaturedJobDescription = styled.p`
-  line-height: 1.5;
+  line-height: 1.6;
   color: ${props => props.theme.colors.black};
 `;
 
