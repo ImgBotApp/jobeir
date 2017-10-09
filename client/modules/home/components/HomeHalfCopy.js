@@ -16,27 +16,29 @@ const HomeHalfCopy = () => (
         </ArtContainer>
       </HomeHalf>
       <HomeHalf>
-        <HomeHalfHeader>Lorem ipsum up in here and there</HomeHalfHeader>
-        <HomeHalfText>
-          Lorem Khaled Ipsum is a major key to success. You see the hedges, how
-          I got it shaped up? It’s important to shape up your hedges, it’s like
-          getting a haircut, stay fresh. To be successful you’ve got to work
-          hard, to make history, simple, you’ve got to make it.
-        </HomeHalfText>
+        <HomeHalfNarrow right={true}>
+          <HomeHalfHeader>Lorem ipsum up in here and there</HomeHalfHeader>
+          <HomeHalfText>
+            Lorem Khaled Ipsum is a major key to success. You see the hedges,
+            how I got it shaped up? It’s important to shape up your hedges, it’s
+            like getting a haircut, stay fresh.
+          </HomeHalfText>
+        </HomeHalfNarrow>
       </HomeHalf>
     </HomeHalfContainer>
     <HomeHalfContainer>
       <HomeHalf>
-        <HomeHalfHeader>Lorem ipsum up in here and there</HomeHalfHeader>
-        <HomeHalfText>
-          Lorem Khaled Ipsum is a major key to success. You see the hedges, how
-          I got it shaped up? It’s important to shape up your hedges, it’s like
-          getting a haircut, stay fresh. To be successful you’ve got to work
-          hard, to make history, simple, you’ve got to make it.
-        </HomeHalfText>
+        <HomeHalfNarrow>
+          <HomeHalfHeader>Lorem ipsum up in here and there</HomeHalfHeader>
+          <HomeHalfText>
+            Lorem Khaled Ipsum is a major key to success. You see the hedges,
+            how I got it shaped up? It’s important to shape up your hedges, it’s
+            like getting a haircut, stay fresh.
+          </HomeHalfText>
+        </HomeHalfNarrow>
       </HomeHalf>
       <HomeHalf>
-        <ArtContainer>
+        <ArtContainer rotate={true}>
           <SolidBallPurpleLeft />
           <SolidBallPurpleRight />
           <SolidBallPurpleBottom />
@@ -66,6 +68,12 @@ const HomeHalf = styled.div`
   display: block;
   padding: 75px 0 0;
   flex: 1;
+  margin-bottom: 50px;
+`;
+
+const HomeHalfNarrow = styled.div`
+  width: 82%;
+  margin: ${props => (props.right ? '0 0 0 auto' : '0 auto 0 0')};
 `;
 
 const HomeHalfHeader = styled.h3`
@@ -83,6 +91,8 @@ const ArtContainer = styled.div`
   position: relative;
   width: 100%;
   height: 400px;
+
+  transform: rotate(${props => (props.rotate ? '42' : '0')}deg);
 `;
 
 const SolidBall = styled.div`
