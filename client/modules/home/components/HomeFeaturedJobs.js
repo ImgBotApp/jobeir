@@ -89,7 +89,7 @@ const HomeFeaturedContainer = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   padding: 100px 0 10px;
-  background: #f9f8f7;
+  background: linear-gradient(#f9f8f7 82%, #fff);
 
   ${media.desktop`
     padding: 50px 24px 10px;
