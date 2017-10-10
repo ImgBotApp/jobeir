@@ -94,7 +94,7 @@ const AuthModalHeader = styled.div`
   min-height: 170px;
   overflow: hidden;
 
-  ${media.tablet`min-height: 120px;`};
+  ${media.tablet`min-height: 150px;`};
 `;
 
 const AuthModalContent = styled.div`
@@ -130,9 +130,9 @@ const AuthModalSolidBallPurpleLeft = AuthModalSolidBall.extend`
 
   ${media.tablet`
     left: -44px;
-    top: -41px;
-    height: 240px;
-    width: 240px;
+    top: -80px;
+    height: 200px;
+    width: 200px;
   `};
 `;
 
@@ -142,10 +142,10 @@ const AuthModalSolidBallPurpleRight = AuthModalSolidBall.extend`
   width: 220px;
 
   ${media.tablet`
-    top: -100px;
-    right: -20px;
-    height: 200px;
-    width: 200px;
+    top: 21px;
+    right: 8px;
+    height: 160px;
+    width: 160px;
   `};
 `;
 
@@ -159,6 +159,8 @@ const AuthModalHollowBallLeftTop = styled.div`
   left: 79px;
   top: -126px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
+
+  ${media.tablet`display: none`};
 
   &::before {
     content: '';
@@ -182,6 +184,8 @@ const AuthModalHollowBallRightTop = styled.div`
   bottom: -72px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
 
+  ${media.tablet`display: none`};
+
   &::before {
     content: '';
     position: absolute;
@@ -204,6 +208,8 @@ const AuthModalHollowBallLeftBottom = styled.div`
   left: 110px;
   bottom: -57px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
+
+  ${media.tablet`display: none`};
 
   &::before {
     content: '';

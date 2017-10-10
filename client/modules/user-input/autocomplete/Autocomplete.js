@@ -1,9 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
-import { change, arrayPush } from 'redux-form';
 import debounce from 'lodash/debounce';
+import { change, arrayPush } from 'redux-form';
+import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 import AutocompleteResult from './AutocompleteResult';
 import AutocompleteLogo from './AutocompleteLogo';
 import { autocompletePredictions } from '../../jobs/search/ducks';
@@ -263,6 +264,10 @@ const AutocompleteList = styled.ul`
   z-index: 1;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
     0 8px 16px rgba(27, 39, 51, 0.08);
+
+  ${media.phablet`
+    top: calc(100% + 0px) !important;
+  `};
 `;
 
 const AutocompleteSearching = styled.div`

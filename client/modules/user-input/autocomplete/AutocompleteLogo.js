@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const AutocompleteLogo = () => (
+const AutocompleteLogo = () => (
   <AutocompleteLogoContainer>
     <img
       src="/public/static/imgs/google/powered_by_google_on_white_hdpi.png"

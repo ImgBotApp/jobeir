@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 
 /**
  * Autocomplete result builds the list item seen within the
@@ -99,7 +100,7 @@ const SeperatorText = () => <ListItemSpace>{', '}</ListItemSpace>;
  * each text list item within the dropdown of the autocomplete input
  * @param {*} props 
  */
-export const AutocompleteResult = (props: {
+const AutocompleteResult = (props: {
   prediction: {},
   fetchPlaceId: Function,
   selected: boolean
@@ -129,6 +130,10 @@ const ListItem = styled.li`
   &:hover {
     background: rgba(0, 0, 0, 0.05);
   }
+
+  ${media.phablet`
+    padding: 14px 15px;
+  `};
 `;
 
 const ListItemSpace = styled.span`

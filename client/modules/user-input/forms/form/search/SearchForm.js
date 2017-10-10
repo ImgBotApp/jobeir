@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
+import { Field, reduxForm, change } from 'redux-form';
 import styled from 'styled-components';
 import { media } from '../../../../../styles/breakpoints';
 import { browserHistory } from 'react-router';
-import { Field, reduxForm } from 'redux-form';
 import queryString from 'query-string';
-import Autocomplete from '../../../autocomplete/Autocomplete';
 import Select from 'react-select';
+import Autocomplete from '../../../autocomplete/Autocomplete';
 import { jobOptions } from '../../../options';
 
 const customStyles = {
@@ -20,8 +20,22 @@ class Input extends Component {
     findDOMNode(this.nameInput).focus();
   };
 
+  handleClearClick = () => {
+    const { dispatch } = this.props.meta;
+    dispatch(change('search', 'location', ''));
+    dispatch(change('search', 'lat', ''));
+    dispatch(change('search', 'lng', ''));
+  };
+
   render() {
-    const { meta, location } = this.props;
+    const {
+      autocomplete,
+      placeholder,
+      input,
+      label,
+      meta,
+      location
+    } = this.props;
     const showError = meta.touched && meta.error && meta.invalid;
 
     return (
@@ -29,25 +43,31 @@ class Input extends Component {
         location={location}
         onClick={this.handleInputContainerClick}
       >
-        <SearchLabel htmlFor={this.props.input.name}>
-          {this.props.label} {meta.error}
+        <SearchLabel htmlFor={input.name}>
+          {label} {meta.error}
         </SearchLabel>
         <SearchInput
-          {...this.props.input}
-          type={this.props.input.type || 'text'}
-          id={this.props.input.name}
-          name={this.props.input.name}
-          placeholder={this.props.placeholder}
+          {...input}
+          type={input.type || 'text'}
+          id={input.name}
+          name={input.name}
+          placeholder={placeholder}
           showError={showError}
-          ref={input => {
-            this.nameInput = input;
+          ref={inputNode => {
+            this.nameInput = inputNode;
           }}
         />
-        {this.props.autocomplete && (
+        <SearchInputClear
+          hasValue={input.value}
+          onClick={this.handleClearClick}
+        >
+          ×
+        </SearchInputClear>
+        {autocomplete && (
           <Autocomplete
             formName="search"
             types={['(cities)']}
-            id={this.props.input.name}
+            id={input.name}
             customStyles={customStyles}
           />
         )}
@@ -203,6 +223,33 @@ const SearchInput = styled.input`
   `};
 `;
 
+const SearchInputClear = styled.div`
+  transition: all 200ms ease;
+  font-family: Avenir;
+  opacity: ${props => (props.hasValue ? '1' : '0')};
+  color: #afafaf;
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  -webkit-text-align: center;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 100;
+  width: 17px;
+  position: absolute;
+  bottom: 16px;
+  right: 15px;
+  font-size: 20px;
+
+  &:hover {
+    color: #212121;
+  }
+
+  ${media.tablet`
+    bottom: 12px;
+  `};
+`;
+
 const SearchLabel = styled.label`
   margin-top: 15px;
   font-size: 17px;
@@ -300,6 +347,11 @@ const SelectContainer = styled.div`
     pointer-events: none;
     opacity: 0.35;
   }
+
+  .Select-arrow-zone {
+    display: none;
+  }
+
   .Select-control {
     background-color: #fff;
     color: rgba(0, 0, 0, 0.85);
@@ -434,7 +486,7 @@ const SelectContainer = styled.div`
     transition: opacity 200ms ease;
     font-family: Avenir;
     opacity: 0;
-    color: #bfbfbf;
+    color: #afafaf;
     cursor: pointer;
     display: table-cell;
     position: relative;

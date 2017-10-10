@@ -67,5 +67,5 @@ const JobSearchFilterMobileHeaderButton = styled.button`
 `;
 
 const JobSearchFilterMobileClear = styled.div`
-  color: ${props => props.theme.colors.purple};
+  color: ${props => props.theme.colors.black};
 `;

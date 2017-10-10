@@ -207,7 +207,7 @@ const SearchInputClear = styled.div`
   transition: all 200ms ease;
   font-family: Avenir;
   opacity: ${props => (props.hasValue ? '1' : '0')};
-  color: #bfbfbf;
+  color: #afafaf;
   cursor: pointer;
   display: table-cell;
   position: relative;
@@ -435,7 +435,7 @@ const SelectContainer = styled.div`
     font-family: Avenir;
     transition: opacity 200ms ease;
     opacity: 0;
-    color: #bfbfbf;
+    color: #afafaf;
     cursor: pointer;
     display: table-cell;
     position: relative;
