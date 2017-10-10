@@ -226,6 +226,10 @@ const ShellDropdownContainer = styled.div`
     width: 100%;
     top: 65px;
     min-height: calc(100vh - 65px);
+    margin-top: 0;
+    padding: 0 0 20px;
+    height: 50vh;
+    overflow-y: scroll;
     box-shadow: none;
     justify-content: flex-start;
   `};
@@ -313,6 +317,10 @@ const ShellDropdownListItemBottom = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: default;
+
+  ${media.tablet`
+    padding-top: 0;
+  `};
 `;
 
 const ShellDropdownListItemHr = styled.hr`
