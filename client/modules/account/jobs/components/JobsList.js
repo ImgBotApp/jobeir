@@ -68,10 +68,6 @@ const JobsBodyList = styled.ul`
   ${media.tablet`
     margin: 30px auto 0;
   `};
-
-  ${media.phonePlus`
-    margin: 20px auto 0;
-  `};
 `;
 
 const JobsBody = styled.li`
@@ -92,7 +88,7 @@ const JobsBody = styled.li`
   `};
 
   ${media.phablet`
-    margin-bottom: 12px;
-    padding-bottom: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
   `};
 `;

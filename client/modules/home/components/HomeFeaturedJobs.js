@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 
 const featuredJobs = [
   {
@@ -89,12 +90,20 @@ const HomeFeaturedContainer = styled.div`
   margin: 0 auto;
   padding: 100px 0 10px;
   background: #f9f8f7;
+
+  ${media.desktop`
+    padding: 50px 24px 10px;
+  `};
 `;
 
 const HomeFeaturedHeader = styled.div`
   max-width: 960px;
   border-bottom: 1px solid #d9d9d9;
   margin: 0 auto 100px;
+
+  ${media.phonePlus`
+    margin: 0 auto 70px;
+  `};
 `;
 
 const HomeFeaturedHeading = styled.h4`
@@ -115,6 +124,14 @@ const FeaturedJobContainer = styled.div`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   margin: 0 auto 100px;
   padding: 30px;
+
+  ${media.dablet`
+    flex-direction: column;
+  `};
+
+  ${media.phonePlus`
+    margin-bottom: 70px;
+  `};
 `;
 
 const FeaturedJobLink = styled.a`
@@ -127,10 +144,14 @@ const FeaturedJobTitle = styled.h2`
   font-weight: 900;
   margin-bottom: 8px;
   color: ${props => props.theme.colors.black};
+
+  ${media.phablet`
+    font-size: 26px;
+    margin-bottom: 12px;
+  `};
 `;
 
 const FeaturedJobSubtitle = styled.p`
-  font-weight: 600;
   margin-bottom: 20px;
   color: ${props => props.theme.colors.grey.mid};
 `;
@@ -138,17 +159,37 @@ const FeaturedJobSubtitle = styled.p`
 const FeaturedJobDescription = styled.p`
   line-height: 1.6;
   color: ${props => props.theme.colors.black};
+
+  ${media.phablet`
+    margin-bottom: 20px;
+  `};
 `;
 
 const FeaturedJobTextContainer = styled.div`
   display: flex;
   margin-left: 30px;
+
+  ${media.dablet`
+    margin: 0 auto;
+  `};
+
+  ${media.phablet`
+    flex-direction: column;
+  `};
 `;
 
 const FeaturedJobImageContainer = styled.div`
   position: relative;
   min-width: 375px;
   height: 190px;
+
+  ${media.dablet`
+    width: 100%;
+  `};
+
+  ${media.phonePlus`
+    min-width: auto;
+  `};
 `;
 
 const FeaturedJobImage = styled.img`
@@ -156,6 +197,17 @@ const FeaturedJobImage = styled.img`
   width: 375px;
   top: -60px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+  ${media.dablet`
+    left: 0;
+    top: -90px;
+  `};
+
+  ${media.phonePlus`
+    width: 130%;
+    top: -70px;
+    left: -15%
+  `};
 `;
 
 const FeaturedJobCompanyIcon = styled.img`
@@ -163,4 +215,8 @@ const FeaturedJobCompanyIcon = styled.img`
   min-width: 48px;
   border-radius: 50%;
   overflow: hidden;
+
+  ${media.phablet`
+    width: 48px;
+  `};
 `;

@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 
 const HomeBanner = () => (
   <HomeBannerContainer>
@@ -38,6 +39,11 @@ const HomeBannerContainer = styled.div`
 const HomeBannerImage = styled.img`
   width: 85%;
   display: block;
+
+  ${media.hd`
+    width: 100%;
+    margin: 0 auto;
+  `};
 `;
 
 const HomeBannerHeader = styled.div`
@@ -53,18 +59,47 @@ const HomeBannerCard = styled.div`
   width: 65%;
   z-index: 1;
   position: relative;
+
+  ${media.hd`
+    width: 90%;
+    margin: 0 auto;
+  `};
 `;
 
-const HomeBannerCardContent = styled.div`padding: 55px 125px 65px 107px;`;
+const HomeBannerCardContent = styled.div`
+  padding: 55px 125px 65px 107px;
+
+  ${media.hd`
+    padding: 30px;
+  `};
+`;
 
 const HomeBannerCardHeader = styled.h2`
   font-weight: 900;
   font-size: 42px;
   margin-bottom: 30px;
+
+  ${media.desktop`
+    font-size: 34px;
+    margin-bottom: 15px;
+  `};
+
+  ${media.tablet`
+    font-size: 28px;
+    margin-bottom: 15px;
+  `};
+
+  ${media.phonePlus`
+    font-size: 20px;
+  `};
 `;
 
 const HomeBannerCardText = styled.p`
   color: #4f5053;
   font-size: 18px;
   line-height: 1.7;
+
+  ${media.desktop`
+    font-size: 16px;
+  `};
 `;

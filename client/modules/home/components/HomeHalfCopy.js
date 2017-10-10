@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 
 const HomeHalfCopy = () => (
   <HomeHalfCopyContainer>
@@ -59,6 +60,10 @@ const HomeHalfCopyContainer = styled.div`
   width: 100%;
   display: block;
   padding: 75px 0 0;
+
+  ${media.desktop`
+    display: none;
+  `};
 `;
 
 const HomeHalfContainer = styled.div`display: flex;`;

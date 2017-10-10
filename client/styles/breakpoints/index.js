@@ -4,6 +4,7 @@ const sizes = {
   retina: 1440,
   hd: 1280,
   desktop: 1040,
+  dablet: 868,
   tablet: 768,
   phablet: 600,
   phonePlus: 480,

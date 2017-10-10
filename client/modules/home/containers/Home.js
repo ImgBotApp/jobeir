@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 import AppHead from '../../app/components/AppHead';
 import HomeHeader from '../components/HomeHeader';
 import HomeBanner from '../components/HomeBanner';
@@ -32,4 +33,8 @@ const HomeFooter = styled.div`
   margin: 0 auto;
   padding: 20px 0;
   background: #f9f8f7;
+
+  ${media.desktop`
+    background: #fff;
+  `};
 `;
