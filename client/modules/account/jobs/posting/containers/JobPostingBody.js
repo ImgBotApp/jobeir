@@ -20,22 +20,25 @@ export default JobPostingBody;
 
 const JobPostingBodyContainer = styled.div`
   position: relative;
-  max-width: 670px;
+  max-width: 740px;
   margin: 0 auto;
   padding: 0 24px;
 
-  p {
-    line-height: 1.6;
-    margin-bottom: 30px;
-    font-size: 20px;
-    color: #333;
+  strong {
+    font-weight: 900;
+  }
 
-    ${media.desktop`
-      font-size: 18px;
-    `};
+  p {
+    line-height: 36px;
+    margin-bottom: 30px;
+    font-size: 19px;
+    color: #2b2b2b;
+    font-family: 'Tiempos', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 
     ${media.phablet`
-      font-size: 16px;
+      font-size: 18px;
     `};
 
     ${media.phonePlus`
@@ -46,6 +49,9 @@ const JobPostingBodyContainer = styled.div`
   a {
     color: rgba(0, 0, 0, 0.85);
     text-decoration-skip: ink;
+    font-family: 'Tiempos', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   img {
@@ -56,7 +62,8 @@ const JobPostingBodyContainer = styled.div`
   h4,
   h5,
   h6 {
-    margin-bottom: 10px;
+    font-weight: 900;
+    margin-bottom: 20px;
 
     ${media.tablet`
       margin-bottom: 15px;
@@ -68,8 +75,9 @@ const JobPostingBodyContainer = styled.div`
   }
 
   h2 {
-    font-size: 26px;
-    margin-bottom: 20px;
+    font-weight: 900;
+    font-size: 28px;
+    margin-bottom: 25px;
 
     ${media.phablet`
       font-size: 20px;
@@ -81,6 +89,7 @@ const JobPostingBodyContainer = styled.div`
   }
 
   h3 {
+    font-weight: 900;
     font-size: 24px;
 
     ${media.phablet`
@@ -90,7 +99,7 @@ const JobPostingBodyContainer = styled.div`
 
   h4,
   h6 {
-    font-size: 20px;
+    font-size: 22px;
 
     ${media.phablet`
       font-size: 18px;
@@ -99,11 +108,14 @@ const JobPostingBodyContainer = styled.div`
 
   ul,
   ol {
-    line-height: 1.6;
+    line-height: 36px;
     padding-left: 20px;
     margin-bottom: 50px;
-    font-size: 18px;
-    color: #333;
+    font-size: 19px;
+    color: #2b2b2b;
+    font-family: 'Tiempos', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 
     ${media.tablet`
       margin-bottom: 30px;
@@ -113,7 +125,7 @@ const JobPostingBodyContainer = styled.div`
     & > li {
       margin-bottom: 15px;
       font-size: 18px;
-      color: #333;
+      color: #2b2b2b;
 
       ${media.tablet`
         margin-bottom: 10px;

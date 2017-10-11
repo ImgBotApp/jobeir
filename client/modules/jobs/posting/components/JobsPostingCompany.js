@@ -35,7 +35,7 @@ const JobsPostingCompany = (props: { activePosting: {} }) => {
 export default JobsPostingCompany;
 
 const JobsPostingCompanyContainer = styled.div`
-  max-width: 670px;
+  max-width: 740px;
   padding: 0 24px;
   margin: 50px auto;
 `;
@@ -52,9 +52,13 @@ const JobsPostingCompanyHeader = styled.h3`
 `;
 
 const JobsPostingCompanyText = styled.p`
-  line-height: 1.5;
+  line-height: 36px;
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 19px;
+  color: #2b2b2b;
+  font-family: 'Tiempos', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 
   ${media.desktop`
     font-size: 18px;
@@ -68,21 +72,6 @@ const JobsPostingCompanyText = styled.p`
     margin-bottom: 15px;
   `};
 `;
-
-const JobsPostingCompanyInfoHeader = styled.h4`
-  line-height: 1.5;
-  margin-bottom: 0px;
-  font-size: 20px;
-  font-weight: 800;
-`;
-
-const JobsPostingCompanyInfo = styled.div`
-  line-height: 1.5;
-  margin-bottom: 15px;
-  font-size: 20px;
-`;
-
-const JobsPostingCompanyLocation = styled.div`margin-bottom: 20px;`;
 
 const JobsPostingCompanyLink = styled.a`
   display: block;
