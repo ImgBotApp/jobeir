@@ -118,6 +118,35 @@ const EditorContainer = styled.div`
     display: flex;
   }
 
+  .rdw-block-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .rdw-dropdown-optionwrapper {
+    position: absolute;
+    list-style: none;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
+      0 8px 16px rgba(27, 39, 51, 0.08);
+
+    .rdw-dropdownoption-default {
+      padding: 5px 8px;
+      border-bottom: 1px solid #f1f0f0;
+
+      &:first-child {
+        padding-top: 10px;
+      }
+
+      &:last-child {
+        padding-bottom: 10px;
+      }
+    }
+  }
+
   .rdw-option-wrapper {
     display: flex;
     align-items: center;

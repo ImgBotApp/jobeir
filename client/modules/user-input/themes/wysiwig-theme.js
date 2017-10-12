@@ -1,5 +1,5 @@
 export const wysiwig = {
-  options: ['inline', 'list', 'emoji'],
+  options: ['inline', 'list', 'emoji', 'blockType'],
   inline: {
     inDropdown: false,
     className: undefined,
