@@ -43,7 +43,7 @@ class JobPostingMap extends Component {
     const icon = {
       path: google.maps.SymbolPath.CIRCLE,
       scale: 10,
-      strokeWeight: 6,
+      strokeWeight: 8,
       strokeColor: '#5c6ac4'
     };
 
@@ -97,18 +97,10 @@ const JobPostingMapContainer = styled.div`
     position: absolute;
     width: 100%;
   }
-  .si-float-wrapper,
-  .si-float-wrapper * {
-    box-sizing: border-box;
-  }
 
   [class*='si-wrapper'] {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     position: absolute;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     font-size: 18px;
     cursor: default;
@@ -117,36 +109,30 @@ const JobPostingMapContainer = styled.div`
   .si-wrapper-top {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
     margin-top: -40px;
     margin-left: 0px;
-    -webkit-transform: translate(-50%, -100%);
     transform: translate(-50%, -100%);
   }
 
   .si-wrapper-bottom {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
-    -ms-flex-direction: column-reverse;
     flex-direction: column-reverse;
     margin-top: 0px;
     margin-left: 0px;
-    -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
   }
 
   .si-wrapper-left {
     margin-top: -20px;
     margin-left: -11px;
-    -webkit-transform: translate(-100%, -50%);
     transform: translate(-100%, -50%);
   }
 
   .si-wrapper-right {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
-    -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
     margin-top: -20px;
     margin-left: 11px;
@@ -155,8 +141,6 @@ const JobPostingMapContainer = styled.div`
   }
 
   [class*='si-shadow-wrapper'] {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     position: absolute;
     top: 0;
@@ -171,19 +155,17 @@ const JobPostingMapContainer = styled.div`
   .si-shadow-wrapper-bottom {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
   }
 
   .si-shadow-pointer-bottom,
   .si-shadow-pointer-right {
     -webkit-box-ordinal-group: 0;
-    -ms-flex-order: -1;
     order: -1;
   }
 
   .si-shadow-frame {
-    box-shadow: 20px 20px 0 0 #000;
+    box-shadow: 20px 20px 0 0 #4c4c4c;
   }
 
   [class*='si-shadow-pointer'] {
@@ -197,39 +179,33 @@ const JobPostingMapContainer = styled.div`
     position: absolute;
     width: 141%;
     height: 141%;
-    box-shadow: 0px 28.28427px 0 0 #000;
+    box-shadow: 0px 28.28427px 0 0 #4c4c4c;
   }
 
   .si-shadow-inner-pointer-top {
     left: 50%;
-    -webkit-transform: translate(-50%, -50%) rotate(-45deg);
     transform: translate(-50%, -50%) rotate(-45deg);
   }
 
   .si-shadow-inner-pointer-bottom {
     bottom: 0;
     left: 50%;
-    -webkit-transform: translate(-50%, 50%) rotate(-45deg);
     transform: translate(-50%, 50%) rotate(-45deg);
   }
 
   .si-shadow-inner-pointer-left {
     top: 50%;
-    -webkit-transform: translate(-50%, -50%) rotate(-45deg);
     transform: translate(-50%, -50%) rotate(-45deg);
   }
 
   .si-shadow-inner-pointer-right {
     top: 50%;
     right: 0;
-    -webkit-transform: translate(50%, -50%) rotate(-45deg);
     transform: translate(50%, -50%) rotate(-45deg);
   }
 
   .si-frame {
     position: relative;
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     border-radius: 3px;
     overflow: hidden;
@@ -246,6 +222,9 @@ const JobPostingMapContainer = styled.div`
 
   .si-content {
     overflow: auto;
+    font-family: 'Avenir STD', Avenir, -apple-system, BlinkMacSystemFont,
+      San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI,
+      Arial, sans-serif;
   }
 
   [class*='si-pointer-border'] {
@@ -266,14 +245,12 @@ const JobPostingMapContainer = styled.div`
   .si-pointer-border-top,
   .si-pointer-border-bottom {
     left: 50%;
-    -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
   }
 
   .si-pointer-border-left,
   .si-pointer-border-right {
     top: 50%;
-    -webkit-transform: translate(0, -50%);
     transform: translate(0, -50%);
   }
 
@@ -345,15 +322,6 @@ const JobPostingMapContainer = styled.div`
     margin-left: 3px;
   }
 
-  html {
-    height: 100%;
-  }
-
-  body {
-    height: 100%;
-    margin: 0;
-  }
-
   .map-canvas {
     width: 100%;
     height: 100%;
@@ -389,5 +357,7 @@ const JobPostingMapContainer = styled.div`
     margin: 0 0 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #2b3031;
+    font-weight: 900;
+    font-size: 32px;
   }
 `;
