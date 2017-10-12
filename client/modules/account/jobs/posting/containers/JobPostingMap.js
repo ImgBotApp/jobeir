@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import SnazzyInfoWindow from 'snazzy-info-window';
 import styled from 'styled-components';
 import { media } from '../../../../../styles/breakpoints';
 import lightTheme from '../../../../../maps/styles/';
@@ -49,6 +48,8 @@ class JobPostingMap extends Component {
 
     const marker = new google.maps.Marker({ map, icon, position });
 
+    // https://github.com/atmist/snazzy-info-window/issues/16
+    const SnazzyInfoWindow = require('snazzy-info-window');
     const info = new SnazzyInfoWindow({
       marker,
       content: `<h1>${activePosting.company.displayName} office</h1>

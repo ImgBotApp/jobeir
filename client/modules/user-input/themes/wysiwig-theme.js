@@ -5,14 +5,21 @@ export const wysiwig = {
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    options: ['bold', 'italic'],
+    options: ['bold', 'italic']
   },
   list: {
     inDropdown: false,
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    options: ['unordered', 'ordered'],
+    options: ['unordered', 'ordered']
+  },
+  blockType: {
+    inDropdown: true,
+    options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote'],
+    className: undefined,
+    component: undefined,
+    dropdownClassName: undefined
   },
   emoji: {
     className: undefined,
@@ -148,7 +155,7 @@ export const wysiwig = {
       '📅',
       '✅',
       '❎',
-      '💯',
-    ],
-  },
+      '💯'
+    ]
+  }
 };
