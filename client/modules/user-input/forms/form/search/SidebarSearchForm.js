@@ -238,21 +238,21 @@ const SearchInput = styled.input`
 
   ::-webkit-input-placeholder {
     color: rgba(0, 0, 0, 0.85);
-    font-weight: 200;
+    font-weight: 600;
   }
   :-moz-placeholder {
     color: rgba(0, 0, 0, 0.85);
-    font-weight: 200;
+    font-weight: 600;
     opacity: 1;
   }
   ::-moz-placeholder {
     color: rgba(0, 0, 0, 0.85);
-    font-weight: 200;
+    font-weight: 600;
     opacity: 1;
   }
   :-ms-input-placeholder {
     color: rgba(0, 0, 0, 0.85);
-    font-weight: 200;
+    font-weight: 600;
   }
 
   &:focus {
@@ -349,6 +349,7 @@ const SelectContainer = styled.div`
     line-height: 1.5;
     padding-left: 0;
     padding-right: 18px;
+    font-weight: 600;
     font-size: ${props => (props.isMobileFilter ? ' 18px' : '20px')};
     position: absolute;
     right: 0;

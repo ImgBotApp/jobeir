@@ -20,7 +20,7 @@ export default JobPostingBody;
 
 const JobPostingBodyContainer = styled.div`
   position: relative;
-  max-width: 740px;
+  max-width: 724px;
   margin: 0 auto;
   padding: 0 24px;
 

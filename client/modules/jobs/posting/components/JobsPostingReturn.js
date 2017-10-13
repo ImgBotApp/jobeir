@@ -34,7 +34,7 @@ const JobsPostingReturnContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  max-width: 740px;
+  max-width: 724px;
   margin: 20px auto 30px;
   padding: 30px 24px;
 

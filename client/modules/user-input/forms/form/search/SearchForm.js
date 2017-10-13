@@ -123,6 +123,7 @@ const Button = (props: {
 
 class SearchForm extends Component {
   formSubmit = data => {
+    console.log(data);
     const queryData = {
       q: data.title && data.title.value,
       l: data.location,

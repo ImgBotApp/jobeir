@@ -48,6 +48,6 @@ const JobPostingContainer = styled.div`
 `;
 
 const JobPostingPlaceholderContainer = styled.div`
-  max-width: 740px;
+  max-width: 724px;
   margin: 0 auto;
 `;

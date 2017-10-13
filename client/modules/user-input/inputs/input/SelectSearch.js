@@ -129,6 +129,7 @@ const SelectContainer = styled.div`
     line-height: 1.5;
     padding-left: 18px;
     padding-right: 18px;
+    font-weight: 600;
     position: absolute;
     right: 0;
     top: 0;

@@ -35,7 +35,7 @@ const JobsPostingCompany = (props: { activePosting: {} }) => {
 export default JobsPostingCompany;
 
 const JobsPostingCompanyContainer = styled.div`
-  max-width: 740px;
+  max-width: 724px;
   padding: 0 24px;
   margin: 50px auto;
 `;
