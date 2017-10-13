@@ -259,7 +259,7 @@ const AutocompleteList = styled.ul`
   position: absolute;
   background: #fff;
   width: 100%;
-  top: calc(100% - 0px);
+  top: calc(100% - 12px);
   border-radius: 3px;
   z-index: 1;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
