@@ -16,9 +16,7 @@ const HomeBanner = () => (
             Helping you find the right job
           </HomeBannerCardHeader>
           <HomeBannerCardText>
-            We focus on tech jobs so you don't have to spend your time searching
-            through unrelated postings. With the leading tech companies in the
-            world posting on IVXO you can find the right job in minutes.
+            Grow your career with the leading employers in the tech industry.
           </HomeBannerCardText>
         </HomeBannerCardContent>
       </HomeBannerCard>
@@ -31,7 +29,7 @@ export default HomeBanner;
 const HomeBannerContainer = styled.div`
   width: 100%;
   display: block;
-  padding: 25px 0 0;
+  padding-top: 60px;
 `;
 
 const HomeBannerImage = styled.img`

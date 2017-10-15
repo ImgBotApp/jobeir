@@ -20,7 +20,7 @@ export default HomeHeader;
 const Header = styled.div`
   max-width: 860px;
   margin: 0 auto 50px;
-  padding: 50px 0;
+  padding: 80px 0 50px;
   line-height: 1.1;
 
   ${media.desktop`
@@ -33,10 +33,12 @@ const Header = styled.div`
 `;
 
 const HeaderText = styled.h1`
-  font-size: 50px;
+  font-size: 54px;
   font-weight: 900;
   text-align: center;
   line-height: 1.2;
+  font-family: 'Tiempos', 'Avenir STD', sans-serif;
+  margin-bottom: 40px;
 
   ${media.desktop`
     font-size: 40px;

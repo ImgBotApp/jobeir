@@ -45,19 +45,19 @@ export default JobPostingHeader;
 
 const JobPostingHeaderContainer = styled.div`
   max-width: 724px;
-  margin: 0 auto 60px;
+  margin: 0 auto 80px;
   padding: 0 24px;
 
   ${media.tablet`
-    margin-bottom: 40px;
+    margin-bottom: 50px;
   `};
 `;
 
 const JobPostingHeaderCompanyLogo = styled.img`
-  height: 60px;
+  height: 70px;
 
   ${media.phablet`
-    height: 40px;
+    height: 50px;
   `};
 `;
 
@@ -70,9 +70,10 @@ const JobPostingHeaderCompany = styled.div`
 `;
 
 const JobPostingHeaderTitle = styled.h1`
-  font-size: 46px;
+  font-size: 58px;
   font-weight: 900;
   margin-bottom: 15px;
+  font-family: 'Tiempos';
 
   ${media.tablet`
     font-size: 44px;

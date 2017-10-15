@@ -24,7 +24,7 @@ const JobsPostingCompany = (props: { activePosting: {} }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Apply Now
+            Apply
           </JobsPostingCompanyLink>
         </FadeIn>
       )}
@@ -73,21 +73,54 @@ const JobsPostingCompanyText = styled.p`
   `};
 `;
 
-const JobsPostingCompanyLink = styled.a`
-  display: block;
-  width: 100%;
-  font-size: 18px;
-  padding: 18px;
-  color: white;
-  background-color: ${props => props.theme.colors.purple};
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 50px auto 100px;
-  text-align: center;
-  text-decoration: none;
+// const JobsPostingCompanyLink = styled.a`
+//   display: block;
+//   width: 100%;
+//   font-size: 18px;
+//   padding: 18px;
+//   color: white;
+//   background-color: ${props => props.theme.colors.purple};
+//   border-radius: 4px;
+//   cursor: pointer;
+//   margin: 50px auto 100px;
+//   text-align: center;
+//   text-decoration: none;
 
-  ${media.phablet`
-    padding: 16px;
-    margin: 30px auto;
+//   ${media.phablet`
+//     padding: 16px;
+//     margin: 30px auto;
+//   `};
+// `;
+
+const JobsPostingCompanyLink = styled.a`
+  position: relative;
+  top: 34px;
+  margin: 60px auto 120px;
+  width: 80px;
+  height: 80px;
+  font-size: 16px;
+  font-weight: 600;
+  color: ${props => props.theme.colors.purple};
+  background: ${props => props.theme.colors.purple};
+  border: 2px solid ${props => props.theme.colors.purple};
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 200ms ease;
+
+  &:hover {
+    background: ${props => props.theme.colors.purple};
+    color: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.22);
+  }
+
+  background: transparent;
+  border: 2px solid ${props => props.theme.colors.purple};
+
+  ${media.tablet`
+    margin: 20px auto 60px;
   `};
 `;
