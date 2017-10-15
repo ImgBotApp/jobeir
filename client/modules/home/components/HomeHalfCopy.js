@@ -18,11 +18,11 @@ const HomeHalfCopy = () => (
       </HomeHalf>
       <HomeHalf>
         <HomeHalfNarrow right={true}>
-          <HomeHalfHeader>Lorem ipsum up in here and there</HomeHalfHeader>
+          <HomeHalfHeader>We simplify the job search</HomeHalfHeader>
           <HomeHalfText>
-            Lorem Khaled Ipsum is a major key to success. You see the hedges,
-            how I got it shaped up? It’s important to shape up your hedges, it’s
-            like getting a haircut, stay fresh.
+            Our goal is to create a place where you can come to find the best
+            tech jobs in the world. All employers must agree to our inclusive
+            policy.
           </HomeHalfText>
         </HomeHalfNarrow>
       </HomeHalf>
@@ -30,11 +30,10 @@ const HomeHalfCopy = () => (
     <HomeHalfContainer>
       <HomeHalf>
         <HomeHalfNarrow>
-          <HomeHalfHeader>Lorem ipsum up in here and there</HomeHalfHeader>
+          <HomeHalfHeader>All the best jobs in one place</HomeHalfHeader>
           <HomeHalfText>
-            Lorem Khaled Ipsum is a major key to success. You see the hedges,
-            how I got it shaped up? It’s important to shape up your hedges, it’s
-            like getting a haircut, stay fresh.
+            Connect with the best employers in tech and apply to your dream job
+            in minutes.
           </HomeHalfText>
         </HomeHalfNarrow>
       </HomeHalf>
