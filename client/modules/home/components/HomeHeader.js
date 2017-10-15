@@ -33,7 +33,7 @@ const Header = styled.div`
 `;
 
 const HeaderText = styled.h1`
-  font-size: 54px;
+  font-size: 52px;
   font-weight: 900;
   text-align: center;
   line-height: 1.2;
