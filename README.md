@@ -1,13 +1,12 @@
 <img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/jobeir-logo.png" width="160px" alt="Jobeir logo" align="center" />
+
 <br/>
-<br/>
-<br/>
+
 <img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/hero-image.png" width="100%" alt="Jobeir logo" />
 
 <br/>
-<br/>
 
- [https://jobeir.com](http://jobeir.com)
+## [https://jobeir.com](http://jobeir.com)
  
  ---
  
@@ -48,5 +47,6 @@ The Prettier config for this repository includes trailing slashes and single quo
 ```
  --single-quote --trailing-comma all --write
 ```
-
+<br/>
+<br/>
 <img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/colored-spheres.png" width="350px" alt="Jobeir Color Spheres" />
