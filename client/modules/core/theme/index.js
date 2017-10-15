@@ -23,6 +23,22 @@ const theme = {
   },
   width: {
     max: '1040px'
+  },
+  fontFamily: {
+    avenir: `'Avenir STD',
+      Avenir,
+      -apple-system,
+      BlinkMacSystemFont,
+      San Francisco,
+      Helvetica Neue,
+      Helvetica,
+      Ubuntu,
+      Roboto,
+      Noto,
+      Segoe UI,
+      Arial,
+      sans-serif`,
+    tiempos: `'Tiempos', 'Avenir STD', sans-serif;`
   }
 };
 

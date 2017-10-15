@@ -76,7 +76,7 @@ const HomeBannerCardHeader = styled.h2`
   font-weight: 900;
   font-size: 42px;
   margin-bottom: 30px;
-  font-family: 'Tiempos';
+  font-family: ${props => props.theme.fontFamily.tiempos};
 
   ${media.desktop`
     font-size: 34px;

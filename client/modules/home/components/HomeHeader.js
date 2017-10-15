@@ -37,7 +37,7 @@ const HeaderText = styled.h1`
   font-weight: 900;
   text-align: center;
   line-height: 1.2;
-  font-family: 'Tiempos', 'Avenir STD', sans-serif;
+  font-family: ${props => props.theme.fontFamily.tiempos};
   margin-bottom: 40px;
 
   ${media.desktop`

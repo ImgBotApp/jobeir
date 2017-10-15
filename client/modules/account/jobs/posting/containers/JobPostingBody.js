@@ -33,7 +33,7 @@ const JobPostingBodyContainer = styled.div`
     margin-bottom: 30px;
     font-size: 19px;
     color: #2b2b2b;
-    font-family: 'Tiempos', Georgia, serif;
+    font-family: ${props => props.theme.fontFamily.tiempos};
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 
@@ -49,7 +49,7 @@ const JobPostingBodyContainer = styled.div`
   a {
     color: rgba(0, 0, 0, 0.85);
     text-decoration-skip: ink;
-    font-family: 'Tiempos', Georgia, serif;
+    font-family: ${props => props.theme.fontFamily.tiempos};
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -113,7 +113,7 @@ const JobPostingBodyContainer = styled.div`
     margin-bottom: 50px;
     font-size: 19px;
     color: #2b2b2b;
-    font-family: 'Tiempos', Georgia, serif;
+    font-family: ${props => props.theme.fontFamily.tiempos};
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 

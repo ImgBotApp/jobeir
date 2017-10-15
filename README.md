@@ -1,6 +1,6 @@
-# 👻 гост звук
+# Jobeir
 
-An isomorphic React application (WIP)
+![Jobeir logo](/brotzky/jobeir/design/iamges/jobeir-logo.png?raw=true)
 
 [![Build Status](https://travis-ci.org/brotzky/gost-zvuk.svg?branch=master)](https://travis-ci.org/brotzky/gost-zvuk)
 

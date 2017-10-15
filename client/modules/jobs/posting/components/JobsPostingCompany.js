@@ -56,7 +56,7 @@ const JobsPostingCompanyText = styled.p`
   margin-bottom: 20px;
   font-size: 19px;
   color: #2b2b2b;
-  font-family: 'Tiempos', Georgia, serif;
+  font-family: ${props => props.theme.fontFamily.tiempos};
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
@@ -72,25 +72,6 @@ const JobsPostingCompanyText = styled.p`
     margin-bottom: 15px;
   `};
 `;
-
-// const JobsPostingCompanyLink = styled.a`
-//   display: block;
-//   width: 100%;
-//   font-size: 18px;
-//   padding: 18px;
-//   color: white;
-//   background-color: ${props => props.theme.colors.purple};
-//   border-radius: 4px;
-//   cursor: pointer;
-//   margin: 50px auto 100px;
-//   text-align: center;
-//   text-decoration: none;
-
-//   ${media.phablet`
-//     padding: 16px;
-//     margin: 30px auto;
-//   `};
-// `;
 
 const JobsPostingCompanyLink = styled.a`
   position: relative;
