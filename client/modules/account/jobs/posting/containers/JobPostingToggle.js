@@ -49,9 +49,11 @@ class JobPostingToggle extends Component {
           handleEditClick={this.handleEditClick}
           handleDeleteClick={this.handleDeleteClick}
         />
-        {this.state.showJobForm
-          ? <JobEditForm initialValues={activePosting} params={params} />
-          : <JobPosting activePosting={activePosting} params={params} />}
+        {this.state.showJobForm ? (
+          <JobEditForm initialValues={activePosting} params={params} />
+        ) : (
+          <JobPosting activePosting={activePosting} params={params} />
+        )}
       </JobPostingContainer>
     );
   }

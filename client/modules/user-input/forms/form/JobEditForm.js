@@ -8,6 +8,7 @@ import FormRow from '../components/FormRow';
 import { email, required, wysiwygLength } from '../../validation';
 import {
   Currency,
+  Percentage,
   Radio,
   SelectSearch,
   Text,
@@ -170,9 +171,7 @@ class JobEditFrom extends Component {
                     type="number"
                     placeholder="%"
                     validate={[required]}
-                    format={formatPercentage}
-                    parse={parsePercentage}
-                    component={Text}
+                    component={Percentage}
                   />
                   <Field
                     name="equity.max"
@@ -180,9 +179,7 @@ class JobEditFrom extends Component {
                     type="number"
                     placeholder="%"
                     validate={[required]}
-                    format={formatPercentage}
-                    parse={parsePercentage}
-                    component={Text}
+                    component={Percentage}
                   />
                 </FormRow>
               )}
@@ -190,11 +187,13 @@ class JobEditFrom extends Component {
                 name="receivingEmails"
                 component={renderEmailFields}
               />
-              <Field
-                name="submitButton"
-                buttonText="Update"
-                component={SubmitButton}
-              />
+              <div style={{ marginTop: '3rem' }}>
+                <Field
+                  name="submitButton"
+                  buttonText="Update"
+                  component={SubmitButton}
+                />
+              </div>
             </FormEditForm>
           ) : null}
         </FormEditContainer>

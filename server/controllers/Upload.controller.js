@@ -1,4 +1,3 @@
-import Image from '../models/Image';
 import multer from 'multer';
 import jimp from 'jimp';
 import uuid from 'uuid';
@@ -34,8 +33,10 @@ export const resize = async (req, res, next) => {
   const extension = req.file.mimetype.split('/')[1];
 
   req.body.logo = `${uuid.v4()}-${original.toLowerCase()}.${extension}`;
-  const path = `./public/uploads/${req.params.id}/${req.params.section}/${req.body.logo}`;
-  const savedPath = `/public/uploads/${req.params.id}/${req.params.section}/${req.body.logo}`;
+  const path = `./public/uploads/${req.params.id}/${req.params.section}/${req
+    .body.logo}`;
+  const savedPath = `/public/uploads/${req.params.id}/${req.params
+    .section}/${req.body.logo}`;
   req.body.path = savedPath;
 
   const photo = await jimp.read(req.file.buffer);

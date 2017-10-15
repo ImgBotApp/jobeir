@@ -20,7 +20,7 @@ const JobsPostingCompany = (props: { activePosting: {} }) => {
             {activePosting.company.product}
           </JobsPostingCompanyText>
           <JobsPostingCompanyLink
-            href={`${activePosting.externalLink}?ref=gost`}
+            href={`${activePosting.externalLink}?ref=jobeir`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -52,7 +52,7 @@ const JobsPostingCompanyHeader = styled.h3`
 `;
 
 const JobsPostingCompanyText = styled.p`
-  line-height: 36px;
+  line-height: 32px;
   margin-bottom: 20px;
   font-size: 19px;
   color: #2b2b2b;

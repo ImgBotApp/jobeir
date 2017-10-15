@@ -29,7 +29,7 @@ const JobPostingBodyContainer = styled.div`
   }
 
   p {
-    line-height: 36px;
+    line-height: 32px;
     margin-bottom: 30px;
     font-size: 19px;
     color: #2b2b2b;
@@ -108,7 +108,7 @@ const JobPostingBodyContainer = styled.div`
 
   ul,
   ol {
-    line-height: 36px;
+    line-height: 32px;
     padding-left: 20px;
     margin-bottom: 50px;
     font-size: 19px;

@@ -6,13 +6,14 @@ import AuthPage from '../../components/AuthPage';
 import AuthHeader from '../../components/AuthHeader';
 import AuthFooter from '../../components/AuthFooter';
 
-const Login = () =>
+const Login = () => (
   <AuthPage>
     <Helmet title="Login" />
-    <AuthHeader text="Log into Lorem Impsum" />
+    <AuthHeader text="Jobeir Log in" />
     <AuthOAuth />
     <LoginForm />
     <AuthFooter link="/reset" text="Forgot Password?" />
-  </AuthPage>;
+  </AuthPage>
+);
 
 export default Login;

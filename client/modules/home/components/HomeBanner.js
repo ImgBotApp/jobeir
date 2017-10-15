@@ -16,7 +16,9 @@ const HomeBanner = () => (
             Helping you find the right job
           </HomeBannerCardHeader>
           <HomeBannerCardText>
-            Grow your career with the leading employers in the tech industry.
+            At Jobier we want you to grow your career with the leading employers
+            in the tech industry. Search through and find the best jobs in the
+            tech industry today.
           </HomeBannerCardText>
         </HomeBannerCardContent>
       </HomeBannerCard>
@@ -74,6 +76,7 @@ const HomeBannerCardHeader = styled.h2`
   font-weight: 900;
   font-size: 42px;
   margin-bottom: 30px;
+  font-family: 'Tiempos';
 
   ${media.desktop`
     font-size: 34px;

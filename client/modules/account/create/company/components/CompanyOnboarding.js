@@ -27,8 +27,8 @@ const CompanyOnboarding = props => (
     </List>
     <Header>Posting policy</Header>
     <Text>
-      At -company name- we believe in equal opportunity employment and no
-      discrimination against any applicants.
+      At Jobeir we believe in equal opportunity employment and no discrimination
+      against any applicants.
     </Text>
     <Text>
       By continuing you agree to not to discriminate against any job applicant

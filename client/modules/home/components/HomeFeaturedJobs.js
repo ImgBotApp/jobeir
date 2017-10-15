@@ -58,7 +58,7 @@ const HomeFeatured = () => (
     </HomeFeaturedHeader>
     {featuredJobs.map(job => (
       <FeaturedJobLink
-        href={`${job.externalLink}?ref=gost`}
+        href={`${job.externalLink}?ref=jobeir`}
         target="_blank"
         rel="noopener noreferrer"
       >

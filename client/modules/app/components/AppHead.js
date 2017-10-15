@@ -34,25 +34,25 @@ const getMetaTags = ({
       name: 'viewport',
       content: 'width=device-width, initial-scale=1'
     },
-    { itemprop: 'name', content: `${title} | Gost Zvuk` },
+    { itemprop: 'name', content: `${title} | Jobeir` },
     { itemprop: 'description', content: description },
     { itemprop: 'image', content: seoURL(image) },
     { name: 'description', content: description },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:site', content: '@_brotzky' },
-    { name: 'twitter:title', content: `${title} | Gost Zvuk` },
+    { name: 'twitter:title', content: `${title} | Jobeir` },
     { name: 'twitter:description', content: description },
     { name: 'twitter:creator', content: twitter || '@_brotzky' },
     {
       name: 'twitter:image:src',
       content: seoURL(image)
     },
-    { name: 'og:title', content: `${title} | Gost Zvuk` },
+    { name: 'og:title', content: `${title} | Jobeir` },
     { name: 'og:type', content: contentType },
     { name: 'og:url', content: url },
     { name: 'og:image', content: seoURL(image) },
     { name: 'og:description', content: description },
-    { name: 'og:site_name', content: 'Gost Zvuk' },
+    { name: 'og:site_name', content: 'Jobeir' },
     { name: 'fb:app_id', content: '1271809326248448' }
   ];
 
@@ -82,7 +82,7 @@ const AppHead = ({
     htmlAttributes={{
       lang: 'en'
     }}
-    title={`${title} | Gost Svuk`}
+    title={`${title} | Jobeir`}
     link={[{ rel: 'canonical', href: seoURL(path) }]}
     meta={getMetaTags({
       title,

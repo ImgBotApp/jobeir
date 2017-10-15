@@ -20,7 +20,7 @@ class Signup extends Component {
     return (
       <AuthPage>
         <Helmet title="Signup" />
-        <AuthHeader text="Sign up for Gost" />
+        <AuthHeader text="Sign up for jobeir" />
         {signupWithEmail ? <SignupForm /> : <AuthOAuth />}
         <AuthSignupEmail
           onClick={() => this.setState({ signupWithEmail: !signupWithEmail })}

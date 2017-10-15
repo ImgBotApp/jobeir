@@ -37,7 +37,7 @@ export class Upload extends Component {
   handleDropAccepted = (files: Array<{ preview: string, name: string }>) => {
     this.setState({
       preview: files[0].preview,
-      name: files[0].name
+      name: files[0].name.split(' ').join('')
     });
   };
 
@@ -60,20 +60,22 @@ export class Upload extends Component {
           activeStyle={activeStyle}
         >
           <DropZoneInner>
-            {preview
-              ? <DropZoneImgContainer>
-                  <DropZoneImg src={preview} alt={name} />
-                  {name}
-                </DropZoneImgContainer>
-              : <DropZoneButtonContainer>
-                  <DropZoneButton>
-                    <UploadIcon />
-                    <DropZoneButtonText>
-                      {this.props.buttonText}
-                    </DropZoneButtonText>
-                  </DropZoneButton>
-                  or drag and drop
-                </DropZoneButtonContainer>}
+            {preview ? (
+              <DropZoneImgContainer>
+                <DropZoneImg src={preview} alt={name} />
+                {name}
+              </DropZoneImgContainer>
+            ) : (
+              <DropZoneButtonContainer>
+                <DropZoneButton>
+                  <UploadIcon />
+                  <DropZoneButtonText>
+                    {this.props.buttonText}
+                  </DropZoneButtonText>
+                </DropZoneButton>
+                or drag and drop
+              </DropZoneButtonContainer>
+            )}
           </DropZoneInner>
         </StyledDropzone>
       </InputWrapper>
@@ -93,11 +95,11 @@ const StyledDropzone = styled(Dropzone)`
   margin: ${props => props.theme.dropzone.margin};
   background: ${props => props.theme.dropzone.background};
   cursor: ${props => props.theme.dropzone.cursor};
-  
+
   &:hover: {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
   }
-  
+
   &:active,
   &:focus {
     border-color: ${props =>

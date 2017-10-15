@@ -13,7 +13,7 @@ const JobsPostingReturn = (props: { query: string, externalLink: string }) => (
         <StyledChevronLeft />Return to Job Search
       </StyledLink>
       <StyledExternalLink
-        href={`${props.externalLink}?ref=gost`}
+        href={`${props.externalLink}?ref=jobeir`}
         target="_blank"
         rel="noopener noreferrer"
       >
