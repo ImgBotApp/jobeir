@@ -10,7 +10,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-const seoURL = path => `https://brotzky.tech${path}`;
+const seoURL = path => `https://jobeir.com${path}`;
 
 const getMetaTags = ({
   title,
