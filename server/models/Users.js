@@ -9,8 +9,7 @@ const Schema = mongoose.Schema;
 const Users = new Schema({
   avatar: {
     type: String,
-    trim: true,
-    unique: true
+    trim: true
   },
   email: {
     type: String,
