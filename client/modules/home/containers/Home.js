@@ -10,7 +10,7 @@ import HomeHalfCopy from '../components/HomeHalfCopy';
 
 const Home = () => (
   <HomeContainer>
-    <AppHead title="The Best Jobs in Tech" />
+    <AppHead title="Find the best jobs in tech" />
     <HomeHeader showHeaderText={true} />
     <HomeBanner />
     <HomeFeaturedJobs />

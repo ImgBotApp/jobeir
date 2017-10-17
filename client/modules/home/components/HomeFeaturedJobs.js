@@ -5,11 +5,11 @@ import { media } from '../../../styles/breakpoints';
 
 const featuredJobs = [
   {
-    externalLink: 'https://example.com',
-    title: 'Senior Frontend Developer',
-    subtitle: 'Stripe in San Francisco, California',
+    externalLink: 'https://stripe.com/jobs/positions/frontend-engineer',
+    title: 'Frontend Engineer',
+    subtitle: 'Stripe in San Francisco, United States',
     description:
-      'We want to build a mobile platform that stands the test of time, and our Android apps are an important piece of that. We want to make the best product and we want it to have direct impact on our merchants…',
+      'As Stripe looks beyond the API, we are hiring engineers to help build beautiful, usable interfaces for businesses building on top of Stripe.',
     image: {
       src: '/public/static/imgs/home/stripe-office.jpg',
       alt: ''
@@ -20,11 +20,12 @@ const featuredJobs = [
     }
   },
   {
-    externalLink: 'https://example.com',
-    title: 'Senior Frontend Developer',
-    subtitle: 'Medium in New York, New York',
+    externalLink:
+      'https://medium.com/@JobsAtMedium/senior-product-manager-3232b4f97803',
+    title: 'Senior Product Manager',
+    subtitle: 'Medium in New York, United States',
     description:
-      'We want to build a mobile platform that stands the test of time, and our Android apps are an important piece of that. We want to make the best product and we want it to have direct impact on our merchants…',
+      'We are looking for creative and operational thinkers that are fueled by an entrepreneurial spirit to join our tight-knit group of product managers.',
     image: {
       src: '/public/static/imgs/home/medium-office.jpg',
       alt: ''
@@ -36,10 +37,10 @@ const featuredJobs = [
   },
   {
     externalLink: 'https://example.com',
-    title: 'Senior Frontend Developer',
-    subtitle: 'Shopify in Ottawa, Ontario',
+    title: 'Product Designer',
+    subtitle: 'Shopify in Berlin, Germany',
     description:
-      'We want to build a mobile platform that stands the test of time, and our Android apps are an important piece of that. We want to make the best product and we want it to have direct impact on our merchants…',
+      'As a designer you will work on a product used by anyone from small fashion boutiques, global brands or even international product suppliers and fulfillment centres.',
     image: {
       src: '/public/static/imgs/home/medium-office.jpg',
       alt: ''
