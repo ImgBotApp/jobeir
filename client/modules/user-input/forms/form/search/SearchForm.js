@@ -123,7 +123,6 @@ const Button = (props: {
 
 class SearchForm extends Component {
   formSubmit = data => {
-    console.log(data);
     const queryData = {
       q: data.title && data.title.value,
       l: data.location,
@@ -152,6 +151,7 @@ class SearchForm extends Component {
         <Field
           name="title"
           label="Job Title"
+          placeholder="Software Engineer"
           component={SelectInput}
           options={jobOptions}
           location={location}
@@ -390,6 +390,7 @@ const SelectContainer = styled.div`
   .Select-placeholder {
     display: flex;
     align-items: center;
+    font-weight: 200;
   }
 
   .Select-placeholder,
@@ -397,7 +398,7 @@ const SelectContainer = styled.div`
     display: flex;
     align-items: center;
     bottom: 0;
-    color: #fff;
+    color: #d8d9d8;
     left: 0;
     line-height: 1.5;
     padding-left: 0;

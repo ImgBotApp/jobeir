@@ -51,6 +51,10 @@ const JobPostingHeaderContainer = styled.div`
   ${media.tablet`
     margin-bottom: 50px;
   `};
+
+  ${media.phablet`
+    margin-bottom: 24px;
+  `};
 `;
 
 const JobPostingHeaderCompanyLogo = styled.img`
@@ -80,7 +84,7 @@ const JobPostingHeaderTitle = styled.h1`
   `};
 
   ${media.phablet`
-    font-size: 36px;
+    font-size: 33px;
     margin-bottom: 10px;
   `};
 `;

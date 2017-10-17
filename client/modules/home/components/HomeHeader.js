@@ -8,7 +8,7 @@ const HomeHeader = (props: { showHeaderText: true }) => (
   <Header>
     {props.showHeaderText && (
       <HeaderText>
-        Find the best jobs<br />in the global tech industry
+        Find the best jobs<br />in the growing tech industry
       </HeaderText>
     )}
     <HomeSearch />
@@ -44,18 +44,14 @@ const HeaderText = styled.h1`
     font-size: 40px;
   `};
 
-  ${media.tablet`
-    font-size: 36px;
-  `};
-
   ${media.phablet`
-    font-size: 30px;
+    font-size: 34px;
   `};
 
   ${media.phone`
-    font-size: 26px;
+    font-size: 32px;
     text-align: left;
-    margin: 15px auto 30px;
+    margin: 0px auto 30px;
     line-height: 1.3;
   `};
 `;

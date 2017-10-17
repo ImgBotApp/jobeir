@@ -75,22 +75,26 @@ export default JobPostingMap;
 const JobPostingMapContainer = styled.div`
   margin: 40px auto 0;
 
+  ${media.phablet`
+    padding: 0 24px;
+  `};
+
   #map {
     margin: 0 auto;
     height: 550px;
     width: 960px;
 
     ${media.desktop`
-      height: 480PX;
+      height: 480px;
       width: 100%
     `};
 
     ${media.phablet`
-      height: 375PX;
+      height: 375px;
     `};
 
     ${media.phone`
-      height: 300PX;
+      height: 300px;
     `};
   }
 
@@ -105,6 +109,10 @@ const JobPostingMapContainer = styled.div`
     align-items: center;
     font-size: 18px;
     cursor: default;
+
+    @media (max-width: 599px) {
+      font-size: 16px;
+    }
   }
 
   .si-wrapper-top {
@@ -167,6 +175,10 @@ const JobPostingMapContainer = styled.div`
 
   .si-shadow-frame {
     box-shadow: 20px 20px 0 0 #4c4c4c;
+
+    @media (max-width: 599px) {
+      box-shadow: 10px 10px 0 0 #4c4c4c;
+    }
   }
 
   [class*='si-shadow-pointer'] {
@@ -181,6 +193,10 @@ const JobPostingMapContainer = styled.div`
     width: 141%;
     height: 141%;
     box-shadow: 0px 28.28427px 0 0 #4c4c4c;
+
+    @media (max-width: 599px) {
+      box-shadow: 0px 14.24px 0 0 #4c4c4c;
+    }
   }
 
   .si-shadow-inner-pointer-top {
@@ -350,7 +366,7 @@ const JobPostingMapContainer = styled.div`
 
   @media (max-width: 599px) {
     .si-frame {
-      padding: 40px;
+      padding: 24px;
     }
   }
 
@@ -360,5 +376,9 @@ const JobPostingMapContainer = styled.div`
     border-bottom: 1px solid #2b3031;
     font-weight: 900;
     font-size: 32px;
+
+    @media (max-width: 599px) {
+      font-size: 22px;
+    }
   }
 `;

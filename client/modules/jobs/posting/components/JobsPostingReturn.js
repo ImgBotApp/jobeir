@@ -39,7 +39,7 @@ const JobsPostingReturnContainer = styled.div`
   padding: 30px 24px;
 
   ${media.phablet`
-    margin-bottom: 20px;
+    margin: 5px auto;
     padding: 10px 24px;
   `};
 `;

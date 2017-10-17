@@ -38,6 +38,10 @@ const JobsPostingCompanyContainer = styled.div`
   max-width: 724px;
   padding: 0 24px;
   margin: 50px auto;
+
+  ${media.tablet`
+    margin: 30px auto;
+  `};
 `;
 
 const JobsPostingCompanyHeader = styled.h3`
@@ -48,6 +52,10 @@ const JobsPostingCompanyHeader = styled.h3`
   ${media.tablet`
     margin-bottom: 15px;
     font-size: 30px;
+  `};
+
+  ${media.phablet`
+    margin-bottom: 0px;
   `};
 `;
 

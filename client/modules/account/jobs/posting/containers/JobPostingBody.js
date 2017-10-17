@@ -39,6 +39,7 @@ const JobPostingBodyContainer = styled.div`
 
     ${media.phablet`
       font-size: 18px;
+      line-height: 28px;
     `};
 
     ${media.phonePlus`
@@ -70,7 +71,7 @@ const JobPostingBodyContainer = styled.div`
     `};
 
     ${media.phablet`
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     `};
   }
 
@@ -84,7 +85,7 @@ const JobPostingBodyContainer = styled.div`
     `};
 
     ${media.phonePlus`
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     `};
   }
 
@@ -118,8 +119,9 @@ const JobPostingBodyContainer = styled.div`
     text-rendering: optimizeLegibility;
 
     ${media.tablet`
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       font-size: 16px;
+      line-height: 28px;
     `};
 
     & > li {
