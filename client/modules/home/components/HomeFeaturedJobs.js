@@ -42,7 +42,7 @@ const featuredJobs = [
     description:
       'As a designer you will work on a product used by anyone from small fashion boutiques, global brands or even international product suppliers and fulfillment centres.',
     image: {
-      src: '/public/static/imgs/home/medium-office.jpg',
+      src: '/public/static/imgs/home/shopify-office.jpg',
       alt: ''
     },
     companyIcon: {
