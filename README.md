@@ -1,7 +1,19 @@
-# Jobeir
+<a href="https://jobeir.com"><img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/jobeir-logo.png" width="120px" alt="Jobeir logo" align="center" /></a>
 
-![Jobeir logo](/brotzky/jobeir/design/iamges/jobeir-logo.png?raw=true)
+<a href="https://jobeir.com"><img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/hero-image.png" width="100%" alt="Jobeir logo" /></a>
 
+<br/>
+
+## <a href="https://jobeir.com">https://jobeir.com</a>
+
+ <br/>
+ <br/>
+ 
+ ---
+ 
+ <br/>
+ <br/>
+ 
 [![Build Status](https://travis-ci.org/brotzky/gost-zvuk.svg?branch=master)](https://travis-ci.org/brotzky/gost-zvuk)
 
 ## Getting Started
@@ -39,17 +51,6 @@ The Prettier config for this repository includes trailing slashes and single quo
 ```
  --single-quote --trailing-comma all --write
 ```
-
-## The Technology
-
-Currently using
-- React
-- Redux, Redux Sagas
-- Webpack 2
-- Node
-- MongoDB
-- Express
-- Rapscillion
-- React Reacter 3
-- Styled Components
-- Jest
+<br/>
+<br/>
+<img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/colored-spheres.png" width="350px" alt="Jobeir Color Spheres" />
