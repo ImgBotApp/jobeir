@@ -23,7 +23,7 @@ export function send(options) {
   const text = htmlToText.fromString(html);
 
   const mailOptions = {
-    from: `Dennis Brotzky <noreply@brotzky.co`,
+    from: `Dennis Brotzky <noreply@jobeir.com`,
     subject: options.user.subject,
     to: options.user.email,
     html,

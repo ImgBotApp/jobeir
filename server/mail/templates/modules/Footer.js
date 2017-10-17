@@ -17,31 +17,41 @@ const Footer = props => {
   return (
     <Table width="100%" style={style}>
       <TBody>
-
         <TR>
-          <TD><EmptySpace height="20" /></TD>
-          <TD><EmptySpace height="20" /></TD>
-          <TD><EmptySpace height="20" /></TD>
-          <TD><EmptySpace height="20" /></TD>
-          <TD><EmptySpace height="20" /></TD>
+          <TD>
+            <EmptySpace height="20" />
+          </TD>
+          <TD>
+            <EmptySpace height="20" />
+          </TD>
+          <TD>
+            <EmptySpace height="20" />
+          </TD>
+          <TD>
+            <EmptySpace height="20" />
+          </TD>
+          <TD>
+            <EmptySpace height="20" />
+          </TD>
         </TR>
 
-        <TR>
-          <TD height="1" width="20" style={spaceStyle}>&nbsp;</TD>
+        {/* <TR>
+          <TD height="1" width="20" style={spaceStyle}>
+            &nbsp;
+          </TD>
 
           <TD>
             <Table width="270">
               <TBody>
                 <TR>
                   <TD align="center" style={{ fontFamily: 'Arial' }}>
-
                     <EmptySpace height="10" />
 
                     <A
                       style={{
                         color: props.color,
                         fontWeight: 'bold',
-                        textDecoration: 'none'
+                        textDecoration: 'none',
                       }}
                       href="https://example.com"
                     >
@@ -55,21 +65,22 @@ const Footer = props => {
             </Table>
           </TD>
 
-          <TD height="1" width="20" style={spaceStyle}>&nbsp;</TD>
+          <TD height="1" width="20" style={spaceStyle}>
+            &nbsp;
+          </TD>
 
           <TD>
             <Table width="270">
               <TBody>
                 <TR>
                   <TD align="center" style={{ fontFamily: 'Arial' }}>
-
                     <EmptySpace height="10" />
 
                     <A
                       style={{
                         color: props.color,
                         fontWeight: 'bold',
-                        textDecoration: 'none'
+                        textDecoration: 'none',
                       }}
                       href="https://example.com"
                     >
@@ -81,17 +92,29 @@ const Footer = props => {
                 </TR>
               </TBody>
             </Table>
+          </TD> 
+          
+           <TD height="1" width="20" style={spaceStyle}>
+            &nbsp;
           </TD>
-
-          <TD height="1" width="20" style={spaceStyle}>&nbsp;</TD>
-        </TR>
+        </TR> */}
 
         <TR>
-          <TD><EmptySpace height="20" /></TD>
-          <TD><EmptySpace height="20" /></TD>
-          <TD><EmptySpace height="20" /></TD>
-          <TD><EmptySpace height="20" /></TD>
-          <TD><EmptySpace height="20" /></TD>
+          <TD>
+            <EmptySpace height="20" />
+          </TD>
+          <TD>
+            <EmptySpace height="20" />
+          </TD>
+          <TD>
+            <EmptySpace height="20" />
+          </TD>
+          <TD>
+            <EmptySpace height="20" />
+          </TD>
+          <TD>
+            <EmptySpace height="20" />
+          </TD>
         </TR>
       </TBody>
     </Table>
