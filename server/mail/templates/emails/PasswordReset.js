@@ -26,7 +26,7 @@ export default props => (
       </EmailRow>
       <EmailRow>
         Thanks,
-        <div>Company Name</div>
+        <div>Jobeir</div>
       </EmailRow>
     </Body>
     <Footer />

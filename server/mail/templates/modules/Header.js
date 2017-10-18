@@ -20,7 +20,7 @@ const Header = props => (
                 >
                   <img
                     src="https://jobeir.com/public/static/imgs/brand/jobeir-logo.png"
-                    width="88px"
+                    width="120px"
                     alt="Jobeir logo"
                   />
                 </TD>

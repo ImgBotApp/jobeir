@@ -6,7 +6,7 @@ import Footer from '../modules/Footer';
 import EmailButton from '../modules/EmailButton';
 import EmailRow from '../modules/EmailRow';
 
-export default props =>
+export default props => (
   <Layout>
     <Header />
     <Body>
@@ -28,8 +28,9 @@ export default props =>
       </EmailRow>
       <EmailRow>
         Thanks,
-        <div>Company Name</div>
+        <div>Jobeir</div>
       </EmailRow>
     </Body>
     <Footer />
-  </Layout>;
+  </Layout>
+);
