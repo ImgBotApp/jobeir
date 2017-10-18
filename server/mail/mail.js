@@ -24,7 +24,7 @@ export function send(options) {
 
   const mailOptions = {
     from: `Dennis Brotzky <noreply@jobeir.com`,
-    subject: options.user.subject,
+    subject: options.subject,
     to: options.user.email,
     html,
     text

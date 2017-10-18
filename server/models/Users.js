@@ -121,12 +121,11 @@ Users.pre('save', function(next) {
 
   if (user.isNew) {
     send({
-      subject: `Welcome to Company`,
+      subject: `👋  Welcome to Jobeir`,
       template: 'Registration',
       user
     });
   }
-
   if (this.password && (this.isModified('password') || this.isNew)) {
     bcrypt.genSalt(10, (err, salt) => {
       if (err) return next(err);

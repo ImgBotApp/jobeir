@@ -168,7 +168,18 @@ export function checkAuthentication(req, res) {
  */
 export const resetPasswordRequest = async (req, res) => {
   const user = await Users.findOne({ email: req.body.email });
-  if (!user) throw Error(err.ERROR_FINDING_USER);
+
+  /**
+   * For security reasons we're not sending back any errors if the user
+   * was not found in our database. It's a silent avoidance of the error
+   * on purpose.
+   */
+  if (!user) {
+    return res.status(200).send({
+      data: [],
+      errors: []
+    });
+  }
 
   user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
   user.resetPasswordExpires = Date.now() + 3600000;
@@ -184,7 +195,7 @@ export const resetPasswordRequest = async (req, res) => {
 
   // Fire off the password reset email
   send({
-    subject: 'Password Reset',
+    subject: 'Jobeir password reset',
     template: 'PasswordReset',
     user,
     resetUrl
