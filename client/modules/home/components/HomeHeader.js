@@ -33,7 +33,7 @@ const Header = styled.div`
 `;
 
 const HeaderText = styled.h1`
-  font-size: 52px;
+  font-size: 56px;
   font-weight: 900;
   text-align: center;
   line-height: 1.2;
@@ -51,7 +51,7 @@ const HeaderText = styled.h1`
   ${media.phone`
     font-size: 32px;
     text-align: left;
-    margin: 0px auto 30px;
+    margin: 10px auto 48px;
     line-height: 1.3;
   `};
 `;

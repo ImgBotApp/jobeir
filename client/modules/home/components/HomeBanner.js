@@ -16,7 +16,7 @@ const HomeBanner = () => (
             Helping you find the right job
           </HomeBannerCardHeader>
           <HomeBannerCardText>
-            At Jobier we want you to grow your career with the leading employers
+            At Jobeir we want you to grow your career with the leading employers
             in the tech industry. Search through and find the best jobs in the
             tech industry today.
           </HomeBannerCardText>

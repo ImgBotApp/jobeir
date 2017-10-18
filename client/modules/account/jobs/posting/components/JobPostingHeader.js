@@ -74,9 +74,10 @@ const JobPostingHeaderCompany = styled.div`
 `;
 
 const JobPostingHeaderTitle = styled.h1`
-  font-size: 58px;
-  font-weight: 900;
-  margin-bottom: 15px;
+  font-size: 60px;
+  font-weight: 800;
+  margin-bottom: 25px;
+  line-height: 1.2;
   font-family: ${props => props.theme.fontFamily.tiempos};
 
   ${media.tablet`
