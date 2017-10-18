@@ -8,7 +8,7 @@ const HomeHeader = (props: { showHeaderText: true }) => (
   <Header>
     {props.showHeaderText && (
       <HeaderText>
-        Find the best jobs<br />in the growing tech industry
+        Find the best jobs<br />at the best tech companies
       </HeaderText>
     )}
     <HomeSearch />
