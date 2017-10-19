@@ -15,8 +15,8 @@
 ## Getting Started
 
 ```
-https://github.com/brotzky/gost-zvuk.git
-cd gost-zvuk
+https://github.com/brotzky/jobeir.git
+cd jobeir
 yarn
 yarn start
 ```
