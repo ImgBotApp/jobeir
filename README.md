@@ -1,19 +1,15 @@
-<a href="https://jobeir.com"><img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/jobeir-logo.png" width="120px" alt="Jobeir logo" align="center" /></a>
-
-<a href="https://jobeir.com"><img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/hero-image.png" width="100%" alt="Jobeir logo" /></a>
+<a href="https://jobeir.com"><img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/jobeir-logo.png" width="160px" alt="Jobeir logo" align="center" /></a>
 
 <br/>
 
-## <a href="https://jobeir.com">https://jobeir.com</a>
+<img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/colored-spheres.png" width="350px" alt="Jobeir Color Spheres" />
+ 
+<br/>
+<a href="https://jobeir.com">https://jobeir.com</a>
 
- <br/>
- <br/>
- 
- ---
- 
- <br/>
- <br/>
- 
+<br/>
+<br/>
+
 [![Build Status](https://travis-ci.org/brotzky/gost-zvuk.svg?branch=master)](https://travis-ci.org/brotzky/gost-zvuk)
 
 ## Getting Started
