@@ -6,10 +6,13 @@ import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
+import ReactGA from 'react-ga';
 import configureStore from './redux/store';
-import routes from './routes';
 import initServiceWorker from './sw';
 import App from './modules/app/containers/App';
+
+// Google Analytics
+ReactGA.initialize('UA-59445007-4');
 
 // Initialize Servicie Worker register code
 initServiceWorker();

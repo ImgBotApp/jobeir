@@ -35,6 +35,6 @@ const NavigationContainer = styled.div`
   padding: 0 24px;
 
   ${media.tablet`
-    height: 65px;
+    height: 60px;
   `};
 `;

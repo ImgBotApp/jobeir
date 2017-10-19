@@ -76,7 +76,7 @@ const StepCompleteContent = styled.div`
   ${media.phablet`
     max-width: 900px;
     padding: 0 74px;
-    height: 65px;
+    height: 60px;
   `};
 
   ${media.phonePlus`

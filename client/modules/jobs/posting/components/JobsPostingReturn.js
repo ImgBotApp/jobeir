@@ -48,7 +48,8 @@ const StyledChevronLeft = styled(ChevronLeft)`
   fill: rgba(0, 0, 0, 0.85);
   position: relative;
   top: -1px;
-  left: -4px;
+  left: -2px;
+  transition: transform 280ms ease;
 `;
 
 const StyledLink = styled(Link)`
@@ -56,16 +57,16 @@ const StyledLink = styled(Link)`
   left: -3px;
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.85);
   padding: 3px 6px 2px 3px;
   border-radius: 3px;
-  transition: background 280ms ease;
+  transition: background 180ms ease;
 
-  &:hover {
-    background: rgba(0, 0, 0, 0.08);
+  &:hover svg {
+    transform: translateX(-5px);
   }
 
   ${media.phablet`
@@ -76,8 +77,8 @@ const StyledLink = styled(Link)`
 
 const StyledExternalLink = styled.a`
   position: absolute;
-  right: 34px;
-  top: 34px;
+  right: 69px;
+  top: 9px;
   width: 80px;
   height: 80px;
   font-size: 16px;

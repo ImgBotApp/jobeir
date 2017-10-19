@@ -1,24 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'react-router/lib/Link';
+import { media } from '../../../../styles/breakpoints';
 
 const JobeirLogo = () => (
-  <svg width="100" viewBox="0 0 310 88">
+  <svg viewBox="0 0 310 88">
     <g id="Canvas" transform="translate(-312 855)">
-      <g id="Ellipse">
-        <use
-          xlinkHref="#path0_fill"
-          transform="matrix(-1 8.65121e-08 -8.8343e-08 -1 400 -767)"
-          fill="#5361B9"
-        />
-      </g>
-      <g id="jobeir">
-        <use
-          xlinkHref="#path1_fill"
-          transform="translate(430 -860)"
-          fill="#212121"
-        />
-      </g>
+      <use
+        xlinkHref="#path0_fill"
+        transform="matrix(-1 8.65121e-08 -8.8343e-08 -1 400 -767)"
+        fill="#5361B9"
+      />
+      <use
+        xlinkHref="#path1_fill"
+        transform="translate(430 -860)"
+        fill="#212121"
+      />
     </g>
     <defs>
       <path
@@ -41,4 +38,15 @@ const PrimaryNavLogo = () => (
 
 export default PrimaryNavLogo;
 
-const LogoLink = styled(Link)``;
+const LogoLink = styled(Link)`
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 112px;
+
+    ${media.tablet`
+      width: 80px;
+    `};
+  }
+`;

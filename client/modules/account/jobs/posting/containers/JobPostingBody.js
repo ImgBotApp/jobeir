@@ -31,7 +31,7 @@ const JobPostingBodyContainer = styled.div`
   p {
     line-height: 32px;
     margin-bottom: 30px;
-    font-size: 19px;
+    font-size: 20px;
     color: #2b2b2b;
     font-family: ${props => props.theme.fontFamily.tiempos};
     -webkit-font-smoothing: antialiased;
@@ -112,7 +112,7 @@ const JobPostingBodyContainer = styled.div`
     line-height: 32px;
     padding-left: 20px;
     margin-bottom: 50px;
-    font-size: 19px;
+    font-size: 20px;
     color: #2b2b2b;
     font-family: ${props => props.theme.fontFamily.tiempos};
     -webkit-font-smoothing: antialiased;

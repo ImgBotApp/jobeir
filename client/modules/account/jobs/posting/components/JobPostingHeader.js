@@ -58,10 +58,10 @@ const JobPostingHeaderContainer = styled.div`
 `;
 
 const JobPostingHeaderCompanyLogo = styled.img`
-  height: 65px;
+  height: 62px;
 
   ${media.phablet`
-    height: 50px;
+    height: 46px;
   `};
 `;
 

@@ -36,7 +36,7 @@ const featuredJobs = [
     }
   },
   {
-    externalLink: 'https://example.com',
+    externalLink: 'https://www.shopify.com/careers/product-designer-947b38',
     title: 'Product Designer',
     subtitle: 'Shopify in Berlin, Germany',
     description:

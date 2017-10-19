@@ -62,7 +62,7 @@ const JobsPostingCompanyHeader = styled.h3`
 const JobsPostingCompanyText = styled.p`
   line-height: 32px;
   margin-bottom: 20px;
-  font-size: 19px;
+  font-size: 20px;
   color: #2b2b2b;
   font-family: ${props => props.theme.fontFamily.tiempos};
   -webkit-font-smoothing: antialiased;

@@ -120,23 +120,24 @@ const JobsSearchPostingBottom = styled.div`
 `;
 
 const JobsSearchPostingTitle = styled.h2`
-  font-size: 26px;
+  font-size: 29px;
   font-weight: 900;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
+  font-family: ${props => props.theme.fontFamily.tiempos};
 
   ${media.tablet`
     font-size: 22px;
-    margin-bottom: 4px;
-  `};
-
-  ${media.phablet`
-    margin-bottom: 2px;
+    margin-bottom: 10px;
   `};
 `;
 
 const JobsSearchPostingSubTitle = styled.div`
   font-size: 16px;
   font-weight: 600;
+
+  ${media.tablet`
+    margin-bottom: 4px;
+  `};
 `;
 
 const JobsSearchPostingType = styled.div`display: flex;`;
@@ -148,6 +149,6 @@ const JobsSearchPostingCompanyProduct = styled.p`
 
   ${media.phablet`
     font-size: 14px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
   `};
 `;
