@@ -10,7 +10,7 @@
 <br/>
 <br/>
 
-[![Build Status](https://travis-ci.org/brotzky/gost-zvuk.svg?branch=master)](https://travis-ci.org/brotzky/gost-zvuk)
+[![Build Status](https://travis-ci.org/brotzky/jobeir.svg?branch=master)](https://travis-ci.org/brotzky/jobeir)
 
 ## Getting Started
 
