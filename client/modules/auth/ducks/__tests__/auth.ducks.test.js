@@ -1,22 +1,16 @@
 import authReducer, {
   AUTH_REQUEST,
   AUTH_SUCCESS,
-  AUTH_FAILURE,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
   LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
   LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
-  LOGOUT_FAILURE,
   initialState,
   auth,
   login,
   logout,
-  signup,
-  redirectTo
+  signup
 } from '../';
 
 describe('[Ducks Auth]', () => {

@@ -273,7 +273,7 @@ export const errorHandler = (err, req, res, next) => {
         {
           error: errors.ERROR_INTERNAL_SERVER,
           message: 'There was an error processing your request',
-          details: process.env.NODE_ENV !== 'product' ? err : {}
+          details: process.env.NODE_ENV === 'production' ? {} : err
         }
       ]
     });

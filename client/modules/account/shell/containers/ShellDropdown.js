@@ -166,7 +166,7 @@ const ShellHeaderDropdown = styled.div`
   height: 36px;
   width: 36px;
   border-radius: 50%;
-  background: ${props => props.theme.colors.purple};
+  background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
   cursor: pointer;
 `;
 

@@ -1,27 +1,23 @@
 import { call, put } from 'redux-saga/effects';
 import { fetchApi } from '../../../../utils/api';
 import {
-  AUTH_REQUEST,
   AUTH_SUCCESS,
   AUTH_FAILURE,
-  SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
-  LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
-  redirectTo,
+  redirectTo
 } from '../../ducks';
 import { authUser, signupUser, loginUser, logoutUser } from '../';
 
 const action = {
   payload: {
     email: 'email@gmail.com',
-    password: 'password',
-  },
+    password: 'password'
+  }
 };
 
 describe('User', () => {
@@ -34,8 +30,8 @@ describe('User', () => {
       expect(gen.next().value).toEqual(
         put({
           type: AUTH_SUCCESS,
-          payload: undefined,
-        }),
+          payload: undefined
+        })
       );
     });
 
@@ -47,8 +43,8 @@ describe('User', () => {
       expect(gen.next().value).toEqual(
         put({
           type: AUTH_SUCCESS,
-          payload: undefined,
-        }),
+          payload: undefined
+        })
       );
 
       expect(gen.next().value).toEqual(call(redirectTo, '/'));
@@ -61,13 +57,13 @@ describe('User', () => {
 
       expect(
         gen.throw({
-          errors: 'unauthorized',
-        }).value,
+          errors: 'unauthorized'
+        }).value
       ).toEqual(
         put({
           type: AUTH_FAILURE,
-          errors: { errors: 'unauthorized' },
-        }),
+          errors: { errors: 'unauthorized' }
+        })
       );
     });
 
@@ -78,17 +74,17 @@ describe('User', () => {
 
       expect(
         gen.throw({
-          errors: 'unauthorized',
-        }).value,
+          errors: 'unauthorized'
+        }).value
       ).toEqual(
         put({
           type: AUTH_FAILURE,
-          errors: { errors: 'unauthorized' },
-        }),
+          errors: { errors: 'unauthorized' }
+        })
       );
 
       expect(gen.next().value).toEqual(
-        call(redirectTo, '/login?next=/pathname'),
+        call(redirectTo, '/signin?next=/pathname')
       );
     });
   });
@@ -98,14 +94,14 @@ describe('User', () => {
       const gen = signupUser(action);
 
       expect(gen.next().value).toEqual(
-        call(fetchApi, 'POST', '/register', action.payload),
+        call(fetchApi, 'POST', '/register', action.payload)
       );
 
       expect(gen.next().value).toEqual(
         put({
           type: SIGNUP_SUCCESS,
-          payload: undefined,
-        }),
+          payload: undefined
+        })
       );
     });
 
@@ -113,18 +109,18 @@ describe('User', () => {
       const gen = signupUser(action);
 
       expect(gen.next().value).toEqual(
-        call(fetchApi, 'POST', '/register', action.payload),
+        call(fetchApi, 'POST', '/register', action.payload)
       );
 
       expect(
         gen.throw({
-          errors: 'user not found',
-        }).value,
+          errors: 'user not found'
+        }).value
       ).toEqual(
         put({
           type: SIGNUP_FAILURE,
-          errors: { errors: 'user not found' },
-        }),
+          errors: { errors: 'user not found' }
+        })
       );
     });
   });
@@ -134,14 +130,14 @@ describe('User', () => {
       const gen = loginUser(action);
 
       expect(gen.next().value).toEqual(
-        call(fetchApi, 'POST', '/login', action.payload),
+        call(fetchApi, 'POST', '/login', action.payload)
       );
 
       expect(gen.next().value).toEqual(
         put({
           type: LOGIN_SUCCESS,
-          payload: undefined,
-        }),
+          payload: undefined
+        })
       );
     });
 
@@ -149,18 +145,18 @@ describe('User', () => {
       const gen = loginUser(action);
 
       expect(gen.next().value).toEqual(
-        call(fetchApi, 'POST', '/login', action.payload),
+        call(fetchApi, 'POST', '/login', action.payload)
       );
 
       expect(
         gen.throw({
-          errors: 'user not found',
-        }).value,
+          errors: 'user not found'
+        }).value
       ).toEqual(
         put({
           type: LOGIN_FAILURE,
-          errors: { errors: 'user not found' },
-        }),
+          errors: { errors: 'user not found' }
+        })
       );
     });
   });
@@ -173,8 +169,8 @@ describe('User', () => {
 
       expect(gen.next().value).toEqual(
         put({
-          type: LOGOUT_SUCCESS,
-        }),
+          type: LOGOUT_SUCCESS
+        })
       );
     });
 
@@ -185,13 +181,13 @@ describe('User', () => {
 
       expect(
         gen.throw({
-          errors: 'logout failed',
-        }).value,
+          errors: 'logout failed'
+        }).value
       ).toEqual(
         put({
           type: LOGOUT_FAILURE,
-          errors: { errors: 'logout failed' },
-        }),
+          errors: { errors: 'logout failed' }
+        })
       );
     });
   });

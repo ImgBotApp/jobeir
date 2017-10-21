@@ -36,7 +36,7 @@ class LoginForm extends Component {
         />
         <Field
           name="submitButton"
-          buttonText="Log in"
+          buttonText="Sign in"
           ui={{ maxWidth: '100%' }}
           component={SubmitButton}
         />

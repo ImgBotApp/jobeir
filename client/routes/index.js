@@ -60,14 +60,14 @@ const routes = (
       }}
     />
     <Route
-      path="/login"
+      path="/signin"
       getComponent={(nextState, cb) => {
         require.ensure(
           [],
           require => {
             cb(null, require('../modules/auth/login/containers/Login').default);
           },
-          'login'
+          'signin'
         );
       }}
     />

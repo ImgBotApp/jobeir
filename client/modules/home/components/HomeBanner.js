@@ -87,10 +87,6 @@ const HomeBannerCardHeader = styled.h2`
     font-size: 28px;
     margin-bottom: 15px;
   `};
-
-  ${media.phonePlus`
-    font-size: 20px;
-  `};
 `;
 
 const HomeBannerCardText = styled.p`

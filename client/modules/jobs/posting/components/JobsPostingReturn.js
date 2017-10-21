@@ -71,7 +71,6 @@ const StyledLink = styled(Link)`
 
   ${media.phablet`
     font-size: 16px;
-    font-weight: 400;
   `};
 `;
 

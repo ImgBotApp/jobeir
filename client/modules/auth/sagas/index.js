@@ -109,7 +109,7 @@ function* password(action) {
   try {
     const payload = yield call(fetchApi, 'POST', '/password', action.payload);
     yield put({ type: PASSWORD_SUCCESS, payload });
-    yield call(redirectTo, '/login');
+    yield call(redirectTo, '/signin');
   } catch (errors) {
     yield put({ type: PASSWORD_FAILURE, errors });
   }

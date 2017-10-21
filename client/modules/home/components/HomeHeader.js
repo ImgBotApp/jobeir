@@ -18,7 +18,7 @@ const HomeHeader = (props: { showHeaderText: true }) => (
 export default HomeHeader;
 
 const Header = styled.div`
-  max-width: 960px;
+  max-width: 900px;
   margin: 0 auto 50px;
   padding: 80px 0 50px;
   line-height: 1.1;
@@ -33,7 +33,7 @@ const Header = styled.div`
 `;
 
 const HeaderText = styled.h1`
-  font-size: 58px;
+  font-size: 54px;
   font-weight: 900;
   text-align: center;
   line-height: 1.2;

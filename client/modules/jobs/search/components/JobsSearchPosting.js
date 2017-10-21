@@ -98,7 +98,7 @@ const JobsSearchPostingTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 
   ${media.phablet`
     margin-bottom: 6px;
@@ -122,12 +122,12 @@ const JobsSearchPostingBottom = styled.div`
 const JobsSearchPostingTitle = styled.h2`
   font-size: 29px;
   font-weight: 900;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-family: ${props => props.theme.fontFamily.tiempos};
 
   ${media.tablet`
-    font-size: 22px;
-    margin-bottom: 10px;
+    font-size: 25px;
+    margin-bottom: 4px;
   `};
 `;
 
@@ -136,7 +136,7 @@ const JobsSearchPostingSubTitle = styled.div`
   font-weight: 600;
 
   ${media.tablet`
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   `};
 `;
 

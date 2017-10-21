@@ -36,7 +36,7 @@ class AuthModal extends Component {
             : 'Sign up with email'}
         </AuthModalSignupEmail>
         <AuthModalFooter onClick={() => this.setState({ showLoginForm: true })}>
-          Already have an account? Log in
+          Already have an account? Sign in
         </AuthModalFooter>
       </div>
     );

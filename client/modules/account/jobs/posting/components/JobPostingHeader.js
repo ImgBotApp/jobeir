@@ -53,7 +53,7 @@ const JobPostingHeaderContainer = styled.div`
   `};
 
   ${media.phablet`
-    margin-bottom: 24px;
+    margin-bottom: 40px;
   `};
 `;
 
@@ -81,12 +81,11 @@ const JobPostingHeaderTitle = styled.h1`
   font-family: ${props => props.theme.fontFamily.tiempos};
 
   ${media.tablet`
-    font-size: 44px;
+    font-size: 37px;
   `};
 
   ${media.phablet`
-    font-size: 33px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   `};
 `;
 

@@ -36,6 +36,7 @@ export const initialState = {
   isLoaded: false,
   globalIsLoaded: false,
   isResettingPassword: false,
+  resetPasswordSent: false,
   token: '',
   errors: []
 };
@@ -79,6 +80,7 @@ export default (state = initialState, action = {}) => {
     case PASSWORD_SUCCESS:
       return Object.assign({}, state, {
         isResettingPassword: false,
+        resetPasswordSent: true,
         ...action.payload.data
       });
     case LOGIN_FAILURE:

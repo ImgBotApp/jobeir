@@ -89,12 +89,8 @@ const JobPostingMapContainer = styled.div`
       width: 100%
     `};
 
-    ${media.phablet`
-      height: 375px;
-    `};
-
     ${media.phone`
-      height: 300px;
+      height: 400px;
     `};
   }
 

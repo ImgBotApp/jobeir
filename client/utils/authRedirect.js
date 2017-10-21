@@ -9,7 +9,7 @@ export const authRedirect = redirectPathname => {
 
   return signupPaths.includes(redirectPathname)
     ? `/signup?next=${redirectPathname}`
-    : `/login?next=${redirectPathname}`;
+    : `/signin?next=${redirectPathname}`;
 };
 
 export default authRedirect;

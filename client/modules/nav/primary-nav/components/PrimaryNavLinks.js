@@ -42,7 +42,7 @@ class PrimaryNavLinks extends Component {
     ) : (
       <NavLinkContainer>
         <NavLink onClick={this.handleSignUpClick}>Create Job</NavLink>
-        <NavLink to="/login">Log In</NavLink>
+        <NavLink to="/signin">Sign in</NavLink>
       </NavLinkContainer>
     );
   }

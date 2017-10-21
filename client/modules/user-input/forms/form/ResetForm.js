@@ -1,15 +1,25 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { initialize, Field, reduxForm } from 'redux-form';
+import styled from 'styled-components';
 import FormWrapper from '../containers/FormWrapper';
 import { Email, SubmitButton } from '../../inputs/input';
 import { email, required } from '../../validation';
 import { reset } from '../../../auth/ducks';
 
 class ResetForm extends Component {
-  formSubmit = (data: { email: string }): void => {
-    this.props.dispatch(reset(data.email));
+  state = {
+    showResetSuccess: false
+  };
+
+  formSubmit = (data: { email: string }) => {
+    const { dispatch } = this.props;
+
+    dispatch(reset(data.email)).then(() => {
+      this.setState({ showResetSuccess: true });
+      dispatch(initialize('reset', { email: '' }));
+    });
   };
 
   render() {
@@ -21,17 +31,27 @@ class ResetForm extends Component {
         theme="auth"
       >
         <Field
+          key="email"
           name="email"
           placeholder="Email"
           validate={[required, email]}
           component={Email}
         />
         <Field
+          key="submitButton"
           name="submitButton"
           buttonText="Reset Password"
           ui={{ maxWidth: '100%' }}
           component={SubmitButton}
         />
+        {this.state.showResetSuccess && (
+          <ResetSuccessContainer>
+            <ResetSuccessText>
+              Please check your email and follow the instructions to complete
+              resetting your password.
+            </ResetSuccessText>
+          </ResetSuccessContainer>
+        )}
       </FormWrapper>
     );
   }
@@ -42,7 +62,19 @@ const mapStateToProps = state => ({
 });
 
 ResetForm = reduxForm({
-  form: 'reset'
+  form: 'reset',
+  forceUnregisterOnUnmount: true
 })(ResetForm);
 
 export default connect(mapStateToProps)(ResetForm);
+
+const ResetSuccessContainer = styled.div`text-align: center;`;
+const ResetSuccessText = styled.div`
+  font-size: 16px;
+  margin-bottom: 20px;
+  background: rgba(92, 106, 195, 0.04);
+  padding: 20px;
+  border-radius: 2px;
+  border: 1px solid ${props => props.theme.colors.purple};
+  line-height: 1.6;
+`;

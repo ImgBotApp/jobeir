@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import AppHead from '../../../app/components/AppHead';
 import LoginForm from '../../../user-input/forms/form/LoginForm';
 import AuthOAuth from '../../components/AuthOAuth';
 import AuthPage from '../../components/AuthPage';
@@ -8,10 +8,12 @@ import AuthFooter from '../../components/AuthFooter';
 
 const Login = () => (
   <AuthPage>
-    <Helmet title="Login" />
-    <AuthHeader text="Jobeir Log in" />
-    <AuthOAuth />
-    <LoginForm />
+    <AppHead title="Sign in" />
+    <AuthHeader text="Sign into Jobeir" />
+    <div>
+      <AuthOAuth />
+      <LoginForm />
+    </div>
     <AuthFooter link="/reset" text="Forgot Password?" />
   </AuthPage>
 );

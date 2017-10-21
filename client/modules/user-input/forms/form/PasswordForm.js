@@ -25,13 +25,13 @@ class PasswordForm extends Component {
       >
         <Field
           name="password"
-          placeholder="Password"
+          placeholder="New password"
           validate={[required, minLength(6)]}
           component={Password}
         />
         <Field
           name="confirmPassword"
-          placeholder="Confirm Password"
+          placeholder="Confirm new password"
           validate={[required, minLength(6)]}
           component={Password}
         />
