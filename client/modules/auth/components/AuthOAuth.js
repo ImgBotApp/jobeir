@@ -20,19 +20,22 @@ export class AuthOAuth extends Component {
   }
 
   render() {
-    const { routing } = this.props;
+    const { routing, padded } = this.props;
 
     return (
-      <OAuthButtonContainer>
-        <GoogleButton href={`/auth/google/${routing.search}`}>
+      <OAuthButtonContainer padded={padded}>
+        <GoogleButton padded={padded} href={`/auth/google/${routing.search}`}>
           <GoogleIcon />
           <OAuthButtonText>Continue with Google</OAuthButtonText>
         </GoogleButton>
-        <FacebookButton href={`/auth/facebook/${routing.search}`}>
+        <FacebookButton
+          padded={padded}
+          href={`/auth/facebook/${routing.search}`}
+        >
           <FacebookIcon />
           <OAuthButtonText>Continue with Facebook</OAuthButtonText>
         </FacebookButton>
-        <GithubButton href={`/auth/github/${routing.search}`}>
+        <GithubButton padded={padded} href={`/auth/github/${routing.search}`}>
           <GithubIcon />
           <OAuthButtonText>Continue with Github</OAuthButtonText>
         </GithubButton>
@@ -47,13 +50,20 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(AuthOAuth);
 
-const OAuthButtonContainer = styled.div`padding-bottom: 1rem;`;
+const OAuthButtonContainer = styled.div`
+  padding: ${props => (props.padded ? '18px' : '0px')};
+  flex: 1;
+
+  ${media.phablet`
+    padding: 12px 0;
+  `};
+`;
 
 const OAuthButton = styled.a`
   display: flex;
   align-items: center;
   margin-bottom: 16px;
-  height: 60px;
+  height: ${props => (props.padded ? '50px' : '60px')};
   border-radius: 2px;
   max-width: 456px;
   text-decoration: none;

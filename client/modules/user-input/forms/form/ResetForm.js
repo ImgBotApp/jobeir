@@ -24,35 +24,37 @@ class ResetForm extends Component {
 
   render() {
     return (
-      <FormWrapper
-        handleSubmit={this.props.handleSubmit}
-        formSubmit={this.formSubmit}
-        formErrors={this.props.auth.errors}
-        theme="auth"
-      >
-        <Field
-          key="email"
-          name="email"
-          placeholder="Email"
-          validate={[required, email]}
-          component={Email}
-        />
-        <Field
-          key="submitButton"
-          name="submitButton"
-          buttonText="Reset Password"
-          ui={{ maxWidth: '100%' }}
-          component={SubmitButton}
-        />
-        {this.state.showResetSuccess && (
-          <ResetSuccessContainer>
-            <ResetSuccessText>
-              Please check your email and follow the instructions to complete
-              resetting your password.
-            </ResetSuccessText>
-          </ResetSuccessContainer>
-        )}
-      </FormWrapper>
+      <ResetContainer>
+        <FormWrapper
+          handleSubmit={this.props.handleSubmit}
+          formSubmit={this.formSubmit}
+          formErrors={this.props.auth.errors}
+          theme="auth"
+        >
+          <Field
+            key="email"
+            name="email"
+            placeholder="Email"
+            validate={[required, email]}
+            component={Email}
+          />
+          <Field
+            key="submitButton"
+            name="submitButton"
+            buttonText="Reset Password"
+            ui={{ maxWidth: '100%' }}
+            component={SubmitButton}
+          />
+          {this.state.showResetSuccess && (
+            <ResetSuccessContainer>
+              <ResetSuccessText>
+                Please check your email and follow the instructions to complete
+                resetting your password.
+              </ResetSuccessText>
+            </ResetSuccessContainer>
+          )}
+        </FormWrapper>
+      </ResetContainer>
     );
   }
 }
@@ -68,11 +70,17 @@ ResetForm = reduxForm({
 
 export default connect(mapStateToProps)(ResetForm);
 
+const ResetContainer = styled.div`
+  max-width: 400px;
+  margin: 0 auto;
+`;
+
 const ResetSuccessContainer = styled.div`text-align: center;`;
+
 const ResetSuccessText = styled.div`
   font-size: 16px;
   margin-bottom: 20px;
-  background: rgba(92, 106, 195, 0.04);
+  background: rgba(92, 106, 195, 0.02);
   padding: 20px;
   border-radius: 2px;
   border: 1px solid ${props => props.theme.colors.purple};

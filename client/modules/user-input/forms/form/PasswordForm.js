@@ -17,31 +17,33 @@ class PasswordForm extends Component {
 
   render() {
     return (
-      <FormWrapper
-        handleSubmit={this.props.handleSubmit}
-        formSubmit={this.formSubmit}
-        formErrors={this.props.auth.errors}
-        theme="auth"
-      >
-        <Field
-          name="password"
-          placeholder="New password"
-          validate={[required, minLength(6)]}
-          component={Password}
-        />
-        <Field
-          name="confirmPassword"
-          placeholder="Confirm new password"
-          validate={[required, minLength(6)]}
-          component={Password}
-        />
-        <Field
-          name="submitButton"
-          buttonText="Reset Password"
-          ui={{ maxWidth: '100%' }}
-          component={SubmitButton}
-        />
-      </FormWrapper>
+      <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+        <FormWrapper
+          handleSubmit={this.props.handleSubmit}
+          formSubmit={this.formSubmit}
+          formErrors={this.props.auth.errors}
+          theme="auth"
+        >
+          <Field
+            name="password"
+            placeholder="New password"
+            validate={[required, minLength(6)]}
+            component={Password}
+          />
+          <Field
+            name="confirmPassword"
+            placeholder="Confirm new password"
+            validate={[required, minLength(6)]}
+            component={Password}
+          />
+          <Field
+            name="submitButton"
+            buttonText="Reset Password"
+            ui={{ maxWidth: '100%' }}
+            component={SubmitButton}
+          />
+        </FormWrapper>
+      </div>
     );
   }
 }

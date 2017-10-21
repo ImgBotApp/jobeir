@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import AppHead from '../../../app/components/AppHead';
 import LoginForm from '../../../user-input/forms/form/LoginForm';
 import AuthOAuth from '../../components/AuthOAuth';
@@ -10,12 +12,21 @@ const Login = () => (
   <AuthPage>
     <AppHead title="Sign in" />
     <AuthHeader text="Sign into Jobeir" />
-    <div>
-      <AuthOAuth />
+    <LoginContainer>
+      <AuthOAuth padded={true} />
       <LoginForm />
-    </div>
+    </LoginContainer>
     <AuthFooter link="/reset" text="Forgot Password?" />
   </AuthPage>
 );
 
 export default Login;
+
+const LoginContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  ${media.phablet`
+    flex-direction: column;
+  `};
+`;

@@ -3,15 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../styles/breakpoints';
 
-export const AuthPage = (props: { children: any }) =>
-  <AuthPageContainer>
-    {props.children}
-  </AuthPageContainer>;
+export const AuthPage = (props: { children: any }) => (
+  <AuthPageContainer>{props.children}</AuthPageContainer>
+);
 
 export default AuthPage;
 
 const AuthPageContainer = styled.div`
-  max-width: 400px;
+  max-width: 700px;
   width: 100%;
   margin: 60px auto;
 

@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import FormWrapper from '../containers/FormWrapper';
 import { Email, Password, SubmitButton } from '../../inputs/input';
 import { email, required } from '../../validation';
@@ -16,31 +18,33 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <FormWrapper
-        handleSubmit={this.props.handleSubmit}
-        formSubmit={this.formSubmit}
-        formErrors={this.props.auth.errors}
-        theme="auth"
-      >
-        <Field
-          name="email"
-          placeholder="Email"
-          validate={[required, email]}
-          component={Email}
-        />
-        <Field
-          name="password"
-          placeholder="Password"
-          validate={[required]}
-          component={Password}
-        />
-        <Field
-          name="submitButton"
-          buttonText="Sign in"
-          ui={{ maxWidth: '100%' }}
-          component={SubmitButton}
-        />
-      </FormWrapper>
+      <LoginFormContainer>
+        <FormWrapper
+          handleSubmit={this.props.handleSubmit}
+          formSubmit={this.formSubmit}
+          formErrors={this.props.auth.errors}
+          theme="auth"
+        >
+          <Field
+            name="email"
+            placeholder="Email"
+            validate={[required, email]}
+            component={Email}
+          />
+          <Field
+            name="password"
+            placeholder="Password"
+            validate={[required]}
+            component={Password}
+          />
+          <Field
+            name="submitButton"
+            buttonText="Sign in"
+            ui={{ maxWidth: '100%' }}
+            component={SubmitButton}
+          />
+        </FormWrapper>
+      </LoginFormContainer>
     );
   }
 }
@@ -54,3 +58,12 @@ LoginForm = reduxForm({
 })(LoginForm);
 
 export default connect(mapStateToProps)(LoginForm);
+
+const LoginFormContainer = styled.div`
+  padding: 18px;
+  flex: 1;
+
+  ${media.phablet`
+    padding: 12px 0;
+  `};
+`;

@@ -16,15 +16,14 @@ const AuthHeaderContainer = styled.div`
   margin-bottom: 30px;
 
   ${media.phablet`
-    font-size: 22px;
-    margin-bottom: 24px;    
+    margin-bottom: 14px;    
   `};
 `;
 
 const AuthHeaderHeader = styled.h1`
   text-align: center;
-  font-size: 36px;
-  font-wieght: 800;
+  font-size: 42px;
+  font-weight: 800;
   font-family: ${props => props.theme.fontFamily.tiempos};
 
   ${media.tablet`
@@ -32,6 +31,6 @@ const AuthHeaderHeader = styled.h1`
   `};
 
   ${media.phablet`
-    font-size: 22px;
+    font-size: 26px;
   `};
 `;

@@ -113,7 +113,7 @@ const AuthModalFooter = styled.div`
 const AuthModalSignupEmail = styled.div`
   text-align: center;
   cursor: pointer;
-  padding-bottom: 1.5rem;
+  padding: 1rem 0 1.5rem;
 `;
 
 const AuthModalSolidBall = styled.div`

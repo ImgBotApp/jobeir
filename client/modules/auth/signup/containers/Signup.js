@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
+import AppHead from '../../../app/components/AppHead';
 import SignupForm from '../../../user-input/forms/form/SignupForm';
 import AuthOAuth from '../../components/AuthOAuth';
 import AuthPage from '../../components/AuthPage';
@@ -19,16 +20,18 @@ class Signup extends Component {
 
     return (
       <AuthPage>
-        <Helmet title="Signup" />
-        <AuthHeader text="Sign up for jobeir" />
-        {signupWithEmail ? <SignupForm /> : <AuthOAuth />}
-        <AuthSignupEmail
-          onClick={() => this.setState({ signupWithEmail: !signupWithEmail })}
-        >
-          {signupWithEmail
-            ? 'Sign up with Google, Facebook, or Github'
-            : 'Sign up with email'}
-        </AuthSignupEmail>
+        <AppHead title="Signup" />
+        <AuthHeader text="Sign up for Jobeir" />
+        <AuthSignupContainer>
+          {signupWithEmail ? <SignupForm /> : <AuthOAuth />}
+          <AuthSignupEmail
+            onClick={() => this.setState({ signupWithEmail: !signupWithEmail })}
+          >
+            {signupWithEmail
+              ? 'Sign up with Google, Facebook, or Github'
+              : 'Sign up with email'}
+          </AuthSignupEmail>
+        </AuthSignupContainer>
       </AuthPage>
     );
   }
@@ -40,4 +43,9 @@ const AuthSignupEmail = styled.div`
   text-align: center;
   cursor: pointer;
   padding-top: 1rem;
+`;
+
+const AuthSignupContainer = styled.div`
+  max-width: 400px;
+  margin: 0 auto;
 `;
