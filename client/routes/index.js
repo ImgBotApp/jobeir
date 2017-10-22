@@ -41,6 +41,7 @@ require('../modules/account/jobs/posting/containers/JobPostingToggle');
 require('../modules/account/company/containers/Company');
 require('../modules/account/people/containers/People');
 require('../modules/not-found/components/NotFound');
+require('../modules/pricing/components/Pricing');
 require('../modules/user-input/forms/form/job/JobForm');
 require('../modules/user-input/forms/form/company/CompanyForm');
 // }
@@ -83,6 +84,18 @@ const routes = (
             );
           },
           'signup'
+        );
+      }}
+    />
+    <Route
+      path="/pricing"
+      getComponent={(nextState, cb) => {
+        require.ensure(
+          [],
+          require => {
+            cb(null, require('../modules/pricing/components/Pricing').default);
+          },
+          'pricing'
         );
       }}
     />
@@ -232,7 +245,6 @@ const routes = (
             'account-jobs'
           );
         }}
-      />
       />
       <Route
         path="/account/profile"
