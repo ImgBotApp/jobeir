@@ -10,7 +10,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-const seoURL = path => `https://jobeir.com${path}`;
+const seoURL = path => `https://jobeir.com/${path}`;
 
 const getMetaTags = ({
   title,
@@ -39,10 +39,10 @@ const getMetaTags = ({
     { itemprop: 'image', content: seoURL(image) },
     { name: 'description', content: description },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:site', content: '@_brotzky' },
+    { name: 'twitter:site', content: '@JobeirOfficial' },
     { name: 'twitter:title', content: `${title} | Jobeir` },
     { name: 'twitter:description', content: description },
-    { name: 'twitter:creator', content: twitter || '@_brotzky' },
+    { name: 'twitter:creator', content: twitter || '@JobeirOfficial' },
     {
       name: 'twitter:image:src',
       content: seoURL(image)
