@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { media } from '../../../styles/breakpoints';
 import AppHead from '../../app/components/AppHead';
 import HomeHeader from '../components/HomeHeader';
 import HomeBanner from '../components/HomeBanner';
@@ -15,9 +14,7 @@ const Home = () => (
     <HomeBanner />
     <HomeFeaturedJobs />
     <HomeHalfCopy />
-    <HomeFooter>
-      <HomeHeader />
-    </HomeFooter>
+    <HomeHeader />
   </HomeContainer>
 );
 
@@ -26,15 +23,4 @@ export default Home;
 const HomeContainer = styled.div`
   max-width: 1440px;
   margin: 0 auto;
-`;
-
-const HomeFooter = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 20px 0;
-  background: #f9f8f7;
-
-  ${media.desktop`
-    background: #fff;
-  `};
 `;

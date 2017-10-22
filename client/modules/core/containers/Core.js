@@ -8,6 +8,7 @@ import { serverAuth } from '../../auth/server/';
 import { serverGetUser } from '../../user/server/';
 import Modal from '../../modal/containers/Modal';
 import AppHead from '../../app/components/AppHead';
+import AppFooter from '../../app/components/AppFooter';
 import Header from '../../header/containers/Header';
 import theme from '../theme';
 
@@ -38,9 +39,19 @@ class Core extends Component {
     }
   }
 
+  displayAppFooter(): boolean {
+    return (
+      !this.props.pathname.includes('account') &&
+      !this.props.pathname.includes('create')
+    );
+  }
+
+  displayHeader(): boolean {
+    return !this.props.pathname.includes('create');
+  }
+
   render() {
     const { children, isModalOpen, globalIsLoaded, pathname } = this.props;
-    const shouldShowHeader: boolean = !pathname.includes('create');
 
     return (
       <ThemeProvider theme={theme}>
@@ -48,8 +59,9 @@ class Core extends Component {
           {globalIsLoaded && <Modal />}
           <CoreContainer pathname={pathname} isModalOpen={isModalOpen}>
             <AppHead />
-            {shouldShowHeader && <Header />}
+            {this.displayHeader() && <Header />}
             {children}
+            {this.displayAppFooter() && <AppFooter />}
           </CoreContainer>
         </div>
       </ThemeProvider>
