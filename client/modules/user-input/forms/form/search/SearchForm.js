@@ -554,7 +554,7 @@ const SelectContainer = styled.div`
     position: absolute;
     left: -15px;
     top: 100%;
-    width: 392px;
+    width: 363px;
 
     z-index: 1;
     -webkit-overflow-scrolling: touch;

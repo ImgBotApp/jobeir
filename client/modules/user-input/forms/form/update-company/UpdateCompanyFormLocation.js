@@ -4,19 +4,20 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
-import FormHeader from '../../components/FormHeader';
 import { SubmitButton, Text } from '../../../inputs/input';
-import { createCompany } from '../../../../account/create/company/ducks';
+import { updateCompany } from '../../../../account/create/company/ducks';
 import UpdateCompanyFormLocationEdit from './UpdateCompanyFormLocationEdit';
 import Autocomplete from '../../../autocomplete/Autocomplete';
 
 class CompanyFormStepThree extends Component {
   formSubmit = (data: {}): void => {
-    this.props.dispatch(createCompany(data, '/create/company/upload'));
+    this.props.dispatch(
+      updateCompany(data, this.props.companies.activeCompany._id)
+    );
   };
 
   render() {
-    const { companies, handleSubmit, locations, prevPage } = this.props;
+    const { companies, handleSubmit, locations } = this.props;
 
     return (
       <FormWrapper
@@ -58,6 +59,7 @@ class CompanyFormStepThree extends Component {
             name="submitButton"
             buttonText="Save"
             component={SubmitButton}
+            isSubmitting={companies.isUpdating}
           />
         </div>
       </FormWrapper>

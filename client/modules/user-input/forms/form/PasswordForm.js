@@ -16,12 +16,14 @@ class PasswordForm extends Component {
   };
 
   render() {
+    const { auth, handleSubmit } = this.props;
+
     return (
       <div style={{ maxWidth: '400px', margin: '0 auto' }}>
         <FormWrapper
-          handleSubmit={this.props.handleSubmit}
+          handleSubmit={handleSubmit}
           formSubmit={this.formSubmit}
-          formErrors={this.props.auth.errors}
+          formErrors={auth.errors}
           theme="auth"
         >
           <Field
@@ -40,6 +42,7 @@ class PasswordForm extends Component {
             name="submitButton"
             buttonText="Reset Password"
             ui={{ maxWidth: '100%' }}
+            isSubmitting={auth.isResettingPassword}
             component={SubmitButton}
           />
         </FormWrapper>

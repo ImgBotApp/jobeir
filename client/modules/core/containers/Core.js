@@ -42,7 +42,8 @@ class Core extends Component {
   displayAppFooter(): boolean {
     return (
       !this.props.pathname.includes('account') &&
-      !this.props.pathname.includes('create')
+      !this.props.pathname.includes('create') &&
+      !this.props.pathname.includes('redirect')
     );
   }
 

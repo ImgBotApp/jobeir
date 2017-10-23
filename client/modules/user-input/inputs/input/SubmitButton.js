@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
+import Loader from '../../../../styles/loader';
 
 // check if there are any form errors
 const isDisabled = (errors: Array<{}> = []): boolean => errors.length >= 1;
@@ -9,13 +10,14 @@ const isDisabled = (errors: Array<{}> = []): boolean => errors.length >= 1;
 export const SubmitButton = (props: {
   disabled: boolean,
   buttonText: string,
+  isSubmitting: boolean,
   formErrors: Array<{}>
 }) => (
   <Button
     type="submit"
     disabled={props.disabled || isDisabled(props.formErrors)}
   >
-    {props.buttonText || 'Submit'}
+    {props.isSubmitting ? <Loader /> : props.buttonText || 'Submit'}
   </Button>
 );
 

@@ -45,7 +45,7 @@ export default connect(mapStateToProps)(JobsFilter);
 const JobsFilterContainer = styled.div`
   display: flex;
   margin: 0 auto;
-  max-width: 1062px;
+  max-width: 1052px;
   width: 100%;
   border-bottom: 1px solid #eceaea;
 

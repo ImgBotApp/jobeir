@@ -40,7 +40,7 @@ export function* updateCompany(action) {
     const payload = yield call(
       fetchApi,
       'PUT',
-      '/companies',
+      `/companies/${action.payload.companyId}`,
       action.payload.data
     );
     yield put({ type: UPDATE_COMPANY_SUCCESS, payload });

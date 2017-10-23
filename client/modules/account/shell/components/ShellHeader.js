@@ -25,7 +25,7 @@ const ShellHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 70px 0 40px;
-  max-width: 1062px;
+  max-width: 1052px;
   margin: 0 auto;
 
   ${media.tablet`

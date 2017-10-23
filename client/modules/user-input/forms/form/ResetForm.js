@@ -23,12 +23,14 @@ class ResetForm extends Component {
   };
 
   render() {
+    const { auth, handleSubmit } = this.props;
+
     return (
       <ResetContainer>
         <FormWrapper
-          handleSubmit={this.props.handleSubmit}
+          handleSubmit={handleSubmit}
           formSubmit={this.formSubmit}
-          formErrors={this.props.auth.errors}
+          formErrors={auth.errors}
           theme="auth"
         >
           <Field
@@ -43,6 +45,7 @@ class ResetForm extends Component {
             name="submitButton"
             buttonText="Reset Password"
             ui={{ maxWidth: '100%' }}
+            isSubmitting={auth.isResettingPassword}
             component={SubmitButton}
           />
           {this.state.showResetSuccess && (

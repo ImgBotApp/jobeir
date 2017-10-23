@@ -83,6 +83,7 @@ class JobFormComponesation extends Component {
             name="submitButton"
             buttonText="Create"
             component={SubmitButton}
+            isSubmitting={jobs.isCreating}
           />
         </FormFooter>
       </FormWrapper>

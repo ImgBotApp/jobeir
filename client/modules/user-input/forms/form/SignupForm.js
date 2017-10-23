@@ -19,11 +19,13 @@ class SignupForm extends Component {
   };
 
   render() {
+    const { auth, handleSubmit } = this.props;
+
     return (
       <FormWrapper
-        handleSubmit={this.props.handleSubmit}
+        handleSubmit={handleSubmit}
         formSubmit={this.formSubmit}
-        formErrors={this.props.auth.errors}
+        formErrors={auth.errors}
         theme="auth"
       >
         <FormRow>
@@ -56,6 +58,7 @@ class SignupForm extends Component {
           name="submitButton"
           buttonText="Sign up"
           ui={{ maxWidth: '100%' }}
+          isSubmitting={auth.isAuthenticating}
           component={SubmitButton}
         />
       </FormWrapper>

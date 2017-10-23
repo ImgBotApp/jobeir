@@ -30,7 +30,7 @@ export default JobsListItemPlaceholder;
 const JobsListItemPlaceholderContainer = styled.div`margin-top: 40px;`;
 
 const PlaceholderContainer = styled.div`
-  max-width: 1062px;
+  max-width: 1052px;
   margin: 0 auto 70px;
 
   ${media.tablet`

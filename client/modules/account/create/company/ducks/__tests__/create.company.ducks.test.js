@@ -49,14 +49,14 @@ describe('[Ducks Create Company]', () => {
     });
 
     it('should return the correct state on CREATE_COMPANY_REQUEST', () => {
-      const nextState = { isLoading: true };
+      const nextState = { isCreating: true };
       const action = { type: CREATE_COMPANY_REQUEST };
 
       expect(compnayReducer({}, action)).toEqual(nextState);
     });
 
     it('should return the correct state on CREATE_COMPANY_SUCCESS', () => {
-      const nextState = { activeCompany: {}, created: [{}], isLoading: false };
+      const nextState = { activeCompany: {}, created: [{}], isCreating: false };
 
       const action = {
         type: CREATE_COMPANY_SUCCESS,
@@ -72,7 +72,7 @@ describe('[Ducks Create Company]', () => {
 
     it('should return the correct state on CREATE_COMPANY_FAILURE', () => {
       const nextState = {
-        isLoading: false,
+        isCreating: false,
         errors: ['error']
       };
       const action = {

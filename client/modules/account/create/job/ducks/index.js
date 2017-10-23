@@ -26,7 +26,7 @@ export const DELETE_JOB_FAILURE = 'DELETE_JOB_FAILURE';
 export const UPDATE_JOB_FILTER = 'UPDATE_JOB_FILTER';
 
 export const initialState: {
-  isLoading: boolean,
+  isCreating: boolean,
   isFetching: boolean,
   isUpdating: boolean,
   isDeleting: boolean,
@@ -34,7 +34,7 @@ export const initialState: {
   postings: Array<{}>,
   errors: Array<{}>
 } = {
-  isLoading: false,
+  isCreating: false,
   isFetching: false,
   isUpdating: false,
   isDeleting: false,
@@ -47,17 +47,17 @@ export default (state: {} = initialState, action: {}): {} => {
   switch (action.type) {
     case CREATE_JOB_REQUEST:
       return Object.assign({}, state, {
-        isLoading: true
+        isCreating: true
       });
     case CREATE_JOB_SUCCESS:
       return Object.assign({}, state, {
-        isLoading: false,
+        isCreating: false,
         postings: [...state.postings, action.payload.data.job],
         errors: []
       });
     case CREATE_JOB_FAILURE:
       return Object.assign({}, state, {
-        isLoading: false,
+        isCreating: false,
         errors: action.errors.errors
       });
     case GET_JOBS_REQUEST:

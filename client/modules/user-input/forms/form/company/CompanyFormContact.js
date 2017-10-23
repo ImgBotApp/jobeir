@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormHeader from '../../components/FormHeader';
-import FormRow from '../../components/FormRow';
 import FormFooter from '../../components/FormFooter';
 import {
   BackButton,

@@ -60,7 +60,7 @@ const JobsListContainer = styled.div``;
 
 const JobsBodyList = styled.ul`
   list-style: none;
-  max-width: 1062px;
+  max-width: 1052px;
   width: 100%;
   margin: 40px auto 0;
   padding-bottom: 80px;

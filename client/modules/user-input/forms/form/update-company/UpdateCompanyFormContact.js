@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormWrapper from '../../containers/FormWrapper';
 import FormRow from '../../components/FormRow';
-import { Email, Phone, SubmitButton, Text } from '../../../inputs/input';
+import { Email, Phone, Text } from '../../../inputs/input';
 import { email, required, phoneNumber, url } from '../../../validation';
 import { parsePhone } from '../../../parse';
 

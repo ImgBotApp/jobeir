@@ -1,4 +1,5 @@
 .DS_Store
+companies.txt
 node_modules/
 npm-debug.log
 public/static/dist

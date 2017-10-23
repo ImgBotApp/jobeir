@@ -17,12 +17,14 @@ class LoginForm extends Component {
   };
 
   render() {
+    const { auth, handleSubmit } = this.props;
+
     return (
       <LoginFormContainer>
         <FormWrapper
-          handleSubmit={this.props.handleSubmit}
+          handleSubmit={handleSubmit}
           formSubmit={this.formSubmit}
-          formErrors={this.props.auth.errors}
+          formErrors={auth.errors}
           theme="auth"
         >
           <Field
@@ -41,6 +43,7 @@ class LoginForm extends Component {
             name="submitButton"
             buttonText="Sign in"
             ui={{ maxWidth: '100%' }}
+            isSubmitting={auth.isAuthenticating}
             component={SubmitButton}
           />
         </FormWrapper>

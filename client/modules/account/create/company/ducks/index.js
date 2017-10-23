@@ -24,7 +24,7 @@ export const UPLOAD_COMPANY_LOGO_FAILURE = 'UPLOAD_COMPANY_LOGO_FAILURE';
 export const UPDATE_COMPANY_FILTER = 'UPDATE_COMPANY_FILTER';
 
 export const initialState: {
-  isLoading: boolean,
+  isCreating: boolean,
   isChecking: boolean,
   isUploading: boolean,
   successfulUpload: boolean,
@@ -33,9 +33,10 @@ export const initialState: {
   created: [],
   errors: []
 } = {
-  isLoading: false,
+  isCreating: false,
   isChecking: false,
   isUploading: false,
+  isUpdating: false,
   successfulUpload: false,
   activeCompany: {},
   filter: 'Overview',
@@ -66,17 +67,32 @@ export default (state?: {} = initialState, action?: {} = {}) => {
       });
     case CREATE_COMPANY_REQUEST:
       return Object.assign({}, state, {
-        isLoading: true
+        isCreating: true
       });
     case CREATE_COMPANY_SUCCESS:
       return Object.assign({}, state, {
-        isLoading: false,
+        isCreating: false,
         activeCompany: action.payload.data.company,
         created: [...state.created, action.payload.data.company]
       });
     case CREATE_COMPANY_FAILURE:
       return Object.assign({}, state, {
-        isLoading: false,
+        isCreating: false,
+        errors: action.errors.errors
+      });
+    case UPDATE_COMPANY_REQUEST:
+      return Object.assign({}, state, {
+        isUpdating: true
+      });
+    case UPDATE_COMPANY_SUCCESS:
+      return Object.assign({}, state, {
+        isUpdating: false,
+        activeCompany: action.payload.data.company,
+        created: [...state.created, action.payload.data.company]
+      });
+    case UPDATE_COMPANY_FAILURE:
+      return Object.assign({}, state, {
+        isUpdating: false,
         errors: action.errors.errors
       });
     case CHECK_COMPANY_REQUEST:
@@ -127,9 +143,9 @@ export const checkCompany = (data: {}) => ({
   payload: { data }
 });
 
-export const updateCompany = (data: {}) => ({
+export const updateCompany = (data: {}, companyId: string) => ({
   type: UPDATE_COMPANY_REQUEST,
-  payload: { data }
+  payload: { data, companyId }
 });
 
 export const uploadCompanyLogo = (formData: {}, companyId: string) => ({

@@ -63,6 +63,7 @@ class CompanyFormStepThree extends Component {
             name="submitButton"
             buttonText="Next"
             disabled={locations.length === 0}
+            isSubmitting={companies.isCreating}
             component={SubmitButton}
           />
         </FormFooter>
