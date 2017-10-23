@@ -10,13 +10,13 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-const seoURL = path => `https://jobeir.com/${path}`;
+const seoURL = path => `https://jobeir.com${path}`;
 
 const getMetaTags = ({
   title,
   description,
   url,
-  image,
+  image = '/public/static/imgs/brand/jobeir-hero-metadata.jpg',
   contentType,
   published,
   updated,
@@ -69,7 +69,7 @@ const getMetaTags = ({
 const AppHead = ({
   title,
   description,
-  path,
+  path = '/public/static/imgs/brand/jobeir-hero-metadata.jpg',
   image,
   contentType,
   published,
