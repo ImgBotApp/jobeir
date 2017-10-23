@@ -12,7 +12,8 @@ export default AuthPage;
 const AuthPageContainer = styled.div`
   max-width: 700px;
   width: 100%;
-  margin: 60px auto;
+  margin: 100px auto;
+  min-height: 50vh;
 
   ${media.tablet`
     padding: 0 24px;

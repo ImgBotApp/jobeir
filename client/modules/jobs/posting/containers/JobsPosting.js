@@ -63,4 +63,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(JobsPosting);
 
-const JobPostingContainer = styled.div`//border-top: 1px solid #e5e7ea`;
+const JobPostingContainer = styled.div`min-height: 100vh;`;

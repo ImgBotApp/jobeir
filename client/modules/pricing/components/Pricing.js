@@ -7,11 +7,19 @@ import PricingHalfCopy from './PricingHalfCopy';
 const Pricing = () => (
   <PricingContainer>
     <AppHead title="Pricing" />
-    <PricingAmountContainer>
-      <PricingCurrency>$</PricingCurrency>
-      <PricingAmount>29</PricingAmount>
-      <PricingTerm>per job post</PricingTerm>
-    </PricingAmountContainer>
+    <TopHeaderContainer>
+      <PricingAmountContainer>
+        <PricingCurrency>$</PricingCurrency>
+        <PricingAmount>29</PricingAmount>
+        <PricingTerm>per job post</PricingTerm>
+      </PricingAmountContainer>
+    </TopHeaderContainer>
+    <ImageContainer>
+      <StyledImage
+        src="/public/static/imgs/pricing/tech-companies-grey-scale-logos-single-row-light-grey.png"
+        alt="Airbnb, Stripe, Shopify, Dropbox, Asana, Slack, Shopify"
+      />
+    </ImageContainer>
     <PricingHalfCopy />
     {/* <div>45 days of active listing</div>
     <div>Reach the top tech talent in the world.</div>
@@ -29,13 +37,17 @@ const PricingContainer = styled.div`
   padding: 75px 0 0;
 `;
 
-const PricingAmountContainer = styled.div`
+const TopHeaderContainer = styled.div`
   font-family: ${props => props.theme.fontFamily.tiempos};
-  display: flex;
-  align-items: flex-start;
-  padding: 30px 70px;
+  text-align: center;
+  padding: 30px 0;
   border-radius: 3px;
-  margin: 0 auto 75px;
+  margin: 0 auto 50px;
+`;
+
+const PricingAmountContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 const PricingAmount = styled.div`
@@ -57,3 +69,7 @@ const PricingCurrency = styled.div`
   right: 10px;
   font-size: 30px;
 `;
+
+const StyledImage = styled.img`width: 100%;`;
+
+const ImageContainer = styled.div`margin-bottom: 50px;`;
