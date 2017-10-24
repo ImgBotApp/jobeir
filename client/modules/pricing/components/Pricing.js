@@ -24,6 +24,12 @@ const Pricing = (props: { activeCompany: { _id: string } }) => {
             <PricingTerm>per job post</PricingTerm>
           </PricingAmountContent>
           <AuthOAuth />
+          <TermsText>
+            By clicking “Continue with Google", or “Continue with Facebook" or
+            “Continue with Github", you agree to our{' '}
+            <StyledTermsLink>Terms of Service</StyledTermsLink> and{' '}
+            <StyledTermsLink>Privacy Policy</StyledTermsLink>.
+          </TermsText>
         </PricingAmountContainer>
         <PricingIncludesContainer>
           <PricingIncludesConntent>
@@ -75,6 +81,10 @@ const PricingContainer = styled.div`
   width: 100%;
   display: block;
   padding: 75px 0 0;
+
+  ${media.tablet`
+    padding: 0;
+  `};
 `;
 
 const TopHeaderContainer = styled.div`
@@ -82,6 +92,10 @@ const TopHeaderContainer = styled.div`
   position: relative;
   border-radius: 3px;
   margin: 0 auto 50px;
+
+  ${media.desktop`
+    flex-direction: column;
+  `};
 `;
 
 const PricingIncludesContainer = styled.div`
@@ -93,7 +107,11 @@ const PricingIncludesConntent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px 60px 50px 35px;
+  padding: 75px;
+
+  ${media.desktop`
+    padding: 50px;
+  `};
 `;
 
 const List = styled.ul`list-style: none;`;
@@ -103,6 +121,10 @@ const ListItem = styled.ul`
   &:last-child {
     margin-bottom: 0;
   }
+
+  ${media.tablet`
+    margin-bottom: 20px;
+  `};
 `;
 
 const ListHeader = styled.h3`
@@ -110,6 +132,11 @@ const ListHeader = styled.h3`
   list-style: none;
   font-size: 38px;
   margin-bottom: 12px;
+
+  ${media.tablet`
+    font-size: 26px;
+    margin-bottom: 8px;
+  `};
 `;
 
 const ListSubheader = styled.p`
@@ -136,6 +163,18 @@ const PricingAmountContainer = styled.div`
     width: 500px;
     z-index: -1;
   }
+
+  ${media.desktop`
+    margin: 0 auto 25px;
+
+    &::before {
+      content: none;
+    }
+  `};
+
+  ${media.phablet`
+    margin: 0 auto;
+  `};
 `;
 
 const PricingAmountContent = styled.div`
@@ -143,13 +182,21 @@ const PricingAmountContent = styled.div`
   display: flex;
   align-self: flex-start;
   font-family: ${props => props.theme.fontFamily.tiempos};
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+
+  ${media.tablet`
+    margin-bottom: 16px;
+  `};
 `;
 
 const PricingAmount = styled.div`
-  font-size: 132px;
+  font-size: 124px;
   font-weight: 800;
   margin-left: 5px;
+
+  ${media.tablet`
+    font-size: 100px;
+  `};
 `;
 
 const PricingTerm = styled.div`
@@ -164,6 +211,11 @@ const PricingCurrency = styled.div`
   position: relative;
   top: 30px;
   font-size: 60px;
+
+  ${media.tablet`
+    font-size: 50px;
+    top: 20px;
+  `};
 `;
 
 const StyledImage = styled.img`width: 100%;`;
@@ -171,4 +223,19 @@ const StyledImage = styled.img`width: 100%;`;
 const ImageContainer = styled.div`
   display: inline-block;
   margin: 75px auto 150px;
+`;
+
+const TermsText = styled.p`
+  color: ${props => props.theme.colors.grey.mid};
+  line-height: 1.6;
+  margin-top: 50px;
+
+  ${media.tablet`
+    margin-top: 16px;
+  `};
+`;
+
+const StyledTermsLink = styled(Link)`
+  text-decoration: underline;
+  text-decoration-skip: ink;
 `;
