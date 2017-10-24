@@ -59,9 +59,6 @@ const Pricing = (props: { activeCompany: { _id: string } }) => {
           alt="Airbnb, Stripe, Shopify, Dropbox, Asana, Slack, Shopify"
         />
       </ImageContainer>
-      {/* <div>45 days of active listing</div>
-    <div>Reach the top tech talent in the world.</div>
-    <div>Show case your company and brand amongst the best</div> */}
     </PricingContainer>
   );
 };
@@ -96,7 +93,7 @@ const PricingIncludesConntent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px 60px 80px 35px;
+  padding: 50px 60px 50px 35px;
 `;
 
 const List = styled.ul`list-style: none;`;
@@ -174,54 +171,4 @@ const StyledImage = styled.img`width: 100%;`;
 const ImageContainer = styled.div`
   display: inline-block;
   margin: 75px auto 150px;
-`;
-
-const ArtContainer = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
-const SolidBall = styled.div`
-  position: absolute;
-  border-radius: 50%;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-
-  background-image: linear-gradient(
-    45deg,
-    #ff9a9e 0%,
-    #fad0c4 99%,
-    #fad0c4 100%
-  );
-`;
-
-const SolidBallTop = SolidBall.extend`
-  left: -84px;
-  top: -20px;
-  height: 300px;
-  width: 300px;
-  z-index: -1;
-`;
-
-const HollowBallTop = styled(Link)`
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 50%;
-  right: 154px;
-  bottom: 190px;
-  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.16);
-  z-index: -1;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    box-shadow: 0px 0px 0px 2000px ${props => props.theme.colors.purple};
-  }
 `;
