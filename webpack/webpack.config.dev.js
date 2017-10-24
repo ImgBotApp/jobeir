@@ -4,6 +4,7 @@ const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicToolsConfig = require('./webpack.config.isomorphic');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
+require('dotenv').config();
 
 const PUBLIC_PATH = `/${process.env.PUBLIC_PATH || ''}/`.replace('//', '/');
 
@@ -67,9 +68,10 @@ module.exports = {
         CLIENT: JSON.stringify(true),
         NODE_ENV: JSON.stringify('development'),
         PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
-        HOST: JSON.stringify('localhost'),
-        PROTOCOL: JSON.stringify('http'),
-        PORT: JSON.stringify('8000')
+        HOST: JSON.stringify(process.env.HOST),
+        PROTOCOL: JSON.stringify(process.env.PROTOCOL),
+        PORT: JSON.stringify(process.env.PORT),
+        STRIPE: JSON.stringify(process.env.STRIPE)
       },
       __CLIENT__: true,
       __SERVER__: false,

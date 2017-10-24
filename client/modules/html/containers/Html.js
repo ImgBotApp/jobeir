@@ -21,6 +21,7 @@ const Html = (props: {
         {helmet.meta.toComponent()}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {helmet.link.toComponent()}
+        <script type="text/javascript" src="https://js.stripe.com/v3/" />
         {Object.keys(assets.styles).length > 0 &&
           Object.keys(assets.styles)
             .reverse()

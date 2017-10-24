@@ -9,6 +9,8 @@ import JobsListItemPlaceholder from '../components/JobsListItemPlaceholder';
 import JobsListEmptyState from '../components/JobsListEmptyState';
 import { FadeIn } from '../../../../styles/animate/';
 
+import StripeCheckout from '../../../payments/stripe/containers/StripeCheckout';
+
 const byEarliestFirst = (a, b) =>
   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
 
@@ -51,6 +53,7 @@ class Jobs extends Component {
 
     return (
       <JobsContainer>
+        {globalIsLoaded && <StripeCheckout />}
         <JobsFilter />
         <JobsContent>
           {jobs.isFetching ? (

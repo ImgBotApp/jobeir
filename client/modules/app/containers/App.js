@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { Provider } from 'react-redux';
+import { StripeProvider } from 'react-stripe-elements';
 import { Router } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-connect';
 import ReactGA from 'react-ga';
@@ -27,12 +28,14 @@ export default function App(props: { store: {}, history: {} }) {
   return (
     <Provider store={store}>
       <IntlWrapper>
-        <Router
-          render={renderProps => <ReduxAsyncConnect {...renderProps} />}
-          history={history}
-          routes={routes}
-          onUpdate={handleUpdate}
-        />
+        <StripeProvider apiKey={process.env.STRIPE}>
+          <Router
+            render={renderProps => <ReduxAsyncConnect {...renderProps} />}
+            history={history}
+            routes={routes}
+            onUpdate={handleUpdate}
+          />
+        </StripeProvider>
       </IntlWrapper>
     </Provider>
   );
