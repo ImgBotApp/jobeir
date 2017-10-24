@@ -14,7 +14,7 @@ const buildRedirectPath = (routing: { search: 'string' }) => {
   return '/account/jobs';
 };
 
-export class AuthOAuth extends Component {
+class AuthOAuth extends Component {
   componentDidMount() {
     docCookies.setItem('redirectTo', buildRedirectPath(this.props.routing));
   }
