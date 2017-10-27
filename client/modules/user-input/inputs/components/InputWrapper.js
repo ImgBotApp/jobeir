@@ -9,12 +9,13 @@ import InputError from './InputError';
  * a utility to enable streamlined labeling, styling,
  * and error handling
  */
-const InputWrapper = (props: { label: string, children: any }) =>
+const InputWrapper = (props: { label: string, children: any }) => (
   <InputWrapperContainer ui={props.ui}>
     {props.label && <InputLabel {...props} />}
     {props.children}
     <InputError {...props} />
-  </InputWrapperContainer>;
+  </InputWrapperContainer>
+);
 
 export default InputWrapper;
 
@@ -24,7 +25,10 @@ export default InputWrapper;
  * ui an object
  */
 const InputWrapperContainer = styled.div`
+  display: ${props => props.theme.inputWrapper.display || 'block'};
+  align-items: ${props => props.theme.inputWrapper.alignItems || 'initial'};
   max-width: ${props =>
     (props.ui && props.ui.maxWidth) || props.theme.input.maxWidth};
   margin-bottom: ${props => props.theme.inputWrapper.marginBottom || '1rem'};
+  border-bottom: ${props => props.theme.inputWrapper.borderBottom || 'none'};
 `;

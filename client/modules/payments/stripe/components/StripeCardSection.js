@@ -1,6 +1,13 @@
 // @flow
 import React from 'react';
-import { CardElement } from 'react-stripe-elements';
+import styled from 'styled-components';
+import { SubmitButton } from '../../../user-input/inputs/input/SubmitButton';
+import {
+  CardNumberElement,
+  CardExpiryElement,
+  CardCVCElement,
+  injectStripe
+} from 'react-stripe-elements';
 
 const createOptions = (fontSize: string) => ({
   style: {
@@ -10,7 +17,7 @@ const createOptions = (fontSize: string) => ({
       letterSpacing: '0.025em',
       fontFamily: 'Source Code Pro, monospace',
       '::placeholder': {
-        color: '#aab7c4'
+        color: '#afafaf'
       }
     },
     invalid: {
@@ -20,22 +27,47 @@ const createOptions = (fontSize: string) => ({
 });
 
 class StripeCardSection extends React.Component {
-  handleSubmit = ev => {
-    ev.preventDefault();
-    this.props.stripe.createToken().then(payload => console.log(payload));
-  };
-
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Card details
-          <CardElement {...createOptions(this.props.fontSize)} />
-        </label>
-        <button>Pay</button>
-      </form>
+      <div>
+        <LabelContainer>
+          <Label>Card Number</Label>
+          <CardNumberElement {...createOptions('16px')} />
+        </LabelContainer>
+        <LabelContainer>
+          <Label>Expiry</Label>
+          <CardExpiryElement {...createOptions('16px')} />
+        </LabelContainer>
+        <LabelContainer>
+          <Label>CVC</Label>
+          <CardCVCElement {...createOptions('16px')} />
+        </LabelContainer>
+        <ButtonContainer>
+          <SubmitButton buttonText="Pay" />
+        </ButtonContainer>
+      </div>
     );
   }
 }
 
 export default StripeCardSection;
+
+const LabelContainer = styled.label`
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #d8d8d8;
+  margin: 0 auto 0.5rem;
+
+  .StripeElement {
+    width: 100%;
+    padding: 9px 12px 12px 18px;
+  }
+`;
+
+const Label = styled.div`min-width: 120px;`;
+
+const ButtonContainer = styled.div`
+  display: inline-block;
+  width: 100%;
+  margin-top: 15px;
+`;

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Field } from 'redux-form';
 import FormRow from '../../components/FormRow';
-import { PostalCode, Text } from '../../../inputs/input';
+import { Text } from '../../../inputs/input';
 import { PencilIcon, ExIcon } from '../../../../../icons/';
 import { FadeIn } from '../../../../../styles/animate/';
 
@@ -70,10 +70,11 @@ class CompanyFormLocationEdit extends Component {
     return (
       <div>
         <AddressFirstLine>
-          {currentLocation.unit &&
+          {currentLocation.unit && (
             <span>
               {currentLocation.unit} {' - '}
-            </span>}
+            </span>
+          )}
           {currentLocation.street_number} {currentLocation.route},{' '}
           {currentLocation.locality}
         </AddressFirstLine>
@@ -167,12 +168,14 @@ class CompanyFormLocationEdit extends Component {
               ? this.renderAddressForm()
               : this.renderPrettyAddress()}
           </AddressItemLeft>
-          {!this.state.showManualAddressInputs &&
+          {!this.state.showManualAddressInputs && (
             <AddressItemRight>
               <PencilIcon height={20} width={20} />
-            </AddressItemRight>}
-          {!this.state.showManualAddressInputs &&
-            <AddressItemClick onClick={this.handleEditClick} />}
+            </AddressItemRight>
+          )}
+          {!this.state.showManualAddressInputs && (
+            <AddressItemClick onClick={this.handleEditClick} />
+          )}
         </AddressItem>
       </FadeIn>
     );
@@ -237,7 +240,7 @@ const AddresRemoveButton = styled.button`
   border: none;
   background: #f9f8f7;
   width: 100%;
-  maxWidth: 200px;
+  maxwidth: 200px;
   font-size: 14px;
   color: #333;
   width: auto;
