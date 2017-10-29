@@ -28,7 +28,7 @@ export default function App(props: { store: {}, history: {} }) {
   return (
     <Provider store={store}>
       <IntlWrapper>
-        <StripeProvider apiKey={process.env.STRIPE}>
+        <StripeProvider apiKey={process.env.STRIPE_PUBLIC}>
           <Router
             render={renderProps => <ReduxAsyncConnect {...renderProps} />}
             history={history}

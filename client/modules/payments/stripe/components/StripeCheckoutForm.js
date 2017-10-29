@@ -1,11 +1,12 @@
 // CheckoutForm.js
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { formValues } from 'redux-form';
 import styled from 'styled-components';
-import StripeCardSection from '../components/StripeCardSection';
-import StripeAboutSection from '../components/StripeAboutSection';
+import StripeCardForm from './StripeCardForm';
+import StripeAboutForm from './StripeAboutForm';
+import StripeErrorHandler from './StripeErrorHandler';
 import { injectStripe } from 'react-stripe-elements';
+import { stripePaymentRequest } from '../ducks';
 
 const StripeLogo = ({ width, height }) => (
   <svg
@@ -56,37 +57,47 @@ const StripeLogo = ({ width, height }) => (
   </svg>
 );
 
-class StripeCheckoutForm extends React.Component<
-  {},
-  { elementFontSize: string }
-> {
-  handleSubmit = event => {
-    console.log(event.target);
-    event.preventDefault();
+class StripeCheckoutForm extends Component {
+  state = {
+    error: undefined
+  };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    const { dispatch, stripe, stripeForm } = this.props;
+
+    if (!stripeForm) {
+      return this.setState({
+        error: {
+          type: 'stripeForm',
+          message: 'Please complete all missing fields'
+        }
+      });
+    }
     // Gather additional customer data we may have collected in our form.
-    const form = document.getElementById('StripeCheckoutForm');
-    const name = form.querySelector('#stripe.name');
-    const address1 = form.querySelector('#stripe.address');
-    const city = form.querySelector('#stripe.city');
-    const state = form.querySelector('#stripe.state');
-    const zip = form.querySelector('#stripe.state');
 
     const additionalData = {
-      name: name ? name.value : undefined,
-      address_line1: address1 ? address1.value : undefined,
-      address_city: city ? city.value : undefined,
-      address_state: state ? state.value : undefined,
-      address_zip: zip ? zip.value : undefined
+      name: stripeForm.name ? stripeForm.value : undefined,
+      address_line1: stripeForm.address ? stripeForm.address : undefined,
+      address_city: stripeForm.city ? stripeForm.city : undefined,
+      address_state: stripeForm.state ? stripeForm.state : undefined,
+      address_zip: stripeForm.zip ? stripeForm.zip : undefined
     };
 
-    this.props.stripe
-      .createToken(additionalData)
-      .then(payload => console.log(payload));
+    stripe.createToken(stripe.elements[0], additionalData).then(payload => {
+      console.log({ payload, additionalData });
+
+      if (payload.error) {
+        return this.setState({ error: payload.error });
+      }
+
+      this.setState({ error: undefined });
+      dispatch(stripePaymentRequest(payload));
+    });
   };
 
   render() {
-    console.log(this.props.stripeFormValues);
+    const { error } = this.state;
 
     return (
       <form
@@ -96,10 +107,11 @@ class StripeCheckoutForm extends React.Component<
       >
         <CheckoutContainer>
           <CheckoutHeader>
-            Checkout powered by <StripeLogo width="80" />
+            Payments powered by <StripeLogo width="80" />
           </CheckoutHeader>
-          <StripeAboutSection />
-          <StripeCardSection fontSize="18px" />
+          <StripeErrorHandler error={error} />
+          <StripeAboutForm />
+          <StripeCardForm error={error} />
         </CheckoutContainer>
       </form>
     );
@@ -108,7 +120,7 @@ class StripeCheckoutForm extends React.Component<
 
 export default injectStripe(
   connect(state => ({
-    stripeFormValues: state.form.stripe && state.form.stripe.values
+    stripeForm: state.form.stripe && state.form.stripe.values
   }))(StripeCheckoutForm)
 );
 

@@ -96,6 +96,7 @@
         "sanitize-html": "^1.14.1",
         "serve-favicon": "^2.4.3",
         "snazzy-info-window": "^1.1.0",
+        "stripe": "^5.2.0",
         "styled-components": "^2.2.0",
         "text-mask-addons": "^3.6.0",
         "uuid": "^3.0.1",

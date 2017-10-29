@@ -66,10 +66,12 @@ export const Select = (props: {
 
 const SelectContainer = styled.div`
   position: relative;
+  width: 100%;
 
   svg {
     position: absolute;
-    top: 10px;
+    top: ${props =>
+      props.theme.select.svg.top ? props.theme.select.svg.top : '10px'};
     right: 16px;
   }
 `;
@@ -103,7 +105,7 @@ const SelectInput = styled.select`
   -o-appearance: none;
   appearance: none;
 
-  option[value=""][disabled] {
+  option[value=''][disabled] {
     display: none;
   }
 `;
@@ -114,7 +116,7 @@ const OptionInput = styled.option`
   }
 `;
 
-const SelectArrow = () =>
+const SelectArrow = () => (
   <svg
     fill="#676767"
     width="36"
@@ -123,4 +125,5 @@ const SelectArrow = () =>
   >
     <path d="M7 10l5 5 5-5z" />
     <path d="M0 0h24v24H0z" fill="none" />
-  </svg>;
+  </svg>
+);

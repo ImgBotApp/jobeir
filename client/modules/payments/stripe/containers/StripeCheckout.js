@@ -1,8 +1,8 @@
 // CheckoutForm.js
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import StripeCheckoutForm from './StripeCheckoutForm';
 import { Elements } from 'react-stripe-elements';
+import StripeCheckoutForm from '../components/StripeCheckoutForm';
 
 const SripeTheme = {
   input: {
@@ -44,19 +44,32 @@ const SripeTheme = {
       fontSize: '16px',
       maxWidth: '500px'
     }
+  },
+  select: {
+    background: '#fff',
+    borderRadius: '0px',
+    border: 'none',
+    padding: '9px 12px 12px 18px',
+    fontSize: '18px',
+    width: '100%',
+    height: 'auto',
+    margin: '0 auto',
+    activeBorderColor: '#5C6AC4',
+    ph: {
+      color: '#afafaf'
+    },
+    svg: {
+      top: '2px'
+    }
   }
 };
 
-class StripeCheckout extends React.Component<{}, { elementFontSize: string }> {
-  render() {
-    return (
-      <ThemeProvider theme={SripeTheme}>
-        <Elements>
-          <StripeCheckoutForm />
-        </Elements>
-      </ThemeProvider>
-    );
-  }
-}
+const StripeCheckout = () => (
+  <ThemeProvider theme={SripeTheme}>
+    <Elements>
+      <StripeCheckoutForm />
+    </Elements>
+  </ThemeProvider>
+);
 
 export default StripeCheckout;
