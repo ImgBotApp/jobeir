@@ -9,6 +9,14 @@ const Company = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
+  billing: {
+    stripe: {
+      customerId: {
+        type: String,
+        unique: true
+      }
+    }
+  },
   email: {
     type: String,
     required: true

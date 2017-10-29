@@ -71,7 +71,7 @@ module.exports = {
         HOST: JSON.stringify(process.env.HOST),
         PROTOCOL: JSON.stringify(process.env.PROTOCOL),
         PORT: JSON.stringify(process.env.PORT),
-        STRIPE: JSON.stringify(process.env.STRIPE)
+        STRIPE_PUBLIC: JSON.stringify(process.env.STRIPE_PUBLIC)
       },
       __CLIENT__: true,
       __SERVER__: false,

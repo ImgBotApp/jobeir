@@ -1,9 +1,6 @@
-// Set your secret key: remember to change this to your live secret key in production
-// See your keys here: https://dashboard.stripe.com/account/apikeys
-
 import stripePackage from 'stripe';
 
-const stripe = stripePackage(process.env.STRIPE);
+const stripe = stripePackage(process.env.STRIPE_PRIVATE);
 
 /*
  * Get all jobs
@@ -12,24 +9,57 @@ const stripe = stripePackage(process.env.STRIPE);
  * @returns void
  */
 export const stripeProcessor = async (req, res) => {
-  // Token is created using Checkout or Elements!
-  // Get the payment token ID submitted by the form:
-  const token = req.body.stripeToken; // Using Express
+  const token = req.body.token;
 
+  console.log(req.body);
   // Charge the user's card:
-  const payment = await stripe.charges.create({
-    amount: 49,
-    currency: 'usd',
-    description: 'Jobeir payment',
-    source: token
-  });
+  stripe.charges.create(
+    {
+      amount: 49,
+      currency: 'usd',
+      description: 'Jobeir payment',
+      metadata: {
+        jobTitle: '',
+        jotId: ''
+      },
+      source: token.id
+    },
+    (err, charge) => {
+      console.log({ err, charge });
 
-  console.log(payment);
+      if (err) {
+        return res.status(400).send({ data: {}, errors: [err] });
+      }
+
+      return res.status(200).send({ data: {}, errors: [] });
+
+      // asynchronously called
+    }
+  );
+
+  // Create a Customer:
+  // stripe.customers
+  //   .create({
+  //     email: 'paying.user@example.com',
+  //     source: token.id,
+  //   })
+  //   .then(customer =>
+  //     // YOUR CODE: Save the customer ID and other info in a database for later.
+  //     console.log('Customer ID', customer.id);
+  //     stripe.charges.create({
+  //       amount: 49,
+  //       currency: 'usd',
+  //       customer: customer.id,
+  //     }),
+  //   )
+  //   .then(charge => {
+  //     // Use and save the charge info.
+  //   });
+
+  // console.log(payment);
   //   (err, charge) => {
   //     console.log({ err, charge });
   //     // asynchronously called
   //   },
   // );
-
-  res.status(200).send({ data: {}, errors: [] });
 };

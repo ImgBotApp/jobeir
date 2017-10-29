@@ -7,12 +7,11 @@ import {
 } from '../ducks';
 
 export function* stripePayment(action) {
-  console.log(action);
   try {
     const payload = yield call(
       fetchApi,
       'POST',
-      `/payments/stripe/`,
+      `/payments/stripe`,
       action.payload
     );
     yield put({ type: STRIPE_PAYMENT_SUCCESS, payload });

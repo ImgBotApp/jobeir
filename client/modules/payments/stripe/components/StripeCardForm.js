@@ -11,7 +11,7 @@ import {
 const createOptions = () => ({
   style: {
     base: {
-      fontSize: '16px',
+      fontSize: '14px',
       color: '#424770',
       letterSpacing: '0.025em',
       fontFamily: 'Source Code Pro, monospace',
@@ -60,6 +60,7 @@ const LabelContainer = styled.label`
 const Label = styled.div`
   min-width: 120px;
   color: ${props => (props.error ? '#f73c3c' : 'inherit')};
+  font-size: 14px;
 `;
 
 const ButtonContainer = styled.div`

@@ -1,8 +1,11 @@
 // @flow
 import React from 'react';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import moment from 'moment';
+import { showModal } from '../../../modal/ducks';
 
 /**
  * JobsListItem()
@@ -11,6 +14,7 @@ import moment from 'moment';
  */
 const JobsListItem = (props: {
   job: {
+    _id: string,
     title: string,
     location: {
       address: {
@@ -26,13 +30,21 @@ const JobsListItem = (props: {
     createdAt: string
   }
 }) => {
-  const { job } = props;
+  const { dispatch, job } = props;
 
   return (
     <div>
       <JobsMain>
-        <JobsTitle>{job.title}</JobsTitle>
-        <JobsState>{job.state}</JobsState>
+        <JobsTitle
+          onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
+        >
+          {job.title}
+        </JobsTitle>
+        <JobsState
+          onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}
+        >
+          {job.state}
+        </JobsState>
       </JobsMain>
       <JobsSub>
         <div>
@@ -55,7 +67,7 @@ const JobsListItem = (props: {
   );
 };
 
-export default JobsListItem;
+export default connect()(JobsListItem);
 
 const JobsTitle = styled.h3`
   font-size: 22px;

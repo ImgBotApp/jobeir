@@ -64,7 +64,7 @@ class StripeCheckoutForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { dispatch, stripe, stripeForm } = this.props;
+    const { activeCompany, dispatch, stripe, stripeForm } = this.props;
 
     if (!stripeForm) {
       return this.setState({
@@ -92,7 +92,13 @@ class StripeCheckoutForm extends Component {
       }
 
       this.setState({ error: undefined });
-      dispatch(stripePaymentRequest(payload));
+      dispatch(
+        stripePaymentRequest({
+          activeCompany,
+          job: {},
+          token: payload.token
+        })
+      );
     });
   };
 
@@ -103,12 +109,12 @@ class StripeCheckoutForm extends Component {
       <form
         onSubmit={this.handleSubmit}
         id="StripeCheckoutForm"
-        style={{ width: '100%' }}
+        style={{ width: '100%', display: 'inline-block' }}
       >
+        <CheckoutHeader>
+          Payments powered by <StripeLogo width="80" />
+        </CheckoutHeader>
         <CheckoutContainer>
-          <CheckoutHeader>
-            Payments powered by <StripeLogo width="80" />
-          </CheckoutHeader>
           <StripeErrorHandler error={error} />
           <StripeAboutForm />
           <StripeCardForm error={error} />
@@ -120,7 +126,8 @@ class StripeCheckoutForm extends Component {
 
 export default injectStripe(
   connect(state => ({
-    stripeForm: state.form.stripe && state.form.stripe.values
+    stripeForm: state.form.stripe && state.form.stripe.values,
+    activeCompany: state.account.companies.activeCompany
   }))(StripeCheckoutForm)
 );
 
@@ -135,7 +142,11 @@ const CheckoutHeader = styled.h2`
   align-items: center;
   justify-content: center;
   font-family: ${props => props.theme.fontFamily.avenir};
+  background: #f9f8f7;
   font-size: 20px;
   font-weight: 800;
-  margin-bottom: 24px;
+  padding: 16px;
+  margin-bottom: 10px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 `;

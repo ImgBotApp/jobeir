@@ -2,9 +2,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AuthModal from '../../auth/containers/AuthModal';
+import JobPaymentModal from '../../account/jobs/containers/JobsPaymentModal';
 
 const MODAL_COMPONENTS = {
-  AUTH_MODAL: AuthModal
+  AUTH_MODAL: AuthModal,
+  JOB_PAYMENT_MODAL: JobPaymentModal
 };
 
 const Modal = ({ modalType, modalProps }) => {

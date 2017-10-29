@@ -79,7 +79,7 @@ const ModalContainer = styled.div`
   background-color: ${props =>
     props.bgColor === 'white'
       ? 'rgba(255, 255, 255, 0.94)'
-      : 'rgba(0, 0, 0, 0.6)'};
+      : 'rgba(0, 0, 0, 0.77)'};
   position: fixed;
   overflow: auto;
   top: 0;

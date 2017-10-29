@@ -9,7 +9,8 @@ const SripeTheme = {
     borderRadius: '0px',
     border: 'none',
     padding: '9px 12px 12px 18px',
-    fontSize: '16px',
+    height: '40px',
+    fontSize: '14px',
     width: '100%',
     margin: '0 auto',
     activeBorderColor: '#5C6AC4',
@@ -25,8 +26,8 @@ const SripeTheme = {
   },
   label: {
     display: 'block',
-    marginBottom: '3px',
-    fontSize: '16px',
+    marginBottom: '0px',
+    fontSize: '14px',
     width: '120px'
   },
   button: {
@@ -41,7 +42,7 @@ const SripeTheme = {
     fontSize: '18px',
     color: '#fff',
     tablet: {
-      fontSize: '16px',
+      fontSize: '14px',
       maxWidth: '500px'
     }
   },
@@ -50,13 +51,14 @@ const SripeTheme = {
     borderRadius: '0px',
     border: 'none',
     padding: '9px 12px 12px 18px',
-    fontSize: '18px',
+    fontSize: '14px',
     width: '100%',
     height: 'auto',
     margin: '0 auto',
     activeBorderColor: '#5C6AC4',
     ph: {
-      color: '#afafaf'
+      color: '#afafaf',
+      fontSize: '14px'
     },
     svg: {
       top: '2px'

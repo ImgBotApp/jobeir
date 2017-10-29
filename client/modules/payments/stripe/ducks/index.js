@@ -31,7 +31,11 @@ export default (state = initialState, action = {}) => {
   }
 };
 
-export const stripePaymentRequest = payload => ({
+export const stripePaymentRequest = ({ activeCompany, job, token }) => ({
   type: STRIPE_PAYMENT_REQUEST,
-  payload
+  payload: {
+    company: activeCompany,
+    job,
+    token
+  }
 });
