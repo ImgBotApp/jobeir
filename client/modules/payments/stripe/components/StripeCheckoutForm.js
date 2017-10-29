@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import StripeCardForm from './StripeCardForm';
 import StripeAboutForm from './StripeAboutForm';
 import StripeErrorHandler from './StripeErrorHandler';
@@ -64,7 +65,7 @@ class StripeCheckoutForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { activeCompany, dispatch, stripe, stripeForm } = this.props;
+    const { activeCompany, dispatch, job, stripe, stripeForm } = this.props;
 
     if (!stripeForm) {
       return this.setState({
@@ -84,26 +85,29 @@ class StripeCheckoutForm extends Component {
       address_zip: stripeForm.zip ? stripeForm.zip : undefined
     };
 
-    stripe.createToken(stripe.elements[0], additionalData).then(payload => {
-      console.log({ payload, additionalData });
+    return stripe
+      .createToken(stripe.elements[0], additionalData)
+      .then(payload => {
+        console.log({ payload, additionalData });
 
-      if (payload.error) {
-        return this.setState({ error: payload.error });
-      }
+        if (payload.error) {
+          return this.setState({ error: payload.error });
+        }
 
-      this.setState({ error: undefined });
-      dispatch(
-        stripePaymentRequest({
-          activeCompany,
-          job: {},
-          token: payload.token
-        })
-      );
-    });
+        this.setState({ error: undefined });
+        dispatch(
+          stripePaymentRequest({
+            activeCompany,
+            job,
+            token: payload.token
+          })
+        );
+      });
   };
 
   render() {
     const { error } = this.state;
+    console.log(this.props);
 
     return (
       <form
@@ -112,7 +116,7 @@ class StripeCheckoutForm extends Component {
         style={{ width: '100%', display: 'inline-block' }}
       >
         <CheckoutHeader>
-          Payments powered by <StripeLogo width="80" />
+          Powered by <StripeLogo width="80" />
         </CheckoutHeader>
         <CheckoutContainer>
           <StripeErrorHandler error={error} />
@@ -135,6 +139,12 @@ const CheckoutContainer = styled.div`
   width: 420px;
   margin: 0 auto;
   font-family: Source Code Pro, monospace;
+  padding: 24px;
+
+  ${media.phonePlus`
+    width: 100%;
+    padding: 0 24px;
+  `};
 `;
 
 const CheckoutHeader = styled.h2`
@@ -143,10 +153,16 @@ const CheckoutHeader = styled.h2`
   justify-content: center;
   font-family: ${props => props.theme.fontFamily.avenir};
   background: #f9f8f7;
-  font-size: 20px;
-  font-weight: 800;
-  padding: 16px;
+  font-size: 28px;
+  font-weight: 900;
+  padding: 20px 0 16px;
   margin-bottom: 10px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+
+  ${media.phablet`
+    background: #fff;
+    padding: 24px 24px 0px;
+    justify-content: flex-start;
+  `};
 `;

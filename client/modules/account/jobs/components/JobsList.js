@@ -1,50 +1,45 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
+import fuse from 'fuse.js';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import JobsListItem from './JobsListItem';
-import fuse from 'fuse.js';
 
 const filterJobs = (job: { state: string }, filter: string) => {
   if (filter === 'all jobs') return true;
   return job.state === filter;
 };
 
-class JobsList extends Component {
-  render() {
-    let { jobs } = this.props;
-    const { filter, searchFilter } = this.props;
+const JobsList = props => {
+  let { jobs } = props;
+  const { filter, searchFilter } = props;
 
-    if (searchFilter) {
-      const fuseInstance = new fuse(jobs, {
-        distance: 50,
-        keys: ['title', 'employmentType', 'role.label', 'state'],
-        minMatchCharLength: 1,
-        shouldSort: true,
-        threshold: 0.5
-      });
+  if (searchFilter) {
+    const fuseInstance = new fuse(jobs, {
+      distance: 50,
+      keys: ['title', 'employmentType', 'role.label', 'state'],
+      minMatchCharLength: 1,
+      shouldSort: true,
+      threshold: 0.5
+    });
 
-      jobs = fuseInstance.search(searchFilter);
-    }
-
-    return (
-      <JobsListContainer>
-        <JobsBodyList>
-          {jobs.filter(job => filterJobs(job, filter)).map(job => (
-            <JobsBody
-              key={job._id}
-              onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
-            >
-              <JobsListItem job={job} />
-            </JobsBody>
-          ))}
-        </JobsBodyList>
-      </JobsListContainer>
-    );
+    jobs = fuseInstance.search(searchFilter);
   }
-}
+
+  return (
+    <JobsListContainer>
+      <JobsBodyList>
+        {jobs.filter(job => filterJobs(job, filter)).map(job => (
+          <JobsBody key={job._id}>
+            <JobsListItem job={job} />
+          </JobsBody>
+        ))}
+      </JobsBodyList>
+    </JobsListContainer>
+  );
+};
 
 const selector = formValueSelector('jobs-filter');
 

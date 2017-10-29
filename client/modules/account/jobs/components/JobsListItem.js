@@ -98,7 +98,7 @@ const JobsSub = styled.div`
   ${media.phablet`
     justify-content: space-between;
     flex-direction: row-reverse;
-    margin-top: 6px;
+    margin-top: 8px;
   `};
 `;
 

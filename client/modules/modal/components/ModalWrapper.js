@@ -44,7 +44,7 @@ class ModalWrapper extends Component {
     const { bgColor, modalFull, modalSize, children } = this.props;
 
     return (
-      <ModalContainer full={modalFull} bgColor={bgColor}>
+      <ModalContainer modalFull={modalFull} bgColor={bgColor}>
         <ModalBackground onClick={this.handleClick} />
         <ModalAction onClick={this.handleClick}>
           <ExIcon fill={bgColor === 'white' ? '#fe9591' : ''} />
@@ -97,8 +97,7 @@ const ModalContainer = styled.div`
   `};
 
   ${media.phablet`
-    padding: 24px;
-  `};
+  padding: ${props => (props.modalFull ? '0px' : '24px')}`};
 `;
 
 const ModalBackground = styled.div`
@@ -134,7 +133,8 @@ const ModalBody = styled.div`
 
 const ModalAction = styled.div`
   position: fixed;
-  right: 25px;
-  top: 25px;
+  right: 24px;
+  top: 24px;
   cursor: pointer;
+  z-index: 10;
 `;

@@ -48,6 +48,6 @@ const JobPostingContainer = styled.div`
   margin-top: 50px;
 
   ${media.phablet`
-    margin-top: 30px;
+    margin-top: 25px;
   `};
 `;

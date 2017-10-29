@@ -43,7 +43,7 @@ const LogoLink = styled(Link)`
   align-items: center;
 
   svg {
-    width: 112px;
+    width: 100px;
 
     ${media.tablet`
       width: 80px;

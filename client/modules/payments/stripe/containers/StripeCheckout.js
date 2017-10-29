@@ -66,10 +66,10 @@ const SripeTheme = {
   }
 };
 
-const StripeCheckout = () => (
+const StripeCheckout = ({ job }) => (
   <ThemeProvider theme={SripeTheme}>
     <Elements>
-      <StripeCheckoutForm />
+      <StripeCheckoutForm job={job} />
     </Elements>
   </ThemeProvider>
 );
