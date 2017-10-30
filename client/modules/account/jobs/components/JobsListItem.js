@@ -43,10 +43,10 @@ const JobsListItem = (props: {
         <JobsState
           onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}
         >
-          {job.state}
+          <PublishButton>Publish</PublishButton>
         </JobsState>
       </JobsMain>
-      <JobsSub>
+      <JobsSub onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}>
         <div>
           <HideOnMobile>Created</HideOnMobile> {moment(job.createdAt).fromNow()}
           <HideOnMobile>
@@ -63,6 +63,21 @@ const JobsListItem = (props: {
           ${job.salary.min / 1000}K - ${job.salary.max / 1000}K
         </HideOnMobile>
       </JobsSub>
+      <JobsDetails>
+        <HideOnMobile>
+          <Eye />
+        </HideOnMobile>
+        <JobsDetailsText>
+          This job post is not viewable. You must{' '}
+          <u
+            style={{ textDecoration: 'ink' }}
+            onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}
+          >
+            publish
+          </u>{' '}
+          a job post before applicants can see it.
+        </JobsDetailsText>
+      </JobsDetails>
     </div>
   );
 };
@@ -73,7 +88,9 @@ const JobsTitle = styled.h3`
   font-size: 22px;
 
   ${media.phablet`
-  font-size: 18px;
+    position: relative;
+    top: 2px;
+    font-size: 19px;
   `};
 `;
 
@@ -84,14 +101,14 @@ const JobsState = styled.div`
 
 const JobsMain = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
 `;
 
 const JobsSub = styled.div`
   display: flex;
   color: #929292;
-  margin-top: 8px;
+  margin-top: 6px;
   font-size: 14px;
   font-weight: 200;
 
@@ -99,6 +116,24 @@ const JobsSub = styled.div`
     justify-content: space-between;
     flex-direction: row-reverse;
     margin-top: 8px;
+  `};
+`;
+
+const JobsDetails = styled.div`
+  display: flex;
+  margin-top: 8px;
+`;
+
+const JobsDetailsText = styled.p`
+  font-size: 16px;
+  font-weight: 200;
+  margin-left: 8px;
+  line-height: 1.6;
+  color: #444;
+
+  ${media.phablet`
+    margin: 0;
+    font-size: 14px;
   `};
 `;
 
@@ -116,3 +151,79 @@ const HideOnMobile = styled.span`
     display: none;
   `};
 `;
+
+const PublishButton = styled.button`
+  width: 80px;
+  font-size: 14px;
+  color: ${props => props.theme.colors.purple};
+  background: transparent;
+  border: 1px solid ${props => props.theme.colors.purple};
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: all 260ms ease;
+
+  &:hover {
+    background: ${props => props.theme.colors.purple};
+    color: #fff;
+  }
+
+  ${media.phablet`
+    width: 66px;
+    padding: 2px 6px;
+    font-size: 12px;
+  `};
+`;
+
+const Eye = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    width="16px"
+    height="16px"
+    viewBox="0 0 16 16"
+    enableBackground="new 0 0 16 16"
+  >
+    <g transform="translate(0, 0)">
+      <path
+        fill="none"
+        stroke="#444"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="10"
+        d="M0.5,8 c0,0,3-5.5,7.5-5.5S15.5,8,15.5,8s-3,5.5-7.5,5.5S0.5,8,0.5,8z"
+      />{' '}
+      <path
+        data-color="color-2"
+        fill="none"
+        stroke="#444"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="10"
+        d="M5,8 c0-1.657,1.343-3,3-3"
+      />{' '}
+      <path
+        data-color="color-2"
+        fill="none"
+        stroke="#444"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="10"
+        d=" M11,8c0,1.657-1.343,3-3,3"
+      />{' '}
+      <line
+        data-color="color-2"
+        fill="none"
+        stroke="#444"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="10"
+        x1="1"
+        y1="15"
+        x2="15"
+        y2="1"
+      />{' '}
+    </g>
+  </svg>
+);

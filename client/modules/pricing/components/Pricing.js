@@ -20,7 +20,7 @@ const Pricing = (props: { activeCompany: { _id: string } }) => {
         <PricingAmountContainer>
           <PricingAmountContent>
             <PricingCurrency>$</PricingCurrency>
-            <PricingAmount>29</PricingAmount>
+            <PricingAmount>49</PricingAmount>
             <PricingTerm>per job post</PricingTerm>
           </PricingAmountContent>
           <AuthOAuth />
@@ -32,7 +32,7 @@ const Pricing = (props: { activeCompany: { _id: string } }) => {
           </TermsText>
         </PricingAmountContainer>
         <PricingIncludesContainer>
-          <PricingIncludesConntent>
+          <PricingIncludesContent>
             <List>
               <ListItem>
                 <ListHeader>Reach top tech talent</ListHeader>
@@ -56,7 +56,7 @@ const Pricing = (props: { activeCompany: { _id: string } }) => {
                 </ListSubheader>
               </ListItem>
             </List>
-          </PricingIncludesConntent>
+          </PricingIncludesContent>
         </PricingIncludesContainer>
       </TopHeaderContainer>
       <ImageContainer>
@@ -103,7 +103,7 @@ const PricingIncludesContainer = styled.div`
   background: #f9f8f7;
 `;
 
-const PricingIncludesConntent = styled.div`
+const PricingIncludesContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

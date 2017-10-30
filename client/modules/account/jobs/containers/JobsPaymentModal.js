@@ -6,7 +6,7 @@ import ModalWrapper from '../../../modal/components/ModalWrapper';
 import StripeCheckout from '../../../payments/stripe/containers/StripeCheckout';
 
 const JobsPaymentModal = job => (
-  <ModalWrapper modalFull>
+  <ModalWrapper modalFull modalSize="880px" bgColor="white">
     <StripeCheckout job={job} />
   </ModalWrapper>
 );

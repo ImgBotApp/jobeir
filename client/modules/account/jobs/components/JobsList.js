@@ -77,12 +77,12 @@ const JobsBody = styled.li`
   }
 
   ${media.tablet`
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
   `};
 
   ${media.phablet`
-    margin-bottom: 14px;
-    padding-bottom: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
   `};
 `;

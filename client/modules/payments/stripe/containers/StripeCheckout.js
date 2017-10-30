@@ -2,7 +2,10 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Elements } from 'react-stripe-elements';
+import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import StripeCheckoutForm from '../components/StripeCheckoutForm';
+import StripeCheckoutReasons from '../components/StripeCheckoutReasons';
 
 const SripeTheme = {
   input: {
@@ -28,7 +31,7 @@ const SripeTheme = {
     display: 'block',
     marginBottom: '0px',
     fontSize: '14px',
-    width: '120px'
+    width: '100px'
   },
   button: {
     height: '50px',
@@ -68,10 +71,22 @@ const SripeTheme = {
 
 const StripeCheckout = ({ job }) => (
   <ThemeProvider theme={SripeTheme}>
-    <Elements>
-      <StripeCheckoutForm job={job} />
-    </Elements>
+    <StripeCheckoutContainer>
+      <StripeCheckoutReasons />
+      <Elements>
+        <StripeCheckoutForm job={job} />
+      </Elements>
+    </StripeCheckoutContainer>
   </ThemeProvider>
 );
 
 export default StripeCheckout;
+
+const StripeCheckoutContainer = styled.div`
+  display: flex;
+  align-items: stretch;
+
+  ${media.tablet`
+    flex-direction: column-reverse;
+  `};
+`;

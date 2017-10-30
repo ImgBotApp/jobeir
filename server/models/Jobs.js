@@ -54,6 +54,7 @@ const Jobs = new Schema({
     },
     coordinates: [{ type: Number, required: true }]
   },
+  published: Date,
   receivingEmails: [
     {
       email: {

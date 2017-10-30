@@ -46,8 +46,8 @@ class ModalWrapper extends Component {
     return (
       <ModalContainer modalFull={modalFull} bgColor={bgColor}>
         <ModalBackground onClick={this.handleClick} />
-        <ModalAction onClick={this.handleClick}>
-          <ExIcon fill={bgColor === 'white' ? '#fe9591' : ''} />
+        <ModalAction bgColor={bgColor} onClick={this.handleClick}>
+          <ExIcon fill={bgColor === 'white' ? '#fe9591' : '#fff'} />
         </ModalAction>
         <ModalContent size={modalSize}>
           <ModalBody bgColor={bgColor}>{children || null}</ModalBody>
@@ -90,6 +90,12 @@ const ModalContainer = styled.div`
   width: 100%;
   padding: 0;
   margin: 0;
+
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
   border: 0;
 
   ${media.tablet`
@@ -116,7 +122,19 @@ const ModalContent = styled.div`
   animation: ${FadeInPulse} 0.27s forwards ease;
   width: 100%;
 
-  max-width: ${props => (props.size === 'full' ? '100%' : '480px')};
+  max-width: ${props =>
+    props.size === 'full'
+      ? '100%'
+      : props.size && props.size.includes('px') ? props.size : '480px'};
+
+  ${media.phablet`
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: 0;
+  `};
 `;
 
 const ModalBody = styled.div`
@@ -129,12 +147,21 @@ const ModalBody = styled.div`
       : '0 2px 6px 0 rgba(0,0,0,.44)'};
   width: 100%;
   margin: 0 auto;
+
+  ${media.phablet`
+    box-shadow: none;
+`};
 `;
 
 const ModalAction = styled.div`
   position: fixed;
-  right: 24px;
-  top: 24px;
+  right: 30px;
+  top: 12px;
   cursor: pointer;
   z-index: 10;
+  background: ${props => (props.bgColor === 'white' ? '#ccc' : '#fff')};
+  border-radius: 50%;
+  padding: 3px;
+  height: 30px;
+  width: 30px;
 `;
