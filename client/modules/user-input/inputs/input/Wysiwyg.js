@@ -85,6 +85,7 @@ class WysiwygForm extends Component {
             toolbar={wysiwig}
             editorState={this.state.editorState}
             onEditorStateChange={this.onEditorStateChange}
+            stripPastedStyles={false}
             ref={editor => (this.Editor = editor)}
           />
         </EditorContainer>

@@ -33,10 +33,12 @@ export const searchJobs = async (
     .populate('company')
     .skip(skip)
     .limit(20)
-    .sort('-createdAt')
+    .sort('-published')
     .select('-receivingEmails -description');
 
-  const countPromise = Jobs.find(query).populate('company').count();
+  const countPromise = Jobs.find(query)
+    .populate('company')
+    .count();
 
   let [postings, count] = await Promise.all([postingsPromise, countPromise]);
 

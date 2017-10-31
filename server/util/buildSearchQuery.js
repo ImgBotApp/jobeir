@@ -18,7 +18,8 @@ export function buildJobSearchQuery(query: {}): {} {
     remote?: string,
     distance?: number,
     employmentType?: string,
-    salary?: number
+    salary?: number,
+    state?: string
   } = {};
 
   if (query.lng && query.lat) {
@@ -51,6 +52,9 @@ export function buildJobSearchQuery(query: {}): {} {
   if (query.r) {
     searchQuery.remote = query.r;
   }
+
+  // only want active job postings
+  searchQuery.state = 'active';
 
   return searchQuery;
 }

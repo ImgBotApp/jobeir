@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import queryString from 'query-string';
@@ -15,6 +15,7 @@ import {
   resetJobs,
   filterSearchJobs
 } from '../ducks/';
+import { showModal } from '../../../modal/ducks';
 import AppHead from '../../../app/components/AppHead';
 import JobsSearchSidebar from './JobsSearchSidebar';
 import JobsSearchFilterMobile from './JobsSearchFilterMobile';
@@ -168,6 +169,19 @@ class JobsSearch extends Component {
     }
   };
 
+  handleCreateJobClick = () => {
+    const { activeCompany: { _id }, dispatch, pathname } = this.props;
+
+    // go into the flow if they're logged in with a company
+    if (_id) {
+      browserHistory.replace(`/create/job/about/${_id}`);
+    }
+
+    // otherwise, show the registration modal
+    browserHistory.replace(`${pathname}?next=/create/job/about/`);
+    dispatch(showModal('AUTH_MODAL', { dispatch }));
+  };
+
   /**
    * buildJobPostings
    * <InfiniteScroll /> expects an array of React elements to be passed as
@@ -196,6 +210,12 @@ class JobsSearch extends Component {
         <StyledSearchIcon />
         <JobSearchEmptyStateHeader>
           We couldn't find any job posts
+        </JobSearchEmptyStateHeader>
+        <JobSearchEmptyStateHeader lessMargin>
+          Be the first to{' '}
+          <LinkToCreate onClick={this.handleCreateJobClick}>
+            create one
+          </LinkToCreate>
         </JobSearchEmptyStateHeader>
       </JobSearchEmptyState>
     );
@@ -246,6 +266,11 @@ class JobsSearch extends Component {
 }
 
 const mapStateToProps = state => ({
+  activeCompany: state.account.companies.activeCompany,
+  pathname:
+    (state.routing.locationBeforeTransitions &&
+      state.routing.locationBeforeTransitions.pathname) ||
+    '',
   query:
     state.routing.locationBeforeTransitions &&
     state.routing.locationBeforeTransitions.query,
@@ -369,7 +394,7 @@ const JobSearchEmptyState = styled.div`
 `;
 
 const JobSearchEmptyStateHeader = styled.h4`
-  margin-top: 20px;
+  margin-top: ${props => (props.lessMargin ? '10px' : '20px')};
   font-size: 18px;
   font-weight: 400;
 
@@ -391,4 +416,13 @@ const StyledSearchIcon = styled(SearchIcon)`
     height: 40px;
     width: 40px;
   `};
+`;
+
+const LinkToCreate = styled.button`
+  color: ${props => props.theme.colors.purple};
+  background: transparent;
+  cursor: pointer;
+  text-decoration: underline;
+  border: none;
+  font-size: 16px;
 `;

@@ -39,15 +39,17 @@ class Core extends Component {
     }
   }
 
-  displayAppFooter(): boolean {
+  shouldDisplayAppFooter(): boolean {
+    const { pathname } = this.props;
+
     return (
-      !this.props.pathname.includes('account') &&
-      !this.props.pathname.includes('create') &&
-      !this.props.pathname.includes('redirect')
+      !pathname.includes('account') &&
+      !pathname.includes('create') &&
+      !pathname.includes('redirect')
     );
   }
 
-  displayHeader(): boolean {
+  shouldDisplayHeader(): boolean {
     return !this.props.pathname.includes('create');
   }
 
@@ -60,9 +62,9 @@ class Core extends Component {
           {globalIsLoaded && <Modal />}
           <CoreContainer pathname={pathname} isModalOpen={isModalOpen}>
             <AppHead />
-            {this.displayHeader() && <Header />}
+            {this.shouldDisplayHeader() && <Header />}
             {children}
-            {this.displayAppFooter() && <AppFooter />}
+            {this.shouldDisplayAppFooter() && <AppFooter />}
           </CoreContainer>
         </div>
       </ThemeProvider>
