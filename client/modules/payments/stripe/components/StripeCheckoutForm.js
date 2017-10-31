@@ -8,15 +8,31 @@ import StripeAboutForm from './StripeAboutForm';
 import StripeErrorHandler from './StripeErrorHandler';
 import { injectStripe } from 'react-stripe-elements';
 import { stripePaymentRequest } from '../ducks';
+import { hideModal } from '../../../modal/ducks';
 
 class StripeCheckoutForm extends Component {
   state = {
     error: undefined
   };
 
+  componentWillReceiveProps(nextProps) {
+    const { payments, dispatch } = this.props;
+
+    if (payments.hasPaid !== nextProps.payments.hasPaid) {
+      dispatch(hideModal('JOB_PAYMENT_MODAL'));
+    }
+  }
+
   handleSubmit = event => {
     event.preventDefault();
-    const { activeCompany, dispatch, job, stripe, stripeForm } = this.props;
+    const {
+      activeCompany,
+      dispatch,
+      job,
+      stripe,
+      stripeForm,
+      user
+    } = this.props;
 
     if (!stripeForm) {
       return this.setState({
@@ -50,7 +66,8 @@ class StripeCheckoutForm extends Component {
           stripePaymentRequest({
             activeCompany,
             job,
-            token: payload.token
+            token: payload.token,
+            user
           })
         );
       });
@@ -64,7 +81,10 @@ class StripeCheckoutForm extends Component {
         <CheckoutContainer>
           <StripeErrorHandler error={error} />
           <StripeAboutForm />
-          <StripeCardForm error={error} />
+          <StripeCardForm
+            error={error}
+            isPaying={this.props.payments.isPaying}
+          />
         </CheckoutContainer>
       </form>
     );
@@ -74,7 +94,14 @@ class StripeCheckoutForm extends Component {
 export default injectStripe(
   connect(state => ({
     stripeForm: state.form.stripe && state.form.stripe.values,
-    activeCompany: state.account.companies.activeCompany
+    activeCompany: state.account.companies.activeCompany,
+    payments: state.payments,
+    user: {
+      email: state.session.user.email,
+      _id: state.session.user._id,
+      firstName: state.session.user.firstName,
+      lastname: state.session.user.lastname
+    }
   }))(StripeCheckoutForm)
 );
 

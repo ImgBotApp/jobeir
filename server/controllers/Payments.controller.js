@@ -1,4 +1,6 @@
 import stripePackage from 'stripe';
+import { send } from '../mail/mail';
+import * as err from '../errors/types';
 
 const stripe = stripePackage(process.env.STRIPE_PRIVATE);
 
@@ -9,7 +11,15 @@ const stripe = stripePackage(process.env.STRIPE_PRIVATE);
  * @returns void
  */
 export const stripeProcessor = async (req, res) => {
-  const token = req.body.token;
+  const { company, job, token, user } = req.body;
+  const metadata = {
+    companyDisplayName: company.displayName,
+    companyName: company.name,
+    companyId: company._id,
+    jobTitle: job.title,
+    jobIt: job._id,
+    jobCreatedAt: job.createdAt
+  };
 
   console.log(req.body);
   // Charge the user's card:
@@ -18,10 +28,7 @@ export const stripeProcessor = async (req, res) => {
       amount: 49,
       currency: 'usd',
       description: 'Jobeir payment',
-      metadata: {
-        jobTitle: '',
-        jotId: ''
-      },
+      metadata,
       source: token.id
     },
     (err, charge) => {
@@ -30,6 +37,16 @@ export const stripeProcessor = async (req, res) => {
       if (err) {
         return res.status(400).send({ data: {}, errors: [err] });
       }
+
+      // Fire off the password reset email
+      send({
+        subject: `Jobeir payment confirmation`,
+        template: 'PaymentConfirmation',
+        charge,
+        company,
+        job,
+        user
+      });
 
       return res.status(200).send({ data: {}, errors: [] });
 

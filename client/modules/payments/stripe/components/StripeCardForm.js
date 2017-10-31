@@ -25,7 +25,7 @@ const createOptions = () => ({
   }
 });
 
-const StripeCardForm = ({ error = {} }) => [
+const StripeCardForm = ({ error = {}, isPaying }) => [
   <LabelContainer key="CardNumber">
     <Label error={error.code === 'incomplete_number'}>Card Number</Label>
     <CardNumberElement {...createOptions()} />
@@ -40,6 +40,7 @@ const StripeCardForm = ({ error = {} }) => [
   </LabelContainer>,
   <ButtonContainer key="Button">
     <SubmitButton
+      isSubmitting={isPaying}
       buttonText={
         <span>
           <ButtonLock /> Pay $49

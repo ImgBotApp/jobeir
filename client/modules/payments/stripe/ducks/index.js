@@ -31,11 +31,12 @@ export default (state = initialState, action = {}) => {
   }
 };
 
-export const stripePaymentRequest = ({ activeCompany, job, token }) => ({
+export const stripePaymentRequest = ({ activeCompany, job, token, user }) => ({
   type: STRIPE_PAYMENT_REQUEST,
   payload: {
     company: activeCompany,
     job,
-    token
+    token,
+    user
   }
 });
