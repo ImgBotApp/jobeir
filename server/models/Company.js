@@ -11,10 +11,8 @@ const Company = new Schema({
   },
   billing: {
     stripe: {
-      customerId: {
-        type: String,
-        unique: true
-      }
+      customer: {},
+      card: {}
     }
   },
   email: {

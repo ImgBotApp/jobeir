@@ -64,6 +64,7 @@ const Jobs = new Schema({
       }
     }
   ],
+  payment: {},
   remote: String,
   salary: {
     min: Number,

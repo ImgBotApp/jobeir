@@ -7,24 +7,28 @@ import StripeCardForm from './StripeCardForm';
 import StripeAboutForm from './StripeAboutForm';
 import StripeErrorHandler from './StripeErrorHandler';
 import { injectStripe } from 'react-stripe-elements';
-import { stripePaymentRequest } from '../ducks';
+import { stripePaymentRequest, JOB_PAYMENT_MODAL } from '../ducks';
 import { hideModal } from '../../../modal/ducks';
 
 class StripeCheckoutForm extends Component {
   state = {
-    error: undefined
+    error: undefined,
+    isPaying: false
   };
 
   componentWillReceiveProps(nextProps) {
     const { payments, dispatch } = this.props;
-
-    if (payments.hasPaid !== nextProps.payments.hasPaid) {
-      dispatch(hideModal('JOB_PAYMENT_MODAL'));
+    if (
+      payments.hasPaid !== nextProps.payments.hasPaid &&
+      nextProps.payments.hasPaid
+    ) {
+      dispatch(hideModal(JOB_PAYMENT_MODAL));
     }
   }
 
   handleSubmit = event => {
     event.preventDefault();
+    this.setState({ creatingToken: true });
     const {
       activeCompany,
       dispatch,
@@ -55,13 +59,11 @@ class StripeCheckoutForm extends Component {
     return stripe
       .createToken(stripe.elements[0], additionalData)
       .then(payload => {
-        console.log({ payload, additionalData });
-
         if (payload.error) {
           return this.setState({ error: payload.error });
         }
 
-        this.setState({ error: undefined });
+        this.setState({ creatingToken: false, error: undefined });
         dispatch(
           stripePaymentRequest({
             activeCompany,
@@ -74,7 +76,7 @@ class StripeCheckoutForm extends Component {
   };
 
   render() {
-    const { error } = this.state;
+    const { error, creatingToken } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit} id="StripeCheckoutForm">
@@ -83,7 +85,7 @@ class StripeCheckoutForm extends Component {
           <StripeAboutForm />
           <StripeCardForm
             error={error}
-            isPaying={this.props.payments.isPaying}
+            isPaying={creatingToken || this.props.payments.isPaying}
           />
         </CheckoutContainer>
       </form>
@@ -100,7 +102,7 @@ export default injectStripe(
       email: state.session.user.email,
       _id: state.session.user._id,
       firstName: state.session.user.firstName,
-      lastname: state.session.user.lastname
+      lastName: state.session.user.lastName
     }
   }))(StripeCheckoutForm)
 );

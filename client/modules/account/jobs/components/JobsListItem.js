@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import moment from 'moment';
 import { showModal } from '../../../modal/ducks';
-
+import JobsListItemState from './JobsListItemState';
 /**
  * JobsListItem()
  * Gets passed a single job posting and will render the list item
@@ -40,11 +40,7 @@ const JobsListItem = (props: {
         >
           {job.title}
         </JobsTitle>
-        <JobsState
-          onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}
-        >
-          <PublishButton>Publish</PublishButton>
-        </JobsState>
+        <JobsListItemState job={job} dispatch={dispatch} />
       </JobsMain>
       <JobsSub onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}>
         <div>
@@ -62,22 +58,35 @@ const JobsListItem = (props: {
         <HideOnMobile>
           ${job.salary.min / 1000}K - ${job.salary.max / 1000}K
         </HideOnMobile>
+
+        {job.published && (
+          <span>
+            <HideOnMobile>
+              <JobsDot>·</JobsDot>
+            </HideOnMobile>
+            <HideOnMobile>Published</HideOnMobile>{' '}
+            {moment(job.published).fromNow()}
+          </span>
+        )}
       </JobsSub>
-      <JobsDetails>
-        <HideOnMobile>
-          <Eye />
-        </HideOnMobile>
-        <JobsDetailsText>
-          This job post is not viewable. You must{' '}
-          <u
-            style={{ textDecoration: 'ink' }}
-            onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}
-          >
-            publish
-          </u>{' '}
-          a job post before applicants can see it.
-        </JobsDetailsText>
-      </JobsDetails>
+
+      {job.state === 'pending' && (
+        <JobsDetails>
+          <HideOnMobile>
+            <Eye />
+          </HideOnMobile>
+          <JobsDetailsText>
+            This job post is not viewable. You must{' '}
+            <u
+              style={{ textDecoration: 'ink' }}
+              onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}
+            >
+              publish
+            </u>{' '}
+            a job post before applicants can see it.
+          </JobsDetailsText>
+        </JobsDetails>
+      )}
     </div>
   );
 };
@@ -107,6 +116,7 @@ const JobsMain = styled.div`
 
 const JobsSub = styled.div`
   display: flex;
+  align-items: center;
   color: #929292;
   margin-top: 6px;
   font-size: 14px;

@@ -24,6 +24,9 @@ const StepComplete = (props: {
           <ListItem>
             <ListNumber>2</ListNumber> Create jobs
           </ListItem>
+          <ListItem>
+            <ListNumber>3</ListNumber> Publish jobs
+          </ListItem>
         </List>
 
         <StyledLink to={`/create/job/about/${props.params.companyId}`}>

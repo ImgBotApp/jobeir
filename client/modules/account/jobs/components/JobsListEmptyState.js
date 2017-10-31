@@ -3,23 +3,37 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 
-const JobsListEmptyState = (props: { link: string }) =>
+const JobsListEmptyState = (props: { link: string }) => (
   <JobsListEmptyStateContainer>
-    <EmptyStateHeader>Creating a job is easy</EmptyStateHeader>
-    <EmptyStateText>
-      When you create a job, you'll find the details and status here.
-    </EmptyStateText>
-    <StyledLink to={props.link}>Create a job</StyledLink>
-  </JobsListEmptyStateContainer>;
+    <JobsListEmptyStateContent>
+      <EmptyStateHeader>Creating a job is easy</EmptyStateHeader>
+      <EmptyStateText>
+        When you create a job, you'll find the details and status here.
+      </EmptyStateText>
+      <StyledLink to={props.link}>Create a job</StyledLink>
+    </JobsListEmptyStateContent>
+  </JobsListEmptyStateContainer>
+);
 
 export default JobsListEmptyState;
 
 const JobsListEmptyStateContainer = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  max-width: 1052px;
+  border: 1px solid #eceaea;
+  border-radius: 4px;
+  margin: 60px auto;
+`;
+
+const JobsListEmptyStateContent = styled.div`
+  display: flex;
   flex-direction: column;
   max-width: 380px;
   text-align: center;
-  margin: 70px auto 0;
+  margin: auto 0;
   justify-content: center;
   align-items: center;
 `;

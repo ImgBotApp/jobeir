@@ -16,13 +16,16 @@ const agreeToValues = (props: {
 
 const CompanyOnboarding = props => (
   <div>
-    <Header>First things first</Header>
+    <Header>Create a job</Header>
     <List>
       <ListItem>
         <ListNumber>1</ListNumber> Create a company
       </ListItem>
       <ListItem>
         <ListNumber>2</ListNumber> Create jobs
+      </ListItem>
+      <ListItem>
+        <ListNumber>3</ListNumber> Publish jobs
       </ListItem>
     </List>
     <Header>Posting policy</Header>
