@@ -43,7 +43,7 @@ class LoginForm extends Component {
             name="submitButton"
             buttonText="Sign in"
             ui={{ maxWidth: '100%' }}
-            isSubmitting={auth.isAuthenticating}
+            isSubmitting={true}
             component={SubmitButton}
           />
         </FormWrapper>
@@ -53,11 +53,11 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.session.auth
+  auth: state.session.auth,
 });
 
 LoginForm = reduxForm({
-  form: 'login'
+  form: 'login',
 })(LoginForm);
 
 export default connect(mapStateToProps)(LoginForm);

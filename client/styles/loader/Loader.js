@@ -1,57 +1,49 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const LoaderAnimation = keyframes`
-  0%,
-  80%,
+const loaderAnimation = keyframes`
+  0% {
+    opacity: .2;
+  }
+  20% {
+    opacity: 1;
+  }
   100% {
-    box-shadow: 0 10px 0 -5px;
-  }
-  40% {
-    box-shadow: 0 10px 0 0;
+    opacity: .2;
   }
 `;
 
-const Loader = styled.div`
+const LoaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  pointer-events: none;
   position: relative;
-  bottom: 10px;
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
+  top: -20px;
+`;
+
+const LoaderDot = styled.span`
+  animation: ${loaderAnimation} 1.2s infinite;
   animation-fill-mode: both;
-  animation: ${LoaderAnimation} 1.4s infinite ease-in-out;
-  color: #ffffff;
-  font-size: 10px;
-  margin: 0 auto;
-  position: relative;
-  text-indent: -9999em;
-  transform: translateZ(0);
-  animation-delay: -0.16s;
+  color: #fff;
+  font-size: 66px;
 
-  &::before,
-  &::after {
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    animation-fill-mode: both;
-    animation: ${LoaderAnimation} 1.4s infinite ease-in-out;
+  &:nth-child(2) {
+    animation-delay: 0.2s;
   }
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-  }
-
-  &::before {
-    left: -2.25em;
-    animation-delay: -0.32s;
-  }
-
-  &::after {
-    left: 2.25em;
+  &:nth-child(3) {
+    animation-delay: 0.4s;
   }
 `;
+
+const Loader = () => (
+  <LoaderContainer>
+    <LoaderDot>.</LoaderDot>
+    <LoaderDot>.</LoaderDot>
+    <LoaderDot>.</LoaderDot>
+  </LoaderContainer>
+);
 
 export default Loader;
