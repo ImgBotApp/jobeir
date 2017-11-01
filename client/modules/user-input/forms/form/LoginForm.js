@@ -43,7 +43,7 @@ class LoginForm extends Component {
             name="submitButton"
             buttonText="Sign in"
             ui={{ maxWidth: '100%' }}
-            isSubmitting={true}
+            isSubmitting={auth.isAuthenticating}
             component={SubmitButton}
           />
         </FormWrapper>
