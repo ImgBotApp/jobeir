@@ -35,9 +35,9 @@ const JobsPostingCompany = (props: { activePosting: {} }) => {
 export default JobsPostingCompany;
 
 const JobsPostingCompanyContainer = styled.div`
-  max-width: 724px;
+  max-width: 744px;
   padding: 0 24px;
-  margin: 50px auto;
+  margin: 50px auto 20px;
 
   ${media.tablet`
     margin: 30px auto;
@@ -61,9 +61,9 @@ const JobsPostingCompanyHeader = styled.h3`
 
 const JobsPostingCompanyText = styled.p`
   line-height: 32px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-size: 20px;
-  color: #2b2b2b;
+  color: rgba(0, 0, 0, 0.8);
   font-family: ${props => props.theme.fontFamily.tiempos};
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

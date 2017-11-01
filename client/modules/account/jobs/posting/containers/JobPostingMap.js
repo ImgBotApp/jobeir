@@ -8,12 +8,12 @@ class JobPostingMap extends Component {
   componentDidMount() {
     this.renderMap(
       this.props.activePosting,
-      this.props.activePosting.location.coordinates
+      this.props.activePosting.location.coordinates,
     );
   }
 
   componentWillUpdate(nextProps: {
-    activePosting: { descriptionRaw: string }
+    activePosting: { descriptionRaw: string },
   }) {
     if (
       nextProps.activePosting.descriptionRaw !==
@@ -21,7 +21,7 @@ class JobPostingMap extends Component {
     ) {
       this.renderMap(
         nextProps.props.activePosting,
-        nextProps.activePosting.location.coordinates
+        nextProps.activePosting.location.coordinates,
       );
     }
   }
@@ -36,14 +36,14 @@ class JobPostingMap extends Component {
       center: new google.maps.LatLng(lat, lng),
       zoom: 15,
       styles: lightTheme,
-      scrollwheel: false
+      scrollwheel: false,
     });
 
     const icon = {
       path: google.maps.SymbolPath.CIRCLE,
       scale: 10,
       strokeWeight: 8,
-      strokeColor: '#5c6ac4'
+      strokeColor: '#5c6ac4',
     };
 
     const marker = new google.maps.Marker({ map, icon, position });
@@ -55,7 +55,7 @@ class JobPostingMap extends Component {
       content: `<h1>${activePosting.company.displayName} office</h1>
         <p>${address.street_number} ${address.route}, ${address.locality}, ${address.country}</p>`,
       closeOnMpaClick: false,
-      showCloseButton: false
+      showCloseButton: false,
     });
 
     info.open();
@@ -73,7 +73,7 @@ class JobPostingMap extends Component {
 export default JobPostingMap;
 
 const JobPostingMapContainer = styled.div`
-  margin: 40px auto 0;
+  margin: 80px auto 70px;
 
   ${media.phablet`
     padding: 0 24px;

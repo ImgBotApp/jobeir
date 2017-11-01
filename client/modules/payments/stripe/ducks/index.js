@@ -7,7 +7,7 @@ export const JOB_PAYMENT_MODAL = 'JOB_PAYMENT_MODAL';
 export const initialState = {
   isPaying: false,
   hasPaid: false,
-  errors: []
+  errors: [],
 };
 
 export default (state = initialState, action = {}) => {
@@ -15,19 +15,19 @@ export default (state = initialState, action = {}) => {
     case STRIPE_PAYMENT_REQUEST:
       return Object.assign({}, state, {
         isPaying: true,
-        hasPaid: false
+        hasPaid: false,
       });
     case STRIPE_PAYMENT_SUCCESS:
       return Object.assign({}, state, {
         isPaying: false,
         hasPaid: true,
-        ...action.payload.data
+        ...action.payload.data,
       });
     case STRIPE_PAYMENT_FAILURE:
       return Object.assign({}, state, {
         isPaying: false,
         hasPaid: false,
-        errors: action.payload.errors
+        errors: action.payload.errors,
       });
     default:
       return state;
@@ -40,6 +40,21 @@ export const stripePaymentRequest = ({ activeCompany, job, token, user }) => ({
     company: activeCompany,
     job,
     token,
-    user
-  }
+    user,
+  },
+});
+
+export const stripeExistingPaymentRequest = ({
+  activeCompany,
+  job,
+  customer,
+  user,
+}) => ({
+  type: STRIPE_PAYMENT_REQUEST,
+  payload: {
+    company: activeCompany,
+    job,
+    customer,
+    user,
+  },
 });

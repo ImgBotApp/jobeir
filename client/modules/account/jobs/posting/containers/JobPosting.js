@@ -40,7 +40,7 @@ const JobPosting = (props: { activePosting: {}, hideLogo: boolean }) => {
 export default JobPosting;
 
 const JobPostingPlaceholderContainer = styled.div`
-  max-width: 724px;
+  max-width: 744px;
   margin: 0 auto;
 `;
 

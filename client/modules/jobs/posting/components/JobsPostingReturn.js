@@ -24,7 +24,7 @@ const JobsPostingReturn = (props: { query: string, externalLink: string }) => (
 );
 
 const mapStateToProps = state => ({
-  query: state.search.jobs.query
+  query: state.search.jobs.query,
 });
 
 export default connect(mapStateToProps)(JobsPostingReturn);
@@ -34,7 +34,7 @@ const JobsPostingReturnContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  max-width: 724px;
+  max-width: 744px;
   margin: 20px auto 30px;
   padding: 30px 24px;
 

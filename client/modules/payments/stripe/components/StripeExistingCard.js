@@ -1,76 +1,127 @@
-// @flow
-import React from 'react';
+// CheckoutForm.js
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
+import StripeErrorHandler from './StripeErrorHandler';
 import { SubmitButton } from '../../../user-input/inputs/input/SubmitButton';
-import {
-  CardNumberElement,
-  CardExpiryElement,
-  CardCVCElement,
-} from 'react-stripe-elements';
+import { stripeExistingPaymentRequest, JOB_PAYMENT_MODAL } from '../ducks';
+import { hideModal } from '../../../modal/ducks';
 
-const createOptions = () => ({
-  style: {
-    base: {
-      fontSize: '14px',
-      color: '#424770',
-      letterSpacing: '0.025em',
-      fontFamily: "Avenir STD', Avenir, Source Code Pro, monospace",
-      '::placeholder': {
-        color: '#afafaf',
-      },
-    },
-    invalid: {
-      color: '#9e2146',
-    },
-  },
-});
+class StripeExistingCard extends Component {
+  state = {
+    error: undefined,
+    isPaying: false,
+  };
 
-const StripeCardForm = ({ error = {}, isPaying }) => [
-  <LabelContainer key="CardNumber">
-    <Label error={error.code === 'incomplete_number'}>Card Number</Label>
-    <CardNumberElement {...createOptions()} />
-  </LabelContainer>,
-  <LabelContainer key="Expiry">
-    <Label error={error.code === 'incomplete_expiry'}>Expiry</Label>
-    <CardExpiryElement {...createOptions()} />
-  </LabelContainer>,
-  <LabelContainer key="CVC">
-    <Label error={error.code === 'incomplete_cvc'}>CVC</Label>
-    <CardCVCElement {...createOptions()} />
-  </LabelContainer>,
-  <ButtonContainer key="Button">
-    <SubmitButton
-      isSubmitting={isPaying}
-      buttonText={
-        <span>
-          <ButtonLock /> Pay $49
-        </span>
-      }
-    />
-    <CheckoutFooter>
-      Powered by <StripeLogo width="60" />
-    </CheckoutFooter>
-  </ButtonContainer>,
-];
-
-export default StripeCardForm;
-
-const LabelContainer = styled.label`
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #d8d8d8;
-  margin: 0 auto 0.5rem;
-
-  .StripeElement {
-    width: 100%;
-    padding: 9px 12px 12px 18px;
+  componentWillReceiveProps(nextProps) {
+    const { payments, dispatch } = this.props;
+    if (
+      payments.hasPaid !== nextProps.payments.hasPaid &&
+      nextProps.payments.hasPaid
+    ) {
+      dispatch(hideModal(JOB_PAYMENT_MODAL));
+    }
   }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const { activeCompany, customer, dispatch, job, user } = this.props;
+
+    this.setState({ error: undefined });
+    dispatch(
+      stripeExistingPaymentRequest({
+        activeCompany,
+        job,
+        customer,
+        user,
+      }),
+    );
+  };
+
+  render() {
+    const { error, creatingToken } = this.state;
+    const { customer, payments } = this.props;
+
+    const card = customer.sources.data.find(
+      source => source.id === customer.default_source,
+    );
+
+    return (
+      <CheckoutContainer onSubmit={this.handleSubmit}>
+        <CardContainer>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginBottom: '25px',
+            }}
+          >
+            <div>{card.country}</div>
+
+            <div>
+              {card.brand} {card.object}
+            </div>
+          </div>
+          <div style={{ textAlign: 'right', marginBottom: '25px' }}>
+            **** **** **** {card.last4}
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            {card.exp_month} / {card.exp_year}
+          </div>
+        </CardContainer>
+        <ButtonContainer key="Button">
+          <SubmitButton
+            isSubmitting={payments.isPaying}
+            buttonText={
+              <span>
+                <ButtonLock /> Pay $49
+              </span>
+            }
+          />
+          <CheckoutFooter>
+            Powered by <StripeLogo width="60" />
+          </CheckoutFooter>
+        </ButtonContainer>
+      </CheckoutContainer>
+    );
+  }
+}
+
+export default connect(state => ({
+  activeCompany: state.account.companies.activeCompany,
+  payments: state.payments,
+  user: {
+    email: state.session.user.email,
+    _id: state.session.user._id,
+    firstName: state.session.user.firstName,
+    lastName: state.session.user.lastName,
+  },
+}))(StripeExistingCard);
+
+const CheckoutContainer = styled.form`
+  margin: 0 auto;
+  padding: 24px;
+  width: 100%;
+  padding: 50px;
+  flex-basis: 50%;
+  width: 440px;
+
+  ${media.phonePlus`
+    width: 100%;
+    padding: 32px;
+  `};
 `;
 
-const Label = styled.div`
-  min-width: 100px;
-  color: ${props => (props.error ? '#f73c3c' : 'inherit')};
-  font-size: 14px;
+const CardContainer = styled.div`
+  border-radius: 10px;
+  padding: 40px;
+  margin: 0 auto 30px;
+  color: ${props => props.theme.colors.black};
+  font-family: Source Code Pro, monospace;
+  background: #f9f8f7;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
 `;
 
 const ButtonContainer = styled.div`

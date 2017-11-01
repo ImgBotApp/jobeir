@@ -44,7 +44,7 @@ const JobPostingHeader = (props: { activePosting: {}, hideLogo: boolean }) => {
 export default JobPostingHeader;
 
 const JobPostingHeaderContainer = styled.div`
-  max-width: 724px;
+  max-width: 744px;
   margin: 0 auto 80px;
   padding: 0 24px;
 

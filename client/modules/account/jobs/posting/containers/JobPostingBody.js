@@ -9,8 +9,8 @@ const JobPostingBody = ({ activePosting }) => (
     <div
       dangerouslySetInnerHTML={{
         __html: draftToHtml(
-          JSON.parse(activePosting.descriptionRaw || JSON.stringify({}))
-        )
+          JSON.parse(activePosting.descriptionRaw || JSON.stringify({})),
+        ),
       }}
     />
   </JobPostingBodyContainer>
@@ -20,7 +20,7 @@ export default JobPostingBody;
 
 const JobPostingBodyContainer = styled.div`
   position: relative;
-  max-width: 724px;
+  max-width: 744px;
   margin: 0 auto;
   padding: 0 24px;
 
@@ -30,9 +30,9 @@ const JobPostingBodyContainer = styled.div`
 
   p {
     line-height: 32px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     font-size: 20px;
-    color: #2b2b2b;
+    color: rgba(0, 0, 0, 0.8);
     font-family: ${props => props.theme.fontFamily.tiempos};
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -48,7 +48,7 @@ const JobPostingBodyContainer = styled.div`
   }
 
   a {
-    color: rgba(0, 0, 0, 0.85);
+    color: rgba(0, 0, 0, 0.8);
     text-decoration-skip: ink;
     font-family: ${props => props.theme.fontFamily.tiempos};
     -webkit-font-smoothing: antialiased;
@@ -63,8 +63,8 @@ const JobPostingBodyContainer = styled.div`
   h4,
   h5,
   h6 {
-    font-weight: 900;
-    margin-bottom: 20px;
+    font-weight: 800;
+    margin-bottom: 5px;
 
     ${media.tablet`
       margin-bottom: 15px;
@@ -76,9 +76,9 @@ const JobPostingBodyContainer = styled.div`
   }
 
   h2 {
-    font-weight: 900;
+    font-weight: 800;
     font-size: 28px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 
     ${media.phablet`
       font-size: 20px;
@@ -90,7 +90,7 @@ const JobPostingBodyContainer = styled.div`
   }
 
   h3 {
-    font-weight: 900;
+    font-weight: 800;
     font-size: 24px;
 
     ${media.phablet`

@@ -25,7 +25,7 @@ const JobsListEmptyStateContainer = styled.div`
   max-width: 1052px;
   border: 1px solid #eceaea;
   border-radius: 4px;
-  margin: 60px auto;
+  margin: 30px auto;
 `;
 
 const JobsListEmptyStateContent = styled.div`
