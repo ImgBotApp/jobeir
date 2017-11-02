@@ -7,13 +7,13 @@ import InputWrapper from '../components/InputWrapper';
 import { media } from '../../../../styles/breakpoints';
 
 const numberMask = createNumberMask({
-  prefix: '$'
+  prefix: '$',
 });
 
 export const Currency = (props: {
   input: { value: string, onChange: Function, name: string },
   meta: { touched: boolean, error: boolean, invalid: boolean },
-  placeholder: string
+  placeholder: string,
 }) => {
   const { meta, input, placeholder } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
@@ -45,6 +45,12 @@ const StyledMaskedInput = styled(MaskedInput)`
   appearance: none;
   box-shadow: none;
 
+  ${media.tablet`
+    font-size: ${props => props.theme.input.tablet.fontSize};
+    height: ${props => props.theme.input.tablet.height};
+    padding: ${props => props.theme.input.tablet.padding};
+  `};
+
   &:active,
   &:focus {
     border-color: ${props =>
@@ -52,12 +58,6 @@ const StyledMaskedInput = styled(MaskedInput)`
         ? props.theme.error.color
         : props.theme.input.activeBorderColor};
   }
-
-  ${media.tablet`
-    font-size: 16px;
-    height: 48px;
-    padding: 16px 14px 12px;
-  `};
 
   ::-webkit-input-placeholder {
     font-size: ${props => props.theme.input.fontSize};

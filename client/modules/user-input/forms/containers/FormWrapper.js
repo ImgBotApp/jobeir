@@ -15,14 +15,14 @@ const FormWrapper = (props: {
   formErrors: Array<{}>,
   formSubmit: Function,
   handleSubmit: Function,
-  theme: string
+  theme: string,
 }) => {
   const {
     children,
     formErrors = [],
     formSubmit,
     handleSubmit,
-    theme = 'opal'
+    theme = 'opal',
   } = props;
 
   /**

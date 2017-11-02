@@ -45,13 +45,13 @@ export const marble = {
     activeBorderColor: '#5C6AC4',
     height: '54px',
     lineHeight: '1.5',
-    ph: {
-      color: '#afafaf',
-    },
     tablet: {
       fontSize: '16px',
       height: '48px',
       padding: '16px 14px 12px',
+    },
+    ph: {
+      color: '#afafaf',
     },
   },
   inputWrapper: {

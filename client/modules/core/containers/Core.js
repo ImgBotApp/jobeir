@@ -46,8 +46,7 @@ class Core extends Component {
       !pathname.includes('account') &&
       !pathname.includes('create') &&
       !pathname.includes('redirect') &&
-      !pathname.includes('jobs') &&
-      !pathname.length !== 30
+      pathname !== '/jobs'
     );
   }
 

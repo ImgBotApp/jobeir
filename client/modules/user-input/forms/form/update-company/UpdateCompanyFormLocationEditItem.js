@@ -17,22 +17,27 @@ const AddressTheme = {
     margin: '0 auto 0.5rem',
     activeBorderColor: 'rgba(0,0,0,0.85)',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
+    tablet: {
+      fontSize: '14px',
+      height: 'auto',
+      padding: '14px',
+    },
   },
   inputWrapper: {
-    marginBottom: '0.5rem'
+    marginBottom: '0.5rem',
   },
   label: {
     display: 'block',
     marginBottom: '3px',
-    fontSize: '14px'
-  }
+    fontSize: '14px',
+  },
 };
 
 class UpdateCompanyFormLocationEdit extends Component {
   state: {
-    showManualAddressInputs: boolean
+    showManualAddressInputs: boolean,
   };
 
   constructor(props) {
@@ -43,7 +48,7 @@ class UpdateCompanyFormLocationEdit extends Component {
 
   handleEditClick = (): void => {
     this.setState({
-      showManualAddressInputs: !this.state.showManualAddressInputs
+      showManualAddressInputs: !this.state.showManualAddressInputs,
     });
   };
 
@@ -61,7 +66,7 @@ class UpdateCompanyFormLocationEdit extends Component {
       locality: string,
       route: string,
       country: string,
-      postal_code: string
+      postal_code: string,
     } =
       locations[index] && locations[index].address;
 

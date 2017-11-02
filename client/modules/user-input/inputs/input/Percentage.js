@@ -10,13 +10,13 @@ const numberMask = createNumberMask({
   prefix: '',
   suffix: '%',
   allowDecimal: true,
-  integerLimit: 3
+  integerLimit: 3,
 });
 
 export const Percentage = (props: {
   input: { value: string, onChange: Function, name: string },
   meta: { touched: boolean, error: boolean, invalid: boolean },
-  placeholder: string
+  placeholder: string,
 }) => {
   const { meta, input, placeholder } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
@@ -47,6 +47,12 @@ const StyledMaskedInput = styled(MaskedInput)`
   margin: ${props => props.theme.input.margin};
   appearance: none;
   box-shadow: none;
+
+  ${media.tablet`
+    font-size: ${props => props.theme.input.tablet.fontSize};
+    height: ${props => props.theme.input.tablet.height};
+    padding: ${props => props.theme.input.tablet.padding};
+  `};
 
   ${media.tablet`
     font-size: 16px;

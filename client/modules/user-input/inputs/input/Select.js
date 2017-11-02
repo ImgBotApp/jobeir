@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import InputWrapper from '../components/InputWrapper';
 
 /**
@@ -10,7 +11,7 @@ import InputWrapper from '../components/InputWrapper';
 const handlePropsError = (options: Array<{}>) => {
   if (!options && !Array.isArray(options)) {
     throw new Error(
-      'Select component requires an array of options passed as an options prop'
+      'Select component requires an array of options passed as an options prop',
     );
   }
 };
@@ -18,7 +19,7 @@ const handlePropsError = (options: Array<{}>) => {
 export const Select = (props: {
   input: { value: string, onChange: Function, name: string },
   meta: { touched: boolean, error: boolean, invalid: boolean },
-  placeholder: string
+  placeholder: string,
 }) => {
   const { meta } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
@@ -90,6 +91,10 @@ const SelectInput = styled.select`
   margin: ${props => props.theme.select.margin};
   max-width: ${props => props.theme.select.maxWidth};
   color: ${props => (props.visited ? 'rgba(0,0,0,0.85)' : '#989898')};
+
+  ${media.tablet`
+    font-size: ${props => props.theme.input.tablet.fontSize};
+  `};
 
   &:active,
   &:focus {
