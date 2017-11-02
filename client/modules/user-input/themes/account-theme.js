@@ -13,8 +13,8 @@ export const account = {
       height: '44px',
       borderRadius: '3px',
       maxWidth: '100%',
-      fontSize: '16px'
-    }
+      fontSize: '16px',
+    },
   },
   dropzone: {
     display: 'flex',
@@ -32,8 +32,8 @@ export const account = {
     background: '#f9f8f7',
     cursor: 'pointer',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
   },
   input: {
     borderRadius: '3px',
@@ -46,29 +46,34 @@ export const account = {
     height: '44px',
     lineHeight: '1.5',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
+    tablet: {
+      fontSize: '16px',
+      height: '48px',
+      padding: '16px 14px 12px',
+    },
   },
   inputWrapper: {
-    marginBottom: '0'
+    marginBottom: '0',
   },
   error: {
     color: '#f73c3c',
     position: 'absolute',
-    width: '53%'
+    width: '53%',
   },
   form: {
     marginBottom: '0px',
     paddingBottom: '10px',
     tablet: {
-      marginBottom: '0'
-    }
+      marginBottom: '0',
+    },
   },
   label: {
     display: 'block',
     marginBottom: '6px',
     fontSize: '16px',
-    fontWeight: '600'
+    fontWeight: '600',
   },
   select: {
     background: '#fff',
@@ -82,8 +87,8 @@ export const account = {
     activeBorderColor: '#5C6AC4',
     lineHeight: '1.5',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
   },
   textarea: {
     fontFamily: 'Avenir STD',
@@ -95,6 +100,6 @@ export const account = {
     width: '100%',
     margin: '0 auto 0.6rem',
     minHeight: '180px',
-    activeBorderColor: '#5C6AC4'
-  }
+    activeBorderColor: '#5C6AC4',
+  },
 };

@@ -24,8 +24,8 @@ import theme from '../theme';
           }
         });
       }
-    }
-  }
+    },
+  },
 ])
 class Core extends Component {
   componentDidMount() {
@@ -45,7 +45,9 @@ class Core extends Component {
     return (
       !pathname.includes('account') &&
       !pathname.includes('create') &&
-      !pathname.includes('redirect')
+      !pathname.includes('redirect') &&
+      !pathname.includes('jobs') &&
+      !pathname.length !== 30
     );
   }
 
@@ -79,7 +81,7 @@ const mapStateToProps = state => ({
     '',
   isLoaded: state.reduxAsyncConnect.loaded,
   isModalOpen: state.modal.modalType,
-  globalIsLoaded: state.session.auth.globalIsLoaded
+  globalIsLoaded: state.session.auth.globalIsLoaded,
 });
 
 export default connect(mapStateToProps)(Core);

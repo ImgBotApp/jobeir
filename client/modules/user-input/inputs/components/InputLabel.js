@@ -5,7 +5,7 @@ import { media } from '../../../../styles/breakpoints';
 
 const InputLabel = (props: { input: { name: string }, label: string }) => (
   <LabelContainer>
-    <label htmlFor={props.input.name}>{props.label}</label>
+    <Label htmlFor={props.input.name}>{props.label}</Label>
   </LabelContainer>
 );
 
@@ -26,5 +26,13 @@ const LabelContainer = styled.div`
     margin-bottom:  ${props =>
       (props.theme.label.phablet && props.theme.label.phablet.marginBottom) ||
       '5px'};
+    min-width:  ${props =>
+      (props.theme.label.phablet && props.theme.label.phablet.width) ||
+      '150px'};
   `};
+`;
+
+const Label = styled.label`
+  display: inline-block;
+  width: 100%;
 `;

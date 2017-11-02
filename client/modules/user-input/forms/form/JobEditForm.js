@@ -1,8 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
+import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import FormWrapper from '../containers/FormWrapper';
 import FormRow from '../components/FormRow';
 import { email, required, wysiwygLength } from '../../validation';
@@ -13,7 +14,7 @@ import {
   SelectSearch,
   Text,
   Wysiwyg,
-  SubmitButton
+  SubmitButton,
 } from '../../inputs/input';
 import { jobOptions, jobTypeOptions, yesNoOptions } from '../../options/';
 import { FormListRemoveIcon } from '../../../../icons/';
@@ -50,7 +51,7 @@ class JobEditFrom extends Component {
   buildLocationsDropdown() {
     const { companies } = this.props;
     const activeCompany = companies.created.find(
-      comp => comp._id === companies.activeCompany._id
+      comp => comp._id === companies.activeCompany._id,
     );
 
     return (
@@ -61,14 +62,14 @@ class JobEditFrom extends Component {
           street_number,
           route,
           locality,
-          country
+          country,
         } = location.address;
         const noUnit = `${street_number} ${route}, ${locality}, ${country}`;
         const completeAddress = unit ? `${unit} - ${noUnit}` : noUnit;
 
         return {
           name: completeAddress,
-          value: location.address
+          value: location.address,
         };
       })
     );
@@ -207,19 +208,25 @@ const selector = formValueSelector('job-edit');
 const mapStateToProps = state => ({
   companies: state.account.companies,
   jobs: state.account.jobs,
-  offersEquity: selector(state, 'equity.offer')
+  offersEquity: selector(state, 'equity.offer'),
 });
 
 JobEditFrom = reduxForm({
-  form: 'job-edit'
+  form: 'job-edit',
 })(JobEditFrom);
 
 export default connect(mapStateToProps)(JobEditFrom);
 
-const FormEditContainer = styled.div`margin: 0 auto;`;
+const FormEditContainer = styled.div`
+  margin: 0 auto;
+
+  ${media.hd`
+    padding: 0 24px;
+  `};
+`;
 
 const FormEditForm = styled.div`
-  max-width: 670px;
+  max-width: 700px;
   margin: 75px auto 0;
 `;
 

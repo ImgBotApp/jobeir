@@ -22,6 +22,11 @@ const SripeTheme = {
     ph: {
       color: '#afafaf',
     },
+    tablet: {
+      padding: '9px 12px 12px 18px',
+      height: '40px',
+      fontSize: '14px',
+    },
   },
   inputWrapper: {
     marginBottom: '0.5rem',
@@ -34,6 +39,11 @@ const SripeTheme = {
     marginBottom: '0px',
     fontSize: '14px',
     width: '100px',
+    phablet: {
+      fontSize: '14px',
+      marginBottom: '0px',
+      width: '84px',
+    },
   },
   button: {
     height: '50px',
@@ -139,4 +149,9 @@ const StripeCheckoutSwitchPayments = styled.button`
   font-size: 16px;
   font-family: ${props => props.theme.fontFamily.avenir};
   cursor: pointer;
+  outline: none;
+
+  &:hover {
+    color: ${props => props.theme.colors.purple};
+  }
 `;

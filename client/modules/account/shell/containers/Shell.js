@@ -24,13 +24,17 @@ import ShellHeader from '../components/ShellHeader';
  *
  */
 const Shell = (props: { children: any, params: {}, pathname: string }) => {
-  const { children, params } = props;
+  const { children, params, pathname } = props;
   const showShellHeader: boolean = !params.jobId;
+
+  // Pretty hacky, but we know the length of URL always and the url for now.
+  const isJobEditPage =
+    pathname.includes('account/jobs') && pathname.length === 38;
 
   return (
     <ShellContainer>
       <AppHead title="Account" />
-      <ShellContent>
+      <ShellContent havePadding={!isJobEditPage}>
         {showShellHeader && (
           <ShellHeader headerText={children.props.route.name} params={params} />
         )}
@@ -49,7 +53,7 @@ const ShellContent = styled.main`
   width: 100%;
 
   ${media.hd`
-    padding: 0 24px;
+    padding: ${props => (props.havePadding ? '0 24px' : '0')};
   `};
 `;
 

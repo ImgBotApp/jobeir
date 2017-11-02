@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 
 const handleBackToTopClick = () => {
-  document.body.scrollTop = 0;
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
 };
 
 const JobsSearchNoMoreResults = () => (

@@ -19,16 +19,16 @@ const JobsListItem = (props: {
     location: {
       address: {
         locality: string,
-        administrative_area_level_1: string
-      }
+        administrative_area_level_1: string,
+      },
     },
     salary: {
       max: number,
-      min: number
+      min: number,
     },
     state: string,
-    createdAt: string
-  }
+    createdAt: string,
+  },
 }) => {
   const { dispatch, job } = props;
 
@@ -59,15 +59,14 @@ const JobsListItem = (props: {
           ${job.salary.min / 1000}K - ${job.salary.max / 1000}K
         </HideOnMobile>
 
-        {job.published && (
-          <span>
-            <HideOnMobile>
+        <HideOnMobile>
+          {job.published && (
+            <span>
               <JobsDot>·</JobsDot>
-            </HideOnMobile>
-            <HideOnMobile>Published</HideOnMobile>{' '}
-            {moment(job.published).fromNow()}
-          </span>
-        )}
+              Published {moment(job.published).fromNow()}
+            </span>
+          )}
+        </HideOnMobile>
       </JobsSub>
 
       {job.state === 'pending' && (
@@ -131,7 +130,7 @@ const JobsSub = styled.div`
 
 const JobsDetails = styled.div`
   display: flex;
-  margin-top: 8px;
+  margin-top: 12px;
 `;
 
 const JobsDetailsText = styled.p`

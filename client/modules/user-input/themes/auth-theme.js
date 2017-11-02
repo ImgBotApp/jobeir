@@ -12,13 +12,13 @@ export const auth = {
     color: '#fff',
     tablet: {
       fontSize: '16px',
-      maxWidth: '500px'
-    }
+      maxWidth: '500px',
+    },
   },
   error: {
     color: '#f73c3c',
     position: 'relative',
-    width: '100%'
+    width: '100%',
   },
   input: {
     borderRadius: '3px',
@@ -30,20 +30,25 @@ export const auth = {
     margin: '0 auto 1rem',
     activeBorderColor: 'rgba(0,0,0,0.85)',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
+    tablet: {
+      fontSize: '16px',
+      height: '48px',
+      padding: '16px 14px 12px',
+    },
   },
   inputWrapper: {
-    marginBottom: '0'
+    marginBottom: '0',
   },
   form: {
     marginBottom: '0',
     paddingBottom: '0',
     tablet: {
-      marginBottom: '0'
-    }
+      marginBottom: '0',
+    },
   },
   error: {
-    color: '#f73c3c'
-  }
+    color: '#f73c3c',
+  },
 };

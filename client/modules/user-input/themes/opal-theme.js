@@ -8,11 +8,16 @@ export const opal = {
     margin: '',
     activeBorderColor: '',
     ph: {
-      color: ''
-    }
+      color: '',
+    },
+    tablet: {
+      fontSize: '',
+      height: '',
+      padding: '',
+    },
   },
   inputWrapper: {
-    marginBottom: '1rem'
+    marginBottom: '1rem',
   },
   button: {
     height: '',
@@ -23,18 +28,18 @@ export const opal = {
     width: '',
     marginBottom: '',
     fontSize: '',
-    color: ''
+    color: '',
   },
   error: {
-    color: '#f73c3c'
+    color: '#f73c3c',
   },
   form: {
     marginBottom: '0',
-    paddingBottom: '0'
+    paddingBottom: '0',
   },
   label: {
     display: 'block',
     marginBottom: '6px',
-    fontSize: '18px'
-  }
+    fontSize: '18px',
+  },
 };

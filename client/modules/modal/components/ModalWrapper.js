@@ -61,7 +61,7 @@ const mapStateToProps = state => ({
   pathname:
     (state.routing.locationBeforeTransitions &&
       state.routing.locationBeforeTransitions.pathname) ||
-    ''
+    '',
 });
 
 export default connect(mapStateToProps)(ModalWrapper);
@@ -159,7 +159,7 @@ const ModalAction = styled.div`
   top: 12px;
   cursor: pointer;
   z-index: 10;
-  background: ${props => (props.bgColor === 'white' ? '#ccc' : '#fff')};
+  background: #fff;
   border-radius: 50%;
   padding: 3px;
   height: 30px;

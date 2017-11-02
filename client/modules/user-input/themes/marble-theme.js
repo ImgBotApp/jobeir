@@ -13,8 +13,8 @@ export const marble = {
       height: '60px',
       borderRadius: '0px',
       maxWidth: '50%',
-      fontSize: '16px'
-    }
+      fontSize: '16px',
+    },
   },
   dropzone: {
     display: 'flex',
@@ -32,8 +32,8 @@ export const marble = {
     background: '#f9f8f7',
     cursor: 'pointer',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
   },
   input: {
     borderRadius: '3px',
@@ -46,29 +46,34 @@ export const marble = {
     height: '54px',
     lineHeight: '1.5',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
+    tablet: {
+      fontSize: '16px',
+      height: '48px',
+      padding: '16px 14px 12px',
+    },
   },
   inputWrapper: {
-    marginBottom: '1rem'
+    marginBottom: '1rem',
   },
   error: {
     color: '#f73c3c',
     position: 'absolute',
-    width: '100%'
+    width: '100%',
   },
   form: {
     marginBottom: '160px',
     paddingBottom: '10px',
     tablet: {
-      marginBottom: '90px'
-    }
+      marginBottom: '90px',
+    },
   },
   label: {
     display: 'block',
     marginBottom: '6px',
     fontSize: '18px',
-    fontWeight: '600'
+    fontWeight: '600',
   },
   select: {
     background: '#fff',
@@ -82,8 +87,8 @@ export const marble = {
     activeBorderColor: '#5C6AC4',
     lineHeight: '1.5',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
   },
   textarea: {
     fontFamily: 'Avenir STD',
@@ -95,6 +100,6 @@ export const marble = {
     width: '100%',
     margin: '0 auto 0.6rem',
     minHeight: '200px',
-    activeBorderColor: '#5C6AC4'
-  }
+    activeBorderColor: '#5C6AC4',
+  },
 };

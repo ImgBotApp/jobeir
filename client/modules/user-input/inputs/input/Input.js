@@ -16,9 +16,9 @@ export const Input = styled.input`
   box-shadow: none;
 
   ${media.tablet`
-    font-size: 16px;
-    height: 48px;
-    padding: 16px 14px 12px;
+    font-size: ${props => props.theme.input.tablet.fontSize};
+    height: ${props => props.theme.input.tablet.height};
+    padding: ${props => props.theme.input.tablet.padding};
   `};
 
   &:hover: {

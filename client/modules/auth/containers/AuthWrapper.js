@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { auth } from '../ducks';
 import AuthLoading from '../components/AuthLoading';
 
-export const AuthWrapper = WrappedComponent => {
+const AuthWrapper = WrappedComponent => {
   class AuthenticatedComponent extends Component {
     state = { count: 1 };
 
@@ -18,6 +18,8 @@ export const AuthWrapper = WrappedComponent => {
       if (!isAuthenticating && !isAuthenticated) {
         return this.handleCheckAuth(isAuthenticated);
       }
+
+      return null;
     }
 
     handleCheckAuth(isAuthenticated: boolean) {
@@ -48,7 +50,7 @@ export const AuthWrapper = WrappedComponent => {
   }
 
   const mapStateToProps = state => ({
-    auth: state.session.auth
+    auth: state.session.auth,
   });
 
   return connect(mapStateToProps)(AuthenticatedComponent);

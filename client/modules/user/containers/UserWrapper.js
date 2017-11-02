@@ -25,10 +25,12 @@ const UserWrapper = WrappedComponent => {
       if (!isFetching) {
         return this.handleGetUser(isLoaded);
       }
+
+      return null;
     }
 
     handleGetUser(isLoaded) {
-      const { dispatch, location, auth } = this.props;
+      const { dispatch, auth } = this.props;
       const { count } = this.state;
 
       /**
@@ -45,9 +47,11 @@ const UserWrapper = WrappedComponent => {
     render() {
       return (
         <div className="UserWrapper">
-          {this.props.user.isLoaded
-            ? <WrappedComponent {...this.props} />
-            : <AuthLoading />}
+          {this.props.user.isLoaded ? (
+            <WrappedComponent {...this.props} />
+          ) : (
+            <AuthLoading />
+          )}
         </div>
       );
     }
@@ -55,7 +59,8 @@ const UserWrapper = WrappedComponent => {
 
   const mapStateToProps = state => ({
     auth: state.session.auth,
-    user: state.session.user
+    user: state.session.user,
+    pathname: state.routing.locationBeforeTransitions.pathname,
   });
 
   return connect(mapStateToProps)(AuthWrapper(UserComponent));

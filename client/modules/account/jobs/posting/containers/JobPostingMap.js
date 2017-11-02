@@ -77,6 +77,7 @@ const JobPostingMapContainer = styled.div`
 
   ${media.phablet`
     padding: 0 24px;
+    margin: 40px auto 30px;
   `};
 
   #map {

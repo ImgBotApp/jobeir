@@ -12,11 +12,13 @@ const createOptions = () => ({
   style: {
     base: {
       fontSize: '14px',
-      color: '#424770',
+      fontWeight: '400',
+      color: '#262626',
       letterSpacing: '0.025em',
       fontFamily: "Avenir STD', Avenir, Source Code Pro, monospace",
       '::placeholder': {
         color: '#afafaf',
+        fontWeight: '400',
       },
     },
     invalid: {

@@ -1,13 +1,13 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import JobPostingBackButton from './JobPostingBackButton';
 import JobPostingOptionsButton from './JobPostingOptionsButton';
-import { ChevronDown } from '../../../../../icons/';
 
 const JobPostingToggleControls = (props: {
   handleEditClick: Function,
-  handleDeleteClick: Function
+  handleDeleteClick: Function,
 }) => {
   const { handleEditClick, handleDeleteClick } = props;
 
@@ -29,8 +29,14 @@ const JobPostingToggleControls = (props: {
 export default JobPostingToggleControls;
 
 const JobPostingToggleControlsContainer = styled.div`
-  width: 670px;
+  width: 700px;
   margin: 80px auto 0;
+
+  ${media.tablet`
+    width: 100%;
+    padding: 0 24px;
+    margin: 40px auto 50px;
+  `};
 `;
 
 const JobPostingToggleControlsInlineBlock = styled.div`

@@ -8,7 +8,7 @@ export default {
     width: '100%',
     maxWidth: '100%',
     fontSize: '16px',
-    color: '#fff'
+    color: '#fff',
   },
   input: {
     borderRadius: '3px',
@@ -20,20 +20,25 @@ export default {
     activeBorderColor: '#5C6AC4',
     height: '58px',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
+    tablet: {
+      fontSize: '16px',
+      height: '48px',
+      padding: '16px 14px 12px',
+    },
   },
   inputWrapper: {
-    marginBottom: '30px'
+    marginBottom: '30px',
   },
   error: {
     color: '#f73c3c',
     position: 'absolute',
-    width: '53%'
+    width: '53%',
   },
   form: {
     marginBottom: '160px',
-    paddingBottom: '10px'
+    paddingBottom: '10px',
   },
   label: {
     display: 'block',
@@ -41,7 +46,7 @@ export default {
     fontSize: '16px',
     fontWeight: '600',
     color: 'rgba(0,0,0,0.85)',
-    phablet: { marginBottom: '20px' }
+    phablet: { marginBottom: '20px' },
   },
   select: {
     background: '#fff',
@@ -54,7 +59,7 @@ export default {
     margin: '0 auto 1rem',
     activeBorderColor: '#5C6AC4',
     ph: {
-      color: '#afafaf'
-    }
-  }
+      color: '#afafaf',
+    },
+  },
 };

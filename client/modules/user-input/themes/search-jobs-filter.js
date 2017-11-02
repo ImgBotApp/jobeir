@@ -9,25 +9,30 @@ export const filter = {
     activeBorderColor: '#5C6AC4',
     height: '36px',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
+    tablet: {
+      fontSize: '16px',
+      height: '48px',
+      padding: '16px 14px 12px',
+    },
   },
   inputWrapper: {
-    marginBottom: '0rem'
+    marginBottom: '0rem',
   },
   error: {
     color: '#f73c3c',
     position: 'absolute',
-    width: '53%'
+    width: '53%',
   },
   form: {
     marginBottom: '160px',
-    paddingBottom: '10px'
+    paddingBottom: '10px',
   },
   label: {
     display: 'block',
     marginBottom: '6px',
     fontSize: '18px',
-    fontWeight: '600'
-  }
+    fontWeight: '600',
+  },
 };

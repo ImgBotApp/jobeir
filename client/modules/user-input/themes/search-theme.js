@@ -8,7 +8,7 @@ export const search = {
     width: '100%',
     maxWidth: '200px',
     fontSize: '18px',
-    color: '#fff'
+    color: '#fff',
   },
   dropzone: {
     display: 'flex',
@@ -25,8 +25,8 @@ export const search = {
     background: '#f9f8f7',
     cursor: 'pointer',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
   },
   input: {
     borderRadius: '3px',
@@ -37,25 +37,30 @@ export const search = {
     margin: '0 auto 1rem',
     activeBorderColor: '#5C6AC4',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
+    tablet: {
+      fontSize: '16px',
+      height: '48px',
+      padding: '16px 14px 12px',
+    },
   },
   inputWrapper: {
-    marginBottom: '1rem'
+    marginBottom: '1rem',
   },
   error: {
     color: '#f73c3c',
     position: 'absolute',
-    width: '53%'
+    width: '53%',
   },
   form: {
     marginBottom: '160px',
-    paddingBottom: '10px'
+    paddingBottom: '10px',
   },
   label: {
     display: 'block',
     marginBottom: '6px',
-    fontSize: '18px'
+    fontSize: '18px',
   },
   select: {
     background: '#fff',
@@ -67,8 +72,8 @@ export const search = {
     margin: '0 auto 1rem',
     activeBorderColor: '#5C6AC4',
     ph: {
-      color: '#afafaf'
-    }
+      color: '#afafaf',
+    },
   },
   textarea: {
     fontfamily: 'Avenir STD',
@@ -80,6 +85,6 @@ export const search = {
     width: '100%',
     margin: '0 auto 0.6rem',
     minHeight: '225px',
-    activeBorderColor: '#5C6AC4'
-  }
+    activeBorderColor: '#5C6AC4',
+  },
 };
