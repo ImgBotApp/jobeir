@@ -10,6 +10,8 @@
 <br/>
 <br/>
 
+[![Join the Jobeir community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/jobeir)
+
 [![Build Status](https://travis-ci.org/brotzky/jobeir.svg?branch=master)](https://travis-ci.org/brotzky/jobeir)
 
 ## Getting Started
