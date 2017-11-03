@@ -1,7 +1,8 @@
 // @flow
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router';
+import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 
 const JobsListEmptyState = (props: { link: string }) => (
   <JobsListEmptyStateContainer>
@@ -23,9 +24,14 @@ const JobsListEmptyStateContainer = styled.div`
   justify-content: center;
   padding: 50px;
   max-width: 1052px;
-  border: 1px solid #eceaea;
+  border: 1px solid #e5e5e5;
   border-radius: 4px;
   margin: 30px auto;
+
+  ${media.tablet`
+    margin: 20px auto;
+    padding: 20px;
+  `};
 `;
 
 const JobsListEmptyStateContent = styled.div`
@@ -60,10 +66,18 @@ const EmptyStateHeader = styled.h2`
   font-size: 24px;
   font-weight: 800;
   margin-bottom: 15px;
+
+  ${media.tablet`
+    font-size: 20px;
+  `};
 `;
 
 const EmptyStateText = styled.p`
   font-size: 20px;
   margin-bottom: 30px;
   color: #888888;
+
+  ${media.tablet`
+    font-size: 16px;
+  `};
 `;

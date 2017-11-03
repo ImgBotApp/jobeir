@@ -14,7 +14,7 @@ import {
   companySizeOptions,
   distanceOptions,
   jobTypeOptions,
-  yesNoOptions
+  yesNoOptions,
 } from '../../../user-input/options';
 
 class JobsSearchFilterMobile extends Component {
@@ -42,7 +42,7 @@ class JobsSearchFilterMobile extends Component {
       eq: search.equity,
       d: search.distance,
       r: search.remote,
-      cs: search.companySize
+      cs: search.companySize,
     });
 
     if (isLoaded) {
@@ -111,13 +111,13 @@ const mapStateToProps = state => ({
     state.routing.locationBeforeTransitions &&
     state.routing.locationBeforeTransitions.query,
   jobs: state.search.jobs,
-  search: state.form.search && state.form.search.values
+  search: state.form.search && state.form.search.values,
 });
 
 JobsSearchFilterMobile = reduxForm({
   form: 'search',
   destroyOnUnmount: false,
-  enableReinitialize: true
+  enableReinitialize: true,
 })(JobsSearchFilterMobile);
 
 export default connect(mapStateToProps)(JobsSearchFilterMobile);
@@ -132,10 +132,10 @@ const JobsSearchFilterMobileContainer = styled.div`
   background: white;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
     0 8px 16px rgba(27, 39, 51, 0.08);
-  transform: translateY(${props => (props.showMobileFilters ? '0' : '100')}vh);
+  transform: translateY(${props => (props.showMobileFilters ? '0' : '120')}vh);
   will-change: transform;
   // This cubic-bezier took a lot of fine tuning :')
-  transition: transform 400ms cubic-bezier(0.21, 0.96, 0.38, 1.03);
+  transition: transform 440ms cubic-bezier(0.21, 0.96, 0.38, 1.03);
 `;
 
 const JobsSearchFilterMobilePadding = styled.div`
@@ -161,11 +161,11 @@ const Radio = (props: {
   options: Array<{
     value: string,
     text?: string,
-    name?: string
+    name?: string,
   }>,
   input: { value: string, onChange: Function, name: string },
   meta: { touched: boolean, error: boolean, invalid: boolean },
-  placeholder: string
+  placeholder: string,
 }) => {
   const { meta } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
@@ -201,7 +201,7 @@ const Radio = (props: {
 
 Radio.defaultProps = {
   rowWidth: undefined,
-  row: ''
+  row: '',
 };
 
 const RadioCircleListContainer = styled.div`

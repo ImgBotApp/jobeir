@@ -73,19 +73,32 @@ const StyledMaskedInput = styled(MaskedInput)`
   ::-webkit-input-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
+
+    ${media.tablet`
+      font-size: ${props => props.theme.input.tablet.fontSize};
+    `};
   }
   :-moz-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     opacity: 1;
+    ${media.tablet`
+      font-size: ${props => props.theme.input.tablet.fontSize};
+    `};
   }
   ::-moz-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     opacity: 1;
+    ${media.tablet`
+      font-size: ${props => props.theme.input.tablet.fontSize};
+    `};
   }
   :-ms-input-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
+    ${media.tablet`
+      font-size: ${props => props.theme.input.tablet.fontSize};
+    `};
   }
 `;

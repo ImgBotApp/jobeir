@@ -17,7 +17,7 @@ const HomeHalfCopy = () => (
         </ArtContainer>
       </HomeHalf>
       <HomeHalf>
-        <HomeHalfNarrow right={true}>
+        <HomeHalfNarrow right>
           <HomeHalfHeader>We simplify the job search</HomeHalfHeader>
           <HomeHalfText>
             Our goal is to create a place where you can come to find the best
@@ -38,7 +38,7 @@ const HomeHalfCopy = () => (
         </HomeHalfNarrow>
       </HomeHalf>
       <HomeHalf>
-        <ArtContainer rotate={true}>
+        <ArtContainer rotate>
           <SolidBallPurpleLeft />
           <SolidBallPurpleRight />
           <SolidBallPurpleBottom />

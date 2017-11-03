@@ -40,7 +40,7 @@ const PricingIncludesContainer = styled.div`
   align-items: flex-start;
   flex-basis: 50%;
   width: 100%;
-  background: #f9f8f7;
+  background: ${props => props.theme.colors.grey.bg};
   padding: 50px;
   width: 440px;
 

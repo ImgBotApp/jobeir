@@ -7,7 +7,7 @@ import { Input } from './Input';
 // sort the array alphabetically based on the label
 const alphabeticalSort = (
   prev: { label: string },
-  next: { label: string }
+  next: { label: string },
 ): number => {
   const textPrv = prev.label.toUpperCase();
   const textNext = next.label.toUpperCase();
@@ -17,7 +17,7 @@ const alphabeticalSort = (
 export const Checkbox = (props: {
   options: Array<{ value: string, label: string, icon: any }>,
   input: { value: string, onChange: Function },
-  meta: { touched: boolean, error: boolean, invalid: boolean }
+  meta: { touched: boolean, error: boolean, invalid: boolean },
 }) => {
   const { meta } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
@@ -37,9 +37,7 @@ export const Checkbox = (props: {
                 <CheckboxGroupIcon checked={checked}>
                   {option.icon}
                 </CheckboxGroupIcon>
-                <div>
-                  {option.label}
-                </div>
+                <div>{option.label}</div>
                 <CheckboxGroupInput
                   type="checkbox"
                   value={option.value}
@@ -94,7 +92,8 @@ const CheckboxGroupItem = styled.label`
   flex-basis: 49.5%;
   padding: 10px 20px;
   border-radius: 2px;
-  background: ${props => (props.checked ? props.theme.colors.blue : '#f9f8f7')};
+  background: ${props =>
+    props.checked ? props.theme.colors.blue : props.theme.colors.grey.bg};
   color: ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.85)')};
   margin-bottom: 1%;
   cursor: pointer;

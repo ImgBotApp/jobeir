@@ -48,7 +48,7 @@ const HomeBannerHeader = styled.div`
   overflow: hidden;
   margin-top: -13%;
   padding-bottom: 30px;
-  background: #f9f8f7;
+  background: ${props => props.theme.colors.grey.bg};
 `;
 
 const HomeBannerCard = styled.div`

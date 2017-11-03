@@ -17,35 +17,35 @@ const getFormStepDetails = (params: { create: string, step: string }) => {
     case 'job':
       return {
         steps: createJob,
-        index: createJob.indexOf(params.step)
+        index: createJob.indexOf(params.step),
       };
     case 'company':
       return {
         steps: createCompany,
-        index: createCompany.indexOf(params.step)
+        index: createCompany.indexOf(params.step),
       };
     default:
       throw new Error(
-        'Make sure the params are named property for getFormStepDetails() '
+        'Make sure the params are named property for getFormStepDetails() ',
       );
   }
 };
 
 const StepProgress = (props: { params: {} }) => {
   const formStep: { steps: Array<string>, index: number } = getFormStepDetails(
-    props.params
+    props.params,
   );
 
   return (
     <StepProgressContainer>
       <StepProgressNodeContainer>
-        {formStep.steps.map((node, index) =>
+        {formStep.steps.map((node, index) => (
           <StepProgressNode
             key={node}
             fillCircle={index <= formStep.index}
             fillLine={index < formStep.index}
           />
-        )}
+        ))}
       </StepProgressNodeContainer>
     </StepProgressContainer>
   );
@@ -55,7 +55,7 @@ export default StepProgress;
 
 const StepProgressContainer = styled.div`
   border-radius: 3px;
-  border: 1px solid #eceaea;
+  border: 1px solid #e5e5e5;
   padding: 18px;
   background: #fff;
 `;

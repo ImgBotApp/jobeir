@@ -34,7 +34,9 @@ const AppFooter = () => (
 
 export default AppFooter;
 
-const AppFooterContainer = styled.div`background: #f9f8f7;`;
+const AppFooterContainer = styled.div`
+  background: ${props => props.theme.colors.grey.bg};
+`;
 
 const AppFooterContent = styled.div`
   display: flex;

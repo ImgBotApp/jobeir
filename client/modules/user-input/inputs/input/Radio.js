@@ -109,11 +109,11 @@ export const Radio = (props: {
   options: Array<{
     value: string,
     text?: string,
-    name?: string
+    name?: string,
   }>,
   input: { value: string, onChange: Function, name: string },
   meta: { touched: boolean, error: boolean, invalid: boolean },
-  placeholder: string
+  placeholder: string,
 }) => {
   const { meta } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
@@ -127,14 +127,14 @@ export const Radio = (props: {
       return <RadioCircleList showError={showError} props={props} />;
     default:
       throw new Error(
-        'Remember to pass the prop "type" to Radio as list or yes/no'
+        'Remember to pass the prop "type" to Radio as list or yes/no',
       );
   }
 };
 
 Radio.defaultProps = {
   rowWidth: undefined,
-  row: ''
+  row: '',
 };
 
 const RadioContainer = styled.div`display: flex;`;
@@ -173,7 +173,8 @@ const RadioInput = styled.input`
   width: ${props => props.theme.input.width};
   margin: ${props => props.theme.input.margin};
   max-width: ${props => props.theme.input.maxWidth};
-  background: ${props => (props.showError ? '#fee7e8' : '#f9f8f7')};
+  background: ${props =>
+    props.showError ? '#fee7e8' : props.theme.colors.grey.bg};
 
   position: absolute;
   appearance: none;
@@ -310,7 +311,7 @@ const RadioListInputContainer = styled.div`
   background:${props =>
     props.showError
       ? props.theme.error.color
-      : props.checked ? '#f27c5e' : '#f9f8f7'};
+      : props.checked ? '#f27c5e' : props.theme.colors.grey.bg};
   }
   color: ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.85)')};
   border-radius: 2px;
@@ -342,12 +343,14 @@ const RadioListInput = styled.input`
   height: 100%;
   width: 100%;
   background:${props =>
-    props.showError ? '#fee7e8' : props.checked ? '#f27c5e' : '#f9f8f7'};
+    props.showError
+      ? '#fee7e8'
+      : props.checked ? '#f27c5e' : props.theme.colors.grey.bg};
   }
   color: ${props => (props.checked ? '#fff' : 'rgba(0,0,0,0.85)')};
   border-radius: 2px;
   margin-bottom: 1%;
-  border-color: #f9f8f7;
+  border-color: ${props => props.theme.colors.grey.bg};;
   cursor: pointer;
 
   &:active,

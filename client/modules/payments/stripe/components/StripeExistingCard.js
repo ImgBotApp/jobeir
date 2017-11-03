@@ -119,7 +119,7 @@ const CardContainer = styled.div`
   margin: 0 auto 30px;
   color: ${props => props.theme.colors.black};
   font-family: Source Code Pro, monospace;
-  background: #f9f8f7;
+  background: ${props => props.theme.colors.grey.bg};
   box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
   font-size: 18px;
 `;

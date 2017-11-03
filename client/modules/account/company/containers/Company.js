@@ -12,26 +12,30 @@ import { FadeIn } from '../../../../styles/animate/';
 const Company = ({ activeCompany }) => (
   <CompanyContainer>
     <FadeIn>
-      {activeCompany && [
-        <ShellFormSection text="Tell us about your company">
-          <UpdateCompanyFormAbout />
-        </ShellFormSection>,
-        <ShellFormSection text="How can people will contact you?">
-          <UpdateCompanyFormContact />
-        </ShellFormSection>,
-        <ShellFormSection text="Company size">
-          <UpdateCompanyFormSize />
-        </ShellFormSection>,
-        <ShellFormSection text="Where's your office located?">
-          <UpdateCompanyFormLocation />
-        </ShellFormSection>
-      ]}
+      {activeCompany ? (
+        [
+          <ShellFormSection text="Tell us about your company">
+            <UpdateCompanyFormAbout />
+          </ShellFormSection>,
+          <ShellFormSection text="How can people will contact you?">
+            <UpdateCompanyFormContact />
+          </ShellFormSection>,
+          <ShellFormSection text="Company size">
+            <UpdateCompanyFormSize />
+          </ShellFormSection>,
+          <ShellFormSection text="Where's your office located?">
+            <UpdateCompanyFormLocation />
+          </ShellFormSection>,
+        ]
+      ) : (
+        <div>Once you create a company the details will be here</div>
+      )}
     </FadeIn>
   </CompanyContainer>
 );
 
 const mapStateToProps = state => ({
-  activeCompany: state.account.companies.activeCompany._id
+  activeCompany: state.account.companies.activeCompany._id,
 });
 
 export default connect(mapStateToProps)(Company);

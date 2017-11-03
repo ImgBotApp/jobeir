@@ -120,18 +120,18 @@ const JobPostingBodyContainer = styled.div`
 
     ${media.tablet`
       margin-bottom: 20px;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 28px;
     `};
 
     & > li {
-      margin-bottom: 25px;
+      margin-bottom: 16px;
       font-size: 18px;
       color: #2b2b2b;
 
       ${media.tablet`
-        margin-bottom: 10px;
-        font-size: 16px;
+        margin-bottom: 12px;
+        font-size: 18px;
       `};
     }
   }

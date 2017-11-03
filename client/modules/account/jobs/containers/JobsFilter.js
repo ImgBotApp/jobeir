@@ -37,7 +37,7 @@ class JobsFilter extends Component {
 }
 
 const mapStateToProps = state => ({
-  filter: state.account.jobs.filter
+  filter: state.account.jobs.filter,
 });
 
 export default connect(mapStateToProps)(JobsFilter);
@@ -47,7 +47,7 @@ const JobsFilterContainer = styled.div`
   margin: 0 auto;
   max-width: 1052px;
   width: 100%;
-  border-bottom: 1px solid #eceaea;
+  border-bottom: 1px solid #e5e5e5;
 
   ${media.tablet`
     flex-direction: column;

@@ -70,7 +70,7 @@ const Pricing = (props: { activeCompany: { _id: string } }) => {
 };
 
 const mapStateToProps = state => ({
-  activeCompany: state.account.companies.activeCompany
+  activeCompany: state.account.companies.activeCompany,
 });
 
 export default connect(mapStateToProps)(Pricing);
@@ -100,7 +100,7 @@ const TopHeaderContainer = styled.div`
 
 const PricingIncludesContainer = styled.div`
   flex: 1;
-  background: #f9f8f7;
+  background: ${props => props.theme.colors.grey.bg};
 `;
 
 const PricingIncludesContent = styled.div`
@@ -155,7 +155,7 @@ const PricingAmountContainer = styled.div`
 
   &::before {
     content: '';
-    background: #f9f8f7;
+    background: ${props => props.theme.colors.grey.bg};
     position: absolute;
     top: 0;
     left: 250px;

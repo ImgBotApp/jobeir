@@ -198,7 +198,7 @@ const AddressItem = styled.li`
   border-radius: 3px;
   padding: 16px 20px;
   margin-bottom: 16px;
-  background: #f9f8f7;
+  background: ${props => props.theme.colors.grey.bg};
   cursor: pointer;
 
   svg {
@@ -243,7 +243,7 @@ const AddresRemoveButton = styled.button`
   border-radius: 3px;
   outline: none;
   border: none;
-  background: #f9f8f7;
+  background: ${props => props.theme.colors.grey.bg};
   width: 100%;
   maxwidth: 200px;
   font-size: 14px;

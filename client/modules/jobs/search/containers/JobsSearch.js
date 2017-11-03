@@ -2,18 +2,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
-import { browserHistory, Link } from 'react-router';
-import styled from 'styled-components';
-import { media } from '../../../../styles/breakpoints';
+import { browserHistory } from 'react-router';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroller';
 import throttle from 'lodash/throttle';
+import styled from 'styled-components';
+import { media } from '../../../../styles/breakpoints';
 import { serverGetJobs } from '../server/';
 import {
   shouldGetJobs,
   searchJobs,
   resetJobs,
-  filterSearchJobs
+  filterSearchJobs,
 } from '../ducks/';
 import { showModal } from '../../../modal/ducks';
 import AppHead from '../../../app/components/AppHead';
@@ -39,14 +39,14 @@ import { SearchIcon } from '../../../../icons';
       if (shouldGetJobs(state)) {
         return dispatch(serverGetJobs(req.query, req));
       }
-    }
-  }
+    },
+  },
 ])
 class JobsSearch extends Component {
   state: {
     hasMore: boolean,
     initialValues: {},
-    screenWidth: number
+    screenWidth: number,
   };
 
   constructor(props) {
@@ -56,7 +56,7 @@ class JobsSearch extends Component {
       location: parsed.l,
       title: {
         title: parsed.q,
-        value: parsed.q
+        value: parsed.q,
       },
       lat: parsed.lat,
       lng: parsed.lng,
@@ -64,7 +64,7 @@ class JobsSearch extends Component {
       equity: parsed.eq,
       distance: parsed.d,
       remote: parsed.r,
-      companySize: parsed.cs
+      companySize: parsed.cs,
     };
 
     this.state = { hasMore: true, initialValues, screenWidth: 1200 };
@@ -89,7 +89,7 @@ class JobsSearch extends Component {
     window.addEventListener(
       'resize',
       throttle(this.calculateScreenWidth, 300),
-      true
+      true,
     );
   }
 
@@ -108,7 +108,7 @@ class JobsSearch extends Component {
     window.removeEventListener(
       'resize',
       throttle(this.calculateScreenWidth, 300),
-      true
+      true,
     );
   }
 
@@ -143,7 +143,7 @@ class JobsSearch extends Component {
     const {
       dispatch,
       jobs: { count, isFetching, isLoaded },
-      query
+      query,
     } = this.props;
     const currentStart = parseInt(query.s, 10) || 0;
     // Creating a new updated query with the correct start position
@@ -152,7 +152,7 @@ class JobsSearch extends Component {
       q: query.q,
       s: currentStart + 20,
       lat: query.lat,
-      lng: query.lng
+      lng: query.lng,
     });
 
     /**
@@ -277,7 +277,7 @@ const mapStateToProps = state => ({
   search:
     state.routing.locationBeforeTransitions &&
     state.routing.locationBeforeTransitions.search,
-  jobs: state.search.jobs
+  jobs: state.search.jobs,
 });
 
 export default connect(mapStateToProps)(JobsSearch);
@@ -309,7 +309,7 @@ const JobsSearchBackground = styled.div`
 
 const JobsSearchBackgroundGrey = styled.div`
   flex: 0.77;
-  background: #f9f8f7;
+  background: ${props => props.theme.colors.grey.bg};
   border-right: 1px solid #eceaea;
 
   ${media.retina`

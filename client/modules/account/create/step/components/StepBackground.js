@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../../styles/breakpoints';
 
-const StepBackground = () =>
+const StepBackground = () => (
   <StepBackgroundContainer>
     <StepBackgroundLeft />
     <StepBackgroundRight />
-  </StepBackgroundContainer>;
+  </StepBackgroundContainer>
+);
 
 export default StepBackground;
 
@@ -29,7 +30,7 @@ const StepBackgroundLeft = styled.div`
 const StepBackgroundRight = styled.div`
   position: fixed;
   max-width: 1280px;
-  background: #f9f8f7;
+  background: ${props => props.theme.colors.grey.bg};
   border-left: 1px solid #eceaea;
   right: 0;
   bottom: 0;

@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import ShellLogo from '../components/ShellLogo';
 import ShellDropdownCompany from './ShellDropdownCompany';
 
-const ShellSidebar = () =>
+const ShellSidebar = () => (
   <ShellSidebarContainer>
     <ShellSidebarSpace>
       <ShellLogo />
@@ -40,15 +40,15 @@ const ShellSidebar = () =>
         </ShellSidebarNav>
       </ShellSidebarNavContainer>
     </ShellSidebarSpace>
-  </ShellSidebarContainer>;
+  </ShellSidebarContainer>
+);
 
 export default ShellSidebar;
 
 const ShellSidebarContainer = styled.nav`
   width: 250px;
   position: fixed;
-  background: #f9f8f7;
-  // border-right: 1px solid #eceaea;
+  background: ${props => props.theme.colors.grey.bg};
   left: 0;
   bottom: 0;
   top: 0;

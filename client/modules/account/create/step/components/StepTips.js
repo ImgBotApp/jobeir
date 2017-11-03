@@ -7,9 +7,7 @@ const StepTips = (props: { params: { create: string, step: string } }) => {
   const { params } = props;
 
   return (
-    <StepTipsContainer>
-      {Tips[params.create](params.step)}
-    </StepTipsContainer>
+    <StepTipsContainer>{Tips[params.create](params.step)}</StepTipsContainer>
   );
 };
 
@@ -17,7 +15,7 @@ export default StepTips;
 
 const StepTipsContainer = styled.div`
   border-radius: 3px;
-  border: 1px solid #eceaea;
+  border: 1px solid #e5e5e5;
   padding: 30px;
   margin-top: 18px;
   background: #fff;

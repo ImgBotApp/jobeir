@@ -18,11 +18,12 @@ const theme = {
     text: 'rgba(0,0,0,0.85)',
     placeholder: '#f3f3f3',
     grey: {
-      mid: '#95989a'
-    }
+      mid: '#95989a',
+      bg: '#f9f8f7',
+    },
   },
   width: {
-    max: '1040px'
+    max: '1040px',
   },
   fontFamily: {
     avenir: `'Avenir STD',
@@ -38,8 +39,8 @@ const theme = {
       Segoe UI,
       Arial,
       sans-serif`,
-    tiempos: `'Tiempos', 'Avenir STD', sans-serif;`
-  }
+    tiempos: `'Tiempos', 'Avenir STD', sans-serif;`,
+  },
 };
 
 export default theme;

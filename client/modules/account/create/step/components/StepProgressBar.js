@@ -17,16 +17,16 @@ const getFormStep = (params: { create: string, step: string }) => {
     case 'job':
       return {
         length: createJob.length,
-        index: createJob.indexOf(params.step)
+        index: createJob.indexOf(params.step),
       };
     case 'company':
       return {
         length: createCompany.length,
-        index: createCompany.indexOf(params.step)
+        index: createCompany.indexOf(params.step),
       };
     default:
       throw new Error(
-        'Make sure the params are named property for getFormStepDetails() '
+        'Make sure the params are named property for getFormStepDetails() ',
       );
   }
 };
@@ -52,7 +52,7 @@ const StepProgressBarContainer = styled.div`
     display: block;
     width: 100%;
     height: 4px;
-    background: #f9f8f7;
+    background: ${props => props.theme.colors.grey.bg};;
   `};
 `;
 

@@ -12,12 +12,12 @@ const featuredJobs = [
       'As Stripe looks beyond the API, we are hiring engineers to help build beautiful, usable interfaces for businesses building on top of Stripe.',
     image: {
       src: '/public/static/imgs/home/stripe-office.jpg',
-      alt: ''
+      alt: '',
     },
     companyIcon: {
       src: '/public/static/imgs/home/stripe-logo-icon.png',
-      alt: ''
-    }
+      alt: '',
+    },
   },
   {
     externalLink:
@@ -28,12 +28,12 @@ const featuredJobs = [
       'We are looking for creative and operational thinkers that are fueled by an entrepreneurial spirit to join our tight-knit group of product managers.',
     image: {
       src: '/public/static/imgs/home/medium-office.jpg',
-      alt: ''
+      alt: '',
     },
     companyIcon: {
       src: '/public/static/imgs/home/medium-logo-icon.png',
-      alt: ''
-    }
+      alt: '',
+    },
   },
   {
     externalLink: 'https://www.shopify.com/careers/product-designer-947b38',
@@ -43,13 +43,13 @@ const featuredJobs = [
       'As a designer you will work on a product used by anyone from small fashion boutiques, global brands or even international product suppliers and fulfillment centres.',
     image: {
       src: '/public/static/imgs/home/shopify-office.jpg',
-      alt: ''
+      alt: '',
     },
     companyIcon: {
       src: '/public/static/imgs/home/shopify-logo-icon.png',
-      alt: ''
-    }
-  }
+      alt: '',
+    },
+  },
 ];
 
 const HomeFeatured = () => (
@@ -62,6 +62,7 @@ const HomeFeatured = () => (
         href={`${job.externalLink}?ref=jobeir`}
         target="_blank"
         rel="noopener noreferrer"
+        key={job.externalLink}
       >
         <FeaturedJobContainer>
           <FeaturedJobImageContainer>
@@ -90,7 +91,7 @@ const HomeFeaturedContainer = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   padding: 100px 0 10px;
-  background: linear-gradient(#f9f8f7 82%, #fff);
+  background: linear-gradient(${props => props.theme.colors.grey.bg} 82%, #fff);
 
   ${media.desktop`
     padding: 50px 24px 10px;

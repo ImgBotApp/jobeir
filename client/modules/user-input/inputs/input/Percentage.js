@@ -54,12 +54,6 @@ const StyledMaskedInput = styled(MaskedInput)`
     padding: ${props => props.theme.input.tablet.padding};
   `};
 
-  ${media.tablet`
-    font-size: 16px;
-    height: 48px;
-    padding: 16px 14px 12px;
-  `};
-
   &:active,
   &:focus {
     border-color: ${props =>
@@ -72,14 +66,14 @@ const StyledMaskedInput = styled(MaskedInput)`
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     ${media.tablet`
-      font-size: 16px;
+      font-size: ${props => props.theme.input.tablet.fontSize};
     `};
   }
   :-moz-placeholder {
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     ${media.tablet`
-      font-size: 16px;
+      font-size: ${props => props.theme.input.tablet.fontSize};
     `};
     opacity: 1;
   }
@@ -87,7 +81,7 @@ const StyledMaskedInput = styled(MaskedInput)`
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     ${media.tablet`
-      font-size: 16px;
+      font-size: ${props => props.theme.input.tablet.fontSize};
     `};
     opacity: 1;
   }
@@ -95,7 +89,7 @@ const StyledMaskedInput = styled(MaskedInput)`
     font-size: ${props => props.theme.input.fontSize};
     color: ${props => props.theme.input.ph.color};
     ${media.tablet`
-      font-size: 16px;
+      font-size: ${props => props.theme.input.tablet.fontSize};
     `};
   }
 `;

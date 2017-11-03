@@ -11,7 +11,7 @@ import docCookies from '../../../../utils/cookies';
 
 class ShellDropdown extends Component {
   state: {
-    showDropdown: boolean
+    showDropdown: boolean,
   };
 
   constructor(props) {
@@ -41,8 +41,8 @@ class ShellDropdown extends Component {
     const data: {} = {
       activeCompany: {
         name: company.name,
-        displayName: company.displayName
-      }
+        displayName: company.displayName,
+      },
     };
 
     dispatch(switchCompany(data, user._id));
@@ -85,7 +85,7 @@ class ShellDropdown extends Component {
     return (
       <ShellHeaderDropdown>
         <ShellHeaderDropdownLetters>{`${user.firstName.charAt(
-          0
+          0,
         )}${user.lastName.charAt(0)}`}</ShellHeaderDropdownLetters>
         {user.avatar ? <ShellHeaderAvatar src={user.avatar} /> : null}
         <ShellDropdownContainer showDropdown={this.state.showDropdown}>
@@ -153,7 +153,7 @@ class ShellDropdown extends Component {
 
 const mapStateToProps = state => ({
   companies: state.account.companies,
-  user: state.session.user
+  user: state.session.user,
 });
 
 export default connect(mapStateToProps)(ShellDropdown);
@@ -168,6 +168,11 @@ const ShellHeaderDropdown = styled.div`
   border-radius: 50%;
   background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
   cursor: pointer;
+
+  ${media.tablet`
+    height: 32px;
+    width: 32px;
+  `};
 `;
 
 const ShellHeaderDropdownLetters = styled.span`
@@ -187,6 +192,11 @@ const ShellHeaderAvatar = styled.img`
   border-radius: 50%;
   cursor: pointer;
   left: 0px;
+
+  ${media.tablet`
+    height: 33px;
+    width: 33px;
+  `};
 `;
 
 const ShellHeaderDropdownLinks = styled.div`

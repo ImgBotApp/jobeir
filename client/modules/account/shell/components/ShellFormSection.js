@@ -28,7 +28,7 @@ const ShellFormSectionRow = styled.div`
   display: flex;
   padding: 40px 0 20px;
   margin-bottom: 25px;
-  border-top: 1px solid #eceaea;
+  border-top: 1px solid #e5e5e5;
 
   ${media.tablet`
     padding: 40px 0 20px;
