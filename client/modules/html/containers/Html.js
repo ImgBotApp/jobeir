@@ -8,7 +8,7 @@ const Html = (props: {
   css: {},
   assets: Array<string>,
   state: {},
-  content: string
+  content: string,
 }) => {
   const { css, assets, state, content } = props;
   const helmet = Helmet.rewind();
@@ -20,6 +20,10 @@ const Html = (props: {
         {helmet.title.toComponent()}
         {helmet.meta.toComponent()}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="google-site-verification"
+          content="WcmownCTmsIxRct3Zu1QIpIo0oaQAUzljYsOoObwE2c"
+        />
         {helmet.link.toComponent()}
         <script type="text/javascript" src="https://js.stripe.com/v3/" />
         {Object.keys(assets.styles).length > 0 &&
