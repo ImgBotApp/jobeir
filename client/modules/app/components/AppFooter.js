@@ -20,7 +20,7 @@ const AppFooter = () => (
           <StyledLink to="/privacy-policy">Privacy policy</StyledLink>
         </AppFooterListItem>
         <AppFooterListItem>
-          <StyledLink to="/terms-of-use">Terms of use</StyledLink>
+          <StyledLink to="/terms-of-service">Terms of Service</StyledLink>
         </AppFooterListItem>
       </AppFooterList>
       <AppFooterList>

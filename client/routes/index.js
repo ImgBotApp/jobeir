@@ -25,6 +25,8 @@ export function loadRoute(cb) {
  */
 // if (process.env.ENV === 'development') {
 require('../modules/home/containers/Home');
+require('../modules/legal/privacy-policy/components/PrivacyPolicy');
+require('../modules/legal/terms-of-service/components/TermsOfService');
 require('../modules/jobs/search/containers/JobsSearch');
 require('../modules/jobs/posting/containers/JobsPosting');
 require('../modules/auth/containers/Redirect');
@@ -56,7 +58,39 @@ const routes = (
           require => {
             cb(null, require('../modules/home/containers/Home').default);
           },
-          'home'
+          'home',
+        );
+      }}
+    />
+    <Route
+      path="/privacy-policy"
+      getComponent={(nextState, cb) => {
+        require.ensure(
+          [],
+          require => {
+            cb(
+              null,
+              require('../modules/legal/privacy-policy/components/PrivacyPolicy')
+                .default,
+            );
+          },
+          'privacy-policy',
+        );
+      }}
+    />
+    <Route
+      path="/terms-of-service"
+      getComponent={(nextState, cb) => {
+        require.ensure(
+          [],
+          require => {
+            cb(
+              null,
+              require('../modules/legal/terms-of-service/components/TermsOfService')
+                .default,
+            );
+          },
+          'terms-of-service',
         );
       }}
     />
@@ -68,7 +102,7 @@ const routes = (
           require => {
             cb(null, require('../modules/auth/login/containers/Login').default);
           },
-          'signin'
+          'signin',
         );
       }}
     />
@@ -80,10 +114,10 @@ const routes = (
           require => {
             cb(
               null,
-              require('../modules/auth/signup/containers/Signup').default
+              require('../modules/auth/signup/containers/Signup').default,
             );
           },
-          'signup'
+          'signup',
         );
       }}
     />
@@ -95,7 +129,7 @@ const routes = (
           require => {
             cb(null, require('../modules/pricing/components/Pricing').default);
           },
-          'pricing'
+          'pricing',
         );
       }}
     />
@@ -107,7 +141,7 @@ const routes = (
           require => {
             cb(null, require('../modules/auth/reset/containers/Reset').default);
           },
-          'reset'
+          'reset',
         );
       }}
     />
@@ -119,10 +153,10 @@ const routes = (
           require => {
             cb(
               null,
-              require('../modules/auth/password/containers/Password').default
+              require('../modules/auth/password/containers/Password').default,
             );
           },
-          'password'
+          'password',
         );
       }}
     />
@@ -134,10 +168,10 @@ const routes = (
           require => {
             cb(
               null,
-              require('../modules/jobs/search/containers/JobsSearch').default
+              require('../modules/jobs/search/containers/JobsSearch').default,
             );
           },
-          'jobs'
+          'jobs',
         );
       }}
     />
@@ -149,10 +183,10 @@ const routes = (
           require => {
             cb(
               null,
-              require('../modules/jobs/posting/containers/JobsPosting').default
+              require('../modules/jobs/posting/containers/JobsPosting').default,
             );
           },
-          'jobs'
+          'jobs',
         );
       }}
     />
@@ -164,7 +198,7 @@ const routes = (
           require => {
             cb(null, require('../modules/auth/containers/Redirect').default);
           },
-          'redirect'
+          'redirect',
         );
       }}
     />
@@ -176,10 +210,10 @@ const routes = (
           require => {
             cb(
               null,
-              require('../modules/account/create/step/containers/Step').default
+              require('../modules/account/create/step/containers/Step').default,
             );
           },
-          'create'
+          'create',
         );
       }}
     />
@@ -192,10 +226,10 @@ const routes = (
             cb(
               null,
               require('../modules/account/create/step/containers/StepComplete')
-                .default
+                .default,
             );
           },
-          'progress'
+          'progress',
         );
       }}
     />
@@ -207,10 +241,10 @@ const routes = (
           require => {
             cb(
               null,
-              require('../modules/account/shell/containers/Shell').default
+              require('../modules/account/shell/containers/Shell').default,
             );
           },
-          'account'
+          'account',
         );
       }}
     >
@@ -223,10 +257,11 @@ const routes = (
             require => {
               cb(
                 null,
-                require('../modules/account/company/containers/Company').default
+                require('../modules/account/company/containers/Company')
+                  .default,
               );
             },
-            'account-company'
+            'account-company',
           );
         }}
       />
@@ -239,10 +274,10 @@ const routes = (
             require => {
               cb(
                 null,
-                require('../modules/account/jobs/containers/Jobs').default
+                require('../modules/account/jobs/containers/Jobs').default,
               );
             },
-            'account-jobs'
+            'account-jobs',
           );
         }}
       />
@@ -255,10 +290,11 @@ const routes = (
             require => {
               cb(
                 null,
-                require('../modules/account/profile/containers/Profile').default
+                require('../modules/account/profile/containers/Profile')
+                  .default,
               );
             },
-            'account-profile'
+            'account-profile',
           );
         }}
       />
@@ -272,10 +308,10 @@ const routes = (
               cb(
                 null,
                 require('../modules/account/jobs/posting/containers/JobPostingToggle')
-                  .default
+                  .default,
               );
             },
-            'account-job'
+            'account-job',
           );
         }}
       />
@@ -287,10 +323,10 @@ const routes = (
             require => {
               cb(
                 null,
-                require('../modules/account/people/containers/People').default
+                require('../modules/account/people/containers/People').default,
               );
             },
-            'account-people'
+            'account-people',
           );
         }}
       />
@@ -303,10 +339,10 @@ const routes = (
           require => {
             cb(
               null,
-              require('../modules/not-found/components/NotFound').default
+              require('../modules/not-found/components/NotFound').default,
             );
           },
-          'not-found'
+          'not-found',
         );
       }}
     />
@@ -327,7 +363,7 @@ function getRoutesArray(obj: {}) {
     '/api/v0/upload',
     '/api/v0/search/jobs',
     '/favicon.ico',
-    new RegExp('\\/api\\/v0\\/jobs\\/[^\\/]+$') // matches /api/v0/jobs/:id
+    new RegExp('\\/api\\/v0\\/jobs\\/[^\\/]+$'), // matches /api/v0/jobs/:id
   ];
 
   (function getIds(obj: {}) {
