@@ -88,6 +88,7 @@ const ModalContainer = styled.div`
   right: 0;
   z-index: 900;
   width: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
 
@@ -100,6 +101,7 @@ const ModalContainer = styled.div`
 
   ${media.tablet`
     padding: 50px;
+    height: 100%;
   `};
 
   ${media.phablet`
@@ -134,6 +136,7 @@ const ModalContent = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
     border: 0;
+    height: 100%;
   `};
 `;
 
@@ -150,6 +153,7 @@ const ModalBody = styled.div`
 
   ${media.phablet`
     box-shadow: none;
+    height: 100%;
 `};
 `;
 

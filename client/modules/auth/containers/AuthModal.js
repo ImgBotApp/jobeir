@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import styled from 'styled-components';
 import { media } from '../../../styles/breakpoints';
 import ModalWrapper from '../../modal/components/ModalWrapper';
@@ -10,7 +11,7 @@ import AuthOAuth from '../components/AuthOAuth';
 class AuthModal extends Component {
   state: {
     showLoginForm: boolean,
-    signupWithEmail: boolean
+    signupWithEmail: boolean,
   };
 
   constructor(props) {
@@ -18,7 +19,7 @@ class AuthModal extends Component {
 
     this.state = {
       showLoginForm: false,
-      signupWithEmail: false
+      signupWithEmail: false,
     };
   }
 
@@ -72,6 +73,13 @@ class AuthModal extends Component {
               ? this.renderLogin()
               : this.renderSignup()}
           </AuthModalContent>
+          <AuthModalLegal
+            onClick={() => this.setState({ showLoginForm: true })}
+          >
+            By creating an account, I accept Jobeirs{' '}
+            <Link to="terms-of-service">Terms of Service</Link> and{' '}
+            <Link to="privacy-policy">Privacy Policy</Link>.
+          </AuthModalLegal>
         </AuthModalBody>
       </ModalWrapper>
     );
@@ -81,8 +89,11 @@ class AuthModal extends Component {
 export default AuthModal;
 
 const AuthModalBody = styled.div`
+  display: flex;
+  flex-direction: column;
   max-width: 500px;
   width: 100%;
+  height: 100%;
 `;
 
 const AuthModalHeader = styled.div`
@@ -108,6 +119,22 @@ const AuthModalFooter = styled.div`
   cursor: pointer;
   padding-top: 2rem;
   border-top: 1px solid #dce0e0;
+`;
+const AuthModalLegal = styled.div`
+  text-align: center;
+  padding: 2rem 4.2rem;
+  background: #f9f8f7;
+  line-height: 1.6;
+  margin-top: auto;
+
+  ${media.tablet`
+    padding: 2.2rem 3rem;
+  `};
+
+  a {
+    text-decoration: ink;
+    color: ${props => props.theme.colors.black};
+  }
 `;
 
 const AuthModalSignupEmail = styled.div`

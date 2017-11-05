@@ -297,7 +297,7 @@ const TermsOfService = () => (
       <h2>Section 15 - Contact information</h2>
       <p>
         Questions about the Terms of Service should be sent to us at
-        brotzky@gmail.com.
+        dennis@jobeir.com.
       </p>
     </section>
   </LegalContainer>

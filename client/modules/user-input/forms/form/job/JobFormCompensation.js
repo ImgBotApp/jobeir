@@ -11,7 +11,7 @@ import {
   Currency,
   Percentage,
   Radio,
-  SubmitButton
+  SubmitButton,
 } from '../../../inputs/input';
 import { required } from '../../../validation';
 import { yesNoOptions } from '../../../options';
@@ -38,7 +38,6 @@ class JobFormComponesation extends Component {
             name="salary.min"
             label="Salary minimum"
             placeholder="$"
-            validate={[required]}
             parse={parseNumber}
             component={Currency}
           />
@@ -46,7 +45,6 @@ class JobFormComponesation extends Component {
             name="salary.max"
             label="Salary maximum"
             placeholder="$"
-            validate={[required]}
             parse={parseNumber}
             component={Currency}
           />
@@ -54,7 +52,6 @@ class JobFormComponesation extends Component {
         <Field
           name="equity.offer"
           label="Do you offer equity for this job?"
-          validate={[required]}
           options={yesNoOptions}
           type="yes/no"
           component={Radio}
@@ -98,12 +95,12 @@ const selector = formValueSelector('job');
 const mapStateToProps = state => ({
   jobs: state.account.jobs,
   auth: state.session.auth,
-  equity: selector(state, 'equity')
+  equity: selector(state, 'equity'),
 });
 
 JobFormComponesation = reduxForm({
   form: 'job',
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(JobFormComponesation);
 
 export default connect(mapStateToProps)(JobFormComponesation);

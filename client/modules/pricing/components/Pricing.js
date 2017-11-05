@@ -27,8 +27,13 @@ const Pricing = (props: { activeCompany: { _id: string } }) => {
           <TermsText>
             By clicking “Continue with Google", or “Continue with Facebook" or
             “Continue with Github", you agree to our{' '}
-            <StyledTermsLink>Terms of Service</StyledTermsLink> and{' '}
-            <StyledTermsLink>Privacy Policy</StyledTermsLink>.
+            <StyledTermsLink to="/terms-of-service">
+              Terms of Service
+            </StyledTermsLink>{' '}
+            and{' '}
+            <StyledTermsLink to="/privacy-policy">
+              Privacy Policy
+            </StyledTermsLink>.
           </TermsText>
         </PricingAmountContainer>
         <PricingIncludesContainer>
@@ -238,4 +243,5 @@ const TermsText = styled.p`
 const StyledTermsLink = styled(Link)`
   text-decoration: underline;
   text-decoration-skip: ink;
+  color: ${props => props.theme.colors.black};
 `;

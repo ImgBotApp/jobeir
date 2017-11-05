@@ -48,7 +48,7 @@ const PrivacyPolicy = () => (
       <p>
         If after you opt-in, you change your mind, you may withdraw your consent
         for us to contact you, for the continued collection, use or disclosure
-        of your information, at anytime, by contacting us at brotzky@gmail.com
+        of your information, at anytime, by contacting us at dennis@jobeir.com
         or mailing us at: Jobeir
       </p>
       <p>518 Beatty Vancouver British Columbia CA v6b 6g8</p>
