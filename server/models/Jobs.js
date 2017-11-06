@@ -7,20 +7,21 @@ const Schema = mongoose.Schema;
 const Jobs = new Schema({
   company: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Company'
+    ref: 'Company',
   },
   creator: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User'
+    ref: 'User',
   },
   featured: {
     type: Boolean,
-    default: false
+    default: false,
   },
   externalLink: String,
   state: {
     type: String,
-    default: 'pending'
+    default: 'pending',
+    index: true,
   },
   descriptionRaw: String,
   description: {
@@ -33,26 +34,30 @@ const Jobs = new Schema({
         inlineStyleRanges: Array,
         key: String,
         text: String,
-        type: String
-      }
-    ]
+        type: String,
+      },
+    ],
   },
-  employmentType: String,
+  employmentType: {
+    type: String,
+    index: true,
+  },
   equity: {
     offer: String,
     min: Number,
-    max: Number
+    max: Number,
   },
   location: {
     address: {
       type: Object,
-      required: true
+      required: true,
     },
     type: {
       type: String,
-      default: 'Point'
+      default: 'Point',
+      index: true,
     },
-    coordinates: [{ type: Number, required: true }]
+    coordinates: [{ type: Number, required: true }],
   },
   published: Date,
   receivingEmails: [
@@ -60,18 +65,26 @@ const Jobs = new Schema({
       email: {
         type: String,
         lowercase: true,
-        trim: true
-      }
-    }
+        trim: true,
+      },
+    },
   ],
   payment: {},
   remote: String,
   salary: {
     min: Number,
-    max: Number
+    max: Number,
   },
   title: String,
-  role: Object
+  role: {
+    value: {
+      type: String,
+      index: true,
+    },
+    label: {
+      type: String,
+    },
+  },
 });
 
 function autopopulate(next) {
@@ -84,15 +97,13 @@ Jobs.pre('findOne', autopopulate);
 Jobs.pre('findOneAndUpdate', autopopulate);
 
 Jobs.index({
-  company: 'text'
-});
-
-Jobs.index({
-  location: '2dsphere'
-});
-
-Jobs.index({
-  title: 'text'
+  employmentType: 'text',
+  state: 'text',
+  location: '2dsphere',
+  title: 'text',
+  role: {
+    value: 'text',
+  },
 });
 
 Jobs.plugin(timestamps);

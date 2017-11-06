@@ -7,72 +7,72 @@ const Schema = mongoose.Schema;
 const Company = new Schema({
   creator: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User'
+    ref: 'User',
   },
   billing: {
     stripe: {
       customer: {},
-      card: {}
-    }
+      card: {},
+    },
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
   displayName: {
     type: String,
     unique: true,
-    required: true
+    required: true,
   },
   jobs: [
     {
       type: mongoose.Schema.ObjectId,
-      ref: 'Jobs'
-    }
+      ref: 'Jobs',
+    },
   ],
   members: [
     {
       dateAdded: { type: Date, default: Date.now },
       member: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Users'
-      }
-    }
+        ref: 'Users',
+      },
+    },
   ],
   invites: [
     {
       type: mongoose.Schema.ObjectId,
-      ref: 'Invite'
-    }
+      ref: 'Invite',
+    },
   ],
   locations: [
     {
       address: {
         type: Object,
-        required: true
+        required: true,
       },
       hq: {
         type: Boolean,
-        default: true
+        default: true,
       },
       type: {
         type: String,
-        default: 'Point'
+        default: 'Point',
       },
-      coordinates: [{ type: Number, required: true }]
-    }
+      coordinates: [{ type: Number, required: true }],
+    },
   ],
   logo: String,
   name: {
     type: String,
     unique: true,
     required: true,
-    lowercase: true
+    lowercase: true,
   },
   phone: Number,
   product: String,
   size: String,
-  website: String
+  website: String,
 });
 
 function autopopulate(next) {
@@ -83,6 +83,10 @@ function autopopulate(next) {
 Company.pre('find', autopopulate);
 Company.pre('findOne', autopopulate);
 Company.pre('findOneAndUpdate', autopopulate);
+
+Company.index({
+  size: 'text',
+});
 
 Company.plugin(timestamps);
 

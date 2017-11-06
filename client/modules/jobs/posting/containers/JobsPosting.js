@@ -18,8 +18,8 @@ import JobsPostingCompany from '../components/JobsPostingCompany';
       if (shouldGetJob(state)) {
         return dispatch(serverGetJob(req.originalUrl, req));
       }
-    }
-  }
+    },
+  },
 ])
 class JobsPosting extends Component {
   componentDidMount() {
@@ -58,7 +58,7 @@ class JobsPosting extends Component {
 
 const mapStateToProps = state => ({
   posting: state.posting.posting,
-  isLoaded: state.posting.isLoaded
+  isLoaded: state.posting.isLoaded,
 });
 
 export default connect(mapStateToProps)(JobsPosting);
