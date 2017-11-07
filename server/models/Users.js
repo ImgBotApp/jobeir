@@ -9,55 +9,55 @@ const Schema = mongoose.Schema;
 const Users = new Schema({
   avatar: {
     type: String,
-    trim: true
+    trim: true,
   },
   email: {
     type: String,
     lowercase: true,
     trim: true,
     unique: true,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    select: false
+    select: false,
   },
   role: {
     type: String,
     enum: ['Organization', 'User', 'Employee'],
-    default: 'User'
+    default: 'User',
   },
   provider: {
     type: String,
-    default: 'Local'
+    default: 'Local',
   },
   firstName: {
     type: String,
-    trim: true
+    trim: true,
   },
   lastName: {
     type: String,
-    trim: true
+    trim: true,
   },
   agreedToValues: {
     type: Boolean,
-    default: false
+    default: false,
   },
   activeCompany: {
     name: {
       type: String,
-      trim: true
+      trim: true,
     },
     displayName: {
       type: String,
-      trim: true
-    }
+      trim: true,
+    },
   },
   companies: [
     {
       type: mongoose.Schema.ObjectId,
-      ref: 'Company'
-    }
+      ref: 'Company',
+    },
   ],
   phoneNumber: String,
   resetPasswordToken: String,
@@ -65,9 +65,9 @@ const Users = new Schema({
   invites: [
     {
       type: mongoose.Schema.ObjectId,
-      ref: 'Invite'
-    }
-  ]
+      ref: 'Invite',
+    },
+  ],
 });
 
 function autopopulate(next) {
@@ -78,14 +78,14 @@ function autopopulate(next) {
       {
         path: 'company',
         model: 'Company',
-        select: 'displayName logo website'
+        select: 'displayName logo website',
       },
       {
         path: 'creator',
         model: 'Users',
-        select: 'firstName lastName email'
-      }
-    ]
+        select: 'firstName lastName email',
+      },
+    ],
   });
 
   this.populate({
@@ -98,15 +98,15 @@ function autopopulate(next) {
         {
           path: 'company',
           model: 'Company',
-          select: 'displayName logo website'
+          select: 'displayName logo website',
         },
         {
           path: 'creator',
           model: 'Users',
-          select: 'firstName lastName email'
-        }
-      ]
-    }
+          select: 'firstName lastName email',
+        },
+      ],
+    },
   });
 
   next();
@@ -123,7 +123,7 @@ Users.pre('save', function(next) {
     send({
       subject: `👋  Welcome to Jobeir`,
       template: 'Registration',
-      user
+      user,
     });
   }
   if (this.password && (this.isModified('password') || this.isNew)) {

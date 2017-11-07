@@ -34,7 +34,7 @@ export const getJobs = async (req, res) => {
  */
 export const getJob = async (req, res) => {
   const posting = await Jobs.findOne({ _id: req.params.jobId }).select(
-    '-description'
+    '-description',
   );
 
   if (!posting) throw Error(err.ERROR_FINDING_JOBS);
@@ -53,7 +53,7 @@ export const createJob = async (req, res) => {
 
   const job = await new Jobs({
     description: {
-      blocks: body.description.blocks
+      blocks: body.description.blocks,
     },
     descriptionRaw: body.descriptionRaw,
     receivingEmails: body.receivingEmails,
@@ -66,13 +66,13 @@ export const createJob = async (req, res) => {
     remote: body.remote,
     salary: {
       max: body.salary.max,
-      min: body.salary.min
+      min: body.salary.min,
     },
     equity: {
       max: parsePercentage(body.equity.max) || 0,
       min: parsePercentage(body.equity.min) || 0,
-      offer: body.equity.offer
-    }
+      offer: body.equity.offer,
+    },
   }).save();
 
   if (!job) throw Error(err.ERROR_CREATING_JOB);
@@ -86,7 +86,7 @@ export const createJob = async (req, res) => {
 
   res.status(200).send({
     data: { job },
-    errors: []
+    errors: [],
   });
 };
 
@@ -102,14 +102,14 @@ export const updateJob = async (req, res) => {
   const posting = await Jobs.findOneAndUpdate(
     { _id: req.params.jobId },
     { ...values },
-    { new: true }
+    { new: true },
   );
 
   if (!posting) throw Error(err.ERROR_UPDATING_JOB);
 
   res.status(200).send({
     data: { posting },
-    errors: []
+    errors: [],
   });
 };
 
@@ -128,6 +128,6 @@ export const deleteJob = async (req, res) => {
 
   res.status(200).send({
     data: {},
-    errors: []
+    errors: [],
   });
 };

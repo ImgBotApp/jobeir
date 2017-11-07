@@ -69,7 +69,7 @@ const Jobs = new Schema({
       },
     },
   ],
-  payment: {},
+  payment: { select: false },
   remote: String,
   salary: {
     min: Number,
@@ -91,6 +91,17 @@ function autopopulate(next) {
   this.populate('company');
   next();
 }
+
+// disallowing the updating of posts to active randomly
+Jobs.pre('findOneAndUpdate', function(next) {
+  let update = this.getUpdate();
+
+  if (update.state === 'active' && !update.payment) {
+    update = 'pending';
+  }
+
+  next();
+});
 
 Jobs.pre('find', autopopulate);
 Jobs.pre('findOne', autopopulate);
