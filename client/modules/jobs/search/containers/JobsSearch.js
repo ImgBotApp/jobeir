@@ -211,6 +211,12 @@ class JobsSearch extends Component {
         <JobSearchEmptyStateHeader>
           We couldn't find any job posts
         </JobSearchEmptyStateHeader>
+        <JobSearchEmptyStateHeader
+          style={{ width: '80%', margin: '20px auto', textAlign: 'center' }}
+        >
+          We are actively working on our job network and will be posting new
+          jobs in the coming weeks. Stay tuned!
+        </JobSearchEmptyStateHeader>
         <JobSearchEmptyStateHeader lessMargin>
           Be the first to{' '}
           <LinkToCreate onClick={this.handleCreateJobClick}>
