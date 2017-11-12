@@ -46,7 +46,7 @@ const getMetaTags = ({
     { name: 'twitter:description', content: description },
     { name: 'twitter:creator', content: twitter || '@JobeirOfficial' },
     {
-      name: 'twitter:image:src',
+      name: 'twitter:image',
       content: seoURL(image),
     },
     { name: 'og:title', content: `${title} | Jobeir` },
