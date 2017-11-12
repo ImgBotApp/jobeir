@@ -12,7 +12,7 @@ import Helmet from 'react-helmet';
 
 const seoURL = path => `https://jobeir.com${path}`;
 const seoDescription =
-  'Find the best jobs at the best tech companies. Find your next career at the leading employers in the tech industry.';
+  'Jobeir is where you find the best jobs at the best tech companies. Our mission is to help you find the perfect job or find the best talent for your company.';
 
 const getMetaTags = ({
   title,

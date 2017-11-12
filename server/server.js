@@ -31,8 +31,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(
     webpackDevMiddleware(compiler, {
       noInfo: true,
-      publicPath: config.output.publicPath
-    })
+      publicPath: config.output.publicPath,
+    }),
   );
   app.use(webpackHotMiddleware(compiler));
 }
@@ -71,7 +71,11 @@ app.use(compression());
 app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use('/sw.js', express.static(path.join(__dirname, '../dist/sw.js')));
 app.use(
-  favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico'))
+  '/robots.txt',
+  express.static(path.join(__dirname, '../public/robots.txt')),
+);
+app.use(
+  favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico')),
 );
 app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: '20mb' }));
@@ -81,8 +85,8 @@ app.use(
   cookieSession({
     secret: process.env.JWT,
     resave: false,
-    saveUninitialized: true
-  })
+    saveUninitialized: true,
+  }),
 );
 
 // Adding security headers to all requests
@@ -100,7 +104,7 @@ app.use(serverConfig.handleNoToken);
 app.use(
   '/api/v0',
   jwt({ secret: process.env.JWT }).unless({ path: routesArray }),
-  apiRoutes
+  apiRoutes,
 );
 
 app.use(oAuthRoutes);
@@ -113,7 +117,7 @@ const mongooseOptions = {
   useMongoClient: true,
   autoReconnect: true,
   keepAlive: 1,
-  connectTimeoutMS: 300000
+  connectTimeoutMS: 300000,
 };
 
 // MongoDB Connection
@@ -146,7 +150,7 @@ app.use((req, res, next) => {
       if (redirectLocation) {
         return res.redirect(
           302,
-          redirectLocation.pathname + redirectLocation.search
+          redirectLocation.pathname + redirectLocation.search,
         );
       }
 
@@ -163,8 +167,8 @@ app.use((req, res, next) => {
                 <IntlWrapper>
                   <ReduxAsyncConnect {...renderProps} />
                 </IntlWrapper>
-              </Provider>
-            )
+              </Provider>,
+            ),
           );
 
           const css = sheet.getStyleTags();
@@ -177,7 +181,7 @@ app.use((req, res, next) => {
           res.send(html);
         })
         .catch(error => next(error));
-    }
+    },
   );
 });
 
