@@ -10,7 +10,7 @@ export const AuthPage = (props: { children: any }) => (
 export default AuthPage;
 
 const AuthPageContainer = styled.div`
-  max-width: 700px;
+  max-width: 800px;
   width: 100%;
   margin: 100px auto;
   min-height: 50vh;

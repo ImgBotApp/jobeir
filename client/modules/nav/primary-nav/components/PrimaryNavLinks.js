@@ -41,7 +41,7 @@ class PrimaryNavLinks extends Component {
       </NavLinkContainer>
     ) : (
       <NavLinkContainer>
-        <NavLink onClick={this.handleSignUpClick}>Create Job</NavLink>
+        <NavLink onClick={this.handleSignUpClick}>Create Job / Sign up</NavLink>
         <NavLink to="/signin">Sign in</NavLink>
       </NavLinkContainer>
     );
@@ -72,7 +72,7 @@ const mapStateToProps = state => ({
     (state.routing.locationBeforeTransitions &&
       state.routing.locationBeforeTransitions.pathname) ||
     '',
-  activeCompany: state.account.companies.activeCompany
+  activeCompany: state.account.companies.activeCompany,
 });
 
 export default connect(mapStateToProps)(PrimaryNavLinks);

@@ -10,7 +10,7 @@ import throttle from 'lodash/throttle';
  */
 class FormFooter extends Component {
   state: {
-    isOverlapped: boolean
+    isOverlapped: boolean,
   };
 
   constructor(props: any) {
@@ -37,13 +37,13 @@ class FormFooter extends Component {
       top: number,
       left: number,
       right: number,
-      bottom: number
+      bottom: number,
     } = document.querySelector('.Form').getBoundingClientRect();
     const footer: {
       top: number,
       left: number,
       right: number,
-      bottom: number
+      bottom: number,
     } = document.querySelector('.FormFooter').getBoundingClientRect();
 
     const isOverlapped = !(

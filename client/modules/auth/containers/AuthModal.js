@@ -109,7 +109,7 @@ const AuthModalHeader = styled.div`
 `;
 
 const AuthModalContent = styled.div`
-  padding: 36px;
+  padding: 36px 36px 24px 36px;
 
   ${media.tablet`padding: 24px`};
 `;
@@ -117,15 +117,17 @@ const AuthModalContent = styled.div`
 const AuthModalFooter = styled.div`
   text-align: center;
   cursor: pointer;
-  padding-top: 2rem;
+  padding-top: 1.4rem;
   border-top: 1px solid #dce0e0;
 `;
 const AuthModalLegal = styled.div`
   text-align: center;
-  padding: 2rem 4.2rem;
+  padding: 1.2rem 4.2rem;
   background: #f9f8f7;
   line-height: 1.6;
   margin-top: auto;
+  font-size: 14px;
+  color: ${props => props.theme.colors.grey.mid};
 
   ${media.tablet`
     padding: 2.2rem 3rem;
@@ -133,14 +135,14 @@ const AuthModalLegal = styled.div`
 
   a {
     text-decoration: ink;
-    color: ${props => props.theme.colors.black};
+    color: ${props => props.theme.colors.grey.mid};
   }
 `;
 
 const AuthModalSignupEmail = styled.div`
   text-align: center;
   cursor: pointer;
-  padding: 1rem 0 1.5rem;
+  padding: 0.5rem 0 1rem;
 `;
 
 const AuthModalSolidBall = styled.div`
