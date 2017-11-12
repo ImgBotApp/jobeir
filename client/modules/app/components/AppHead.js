@@ -11,6 +11,8 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 const seoURL = path => `https://jobeir.com${path}`;
+const seoDescription =
+  'Find the best jobs at the best tech companies. Find your next career at the leading employers in the tech industry.';
 
 const getMetaTags = ({
   title,
@@ -22,17 +24,17 @@ const getMetaTags = ({
   updated,
   category,
   tags,
-  twitter
+  twitter,
 }) => {
   const metaTags = [
     { charset: 'utf-8' },
     {
       'http-equiv': 'X-UA-Compatible',
-      content: 'IE=edge'
+      content: 'IE=edge',
     },
     {
       name: 'viewport',
-      content: 'width=device-width, initial-scale=1'
+      content: 'width=device-width, initial-scale=1',
     },
     { itemprop: 'name', content: `${title} | Jobeir` },
     { itemprop: 'description', content: description },
@@ -45,7 +47,7 @@ const getMetaTags = ({
     { name: 'twitter:creator', content: twitter || '@JobeirOfficial' },
     {
       name: 'twitter:image:src',
-      content: seoURL(image)
+      content: seoURL(image),
     },
     { name: 'og:title', content: `${title} | Jobeir` },
     { name: 'og:type', content: contentType },
@@ -53,7 +55,7 @@ const getMetaTags = ({
     { name: 'og:image', content: seoURL(image) },
     { name: 'og:description', content: description },
     { name: 'og:site_name', content: 'Jobeir' },
-    { name: 'fb:app_id', content: '1271809326248448' }
+    { name: 'fb:app_id', content: '1271809326248448' },
   ];
 
   if (published)
@@ -68,7 +70,7 @@ const getMetaTags = ({
 
 const AppHead = ({
   title,
-  description,
+  description = seoDescription,
   path = '/public/static/imgs/brand/jobeir-hero-metadata.jpg',
   image,
   contentType,
@@ -76,11 +78,11 @@ const AppHead = ({
   updated,
   category,
   tags,
-  twitter
+  twitter,
 }) => (
   <Helmet
     htmlAttributes={{
-      lang: 'en'
+      lang: 'en',
     }}
     title={`${title} | Jobeir`}
     link={[{ rel: 'canonical', href: seoURL(path) }]}
@@ -94,7 +96,7 @@ const AppHead = ({
       updated,
       category,
       tags,
-      twitter
+      twitter,
     })}
   />
 );
